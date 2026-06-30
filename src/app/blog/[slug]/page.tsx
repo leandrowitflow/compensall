@@ -59,7 +59,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </article>
 
-      <div className="mt-4 xl:mt-8">
+      <div className="mt-4 xl:mt-8 pb-12 lg:pb-14 xl:pb-20">
         <CTABanner />
       </div>
       <Footer />

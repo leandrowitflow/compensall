@@ -108,6 +108,14 @@ export const airlinesCatalog: CatalogItem[] = [
     cta: "Learn more",
   },
   {
+    id: "iberia-express",
+    name: "Iberia Express",
+    locales: ["es", "es-ES"],
+    description:
+      "Iberia Express delay or cancellation? Check your EU261 compensation eligibility.",
+    cta: "Learn more",
+  },
+  {
     id: "vueling",
     name: "Vueling",
     locales: ["es", "es-ES", "ca", "ca-ES"],
@@ -153,6 +161,14 @@ export const airlinesCatalog: CatalogItem[] = [
     locales: ["en", "en-GB"],
     description:
       "Jet2 flight cancelled or delayed? Check your passenger rights with Compensall.",
+    cta: "Learn more",
+  },
+  {
+    id: "eastern-airways",
+    name: "Eastern Airways",
+    locales: ["en", "en-GB"],
+    description:
+      "Eastern Airways disruption on a UK or European route? See if you can claim compensation.",
     cta: "Learn more",
   },
   {

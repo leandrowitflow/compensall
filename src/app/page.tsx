@@ -30,7 +30,10 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="relative max-w-[980px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center">
+          <div
+            id="claim"
+            className="relative max-w-[980px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
+          >
             <div className="flex justify-center mb-5">
               <img
                 src="/assets/icons/trustpilot-score.png"

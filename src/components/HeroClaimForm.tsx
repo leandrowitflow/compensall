@@ -98,22 +98,28 @@ function ClaimSidebar() {
 
   return (
     <div className="border border-[#d5e0f9] rounded-[21px] p-4 sm:p-5 xl:p-6 flex flex-col h-full bg-white">
-      <div className="flex items-start gap-3 mb-5">
-        <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 mt-0.5" />
-        <div>
-          <h3 className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] xl:text-[19px] mb-3">Uploaded boarding pass</h3>
-          <div className="border-2 border-[#d5e0f9] rounded-xl overflow-hidden w-full max-w-[207px] h-[100px] mb-3">
-            <img
-              src="/assets/claim/claim-boarding-pass.png"
-              alt="Boarding pass preview"
-              className="w-full h-full object-cover"
-            />
+      <div className="mb-5">
+        <div className="flex items-start gap-3 mb-3">
+          <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
+          <h3 className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] xl:text-[19px]">Uploaded boarding pass</h3>
+        </div>
+        <div className="flex items-center gap-3 sm:gap-4">
+          <div className="relative border-2 border-[#d5e0f9] rounded-xl w-[207px] h-[100px] flex-shrink-0 bg-white">
+            <div className="absolute inset-x-2 inset-y-[3px] overflow-hidden pointer-events-none">
+              <img
+                src="/assets/claim/claim-boarding-pass.png"
+                alt="Boarding pass preview"
+                className="absolute h-[108.4%] left-[-4.01%] max-w-none top-[-5.65%] w-[109.99%]"
+              />
+            </div>
           </div>
-          <p className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] mb-1 break-all">{FLIGHT.fileName}</p>
-          <p className="text-[#1f3664] text-sm sm:text-base mb-2">Added just now • {FLIGHT.fileSize}</p>
-          <button type="button" className="text-[#2669f3] font-bold text-sm sm:text-base hover:underline">
-            Preview
-          </button>
+          <div className="min-w-0">
+            <p className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] mb-1 break-all">{FLIGHT.fileName}</p>
+            <p className="text-[#1f3664] text-sm sm:text-base mb-2">Added just now • {FLIGHT.fileSize}</p>
+            <button type="button" className="text-[#2669f3] font-bold text-sm sm:text-base hover:underline">
+              Preview
+            </button>
+          </div>
         </div>
       </div>
 
@@ -369,7 +375,6 @@ export default function HeroClaimForm() {
 
   return (
     <div
-      id="claim"
       className={`bg-[#fefefe] mx-auto text-left overflow-hidden transition-all ${
         isExpanded
           ? "rounded-[24px] xl:rounded-[38px] shadow-[0_1px_1px_1px_rgba(0,0,0,0.05)] max-w-full lg:max-w-[960px] xl:max-w-[1550px] w-full"

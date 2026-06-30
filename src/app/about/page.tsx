@@ -103,7 +103,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <div className="mt-8 lg:mt-10 xl:mt-[89px]">
+      <div className="mt-8 lg:mt-10 xl:mt-[89px] pb-12 lg:pb-14 xl:pb-20">
         <CTABanner />
       </div>
       <Footer />

@@ -118,9 +118,9 @@ function CatalogSection({
   const [query, setQuery] = useState("");
 
   const visibleItems = useMemo(() => {
-    const sorted = sortCatalogByLocale(items, language);
+    const sorted = sortCatalogByLocale(items, language, kind);
     return filterCatalog(sorted, query);
-  }, [items, language, query]);
+  }, [items, language, query, kind]);
 
   const featuredItems = visibleItems.slice(0, 4);
   const remainingItems = visibleItems.slice(4);
