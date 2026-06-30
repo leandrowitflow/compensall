@@ -666,3 +666,21 @@ export const airportsCatalog: CatalogItem[] = [
     cta: "Check claims",
   },
 ];
+
+export function catalogLogoPath(
+  item: Pick<CatalogItem, "id"> & { logo?: string },
+  kind: "airlines" | "airports",
+): string {
+  return item.logo ?? `/assets/${kind}/${item.id}.png`;
+}
+
+export function catalogLogoSvgFallback(
+  item: Pick<CatalogItem, "id">,
+  kind: "airlines" | "airports",
+): string | undefined {
+  if (kind === "airports") {
+    return `/assets/airports/${item.id}.svg`;
+  }
+
+  return undefined;
+}

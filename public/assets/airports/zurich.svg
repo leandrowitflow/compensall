@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60" role="img" aria-label="Zurich">
+  <rect x="0" y="0" width="200" height="60" rx="10" fill="#f0f5fe" stroke="#d5e0f9" stroke-width="2"/>
+  <text x="18" y="38" font-family="Open Sans, Arial, sans-serif" font-size="28" font-weight="700" fill="#2669f3">ZRH</text>
+  <text x="78" y="24" font-family="Open Sans, Arial, sans-serif" font-size="11" font-weight="700" fill="#1f3664">Zurich</text>
+  <text x="78" y="40" font-family="Open Sans, Arial, sans-serif" font-size="10" fill="#7b8094">Airport</text>
+</svg>

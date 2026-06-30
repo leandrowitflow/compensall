@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { CatalogItem } from "@/lib/catalog";
-import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
+import { airlinesCatalog, airportsCatalog, catalogLogoPath, catalogLogoSvgFallback } from "@/lib/catalog";
 import {
   filterCatalog,
   resolveBrowserLanguage,
@@ -38,33 +38,48 @@ function SearchField({
   );
 }
 
-function CatalogLogo({ name, logo }: { name: string; logo?: string }) {
-  if (logo) {
-    return (
-      <img src={logo} alt={name} className="h-full w-auto max-w-[200px] object-contain object-left" />
-    );
-  }
-
-  const initials = name
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase();
+function CatalogLogo({
+  id,
+  kind,
+  name,
+  logo,
+}: {
+  id: string;
+  kind: "airlines" | "airports";
+  name: string;
+  logo?: string;
+}) {
+  const item = { id, logo } satisfies Pick<CatalogItem, "id" | "logo">;
+  const pngSrc = catalogLogoPath(item, kind);
+  const svgFallback = catalogLogoSvgFallback(item, kind);
+  const [src, setSrc] = useState(pngSrc);
 
   return (
-    <div className="h-12 min-w-[3rem] px-3 bg-[#f0f5fe] border border-[#d5e0f9] rounded-[10px] flex items-center justify-center font-bold text-[#2669f3] text-sm">
-      {initials}
-    </div>
+    <img
+      src={src}
+      alt={name}
+      className="h-full w-auto max-w-[200px] object-contain object-left"
+      onError={() => {
+        if (svgFallback && src !== svgFallback) {
+          setSrc(svgFallback);
+        }
+      }}
+    />
   );
 }
 
-function CatalogCard({ logo, name, description, cta }: CatalogItem) {
+function CatalogCard({
+  id,
+  kind,
+  logo,
+  name,
+  description,
+  cta,
+}: CatalogItem & { kind: "airlines" | "airports" }) {
   return (
     <div className="bg-white border-2 border-[#d5e0f9] rounded-[20px] p-6 xl:p-8 flex flex-col min-h-[280px] xl:min-h-[312px]">
-      <div className="h-12 xl:h-[60px] mb-5 flex items-start">
-        <CatalogLogo name={name} logo={logo} />
+      <div className="h-12 xl:h-[60px] mb-5 flex items-start rounded-[10px] bg-[#f8faff] px-2">
+        <CatalogLogo id={id} kind={kind} name={name} logo={logo} />
       </div>
       <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mb-3 leading-snug">{name}</h3>
       <p className="text-[#1f3664] text-sm xl:text-[15px] leading-[1.7] flex-1">{description}</p>
@@ -92,11 +107,13 @@ function CatalogSection({
   searchPlaceholder,
   items,
   language,
+  kind,
 }: {
   title: string;
   searchPlaceholder: string;
   items: CatalogItem[];
   language: string;
+  kind: "airlines" | "airports";
 }) {
   const [query, setQuery] = useState("");
 
@@ -126,7 +143,7 @@ function CatalogSection({
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 xl:gap-6">
               {featuredItems.map((item) => (
-                <CatalogCard key={item.id} {...item} />
+                <CatalogCard key={item.id} kind={kind} {...item} />
               ))}
             </div>
 
@@ -137,7 +154,7 @@ function CatalogSection({
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 xl:gap-6">
                   {remainingItems.map((item) => (
-                    <CatalogCard key={item.id} {...item} />
+                    <CatalogCard key={item.id} kind={kind} {...item} />
                   ))}
                 </div>
               </>
@@ -163,12 +180,14 @@ export default function AirlinesCatalog() {
         searchPlaceholder="Search airline..."
         items={airlinesCatalog}
         language={language}
+        kind="airlines"
       />
       <CatalogSection
         title="Airports"
         searchPlaceholder="Search airport..."
         items={airportsCatalog}
         language={language}
+        kind="airports"
       />
     </>
   );
