@@ -131,8 +131,8 @@ export default function Step1Upload({
         <strong className="font-bold">Or</strong> check manually
       </p>
 
-      <div className="flex flex-col lg:flex-row lg:items-stretch border-2 border-[#d5e0f9] rounded-[13px] bg-white min-h-[87px]">
-        <div className="flex flex-col sm:flex-row flex-1 min-w-0 items-stretch">
+      <div className="flex flex-col lg:flex-row lg:items-stretch border-2 border-[#d5e0f9] rounded-[13px] bg-white min-h-[87px] min-w-0">
+        <div className="flex flex-col md:flex-row flex-1 min-w-0 items-stretch">
           <AirportSelect
             id="manual-departure"
             placeholder="Departure airport"
@@ -159,7 +159,7 @@ export default function Step1Upload({
         <button
           type="button"
           onClick={submitManual}
-          className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-[19px] leading-[27px] px-8 xl:px-10 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px] whitespace-nowrap"
+          className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-base sm:text-[19px] leading-[27px] px-6 sm:px-8 xl:px-10 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px]"
         >
           Check compensation
         </button>

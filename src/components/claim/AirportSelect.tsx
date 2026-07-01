@@ -46,7 +46,7 @@ export default function AirportSelect({
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [highlightIndex, setHighlightIndex] = useState(0);
-  const [language] = useState(() => resolveBrowserLanguage());
+  const [language, setLanguage] = useState("en");
   const [menuRect, setMenuRect] = useState<DOMRect | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -58,7 +58,10 @@ export default function AirportSelect({
     ? `All airports (${results.length})`
     : `${results.length} result${results.length === 1 ? "" : "s"}`;
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+    setLanguage(resolveBrowserLanguage());
+  }, []);
 
   const updateMenuRect = () => {
     if (rootRef.current) {

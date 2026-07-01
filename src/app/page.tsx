@@ -14,7 +14,7 @@ const TRUST_ITEMS = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-clip">
       <Header />
 
       {/* ─── Hero: rounded dark-blue card on white ─── */}
@@ -32,7 +32,7 @@ export default function HomePage() {
 
           <div
             id="claim"
-            className="relative max-w-[980px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
+            className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
           >
             <div className="flex justify-center mb-5">
               <img
@@ -199,7 +199,7 @@ export default function HomePage() {
             Upload your boarding pass. Our assistant checks your claim. Our team handles the airline.
           </p>
 
-          <div className="flex flex-col md:flex-row items-center md:items-stretch justify-center w-full">
+          <div className="flex flex-col xl:flex-row items-center xl:items-stretch justify-center w-full min-w-0">
             {[
               {
                 num: 1,
@@ -222,7 +222,7 @@ export default function HomePage() {
             ].map((step, i, arr) => (
               <Fragment key={step.num}>
                 <div
-                  className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-6 lg:p-6 xl:p-8 flex flex-col items-center text-center w-full md:w-[280px] lg:w-[260px] xl:w-[363px] md:flex-shrink-0"
+                  className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-6 lg:p-6 xl:p-8 flex flex-col items-center text-center w-full xl:w-[363px] xl:flex-shrink-0"
                   style={{ minHeight: "240px" }}
                 >
                   <div className="w-[26px] h-[26px] lg:w-[26px] lg:h-[26px] xl:w-[30px] xl:h-[30px] bg-[#2669f3] rounded-full flex items-center justify-center text-white font-bold text-sm mb-4 lg:mb-4 xl:mb-5 flex-shrink-0">
@@ -234,7 +234,7 @@ export default function HomePage() {
                 </div>
                 {i < arr.length - 1 && (
                   <div
-                    className="hidden md:flex flex-1 items-center justify-center self-center px-4 lg:px-4 xl:px-6 min-w-[32px]"
+                    className="hidden xl:flex flex-1 items-center justify-center self-center px-4 xl:px-6 min-w-0 max-w-[48px]"
                   >
                     <img src="/assets/icons/step-arrow.svg" alt="" className="w-5 h-5 flex-shrink-0" />
                   </div>

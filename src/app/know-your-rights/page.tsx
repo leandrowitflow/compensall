@@ -181,11 +181,11 @@ export default function KnowYourRightsPage() {
             Upload your boarding pass. Our AI checks your claim. Our team handles the airline.
           </p>
 
-          <div className="flex flex-col md:flex-row items-center md:items-stretch justify-center w-full">
+          <div className="flex flex-col xl:flex-row items-center xl:items-stretch justify-center w-full min-w-0">
             {howItWorksSteps.map((step, i, arr) => (
               <Fragment key={step.num}>
                 <div
-                  className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-6 lg:p-6 xl:p-8 flex flex-col items-center text-center w-full md:w-[280px] lg:w-[260px] xl:w-[363px] md:flex-shrink-0 min-h-[240px] xl:min-h-[267px]"
+                  className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-6 lg:p-6 xl:p-8 flex flex-col items-center text-center w-full xl:w-[363px] xl:flex-shrink-0 min-h-[240px] xl:min-h-[267px]"
                 >
                   <div className="w-[26px] h-[26px] xl:w-[30px] xl:h-[30px] bg-[#2669f3] rounded-full flex items-center justify-center text-white font-bold text-sm mb-4 xl:mb-5 flex-shrink-0">
                     {step.num}
@@ -199,7 +199,7 @@ export default function KnowYourRightsPage() {
                   <p className="text-[#1f3664] text-sm xl:text-base">{step.desc}</p>
                 </div>
                 {i < arr.length - 1 && (
-                  <div className="hidden md:flex flex-1 items-center justify-center self-center px-4 lg:px-4 xl:px-6 min-w-[32px]">
+                  <div className="hidden xl:flex flex-1 items-center justify-center self-center px-4 xl:px-6 min-w-0 max-w-[48px]">
                     <img src="/assets/icons/step-arrow.svg" alt="" className="w-5 h-5 flex-shrink-0" />
                   </div>
                 )}

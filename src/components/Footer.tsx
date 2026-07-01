@@ -62,8 +62,8 @@ export default function Footer() {
             <p className="font-['Roboto',sans-serif] font-light text-base xl:text-[18px] leading-[30px] text-white mb-5">
               Subscribe to our newsletter
             </p>
-            <div className="flex items-center w-fit max-w-full">
-              <div className="bg-white h-12 w-[240px] sm:w-[292px] rounded-full flex items-center px-4 sm:px-5 flex-shrink-0">
+            <div className="flex items-center w-full max-w-[340px] min-w-0">
+              <div className="bg-white h-12 min-w-0 flex-1 rounded-full flex items-center px-4 sm:px-5">
                 <input
                   type="email"
                   placeholder="Enter email address"

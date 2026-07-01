@@ -14,9 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <div className="site-viewport">
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <div className="site-viewport min-w-0 overflow-x-clip">
           <AnchorScroll />
           {children}
         </div>
