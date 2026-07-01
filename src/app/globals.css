@@ -35,22 +35,6 @@ body {
   overflow-x: clip;
 }
 
-/* Scale down on viewports below 1300px wide (e.g. 1280×800 laptops at 150% OS scale).
-   Standard 1080p/1440p monitors are above 1300px and stay at 100%. */
-@media (min-width: 1024px) and (max-width: 1299px) {
-  html {
-    zoom: 0.75;
-  }
-
-  /* Firefox fallback */
-  @supports not (zoom: 1) {
-    html { zoom: unset; }
-    .site-viewport {
-      transform: scale(0.75);
-      transform-origin: top center;
-    }
-  }
-}
 
 button:not(:disabled),
 [type="button"]:not(:disabled),
