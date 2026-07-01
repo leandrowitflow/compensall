@@ -6,17 +6,18 @@ import PageHero from "@/components/PageHero";
 
 const values = [
   {
-    icon: "/assets/icons/lightning-charge.svg",
+    image: "/assets/about/about-fast-risk-free.svg",
     title: "Fast & risk-free",
     description: "Check eligibility in minutes with no upfront cost. We only charge if we win your claim.",
   },
   {
-    icon: "/assets/icons/headset.svg",
+    image: "/assets/about/about-human-support.svg",
     title: "Human-backed support",
-    description: "AI speeds things up, but real people review your case and handle the airline for you.",
+    description:
+      "Our assistant speeds things up, but real people review your case and handle the airline for you.",
   },
   {
-    icon: "/assets/icons/secured.svg",
+    image: "/assets/about/about-security.svg",
     title: "Highest security",
     description: "Your boarding pass and personal data are protected. You stay in control at every step.",
   },
@@ -31,8 +32,8 @@ export default function AboutPage() {
         title="About us"
         subtitle={
           <>
-            We help passengers claim the compensation they are owed — with AI guidance and human support
-            every step of the way.
+            We help passengers claim the compensation they are owed — with our assistant and human
+            support every step of the way.
           </>
         }
       />
@@ -45,13 +46,14 @@ export default function AboutPage() {
                 Our mission
               </h2>
               <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-4">
-                Compensall makes flight compensation simple. Too many passengers never claim what EU
-                regulation EC 261/2004 entitles them to — often because the process feels slow, confusing,
-                or stacked against them.
+                Compensall makes flight compensation simple. Airlines often delay responses, reject
+                valid claims, and make the process stressful — so too many passengers never receive
+                what EU regulation EC 261/2004 entitles them to.
               </p>
               <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
-                We combine secure technology with a team that knows how airlines work, so you can upload
-                your boarding pass, confirm your details, and let us fight for your compensation.
+                We take care of everything: paperwork, negotiations with the airline, and pursuing
+                your case when needed. Upload your boarding pass, confirm your details, and let our
+                team fight for your compensation on a no win, no fee basis.
               </p>
             </div>
 
@@ -61,6 +63,14 @@ export default function AboutPage() {
                 <li className="flex gap-3">
                   <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
                   No win, no fee — you pay nothing unless we succeed
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
+                  End-to-end handling from eligibility check to airline follow-up
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
+                  Predictable success fee — we are not a law firm
                 </li>
                 <li className="flex gap-3">
                   <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
@@ -94,7 +104,11 @@ export default function AboutPage() {
                 key={item.title}
                 className="bg-white border-2 border-[#d5e0f9] rounded-[20px] p-6 xl:p-8 text-center"
               >
-                <img src={item.icon} alt="" className="w-12 h-12 xl:w-14 xl:h-14 mx-auto mb-4 object-contain" />
+                <img
+                  src={item.image}
+                  alt=""
+                  className="w-24 h-24 xl:w-28 xl:h-28 mx-auto mb-4 object-contain"
+                />
                 <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mb-2">{item.title}</h3>
                 <p className="text-[#1f3664] text-sm xl:text-[15px] leading-relaxed">{item.description}</p>
               </div>

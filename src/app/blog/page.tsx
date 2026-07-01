@@ -13,8 +13,8 @@ export default function BlogPage() {
         title="Blog"
         subtitle={
           <>
-            Guides on flight cancellation, delays, denied boarding, and more — so you know your rights
-            before you fly.
+            Practical guides on EC 261/2004 passenger rights — delays, cancellations, denied boarding,
+            and more — so you know what you may be owed before you fly.
           </>
         }
       />
@@ -25,18 +25,19 @@ export default function BlogPage() {
             {blogPosts.map((post) => (
               <article
                 key={post.slug}
-                className="bg-white border-2 border-[#d5e0f9] rounded-[20px] p-6 xl:p-8 flex flex-col min-h-[280px] xl:min-h-[312px]"
+                className="bg-white border-2 border-[#d5e0f9] rounded-[20px] overflow-hidden flex flex-col min-h-[280px] xl:min-h-[312px]"
               >
-                <div className="h-16 xl:h-[87px] mb-5 flex items-start">
+                <div className="aspect-[16/9] overflow-hidden border-b-2 border-[#d5e0f9]">
                   <img
                     src={post.image}
-                    alt=""
-                    className="h-full w-auto max-w-[109px] object-contain object-left"
+                    alt={post.imageAlt}
+                    className="w-full h-full object-cover"
                   />
                 </div>
+                <div className="p-6 xl:p-8 flex flex-col flex-1">
                 <div className="flex items-center justify-between gap-3 mb-2 text-sm">
                   <span className="text-[#2669f3] font-bold">{post.category}</span>
-                  <time className="text-[#7b8094]">{post.date}</time>
+                  <time className="text-[#7b8094]">{post.readTime}</time>
                 </div>
                 <h2 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] leading-snug mb-3">
                   {post.title}
@@ -57,6 +58,7 @@ export default function BlogPage() {
                     />
                   </svg>
                 </Link>
+                </div>
               </article>
             ))}
           </div>

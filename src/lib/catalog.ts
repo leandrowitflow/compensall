@@ -321,7 +321,7 @@ export const airportsCatalog: CatalogItem[] = [
   {
     id: "heathrow",
     name: "London Heathrow Airport",
-    logo: "/assets/airports/heathrow.png",
+    logo: "/assets/airports/heathrow.svg",
     locales: ["en", "en-GB"],
     description:
       "Flight delayed, cancelled or disrupted at Heathrow? Check your compensation rights with Compensall.",
@@ -330,7 +330,7 @@ export const airportsCatalog: CatalogItem[] = [
   {
     id: "gatwick",
     name: "London Gatwick Airport",
-    logo: "/assets/airports/gatwick.png",
+    logo: "/assets/airports/gatwick.svg",
     locales: ["en", "en-GB"],
     description:
       "If your flight from or to Gatwick was disrupted, you may be able to claim compensation.",
@@ -339,7 +339,7 @@ export const airportsCatalog: CatalogItem[] = [
   {
     id: "manchester",
     name: "Manchester Airport",
-    logo: "/assets/airports/manchester.png",
+    logo: "/assets/airports/manchester.svg",
     locales: ["en", "en-GB"],
     description:
       "Delayed, cancelled or denied boarding at Manchester? Find out if you may be eligible.",
@@ -380,6 +380,7 @@ export const airportsCatalog: CatalogItem[] = [
   {
     id: "edinburgh",
     name: "Edinburgh Airport",
+    logo: "/assets/airports/edinburgh.svg",
     locales: ["en", "en-GB", "gd"],
     description:
       "Delayed or cancelled flight at Edinburgh? Find out what you may be owed.",

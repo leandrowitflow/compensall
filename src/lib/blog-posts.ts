@@ -1,11 +1,19 @@
+export type BlogBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "heading"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "callout"; text: string };
+
 export type BlogPost = {
   slug: string;
   category: string;
   date: string;
+  readTime: string;
   title: string;
   excerpt: string;
-  body: string[];
   image: string;
+  imageAlt: string;
+  body: BlogBlock[];
 };
 
 export const blogPosts: BlogPost[] = [
@@ -13,119 +21,484 @@ export const blogPosts: BlogPost[] = [
     slug: "flight-cancellation",
     category: "Know your rights",
     date: "28 May 2026",
-    title: "Flight cancellation: when you can claim up to €600",
+    readTime: "6 min read",
+    title: "Flight cancelled? You may be owed up to €600 — here's how to claim",
     excerpt:
-      "If your flight is cancelled with short notice, you may be entitled to compensation of up to €600.",
-    image: "/assets/icons/flight-cancellation.png",
+      "Short-notice cancellations often trigger fixed compensation under EU261 — on top of a refund or re-routing. Here is how to tell if your flight qualifies.",
+    image: "/assets/blog/flight-cancellation.png",
+    imageAlt: "Illustration of a cancelled flight departure board and passenger with luggage",
     body: [
-      "When an airline cancels your flight, EU regulation EC 261/2004 may entitle you to fixed compensation — on top of a refund or re-routing. The amount depends on flight distance: up to €250 for short routes, €400 for medium-haul, and €600 for long-haul flights over 3,500 km.",
-      "You are generally eligible when the cancellation is announced with less than 14 days' notice and the airline cannot prove the disruption was caused by extraordinary circumstances such as severe weather or air-traffic control restrictions.",
-      "Airlines must also offer care while you wait: meals, refreshments, hotel accommodation if an overnight stay is required, and transport between the airport and hotel. Keep every email, SMS, and boarding pass — they are essential evidence for your claim.",
-      "Compensall checks your cancellation against the regulation in minutes. Upload your boarding pass and we will tell you whether you have a valid claim and handle the airline on your behalf.",
+      {
+        type: "paragraph",
+        text: "You had plans. The airline had other ideas. If your flight was cancelled with little warning, you are not powerless — EU regulation EC 261/2004 may entitle you to cash compensation of up to €600 per passenger, separate from any refund or alternative flight the airline offers.",
+      },
+      {
+        type: "heading",
+        text: "When does a cancellation qualify for compensation?",
+      },
+      {
+        type: "paragraph",
+        text: "The general rule: if the airline cancels less than 14 days before departure and cannot prove extraordinary circumstances (severe weather, air-traffic control shutdowns, security emergencies), compensation is due. The amount depends on distance, not ticket price:",
+      },
+      {
+        type: "list",
+        items: [
+          "Up to 1,500 km → €250 per passenger",
+          "1,500–3,500 km → €400 per passenger",
+          "Over 3,500 km → €600 per passenger",
+        ],
+      },
+      {
+        type: "callout",
+        text: "Tip: A €29 Ryanair fare carries the same compensation rights as a business-class ticket on the same route.",
+      },
+      {
+        type: "heading",
+        text: "What the airline must offer on the day",
+      },
+      {
+        type: "paragraph",
+        text: "Compensation is only part of the picture. While you wait, the carrier must provide care — meals, drinks, two free calls or emails, and hotel accommodation plus airport transfers if an overnight stay is unavoidable. You can also choose between a full refund and the earliest re-routing to your destination.",
+      },
+      {
+        type: "heading",
+        text: "Why airlines reject valid cancellation claims",
+      },
+      {
+        type: "paragraph",
+        text: "Carriers often cite \"extraordinary circumstances\" without evidence, or offer vouchers instead of the cash you are legally owed. Rejection letters are frequently template responses designed to discourage passengers from pursuing their rights.",
+      },
+      {
+        type: "list",
+        items: [
+          "Save every email, SMS, and push notification about the cancellation",
+          "Keep boarding passes and booking confirmations",
+          "Note the exact time you were informed — the 14-day window matters",
+          "Do not sign away rights in exchange for a voucher without reading the terms",
+        ],
+      },
+      {
+        type: "heading",
+        text: "How to check your claim in minutes",
+      },
+      {
+        type: "paragraph",
+        text: "Upload your boarding pass to Compensall and our assistant checks your cancellation against EC 261/2004. If you have a valid claim, our human team handles the airline on your behalf — on a no win, no fee basis.",
+      },
     ],
   },
   {
     slug: "denied-boarding",
     category: "Know your rights",
     date: "26 May 2026",
-    title: "Denied boarding: your rights when refused at the gate",
+    readTime: "5 min read",
+    title: "Denied boarding at the gate: your rights when the airline says no",
     excerpt:
-      "If you were refused boarding against your will, you could claim up to €600.",
-    image: "/assets/icons/denied-boarding.png",
+      "Refused a seat despite a valid ticket? Involuntary denied boarding can trigger up to €600 in compensation plus care and re-routing.",
+    image: "/assets/blog/denied-boarding.png",
+    imageAlt: "Illustration of a passenger refused boarding at an airport gate",
     body: [
-      "Denied boarding happens when an airline refuses to let you travel despite you having a valid ticket and arriving on time — most often due to overbooking. Under EU261, this is treated seriously: passengers who are involuntarily denied boarding have strong compensation rights.",
-      "Before bumping anyone, the airline must ask for volunteers and offer benefits in exchange for giving up a seat. If there are not enough volunteers, those who are denied boarding against their will may receive the same compensation tiers as for cancellations — up to €600 depending on distance.",
-      "You also have the right to choose between a full refund and the earliest available alternative flight to your destination. The airline must provide meals, calls, and accommodation where necessary while you wait.",
-      "If you were refused boarding at the gate, do not accept a voucher without understanding your legal rights. Upload your boarding pass to Compensall and we will assess whether you are owed cash compensation.",
+      {
+        type: "paragraph",
+        text: "You checked in on time. You had a confirmed seat. Then the gate agent told you the flight was full. If you were refused boarding against your will — most often because of overbooking — EU law treats this as seriously as a cancellation.",
+      },
+      {
+        type: "heading",
+        text: "Volunteers vs. involuntary denied boarding",
+      },
+      {
+        type: "paragraph",
+        text: "Airlines must first ask for volunteers and offer benefits (vouchers, miles, hotel) in exchange for giving up a seat. That is a voluntary agreement. If you did not volunteer and were bumped anyway, you may have a right to fixed cash compensation under EC 261/2004 — up to €600 depending on flight distance.",
+      },
+      {
+        type: "callout",
+        text: "Important: Accepting a voucher at the gate does not automatically cancel your legal right to compensation. Always read what you are signing.",
+      },
+      {
+        type: "heading",
+        text: "What you are entitled to immediately",
+      },
+      {
+        type: "list",
+        items: [
+          "Cash compensation of €250, €400, or €600 based on distance",
+          "Choice between a full refund and re-routing to your destination",
+          "Meals, refreshments, and accommodation while you wait",
+          "Communication — calls or emails to rearrange your plans",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Evidence that strengthens your claim",
+      },
+      {
+        type: "paragraph",
+        text: "Successful denied-boarding claims typically show you held a confirmed reservation, arrived at check-in within the deadline, and were refused boarding through no fault of your own. Ask for written confirmation at the gate if possible.",
+      },
+      {
+        type: "heading",
+        text: "Next steps",
+      },
+      {
+        type: "paragraph",
+        text: "Do not let a stressful gate experience cost you money you are owed. Upload your boarding pass to Compensall — our assistant and team assess whether you qualify for cash compensation, with no upfront cost.",
+      },
     ],
   },
   {
     slug: "flight-delay",
     category: "Know your rights",
     date: "24 May 2026",
-    title: "Flight delay: the three-hour rule explained",
+    readTime: "6 min read",
+    title: "The 3-hour rule: when a delayed flight becomes a compensation claim",
     excerpt:
-      "If your flight arrived more than 3 hours late, you may be entitled to compensation.",
-    image: "/assets/icons/flight-delay.png",
+      "Not every delay pays out — but if you arrived 3+ hours late at your final destination, you may be entitled to up to €600 under EU261.",
+    image: "/assets/blog/flight-delay.png",
+    imageAlt: "Illustration of a delayed flight on an airport departure screen with waiting passengers",
     body: [
-      "Not every delay leads to compensation — but if your flight arrives at its final destination three or more hours behind schedule, you may have a valid claim under EU261. The clock is measured at arrival, not departure, and only applies when the delay is the airline's responsibility.",
-      "Compensation is fixed by distance, not ticket price: €250 for flights up to 1,500 km, €400 for intra-EU flights over 1,500 km and other routes between 1,500 and 3,500 km, and €600 for flights over 3,500 km.",
-      "For delays of two hours or more (depending on distance), the airline must provide care — food, drinks, and hotel stays if needed. Extraordinary circumstances such as extreme weather or security risks can exempt the carrier, but airlines often wrongly cite these reasons to reject claims.",
-      "Compensall analyses your actual arrival time against the scheduled time and challenges unfair rejections. Start with a boarding pass upload — eligibility takes just a few minutes.",
+      {
+        type: "paragraph",
+        text: "Three hours feels long at the gate. Under EU261, three hours at arrival can mean hundreds of euros in your pocket — if the delay was the airline's fault and your flight qualifies.",
+      },
+      {
+        type: "heading",
+        text: "Arrival time counts — not departure",
+      },
+      {
+        type: "paragraph",
+        text: "Courts measure delay at your final destination, not when the plane left the runway. A flight that departs five hours late but makes up time en route may not qualify. Conversely, a short departure delay that snowballs into a long late arrival often does.",
+      },
+      {
+        type: "heading",
+        text: "Compensation amounts by distance",
+      },
+      {
+        type: "list",
+        items: [
+          "Flights up to 1,500 km → €250",
+          "Intra-EU flights over 1,500 km and other routes between 1,500–3,500 km → €400",
+          "Flights over 3,500 km → €600",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Care rights while you wait",
+      },
+      {
+        type: "paragraph",
+        text: "Before compensation even comes into question, delays of two hours or more (depending on distance) trigger care obligations: food, drinks, and hotel stays when needed. Ask at the airline desk — do not assume they will offer automatically.",
+      },
+      {
+        type: "heading",
+        text: "When airlines say \"extraordinary circumstances\"",
+      },
+      {
+        type: "paragraph",
+        text: "Extreme weather, political instability, and certain security events can exempt carriers. But airlines routinely overuse this defence. A technical fault on an earlier rotation, understaffing, or a preventable operational failure is generally not extraordinary.",
+      },
+      {
+        type: "callout",
+        text: "Key takeaway: Screenshot your flight's actual arrival time from the airline app or airport board — it is the evidence that wins or loses claims.",
+      },
+      {
+        type: "heading",
+        text: "Check your delay claim quickly",
+      },
+      {
+        type: "paragraph",
+        text: "Compensall compares your scheduled and actual arrival times against EC 261/2004. Upload your boarding pass and our assistant flags eligibility in minutes. Our team challenges unfair rejections on a no win, no fee basis.",
+      },
     ],
   },
   {
     slug: "missed-connection",
     category: "Know your rights",
     date: "22 May 2026",
-    title: "Missed connection: compensation when your itinerary falls apart",
+    readTime: "7 min read",
+    title: "Missed your connecting flight? You may still claim €600",
     excerpt:
-      "If a delay or cancellation caused you to miss a connecting flight, you may be entitled to compensation.",
-    image: "/assets/icons/missed-connection.png",
+      "Multi-leg trips confuse passengers and airlines alike. If both flights were on one booking and you arrived 3+ hours late, compensation may still apply.",
+    image: "/assets/blog/missed-connection.png",
+    imageAlt: "Illustration of a passenger missing a connecting flight at an airport transfer area",
     body: [
-      "Missed connections are one of the most confusing areas of passenger rights. The key question is whether your flights were booked together on a single reservation. If they were, a delay on the first leg that causes you to arrive more than three hours late at your final destination can trigger the same compensation as a direct delay.",
-      "The airline is responsible for re-routing you to your destination as quickly as possible. While you wait, you are entitled to care — meals, communication, and accommodation if an overnight delay is unavoidable.",
-      "If you booked separate tickets with different airlines, EU261 protections may not apply to the connection itself. However, a delay on an EU-carrier flight that causes a missed onward flight on the same booking is covered.",
-      "Keep boarding passes for every leg of your journey and note the actual arrival time at your final stop. Compensall maps multi-leg itineraries automatically from your upload and flags whether a missed connection qualifies.",
+      {
+        type: "paragraph",
+        text: "You sprinted through the terminal. You still missed the connection. The question passengers ask most: does EU261 cover this? Often, yes — but only when your flights were booked together on a single reservation.",
+      },
+      {
+        type: "heading",
+        text: "Single booking vs. separate tickets",
+      },
+      {
+        type: "paragraph",
+        text: "EU261 treats a multi-leg journey on one booking as a single trip to your final destination. A delay on the first leg that causes you to arrive more than three hours late at the end can trigger the same compensation as a direct delay.",
+      },
+      {
+        type: "list",
+        items: [
+          "Same booking reference on all legs → generally covered",
+          "Separate tickets with different airlines → usually not covered for the connection itself",
+          "First flight on EU carrier causing missed EU onward flight on same booking → covered",
+        ],
+      },
+      {
+        type: "heading",
+        text: "What the airline must do after a missed connection",
+      },
+      {
+        type: "paragraph",
+        text: "The carrier responsible for the delay must re-route you to your destination as quickly as possible. While you wait, you are entitled to meals, communication, and accommodation if an overnight delay is unavoidable.",
+      },
+      {
+        type: "heading",
+        text: "Documentation checklist",
+      },
+      {
+        type: "list",
+        items: [
+          "Boarding pass for every leg of the journey",
+          "Actual arrival time at your final stop (not just the connecting airport)",
+          "Screenshots of delay notifications",
+          "Any re-routing confirmation from the airline",
+        ],
+      },
+      {
+        type: "callout",
+        text: "Pro tip: The three-hour clock runs to your final destination — not the airport where you missed the connection.",
+      },
+      {
+        type: "heading",
+        text: "Let us map your itinerary",
+      },
+      {
+        type: "paragraph",
+        text: "Missed-connection cases live or die on the details. Compensall reads multi-leg boarding passes, maps your route, and flags whether you qualify — backed by our assistant and human support.",
+      },
     ],
   },
   {
     slug: "overbooking",
     category: "Know your rights",
     date: "20 May 2026",
-    title: "Overbooking: what airlines owe you when seats run out",
+    readTime: "5 min read",
+    title: "Overbooked flights: what airlines owe when there are no seats left",
     excerpt:
-      "If the airline overbooked your flight and you could not travel as planned, you may be able to claim.",
-    image: "/assets/icons/overbooking.png",
+      "Airlines sell more tickets than seats on purpose. If you were bumped without volunteering, you may have a strong compensation claim.",
+    image: "/assets/blog/overbooking.png",
+    imageAlt: "Illustration of an overbooked airplane with passengers waiting at the gate",
     body: [
-      "Airlines routinely sell more tickets than available seats, betting that some passengers will not show up. When everyone does, the flight is overbooked and someone has to be left behind. EU law treats passengers who are involuntarily bumped very differently from those who volunteer to take a later flight.",
-      "If you did not volunteer and were denied boarding because of overbooking, you may be entitled to compensation of up to €600, a choice between refund and re-routing, and care while you wait for the next available flight.",
-      "Voluntary agreements — where you accept vouchers or miles in exchange for giving up your seat — are separate from legal compensation rights. Always confirm in writing what you are agreeing to before signing anything at the gate.",
-      "Overbooking claims require proof that you held a confirmed reservation, checked in on time, and were refused boarding against your will. Compensall helps you document the facts and pursue the compensation you are legally owed.",
+      {
+        type: "paragraph",
+        text: "Overbooking is standard industry practice. Airlines bet that some passengers will not show up. When everyone does, someone gets left behind — and EU law draws a sharp line between passengers who volunteer and those who are bumped against their will.",
+      },
+      {
+        type: "heading",
+        text: "Involuntary bumping = strong rights",
+      },
+      {
+        type: "paragraph",
+        text: "If you did not agree to take a later flight in exchange for benefits, and the airline refused you boarding because the flight was full, you may be entitled to up to €600 in cash compensation — plus re-routing or a refund and care while you wait.",
+      },
+      {
+        type: "heading",
+        text: "Vouchers are not a substitute for legal rights",
+      },
+      {
+        type: "paragraph",
+        text: "Airlines often push vouchers, miles, or lounge access at the gate. These voluntary deals are separate from the fixed compensation EC 261/2004 provides. Before signing anything, confirm whether you are accepting a voluntary offer or being denied boarding involuntarily.",
+      },
+      {
+        type: "list",
+        items: [
+          "Confirmed reservation in your name",
+          "Checked in within the airline's deadline",
+          "Refused boarding through no fault of your own",
+          "Written or digital record of the denial if possible",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Fight back with evidence",
+      },
+      {
+        type: "paragraph",
+        text: "Overbooking claims succeed when the facts are clear. Compensall helps you document what happened and pursue the compensation you are legally owed — no win, no fee.",
+      },
     ],
   },
   {
     slug: "airline-strike",
     category: "Know your rights",
     date: "18 May 2026",
-    title: "Airline strike: can you still claim compensation?",
+    readTime: "6 min read",
+    title: "Airline strike: can you still claim compensation for a disrupted flight?",
     excerpt:
-      "If your flight was disrupted by an airline strike, you may still have compensation rights.",
-    image: "/assets/icons/airline-strike.png",
+      "Strikes are the excuse airlines use most — but not every strike removes your right to compensation. Here is how courts draw the line.",
+    image: "/assets/blog/airline-strike.png",
+    imageAlt: "Illustration of airline staff on strike with grounded planes at an airport",
     body: [
-      "Strikes are a common reason airlines give for denying compensation — but not all strikes are treated equally under EU261. A strike by the airline's own staff (pilots, cabin crew, ground handlers employed by the carrier) is generally considered within the airline's control, meaning compensation may still be due.",
-      "By contrast, strikes by third parties — such as air-traffic controllers or airport security staff — are often classified as extraordinary circumstances outside the airline's responsibility. In those cases, compensation may not apply, though you still have rights to care and re-routing.",
-      "Airlines frequently blur this distinction in rejection letters. The specific facts of each disruption matter: who was striking, when the airline knew about it, and whether they could have avoided the cancellation or delay.",
-      "If your flight was affected by a strike, upload your boarding pass to Compensall. We review the circumstances and pursue your claim when the law supports it.",
+      {
+        type: "paragraph",
+        text: "Your flight was cancelled. The airline blamed a strike. Case closed? Not necessarily. Under EC 261/2004, who is striking matters more than the word \"strike\" in a rejection letter.",
+      },
+      {
+        type: "heading",
+        text: "Airline staff strikes vs. third-party strikes",
+      },
+      {
+        type: "list",
+        items: [
+          "Strike by the airline's own pilots, cabin crew, or ground staff → compensation may still be due",
+          "Strike by air-traffic controllers, airport security, or baggage handlers not employed by the airline → often classified as extraordinary circumstances",
+          "Grey areas exist — courts look at who employed the strikers and whether the airline could have prevented the disruption",
+        ],
+      },
+      {
+        type: "heading",
+        text: "What you still get when compensation does not apply",
+      },
+      {
+        type: "paragraph",
+        text: "Even when a third-party strike blocks compensation, you retain rights to care (meals, hotels) and re-routing or a refund. Do not accept silence from the airline as the final answer.",
+      },
+      {
+        type: "callout",
+        text: "Airlines frequently blur the distinction in rejection letters. Send us the airline's response — the specific facts of each case matter.",
+      },
+      {
+        type: "heading",
+        text: "How Compensall handles strike cases",
+      },
+      {
+        type: "paragraph",
+        text: "Strike claims require careful analysis of timing, who was striking, and what the airline knew in advance. Upload your boarding pass and any airline correspondence — our assistant and team review the circumstances and pursue your claim when the law supports it.",
+      },
     ],
   },
   {
     slug: "passenger-rights",
     category: "Know your rights",
     date: "16 May 2026",
-    title: "Passenger rights: what airlines owe you when travel goes wrong",
-    excerpt: "Learn what airlines may owe you when your trip is disrupted.",
-    image: "/assets/icons/passenger-rights.png",
+    readTime: "8 min read",
+    title: "EU air passenger rights explained: what airlines owe you when travel goes wrong",
+    excerpt:
+      "EC 261/2004 is the rulebook airlines hope you never read. Here is a plain-English guide to compensation, refunds, and care.",
+    image: "/assets/blog/passenger-rights.png",
+    imageAlt: "Illustration representing EU air passenger rights and legal protection for travellers",
     body: [
-      "EU261 gives every passenger on a qualifying flight a clear set of rights when things go wrong. These include fixed financial compensation for delays, cancellations, and denied boarding; the choice of a refund or re-routing; and care such as meals, drinks, and hotel accommodation during long waits.",
-      "The regulation covers flights departing from any EU airport, and flights arriving in the EU on an EU-based carrier. It applies regardless of your nationality or ticket price — even €20 budget fares qualify.",
-      "Beyond compensation, airlines must keep you informed. They are required to tell you about your rights at check-in and when a disruption occurs. If they fail to do so, that does not remove your entitlement — but it often means passengers never claim what they are owed.",
-      "Compensall exists to close that gap. We translate complex regulation into a simple check: upload your boarding pass, confirm your details, and let us handle the rest.",
+      {
+        type: "paragraph",
+        text: "Roughly 85% of passengers never claim compensation they are entitled to — often because the rules feel designed to confuse. EC 261/2004 is simpler than airlines want you to believe. Here is what it actually guarantees.",
+      },
+      {
+        type: "heading",
+        text: "Which flights are covered?",
+      },
+      {
+        type: "list",
+        items: [
+          "Any flight departing from an EU airport — any airline, any nationality",
+          "Flights arriving in the EU on an EU-based carrier",
+          "Budget fares, reward tickets, and children's tickets all qualify",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Three pillars of passenger protection",
+      },
+      {
+        type: "paragraph",
+        text: "When a qualifying disruption occurs, you may have rights in three categories — and they stack:",
+      },
+      {
+        type: "list",
+        items: [
+          "Fixed financial compensation (€250 / €400 / €600) for delays, cancellations, and denied boarding",
+          "Choice of a full refund or re-routing to your destination",
+          "Care during the wait — meals, drinks, hotel, and transport between airport and hotel",
+        ],
+      },
+      {
+        type: "heading",
+        text: "How long do you have to claim?",
+      },
+      {
+        type: "paragraph",
+        text: "In most EU countries you have up to three years from the flight date. In the UK, generally six years (five in Scotland). The sooner you submit, the easier it is to gather evidence.",
+      },
+      {
+        type: "callout",
+        text: "You do not need to be European or flying within Europe on holiday — a disrupted departure from Lisbon, Madrid, or Paris is enough.",
+      },
+      {
+        type: "heading",
+        text: "Why most people never claim — and how we fix that",
+      },
+      {
+        type: "paragraph",
+        text: "Airlines delay responses, reject valid claims, and hide behind legal jargon. Compensall closes the gap: upload your boarding pass, confirm your details, and let our assistant and human team handle the rest — on a no win, no fee basis.",
+      },
     ],
   },
   {
     slug: "passengers-with-disabilities",
     category: "Know your rights",
     date: "14 May 2026",
-    title: "Passengers with disabilities: assistance and accessibility rights",
+    readTime: "6 min read",
+    title: "Flying with a disability: assistance, accessibility, and compensation rights",
     excerpt:
-      "Understand your rights to assistance, accessibility and support when travelling.",
-    image: "/assets/icons/passengers-with-disabilities.png",
+      "EU law guarantees free assistance at every stage of your journey — and disability rights work alongside standard delay and cancellation claims.",
+    image: "/assets/blog/passengers-with-disabilities.png",
+    imageAlt: "Illustration of accessible air travel with wheelchair assistance at an airport",
     body: [
-      "Air passengers with disabilities or reduced mobility have dedicated protections under EU law, separate from EC 261/2004. Regulation (EC) No 1107/2006 requires airports and airlines to provide free assistance throughout the journey — from check-in through boarding, connections, and arrival.",
-      "You should notify the airline of your needs at least 48 hours before departure when possible, though assistance must still be provided even for last-minute requests. This includes help with wheelchairs, guided boarding, and support during connections.",
-      "If your wheelchair or mobility equipment is damaged or lost, you may be entitled to compensation for repair or replacement. If a lack of assistance caused you to miss a flight, the airline may be liable for re-routing and any related costs.",
-      "Disability-related rights work alongside standard compensation rules. If a delay or cancellation also affected your journey, you may have claims under both sets of regulations. Contact Compensall with your boarding pass and we will review the full picture.",
+      {
+        type: "paragraph",
+        text: "Air travel with a disability or reduced mobility comes with dedicated protections under EU law — separate from, but alongside, EC 261/2004 compensation rules. Knowing both sets of rights can make the difference between a stressful trip and a dignified one.",
+      },
+      {
+        type: "heading",
+        text: "Free assistance under Regulation 1107/2006",
+      },
+      {
+        type: "paragraph",
+        text: "Airports and airlines must provide free help throughout your journey — from check-in through boarding, connections, and arrival. This includes wheelchair support, guided boarding, and help moving between gates.",
+      },
+      {
+        type: "list",
+        items: [
+          "Notify the airline at least 48 hours before departure when possible",
+          "Assistance must still be provided for last-minute requests",
+          "Help applies at departure, connection, and arrival airports within the EU",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Damaged or lost mobility equipment",
+      },
+      {
+        type: "paragraph",
+        text: "If your wheelchair or mobility device is damaged or lost in transit, you may be entitled to repair or replacement costs. Report damage immediately at the airport and keep all documentation.",
+      },
+      {
+        type: "heading",
+        text: "When assistance failures cause a missed flight",
+      },
+      {
+        type: "paragraph",
+        text: "If a lack of promised assistance caused you to miss a flight or connection, the airline may be liable for re-routing and related costs — in addition to any standard EC 261/2004 compensation if the overall journey was disrupted.",
+      },
+      {
+        type: "callout",
+        text: "Disability rights and delay compensation can overlap. A cancelled flight that also left you without promised wheelchair support may trigger claims under both regulations.",
+      },
+      {
+        type: "heading",
+        text: "Get a full review of your case",
+      },
+      {
+        type: "paragraph",
+        text: "Every situation is different. Share your boarding pass with Compensall and our team will review the full picture — assistance failures, delays, and cancellations together.",
+      },
     ],
   },
 ];

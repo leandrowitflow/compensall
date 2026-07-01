@@ -84,7 +84,7 @@ function CatalogCard({
       <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mb-3 leading-snug">{name}</h3>
       <p className="text-[#1f3664] text-sm xl:text-[15px] leading-[1.7] flex-1">{description}</p>
       <Link
-        href="/#claim"
+        href={kind === "airlines" ? `/airlines/${id}` : `/airports/${id}`}
         className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] mt-5 hover:opacity-80 transition-opacity"
       >
         {cta}
@@ -116,14 +116,27 @@ function CatalogSection({
   kind: "airlines" | "airports";
 }) {
   const [query, setQuery] = useState("");
+  const [showAll, setShowAll] = useState(false);
 
   const visibleItems = useMemo(() => {
     const sorted = sortCatalogByLocale(items, language, kind);
     return filterCatalog(sorted, query);
   }, [items, language, query, kind]);
 
+  const isSearching = query.trim().length > 0;
+  const isExpanded = showAll || isSearching;
+
   const featuredItems = visibleItems.slice(0, 4);
   const remainingItems = visibleItems.slice(4);
+
+  const handleQueryChange = (value: string) => {
+    setQuery(value);
+    if (!value.trim()) {
+      setShowAll(false);
+    }
+  };
+
+  const sectionLabel = title.toLowerCase();
 
   return (
     <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
@@ -134,7 +147,7 @@ function CatalogSection({
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 xl:mb-8">
           <p className="font-bold text-[#1f3664] text-[17px] xl:text-[18px]">Most popular</p>
-          <SearchField placeholder={searchPlaceholder} value={query} onChange={setQuery} />
+          <SearchField placeholder={searchPlaceholder} value={query} onChange={handleQueryChange} />
         </div>
 
         {visibleItems.length === 0 ? (
@@ -147,16 +160,58 @@ function CatalogSection({
               ))}
             </div>
 
-            {remainingItems.length > 0 && (
+            {remainingItems.length > 0 && !isExpanded && (
+              <div className="flex justify-center mt-10 xl:mt-12">
+                <button
+                  type="button"
+                  onClick={() => setShowAll(true)}
+                  className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] hover:opacity-80 transition-opacity"
+                >
+                  See more {sectionLabel}
+                  <span className="text-[#7b8094] font-normal text-sm">({remainingItems.length})</span>
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true" className="rotate-90">
+                    <path
+                      d="M1 6h14M10 1l5 5-5 5"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            )}
+
+            {remainingItems.length > 0 && isExpanded && (
               <>
                 <p className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mt-10 xl:mt-12 mb-6 xl:mb-8">
-                  All {title.toLowerCase()}
+                  All {sectionLabel}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 xl:gap-6">
                   {remainingItems.map((item) => (
                     <CatalogCard key={item.id} kind={kind} {...item} />
                   ))}
                 </div>
+                {!isSearching && (
+                  <div className="flex justify-center mt-10 xl:mt-12">
+                    <button
+                      type="button"
+                      onClick={() => setShowAll(false)}
+                      className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] hover:opacity-80 transition-opacity"
+                    >
+                      Show less
+                      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true" className="-rotate-90">
+                        <path
+                          d="M1 6h14M10 1l5 5-5 5"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                )}
               </>
             )}
           </>

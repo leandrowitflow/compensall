@@ -4,12 +4,12 @@ export default function CTABanner() {
   return (
     <section className="px-4 md:px-8 lg:px-8 xl:px-12 pb-0 bg-white">
       <div className="relative rounded-[28px] xl:rounded-[38px] overflow-clip max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto min-h-[360px] lg:min-h-[340px] xl:min-h-[660px]">
-        {/* Background — Figma node 94:277: nested clip + positioned image */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[34px]">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]">
           <img
-            src="/assets/cta-banner-bg.png?v=2"
+            src="/assets/hero-bg.png"
             alt=""
-            className="absolute max-w-none h-[347.38%] w-[262.97%] left-[-2.49%] top-[-247.38%]"
+            className="absolute max-w-none"
+            style={{ height: "338.64%", width: "141.39%", left: "-0.02%", top: "-69.36%" }}
           />
         </div>
 
@@ -24,18 +24,20 @@ export default function CTABanner() {
             Your claim is guided by AI and backed by real people.{" "}
             Fast, secure and simple from the first upload.
           </p>
-          <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-[856px] mx-auto mb-10">
+          <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-[856px] mx-auto">
             Our standard fee is only charged if we win compensation for you.{" "}
             <strong className="font-bold">Compensall</strong> handles the process from boarding pass upload to airline
             follow-up, so you can claim with confidence.
           </p>
 
-          <Link
-            href="/#claim"
-            className="inline-block bg-[#2669f3] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#1a55d4] transition-colors text-base mb-12"
-          >
-            Check compensation
-          </Link>
+          <div className="py-10 xl:py-12">
+            <Link
+              href="/#claim"
+              className="inline-block bg-[#DDF444] text-[#1f3664] font-bold px-10 py-5 rounded-xl hover:bg-[#c8df2e] transition-colors text-base shadow-[0_4px_20px_rgba(221,244,68,0.45)]"
+            >
+              Check compensation
+            </Link>
+          </div>
 
           {/* Features row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[700px]">
