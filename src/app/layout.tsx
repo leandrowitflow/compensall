@@ -16,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AnchorScroll />
-        {children}
+        <div className="site-viewport">
+          <AnchorScroll />
+          {children}
+        </div>
       </body>
     </html>
   );

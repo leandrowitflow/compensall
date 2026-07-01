@@ -20,6 +20,31 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Laptop viewports: scale to 75% so the 1920px Figma layout fits naturally.
+   Uses max-height to include 1920×1200 (and similar) without relying on width ≤1919. */
+@media (min-width: 1024px) and (max-height: 1440px) {
+  html {
+    zoom: 0.75;
+  }
+
+  @supports not (zoom: 1) {
+    html {
+      zoom: unset;
+    }
+
+    body {
+      overflow-x: clip;
+    }
+
+    .site-viewport {
+      transform: scale(0.75);
+      transform-origin: top center;
+      width: calc(100% / 0.75);
+      margin-inline: auto;
+    }
+  }
+}
+
 button:not(:disabled),
 [type="button"]:not(:disabled),
 [type="submit"]:not(:disabled),
