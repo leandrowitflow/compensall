@@ -24,6 +24,8 @@
 .DS_Store
 figma-*.png
 *.pem
+/data/claims/
+/data/claim-signature-tokens/
 
 # debug
 npm-debug.log*

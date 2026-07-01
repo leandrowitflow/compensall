@@ -3,10 +3,8 @@
 import { useRef, useState, type DragEvent } from "react";
 import AirportSelect from "@/components/claim/AirportSelect";
 import {
-  formatFileSize,
   normalizeFlightData,
   type ClaimFlightData,
-  type ClaimUploadMeta,
 } from "@/lib/claim-types";
 import { formatAirportRouteLabel, type AirportOption } from "@/lib/airport-search";
 
@@ -24,14 +22,29 @@ export default function Step1Upload({
   onManualSubmit,
 }: Step1UploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const processingRef = useRef(false);
   const [departure, setDeparture] = useState<AirportOption | null>(null);
   const [arrival, setArrival] = useState<AirportOption | null>(null);
   const [manualError, setManualError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
+  const openFilePicker = () => {
+    if (isExtracting || processingRef.current) return;
+    inputRef.current?.click();
+  };
+
   const handleFile = async (file: File | null) => {
-    if (!file || isExtracting) return;
-    await onExtract(file);
+    if (!file || isExtracting || processingRef.current) return;
+
+    processingRef.current = true;
+    try {
+      await onExtract(file);
+    } finally {
+      processingRef.current = false;
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
+    }
   };
 
   const onDrop = async (event: DragEvent<HTMLDivElement>) => {
@@ -85,41 +98,50 @@ export default function Step1Upload({
 
   return (
     <div className="px-4 sm:px-6 pb-4 sm:pb-6">
-      <label className="block cursor-pointer">
-        <div
-          className={`border-[3.5px] border-dashed rounded-xl py-8 sm:py-10 flex flex-col items-center justify-center text-center transition-colors ${
-            isDragging ? "border-[#2669f3] bg-[#f1f5fe]/50" : "border-[#d5e0f9] hover:border-[#2669f3]/60"
-          } ${isExtracting ? "opacity-70 pointer-events-none" : ""}`}
-          onClick={() => inputRef.current?.click()}
-          onDragOver={(e) => {
-            e.preventDefault();
-            setIsDragging(true);
-          }}
-          onDragLeave={() => setIsDragging(false)}
-          onDrop={onDrop}
-        >
-          {isExtracting ? (
-            <>
-              <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 rounded-full border-4 border-[#d5e0f9] border-t-[#2669f3] animate-spin" />
-              <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Reading your boarding pass…</p>
-              <p className="text-[#1f3664]/60 text-xs sm:text-sm">Compensall AI is extracting your flight details</p>
-            </>
-          ) : (
-            <>
-              <img src="/assets/icons/cloud-upload.svg" alt="" className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4" />
-              <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Upload your boarding pass</p>
-              <p className="text-[#1f3664]/60 text-xs sm:text-sm">Drag &amp; drop or click to upload (PDF, JPG, PNG)</p>
-            </>
-          )}
-        </div>
-        <input
-          ref={inputRef}
-          type="file"
-          className="hidden"
-          accept=".pdf,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp"
-          onChange={(e) => void handleFile(e.target.files?.[0] ?? null)}
-        />
-      </label>
+      <input
+        ref={inputRef}
+        type="file"
+        className="hidden"
+        accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,application/pdf,image/jpeg,image/png,image/webp,image/heic,image/heif"
+        onChange={(e) => void handleFile(e.target.files?.[0] ?? null)}
+      />
+
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label="Upload boarding pass"
+        aria-busy={isExtracting}
+        className={`border-[3.5px] border-dashed rounded-xl py-8 sm:py-10 flex flex-col items-center justify-center text-center transition-colors cursor-pointer ${
+          isDragging ? "border-[#2669f3] bg-[#f1f5fe]/50" : "border-[#d5e0f9] hover:border-[#2669f3]/60"
+        } ${isExtracting ? "opacity-70 pointer-events-none" : ""}`}
+        onClick={openFilePicker}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openFilePicker();
+          }
+        }}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setIsDragging(true);
+        }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={onDrop}
+      >
+        {isExtracting ? (
+          <>
+            <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 rounded-full border-4 border-[#d5e0f9] border-t-[#2669f3] animate-spin" />
+            <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Reading your boarding pass…</p>
+            <p className="text-[#1f3664]/60 text-xs sm:text-sm">Compensall AI is extracting your flight details</p>
+          </>
+        ) : (
+          <>
+            <img src="/assets/icons/cloud-upload.svg" alt="" className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4" />
+            <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Upload your boarding pass</p>
+            <p className="text-[#1f3664]/60 text-xs sm:text-sm">Drag &amp; drop or click to upload (PDF, JPG, PNG)</p>
+          </>
+        )}
+      </div>
 
       {extractError && (
         <p className="mt-3 text-sm text-[#e82828] text-center" role="alert">
@@ -177,14 +199,4 @@ export default function Step1Upload({
       </div>
     </div>
   );
-}
-
-export function buildUploadMeta(file: File): ClaimUploadMeta {
-  const previewUrl = file.type.startsWith("image/") ? URL.createObjectURL(file) : null;
-  return {
-    fileName: file.name,
-    fileSize: formatFileSize(file.size),
-    previewUrl,
-    mimeType: file.type,
-  };
 }

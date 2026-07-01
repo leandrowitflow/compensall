@@ -1,7 +1,5 @@
-import type { ClaimFlightData, FlightStatus } from "@/lib/claim-types";
+import type { ClaimFlightData } from "@/lib/claim-types";
 import { FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
-
-const STATUS_OPTIONS: FlightStatus[] = ["Delayed", "Cancelled", "Denied boarding", "Unknown"];
 
 type FlightDetailsFormProps = {
   flight: ClaimFlightData;
@@ -72,35 +70,6 @@ export default function FlightDetailsForm({ flight, onChange, idPrefix = "flight
           value={flight.routeTo}
           onChange={(e) => update({ routeTo: e.target.value })}
           placeholder="e.g. Rome (FCO)"
-        />
-      </div>
-      <div>
-        <label className={FIELD_LABEL} htmlFor={`${idPrefix}-status`}>
-          What happened?
-        </label>
-        <select
-          id={`${idPrefix}-status`}
-          className={FIELD_INPUT}
-          value={flight.status}
-          onChange={(e) => update({ status: e.target.value as FlightStatus })}
-        >
-          {STATUS_OPTIONS.map((status) => (
-            <option key={status} value={status}>
-              {status}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label className={FIELD_LABEL} htmlFor={`${idPrefix}-delay`}>
-          Delay (if applicable)
-        </label>
-        <input
-          id={`${idPrefix}-delay`}
-          className={FIELD_INPUT}
-          value={flight.delay}
-          onChange={(e) => update({ delay: e.target.value })}
-          placeholder="e.g. 3h 25m"
         />
       </div>
     </div>

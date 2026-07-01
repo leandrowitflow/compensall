@@ -2,14 +2,16 @@
 
 import { useCallback, useState } from "react";
 import ClaimSidebar from "@/components/claim/ClaimSidebar";
-import Step1Upload, { buildUploadMeta } from "@/components/claim/Step1Upload";
+import Step1Upload from "@/components/claim/Step1Upload";
+import { buildUploadMeta } from "@/lib/boarding-pass-file";
 import Step2Panel from "@/components/claim/Step2Panel";
-import Step3Panel from "@/components/claim/Step3Panel";
+import Step3Panel, { type ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 import {
   EMPTY_FLIGHT,
   normalizeFlightData,
   type ClaimEntryMode,
   type ClaimFlightData,
+  type ClaimStatus,
   type ClaimUploadMeta,
 } from "@/lib/claim-types";
 
@@ -77,8 +79,6 @@ function validateStep2(flight: ClaimFlightData): string | null {
   if (!flight.flight.trim()) return "Flight number is required.";
   if (!flight.routeFrom.trim() || !flight.routeTo.trim()) return "Route is required.";
   if (!flight.date.trim()) return "Flight date is required.";
-  if (flight.status === "Unknown") return "Select what happened to your flight.";
-  if (flight.status === "Delayed" && !flight.delay.trim()) return "Enter the delay duration.";
   return null;
 }
 
@@ -91,7 +91,7 @@ export default function HeroClaimForm() {
   const [extractError, setExtractError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [step2Error, setStep2Error] = useState<string | null>(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [boardingPassFile, setBoardingPassFile] = useState<File | null>(null);
 
   const resetClaim = useCallback(() => {
     if (upload?.previewUrl) {
@@ -105,12 +105,19 @@ export default function HeroClaimForm() {
     setExtractError(null);
     setIsEditing(false);
     setStep2Error(null);
-    setSubmitted(false);
+    setBoardingPassFile(null);
   }, [upload?.previewUrl]);
 
   const handleExtract = async (file: File) => {
     setExtractError(null);
     setIsExtracting(true);
+
+    const advanceWithFile = () => {
+      setEntryMode("upload");
+      setBoardingPassFile(file);
+      setUpload(buildUploadMeta(file));
+      setStep(2);
+    };
 
     try {
       const formData = new FormData();
@@ -121,19 +128,32 @@ export default function HeroClaimForm() {
         body: formData,
       });
 
-      const data = (await response.json()) as { flight?: ClaimFlightData; error?: string };
+      const data = (await response.json()) as {
+        flight?: ClaimFlightData;
+        warning?: string | null;
+        error?: string;
+      };
 
       if (!response.ok) {
-        setExtractError(data.error ?? "Could not extract boarding pass details.");
+        advanceWithFile();
+        setFlight(EMPTY_FLIGHT);
+        setIsEditing(true);
+        setExtractError(
+          data.error ??
+            "We couldn't read every detail automatically. Please fill in your flight details below.",
+        );
         return;
       }
 
-      setEntryMode("upload");
-      setUpload(buildUploadMeta(file));
+      advanceWithFile();
       setFlight(normalizeFlightData(data.flight));
-      setStep(2);
+      setIsEditing(Boolean(data.warning));
+      setExtractError(data.warning ?? null);
     } catch {
-      setExtractError("Something went wrong. Please try again or use manual entry.");
+      advanceWithFile();
+      setFlight(EMPTY_FLIGHT);
+      setIsEditing(true);
+      setExtractError("Something went wrong. Please fill in your flight details below.");
     } finally {
       setIsExtracting(false);
     }
@@ -141,6 +161,7 @@ export default function HeroClaimForm() {
 
   const handleManualSubmit = (manualFlight: ClaimFlightData) => {
     setEntryMode("manual");
+    setBoardingPassFile(null);
     setUpload(null);
     setFlight(manualFlight);
     setExtractError(null);
@@ -158,6 +179,45 @@ export default function HeroClaimForm() {
     setStep2Error(null);
     setIsEditing(false);
     setStep(3);
+  };
+
+  const handleClaimSubmit = async (payload: ClaimSubmitPayload) => {
+    if (!entryMode) {
+      throw new Error("Claim session expired. Please start again.");
+    }
+
+    const formData = new FormData();
+    formData.append("entryMode", entryMode);
+    formData.append("signedName", payload.signedName);
+    formData.append("contactEmail", payload.contactEmail);
+    formData.append("flight", JSON.stringify(flight));
+    formData.append("acceptedDocuments", JSON.stringify(payload.acceptedDocuments));
+    formData.append("documentSignatures", JSON.stringify(payload.documentSignatures));
+    formData.append("userAgent", navigator.userAgent);
+
+    if (boardingPassFile) {
+      formData.append("file", boardingPassFile);
+    }
+
+    const response = await fetch("/api/claim/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = (await response.json()) as {
+      trackingNumber?: string;
+      status?: ClaimStatus;
+      error?: string;
+    };
+
+    if (!response.ok || !data.trackingNumber || !data.status) {
+      throw new Error(data.error ?? "Could not submit your claim.");
+    }
+
+    return {
+      trackingNumber: data.trackingNumber,
+      status: data.status,
+    };
   };
 
   const isExpanded = step > 1;
@@ -193,6 +253,7 @@ export default function HeroClaimForm() {
                 flight={flight}
                 isEditing={isEditing}
                 validationError={step2Error}
+                extractWarning={extractError}
                 onFlightChange={setFlight}
                 onToggleEdit={() => {
                   setIsEditing((editing) => !editing);
@@ -202,12 +263,7 @@ export default function HeroClaimForm() {
                 onContinue={handleContinueToStep3}
               />
             ) : (
-              <Step3Panel
-                flight={flight}
-                onDelete={resetClaim}
-                onSubmit={() => setSubmitted(true)}
-                submitted={submitted}
-              />
+              <Step3Panel flight={flight} onDelete={resetClaim} onSubmit={handleClaimSubmit} />
             )}
           </div>
         </div>

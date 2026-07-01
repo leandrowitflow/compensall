@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import ClaimUploadPreview from "@/components/claim/ClaimUploadPreview";
 import type { ClaimEntryMode, ClaimFlightData, ClaimUploadMeta } from "@/lib/claim-types";
 
 type ClaimSidebarProps = {
@@ -23,18 +24,6 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
       ),
     },
     { icon: "/assets/claim/claim-calendar.svg", label: "Date", value: flight.date || "—" },
-    {
-      icon: "/assets/claim/claim-status.svg",
-      label: "Occurance",
-      value: flight.status !== "Unknown" ? `${flight.status} •` : "—",
-      highlight: flight.status !== "Unknown",
-    },
-    {
-      icon: "/assets/claim/claim-delay.svg",
-      label: "Delay",
-      value: flight.delay || "—",
-      highlight: Boolean(flight.delay),
-    },
   ];
 
   return (
@@ -48,37 +37,7 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
         </div>
 
         {entryMode === "upload" && upload ? (
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="relative border-2 border-[#d5e0f9] rounded-xl w-[207px] h-[100px] flex-shrink-0 bg-white overflow-hidden">
-              {upload.previewUrl ? (
-                <div className="absolute inset-x-2 inset-y-[3px] overflow-hidden pointer-events-none">
-                  <img
-                    src={upload.previewUrl}
-                    alt="Boarding pass preview"
-                    className="absolute h-[108.4%] left-[-4.01%] max-w-none top-[-5.65%] w-[109.99%]"
-                  />
-                </div>
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-[#f1f5fe]">
-                  <img src="/assets/claim/claim-boarding-pass.png" alt="" className="w-16 h-16 opacity-40 object-contain" />
-                </div>
-              )}
-            </div>
-            <div className="min-w-0">
-              <p className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] mb-1 break-all">{upload.fileName}</p>
-              <p className="text-[#1f3664] text-sm sm:text-base mb-2">Added just now • {upload.fileSize}</p>
-              {upload.previewUrl && (
-                <a
-                  href={upload.previewUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#2669f3] font-bold text-sm sm:text-base hover:underline"
-                >
-                  Preview
-                </a>
-              )}
-            </div>
-          </div>
+          <ClaimUploadPreview upload={upload} />
         ) : (
           <div className="bg-[#f1f5fe] rounded-xl px-4 py-3 text-left">
             <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">
@@ -103,9 +62,7 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
           >
             <img src={card.icon} alt="" className="w-5 h-5 mb-2" />
             <p className="text-[#7b8094] text-xs sm:text-sm mb-1">{card.label}</p>
-            <p className={`text-sm sm:text-base leading-snug ${card.highlight ? "text-[#fa6d19] font-bold" : "text-[#1f3664]"}`}>
-              {card.value}
-            </p>
+            <p className="text-sm sm:text-base leading-snug text-[#1f3664]">{card.value}</p>
           </div>
         ))}
       </div>

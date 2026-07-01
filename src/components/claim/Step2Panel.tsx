@@ -9,6 +9,7 @@ type Step2PanelProps = {
   flight: ClaimFlightData;
   isEditing: boolean;
   validationError: string | null;
+  extractWarning: string | null;
   onFlightChange: (flight: ClaimFlightData) => void;
   onToggleEdit: () => void;
   onDelete: () => void;
@@ -19,6 +20,7 @@ export default function Step2Panel({
   flight,
   isEditing,
   validationError,
+  extractWarning,
   onFlightChange,
   onToggleEdit,
   onDelete,
@@ -34,12 +36,28 @@ export default function Step2Panel({
             <span className="text-[#7b8094] text-sm">Just now</span>
           </div>
           <p className="text-[#1f3664] text-sm sm:text-base mt-2 leading-relaxed">
-            Thanks! I&apos;ve extracted your flight details.
-            <br />
-            Please confirm the information below is correct.
+            {extractWarning ? (
+              <>
+                Your boarding pass is saved, but we couldn&apos;t read every detail automatically.
+                <br />
+                Please fill in or confirm the information below.
+              </>
+            ) : (
+              <>
+                Thanks! I&apos;ve extracted your flight details.
+                <br />
+                Please confirm the information below is correct.
+              </>
+            )}
           </p>
         </div>
       </div>
+
+      {extractWarning && (
+        <p className="text-sm text-[#fa6d19] bg-[#fff7f0] border border-[#ffd9b8] rounded-[12px] px-4 py-3 mb-4" role="status">
+          {extractWarning}
+        </p>
+      )}
 
       {isEditing ? (
         <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-4 mb-4">
@@ -55,18 +73,6 @@ export default function Step2Panel({
             value={`${flight.routeFrom || "—"} → ${flight.routeTo || "—"}`}
           />
           <InfoBoardRow icon="/assets/claim/claim-calendar.svg" label="Date" value={flight.date || "—"} />
-          <InfoBoardRow
-            icon="/assets/claim/claim-status.svg"
-            label="Status"
-            value={flight.status !== "Unknown" ? `${flight.status} •` : "—"}
-            highlight={flight.status !== "Unknown"}
-          />
-          <InfoBoardRow
-            icon="/assets/claim/claim-delay.svg"
-            label="Delay"
-            value={flight.delay || "—"}
-            highlight={Boolean(flight.delay)}
-          />
         </div>
       )}
 

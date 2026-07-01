@@ -1,13 +1,8 @@
-import { extractBoardingPassFromFile } from "@/lib/extract-boarding-pass";
+import { extractBoardingPassFromFile, formatExtractionError } from "@/lib/extract-boarding-pass";
+import { inferMimeType, isAllowedBoardingPassMime } from "@/lib/boarding-pass-file";
+import { isGeminiConfigured } from "@/lib/gemini";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
-const ALLOWED_TYPES = new Set([
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-  "application/pdf",
-]);
 
 export async function POST(request: Request) {
   try {
@@ -18,9 +13,11 @@ export async function POST(request: Request) {
       return Response.json({ error: "No boarding pass file provided." }, { status: 400 });
     }
 
-    if (!ALLOWED_TYPES.has(file.type)) {
+    const mimeType = inferMimeType(file.name, file.type);
+
+    if (!isAllowedBoardingPassMime(mimeType)) {
       return Response.json(
-        { error: "Unsupported file type. Upload a PDF, JPG, or PNG boarding pass." },
+        { error: "Unsupported file type. Upload a PDF, JPG, PNG, or HEIC boarding pass." },
         { status: 400 },
       );
     }
@@ -29,28 +26,22 @@ export async function POST(request: Request) {
       return Response.json({ error: "File is too large. Maximum size is 10 MB." }, { status: 400 });
     }
 
-    if (!process.env.AI_GATEWAY_API_KEY && !process.env.VERCEL_OIDC_TOKEN) {
+    if (!isGeminiConfigured()) {
       return Response.json(
         {
           error:
-            "AI extraction is not configured. Use manual entry or add AI_GATEWAY_API_KEY to your environment.",
+            "Boarding pass assistant is not configured. Use manual entry or add GEMINI_API_KEY to your environment.",
         },
         { status: 503 },
       );
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    const flight = await extractBoardingPassFromFile(buffer, file.type);
+    const { flight, warning } = await extractBoardingPassFromFile(buffer, mimeType);
 
-    return Response.json({ flight });
+    return Response.json({ flight, warning });
   } catch (error) {
     console.error("Boarding pass extraction failed:", error);
-    return Response.json(
-      {
-        error:
-          "We could not read this boarding pass. Try a clearer photo or use manual entry.",
-      },
-      { status: 500 },
-    );
+    return Response.json({ error: formatExtractionError(error) }, { status: 422 });
   }
 }
