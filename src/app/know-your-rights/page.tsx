@@ -200,7 +200,7 @@ export default function KnowYourRightsPage() {
                 </div>
                 {i < arr.length - 1 && (
                   <div className="hidden xl:flex flex-1 items-center justify-center self-center px-4 xl:px-6 min-w-0 max-w-[48px]">
-                    <img src="/assets/icons/step-arrow.svg" alt="" className="w-5 h-5 flex-shrink-0" />
+                    <img src="/assets/icons/step-arrow.svg" alt="" className="w-5 h-5 flex-shrink-0 object-contain" />
                   </div>
                 )}
               </Fragment>

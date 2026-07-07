@@ -136,7 +136,7 @@ export default function Step1Upload({
           </>
         ) : (
           <>
-            <img src="/assets/icons/cloud-upload.svg" alt="" className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4" />
+            <img src="/assets/icons/cloud-upload.svg" alt="" className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4 object-contain" />
             <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Upload your boarding pass</p>
             <p className="text-[#1f3664]/60 text-xs sm:text-sm">Drag &amp; drop or click to upload (PDF, JPG, PNG)</p>
           </>
@@ -168,7 +168,7 @@ export default function Step1Upload({
             className="flex-shrink-0 self-center sm:self-stretch px-4 sm:px-0 sm:w-12 flex items-center justify-center hover:bg-[#f8faff]/50 transition-colors"
             aria-label="Swap airports"
           >
-            <img src="/assets/icons/arrow-right-left.svg" alt="" className="w-[23px] h-[23px]" />
+            <img src="/assets/icons/arrow-right-left.svg" alt="" className="w-[23px] h-[23px] object-contain" />
           </button>
           <AirportSelect
             id="manual-arrival"
@@ -194,7 +194,7 @@ export default function Step1Upload({
       )}
 
       <div className="flex items-center justify-center gap-2 mt-4">
-        <img src="/assets/icons/shield-lock.svg" alt="" className="w-6 h-6 opacity-50" />
+        <img src="/assets/icons/shield-lock.svg" alt="" className="w-6 h-6 opacity-50 object-contain" />
         <p className="text-[#8f8f9f] font-bold text-sm">Your data is protected, Always.</p>
       </div>
     </div>

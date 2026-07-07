@@ -183,7 +183,7 @@ export default function AirportSelect({
                           {airport.iata}
                         </span>
                         {selected && (
-                          <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-4 h-4 flex-shrink-0" />
+                          <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-4 h-4 flex-shrink-0 object-contain" />
                         )}
                       </button>
                     </li>

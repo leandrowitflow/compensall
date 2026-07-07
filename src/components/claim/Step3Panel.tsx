@@ -375,7 +375,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
   if (trackingNumber) {
     return (
       <div className="border border-[#d5e0f9] rounded-[21px] p-6 sm:p-8 flex flex-col items-center text-center bg-white min-h-[320px] justify-center">
-        <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-14 h-14 mb-4" />
+        <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-14 h-14 mb-4 object-contain" />
         <h3 className="font-bold text-[#1f3664] text-xl mb-2">Claim submitted</h3>
         <p className="text-[#1f3664] text-sm sm:text-base max-w-md leading-relaxed mb-4">
           Thank you, {signedName}. We&apos;ve received your signed documents and will start working on your claim for flight{" "}
@@ -401,7 +401,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
   return (
     <div className="border border-[#d5e0f9] rounded-[21px] p-4 sm:p-5 xl:p-6 flex flex-col h-full bg-white min-h-[320px] sm:min-h-[400px]">
       <div className="flex items-start gap-3 mb-6">
-        <img src="/assets/claim/claim-ai-icon.svg" alt="" className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0" />
+        <img src="/assets/claim/claim-ai-icon.svg" alt="" className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 object-contain" />
         <div>
           <div className="flex items-center gap-3 flex-wrap">
             <p className="font-bold text-[#2669f3] text-base sm:text-lg">Compensall AI</p>
@@ -549,7 +549,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
         <div className="flex-1 border border-[#d5e0f9] rounded-[14px] bg-[#fafbff] p-4 sm:p-5 mb-4 space-y-3 overflow-y-auto">
           {CLAIM_DOCUMENTS.map((doc) => (
             <div key={doc.id} className="bg-white border border-[#d5e0f9] rounded-xl p-4 flex items-center gap-3">
-              <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-6 h-6 flex-shrink-0" />
+              <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-6 h-6 flex-shrink-0 object-contain" />
               <div>
                 <p className="font-bold text-[#1f3664] text-sm">{doc.title}</p>
                 <p className="text-[#7b8094] text-xs mt-0.5">

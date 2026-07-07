@@ -78,7 +78,7 @@ function FAQCard({
         <img
           src="/assets/icons/faq-chevron-down.svg"
           alt=""
-          className={`w-3.5 h-2.5 sm:w-4 sm:h-2.5 xl:w-[17px] xl:h-[11px] flex-shrink-0 mt-1 sm:mt-1.5 xl:mt-[9px] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3.5 h-2.5 sm:w-4 sm:h-2.5 xl:w-[17px] xl:h-[11px] flex-shrink-0 mt-1 sm:mt-1.5 xl:mt-[9px] transition-transform duration-200 object-contain ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
       {isOpen && (

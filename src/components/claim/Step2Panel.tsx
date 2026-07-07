@@ -29,7 +29,7 @@ export default function Step2Panel({
   return (
     <div className="border border-[#d5e0f9] rounded-[21px] p-4 sm:p-5 xl:p-6 flex flex-col h-full bg-white">
       <div className="flex items-start gap-3 mb-4">
-        <img src="/assets/claim/claim-ai-icon.svg" alt="" className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0" />
+        <img src="/assets/claim/claim-ai-icon.svg" alt="" className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 object-contain" />
         <div>
           <div className="flex items-center gap-3 flex-wrap">
             <p className="font-bold text-[#2669f3] text-base sm:text-lg">Compensall AI</p>

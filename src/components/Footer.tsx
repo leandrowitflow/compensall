@@ -42,7 +42,7 @@ function NewsletterForm() {
           className="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0 hover:bg-white/90 transition-colors -ml-1"
           aria-label="Subscribe"
         >
-          <img src="/assets/icons/footer-newsletter-arrow.svg" alt="" className="w-6 h-6" />
+          <img src="/assets/icons/footer-newsletter-arrow.svg" alt="" className="w-6 h-6 object-contain" />
         </button>
       </div>
     </>
@@ -98,7 +98,7 @@ function SocialLinks({ className = "" }: { className?: string }) {
           aria-label={social.label}
           className="hover:opacity-70 transition-opacity p-1"
         >
-          <img src={social.icon} alt="" className="w-5 h-5" />
+          <img src={social.icon} alt="" className="w-5 h-5 object-contain" />
         </a>
       ))}
     </div>
