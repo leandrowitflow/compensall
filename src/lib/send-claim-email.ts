@@ -51,7 +51,7 @@ function buildOpsHtml(payload: ClaimEmailPayload): string {
       ? payload.verification.mismatches
           .map(
             (item) =>
-              `<li><strong>${item.field}</strong>: document "${item.documentValue ?? "—"}" vs confirmed "${item.confirmedValue}"</li>`,
+              `<li><strong>${item.field}</strong>: document "${item.documentValue ?? "N/A"}" vs confirmed "${item.confirmedValue}"</li>`,
           )
           .join("")
       : "<li>None flagged</li>";
@@ -61,13 +61,13 @@ function buildOpsHtml(payload: ClaimEmailPayload): string {
       ? payload.signatures
           .map(
             (signature) =>
-              `<li>${signature.documentId} — signed ${signature.signedAt} — token <code>${signature.token}</code></li>`,
+              `<li>${signature.documentId}: signed ${signature.signedAt}, token <code>${signature.token}</code></li>`,
           )
           .join("")
       : "<li>None</li>";
 
   return `
-    <h2>New claim submitted — ${payload.trackingNumber}</h2>
+    <h2>New claim submitted: ${payload.trackingNumber}</h2>
     <p><strong>Signed name:</strong> ${payload.signedName}</p>
     <p><strong>Contact email:</strong> ${payload.contactEmail}</p>
     <p><strong>Entry mode:</strong> ${payload.entryMode}</p>
@@ -158,7 +158,7 @@ export async function sendClaimEmails(
 
   const opsSent = await sendViaResend({
     to: [getOpsEmail()],
-    subject: `[Compensall] New claim ${payload.trackingNumber} — ${payload.flight.flight}`,
+    subject: `[Compensall] New claim ${payload.trackingNumber}: ${payload.flight.flight}`,
     html: buildOpsHtml(payload),
     attachments: attachments.length > 0 ? attachments : undefined,
   });

@@ -32,7 +32,7 @@ export default function AboutPage() {
         title="About us"
         subtitle={
           <>
-            We help passengers claim the compensation they are owed — with our assistant and human
+            We help passengers claim the compensation they are owed with our assistant and human
             support every step of the way.
           </>
         }
@@ -47,7 +47,7 @@ export default function AboutPage() {
               </h2>
               <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-4">
                 Compensall makes flight compensation simple. Airlines often delay responses, reject
-                valid claims, and make the process stressful — so too many passengers never receive
+                valid claims, and make the process stressful, so too many passengers never receive
                 what EU regulation EC 261/2004 entitles them to.
               </p>
               <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
@@ -62,7 +62,7 @@ export default function AboutPage() {
               <ul className="space-y-3 text-[#1f3664] text-sm xl:text-base leading-relaxed">
                 <li className="flex gap-3">
                   <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
-                  No win, no fee — you pay nothing unless we succeed
+                  No win, no fee: you pay nothing unless we succeed
                 </li>
                 <li className="flex gap-3">
                   <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
@@ -70,7 +70,7 @@ export default function AboutPage() {
                 </li>
                 <li className="flex gap-3">
                   <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
-                  Predictable success fee — we are not a law firm
+                  Predictable success fee. We are not a law firm
                 </li>
                 <li className="flex gap-3">
                   <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>

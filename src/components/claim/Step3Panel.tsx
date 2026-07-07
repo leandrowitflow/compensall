@@ -267,7 +267,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
       return;
     }
     if (!contactEmail.trim() || !EMAIL_PATTERN.test(contactEmail.trim())) {
-      setContactError("Enter a valid email address — we need it to send your tracking number and case updates.");
+      setContactError("Enter a valid email address. We need it to send your tracking number and case updates.");
       return;
     }
     setPhase("sign");
@@ -412,7 +412,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
             <br />
             {phase === "contact" && "Let's start with your contact details."}
             {phase === "sign" && "Read each document fully, then sign to continue."}
-            {phase === "review" && "Everything is signed — review and submit."}
+            {phase === "review" && "Everything is signed. Review and submit."}
           </p>
         </div>
       </div>
@@ -446,7 +446,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
               autoComplete="email"
             />
             <p className="text-[#7b8094] text-xs mt-2">
-              Required — we&apos;ll send your tracking number and case updates here.
+              Required. We&apos;ll send your tracking number and case updates here.
             </p>
           </div>
           {contactError && (
@@ -473,7 +473,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
           <div key={`${currentDoc.id}-${docEnterNonce}`} className="space-y-4 claim-doc-enter">
             <div className="rounded-xl border-2 border-[#2669f3] bg-gradient-to-r from-[#1f3664] to-[#2669f3] px-4 py-3 text-white">
               <p className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-1">
-                Now signing — document {docIndex + 1} of {totalDocs}
+                Now signing: document {docIndex + 1} of {totalDocs}
               </p>
               <h4 className="font-bold text-lg leading-tight">{currentDoc.title}</h4>
               <p className="text-white/80 text-sm mt-1">{currentDoc.description}</p>
@@ -503,7 +503,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
                 }`}
               >
                 {hasReadCurrentDoc
-                  ? `✓ You've read "${currentDoc.title}" — you can sign below`
+                  ? `✓ You've read "${currentDoc.title}". You can sign below`
                   : `Scroll to the end of "${currentDoc.title}" to unlock signing ↓`}
               </div>
             </div>

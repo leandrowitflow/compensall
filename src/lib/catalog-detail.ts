@@ -36,14 +36,14 @@ export function buildCatalogTitle(item: CatalogItem, kind: CatalogKind): string 
 export function buildCatalogIntro(item: CatalogItem, kind: CatalogKind): string[] {
   if (kind === "airlines") {
     return [
-      `If your ${item.name} flight was delayed, cancelled, or you were denied boarding, you may be entitled to compensation under EU regulation EC 261/2004 — up to €600 per passenger depending on flight distance. This applies to qualifying flights departing from EU airports and flights arriving in the EU on an EU-based carrier, regardless of your nationality.`,
-      `Airlines often delay responses, reject valid claims, or cite extraordinary circumstances that do not apply. Compensall checks your eligibility in minutes, handles paperwork and negotiations with ${item.name}, and pursues your case when needed — on a no win, no fee basis.`,
+      `If your ${item.name} flight was delayed, cancelled, or you were denied boarding, you may be entitled to compensation under EU regulation EC 261/2004, up to €600 per passenger depending on flight distance. This applies to qualifying flights departing from EU airports and flights arriving in the EU on an EU-based carrier, regardless of your nationality.`,
+      `Airlines often delay responses, reject valid claims, or cite extraordinary circumstances that do not apply. Compensall checks your eligibility in minutes, handles paperwork and negotiations with ${item.name}, and pursues your case when needed on a no win, no fee basis.`,
     ];
   }
 
   return [
-    `If your flight was delayed, cancelled, or disrupted at ${item.name}, you may be entitled to compensation under EU regulation EC 261/2004 — up to €600 per passenger depending on flight distance. The regulation covers flights departing from EU airports and flights arriving in the EU on an EU-based carrier.`,
-    `Disruptions at busy airports are common, and airlines do not always make claiming straightforward. Compensall helps you check eligibility quickly, gather the right evidence, and handle the airline on your behalf — with our assistant and human support, and no upfront cost.`,
+    `If your flight was delayed, cancelled, or disrupted at ${item.name}, you may be entitled to compensation under EU regulation EC 261/2004, up to €600 per passenger depending on flight distance. The regulation covers flights departing from EU airports and flights arriving in the EU on an EU-based carrier.`,
+    `Disruptions at busy airports are common, and airlines do not always make claiming straightforward. Compensall helps you check eligibility quickly, gather the right evidence, and handle the airline on your behalf with our assistant and human support, and no upfront cost.`,
   ];
 }
 
@@ -67,12 +67,12 @@ export function buildCatalogFaqs(item: CatalogItem, kind: CatalogKind): CatalogF
           ? `What if ${item.name} already rejected my claim?`
           : "What if the airline already rejected my claim?",
       answer:
-        "You can still submit your case to Compensall. Airlines often reject valid claims — send us any correspondence from the airline so we are fully aware of what happened. Our team specialises in passenger rights and will pursue your claim when the law supports it.",
+        "You can still submit your case to Compensall. Airlines often reject valid claims. Send us any correspondence from the airline so we are fully aware of what happened. Our team specialises in passenger rights and will pursue your claim when the law supports it.",
     },
     {
       question: "How long do I have to claim?",
       answer:
-        "In most EU countries you have up to three years from the flight date to submit a claim. In the UK, you generally have six years (five years in Scotland). Submit your case as soon as you can — we will analyse the deadline for your route.",
+        "In most EU countries you have up to three years from the flight date to submit a claim. In the UK, you generally have six years (five years in Scotland). Submit your case as soon as you can and we will analyse the deadline for your route.",
     },
     {
       question: "Is it safe to upload my boarding pass?",

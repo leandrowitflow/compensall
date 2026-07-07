@@ -5,7 +5,7 @@ import { NoWinNoFeeContent } from "@/components/claim/legal-document-content";
 
 export const metadata = {
   title: "No Win, No Fee Agreement – Compensall",
-  description: "Compensall's No Win, No Fee agreement — you only pay if we successfully recover your compensation.",
+  description: "Compensall's No Win, No Fee agreement. You only pay if we successfully recover your compensation.",
 };
 
 const imgDocument = "/assets/documents/no-win-no-fee.png";

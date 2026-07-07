@@ -65,14 +65,14 @@ export default function Step2Panel({
         </div>
       ) : (
         <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-2 mb-4">
-          <InfoBoardRow icon="/assets/claim/claim-person.svg" label="Passenger" value={flight.passenger || "—"} />
-          <InfoBoardRow icon="/assets/claim/claim-flight.svg" label="Flight" value={flight.flight || "—"} />
+          <InfoBoardRow icon="/assets/claim/claim-person.svg" label="Passenger" value={flight.passenger || "N/A"} />
+          <InfoBoardRow icon="/assets/claim/claim-flight.svg" label="Flight" value={flight.flight || "N/A"} />
           <InfoBoardRow
             icon="/assets/claim/claim-route.svg"
             label="Route"
-            value={`${flight.routeFrom || "—"} → ${flight.routeTo || "—"}`}
+            value={`${flight.routeFrom || "N/A"} → ${flight.routeTo || "N/A"}`}
           />
-          <InfoBoardRow icon="/assets/claim/claim-calendar.svg" label="Date" value={flight.date || "—"} />
+          <InfoBoardRow icon="/assets/claim/claim-calendar.svg" label="Date" value={flight.date || "N/A"} />
         </div>
       )}
 

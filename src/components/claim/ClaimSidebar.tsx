@@ -10,20 +10,20 @@ type ClaimSidebarProps = {
 
 export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebarProps) {
   const detailCards = [
-    { icon: "/assets/claim/claim-person.svg", label: "Passenger", value: flight.passenger || "—" },
-    { icon: "/assets/claim/claim-flight.svg", label: "Flight", value: flight.flight || "—" },
+    { icon: "/assets/claim/claim-person.svg", label: "Passenger", value: flight.passenger || "N/A" },
+    { icon: "/assets/claim/claim-flight.svg", label: "Flight", value: flight.flight || "N/A" },
     {
       icon: "/assets/claim/claim-route.svg",
       label: "Route",
       value: (
         <>
-          {flight.routeFrom || "—"}
+          {flight.routeFrom || "N/A"}
           <br />
-          {flight.routeTo || "—"}
+          {flight.routeTo || "N/A"}
         </>
       ),
     },
-    { icon: "/assets/claim/claim-calendar.svg", label: "Date", value: flight.date || "—" },
+    { icon: "/assets/claim/claim-calendar.svg", label: "Date", value: flight.date || "N/A" },
   ];
 
   return (

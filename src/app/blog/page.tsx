@@ -13,8 +13,8 @@ export default function BlogPage() {
         title="Blog"
         subtitle={
           <>
-            Practical guides on EC 261/2004 passenger rights — delays, cancellations, denied boarding,
-            and more — so you know what you may be owed before you fly.
+            Practical guides on EC 261/2004 passenger rights: delays, cancellations, denied boarding,
+            and more, so you know what you may be owed before you fly.
           </>
         }
       />

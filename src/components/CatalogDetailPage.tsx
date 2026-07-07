@@ -29,7 +29,7 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
       : `Ready to check your claim from ${item.name}?`;
 
   const claimSubheadline =
-    "Use our boarding pass assistant on the homepage — fast, secure, and no win, no fee.";
+    "Use our boarding pass assistant on the homepage. It's fast, secure, and no win, no fee.";
 
   const claimCtaLabel = "Check compensation";
 

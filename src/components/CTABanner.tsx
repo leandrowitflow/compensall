@@ -13,15 +13,19 @@ export default function CTABanner() {
           />
         </div>
 
-        <div className="relative z-10 flex flex-col items-center text-center py-10 lg:py-12 xl:py-20 px-6 max-w-[760px] xl:max-w-[900px] mx-auto">
-          <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-white leading-[1.2] mb-6">
-            Secure claim check. Human-backed.{" "}
-            <br className="hidden md:block" />
-            No win, no fee.
+        <div className="relative z-10 flex flex-col items-center text-center py-10 lg:py-12 xl:py-20 px-6 max-w-[760px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
+          <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-white leading-[1.2] mb-6 w-full">
+            <span>
+              Secure claim check.{" "}
+              <span className="whitespace-nowrap">Human-backed.</span>
+            </span>
+            <br className="hidden lg:block" />
+            <span>No win, no fee.</span>
           </h2>
 
           <p className="text-white text-base md:text-lg leading-relaxed max-w-[740px] mx-auto mb-3">
-            Your claim is guided by AI and backed by real people.{" "}
+            Your claim is guided by AI and backed by real people.
+            <br className="hidden md:block" />
             Fast, secure and simple from the first upload.
           </p>
           <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-[856px] mx-auto">

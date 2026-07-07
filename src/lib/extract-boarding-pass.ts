@@ -22,7 +22,7 @@ function buildMissingDetailsWarning(flight: ClaimFlightData, recordLocator: stri
   if (hasCoreFlightInfo) return null;
 
   if (recordLocator) {
-    return `We found your booking reference (${recordLocator}) and name, but this screen doesn't show your flight number, route, or date. That often happens with an app's "boarding cards" list view — please upload the actual boarding pass screen, or fill in your flight details manually below.`;
+    return `We found your booking reference (${recordLocator}) and name, but this screen doesn't show your flight number, route, or date. That often happens with an app's "boarding cards" list view. Please upload the actual boarding pass screen, or fill in your flight details manually below.`;
   }
 
   if (flight.passenger) {

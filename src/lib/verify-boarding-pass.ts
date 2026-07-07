@@ -44,7 +44,7 @@ export async function verifyBoardingPassClaim(
 ): Promise<ClaimVerification> {
   if (!isGeminiConfigured()) {
     return skippedVerification(
-      "Assistant verification skipped — GEMINI_API_KEY is not configured. Claim queued for manual review.",
+      "Assistant verification skipped. GEMINI_API_KEY is not configured. Claim queued for manual review.",
     );
   }
 

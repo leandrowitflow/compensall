@@ -71,7 +71,7 @@ export function AuthorityToActContent() {
       </Section>
 
       <p className="text-xs text-[#1f3664]/50 pt-2 border-t border-[#d5e0f9]">
-        Document version 2.1 — Last updated January 2026
+        Document version 2.1. Last updated January 2026
       </p>
     </>
   );
@@ -158,7 +158,7 @@ export function NoWinNoFeeContent() {
       </Section>
 
       <p className="text-xs text-[#1f3664]/50 pt-2 border-t border-[#d5e0f9]">
-        Document version 3.0 — Last updated January 2026
+        Document version 3.0. Last updated January 2026
       </p>
     </>
   );
@@ -279,7 +279,7 @@ export function PrivacyDataConsentContent() {
       </Section>
 
       <p className="text-xs text-[#1f3664]/50 pt-2 border-t border-[#d5e0f9]">
-        Document version 1.4 — Last updated January 2026
+        Document version 1.4. Last updated January 2026
       </p>
     </>
   );

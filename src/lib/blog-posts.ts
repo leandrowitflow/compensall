@@ -22,15 +22,15 @@ export const blogPosts: BlogPost[] = [
     category: "Know your rights",
     date: "28 May 2026",
     readTime: "6 min read",
-    title: "Flight cancelled? You may be owed up to €600 — here's how to claim",
+    title: "Flight cancelled? You may be owed up to €600. Here's how to claim",
     excerpt:
-      "Short-notice cancellations often trigger fixed compensation under EU261 — on top of a refund or re-routing. Here is how to tell if your flight qualifies.",
+      "Short-notice cancellations often trigger fixed compensation under EU261, on top of a refund or re-routing. Here is how to tell if your flight qualifies.",
     image: "/assets/blog/flight-cancellation.png",
     imageAlt: "Illustration of a cancelled flight departure board and passenger with luggage",
     body: [
       {
         type: "paragraph",
-        text: "You had plans. The airline had other ideas. If your flight was cancelled with little warning, you are not powerless — EU regulation EC 261/2004 may entitle you to cash compensation of up to €600 per passenger, separate from any refund or alternative flight the airline offers.",
+        text: "You had plans. The airline had other ideas. If your flight was cancelled with little warning, you are not powerless. EU regulation EC 261/2004 may entitle you to cash compensation of up to €600 per passenger, separate from any refund or alternative flight the airline offers.",
       },
       {
         type: "heading",
@@ -58,7 +58,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Compensation is only part of the picture. While you wait, the carrier must provide care — meals, drinks, two free calls or emails, and hotel accommodation plus airport transfers if an overnight stay is unavoidable. You can also choose between a full refund and the earliest re-routing to your destination.",
+        text: "Compensation is only part of the picture. While you wait, the carrier must provide care, meals, drinks, two free calls or emails, and hotel accommodation plus airport transfers if an overnight stay is unavoidable. You can also choose between a full refund and the earliest re-routing to your destination.",
       },
       {
         type: "heading",
@@ -73,7 +73,7 @@ export const blogPosts: BlogPost[] = [
         items: [
           "Save every email, SMS, and push notification about the cancellation",
           "Keep boarding passes and booking confirmations",
-          "Note the exact time you were informed — the 14-day window matters",
+          "Note the exact time you were informed. The 14-day window matters",
           "Do not sign away rights in exchange for a voucher without reading the terms",
         ],
       },
@@ -83,7 +83,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Upload your boarding pass to Compensall and our assistant checks your cancellation against EC 261/2004. If you have a valid claim, our human team handles the airline on your behalf — on a no win, no fee basis.",
+        text: "Upload your boarding pass to Compensall and our assistant checks your cancellation against EC 261/2004. If you have a valid claim, our human team handles the airline on your behalf, on a no win, no fee basis.",
       },
     ],
   },
@@ -100,7 +100,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: "paragraph",
-        text: "You checked in on time. You had a confirmed seat. Then the gate agent told you the flight was full. If you were refused boarding against your will — most often because of overbooking — EU law treats this as seriously as a cancellation.",
+        text: "You checked in on time. You had a confirmed seat. Then the gate agent told you the flight was full. If you were refused boarding against your will, most often because of overbooking, EU law treats this as seriously as a cancellation.",
       },
       {
         type: "heading",
@@ -108,7 +108,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Airlines must first ask for volunteers and offer benefits (vouchers, miles, hotel) in exchange for giving up a seat. That is a voluntary agreement. If you did not volunteer and were bumped anyway, you may have a right to fixed cash compensation under EC 261/2004 — up to €600 depending on flight distance.",
+        text: "Airlines must first ask for volunteers and offer benefits (vouchers, miles, hotel) in exchange for giving up a seat. That is a voluntary agreement. If you did not volunteer and were bumped anyway, you may have a right to fixed cash compensation under EC 261/2004, up to €600 depending on flight distance.",
       },
       {
         type: "callout",
@@ -124,7 +124,7 @@ export const blogPosts: BlogPost[] = [
           "Cash compensation of €250, €400, or €600 based on distance",
           "Choice between a full refund and re-routing to your destination",
           "Meals, refreshments, and accommodation while you wait",
-          "Communication — calls or emails to rearrange your plans",
+          "Communication, calls or emails to rearrange your plans",
         ],
       },
       {
@@ -141,7 +141,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Do not let a stressful gate experience cost you money you are owed. Upload your boarding pass to Compensall — our assistant and team assess whether you qualify for cash compensation, with no upfront cost.",
+        text: "Do not let a stressful gate experience cost you money you are owed. Upload your boarding pass to Compensall. Our assistant and team assess whether you qualify for cash compensation, with no upfront cost.",
       },
     ],
   },
@@ -152,17 +152,17 @@ export const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     title: "The 3-hour rule: when a delayed flight becomes a compensation claim",
     excerpt:
-      "Not every delay pays out — but if you arrived 3+ hours late at your final destination, you may be entitled to up to €600 under EU261.",
+      "Not every delay pays out, but if you arrived 3+ hours late at your final destination, you may be entitled to up to €600 under EU261.",
     image: "/assets/blog/flight-delay.png",
     imageAlt: "Illustration of a delayed flight on an airport departure screen with waiting passengers",
     body: [
       {
         type: "paragraph",
-        text: "Three hours feels long at the gate. Under EU261, three hours at arrival can mean hundreds of euros in your pocket — if the delay was the airline's fault and your flight qualifies.",
+        text: "Three hours feels long at the gate. Under EU261, three hours at arrival can mean hundreds of euros in your pocket, if the delay was the airline's fault and your flight qualifies.",
       },
       {
         type: "heading",
-        text: "Arrival time counts — not departure",
+        text: "Arrival time counts, not departure",
       },
       {
         type: "paragraph",
@@ -186,7 +186,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Before compensation even comes into question, delays of two hours or more (depending on distance) trigger care obligations: food, drinks, and hotel stays when needed. Ask at the airline desk — do not assume they will offer automatically.",
+        text: "Before compensation even comes into question, delays of two hours or more (depending on distance) trigger care obligations: food, drinks, and hotel stays when needed. Ask at the airline desk. Do not assume they will offer automatically.",
       },
       {
         type: "heading",
@@ -198,7 +198,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "callout",
-        text: "Key takeaway: Screenshot your flight's actual arrival time from the airline app or airport board — it is the evidence that wins or loses claims.",
+        text: "Key takeaway: Screenshot your flight's actual arrival time from the airline app or airport board. It is the evidence that wins or loses claims.",
       },
       {
         type: "heading",
@@ -223,7 +223,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: "paragraph",
-        text: "You sprinted through the terminal. You still missed the connection. The question passengers ask most: does EU261 cover this? Often, yes — but only when your flights were booked together on a single reservation.",
+        text: "You sprinted through the terminal. You still missed the connection. The question passengers ask most: does EU261 cover this? Often, yes, but only when your flights were booked together on a single reservation.",
       },
       {
         type: "heading",
@@ -264,7 +264,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "callout",
-        text: "Pro tip: The three-hour clock runs to your final destination — not the airport where you missed the connection.",
+        text: "Pro tip: The three-hour clock runs to your final destination, not the airport where you missed the connection.",
       },
       {
         type: "heading",
@@ -272,7 +272,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Missed-connection cases live or die on the details. Compensall reads multi-leg boarding passes, maps your route, and flags whether you qualify — backed by our assistant and human support.",
+        text: "Missed-connection cases live or die on the details. Compensall reads multi-leg boarding passes, maps your route, and flags whether you qualify, backed by our assistant and human support.",
       },
     ],
   },
@@ -289,7 +289,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: "paragraph",
-        text: "Overbooking is standard industry practice. Airlines bet that some passengers will not show up. When everyone does, someone gets left behind — and EU law draws a sharp line between passengers who volunteer and those who are bumped against their will.",
+        text: "Overbooking is standard industry practice. Airlines bet that some passengers will not show up. When everyone does, someone gets left behind, and EU law draws a sharp line between passengers who volunteer and those who are bumped against their will.",
       },
       {
         type: "heading",
@@ -297,7 +297,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "If you did not agree to take a later flight in exchange for benefits, and the airline refused you boarding because the flight was full, you may be entitled to up to €600 in cash compensation — plus re-routing or a refund and care while you wait.",
+        text: "If you did not agree to take a later flight in exchange for benefits, and the airline refused you boarding because the flight was full, you may be entitled to up to €600 in cash compensation, plus re-routing or a refund and care while you wait.",
       },
       {
         type: "heading",
@@ -322,7 +322,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Overbooking claims succeed when the facts are clear. Compensall helps you document what happened and pursue the compensation you are legally owed — no win, no fee.",
+        text: "Overbooking claims succeed when the facts are clear. Compensall helps you document what happened and pursue the compensation you are legally owed, no win, no fee.",
       },
     ],
   },
@@ -333,7 +333,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     title: "Airline strike: can you still claim compensation for a disrupted flight?",
     excerpt:
-      "Strikes are the excuse airlines use most — but not every strike removes your right to compensation. Here is how courts draw the line.",
+      "Strikes are the excuse airlines use most, but not every strike removes your right to compensation. Here is how courts draw the line.",
     image: "/assets/blog/airline-strike.png",
     imageAlt: "Illustration of airline staff on strike with grounded planes at an airport",
     body: [
@@ -350,7 +350,7 @@ export const blogPosts: BlogPost[] = [
         items: [
           "Strike by the airline's own pilots, cabin crew, or ground staff → compensation may still be due",
           "Strike by air-traffic controllers, airport security, or baggage handlers not employed by the airline → often classified as extraordinary circumstances",
-          "Grey areas exist — courts look at who employed the strikers and whether the airline could have prevented the disruption",
+          "Grey areas exist, courts look at who employed the strikers and whether the airline could have prevented the disruption",
         ],
       },
       {
@@ -363,7 +363,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "callout",
-        text: "Airlines frequently blur the distinction in rejection letters. Send us the airline's response — the specific facts of each case matter.",
+        text: "Airlines frequently blur the distinction in rejection letters. Send us the airline's response, the specific facts of each case matter.",
       },
       {
         type: "heading",
@@ -371,7 +371,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Strike claims require careful analysis of timing, who was striking, and what the airline knew in advance. Upload your boarding pass and any airline correspondence — our assistant and team review the circumstances and pursue your claim when the law supports it.",
+        text: "Strike claims require careful analysis of timing, who was striking, and what the airline knew in advance. Upload your boarding pass and any airline correspondence, our assistant and team review the circumstances and pursue your claim when the law supports it.",
       },
     ],
   },
@@ -388,7 +388,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: "paragraph",
-        text: "Roughly 85% of passengers never claim compensation they are entitled to — often because the rules feel designed to confuse. EC 261/2004 is simpler than airlines want you to believe. Here is what it actually guarantees.",
+        text: "Roughly 85% of passengers never claim compensation they are entitled to, often because the rules feel designed to confuse. EC 261/2004 is simpler than airlines want you to believe. Here is what it actually guarantees.",
       },
       {
         type: "heading",
@@ -397,7 +397,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "list",
         items: [
-          "Any flight departing from an EU airport — any airline, any nationality",
+          "Any flight departing from an EU airport, any airline, any nationality",
           "Flights arriving in the EU on an EU-based carrier",
           "Budget fares, reward tickets, and children's tickets all qualify",
         ],
@@ -408,14 +408,14 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "When a qualifying disruption occurs, you may have rights in three categories — and they stack:",
+        text: "When a qualifying disruption occurs, you may have rights in three categories, and they stack:",
       },
       {
         type: "list",
         items: [
           "Fixed financial compensation (€250 / €400 / €600) for delays, cancellations, and denied boarding",
           "Choice of a full refund or re-routing to your destination",
-          "Care during the wait — meals, drinks, hotel, and transport between airport and hotel",
+          "Care during the wait, meals, drinks, hotel, and transport between airport and hotel",
         ],
       },
       {
@@ -428,15 +428,15 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "callout",
-        text: "You do not need to be European or flying within Europe on holiday — a disrupted departure from Lisbon, Madrid, or Paris is enough.",
+        text: "You do not need to be European or flying within Europe on holiday, a disrupted departure from Lisbon, Madrid, or Paris is enough.",
       },
       {
         type: "heading",
-        text: "Why most people never claim — and how we fix that",
+        text: "Why most people never claim, and how we fix that",
       },
       {
         type: "paragraph",
-        text: "Airlines delay responses, reject valid claims, and hide behind legal jargon. Compensall closes the gap: upload your boarding pass, confirm your details, and let our assistant and human team handle the rest — on a no win, no fee basis.",
+        text: "Airlines delay responses, reject valid claims, and hide behind legal jargon. Compensall closes the gap: upload your boarding pass, confirm your details, and let our assistant and human team handle the rest, on a no win, no fee basis.",
       },
     ],
   },
@@ -447,13 +447,13 @@ export const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     title: "Flying with a disability: assistance, accessibility, and compensation rights",
     excerpt:
-      "EU law guarantees free assistance at every stage of your journey — and disability rights work alongside standard delay and cancellation claims.",
+      "EU law guarantees free assistance at every stage of your journey, and disability rights work alongside standard delay and cancellation claims.",
     image: "/assets/blog/passengers-with-disabilities.png",
     imageAlt: "Illustration of accessible air travel with wheelchair assistance at an airport",
     body: [
       {
         type: "paragraph",
-        text: "Air travel with a disability or reduced mobility comes with dedicated protections under EU law — separate from, but alongside, EC 261/2004 compensation rules. Knowing both sets of rights can make the difference between a stressful trip and a dignified one.",
+        text: "Air travel with a disability or reduced mobility comes with dedicated protections under EU law, separate from, but alongside, EC 261/2004 compensation rules. Knowing both sets of rights can make the difference between a stressful trip and a dignified one.",
       },
       {
         type: "heading",
@@ -461,7 +461,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Airports and airlines must provide free help throughout your journey — from check-in through boarding, connections, and arrival. This includes wheelchair support, guided boarding, and help moving between gates.",
+        text: "Airports and airlines must provide free help throughout your journey, from check-in through boarding, connections, and arrival. This includes wheelchair support, guided boarding, and help moving between gates.",
       },
       {
         type: "list",
@@ -485,7 +485,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "If a lack of promised assistance caused you to miss a flight or connection, the airline may be liable for re-routing and related costs — in addition to any standard EC 261/2004 compensation if the overall journey was disrupted.",
+        text: "If a lack of promised assistance caused you to miss a flight or connection, the airline may be liable for re-routing and related costs, in addition to any standard EC 261/2004 compensation if the overall journey was disrupted.",
       },
       {
         type: "callout",
@@ -497,7 +497,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Every situation is different. Share your boarding pass with Compensall and our team will review the full picture — assistance failures, delays, and cancellations together.",
+        text: "Every situation is different. Share your boarding pass with Compensall and our team will review the full picture, assistance failures, delays, and cancellations together.",
       },
     ],
   },
