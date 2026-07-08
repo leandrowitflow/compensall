@@ -73,7 +73,7 @@ function AssistantPill({ label = ASSISTANT_NAME }: { label?: string }) {
   return (
     <div className="flex items-center gap-2 bg-[#f1f5fe] rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
       <img src="/assets/icons/stars.svg" alt="" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
-      <span className="text-[#2669f3] font-bold text-sm sm:text-base">{label}</span>
+      <span className="text-blue-accessible font-bold text-sm sm:text-base">{label}</span>
     </div>
   );
 }

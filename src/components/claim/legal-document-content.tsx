@@ -257,7 +257,7 @@ export function PrivacyDataConsentContent() {
           ].map((item) => (
             <div key={item.right} className="p-3 bg-[#f8faff] rounded-lg border border-[#d5e0f9]">
               <p className="font-semibold text-[#1f3664] text-xs mb-0.5">{item.right}</p>
-              <p className="text-[#1f3664]/60 text-xs">{item.desc}</p>
+              <p className="text-muted text-xs">{item.desc}</p>
             </div>
           ))}
         </div>

@@ -181,7 +181,7 @@ export default function HomePage() {
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
               <Image src="/assets/icons/flight-cancellation-home.png" alt="Flight cancellation" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Flight cancellation</h3>
-              <p className="text-[#1f3664]/60 text-sm xl:text-[16px] leading-[1.7]">
+              <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
                 If your flight is cancelled with short notice, you may be entitled to compensation of up to €600.
               </p>
             </div>
@@ -189,7 +189,7 @@ export default function HomePage() {
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
               <Image src="/assets/icons/denied-boarding-home.png" alt="Denied boarding" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Denied boarding</h3>
-              <p className="text-[#1f3664]/60 text-sm xl:text-[16px] leading-[1.7]">
+              <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
                 If you were refused boarding against your will, you could claim up to €600.
               </p>
             </div>
@@ -197,7 +197,7 @@ export default function HomePage() {
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
               <Image src="/assets/icons/missed-connection-home.png" alt="Missed connection" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Missed connection</h3>
-              <p className="text-[#1f3664]/60 text-sm xl:text-[16px] leading-[1.7]">
+              <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
                 If you miss your connecting flight due to a delay, you may be entitled to compensation.
               </p>
             </div>
@@ -205,7 +205,7 @@ export default function HomePage() {
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
               <Image src="/assets/icons/airline-strike-home.png" alt="Airline strike" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Airline strike</h3>
-              <p className="text-[#1f3664]/60 text-sm xl:text-[16px] leading-[1.7]">
+              <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
                 If your flight was disrupted by an airline strike, you may still be entitled to compensation.
               </p>
             </div>
@@ -276,7 +276,7 @@ export default function HomePage() {
                   {tier.amount}
                 </p>
                 <p className="text-[#1f3664] font-bold text-base xl:text-lg mb-1">{tier.label}</p>
-                <p className="text-[#1f3664]/60 text-sm">{tier.desc}</p>
+                <p className="text-muted text-sm">{tier.desc}</p>
               </div>
             ))}
           </div>

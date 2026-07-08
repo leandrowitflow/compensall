@@ -69,7 +69,27 @@ Per-route `metadata` / `generateMetadata` added for:
 - Airline catalog cards without SVG logos show airline name text instead of broken PNG waterfall
 - PSI scores pending manual re-run due to API rate limits
 
-## Post-deploy checklist
+## Accessibility & best practices (local production build)
+
+Date: 2026-07-08  
+URL tested: `http://localhost:3003/` (production `npm run build && next start`)  
+Note: `https://compensall.vercel.app` returned **404 DEPLOYMENT_NOT_FOUND** at time of audit.
+
+| Category | Before | After fixes |
+|----------|--------|-------------|
+| Accessibility | 92 | **100** |
+| Best practices | 96 | **100** |
+
+### Issues fixed (no visual design change intended)
+
+| Audit | Fix |
+|-------|-----|
+| `color-contrast` | Added `text-muted` (`#5a6d8f`) and `text-blue-accessible` tokens; replaced low-contrast `/60` and `#8f8f9f` copy |
+| `label-content-name-mismatch` | Upload zone changed from `div[role=button]` to semantic `<button>` so visible label matches accessible name |
+| `target-size` | Swap-airports control given `min-h-11 min-w-11` (44px) touch target |
+| `image-aspect-ratio` | Hero background `object-fill` → `object-cover` to avoid stretched decorative image |
+| `valid-source-maps` | Passes on production build (dev-only failure with Turbopack HMR maps) |
+
 
 **Deployed:** 2026-07-08 to https://compensall.vercel.app (commit `0426acd`)
 

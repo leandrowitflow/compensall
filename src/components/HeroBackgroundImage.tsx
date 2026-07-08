@@ -63,7 +63,7 @@ export default function HeroBackgroundImage({
         priority={priority}
         sizes={HERO_IMAGE_SIZES}
         quality={HERO_IMAGE_QUALITY}
-        className="object-fill"
+        className="object-cover"
       />
     </div>
   );

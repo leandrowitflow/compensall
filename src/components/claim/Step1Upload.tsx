@@ -48,7 +48,7 @@ export default function Step1Upload({
     }
   };
 
-  const onDrop = async (event: DragEvent<HTMLDivElement>) => {
+  const onDrop = async (event: DragEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setIsDragging(false);
     await handleFile(event.dataTransfer.files[0] ?? null);
@@ -115,21 +115,14 @@ export default function Step1Upload({
         onChange={(e) => void handleFile(e.target.files?.[0] ?? null)}
       />
 
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label="Upload boarding pass"
+      <button
+        type="button"
         aria-busy={isExtracting}
-        className={`border-[3.5px] border-dashed rounded-xl py-8 sm:py-10 flex flex-col items-center justify-center text-center transition-colors cursor-pointer ${
+        disabled={isExtracting}
+        className={`w-full border-[3.5px] border-dashed rounded-xl py-8 sm:py-10 flex flex-col items-center justify-center text-center transition-colors bg-transparent ${
           isDragging ? "border-[#2669f3] bg-[#f1f5fe]/50" : "border-[#d5e0f9] hover:border-[#2669f3]/60"
-        } ${isExtracting ? "opacity-70 pointer-events-none" : ""}`}
+        } ${isExtracting ? "opacity-70" : ""}`}
         onClick={openFilePicker}
-        onKeyDown={(event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openFilePicker();
-          }
-        }}
         onDragOver={(e) => {
           e.preventDefault();
           setIsDragging(true);
@@ -139,18 +132,18 @@ export default function Step1Upload({
       >
         {isExtracting ? (
           <>
-            <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 rounded-full border-4 border-[#d5e0f9] border-t-[#2669f3] animate-spin" />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 rounded-full border-4 border-[#d5e0f9] border-t-[#2669f3] animate-spin" aria-hidden />
             <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Reading your boarding pass…</p>
-            <p className="text-[#1f3664]/60 text-xs sm:text-sm">{ASSISTANT_NAME} is extracting your flight details</p>
+            <p className="text-muted text-xs sm:text-sm">{ASSISTANT_NAME} is extracting your flight details</p>
           </>
         ) : (
           <>
             <img src="/assets/icons/cloud-upload.svg" alt="" className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4 object-contain" />
             <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Upload your boarding pass</p>
-            <p className="text-[#1f3664]/60 text-xs sm:text-sm">Drag &amp; drop or click to upload (PDF, JPG, PNG)</p>
+            <p className="text-muted text-xs sm:text-sm">Drag &amp; drop or click to upload (PDF, JPG, PNG)</p>
           </>
         )}
-      </div>
+      </button>
 
       {extractError && (
         <p className="mt-3 text-sm text-[#e82828] text-center" role="alert">
@@ -181,7 +174,7 @@ export default function Step1Upload({
             type="button"
             onClick={swapAirports}
             disabled={isExtracting}
-            className="flex-shrink-0 self-center sm:self-stretch px-4 sm:px-0 sm:w-12 flex items-center justify-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
+            className="flex-shrink-0 self-center sm:self-stretch min-h-11 min-w-11 px-4 sm:px-0 sm:min-w-12 flex items-center justify-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
             aria-label="Swap airports"
           >
             <img src="/assets/icons/arrow-right-left.svg" alt="" className="w-[23px] h-[23px] object-contain" />
@@ -213,7 +206,7 @@ export default function Step1Upload({
 
       <div className="flex items-center justify-center gap-2 mt-4">
         <img src="/assets/icons/shield-lock.svg" alt="" className="w-6 h-6 opacity-50 object-contain" />
-        <p className="text-[#8f8f9f] font-bold text-sm">Your data is protected, Always.</p>
+        <p className="text-muted font-bold text-sm">Your data is protected, Always.</p>
       </div>
     </div>
   );
