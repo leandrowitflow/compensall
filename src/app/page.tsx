@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import HowItWorksSteps from "@/components/HowItWorksSteps";
@@ -153,25 +154,24 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[729fr_374fr_374fr] gap-6 xl:gap-9">
             <div className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] min-h-[320px] lg:min-h-[280px] xl:min-h-[609px] flex flex-col">
-              <Image
-                src="/assets/icons/flight-delay-bg.png"
-                alt=""
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 729px"
-                className="object-cover"
-              />
+              <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[21px]">
+                <img
+                  src="/assets/icons/flight-delay-bg.png"
+                  alt=""
+                  className="absolute inset-0 size-full max-w-none object-cover pointer-events-none rounded-[21px]"
+                />
+              </div>
               <div className="relative z-10 flex flex-col flex-1 p-5 lg:p-5 xl:pt-[92px] xl:pl-[67px] xl:pr-8 xl:pb-[74px]">
-                <Image
+                <ClaimBentoIcon
                   src="/assets/icons/flight-delay-home.png"
                   alt="Flight delay icon"
-                  width={190}
-                  height={190}
-                  sizes="(max-width: 1280px) 112px, 190px"
-                  className="w-28 h-28 lg:w-24 lg:h-24 xl:size-[190px] object-contain"
+                  {...CLAIM_BENTO_ICON_FRAMES.flightDelay}
                 />
                 <div className="mt-auto pt-4 xl:pt-0">
-                  <h3 className="font-bold text-[#1f3664] text-xl lg:text-xl xl:text-[30px] mb-2 xl:mb-3 leading-[1.2]">Flight delay</h3>
-                  <p className="text-[#1f3664]/80 text-sm lg:text-sm xl:text-[25px] xl:leading-[44px]">
+                  <h3 className="font-bold text-[#1f3664] text-xl lg:text-xl xl:text-[30px] xl:leading-[43px] mb-2 xl:mb-3">
+                    Flight delay
+                  </h3>
+                  <p className="text-[#1f3664] text-sm lg:text-sm xl:text-[25px] xl:leading-[44px] xl:max-w-[482px]">
                     If your flight is cancelled with short notice, you may be entitled to compensation of up to €600.
                   </p>
                 </div>
@@ -179,33 +179,49 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <Image src="/assets/icons/flight-cancellation-home.png" alt="Flight cancellation" width={96} height={96} sizes="96px" className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 object-contain mb-4 flex-shrink-0" />
-              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Flight cancellation</h3>
-              <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
+              <ClaimBentoIcon
+                src="/assets/icons/flight-cancellation-home.png"
+                alt="Flight cancellation"
+                {...CLAIM_BENTO_ICON_FRAMES.flightCancellation}
+              />
+              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">Flight cancellation</h3>
+              <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
                 If your flight is cancelled with short notice, you may be entitled to compensation of up to €600.
               </p>
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <Image src="/assets/icons/denied-boarding-home.png" alt="Denied boarding" width={96} height={96} sizes="96px" className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 object-contain mb-4 flex-shrink-0" />
-              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Denied boarding</h3>
-              <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
+              <ClaimBentoIcon
+                src="/assets/icons/denied-boarding-home.png"
+                alt="Denied boarding"
+                {...CLAIM_BENTO_ICON_FRAMES.deniedBoarding}
+              />
+              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">Denied boarding</h3>
+              <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
                 If you were refused boarding against your will, you could claim up to €600.
               </p>
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <Image src="/assets/icons/missed-connection-home.png" alt="Missed connection" width={96} height={96} sizes="96px" className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 object-contain mb-4 flex-shrink-0" />
-              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Missed connection</h3>
-              <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
+              <ClaimBentoIcon
+                src="/assets/icons/missed-connection-home.png"
+                alt="Missed connection"
+                {...CLAIM_BENTO_ICON_FRAMES.missedConnection}
+              />
+              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">Missed connection</h3>
+              <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
                 If you miss your connecting flight due to a delay, you may be entitled to compensation.
               </p>
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <Image src="/assets/icons/airline-strike-home.png" alt="Airline strike" width={96} height={96} sizes="96px" className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 object-contain mb-4 flex-shrink-0" />
-              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Airline strike</h3>
-              <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
+              <ClaimBentoIcon
+                src="/assets/icons/airline-strike-home.png"
+                alt="Airline strike"
+                {...CLAIM_BENTO_ICON_FRAMES.airlineStrike}
+              />
+              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">Airline strike</h3>
+              <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
                 If your flight was disrupted by an airline strike, you may still be entitled to compensation.
               </p>
             </div>
