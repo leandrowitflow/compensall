@@ -1,8 +1,19 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import { parseBlogDisplayDate } from "@/lib/blog-date";
 import { blogPosts } from "@/lib/blog-posts";
+import { buildPageMetadata } from "@/lib/site-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Flight compensation guides and passenger rights",
+  description:
+    "Practical EC 261/2004 guides on delays, cancellations, denied boarding, missed connections, and how to claim up to €600.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (
@@ -13,8 +24,9 @@ export default function BlogPage() {
         title="Blog"
         subtitle={
           <>
-            Practical guides on EC 261/2004 passenger rights: delays, cancellations, denied boarding,
-            and more, so you know what you may be owed before you fly.
+            Under EU regulation EC 261/2004, passengers on qualifying flights may claim fixed compensation of up to
+            €600 for delays, cancellations, and denied boarding. These guides explain when you qualify and how to
+            claim.
           </>
         }
       />
@@ -27,25 +39,33 @@ export default function BlogPage() {
                 key={post.slug}
                 className="bg-white border-2 border-[#d5e0f9] rounded-[20px] overflow-hidden flex flex-col min-h-[280px] xl:min-h-[312px]"
               >
-                <div className="aspect-[16/9] overflow-hidden border-b-2 border-[#d5e0f9]">
-                  <img
+                <div className="aspect-[16/9] overflow-hidden border-b-2 border-[#d5e0f9] relative">
+                  <Image
                     src={post.image}
                     alt={post.imageAlt}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                    className="object-cover"
                   />
                 </div>
                 <div className="p-6 xl:p-8 flex flex-col flex-1">
                 <div className="flex items-center justify-between gap-3 mb-2 text-sm">
                   <span className="text-[#2669f3] font-bold">{post.category}</span>
-                  <time className="text-[#7b8094]">{post.readTime}</time>
+                  <div className="flex items-center gap-2 text-[#7b8094]">
+                    <time dateTime={parseBlogDisplayDate(post.date)}>{post.date}</time>
+                    <span aria-hidden="true">·</span>
+                    <span>{post.readTime}</span>
+                  </div>
                 </div>
-                <h2 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] leading-snug mb-3">
-                  {post.title}
+                <h2 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mb-3 leading-snug flex-1">
+                  <Link href={`/blog/${post.slug}`} className="hover:text-[#2669f3] transition-colors">
+                    {post.title}
+                  </Link>
                 </h2>
-                <p className="text-[#1f3664] text-sm xl:text-[15px] leading-[1.7] flex-1">{post.excerpt}</p>
+                <p className="text-[#1f3664] text-sm xl:text-[15px] leading-relaxed mb-4">{post.excerpt}</p>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] mt-5 hover:opacity-80 transition-opacity"
+                  className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-sm hover:opacity-80"
                 >
                   Read article
                   <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">

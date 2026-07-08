@@ -1,12 +1,16 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { NoWinNoFeeContent } from "@/components/claim/legal-document-content";
+import { buildPageMetadata } from "@/lib/site-metadata";
 
-export const metadata = {
-  title: "No Win, No Fee Agreement – Compensall",
+export const metadata: Metadata = buildPageMetadata({
+  title: "No Win, No Fee Agreement",
   description: "Compensall's No Win, No Fee agreement. You only pay if we successfully recover your compensation.",
-};
+  path: "/documents/no-win-no-fee",
+  noIndex: true,
+});
 
 const imgDocument = "/assets/documents/no-win-no-fee.png";
 

@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
 import CatalogClaimSection from "@/components/CatalogClaimSection";
+import JsonLd from "@/components/seo/JsonLd";
 import { catalogLogoPath } from "@/lib/catalog";
 import {
   buildCatalogFaqs,
@@ -10,6 +11,7 @@ import {
   buildCatalogTitle,
   type CatalogKind,
 } from "@/lib/catalog-detail";
+import { buildBreadcrumbSchema, buildFaqPageSchema } from "@/lib/structured-data";
 import type { CatalogItem } from "@/lib/catalog";
 
 type CatalogDetailPageProps = {
@@ -22,6 +24,7 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
   const intro = buildCatalogIntro(item, kind);
   const faqs = buildCatalogFaqs(item, kind);
   const logoSrc = catalogLogoPath(item, kind);
+  const catalogPath = kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`;
 
   const claimHeadline =
     kind === "airlines"
@@ -33,8 +36,23 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
 
   const claimCtaLabel = "Check compensation";
 
+  const faqHeading =
+    kind === "airlines"
+      ? `How much compensation can you claim for a disrupted ${item.name} flight?`
+      : `What compensation can you claim for flights at ${item.name}?`;
+
   return (
     <div className="min-h-screen bg-white">
+      <JsonLd
+        data={[
+          buildFaqPageSchema(faqs),
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Airlines & Airports", path: "/airlines" },
+            { name: item.name, path: catalogPath },
+          ]),
+        ]}
+      />
       <Header />
 
       <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-8 lg:pt-10 xl:pt-12 pb-0">
@@ -47,20 +65,26 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
             <span className="text-[#1f3664]">{item.name}</span>
           </nav>
 
-          <div className="h-14 xl:h-16 mb-6 flex items-start rounded-[10px] bg-[#f8faff] px-3 w-fit max-w-full">
-            <img
-              src={logoSrc}
-              alt={item.name}
-              className="h-full w-auto max-w-[220px] object-contain object-left"
-            />
-          </div>
+          {logoSrc ? (
+            <div className="h-14 xl:h-16 mb-6 flex items-start rounded-[10px] bg-[#f8faff] px-3 w-fit max-w-full">
+              <img
+                src={logoSrc}
+                alt={item.name}
+                className="h-full w-auto max-w-[220px] object-contain object-left"
+              />
+            </div>
+          ) : null}
 
-          <h1 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[34px] xl:text-[44px] text-[#1f3664] leading-[1.2] mb-6 xl:mb-8">
+          <h1 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[34px] xl:text-[44px] text-[#1f3664] leading-[1.2] mb-4 xl:mb-6">
             {title}
           </h1>
 
+          <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed font-semibold mb-6 xl:mb-8">
+            {intro[0]}
+          </p>
+
           <div className="space-y-5 text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10 xl:mb-14">
-            {intro.map((paragraph) => (
+            {intro.slice(1).map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
@@ -74,7 +98,7 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
       />
 
       <div className="mt-10 lg:mt-12 xl:mt-[109px]">
-        <FAQSection faqs={faqs} />
+        <FAQSection faqs={faqs} title={faqHeading} />
       </div>
 
       <Footer />

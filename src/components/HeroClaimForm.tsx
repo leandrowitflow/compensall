@@ -1,11 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback, useState } from "react";
-import ClaimSidebar from "@/components/claim/ClaimSidebar";
 import Step1Upload from "@/components/claim/Step1Upload";
+import type { ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
-import Step2Panel from "@/components/claim/Step2Panel";
-import Step3Panel, { type ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 import {
   EMPTY_FLIGHT,
   normalizeFlightData,
@@ -14,6 +13,10 @@ import {
   type ClaimStatus,
   type ClaimUploadMeta,
 } from "@/lib/claim-types";
+
+const ClaimSidebar = dynamic(() => import("@/components/claim/ClaimSidebar"));
+const Step2Panel = dynamic(() => import("@/components/claim/Step2Panel"));
+const Step3Panel = dynamic(() => import("@/components/claim/Step3Panel"));
 
 type ClaimStep = 1 | 2 | 3;
 

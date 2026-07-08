@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CatalogDetailPage from "@/components/CatalogDetailPage";
 import { airlinesCatalog } from "@/lib/catalog";
-import {
-  buildCatalogMetadataDescription,
-  getCatalogItem,
-} from "@/lib/catalog-detail";
+import { getCatalogItem } from "@/lib/catalog-detail";
+import { buildCatalogMetadata } from "@/lib/site-metadata";
 
 type AirlinePageProps = {
   params: Promise<{ slug: string }>;
@@ -23,10 +21,7 @@ export async function generateMetadata({ params }: AirlinePageProps): Promise<Me
     return { title: "Airline not found | Compensall" };
   }
 
-  return {
-    title: `${item.name} flight compensation | Compensall`,
-    description: buildCatalogMetadataDescription(item, "airlines"),
-  };
+  return buildCatalogMetadata(item, "airlines");
 }
 
 export default async function AirlinePage({ params }: AirlinePageProps) {

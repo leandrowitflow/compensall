@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
@@ -5,7 +7,11 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import CTABanner from "@/components/CTABanner";
 import BlogPostContent from "@/components/BlogPostContent";
+import JsonLd from "@/components/seo/JsonLd";
+import { parseBlogDisplayDate } from "@/lib/blog-date";
 import { blogPosts, blogPostsBySlug } from "@/lib/blog-posts";
+import { buildArticleMetadata } from "@/lib/site-metadata";
+import { buildArticleSchema, buildBreadcrumbSchema } from "@/lib/structured-data";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -13,6 +19,24 @@ type BlogPostPageProps = {
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = blogPostsBySlug[slug];
+
+  if (!post) {
+    return { title: "Article not found | Compensall" };
+  }
+
+  return buildArticleMetadata({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${post.slug}`,
+    image: post.image,
+    imageAlt: post.imageAlt,
+    publishedTime: parseBlogDisplayDate(post.date),
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -23,8 +47,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const publishedIso = parseBlogDisplayDate(post.date);
+  const articleSchema = buildArticleSchema({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${post.slug}`,
+    image: post.image,
+    datePublished: publishedIso,
+  });
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: `/blog/${post.slug}` },
+  ]);
+
   return (
     <div className="min-h-screen bg-white">
+      <JsonLd data={[articleSchema, breadcrumbSchema]} />
       <Header />
 
       <PageHero title={post.title} subtitle={post.excerpt} />
@@ -38,22 +77,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             ← Back to blog
           </Link>
 
-          <div className="rounded-[20px] overflow-hidden border-2 border-[#d5e0f9] mb-8">
-            <img
+          <div className="rounded-[20px] overflow-hidden border-2 border-[#d5e0f9] mb-8 relative aspect-[16/9]">
+            <Image
               src={post.image}
               alt={post.imageAlt}
-              className="w-full aspect-[16/9] object-cover"
+              fill
+              sizes="(max-width: 760px) 100vw, 760px"
+              className="object-cover"
+              priority
             />
           </div>
 
           <div className="flex items-center justify-between gap-4 mb-8 text-sm flex-wrap">
             <span className="text-[#2669f3] font-bold">{post.category}</span>
             <div className="flex items-center gap-3 text-[#7b8094]">
-              <time>{post.date}</time>
+              <time dateTime={publishedIso}>{post.date}</time>
               <span aria-hidden="true">·</span>
               <span>{post.readTime}</span>
             </div>
           </div>
+
+          <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed font-semibold mb-8 border-l-4 border-[#2669f3] pl-4">
+            {post.excerpt}
+          </p>
 
           <BlogPostContent blocks={post.body} />
         </div>

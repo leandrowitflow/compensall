@@ -1,47 +1,45 @@
-"use client";
-
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const DEFAULT_FAQS = [
   {
     question: "Is it safe to upload my boarding pass?",
     answer:
-      "Yes, absolutely. Your boarding pass is encrypted and stored securely. We only use the information necessary to process your claim and never share it with third parties.",
+      "Yes. Your boarding pass is encrypted and stored securely. We only use the information needed to process your claim and never share it with third parties without your consent.",
   },
   {
     question: "Does AI handle everything?",
     answer:
-      "AI helps speed up the process, but your claim is also supported by real people. Our team can review your case, contact the airline and help manage the claim from start to finish.",
+      "AI speeds up eligibility checks and document preparation, but real people review your case and contact the airline when needed. You get fast automation with human-backed support.",
   },
   {
     question: "How much compensation can I receive?",
     answer:
-      "You can receive up to €600 per passenger depending on the flight distance. Flights under 1,500 km qualify for €250, 1,500–3,500 km for €400, and over 3,500 km for €600.",
+      "Under EU regulation EC 261/2004 you can receive up to €600 per passenger: €250 under 1,500 km, €400 between 1,500 and 3,500 km, and €600 over 3,500 km depending on the route.",
   },
   {
     question: "What does 'no win, no fee' mean?",
     answer:
-      "It means you pay nothing if we don't win your claim. We only charge a success fee when we successfully recover compensation on your behalf.",
+      "You pay nothing upfront. Compensall only charges a success fee if we recover compensation for you. If we do not win your claim, you owe no fee.",
   },
   {
     question: "What does the assistant do?",
     answer:
-      "Our AI assistant analyzes your boarding pass, checks eligibility under EU regulation EC 261/2004, and prepares all necessary documentation to file your compensation claim.",
+      "Our assistant reads your boarding pass, extracts flight references, checks eligibility under EC 261/2004, and prepares the documents needed to pursue your compensation claim.",
   },
   {
     question: "Can I speak to a real person?",
     answer:
-      "Yes! Our human support team is available to assist you throughout the claim process. You can reach us via chat, email or phone.",
+      "Yes. Our human support team can help throughout the process by email or chat. You are never left dealing with the airline alone.",
   },
   {
     question: "How much does it cost?",
     answer:
-      "There is no upfront cost. Compensall works on a no win, no fee basis, which means we only charge a fee if your claim is successful.",
+      "There is no upfront cost. Compensall works on a no win, no fee basis, so you only pay if your claim succeeds.",
   },
   {
     question: "Can I delete my data?",
     answer:
-      "Yes. You can request deletion of your personal data at any time. Contact our support team and we will process your request within 30 days in compliance with GDPR.",
+      "Yes. You can request deletion of your personal data at any time. Contact support and we will process your request within 30 days under GDPR.",
   },
 ];
 
@@ -55,46 +53,29 @@ interface FAQSectionProps {
   title?: ReactNode;
 }
 
-function FAQCard({
-  faq,
-  isOpen,
-  onToggle,
-}: {
-  faq: FAQItem;
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
+function FAQCard({ faq }: { faq: FAQItem }) {
   return (
-    <div className="bg-[#fdfdff] border border-[#d5e0f9] rounded-2xl xl:rounded-[20px] overflow-hidden h-full">
-      <button
-        type="button"
-        className="w-full flex items-start justify-between gap-4 md:gap-5 lg:gap-4 px-5 py-5 sm:px-6 sm:py-6 lg:px-5 lg:py-5 xl:px-12 xl:py-12 text-left"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-      >
+    <details className="group bg-[#fdfdff] border border-[#d5e0f9] rounded-2xl xl:rounded-[20px] overflow-hidden h-full open:pb-0">
+      <summary className="w-full flex items-start justify-between gap-4 md:gap-5 lg:gap-4 px-5 py-5 sm:px-6 sm:py-6 lg:px-5 lg:py-5 xl:px-12 xl:py-12 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
         <span className="font-['Open_Sans',sans-serif] font-normal text-[#1f3664] text-base sm:text-lg lg:text-base xl:text-[24px] leading-snug xl:leading-[28px]">
           {faq.question}
         </span>
         <img
           src="/assets/icons/faq-chevron-down.svg"
           alt=""
-          className={`w-3.5 h-2.5 sm:w-4 sm:h-2.5 xl:w-[17px] xl:h-[11px] flex-shrink-0 mt-1 sm:mt-1.5 xl:mt-[9px] transition-transform duration-200 object-contain ${isOpen ? "rotate-180" : ""}`}
+          className="w-3.5 h-2.5 sm:w-4 sm:h-2.5 xl:w-[17px] xl:h-[11px] flex-shrink-0 mt-1 sm:mt-1.5 xl:mt-[9px] transition-transform duration-200 object-contain group-open:rotate-180"
         />
-      </button>
-      {isOpen && (
-        <div className="px-5 pb-5 sm:px-6 sm:pb-6 lg:px-5 lg:pb-5 xl:px-12 xl:pb-12 -mt-2 sm:-mt-3 lg:-mt-2 xl:-mt-4">
-          <p className="font-['Open_Sans',sans-serif] font-normal text-[#1f3664] text-sm sm:text-[15px] lg:text-base xl:text-[16px] leading-relaxed xl:leading-[30px]">
-            {faq.answer}
-          </p>
-        </div>
-      )}
-    </div>
+      </summary>
+      <div className="px-5 pb-5 sm:px-6 sm:pb-6 lg:px-5 lg:pb-5 xl:px-12 xl:pb-12 -mt-2 sm:-mt-3 lg:-mt-2 xl:-mt-4">
+        <p className="font-['Open_Sans',sans-serif] font-normal text-[#1f3664] text-sm sm:text-[15px] lg:text-base xl:text-[16px] leading-relaxed xl:leading-[30px]">
+          {faq.answer}
+        </p>
+      </div>
+    </details>
   );
 }
 
 export default function FAQSection({ faqs = DEFAULT_FAQS, title }: FAQSectionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
   const rowCount = Math.ceil(faqs.length / 2);
 
   return (
@@ -121,19 +102,9 @@ export default function FAQSection({ faqs = DEFAULT_FAQS, title }: FAQSectionPro
                 key={rowIdx}
                 className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5 lg:gap-6 xl:gap-[30px] items-start"
               >
-                {leftFaq && (
-                  <FAQCard
-                    faq={leftFaq}
-                    isOpen={openIndex === leftIdx}
-                    onToggle={() => setOpenIndex(openIndex === leftIdx ? null : leftIdx)}
-                  />
-                )}
+                {leftFaq && <FAQCard faq={leftFaq} />}
                 {rightFaq ? (
-                  <FAQCard
-                    faq={rightFaq}
-                    isOpen={openIndex === rightIdx}
-                    onToggle={() => setOpenIndex(openIndex === rightIdx ? null : rightIdx)}
-                  />
+                  <FAQCard faq={rightFaq} />
                 ) : (
                   <div className="hidden lg:block" aria-hidden="true" />
                 )}
@@ -145,3 +116,6 @@ export default function FAQSection({ faqs = DEFAULT_FAQS, title }: FAQSectionPro
     </section>
   );
 }
+
+export { DEFAULT_FAQS };
+export type { FAQItem };

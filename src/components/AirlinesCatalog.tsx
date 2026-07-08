@@ -50,20 +50,17 @@ function CatalogLogo({
   logo?: string;
 }) {
   const item = { id, logo } satisfies Pick<CatalogItem, "id" | "logo">;
-  const pngSrc = catalogLogoPath(item, kind);
-  const svgFallback = catalogLogoSvgFallback(item, kind);
-  const [src, setSrc] = useState(pngSrc);
+  const src = catalogLogoPath(item, kind) ?? catalogLogoSvgFallback(item, kind);
+
+  if (!src) {
+    return <span className="font-bold text-[#1f3664] text-lg">{name}</span>;
+  }
 
   return (
     <img
       src={src}
       alt={name}
       className="h-full w-auto max-w-[200px] object-contain object-left"
-      onError={() => {
-        if (svgFallback && src !== svgFallback) {
-          setSrc(svgFallback);
-        }
-      }}
     />
   );
 }

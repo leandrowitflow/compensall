@@ -1,12 +1,16 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { PrivacyDataConsentContent } from "@/components/claim/legal-document-content";
+import { buildPageMetadata } from "@/lib/site-metadata";
 
-export const metadata = {
-  title: "Privacy & Data Consent – Compensall",
-  description: "Compensall's Privacy & Data Consent document explaining how we process and protect your personal data.",
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: "Privacy and Data Consent",
+  description: "Compensall's Privacy and Data Consent document explaining how we process and protect your personal data.",
+  path: "/documents/privacy-data-consent",
+  noIndex: true,
+});
 
 const imgDocument = "/assets/documents/privacy-consent.png";
 

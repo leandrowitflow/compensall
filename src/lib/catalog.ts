@@ -11,7 +11,6 @@ export const airlinesCatalog: CatalogItem[] = [
   {
     id: "ryanair",
     name: "Ryanair",
-    logo: "/assets/airlines/ryanair.png",
     locales: ["en", "en-GB", "en-IE", "pt", "pt-PT", "es", "it", "pl", "de", "fr"],
     description:
       "Delayed, cancelled or denied boarding on a Ryanair flight? Check your eligibility in minutes.",
@@ -20,7 +19,6 @@ export const airlinesCatalog: CatalogItem[] = [
   {
     id: "easyjet",
     name: "easyJet",
-    logo: "/assets/airlines/easyjet.png",
     locales: ["en", "en-GB", "fr", "de", "it", "es", "pt", "pt-PT", "nl"],
     description:
       "If your easyJet flight was disrupted, you may be entitled to compensation of up to €600.",
@@ -29,7 +27,6 @@ export const airlinesCatalog: CatalogItem[] = [
   {
     id: "british-airways",
     name: "British Airways",
-    logo: "/assets/airlines/british-airways.png",
     locales: ["en", "en-GB"],
     description:
       "Check whether your British Airways flight delay, cancellation or missed connection is eligible.",
@@ -38,7 +35,6 @@ export const airlinesCatalog: CatalogItem[] = [
   {
     id: "wizz-air",
     name: "Wizz Air",
-    logo: "/assets/airlines/wizz-air.png",
     locales: ["pl", "hu", "en", "en-GB", "ro", "bg", "it"],
     description: "Start a quick digital powered check for your Wizz Air disruption.",
     cta: "Learn more",
@@ -687,8 +683,12 @@ export const airportsCatalog: CatalogItem[] = [
 export function catalogLogoPath(
   item: Pick<CatalogItem, "id"> & { logo?: string },
   kind: "airlines" | "airports",
-): string {
-  return item.logo ?? `/assets/${kind}/${item.id}.png`;
+): string | undefined {
+  if (kind === "airports") {
+    return `/assets/airports/${item.id}.svg`;
+  }
+
+  return item.logo;
 }
 
 export function catalogLogoSvgFallback(

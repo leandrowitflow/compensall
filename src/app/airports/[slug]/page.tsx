@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CatalogDetailPage from "@/components/CatalogDetailPage";
 import { airportsCatalog } from "@/lib/catalog";
-import {
-  buildCatalogMetadataDescription,
-  getCatalogItem,
-} from "@/lib/catalog-detail";
+import { getCatalogItem } from "@/lib/catalog-detail";
+import { buildCatalogMetadata } from "@/lib/site-metadata";
 
 type AirportPageProps = {
   params: Promise<{ slug: string }>;
@@ -23,10 +21,7 @@ export async function generateMetadata({ params }: AirportPageProps): Promise<Me
     return { title: "Airport not found | Compensall" };
   }
 
-  return {
-    title: `${item.name} compensation claims | Compensall`,
-    description: buildCatalogMetadataDescription(item, "airports"),
-  };
+  return buildCatalogMetadata(item, "airports");
 }
 
 export default async function AirportPage({ params }: AirportPageProps) {

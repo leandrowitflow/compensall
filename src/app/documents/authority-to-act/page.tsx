@@ -1,12 +1,16 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { AuthorityToActContent } from "@/components/claim/legal-document-content";
+import { buildPageMetadata } from "@/lib/site-metadata";
 
-export const metadata = {
-  title: "Authority to Act – Compensall",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Authority to Act",
   description: "Authority to Act document authorising Compensall to act on your behalf with the airline.",
-};
+  path: "/documents/authority-to-act",
+  noIndex: true,
+});
 
 const imgDocument = "/assets/documents/authority-to-act.png";
 

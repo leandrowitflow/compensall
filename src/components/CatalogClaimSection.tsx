@@ -1,4 +1,6 @@
 import Link from "next/link";
+import HeroBackground from "@/components/HeroBackground";
+import TrustpilotBadge from "@/components/TrustpilotBadge";
 
 type CatalogClaimSectionProps = {
   headline: string;
@@ -16,21 +18,12 @@ export default function CatalogClaimSection({
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
         <div className="relative rounded-[28px] xl:rounded-[38px] overflow-clip">
           <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]">
-            <img
-              src="/assets/hero-bg.png"
-              alt=""
-              className="absolute max-w-none"
-              style={{ height: "116.55%", width: "141.39%", left: "-10.76%", top: "-4.32%" }}
-            />
+            <HeroBackground variant="home" />
           </div>
 
           <div className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-10 pb-6 lg:pb-8 xl:pb-10 text-center">
             <div className="flex justify-center mb-5">
-              <img
-                src="/assets/icons/trustpilot-score.png"
-                alt="Excellent Trustpilot 4.8 out of 5"
-                className="h-9 object-contain"
-              />
+              <TrustpilotBadge />
             </div>
 
             <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[44px] text-white leading-[1.2] mb-3 max-w-[760px] mx-auto">
