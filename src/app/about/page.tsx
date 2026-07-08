@@ -44,9 +44,8 @@ export default function AboutPage() {
         title="About us"
         subtitle={
           <>
-            Compensall is a flight compensation service that helps passengers claim fixed payouts of up to €600 per
-            person under EU regulation EC 261/2004. Upload your boarding pass, confirm your flight details, and our
-            assistant plus human team handle the airline on a no win, no fee basis.
+            We help passengers claim the compensation they are owed with our assistant and human
+            support every step of the way.
           </>
         }
       />
@@ -56,7 +55,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12 items-start mb-12 xl:mb-16">
             <div>
               <h2 className="font-['Open_Sans',sans-serif] font-bold text-2xl lg:text-[28px] xl:text-[36px] text-[#1f3664] mb-4 leading-[1.2]">
-                What does Compensall do for passengers?
+                Our mission
               </h2>
               <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-4">
                 Compensall makes flight compensation simple. Airlines often delay responses, reject

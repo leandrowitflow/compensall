@@ -24,7 +24,6 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
   const intro = buildCatalogIntro(item, kind);
   const faqs = buildCatalogFaqs(item, kind);
   const logoSrc = catalogLogoPath(item, kind);
-  const catalogPath = kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`;
 
   const claimHeadline =
     kind === "airlines"
@@ -35,11 +34,7 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
     "Use our boarding pass assistant on the homepage. It's fast, secure, and no win, no fee.";
 
   const claimCtaLabel = "Check compensation";
-
-  const faqHeading =
-    kind === "airlines"
-      ? `How much compensation can you claim for a disrupted ${item.name} flight?`
-      : `What compensation can you claim for flights at ${item.name}?`;
+  const catalogPath = kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`;
 
   return (
     <div className="min-h-screen bg-white">
@@ -65,26 +60,20 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
             <span className="text-[#1f3664]">{item.name}</span>
           </nav>
 
-          {logoSrc ? (
-            <div className="h-14 xl:h-16 mb-6 flex items-start rounded-[10px] bg-[#f8faff] px-3 w-fit max-w-full">
-              <img
-                src={logoSrc}
-                alt={item.name}
-                className="h-full w-auto max-w-[220px] object-contain object-left"
-              />
-            </div>
-          ) : null}
+          <div className="h-14 xl:h-16 mb-6 flex items-start rounded-[10px] bg-[#f8faff] px-3 w-fit max-w-full">
+            <img
+              src={logoSrc}
+              alt={item.name}
+              className="h-full w-auto max-w-[220px] object-contain object-left"
+            />
+          </div>
 
-          <h1 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[34px] xl:text-[44px] text-[#1f3664] leading-[1.2] mb-4 xl:mb-6">
+          <h1 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[34px] xl:text-[44px] text-[#1f3664] leading-[1.2] mb-6 xl:mb-8">
             {title}
           </h1>
 
-          <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed font-semibold mb-6 xl:mb-8">
-            {intro[0]}
-          </p>
-
           <div className="space-y-5 text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10 xl:mb-14">
-            {intro.slice(1).map((paragraph) => (
+            {intro.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
@@ -98,7 +87,7 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
       />
 
       <div className="mt-10 lg:mt-12 xl:mt-[109px]">
-        <FAQSection faqs={faqs} title={faqHeading} />
+        <FAQSection faqs={faqs} />
       </div>
 
       <Footer />

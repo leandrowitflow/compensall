@@ -72,13 +72,12 @@ function cityFromName(name: string): string {
 
 export function toAirportOption(item: CatalogItem): AirportOption {
   const iata = AIRPORT_IATA[item.id] ?? item.id.slice(0, 3).toUpperCase();
-  const logo = catalogLogoPath(item, "airports") ?? catalogLogoSvgFallback(item, "airports") ?? "";
   return {
     id: item.id,
     name: item.name,
     city: cityFromName(item.name),
     iata,
-    logo,
+    logo: catalogLogoPath(item, "airports"),
     logoFallback: catalogLogoSvgFallback(item, "airports"),
   };
 }

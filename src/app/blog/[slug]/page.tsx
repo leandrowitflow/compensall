@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
@@ -77,14 +76,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             ← Back to blog
           </Link>
 
-          <div className="rounded-[20px] overflow-hidden border-2 border-[#d5e0f9] mb-8 relative aspect-[16/9]">
-            <Image
+          <div className="rounded-[20px] overflow-hidden border-2 border-[#d5e0f9] mb-8">
+            <img
               src={post.image}
               alt={post.imageAlt}
-              fill
-              sizes="(max-width: 760px) 100vw, 760px"
-              className="object-cover"
-              priority
+              className="w-full aspect-[16/9] object-cover"
             />
           </div>
 
@@ -96,10 +92,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span>{post.readTime}</span>
             </div>
           </div>
-
-          <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed font-semibold mb-8 border-l-4 border-[#2669f3] pl-4">
-            {post.excerpt}
-          </p>
 
           <BlogPostContent blocks={post.body} />
         </div>
