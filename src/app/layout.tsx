@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AnchorScroll from "@/components/AnchorScroll";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/structured-data";
+import "@/lib/site-fonts";
 import { siteMetadata } from "@/lib/site-metadata";
 import "./globals.css";
 

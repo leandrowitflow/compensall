@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "@/lib/site-fonts-footer";
 
 const NAV_LINKS = [
   { href: "/know-your-rights", label: "Know your rights" },

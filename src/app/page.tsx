@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import { Fragment } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CTABanner from "@/components/CTABanner";
-import FAQSection from "@/components/FAQSection";
+import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import HeroClaimForm from "@/components/HeroClaimForm";
 import JsonLd from "@/components/seo/JsonLd";
 import { DEFAULT_FAQS } from "@/lib/default-faqs";
 import { buildFaqPageSchema, buildHowToSchema } from "@/lib/structured-data";
 import { buildPageMetadata } from "@/lib/site-metadata";
+
+const CTABanner = dynamic(() => import("@/components/CTABanner"));
+const FAQSection = dynamic(() => import("@/components/FAQSection"));
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Claim up to €600 for your flight",
@@ -41,12 +45,7 @@ export default function HomePage() {
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
         <div className="relative rounded-[28px] xl:rounded-[38px] overflow-clip">
           <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]">
-            <img
-              src="/assets/hero-bg.png"
-              alt=""
-              className="absolute max-w-none"
-              style={{ height: "116.55%", width: "141.39%", left: "-10.76%", top: "-4.32%" }}
-            />
+            <HeroBackgroundImage variant="home" priority />
           </div>
 
           <div
@@ -54,12 +53,13 @@ export default function HomePage() {
             className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
           >
             <div className="flex justify-center mb-5">
-              <img
+              <Image
                 src="/assets/icons/trustpilot-score.png"
                 alt="Excellent Trustpilot 4.8 out of 5"
                 width={200}
                 height={36}
                 className="h-9 w-auto object-contain"
+                priority
               />
             </div>
 
@@ -154,10 +154,12 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[729fr_374fr_374fr] gap-6 xl:gap-9">
             <div className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] min-h-[320px] lg:min-h-[280px] xl:min-h-[609px] flex flex-col">
-              <img
+              <Image
                 src="/assets/icons/flight-delay-bg.png"
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 729px"
+                className="object-cover"
               />
               <div className="relative z-10 flex flex-col flex-1 p-5 lg:p-5 xl:pt-[92px] xl:pl-[67px] xl:pr-8 xl:pb-[74px]">
                 <img
@@ -302,9 +304,12 @@ export default function HomePage() {
                 key={tier.amount}
                 className="relative bg-white/28 border-2 border-[#d5e0f9] rounded-2xl overflow-hidden text-center pt-6 pb-8 px-6"
               >
-                <img
+                <Image
                   src={tier.image}
                   alt={tier.amount}
+                  width={208}
+                  height={208}
+                  sizes="(max-width: 1280px) 112px, 208px"
                   className="w-28 h-28 lg:w-28 lg:h-28 xl:w-52 xl:h-52 mx-auto object-contain mb-2"
                 />
                 <p className="font-bold text-[#2669f3] mb-2 text-4xl lg:text-[36px] xl:text-[80px] leading-none">

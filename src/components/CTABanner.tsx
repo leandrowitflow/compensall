@@ -1,16 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
+import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 
 export default function CTABanner() {
   return (
     <section className="px-4 md:px-8 lg:px-8 xl:px-12 pb-0 bg-white">
       <div className="relative rounded-[28px] xl:rounded-[38px] overflow-clip max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto min-h-[360px] lg:min-h-[340px] xl:min-h-[660px]">
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]">
-          <img
-            src="/assets/hero-bg.png"
-            alt=""
-            className="absolute max-w-none"
-            style={{ height: "338.64%", width: "141.39%", left: "-0.02%", top: "-69.36%" }}
-          />
+          <HeroBackgroundImage variant="banner" />
         </div>
 
         <div className="relative z-10 flex flex-col items-center text-center py-10 lg:py-12 xl:py-20 px-6 max-w-[760px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">

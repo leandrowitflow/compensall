@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Fragment } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTABanner from "@/components/CTABanner";
 import FAQSection from "@/components/FAQSection";
+import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import JsonLd from "@/components/seo/JsonLd";
 import { DEFAULT_FAQS } from "@/lib/default-faqs";
 import { buildFaqPageSchema } from "@/lib/structured-data";
@@ -107,20 +109,17 @@ export default function KnowYourRightsPage() {
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
           <div className="relative rounded-[28px] xl:rounded-[38px] overflow-clip">
             <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]">
-              <img
-                src="/assets/hero-bg.png"
-                alt=""
-                className="absolute max-w-none"
-                style={{ height: "338.64%", width: "141.39%", left: "-0.02%", top: "-69.36%" }}
-              />
+              <HeroBackgroundImage variant="banner" priority />
             </div>
 
             <div className="relative px-4 sm:px-6 pt-10 lg:pt-10 xl:pt-12 pb-10 lg:pb-12 xl:pb-14 text-center">
               <div className="flex justify-center mb-5">
-                <img
+                <Image
                   src="/assets/icons/trustpilot-score.png"
                   alt="Excellent Trustpilot 4.8 out of 5"
-                  className="h-9 object-contain"
+                  width={200}
+                  height={36}
+                  className="h-9 w-auto object-contain"
                 />
               </div>
 
