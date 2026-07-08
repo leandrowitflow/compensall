@@ -57,7 +57,9 @@ export default function HomePage() {
               <img
                 src="/assets/icons/trustpilot-score.png"
                 alt="Excellent Trustpilot 4.8 out of 5"
-                className="h-9 object-contain"
+                width={200}
+                height={36}
+                className="h-9 w-auto object-contain"
               />
             </div>
 
@@ -106,7 +108,7 @@ export default function HomePage() {
             <div className="grid grid-cols-2 gap-4 md:gap-5">
               {TRUST_ITEMS.map((item) => (
                 <div key={item.title} className="flex items-center gap-2 md:gap-3">
-                  <img src={item.icon} alt="" className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 object-contain" />
+                  <img src={item.icon} alt="" width={40} height={40} className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 object-contain" />
                   <div className="min-w-0">
                     <p className="font-bold text-[#1f3664] text-sm md:text-base leading-[1.4]">{item.title}</p>
                     <p className="text-[#1f3664] text-xs md:text-sm leading-[1.5]">{item.sub}</p>
@@ -127,7 +129,7 @@ export default function HomePage() {
             <div className="relative flex items-center">
               {TRUST_ITEMS.map((item) => (
                 <div key={item.title} className="flex-1 flex items-center gap-3 px-6 py-[33px]">
-                  <img src={item.icon} alt="" className="w-10 h-10 flex-shrink-0 object-contain" />
+                  <img src={item.icon} alt="" width={40} height={40} className="w-10 h-10 flex-shrink-0 object-contain" />
                   <div>
                     <p className="font-bold text-[#1f3664] text-[19px] leading-[1.4]">{item.title}</p>
                     <p className="text-[#1f3664] text-base leading-[1.7]">{item.sub}</p>
