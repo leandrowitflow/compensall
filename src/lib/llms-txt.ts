@@ -89,6 +89,21 @@ const LLMS_SECTIONS: LlmsSection[] = [
     heading: "Optional",
     links: [
       {
+        title: "Privacy Policy",
+        path: "/privacy-policy",
+        description: "How Compensall collects, uses, and protects personal data across the website and claim service.",
+      },
+      {
+        title: "Terms of Service",
+        path: "/terms",
+        description: "Terms governing use of the Compensall website and compensation claim service.",
+      },
+      {
+        title: "Cookie Policy",
+        path: "/cookies",
+        description: "How Compensall uses cookies and how visitors can manage preferences.",
+      },
+      {
         title: "No win, no fee agreement",
         path: "/documents/no-win-no-fee",
         description: "Fee terms applied when Compensall pursues compensation on your behalf.",

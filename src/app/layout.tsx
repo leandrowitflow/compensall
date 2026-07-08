@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DeferredAnchorScroll from "@/components/DeferredAnchorScroll";
+import DeferredCookieBanner from "@/components/DeferredCookieBanner";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/structured-data";
 import { openSans, siteFontClassNames } from "@/lib/site-fonts-next";
@@ -19,6 +20,7 @@ export default function RootLayout({
         <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
         <div className="site-viewport min-w-0 overflow-x-clip">
           <DeferredAnchorScroll />
+          <DeferredCookieBanner />
           {children}
         </div>
       </body>
