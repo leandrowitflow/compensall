@@ -54,7 +54,7 @@ export default function AboutPage() {
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12 items-start mb-12 xl:mb-16">
             <div>
-              <h2 className="font-['Open_Sans',sans-serif] font-bold text-2xl lg:text-[28px] xl:text-[36px] text-[#1f3664] mb-4 leading-[1.2]">
+              <h2 className="font-bold text-2xl lg:text-[28px] xl:text-[36px] text-[#1f3664] mb-4 leading-[1.2]">
                 Our mission
               </h2>
               <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-4">
@@ -106,7 +106,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <h2 className="font-['Open_Sans',sans-serif] font-bold text-2xl lg:text-[28px] xl:text-[36px] text-[#1f3664] text-center mb-8 xl:mb-10 leading-[1.2]">
+          <h2 className="font-bold text-2xl lg:text-[28px] xl:text-[36px] text-[#1f3664] text-center mb-8 xl:mb-10 leading-[1.2]">
             What we stand for
           </h2>
 

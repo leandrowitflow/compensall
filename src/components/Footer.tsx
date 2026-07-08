@@ -1,5 +1,4 @@
 import Link from "next/link";
-import "@/lib/site-fonts-footer";
 
 const NAV_LINKS = [
   { href: "/know-your-rights", label: "Know your rights" },
@@ -24,10 +23,10 @@ const SOCIAL_LINKS = [
 function NewsletterForm() {
   return (
     <>
-      <h3 className="font-['Roboto',sans-serif] font-medium text-xl xl:text-[32px] leading-normal text-white mb-3 max-w-[389px]">
+      <h3 className="font-roboto font-medium text-xl xl:text-[32px] leading-normal text-white mb-3 max-w-[389px]">
         Don&apos;t miss any opportunity
       </h3>
-      <p className="font-['Roboto',sans-serif] font-light text-base xl:text-[18px] leading-[30px] text-white mb-5">
+      <p className="font-roboto font-light text-base xl:text-[18px] leading-[30px] text-white mb-5">
         Subscribe to our newsletter
       </p>
       <div className="flex items-center w-full max-w-[340px] min-w-0 mx-auto lg:mx-0">
@@ -53,18 +52,18 @@ function NewsletterForm() {
 function ContactDetails({ className = "" }: { className?: string }) {
   return (
     <div className={`flex flex-col gap-4 xl:gap-6 ${className}`}>
-      <h4 className="font-['Roboto',sans-serif] font-medium text-[19px] xl:text-[21px] tracking-[-0.21px] leading-[1.5]">
+      <h4 className="font-roboto font-medium text-[19px] xl:text-[21px] tracking-[-0.21px] leading-[1.5]">
         Entre em contato
       </h4>
-      <p className="font-['Poppins',sans-serif] text-[rgba(255,255,255,0.63)] text-base leading-[30px] max-w-[280px] lg:max-w-[237px]">
+      <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px] max-w-[280px] lg:max-w-[237px]">
         123 Creative Blvd, Innovation City, NY 10001, USA
       </p>
-      <p className="font-['Poppins',sans-serif] text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
+      <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
         <a href="mailto:contact@sphereagency.com" className="hover:text-white transition-colors break-all">
           contact@sphereagency.com
         </a>
       </p>
-      <p className="font-['Poppins',sans-serif] text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
+      <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
         <a href="tel:+15551234567" className="hover:text-white transition-colors">
           +1 (555) 123-4567
         </a>
@@ -80,7 +79,7 @@ function LegalLinks({ className = "" }: { className?: string }) {
         <Link
           key={link.href}
           href={link.href}
-          className="font-['Roboto',sans-serif] text-sm sm:text-base tracking-[-0.16px] leading-[1.5] text-white hover:text-white/70 transition-colors"
+          className="font-roboto text-sm sm:text-base tracking-[-0.16px] leading-[1.5] text-white hover:text-white/70 transition-colors"
         >
           {link.label}
         </Link>
@@ -123,7 +122,7 @@ export default function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-['Open_Sans',sans-serif] text-white text-base sm:text-[17px] leading-[23px] hover:text-white/70 transition-colors text-center"
+                className="text-white text-base sm:text-[17px] leading-[23px] hover:text-white/70 transition-colors text-center"
               >
                 {link.label}
               </Link>
@@ -139,7 +138,7 @@ export default function Footer() {
           <div className="w-full max-w-[340px] pt-6 border-t border-white/15 flex flex-col items-center gap-5">
             <LegalLinks />
             <SocialLinks />
-            <p className="font-['Roboto',sans-serif] text-sm sm:text-base tracking-[-0.16px] leading-[1.5] text-white/90">
+            <p className="font-roboto text-sm sm:text-base tracking-[-0.16px] leading-[1.5] text-white/90">
               Copyright © FlowProductions 2026
             </p>
           </div>
@@ -160,7 +159,7 @@ export default function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-['Open_Sans',sans-serif] text-white text-[17px] leading-[23px] hover:text-white/70 transition-colors"
+                className="text-white text-[17px] leading-[23px] hover:text-white/70 transition-colors"
               >
                 {link.label}
               </Link>
@@ -173,7 +172,7 @@ export default function Footer() {
             <NewsletterForm />
           </div>
 
-          <p className="lg:row-start-3 lg:col-start-1 font-['Roboto',sans-serif] text-base tracking-[-0.16px] leading-[1.5] lg:self-end lg:pt-8 xl:pt-[68px]">
+          <p className="lg:row-start-3 lg:col-start-1 font-roboto text-base tracking-[-0.16px] leading-[1.5] lg:self-end lg:pt-8 xl:pt-[68px]">
             Copyright © FlowProductions 2026
           </p>
 

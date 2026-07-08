@@ -3,9 +3,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Fragment } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
-import HeroClaimForm from "@/components/HeroClaimForm";
 import JsonLd from "@/components/seo/JsonLd";
 import { DEFAULT_FAQS } from "@/lib/default-faqs";
 import { buildFaqPageSchema, buildHowToSchema } from "@/lib/structured-data";
@@ -13,6 +11,8 @@ import { buildPageMetadata } from "@/lib/site-metadata";
 
 const CTABanner = dynamic(() => import("@/components/CTABanner"));
 const FAQSection = dynamic(() => import("@/components/FAQSection"));
+const Footer = dynamic(() => import("@/components/Footer"));
+const HeroClaimForm = dynamic(() => import("@/components/HeroClaimForm"));
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Claim up to €600 for your flight",
@@ -59,11 +59,10 @@ export default function HomePage() {
                 width={200}
                 height={36}
                 className="h-9 w-auto object-contain"
-                priority
               />
             </div>
 
-            <h1 className="font-['Open_Sans',sans-serif] font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[760px] mx-auto">
+            <h1 className="font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[760px] mx-auto">
               Claim up to €600 with<br />the help of our assistant
             </h1>
             <p className="text-white/80 text-base md:text-lg font-semibold mb-8">
@@ -144,7 +143,7 @@ export default function HomePage() {
       {/* ─── What can you claim? — bento grid ─── */}
       <section className="pt-8 lg:pt-8 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
-          <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-4 leading-[1.2]">
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-4 leading-[1.2]">
             What can you{" "}
             <span className="text-[#0060fe]">claim?</span>
           </h2>
@@ -162,9 +161,12 @@ export default function HomePage() {
                 className="object-cover"
               />
               <div className="relative z-10 flex flex-col flex-1 p-5 lg:p-5 xl:pt-[92px] xl:pl-[67px] xl:pr-8 xl:pb-[74px]">
-                <img
+                <Image
                   src="/assets/icons/flight-delay-home.png"
                   alt="Flight delay icon"
+                  width={161}
+                  height={161}
+                  sizes="(max-width: 1280px) 96px, 161px"
                   className="w-24 h-24 lg:w-20 lg:h-20 xl:size-[161px] object-contain"
                 />
                 <div className="mt-auto pt-4 xl:pt-0">
@@ -177,7 +179,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <img src="/assets/icons/flight-cancellation-home.png" alt="Flight cancellation" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
+              <Image src="/assets/icons/flight-cancellation-home.png" alt="Flight cancellation" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Flight cancellation</h3>
               <p className="text-[#1f3664]/60 text-sm xl:text-[16px] leading-[1.7]">
                 If your flight is cancelled with short notice, you may be entitled to compensation of up to €600.
@@ -185,7 +187,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <img src="/assets/icons/denied-boarding-home.png" alt="Denied boarding" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
+              <Image src="/assets/icons/denied-boarding-home.png" alt="Denied boarding" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Denied boarding</h3>
               <p className="text-[#1f3664]/60 text-sm xl:text-[16px] leading-[1.7]">
                 If you were refused boarding against your will, you could claim up to €600.
@@ -193,7 +195,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <img src="/assets/icons/missed-connection-home.png" alt="Missed connection" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
+              <Image src="/assets/icons/missed-connection-home.png" alt="Missed connection" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Missed connection</h3>
               <p className="text-[#1f3664]/60 text-sm xl:text-[16px] leading-[1.7]">
                 If you miss your connecting flight due to a delay, you may be entitled to compensation.
@@ -201,7 +203,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <img src="/assets/icons/airline-strike-home.png" alt="Airline strike" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
+              <Image src="/assets/icons/airline-strike-home.png" alt="Airline strike" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Airline strike</h3>
               <p className="text-[#1f3664]/60 text-sm xl:text-[16px] leading-[1.7]">
                 If your flight was disrupted by an airline strike, you may still be entitled to compensation.
@@ -214,7 +216,7 @@ export default function HomePage() {
       {/* ─── How it works ─── */}
       <section className="pt-8 lg:pt-8 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto text-center">
-          <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
             How it{" "}
             <span className="text-[#005ffe]">works?</span>
           </h2>
@@ -271,7 +273,7 @@ export default function HomePage() {
       {/* ─── What is the compensation? ─── */}
       <section className="pt-8 lg:pt-8 xl:pt-[89px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto text-center">
-          <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
             What is the{" "}
             <span className="text-[#005ffe]">compensation?</span>
           </h2>

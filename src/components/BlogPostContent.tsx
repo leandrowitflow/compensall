@@ -11,7 +11,7 @@ export default function BlogPostContent({ blocks }: { blocks: BlogBlock[] }) {
             return (
               <h2
                 key={index}
-                className="font-['Open_Sans',sans-serif] font-bold text-xl xl:text-2xl text-[#1f3664] pt-2"
+                className="font-bold text-xl xl:text-2xl text-[#1f3664] pt-2"
               >
                 {block.text}
               </h2>

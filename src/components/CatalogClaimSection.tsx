@@ -32,7 +32,7 @@ export default function CatalogClaimSection({
               />
             </div>
 
-            <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[44px] text-white leading-[1.2] mb-3 max-w-[760px] mx-auto">
+            <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[44px] text-white leading-[1.2] mb-3 max-w-[760px] mx-auto">
               {headline}
             </h2>
             {subheadline && (

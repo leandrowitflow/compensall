@@ -1,10 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState } from "react";
-import NavDropdown from "@/components/NavDropdown";
-import MobileMenu from "@/components/MobileMenu";
 import { airlinesNav, knowYourRightsNav } from "@/lib/nav-menu";
+
+const NavDropdown = dynamic(() => import("@/components/NavDropdown"));
+const MobileMenu = dynamic(() => import("@/components/MobileMenu"));
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

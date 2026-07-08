@@ -11,7 +11,7 @@ export default function CTABanner() {
         </div>
 
         <div className="relative z-10 flex flex-col items-center text-center py-10 lg:py-12 xl:py-20 px-6 max-w-[760px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
-          <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-white leading-[1.2] mb-6 w-full">
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-white leading-[1.2] mb-6 w-full">
             <span>
               Secure claim check.{" "}
               <span className="whitespace-nowrap">Human-backed.</span>

@@ -123,7 +123,7 @@ export default function KnowYourRightsPage() {
                 />
               </div>
 
-              <h1 className="font-['Open_Sans',sans-serif] font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[1010px] mx-auto">
+              <h1 className="font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[1010px] mx-auto">
                 Know your rights
               </h1>
               <p className="text-white font-bold text-base lg:text-[17px] xl:text-[19px] leading-relaxed max-w-[642px] mx-auto">
@@ -137,7 +137,7 @@ export default function KnowYourRightsPage() {
       {/* What happened on your flight? */}
       <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
-          <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-8 lg:mb-10 xl:mb-14 leading-[1.2]">
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-8 lg:mb-10 xl:mb-14 leading-[1.2]">
             What happened on your{" "}
             <span className="text-[#2669f3]">flight?</span>
           </h2>
@@ -185,7 +185,7 @@ export default function KnowYourRightsPage() {
       {/* How it works */}
       <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto text-center">
-          <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
             How it{" "}
             <span className="text-[#005ffe]">works?</span>
           </h2>

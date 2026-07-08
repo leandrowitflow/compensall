@@ -1,7 +1,10 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
+import { preload } from "react-dom";
 import type { CSSProperties } from "react";
+import heroBg from "../../public/assets/hero-bg.png";
 
-const HERO_BG_SRC = "/assets/hero-bg.png";
+const HERO_IMAGE_SIZES = "(max-width: 640px) 100vw, (max-width: 1024px) 95vw, 1550px";
+const HERO_IMAGE_QUALITY = 75;
 
 export const HERO_BG_VARIANTS = {
   home: {
@@ -37,15 +40,29 @@ export default function HeroBackgroundImage({
 }: HeroBackgroundImageProps) {
   const frameStyle = HERO_BG_VARIANTS[variant];
 
+  if (priority) {
+    const {
+      props: { src: heroSrc },
+    } = getImageProps({
+      src: heroBg,
+      alt: "",
+      fill: true,
+      priority: true,
+      sizes: HERO_IMAGE_SIZES,
+      quality: HERO_IMAGE_QUALITY,
+    });
+    preload(heroSrc, { as: "image", fetchPriority: "high" });
+  }
+
   return (
     <div aria-hidden className="absolute max-w-none" style={frameStyle}>
       <Image
-        src={HERO_BG_SRC}
+        src={heroBg}
         alt=""
         fill
         priority={priority}
-        sizes="(max-width: 768px) 100vw, (max-width: 1550px) 95vw, 1550px"
-        quality={80}
+        sizes={HERO_IMAGE_SIZES}
+        quality={HERO_IMAGE_QUALITY}
         className="object-fill"
       />
     </div>

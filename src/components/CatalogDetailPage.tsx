@@ -68,7 +68,7 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
             />
           </div>
 
-          <h1 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[34px] xl:text-[44px] text-[#1f3664] leading-[1.2] mb-6 xl:mb-8">
+          <h1 className="font-bold text-3xl md:text-4xl lg:text-[34px] xl:text-[44px] text-[#1f3664] leading-[1.2] mb-6 xl:mb-8">
             {title}
           </h1>
 

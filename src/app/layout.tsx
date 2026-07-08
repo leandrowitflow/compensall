@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import AnchorScroll from "@/components/AnchorScroll";
+import DeferredAnchorScroll from "@/components/DeferredAnchorScroll";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/structured-data";
-import "@/lib/site-fonts";
+import { openSans, siteFontClassNames } from "@/lib/site-fonts-next";
 import { siteMetadata } from "@/lib/site-metadata";
 import "./globals.css";
 
@@ -14,11 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>
+    <html lang="en" className={siteFontClassNames} suppressHydrationWarning>
+      <body className={openSans.className} suppressHydrationWarning>
         <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
         <div className="site-viewport min-w-0 overflow-x-clip">
-          <AnchorScroll />
+          <DeferredAnchorScroll />
           {children}
         </div>
       </body>

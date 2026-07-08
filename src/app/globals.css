@@ -12,6 +12,7 @@
   --color-blue: #2669f3;
   --color-blue-light: #d5e0f9;
   --color-blue-pale: #f0f5ff;
+  --font-sans: var(--font-open-sans), "Open Sans", sans-serif;
 }
 
 html {
@@ -22,9 +23,17 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-open-sans), "Open Sans", sans-serif;
   overflow-x: clip;
   max-width: 100%;
+}
+
+.font-roboto {
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+}
+
+.font-poppins {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
 }
 
 .site-viewport {

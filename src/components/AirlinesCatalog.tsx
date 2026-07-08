@@ -141,7 +141,7 @@ function CatalogSection({
   return (
     <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
-        <h2 className="font-['Open_Sans',sans-serif] font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-6 lg:mb-8 xl:mb-10 leading-[1.2]">
+        <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-6 lg:mb-8 xl:mb-10 leading-[1.2]">
           {title}
         </h2>
 
