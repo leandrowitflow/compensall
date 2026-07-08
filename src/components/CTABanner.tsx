@@ -10,8 +10,8 @@ export default function CTABanner() {
           <HeroBackgroundImage variant="banner" />
         </div>
 
-        <div className="relative z-10 flex flex-col items-center text-center py-10 lg:py-12 xl:py-20 px-6 max-w-[760px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
-          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-white leading-[1.2] mb-6 w-full">
+        <div className="relative z-10 flex min-h-[360px] lg:min-h-[340px] xl:min-h-[660px] flex-col items-center justify-center gap-8 text-center px-6 py-12 lg:py-14 xl:py-16 max-w-[760px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-white leading-[1.2] w-full">
             <span>
               Secure claim check.{" "}
               <span className="whitespace-nowrap">Human-backed.</span>
@@ -20,25 +20,25 @@ export default function CTABanner() {
             <span>No win, no fee.</span>
           </h2>
 
-          <p className="text-white text-base md:text-lg leading-relaxed max-w-[740px] mx-auto mb-3">
-            Your claim is guided by AI and backed by real people.
-            <br className="hidden md:block" />
-            Fast, secure and simple from the first upload.
-          </p>
-          <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-[856px] mx-auto">
-            Our standard fee is only charged if we win compensation for you.{" "}
-            <strong className="font-bold">Compensall</strong> handles the process from boarding pass upload to airline
-            follow-up, so you can claim with confidence.
-          </p>
-
-          <div className="py-10 xl:py-12">
-            <Link
-              href="/#claim"
-              className="inline-block bg-[#DDF444] text-[#1f3664] font-bold px-10 py-5 rounded-xl hover:bg-[#c8df2e] transition-colors text-base shadow-[0_4px_20px_rgba(221,244,68,0.45)]"
-            >
-              Check compensation
-            </Link>
+          <div className="space-y-3 max-w-[856px]">
+            <p className="text-white text-base md:text-lg leading-relaxed max-w-[740px] mx-auto">
+              Your claim is guided by AI and backed by real people.
+              <br className="hidden md:block" />
+              Fast, secure and simple from the first upload.
+            </p>
+            <p className="text-white/70 text-sm md:text-base leading-relaxed">
+              Our standard fee is only charged if we win compensation for you.{" "}
+              <strong className="font-bold">Compensall</strong> handles the process from boarding pass upload to airline
+              follow-up, so you can claim with confidence.
+            </p>
           </div>
+
+          <Link
+            href="/#claim"
+            className="inline-block bg-[#DDF444] text-[#1f3664] font-bold px-10 py-5 rounded-xl hover:bg-[#c8df2e] transition-colors text-base shadow-[0_4px_20px_rgba(221,244,68,0.45)]"
+          >
+            Check compensation
+          </Link>
 
           {/* Features row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[700px]">

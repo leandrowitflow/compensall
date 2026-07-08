@@ -55,12 +55,16 @@ export default function Step1Upload({
   };
 
   const swapAirports = () => {
+    if (isExtracting) return;
+
     setDeparture(arrival);
     setArrival(departure);
     setManualError(null);
   };
 
   const handleDepartureChange = (airport: AirportOption | null) => {
+    if (isExtracting) return;
+
     setDeparture(airport);
     if (airport && arrival?.id === airport.id) {
       setArrival(null);
@@ -69,6 +73,8 @@ export default function Step1Upload({
   };
 
   const handleArrivalChange = (airport: AirportOption | null) => {
+    if (isExtracting) return;
+
     setArrival(airport);
     if (airport && departure?.id === airport.id) {
       setDeparture(null);
@@ -77,6 +83,8 @@ export default function Step1Upload({
   };
 
   const submitManual = () => {
+    if (isExtracting) return;
+
     setManualError(null);
 
     if (!departure || !arrival) {
@@ -150,11 +158,16 @@ export default function Step1Upload({
         </p>
       )}
 
-      <p className="text-center text-sm text-[#1f3664] my-3">
+      <p className={`text-center text-sm text-[#1f3664] my-3 ${isExtracting ? "opacity-50" : ""}`}>
         <strong className="font-bold">Or</strong> check manually
       </p>
 
-      <div className="flex flex-col lg:flex-row lg:items-stretch border-2 border-[#d5e0f9] rounded-[13px] bg-white min-h-[87px] min-w-0">
+      <div
+        aria-busy={isExtracting}
+        className={`flex flex-col lg:flex-row lg:items-stretch border-2 border-[#d5e0f9] rounded-[13px] bg-white min-h-[87px] min-w-0 transition-opacity ${
+          isExtracting ? "opacity-50 pointer-events-none" : ""
+        }`}
+      >
         <div className="flex flex-col md:flex-row flex-1 min-w-0 items-stretch">
           <AirportSelect
             id="manual-departure"
@@ -162,11 +175,13 @@ export default function Step1Upload({
             value={departure}
             onChange={handleDepartureChange}
             excludeAirportId={arrival?.id}
+            disabled={isExtracting}
           />
           <button
             type="button"
             onClick={swapAirports}
-            className="flex-shrink-0 self-center sm:self-stretch px-4 sm:px-0 sm:w-12 flex items-center justify-center hover:bg-[#f8faff]/50 transition-colors"
+            disabled={isExtracting}
+            className="flex-shrink-0 self-center sm:self-stretch px-4 sm:px-0 sm:w-12 flex items-center justify-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
             aria-label="Swap airports"
           >
             <img src="/assets/icons/arrow-right-left.svg" alt="" className="w-[23px] h-[23px] object-contain" />
@@ -177,12 +192,14 @@ export default function Step1Upload({
             value={arrival}
             onChange={handleArrivalChange}
             excludeAirportId={departure?.id}
+            disabled={isExtracting}
           />
         </div>
         <button
           type="button"
           onClick={submitManual}
-          className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-base sm:text-[19px] leading-[27px] px-6 sm:px-8 xl:px-10 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px]"
+          disabled={isExtracting}
+          className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-base sm:text-[19px] leading-[27px] px-6 sm:px-8 xl:px-10 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px] disabled:cursor-not-allowed disabled:bg-[#2669f3]/70 disabled:hover:bg-[#2669f3]/70"
         >
           Check compensation
         </button>

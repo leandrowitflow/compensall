@@ -11,6 +11,7 @@ type AirportSelectProps = {
   value: AirportOption | null;
   onChange: (airport: AirportOption | null) => void;
   excludeAirportId?: string | null;
+  disabled?: boolean;
 };
 
 function AirportLogo({ airport }: { airport: AirportOption }) {
@@ -38,6 +39,7 @@ export default function AirportSelect({
   value,
   onChange,
   excludeAirportId,
+  disabled = false,
 }: AirportSelectProps) {
   const listboxId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -100,7 +102,15 @@ export default function AirportSelect({
     setHighlightIndex(0);
   }, [query, open]);
 
+  useEffect(() => {
+    if (disabled) {
+      setOpen(false);
+      setQuery("");
+    }
+  }, [disabled]);
+
   const openPicker = () => {
+    if (disabled) return;
     setOpen(true);
     setQuery("");
     requestAnimationFrame(() => inputRef.current?.focus());
@@ -197,7 +207,11 @@ export default function AirportSelect({
       : null;
 
   return (
-    <div ref={rootRef} className="relative flex-1 min-w-0 self-stretch">
+    <div
+      ref={rootRef}
+      className={`relative flex-1 min-w-0 self-stretch ${disabled ? "opacity-60" : ""}`}
+      aria-disabled={disabled || undefined}
+    >
       <span className="sr-only" id={`${id}-label`}>
         {placeholder}
       </span>
@@ -208,7 +222,8 @@ export default function AirportSelect({
           id={id}
           aria-labelledby={`${id}-label`}
           onClick={openPicker}
-          className="w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors"
+          disabled={disabled}
+          className="w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
         >
           <span className="text-[#1f3664] text-base sm:text-lg truncate">
             {value.city} ({value.iata})
@@ -220,7 +235,8 @@ export default function AirportSelect({
           id={id}
           aria-labelledby={`${id}-label`}
           onClick={openPicker}
-          className="w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors"
+          disabled={disabled}
+          className="w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
         >
           <span className="text-[#1f3664] text-base sm:text-lg">{placeholder}</span>
         </button>
@@ -236,11 +252,16 @@ export default function AirportSelect({
             aria-autocomplete="list"
             aria-labelledby={`${id}-label`}
             value={query}
+            disabled={disabled}
             onChange={(e) => {
+              if (disabled) return;
               setQuery(e.target.value);
               setOpen(true);
             }}
-            onFocus={() => setOpen(true)}
+            onFocus={() => {
+              if (disabled) return;
+              setOpen(true);
+            }}
             onKeyDown={onKeyDown}
             placeholder={placeholder}
             className="w-full bg-transparent text-[#1f3664] text-base sm:text-lg text-center outline-none placeholder:text-[#1f3664]"
