@@ -71,7 +71,18 @@ Per-route `metadata` / `generateMetadata` added for:
 
 ## Post-deploy checklist
 
-1. Re-run PSI on 6 priority URLs (mobile + desktop)
+**Deployed:** 2026-07-08 to https://compensall.vercel.app (commit `0426acd`)
+
+1. Re-run PSI on 6 priority URLs (mobile + desktop) — API rate-limited during automation
 2. Submit `/sitemap.xml` in Google Search Console and Bing Webmaster Tools
 3. Rich Results Test on `/`, `/blog/flight-cancellation`, `/airlines/ryanair`
 4. Visual regression at 390px / 1024px / 1440px on `/`, `/about`, `/blog`, `/airlines/ryanair`, claim step 1
+
+**Production verification (post-deploy):**
+
+| URL | Status |
+|-----|--------|
+| `/sitemap.xml` | 200 |
+| `/robots.txt` | 200 |
+| `/llms.txt` | 200 |
+| `/` HTML | No `hero-bg.png` or `trustpilot-score.png` references; FAQPage JSON-LD present |
