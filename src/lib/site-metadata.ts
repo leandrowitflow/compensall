@@ -16,6 +16,31 @@ export const SITE_DESCRIPTION =
 
 export const DEFAULT_OG_IMAGE = "/assets/blog/flight-cancellation.png";
 
+const FAVICON_ICONS = [
+  {
+    url: "/assets/favicon.svg",
+    type: "image/svg+xml",
+    media: "(prefers-color-scheme: light)",
+  },
+  {
+    url: "/assets/favicon-dark.svg",
+    type: "image/svg+xml",
+    media: "(prefers-color-scheme: dark)",
+  },
+  {
+    url: "/assets/favicon.png",
+    type: "image/png",
+    sizes: "96x96",
+    media: "(prefers-color-scheme: light)",
+  },
+  {
+    url: "/assets/favicon-dark.png",
+    type: "image/png",
+    sizes: "96x96",
+    media: "(prefers-color-scheme: dark)",
+  },
+] as const;
+
 export const siteMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -23,6 +48,10 @@ export const siteMetadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  icons: {
+    icon: [...FAVICON_ICONS],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+  },
   robots: {
     index: true,
     follow: true,
