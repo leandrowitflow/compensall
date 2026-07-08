@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import ClaimUploadPreview from "@/components/claim/ClaimUploadPreview";
+import { ASSISTANT_SCAN_MESSAGE } from "@/components/claim/claim-ui";
 import type { ClaimEntryMode, ClaimFlightData, ClaimUploadMeta } from "@/lib/claim-types";
 
 type ClaimSidebarProps = {
@@ -72,7 +73,7 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
           <img src="/assets/icons/stars.svg" alt="" className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 object-contain" />
           <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">
             {entryMode === "upload"
-              ? "Our AI has scanned your boarding pass and extracted the key details. "
+              ? `${ASSISTANT_SCAN_MESSAGE} `
               : "Your flight details are ready for review. "}
             <span className="text-[#2669f3] font-bold">Please confirm they look correct.</span>
           </p>

@@ -3,7 +3,7 @@
 import type { ClaimFlightData } from "@/lib/claim-types";
 import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
 import { InfoBoardRow } from "@/components/claim/ClaimSidebar";
-import { ACTION_BTN } from "@/components/claim/claim-ui";
+import { ACTION_BTN, ASSISTANT_NAME } from "@/components/claim/claim-ui";
 
 type Step2PanelProps = {
   flight: ClaimFlightData;
@@ -32,7 +32,7 @@ export default function Step2Panel({
         <img src="/assets/claim/claim-ai-icon.svg" alt="" className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 object-contain" />
         <div>
           <div className="flex items-center gap-3 flex-wrap">
-            <p className="font-bold text-[#2669f3] text-base sm:text-lg">Compensall AI</p>
+            <p className="font-bold text-[#2669f3] text-base sm:text-lg">{ASSISTANT_NAME}</p>
             <span className="text-[#7b8094] text-sm">Just now</span>
           </div>
           <p className="text-[#1f3664] text-sm sm:text-base mt-2 leading-relaxed">

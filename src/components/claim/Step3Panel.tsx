@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type PointerEvent, type UIEvent } from "react";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
 import type { ClaimFlightData, ClaimStatus } from "@/lib/claim-types";
-import { ACTION_BTN, FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
+import { ACTION_BTN, ASSISTANT_NAME, FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
 import { LEGAL_DOCUMENT_CONTENT } from "@/components/claim/legal-document-content";
 
 const SCROLL_END_THRESHOLD_PX = 8;
@@ -404,7 +404,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
         <img src="/assets/claim/claim-ai-icon.svg" alt="" className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 object-contain" />
         <div>
           <div className="flex items-center gap-3 flex-wrap">
-            <p className="font-bold text-[#2669f3] text-base sm:text-lg">Compensall AI</p>
+            <p className="font-bold text-[#2669f3] text-base sm:text-lg">{ASSISTANT_NAME}</p>
             <span className="text-[#7b8094] text-sm">Just now</span>
           </div>
           <p className="text-[#1f3664] text-sm sm:text-base mt-2 leading-relaxed">

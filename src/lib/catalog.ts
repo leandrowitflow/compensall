@@ -1,3 +1,5 @@
+import { shouldUseAirportBadge } from "@/lib/airport-badges";
+
 export type CatalogItem = {
   id: string;
   name: string;
@@ -688,7 +690,19 @@ export function catalogLogoPath(
   item: Pick<CatalogItem, "id"> & { logo?: string },
   kind: "airlines" | "airports",
 ): string {
-  return item.logo ?? `/assets/${kind}/${item.id}.png`;
+  if (item.logo) {
+    return item.logo;
+  }
+
+  if (kind === "airports") {
+    if (shouldUseAirportBadge(item.id)) {
+      return `/assets/airports/${item.id}.svg`;
+    }
+
+    return `/assets/airports/${item.id}.png`;
+  }
+
+  return `/assets/${kind}/${item.id}.png`;
 }
 
 export function catalogLogoSvgFallback(

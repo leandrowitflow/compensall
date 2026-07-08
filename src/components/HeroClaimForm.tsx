@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import Step1Upload from "@/components/claim/Step1Upload";
 import type { ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
+import { ASSISTANT_NAME, ASSISTANT_STEP_LABEL } from "@/components/claim/claim-ui";
 import {
   EMPTY_FLIGHT,
   normalizeFlightData,
@@ -33,7 +34,7 @@ function StepSeparators() {
 function ClaimStepIndicator({ step }: { step: ClaimStep }) {
   const steps = [
     { num: 1, label: "Upload" },
-    { num: 2, label: "AI check" },
+    { num: 2, label: ASSISTANT_STEP_LABEL },
     { num: 3, label: "Sign & submit" },
   ] as const;
 
@@ -68,7 +69,7 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
   );
 }
 
-function AssistantPill({ label = "Assistant" }: { label?: string }) {
+function AssistantPill({ label = ASSISTANT_NAME }: { label?: string }) {
   return (
     <div className="flex items-center gap-2 bg-[#f1f5fe] rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
       <img src="/assets/icons/stars.svg" alt="" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
@@ -234,7 +235,7 @@ export default function HeroClaimForm() {
       }`}
     >
       <div className="flex items-center justify-between gap-3 sm:gap-4 px-4 sm:px-6 pt-4 sm:pt-5 pb-4 sm:pb-5 flex-wrap">
-        <AssistantPill label={isExpanded ? "Compensall AI" : "Assistant"} />
+        <AssistantPill />
         <ClaimStepIndicator step={step} />
       </div>
 

@@ -2,6 +2,7 @@
 
 import { useRef, useState, type DragEvent } from "react";
 import AirportSelect from "@/components/claim/AirportSelect";
+import { ASSISTANT_NAME } from "@/components/claim/claim-ui";
 import {
   normalizeFlightData,
   type ClaimFlightData,
@@ -132,7 +133,7 @@ export default function Step1Upload({
           <>
             <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 rounded-full border-4 border-[#d5e0f9] border-t-[#2669f3] animate-spin" />
             <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Reading your boarding pass…</p>
-            <p className="text-[#1f3664]/60 text-xs sm:text-sm">Compensall AI is extracting your flight details</p>
+            <p className="text-[#1f3664]/60 text-xs sm:text-sm">{ASSISTANT_NAME} is extracting your flight details</p>
           </>
         ) : (
           <>

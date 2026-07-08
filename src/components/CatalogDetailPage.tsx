@@ -3,8 +3,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
 import CatalogClaimSection from "@/components/CatalogClaimSection";
+import CatalogLogo from "@/components/CatalogLogo";
 import JsonLd from "@/components/seo/JsonLd";
-import { catalogLogoPath } from "@/lib/catalog";
 import {
   buildCatalogFaqs,
   buildCatalogIntro,
@@ -23,7 +23,6 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
   const title = buildCatalogTitle(item, kind);
   const intro = buildCatalogIntro(item, kind);
   const faqs = buildCatalogFaqs(item, kind);
-  const logoSrc = catalogLogoPath(item, kind);
 
   const claimHeadline =
     kind === "airlines"
@@ -61,9 +60,11 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
           </nav>
 
           <div className="h-14 xl:h-16 mb-6 flex items-start rounded-[10px] bg-[#f8faff] px-3 w-fit max-w-full">
-            <img
-              src={logoSrc}
-              alt={item.name}
+            <CatalogLogo
+              id={item.id}
+              kind={kind}
+              name={item.name}
+              logo={item.logo}
               className="h-full w-auto max-w-[220px] object-contain object-left"
             />
           </div>

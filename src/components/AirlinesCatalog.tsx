@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import CatalogLogo from "@/components/CatalogLogo";
 import type { CatalogItem } from "@/lib/catalog";
-import { airlinesCatalog, airportsCatalog, catalogLogoPath, catalogLogoSvgFallback } from "@/lib/catalog";
+import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
 import {
   filterCatalog,
   resolveBrowserLanguage,
@@ -35,36 +36,6 @@ function SearchField({
         </svg>
       </span>
     </div>
-  );
-}
-
-function CatalogLogo({
-  id,
-  kind,
-  name,
-  logo,
-}: {
-  id: string;
-  kind: "airlines" | "airports";
-  name: string;
-  logo?: string;
-}) {
-  const item = { id, logo } satisfies Pick<CatalogItem, "id" | "logo">;
-  const pngSrc = catalogLogoPath(item, kind);
-  const svgFallback = catalogLogoSvgFallback(item, kind);
-  const [src, setSrc] = useState(pngSrc);
-
-  return (
-    <img
-      src={src}
-      alt={name}
-      className="h-full w-auto max-w-[200px] object-contain object-left"
-      onError={() => {
-        if (svgFallback && src !== svgFallback) {
-          setSrc(svgFallback);
-        }
-      }}
-    />
   );
 }
 
