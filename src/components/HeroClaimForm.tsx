@@ -234,7 +234,7 @@ export default function HeroClaimForm() {
           : "rounded-[24px] xl:rounded-[32px] max-w-full lg:max-w-[960px] xl:max-w-[1100px] w-full"
       }`}
     >
-      <div className="flex items-center justify-between gap-3 sm:gap-4 px-4 sm:px-6 pt-4 sm:pt-5 pb-4 sm:pb-5 flex-wrap">
+      <div className="flex items-center justify-between gap-3 sm:gap-4 px-6 sm:px-10 xl:px-14 pt-6 sm:pt-7 xl:pt-8 pb-3 sm:pb-4 flex-wrap">
         <AssistantPill />
         <ClaimStepIndicator step={step} />
       </div>

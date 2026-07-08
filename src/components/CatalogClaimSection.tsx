@@ -50,26 +50,26 @@ export default function CatalogClaimSection({
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-[860px] mx-auto pb-2">
-              <div className="flex items-center gap-3 justify-center sm:justify-start">
-                <img src="/assets/icons/lightning-charge.svg" alt="" className="w-10 h-10 object-contain" />
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-10 xl:gap-12 max-w-full w-full mx-auto pb-6 xl:pb-8">
+              <div className="flex items-center gap-4 justify-center sm:justify-start">
+                <img src="/assets/icons/lightning-charge.svg" alt="" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left">
-                  <p className="text-white font-bold text-sm">Fast &amp; risk-free</p>
-                  <p className="text-white/60 text-xs">No hidden fees</p>
+                  <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Fast &amp; risk-free</p>
+                  <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">No hidden fees</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 justify-center sm:justify-start">
-                <img src="/assets/icons/headset.svg" alt="" className="w-10 h-10 object-contain" />
+              <div className="flex items-center gap-4 justify-center sm:justify-start">
+                <img src="/assets/icons/headset.svg" alt="" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left">
-                  <p className="text-white font-bold text-sm">Talk to us</p>
-                  <p className="text-white/60 text-xs">Human support available</p>
+                  <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Talk to us</p>
+                  <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">Human support available</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 justify-center sm:justify-start">
-                <img src="/assets/icons/secured.svg" alt="" className="w-10 h-10 object-contain" />
+              <div className="flex items-center gap-4 justify-center sm:justify-start">
+                <img src="/assets/icons/secured.svg" alt="" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left">
-                  <p className="text-white font-bold text-sm">Highest security</p>
-                  <p className="text-white/60 text-xs">Your data is always protected</p>
+                  <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Highest security</p>
+                  <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">Your data is always protected</p>
                 </div>
               </div>
             </div>

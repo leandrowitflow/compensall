@@ -71,26 +71,26 @@ export default function HomePage() {
 
             <HeroClaimForm />
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8 max-w-[860px] mx-auto pb-2">
-              <div className="flex items-center gap-3 justify-center sm:justify-start">
-                <img src="/assets/icons/lightning-charge.svg" alt="" className="w-10 h-10 object-contain" />
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
+              <div className="flex items-center gap-4 justify-center sm:justify-start">
+                <img src="/assets/icons/lightning-charge.svg" alt="" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left">
-                  <p className="text-white font-bold text-sm">Fast &amp; risk-free</p>
-                  <p className="text-white/60 text-xs">No hidden fees</p>
+                  <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Fast &amp; risk-free</p>
+                  <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">No hidden fees</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 justify-center sm:justify-start">
-                <img src="/assets/icons/headset.svg" alt="" className="w-10 h-10 object-contain" />
+              <div className="flex items-center gap-4 justify-center sm:justify-start">
+                <img src="/assets/icons/headset.svg" alt="" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left">
-                  <p className="text-white font-bold text-sm">Talk to us</p>
-                  <p className="text-white/60 text-xs">Human support available</p>
+                  <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Talk to us</p>
+                  <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">Human support available</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 justify-center sm:justify-start">
-                <img src="/assets/icons/secured.svg" alt="" className="w-10 h-10 object-contain" />
+              <div className="flex items-center gap-4 justify-center sm:justify-start">
+                <img src="/assets/icons/secured.svg" alt="" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left">
-                  <p className="text-white font-bold text-sm">Highest security</p>
-                  <p className="text-white/60 text-xs">Your data is always protected</p>
+                  <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Highest security</p>
+                  <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">Your data is always protected</p>
                 </div>
               </div>
             </div>
@@ -164,10 +164,10 @@ export default function HomePage() {
                 <Image
                   src="/assets/icons/flight-delay-home.png"
                   alt="Flight delay icon"
-                  width={161}
-                  height={161}
-                  sizes="(max-width: 1280px) 96px, 161px"
-                  className="w-24 h-24 lg:w-20 lg:h-20 xl:size-[161px] object-contain"
+                  width={190}
+                  height={190}
+                  sizes="(max-width: 1280px) 112px, 190px"
+                  className="w-28 h-28 lg:w-24 lg:h-24 xl:size-[190px] object-contain"
                 />
                 <div className="mt-auto pt-4 xl:pt-0">
                   <h3 className="font-bold text-[#1f3664] text-xl lg:text-xl xl:text-[30px] mb-2 xl:mb-3 leading-[1.2]">Flight delay</h3>
@@ -179,7 +179,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <Image src="/assets/icons/flight-cancellation-home.png" alt="Flight cancellation" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
+              <Image src="/assets/icons/flight-cancellation-home.png" alt="Flight cancellation" width={96} height={96} sizes="96px" className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Flight cancellation</h3>
               <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
                 If your flight is cancelled with short notice, you may be entitled to compensation of up to €600.
@@ -187,7 +187,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <Image src="/assets/icons/denied-boarding-home.png" alt="Denied boarding" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
+              <Image src="/assets/icons/denied-boarding-home.png" alt="Denied boarding" width={96} height={96} sizes="96px" className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Denied boarding</h3>
               <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
                 If you were refused boarding against your will, you could claim up to €600.
@@ -195,7 +195,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <Image src="/assets/icons/missed-connection-home.png" alt="Missed connection" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
+              <Image src="/assets/icons/missed-connection-home.png" alt="Missed connection" width={96} height={96} sizes="96px" className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Missed connection</h3>
               <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
                 If you miss your connecting flight due to a delay, you may be entitled to compensation.
@@ -203,7 +203,7 @@ export default function HomePage() {
             </div>
 
             <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
-              <Image src="/assets/icons/airline-strike-home.png" alt="Airline strike" width={80} height={80} sizes="80px" className="w-14 h-14 lg:w-14 lg:h-14 xl:w-20 xl:h-20 object-contain mb-4 flex-shrink-0" />
+              <Image src="/assets/icons/airline-strike-home.png" alt="Airline strike" width={96} height={96} sizes="96px" className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 object-contain mb-4 flex-shrink-0" />
               <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] mb-2">Airline strike</h3>
               <p className="text-muted text-sm xl:text-[16px] leading-[1.7]">
                 If your flight was disrupted by an airline strike, you may still be entitled to compensation.

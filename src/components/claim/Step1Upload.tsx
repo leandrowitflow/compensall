@@ -106,7 +106,7 @@ export default function Step1Upload({
   };
 
   return (
-    <div className="px-4 sm:px-6 pb-4 sm:pb-6">
+    <div className="px-6 sm:px-10 xl:px-14 pt-4 sm:pt-5 xl:pt-6 pb-6 sm:pb-8 xl:pb-10">
       <input
         ref={inputRef}
         type="file"
@@ -151,7 +151,7 @@ export default function Step1Upload({
         </p>
       )}
 
-      <p className={`text-center text-sm text-[#1f3664] my-3 ${isExtracting ? "opacity-50" : ""}`}>
+      <p className={`text-center text-sm text-[#1f3664] my-5 sm:my-6 ${isExtracting ? "opacity-50" : ""}`}>
         <strong className="font-bold">Or</strong> check manually
       </p>
 
@@ -204,7 +204,7 @@ export default function Step1Upload({
         </p>
       )}
 
-      <div className="flex items-center justify-center gap-2 mt-4">
+      <div className="flex items-center justify-center gap-2 mt-6 sm:mt-8 xl:mt-10">
         <img src="/assets/icons/shield-lock.svg" alt="" className="w-6 h-6 opacity-50 object-contain" />
         <p className="text-muted font-bold text-sm">Your data is protected, Always.</p>
       </div>
