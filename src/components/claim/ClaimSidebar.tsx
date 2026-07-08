@@ -48,35 +48,37 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
         )}
       </div>
 
-      <div className="border-t border-[#d5e0f9] my-5" />
+      <div className="hidden xl:flex xl:flex-col xl:flex-1 xl:min-h-0">
+        <div className="border-t border-[#d5e0f9] my-5" />
 
-      <div className="flex items-center gap-3 mb-4">
-        <img src="/assets/claim/claim-extracted-icon.svg" alt="" className="w-7 h-7 sm:w-8 sm:h-8 object-contain" />
-        <h3 className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] xl:text-[19px]">Extracted flight details</h3>
-      </div>
+        <div className="flex items-center gap-3 mb-4">
+          <img src="/assets/claim/claim-extracted-icon.svg" alt="" className="w-7 h-7 sm:w-8 sm:h-8 object-contain" />
+          <h3 className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] xl:text-[19px]">Extracted flight details</h3>
+        </div>
 
-      <div className="grid grid-cols-2 gap-3 mb-5">
-        {detailCards.map((card) => (
-          <div
-            key={card.label}
-            className="bg-[#f9fbfe]/60 border border-[#d5e0f9] rounded-[10px] p-3 min-h-[72px] sm:min-h-[81px]"
-          >
-            <img src={card.icon} alt="" className="w-5 h-5 mb-2 object-contain" />
-            <p className="text-[#7b8094] text-xs sm:text-sm mb-1">{card.label}</p>
-            <p className="text-sm sm:text-base leading-snug text-[#1f3664]">{card.value}</p>
+        <div className="grid grid-cols-2 gap-3 mb-5">
+          {detailCards.map((card) => (
+            <div
+              key={card.label}
+              className="bg-[#f9fbfe]/60 border border-[#d5e0f9] rounded-[10px] p-3 min-h-[72px] sm:min-h-[81px]"
+            >
+              <img src={card.icon} alt="" className="w-5 h-5 mb-2 object-contain" />
+              <p className="text-[#7b8094] text-xs sm:text-sm mb-1">{card.label}</p>
+              <p className="text-sm sm:text-base leading-snug text-[#1f3664]">{card.value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-[#f0f3fe] rounded-2xl p-4 mt-auto">
+          <div className="flex gap-3">
+            <img src="/assets/icons/stars.svg" alt="" className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 object-contain" />
+            <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">
+              {entryMode === "upload"
+                ? `${ASSISTANT_SCAN_MESSAGE} `
+                : "Your flight details are ready for review. "}
+              <span className="text-[#2669f3] font-bold">Please confirm they look correct.</span>
+            </p>
           </div>
-        ))}
-      </div>
-
-      <div className="bg-[#f0f3fe] rounded-2xl p-4 mt-auto">
-        <div className="flex gap-3">
-          <img src="/assets/icons/stars.svg" alt="" className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 object-contain" />
-          <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">
-            {entryMode === "upload"
-              ? `${ASSISTANT_SCAN_MESSAGE} `
-              : "Your flight details are ready for review. "}
-            <span className="text-[#2669f3] font-bold">Please confirm they look correct.</span>
-          </p>
         </div>
       </div>
     </div>
