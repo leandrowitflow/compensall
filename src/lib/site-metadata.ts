@@ -14,7 +14,7 @@ export const SITE_URL =
 export const SITE_DESCRIPTION =
   "Claim up to €600 for delayed, cancelled, or disrupted flights under EU regulation EC 261/2004. Secure boarding pass upload, human-backed support, no win no fee.";
 
-export const DEFAULT_OG_IMAGE = "/assets/blog/flight-cancellation.png";
+export const DEFAULT_OG_IMAGE = "/assets/blog/flight-cancellation.jpg";
 
 const FAVICON_ICONS = [
   {

@@ -56,16 +56,18 @@ function ContactDetails({ className = "" }: { className?: string }) {
         Entre em contato
       </h4>
       <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px] max-w-[280px] lg:max-w-[237px]">
-        123 Creative Blvd, Innovation City, NY 10001, USA
+        Rua Paulo da Gama 629
+        <br />
+        4150-589 Porto
       </p>
       <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
-        <a href="mailto:contact@sphereagency.com" className="hover:text-white transition-colors break-all">
-          contact@sphereagency.com
+        <a href="mailto:contact@compensall.com" className="hover:text-white transition-colors break-all">
+          contact@compensall.com
         </a>
       </p>
       <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
-        <a href="tel:+15551234567" className="hover:text-white transition-colors">
-          +1 (555) 123-4567
+        <a href="tel:+351919119077" className="hover:text-white transition-colors">
+          +351 919 119 077
         </a>
       </p>
     </div>

@@ -119,6 +119,7 @@ export default function AboutPage() {
                 <img
                   src={item.image}
                   alt=""
+                  aria-hidden="true"
                   className="w-24 h-24 xl:w-28 xl:h-28 mx-auto mb-4 object-contain"
                 />
                 <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mb-2">{item.title}</h3>

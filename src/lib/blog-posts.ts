@@ -25,8 +25,8 @@ export const blogPosts: BlogPost[] = [
     title: "Flight cancelled? You may be owed up to €600. Here's how to claim",
     excerpt:
       "Short-notice cancellations often trigger fixed compensation under EU261, on top of a refund or re-routing. Here is how to tell if your flight qualifies.",
-    image: "/assets/blog/flight-cancellation.png",
-    imageAlt: "Illustration of a cancelled flight departure board and passenger with luggage",
+    image: "/assets/blog/flight-cancellation.jpg",
+    imageAlt: "Passenger checking a cancelled flight on an airport departure board",
     body: [
       {
         type: "paragraph",
@@ -95,8 +95,8 @@ export const blogPosts: BlogPost[] = [
     title: "Denied boarding at the gate: your rights when the airline says no",
     excerpt:
       "Refused a seat despite a valid ticket? Involuntary denied boarding can trigger up to €600 in compensation plus care and re-routing.",
-    image: "/assets/blog/denied-boarding.png",
-    imageAlt: "Illustration of a passenger refused boarding at an airport gate",
+    image: "/assets/blog/denied-boarding.jpg",
+    imageAlt: "Traveler speaking with airline staff at an airport boarding gate",
     body: [
       {
         type: "paragraph",
@@ -153,8 +153,8 @@ export const blogPosts: BlogPost[] = [
     title: "The 3-hour rule: when a delayed flight becomes a compensation claim",
     excerpt:
       "Not every delay pays out, but if you arrived 3+ hours late at your final destination, you may be entitled to up to €600 under EU261.",
-    image: "/assets/blog/flight-delay.png",
-    imageAlt: "Illustration of a delayed flight on an airport departure screen with waiting passengers",
+    image: "/assets/blog/flight-delay.jpg",
+    imageAlt: "Passengers waiting in an airport terminal during a flight delay",
     body: [
       {
         type: "paragraph",
@@ -218,8 +218,8 @@ export const blogPosts: BlogPost[] = [
     title: "Missed your connecting flight? You may still claim €600",
     excerpt:
       "Multi-leg trips confuse passengers and airlines alike. If both flights were on one booking and you arrived 3+ hours late, compensation may still apply.",
-    image: "/assets/blog/missed-connection.png",
-    imageAlt: "Illustration of a passenger missing a connecting flight at an airport transfer area",
+    image: "/assets/blog/missed-connection.jpg",
+    imageAlt: "Traveler hurrying through an airport terminal to catch a connecting flight",
     body: [
       {
         type: "paragraph",
@@ -284,8 +284,8 @@ export const blogPosts: BlogPost[] = [
     title: "Overbooked flights: what airlines owe when there are no seats left",
     excerpt:
       "Airlines sell more tickets than seats on purpose. If you were bumped without volunteering, you may have a strong compensation claim.",
-    image: "/assets/blog/overbooking.png",
-    imageAlt: "Illustration of an overbooked airplane with passengers waiting at the gate",
+    image: "/assets/blog/overbooking.jpg",
+    imageAlt: "Crowded airport gate area with passengers waiting to board a full flight",
     body: [
       {
         type: "paragraph",
@@ -334,8 +334,8 @@ export const blogPosts: BlogPost[] = [
     title: "Airline strike: can you still claim compensation for a disrupted flight?",
     excerpt:
       "Strikes are the excuse airlines use most, but not every strike removes your right to compensation. Here is how courts draw the line.",
-    image: "/assets/blog/airline-strike.png",
-    imageAlt: "Illustration of airline staff on strike with grounded planes at an airport",
+    image: "/assets/blog/airline-strike.jpg",
+    imageAlt: "Parked airplanes on the tarmac during an airline strike disruption",
     body: [
       {
         type: "paragraph",
@@ -383,8 +383,8 @@ export const blogPosts: BlogPost[] = [
     title: "EU air passenger rights explained: what airlines owe you when travel goes wrong",
     excerpt:
       "EC 261/2004 is the rulebook airlines hope you never read. Here is a plain-English guide to compensation, refunds, and care.",
-    image: "/assets/blog/passenger-rights.png",
-    imageAlt: "Illustration representing EU air passenger rights and legal protection for travellers",
+    image: "/assets/blog/passenger-rights.jpg",
+    imageAlt: "Passenger in an airplane cabin holding travel documents",
     body: [
       {
         type: "paragraph",
@@ -448,8 +448,8 @@ export const blogPosts: BlogPost[] = [
     title: "Flying with a disability: assistance, accessibility, and compensation rights",
     excerpt:
       "EU law guarantees free assistance at every stage of your journey, and disability rights work alongside standard delay and cancellation claims.",
-    image: "/assets/blog/passengers-with-disabilities.png",
-    imageAlt: "Illustration of accessible air travel with wheelchair assistance at an airport",
+    image: "/assets/blog/passengers-with-disabilities.jpg",
+    imageAlt: "Airport staff assisting a passenger in a wheelchair at boarding",
     body: [
       {
         type: "paragraph",
