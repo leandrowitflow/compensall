@@ -36,7 +36,7 @@ export async function extractBoardingPassFromFile(
   fileBuffer: Buffer,
   mimeType: string,
 ): Promise<BoardingPassExtractionResult> {
-  // 1. Vision AI reads printed reference codes (PNR, IATA, flight designator, date, name)
+  // 1. Vision pass reads printed reference codes (PNR, IATA, flight designator, date, name)
   const rawReferences = await extractBoardingPassReferences(fileBuffer, mimeType);
 
   // 2. Normalize and validate codes (IATA lookup, flight designator format, PNR pattern)

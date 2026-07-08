@@ -10,9 +10,9 @@ export const DEFAULT_FAQS: FaqItem[] = [
       "Yes, absolutely. Your boarding pass is encrypted and stored securely. We only use the information necessary to process your claim and never share it with third parties.",
   },
   {
-    question: "Does AI handle everything?",
+    question: "Does the assistant handle everything?",
     answer:
-      "AI helps speed up the process, but your claim is also supported by real people. Our team can review your case, contact the airline and help manage the claim from start to finish.",
+      "The assistant helps speed up the process, but your claim is also supported by real people. Our team can review your case, contact the airline and help manage the claim from start to finish.",
   },
   {
     question: "How much compensation can I receive?",
@@ -27,7 +27,7 @@ export const DEFAULT_FAQS: FaqItem[] = [
   {
     question: "What does the assistant do?",
     answer:
-      "Our AI assistant analyzes your boarding pass, checks eligibility under EU regulation EC 261/2004, and prepares all necessary documentation to file your compensation claim.",
+      "Our assistant analyzes your boarding pass, checks eligibility under EU regulation EC 261/2004, and prepares all necessary documentation to file your compensation claim.",
   },
   {
     question: "Can I speak to a real person?",

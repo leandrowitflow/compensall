@@ -36,7 +36,7 @@ export default function ClaimWizard() {
           <div className="text-center py-8">
             <p className="text-[#1f3664]/60 text-sm mb-4">
               {activeTab === "Smart"
-                ? "Upload your boarding pass and let our AI handle the rest automatically."
+                ? "Upload your boarding pass and let our assistant handle the rest automatically."
                 : "Full professional claim management with dedicated case handler."}
             </p>
             <Link
@@ -132,7 +132,7 @@ function AssistedForm({
             </svg>
           </div>
           <h3 className="font-bold text-[#1f3664] text-xl mb-2">Checking your eligibility…</h3>
-          <p className="text-[#1f3664]/60 text-sm mb-6">Our AI is verifying your claim. This takes just a moment.</p>
+          <p className="text-[#1f3664]/60 text-sm mb-6">Our assistant is verifying your claim. This takes just a moment.</p>
           <button
             onClick={() => setStep(1)}
             className="text-[#2669f3] text-sm font-semibold underline"

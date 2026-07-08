@@ -22,7 +22,7 @@ export default function CTABanner() {
 
           <div className="space-y-3 max-w-[856px]">
             <p className="text-white text-base md:text-lg leading-relaxed max-w-[740px] mx-auto">
-              Your claim is guided by AI and backed by real people.
+              Your claim is guided by our assistant and backed by real people.
               <br className="hidden md:block" />
               Fast, secure and simple from the first upload.
             </p>
