@@ -42,10 +42,10 @@ export default function FlightDetailsForm({ flight, onChange, idPrefix = "flight
         </label>
         <input
           id={`${idPrefix}-date`}
+          type="date"
           className={FIELD_INPUT}
           value={flight.date}
           onChange={(e) => update({ date: e.target.value })}
-          placeholder="e.g. 14 May 2026"
         />
       </div>
       <div>

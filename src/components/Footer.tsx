@@ -61,13 +61,13 @@ function ContactDetails({ className = "" }: { className?: string }) {
         4150-589 Porto
       </p>
       <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
-        <a href="mailto:contact@compensall.com" className="hover:text-white transition-colors break-all">
-          contact@compensall.com
+        <a href="mailto:help@compensall.com" className="hover:text-white transition-colors break-all">
+          help@compensall.com
         </a>
       </p>
       <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
-        <a href="tel:+351919119077" className="hover:text-white transition-colors">
-          +351 919 119 077
+        <a href="tel:+351928370420" className="hover:text-white transition-colors">
+          +351 928 370 420
         </a>
       </p>
     </div>
