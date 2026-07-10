@@ -152,8 +152,8 @@ export default function HomePage() {
             We help you get compensation for a wide range of flight problems.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[729fr_374fr_374fr] gap-6 xl:gap-9">
-            <div className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] min-h-[320px] lg:min-h-[280px] xl:min-h-[609px] flex flex-col">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[729fr_374fr_374fr] gap-6 lg:gap-7 xl:gap-9">
+            <div className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] min-h-[300px] lg:min-h-[340px] xl:min-h-[609px] flex flex-col items-start">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[21px]">
                 <img
                   src="/assets/icons/flight-delay-bg.png"
@@ -161,7 +161,7 @@ export default function HomePage() {
                   className="absolute inset-0 size-full max-w-none object-cover pointer-events-none rounded-[21px]"
                 />
               </div>
-              <div className="relative z-10 flex flex-col flex-1 p-5 lg:p-5 xl:pt-[92px] xl:pl-[67px] xl:pr-8 xl:pb-[74px]">
+              <div className="relative z-10 flex flex-col flex-1 items-start w-full p-5 lg:p-6 xl:pt-[92px] xl:pl-[67px] xl:pr-8 xl:pb-[74px]">
                 <ClaimBentoIcon
                   src="/assets/icons/flight-delay-home.png"
                   alt="Flight delay icon"
@@ -178,7 +178,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
+            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
               <ClaimBentoIcon
                 src="/assets/icons/flight-cancellation-home.png"
                 alt="Flight cancellation"
@@ -190,7 +190,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
+            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
               <ClaimBentoIcon
                 src="/assets/icons/denied-boarding-home.png"
                 alt="Denied boarding"
@@ -202,7 +202,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
+            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
               <ClaimBentoIcon
                 src="/assets/icons/missed-connection-home.png"
                 alt="Missed connection"
@@ -214,7 +214,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-5 xl:p-9 flex flex-col min-h-[200px] xl:min-h-[288px]">
+            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
               <ClaimBentoIcon
                 src="/assets/icons/airline-strike-home.png"
                 alt="Airline strike"
