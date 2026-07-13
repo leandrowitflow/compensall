@@ -1,5 +1,12 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import {
+  BRAND_NAME,
+  LEGAL_ENTITY_ADDRESS,
+  LEGAL_ENTITY_EMAIL,
+  LEGAL_ENTITY_NAME,
+  LEGAL_ENTITY_NIF,
+} from "@/lib/passenger-rights";
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -22,13 +29,14 @@ export function PrivacyPolicyContent() {
 
       <Section title="1. Who we are">
         <p>
-          <strong>Compensall Ltd</strong> (&quot;Compensall&quot;, &quot;we&quot;, &quot;us&quot;) is the data controller for personal data
-          processed through this website and related services. Registered address: 123 Creative Blvd, Innovation City, NY 10001, USA.
+          <strong>{LEGAL_ENTITY_NAME}</strong> (NIF {LEGAL_ENTITY_NIF}), trading as <strong>{BRAND_NAME}</strong>
+          (&quot;{BRAND_NAME}&quot;, &quot;we&quot;, &quot;us&quot;), is the data controller for personal data processed through this
+          website and related services. Registered address: {LEGAL_ENTITY_ADDRESS}.
         </p>
         <p>
           Privacy enquiries:{" "}
-          <a href="mailto:privacy@compensall.com" className="text-[#2669f3] underline">
-            privacy@compensall.com
+          <a href={`mailto:${LEGAL_ENTITY_EMAIL}`} className="text-[#2669f3] underline">
+            {LEGAL_ENTITY_EMAIL}
           </a>
         </p>
       </Section>
@@ -74,7 +82,7 @@ export function PrivacyPolicyContent() {
         <p>We use personal data to:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li>Operate the website and provide our claim service.</li>
-          <li>Read boarding pass information and assess eligibility under EC 261/2004 and related rules.</li>
+          <li>Read boarding pass information and assess eligibility under UK261 and EC 261/2004 and related rules.</li>
           <li>Prepare, submit, and manage compensation claims with airlines on your behalf.</li>
           <li>Communicate with you about claim status, documents, and payments.</li>
           <li>Meet legal, regulatory, and accounting obligations.</li>
@@ -134,8 +142,8 @@ export function PrivacyPolicyContent() {
         <p>
           You may have the right to access, rectify, erase, restrict, object to, or port your personal data, and to
           withdraw consent where processing is consent-based. Contact{" "}
-          <a href="mailto:privacy@compensall.com" className="text-[#2669f3] underline">
-            privacy@compensall.com
+          <a href={`mailto:${LEGAL_ENTITY_EMAIL}`} className="text-[#2669f3] underline">
+            {LEGAL_ENTITY_EMAIL}
           </a>
           . You may also complain to your local data protection authority.
         </p>
@@ -204,9 +212,9 @@ export function TermsOfServiceContent() {
 
       <Section title="3. Our Service">
         <p>
-          Compensall helps air passengers assess and pursue flight compensation claims, primarily under EU
-          Regulation EC 261/2004 and related passenger rights rules. We provide digital tools, assistant-led
-          checks, document preparation, and human-backed claim handling.
+          {BRAND_NAME} helps air passengers assess and pursue flight compensation claims, primarily under UK
+          Regulation UK261 and EU Regulation EC 261/2004 and related passenger rights rules. We provide digital
+          tools, assistant-led checks, document preparation, and human-backed claim handling.
         </p>
         <p>
           We do not guarantee that a claim will succeed. Eligibility depends on the facts of your journey, airline
@@ -300,8 +308,8 @@ export function TermsOfServiceContent() {
       <Section title="12. Contact">
         <p>
           Questions about these Terms:{" "}
-          <a href="mailto:legal@compensall.com" className="text-[#2669f3] underline">
-            legal@compensall.com
+          <a href={`mailto:${LEGAL_ENTITY_EMAIL}`} className="text-[#2669f3] underline">
+            {LEGAL_ENTITY_EMAIL}
           </a>
         </p>
       </Section>
@@ -402,8 +410,8 @@ export function CookiePolicyContent() {
             Privacy Policy
           </Link>
           . Privacy enquiries:{" "}
-          <a href="mailto:privacy@compensall.com" className="text-[#2669f3] underline">
-            privacy@compensall.com
+          <a href={`mailto:${LEGAL_ENTITY_EMAIL}`} className="text-[#2669f3] underline">
+            {LEGAL_ENTITY_EMAIL}
           </a>
         </p>
       </Section>

@@ -15,7 +15,7 @@ import { buildPageMetadata } from "@/lib/site-metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Know your flight compensation rights",
   description:
-    "Learn when EU regulation EC 261/2004 entitles you to up to €600 for delays, cancellations, denied boarding, missed connections, and airline strikes.",
+    "Learn when UK261 and EU Regulation EC 261/2004 entitle you to up to £520 or €600 for delays, cancellations, denied boarding, missed connections, and airline strikes.",
   path: "/know-your-rights",
 });
 
@@ -106,7 +106,7 @@ export default function KnowYourRightsPage() {
                 Know your rights
               </h1>
               <p className="text-white font-bold text-base lg:text-[17px] xl:text-[19px] leading-relaxed max-w-[642px] mx-auto">
-                Understand when you may be entitled to compensation and how Compensall helps you claim with our digital support.
+                Understand your rights under UK261 and EC 261/2004 and how Compensall helps you claim with our digital support.
               </p>
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function KnowYourRightsPage() {
                 <div className="h-16 xl:h-[87px] mb-5 flex items-start">
                   <img
                     src={issue.image}
-                    alt=""
+                    alt={`${issue.title} icon`}
                     className="h-full w-auto max-w-[109px] object-contain object-left"
                   />
                 </div>

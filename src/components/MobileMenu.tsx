@@ -1,13 +1,19 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import type { NavMenuGroup } from "@/lib/nav-menu";
-import { airlinesNav, knowYourRightsNav } from "@/lib/nav-menu";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Link } from "@/i18n/routing";
+import type { NavMenuItem } from "@/lib/nav-menu";
 
 type MobileMenuProps = {
   open: boolean;
   onClose: () => void;
+  knowYourRightsNav: NavMenuGroup[];
+  airlinesNav: NavMenuGroup[];
+  primaryNavLinks: NavMenuItem[];
+  talkToUsLabel: string;
 };
 
 function ChevronIcon({ open }: { open: boolean }) {
@@ -113,7 +119,17 @@ function MobileNavLink({
   );
 }
 
-export default function MobileMenu({ open, onClose }: MobileMenuProps) {
+export default function MobileMenu({
+  open,
+  onClose,
+  knowYourRightsNav,
+  airlinesNav,
+  primaryNavLinks,
+  talkToUsLabel,
+}: MobileMenuProps) {
+  const tNav = useTranslations("nav");
+  const tCommon = useTranslations("common");
+
   useEffect(() => {
     if (!open) return;
 
@@ -140,7 +156,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
       <button
         type="button"
         className="absolute inset-0 bg-[#1f3664]/40 backdrop-blur-[2px]"
-        aria-label="Close menu"
+        aria-label={tCommon("closeMenu")}
         onClick={onClose}
       />
 
@@ -152,7 +168,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
           <button
             type="button"
             className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#d5e0f9] text-[#1f3664]"
-            aria-label="Close menu"
+            aria-label={tCommon("closeMenu")}
             onClick={onClose}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -163,15 +179,20 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
 
         <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-4 space-y-3">
           <MobileAccordion
-            label="Know your rights"
+            label={tNav("knowYourRights")}
             groups={knowYourRightsNav}
             onNavigate={onClose}
             defaultOpen
           />
-          <MobileAccordion label="Airlines & airports" groups={airlinesNav} onNavigate={onClose} />
+          <MobileAccordion label={tNav("airlinesAndAirports")} groups={airlinesNav} onNavigate={onClose} />
 
-          <MobileNavLink href="/about" label="About us" onNavigate={onClose} />
-          <MobileNavLink href="/blog" label="Blog" onNavigate={onClose} />
+          {primaryNavLinks.slice(2).map((link) => (
+            <MobileNavLink key={link.href} href={link.href} label={link.label} onNavigate={onClose} />
+          ))}
+
+          <div className="rounded-[16px] border-2 border-[#d5e0f9] bg-white px-4 py-3">
+            <LanguageSwitcher />
+          </div>
         </div>
 
         <div className="border-t border-[#d5e0f9] p-4 bg-[#f8faff]">
@@ -180,7 +201,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
             className="flex items-center justify-center rounded-[14px] bg-[#2669f3] px-4 py-3.5 text-center font-bold text-white text-sm active:bg-[#1a55d4] transition-colors"
             onClick={onClose}
           >
-            Talk to us
+            {talkToUsLabel}
           </Link>
         </div>
       </div>

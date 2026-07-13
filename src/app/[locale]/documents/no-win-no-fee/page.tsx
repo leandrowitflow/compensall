@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import DocumentPageHeader from "@/components/legal/DocumentPageHeader";
 import { NoWinNoFeeContent } from "@/components/claim/legal-document-content";
 import { buildPageMetadata } from "@/lib/site-metadata";
 
@@ -11,8 +12,6 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/documents/no-win-no-fee",
   noIndex: true,
 });
-
-const imgDocument = "/assets/documents/no-win-no-fee.png";
 
 export default function NoWinNoFeePage() {
   return (
@@ -31,15 +30,7 @@ export default function NoWinNoFeePage() {
 
         <div className="bg-white rounded-2xl border border-[#d5e0f9] overflow-hidden shadow-sm">
           {/* Document header */}
-          <div className="bg-gradient-to-r from-[#1f3664] to-[#2669f3] px-8 py-8 flex items-center gap-5">
-            <div className="w-16 h-16 bg-white/15 rounded-xl flex items-center justify-center flex-shrink-0">
-              <img src={imgDocument} alt="Document" className="w-10 h-10 object-contain" />
-            </div>
-            <div>
-              <p className="text-white/70 text-sm mb-1">Legal Document</p>
-              <h1 className="font-bold text-white text-2xl md:text-3xl">No Win, No Fee Agreement</h1>
-            </div>
-          </div>
+          <DocumentPageHeader title="No Win, No Fee Agreement" />
 
           <div className="px-8 py-8 text-[#1f3664]">
             <NoWinNoFeeContent />

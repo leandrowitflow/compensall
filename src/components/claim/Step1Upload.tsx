@@ -1,8 +1,8 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useRef, useState, type DragEvent } from "react";
 import AirportSelect from "@/components/claim/AirportSelect";
-import { ASSISTANT_NAME } from "@/components/claim/claim-ui";
 import {
   normalizeFlightData,
   type ClaimFlightData,
@@ -22,6 +22,8 @@ export default function Step1Upload({
   onExtract,
   onManualSubmit,
 }: Step1UploadProps) {
+  const tStep1 = useTranslations("claim.step1");
+  const tCommon = useTranslations("common");
   const inputRef = useRef<HTMLInputElement>(null);
   const processingRef = useRef(false);
   const [departure, setDeparture] = useState<AirportOption | null>(null);
@@ -88,12 +90,12 @@ export default function Step1Upload({
     setManualError(null);
 
     if (!departure || !arrival) {
-      setManualError("Select both departure and arrival airports from the list.");
+      setManualError(tStep1("errors.selectBothAirports"));
       return;
     }
 
     if (departure.id === arrival.id) {
-      setManualError("Departure and arrival airports must be different.");
+      setManualError(tStep1("errors.airportsMustDiffer"));
       return;
     }
 
@@ -107,6 +109,10 @@ export default function Step1Upload({
 
   return (
     <div className="px-6 sm:px-10 xl:px-14 pt-4 sm:pt-5 xl:pt-6 pb-6 sm:pb-8 xl:pb-10">
+      <p className="text-sm text-muted text-center mb-4 max-w-lg mx-auto leading-relaxed">
+        {tStep1("rightsContext")}
+      </p>
+
       <input
         ref={inputRef}
         type="file"
@@ -133,14 +139,16 @@ export default function Step1Upload({
         {isExtracting ? (
           <>
             <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 rounded-full border-4 border-[#d5e0f9] border-t-[#2669f3] animate-spin" aria-hidden />
-            <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Reading your boarding pass…</p>
-            <p className="text-muted text-xs sm:text-sm">{ASSISTANT_NAME} is extracting your flight details</p>
+            <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">{tStep1("readingBoardingPass")}</p>
+            <p className="text-muted text-xs sm:text-sm">
+              {tStep1("extractingDetails", { assistantName: tCommon("assistantName") })}
+            </p>
           </>
         ) : (
           <>
-            <img src="/assets/icons/cloud-upload.svg" alt="" className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4 object-contain" />
-            <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">Upload your boarding pass</p>
-            <p className="text-muted text-xs sm:text-sm">Drag &amp; drop or click to upload (PDF, JPG, PNG)</p>
+            <img src="/assets/icons/cloud-upload.svg" alt="" aria-hidden="true" className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4 object-contain" />
+            <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">{tStep1("uploadTitle")}</p>
+            <p className="text-muted text-xs sm:text-sm">{tStep1("uploadHint")}</p>
           </>
         )}
       </button>
@@ -152,7 +160,7 @@ export default function Step1Upload({
       )}
 
       <p className={`text-center text-sm text-[#1f3664] my-5 sm:my-6 ${isExtracting ? "opacity-50" : ""}`}>
-        <strong className="font-bold">Or</strong> check manually
+        <strong className="font-bold">{tStep1("orCheckManually")}</strong> {tStep1("checkManually")}
       </p>
 
       <div
@@ -164,7 +172,7 @@ export default function Step1Upload({
         <div className="flex flex-col md:flex-row flex-1 min-w-0 items-stretch">
           <AirportSelect
             id="manual-departure"
-            placeholder="Departure airport"
+            placeholder={tStep1("departureAirport")}
             value={departure}
             onChange={handleDepartureChange}
             excludeAirportId={arrival?.id}
@@ -175,13 +183,13 @@ export default function Step1Upload({
             onClick={swapAirports}
             disabled={isExtracting}
             className="flex-shrink-0 self-center sm:self-stretch min-h-11 min-w-11 px-4 sm:px-0 sm:min-w-12 flex items-center justify-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
-            aria-label="Swap airports"
+            aria-label={tStep1("swapAirports")}
           >
-            <img src="/assets/icons/arrow-right-left.svg" alt="" className="w-[23px] h-[23px] object-contain" />
+            <img src="/assets/icons/arrow-right-left.svg" alt="" aria-hidden="true" className="w-[23px] h-[23px] object-contain" />
           </button>
           <AirportSelect
             id="manual-arrival"
-            placeholder="Arrival airport"
+            placeholder={tStep1("arrivalAirport")}
             value={arrival}
             onChange={handleArrivalChange}
             excludeAirportId={departure?.id}
@@ -194,7 +202,7 @@ export default function Step1Upload({
           disabled={isExtracting}
           className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-base sm:text-[19px] leading-[27px] px-6 sm:px-8 xl:px-10 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px] disabled:cursor-not-allowed disabled:bg-[#2669f3]/70 disabled:hover:bg-[#2669f3]/70"
         >
-          Check compensation
+          {tCommon("checkCompensation")}
         </button>
       </div>
 
@@ -205,8 +213,8 @@ export default function Step1Upload({
       )}
 
       <div className="flex items-center justify-center gap-2 mt-6 sm:mt-8 xl:mt-10">
-        <img src="/assets/icons/shield-lock.svg" alt="" className="w-6 h-6 opacity-50 object-contain" />
-        <p className="text-muted font-bold text-sm">Your data is protected, Always.</p>
+        <img src="/assets/icons/shield-lock.svg" alt="" aria-hidden="true" className="w-6 h-6 opacity-50 object-contain" />
+        <p className="text-muted font-bold text-sm">{tStep1("dataProtected")}</p>
       </div>
     </div>
   );

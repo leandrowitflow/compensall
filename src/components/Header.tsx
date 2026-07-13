@@ -1,17 +1,88 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { airlinesNav, knowYourRightsNav } from "@/lib/nav-menu";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Link } from "@/i18n/routing";
+import type { NavMenuGroup, NavMenuItem } from "@/lib/nav-menu";
 
 const NavDropdown = dynamic(() => import("@/components/NavDropdown"));
 const MobileMenu = dynamic(() => import("@/components/MobileMenu"));
 
 export default function Header() {
+  const tNav = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
+
+  const knowYourRightsNav: NavMenuGroup[] = [
+    {
+      title: tNav("knowYourRightsMenu.yourRights"),
+      items: [
+        {
+          label: tNav("knowYourRightsMenu.overview"),
+          href: "/know-your-rights",
+          description: tNav("knowYourRightsMenu.overviewDescription"),
+        },
+        { label: tNav("knowYourRightsMenu.flightCancellation"), href: "/blog/flight-cancellation" },
+        { label: tNav("knowYourRightsMenu.flightDelay"), href: "/blog/flight-delay" },
+        { label: tNav("knowYourRightsMenu.deniedBoarding"), href: "/blog/denied-boarding" },
+        { label: tNav("knowYourRightsMenu.missedConnection"), href: "/blog/missed-connection" },
+        { label: tNav("knowYourRightsMenu.overbooking"), href: "/blog/overbooking" },
+        { label: tNav("knowYourRightsMenu.airlineStrike"), href: "/blog/airline-strike" },
+        { label: tNav("knowYourRightsMenu.passengerRights"), href: "/blog/passenger-rights" },
+        {
+          label: tNav("knowYourRightsMenu.passengersWithDisabilities"),
+          href: "/blog/passengers-with-disabilities",
+        },
+      ],
+    },
+  ];
+
+  const airlinesNav: NavMenuGroup[] = [
+    {
+      title: tNav("airlinesMenu.browse"),
+      items: [
+        {
+          label: tNav("airlinesMenu.allAirlinesAirports"),
+          href: "/airlines",
+          description: tNav("airlinesMenu.allAirlinesAirportsDescription"),
+        },
+      ],
+    },
+    {
+      title: tNav("airlinesMenu.popularAirlines"),
+      items: [
+        { label: "Ryanair", href: "/airlines/ryanair" },
+        { label: "easyJet", href: "/airlines/easyjet" },
+        { label: "British Airways", href: "/airlines/british-airways" },
+        { label: "Wizz Air", href: "/airlines/wizz-air" },
+        { label: "Lufthansa", href: "/airlines/lufthansa" },
+        { label: "TAP Air Portugal", href: "/airlines/tap" },
+      ],
+    },
+    {
+      title: tNav("airlinesMenu.popularAirports"),
+      items: [
+        { label: "London Heathrow", href: "/airports/heathrow" },
+        { label: "London Gatwick", href: "/airports/gatwick" },
+        { label: "Manchester", href: "/airports/manchester" },
+        { label: "Lisbon", href: "/airports/lisbon" },
+        { label: "Barcelona El Prat", href: "/airports/barcelona" },
+        { label: "Paris CDG", href: "/airports/paris-cdg" },
+      ],
+    },
+  ];
+
+  const primaryNavLinks: NavMenuItem[] = [
+    { label: tNav("knowYourRights"), href: "/know-your-rights" },
+    { label: tNav("airlines"), href: "/airlines" },
+    { label: tNav("aboutUs"), href: "/about" },
+    { label: tNav("blog"), href: "/blog" },
+    { label: tNav("faq"), href: "/faq" },
+  ];
 
   return (
     <>
@@ -22,28 +93,26 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 min-w-0">
-            <NavDropdown label="Know your rights" groups={knowYourRightsNav} columns={1} />
-            <NavDropdown label="Airlines" groups={airlinesNav} columns={3} />
-            <Link
-              href="/about"
-              className="text-[#1f3664] text-[15px] xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors"
-            >
-              About us
-            </Link>
-            <Link
-              href="/blog"
-              className="text-[#1f3664] text-[15px] xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors"
-            >
-              Blog
-            </Link>
+            <NavDropdown label={tNav("knowYourRights")} groups={knowYourRightsNav} columns={1} />
+            <NavDropdown label={tNav("airlines")} groups={airlinesNav} columns={3} />
+            {primaryNavLinks.slice(2).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-[#1f3664] text-[15px] xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
             <Link
               href="/#claim"
               className="bg-[#2669f3] text-white text-[15px] xl:text-[17px] font-bold px-5 xl:px-8 h-10 xl:h-[51px] flex items-center rounded-[11px] hover:bg-[#1a55d4] transition-colors"
             >
-              Talk to us
+              {tNav("talkToUs")}
             </Link>
           </div>
 
@@ -51,7 +120,7 @@ export default function Header() {
             type="button"
             className="md:hidden flex h-10 w-10 items-center justify-center rounded-[11px] border-2 border-[#d5e0f9] text-[#1f3664]"
             onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
+            aria-label={tCommon("openMenu")}
             aria-expanded={menuOpen}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -61,7 +130,14 @@ export default function Header() {
         </div>
       </header>
 
-      <MobileMenu open={menuOpen} onClose={closeMenu} />
+      <MobileMenu
+        open={menuOpen}
+        onClose={closeMenu}
+        knowYourRightsNav={knowYourRightsNav}
+        airlinesNav={airlinesNav}
+        primaryNavLinks={primaryNavLinks}
+        talkToUsLabel={tNav("talkToUs")}
+      />
     </>
   );
 }

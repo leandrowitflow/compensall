@@ -1,0 +1,546 @@
+{
+  "common": {
+    "brandName": "Compensall",
+    "assistantName": "Assistente",
+    "assistantStepLabel": "Verificação do assistente",
+    "assistantScanMessage": "O nosso assistente analisou o seu cartão de embarque e extraiu os dados principais.",
+    "justNow": "Agora mesmo",
+    "notApplicable": "N/D",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "language": "Idioma",
+    "selectLanguage": "Selecionar idioma",
+    "learnMore": "Saber mais",
+    "startYourClaim": "Iniciar o seu pedido",
+    "checkCompensation": "Verificar compensação"
+  },
+  "nav": {
+    "knowYourRights": "Conheça os seus direitos",
+    "airlines": "Companhias aéreas",
+    "airlinesAndAirports": "Companhias aéreas e aeroportos",
+    "aboutUs": "Sobre nós",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "talkToUs": "Fale connosco",
+    "knowYourRightsMenu": {
+      "yourRights": "Os seus direitos",
+      "overview": "Visão geral",
+      "overviewDescription": "Como o EC 261 o protege",
+      "flightCancellation": "Cancelamento de voo",
+      "flightDelay": "Atraso de voo",
+      "deniedBoarding": "Embarque recusado",
+      "missedConnection": "Ligação perdida",
+      "overbooking": "Overbooking",
+      "airlineStrike": "Greve da companhia aérea",
+      "passengerRights": "Direitos dos passageiros",
+      "passengersWithDisabilities": "Passageiros com deficiência"
+    },
+    "airlinesMenu": {
+      "browse": "Explorar",
+      "allAirlinesAirports": "Todas as companhias e aeroportos",
+      "allAirlinesAirportsDescription": "Catálogo completo",
+      "popularAirlines": "Companhias aéreas populares",
+      "popularAirports": "Aeroportos populares"
+    }
+  },
+  "footer": {
+    "contactUs": "Contacte-nos",
+    "addressLine1": "Rua Paulo da Gama 629",
+    "addressLine2": "4150-589 Porto",
+    "email": "help@compensall.com",
+    "phone": "+351 928 370 420",
+    "privacyPolicy": "Política de Privacidade",
+    "termsOfService": "Termos de Serviço",
+    "cookies": "Cookies",
+    "prices": "Preços",
+    "noWinNoFee": "Sem vitória, sem taxa",
+    "socialX": "X",
+    "socialFacebook": "Facebook",
+    "socialLinkedIn": "LinkedIn",
+    "socialInstagram": "Instagram",
+    "newsletterTitle": "Não perca nenhuma oportunidade",
+    "newsletterSubtitle": "Subscreva a nossa newsletter",
+    "newsletterPlaceholder": "Introduza o seu e-mail",
+    "newsletterSubscribe": "Subscrever",
+    "newsletterConsent": "Concordo em receber e-mails de marketing e li a <privacyPolicy>Política de Privacidade</privacyPolicy>.",
+    "copyright": "© 2026 Compensall"
+  },
+  "home": {
+    "metadata": {
+      "title": "Voo atrasado ou cancelado? Reclame até £520 ou €600",
+      "description": "Carregue o seu cartão de embarque e reclame compensação de voo ao abrigo do UK261 ou do EC 261/2004. Seguro, com apoio humano, sem vitória sem taxa."
+    },
+    "hero": {
+      "trustpilotAlt": "Excelente Trustpilot 4,8 em 5",
+      "title": "Voo atrasado ou cancelado?",
+      "titleLine2": "Reclame até £520 ou €600",
+      "subtitle": "O UK261 e o EC 261/2004 protegem os seus direitos. A plataforma de compensação de voos mais segura do mercado.",
+      "fastRiskFree": "Rápido e sem risco",
+      "noHiddenFees": "Sem taxas ocultas",
+      "talkToUs": "Fale connosco",
+      "humanSupportAvailable": "Apoio humano disponível",
+      "highestSecurity": "Máxima segurança",
+      "dataProtected": "Os seus dados estão sempre protegidos"
+    },
+    "trustBar": {
+      "trustpilotRated": "Avaliado no Trustpilot",
+      "trustpilotScore": "4,8 em 5",
+      "gdprFirst": "RGPD em primeiro lugar",
+      "privacyByDesign": "Privacidade desde a conceção",
+      "deleteYourData": "Elimine os seus dados",
+      "fullControl": "Controlo total",
+      "humanSupport": "Apoio humano",
+      "realPeopleHelp": "Pessoas reais, ajuda real"
+    },
+    "claimCards": {
+      "title": "O que pode",
+      "titleAccent": "reclamar?",
+      "subtitle": "Ajudamo-lo a obter compensação por uma vasta gama de problemas com voos.",
+      "flightDelay": {
+        "title": "Atraso de voo",
+        "description": "Se o seu voo chegou com mais de 3 horas de atraso, pode ter direito a compensação de até £520 ou €600.",
+        "iconAlt": "Ícone de atraso de voo"
+      },
+      "flightCancellation": {
+        "title": "Cancelamento de voo",
+        "description": "Se o seu voo foi cancelado com pouca antecedência, pode ter direito a compensação de até £520 ou €600.",
+        "iconAlt": "Cancelamento de voo"
+      },
+      "deniedBoarding": {
+        "title": "Embarque recusado",
+        "description": "Se lhe recusaram o embarque contra a sua vontade, pode reclamar até £520 ou €600.",
+        "iconAlt": "Embarque recusado"
+      },
+      "missedConnection": {
+        "title": "Ligação perdida",
+        "description": "Se perdeu o voo de ligação devido a um atraso, pode ter direito a compensação.",
+        "iconAlt": "Ligação perdida"
+      },
+      "airlineStrike": {
+        "title": "Greve da companhia aérea",
+        "description": "Se o seu voo foi afetado por uma greve da companhia aérea, pode ainda ter direito a compensação.",
+        "iconAlt": "Greve da companhia aérea"
+      }
+    },
+    "howItWorks": {
+      "title": "Como",
+      "titleAccent": "funciona?",
+      "subtitle": "Carregue o seu cartão de embarque. O nosso assistente verifica o seu pedido. A nossa equipa trata da companhia aérea.",
+      "steps": {
+        "upload": {
+          "title": "Carregue o seu cartão de embarque",
+          "description": "Adicione o seu cartão de embarque em segundos."
+        },
+        "assistant": {
+          "title": "O assistente verifica o seu pedido",
+          "description": "O nosso assistente verifica a sua elegibilidade."
+        },
+        "airline": {
+          "title": "Tratamos da companhia aérea",
+          "description": "Lutamos pela sua compensação."
+        }
+      }
+    },
+    "compensation": {
+      "title": "Qual é a",
+      "titleAccent": "compensação?",
+      "ukIntro": "Para partidas do Reino Unido, o UK261 define montantes fixos em libras. O valor depende da distância do voo.",
+      "ukHeading": "UK261 — voos do Reino Unido",
+      "ecHeading": "EC 261/2004 — voos da UE elegíveis",
+      "tierAlt": "Escalão de compensação de {amount}"
+    }
+  },
+  "claim": {
+    "steps": {
+      "upload": "Carregar",
+      "assistantCheck": "Verificação do assistente",
+      "signSubmit": "Assinar e submeter"
+    },
+    "step1": {
+      "rightsContext": "Ao abrigo da legislação de direitos dos passageiros do Reino Unido e da UE (UK261 e EC 261/2004), pode ter direito a compensação por atrasos, cancelamentos e embarque recusado. Carregue o seu cartão de embarque para verificar a elegibilidade — gratuito e sem vitória sem taxa.",
+      "readingBoardingPass": "A ler o seu cartão de embarque…",
+      "extractingDetails": "{assistantName} está a extrair os dados do seu voo",
+      "uploadTitle": "Carregue o seu cartão de embarque",
+      "uploadHint": "Arraste e largue ou clique para carregar (PDF, JPG, PNG)",
+      "orCheckManually": "Ou",
+      "checkManually": "verifique manualmente",
+      "departureAirport": "Aeroporto de partida",
+      "arrivalAirport": "Aeroporto de chegada",
+      "swapAirports": "Trocar aeroportos",
+      "dataProtected": "Os seus dados estão protegidos. Sempre.",
+      "errors": {
+        "selectBothAirports": "Selecione o aeroporto de partida e de chegada na lista.",
+        "airportsMustDiffer": "Os aeroportos de partida e chegada devem ser diferentes.",
+        "extractFailed": "Não foi possível ler todos os detalhes automaticamente. Preencha os dados do seu voo abaixo.",
+        "somethingWentWrong": "Algo correu mal. Preencha os dados do seu voo abaixo."
+      }
+    },
+    "step2": {
+      "extractedSuccess": "Obrigado! Extraí os dados do seu voo.",
+      "confirmDetails": "Confirme que as informações abaixo estão corretas.",
+      "extractPartial": "O seu cartão de embarque foi guardado, mas não foi possível ler todos os detalhes automaticamente.",
+      "fillInDetails": "Preencha ou confirme as informações abaixo.",
+      "passenger": "Passageiro",
+      "flight": "Voo",
+      "route": "Rota",
+      "date": "Data",
+      "confirmPrompt": "Está tudo correto?",
+      "confirmHint": "Isto ajuda-nos a avaliar a sua elegibilidade.",
+      "deleteData": "Eliminar dados",
+      "editDetails": "Editar detalhes",
+      "doneEditing": "Edição concluída",
+      "yesContinue": "Sim, continuar",
+      "errors": {
+        "passengerRequired": "O nome do passageiro é obrigatório.",
+        "flightRequired": "O número do voo é obrigatório.",
+        "routeRequired": "A rota é obrigatória.",
+        "dateRequired": "A data do voo é obrigatória."
+      },
+      "fields": {
+        "passenger": "Passageiro",
+        "passengerPlaceholder": "Nome completo como no cartão de embarque",
+        "flightNumber": "Número do voo",
+        "flightPlaceholder": "ex. BA1234",
+        "date": "Data",
+        "departure": "Partida",
+        "departurePlaceholder": "ex. Londres (LHR)",
+        "arrival": "Chegada",
+        "arrivalPlaceholder": "ex. Roma (FCO)"
+      }
+    },
+    "step3": {
+      "claimReady": "O seu pedido está pronto.",
+      "confirmContact": "Confirme os seus dados de contacto.",
+      "readAndSign": "Leia a Procuração na íntegra e assine uma vez para continuar.",
+      "signedReview": "A sua Procuração está assinada. Reveja e submeta.",
+      "fullLegalName": "Nome legal completo",
+      "namePlaceholder": "Como indicado no cartão de embarque",
+      "emailAddress": "Endereço de e-mail",
+      "emailPlaceholder": "voce@exemplo.com",
+      "signOnce": "Assinar uma vez",
+      "documentPreview": "Pré-visualização do documento",
+      "openFullPage": "Abrir página completa ↗",
+      "readComplete": "✓ Leu a Procuração. Pode assinar abaixo",
+      "scrollToUnlock": "Desça até ao fim da Procuração para desbloquear a assinatura ↓",
+      "yourSignature": "A sua assinatura",
+      "clear": "Limpar",
+      "drawSignatureHint": "Desenhe aqui — a sua assinatura aparece no documento em \"O passageiro\". Defina também a data de assinatura no documento.",
+      "scrollToUnlockSigning": "Desça até ao fim do documento para desbloquear a assinatura.",
+      "signedBy": "Assinado por",
+      "flightDate": "Data do voo: {date}",
+      "signingDate": "Data de assinatura: {date}",
+      "signedAt": "Assinado em {date}",
+      "continueToSigning": "Continuar para assinatura",
+      "back": "Voltar",
+      "signing": "A assinar…",
+      "signAndReview": "Assinar e rever",
+      "reSign": "Voltar a assinar",
+      "submitting": "A submeter…",
+      "submitClaim": "Submeter pedido",
+      "claimSubmitted": "Pedido submetido",
+      "thankYou": "Obrigado, {name}. Recebemos a sua Procuração assinada e vamos começar a trabalhar no seu pedido para o voo {flight}.",
+      "trackingNumber": "O seu número de acompanhamento",
+      "trackYourClaim": "Acompanhar o seu pedido",
+      "confirmationEmail": "Enviaremos confirmação e atualizações para {email}.",
+      "powerOfAttorney": {
+        "title": "Procuração",
+        "description": "Autoriza a Compensall a prosseguir o seu pedido de compensação ao abrigo do EC 261/2004."
+      },
+      "errors": {
+        "nameRequired": "Introduza o seu nome legal completo.",
+        "emailInvalid": "Introduza um endereço de e-mail válido. Precisamos dele para enviar o número de acompanhamento e atualizações do caso.",
+        "scrollBeforeSign": "Desça até ao fim do documento antes de assinar.",
+        "signatureRequired": "Desenhe a sua assinatura para confirmar que leu e concorda com este documento.",
+        "signFailed": "Não foi possível registar a sua assinatura. Tente novamente.",
+        "signConnectionError": "Não foi possível registar a sua assinatura. Verifique a sua ligação e tente novamente.",
+        "signBeforeSubmit": "Assine a Procuração antes de submeter.",
+        "submitFailed": "Não foi possível submeter o seu pedido.",
+        "sessionExpired": "A sessão do pedido expirou. Comece de novo."
+      }
+    },
+    "sidebar": {
+      "uploadedBoardingPass": "Cartão de embarque carregado",
+      "manualFlightEntry": "Entrada manual do voo",
+      "manualEntryHint": "Introduziu a rota e os dados do voo manualmente. Confirme que tudo está correto antes de assinar.",
+      "extractedFlightDetails": "Dados do voo extraídos",
+      "confirmCorrect": "Confirme que estão corretos.",
+      "detailsReady": "Os dados do seu voo estão prontos para revisão."
+    }
+  },
+  "faq": {
+    "sectionTitle": "Perguntas",
+    "sectionTitleAccent": "frequentes",
+    "pageTitle": "Compensação de voo",
+    "pageTitleAccent": "FAQ",
+    "pageIntro": "Tudo o que precisa de saber sobre reclamações ao abrigo do UK261 e do EC 261/2004, o nosso serviço sem vitória sem taxa e como protegemos os seus dados.",
+    "default": [
+      {
+        "question": "É seguro carregar o meu cartão de embarque?",
+        "answer": "Sim, absolutamente. O seu cartão de embarque é encriptado e armazenado de forma segura. Utilizamos apenas as informações necessárias para processar o seu pedido e nunca as partilhamos com terceiros."
+      },
+      {
+        "question": "O assistente trata de tudo?",
+        "answer": "O assistente ajuda a acelerar o processo, mas o seu pedido também é apoiado por pessoas reais. A nossa equipa pode rever o seu caso, contactar a companhia aérea e ajudar a gerir o pedido do início ao fim."
+      },
+      {
+        "question": "Quanto de compensação posso receber?",
+        "answer": "Para voos do Reino Unido, o UK261 prevê até £520 por passageiro (£220 para voos inferiores a 1 500 km, £350 para 1 500–3 500 km e £520 acima de 3 500 km). Para voos da UE elegíveis, o EC 261/2004 prevê €250, €400 ou €600 nas mesmas faixas de distância."
+      },
+      {
+        "question": "O que significa 'sem vitória, sem taxa'?",
+        "answer": "Significa que não paga nada se não ganharmos o seu pedido. Só cobramos uma taxa de sucesso quando recuperamos compensação em seu nome."
+      },
+      {
+        "question": "O que faz o assistente?",
+        "answer": "O nosso assistente analisa o seu cartão de embarque, verifica a elegibilidade ao abrigo do UK261 e do Regulamento da UE EC 261/2004 e prepara toda a documentação necessária para apresentar o seu pedido de compensação."
+      },
+      {
+        "question": "Posso falar com uma pessoa real?",
+        "answer": "Sim! A nossa equipa de apoio humano está disponível para o ajudar durante todo o processo de pedido. Pode contactar-nos por chat, e-mail ou telefone."
+      },
+      {
+        "question": "Quanto custa?",
+        "answer": "Não há custos iniciais. A Compensall trabalha numa base sem vitória sem taxa, o que significa que só cobramos uma taxa se o seu pedido for bem-sucedido."
+      },
+      {
+        "question": "Posso eliminar os meus dados?",
+        "answer": "Sim. Pode solicitar a eliminação dos seus dados pessoais a qualquer momento. Contacte a nossa equipa de apoio e processaremos o seu pedido no prazo de 30 dias em conformidade com o RGPD."
+      }
+    ],
+    "uk": [
+      {
+        "question": "O que é o UK261 e em que difere do EC 261?",
+        "answer": "Após o Brexit, o Reino Unido manteve os direitos dos passageiros através do UK261, que espelha o Regulamento da UE EC 261/2004 para voos com partida do Reino Unido. O UK261 define compensação em libras (£220, £350 ou £520), enquanto o EC 261 utiliza euros (€250, €400 ou €600) para partidas da UE elegíveis."
+      },
+      {
+        "question": "O UK261 aplica-se ao meu voo?",
+        "answer": "O UK261 aplica-se geralmente a voos com partida de aeroportos do Reino Unido. O EC 261/2004 pode aplicar-se a voos com partida de aeroportos da UE e, em alguns casos, a voos com chegada à UE em companhias da UE ou do Reino Unido. O regulamento aplicável depende da sua rota e companhia aérea."
+      },
+      {
+        "question": "Posso reclamar por um voo atrasado ao abrigo do UK261?",
+        "answer": "Sim. Se o seu voo chegou ao destino final com mais de três horas de atraso e o atraso não foi causado por circunstâncias extraordinárias, pode ter direito a compensação ao abrigo do UK261 ou do EC 261/2004, consoante o regulamento aplicável à sua viagem."
+      },
+      {
+        "question": "Quanto tempo tenho para reclamar compensação de voo no Reino Unido?",
+        "answer": "Os prazos dependem de onde o pedido é apresentado. Em Inglaterra e País de Gales, tem geralmente seis anos para apresentar um pedido. Recomendamos começar o mais cedo possível, enquanto os registos de voo e as provas são mais fáceis de obter."
+      }
+    ]
+  },
+  "cookies": {
+    "bannerTitle": "Utilizamos cookies",
+    "bannerDescription": "Utilizamos cookies essenciais para o funcionamento do site e, com o seu consentimento, cookies opcionais para compreender como a Compensall é utilizada. Leia a nossa <cookiePolicy>Política de Cookies</cookiePolicy> e a <privacyPolicy>Política de Privacidade</privacyPolicy>.",
+    "cookiePolicy": "Política de Cookies",
+    "essentialOnly": "Apenas essenciais",
+    "acceptAll": "Aceitar todos",
+    "pageTitle": "Política de Cookies",
+    "pageDescription": "Compreenda como a Compensall utiliza cookies e tecnologias semelhantes e como pode gerir as suas preferências.",
+    "breadcrumb": "Cookies",
+    "summary": "Como utilizamos cookies e como pode controlá-los."
+  },
+  "legal": {
+    "breadcrumbPrices": "Preços"
+  },
+  "about": {
+    "title": "Sobre nós",
+    "subtitle": "Ajudamos os passageiros a reclamar a compensação a que têm direito com o nosso assistente e apoio humano em cada etapa.",
+    "missionTitle": "A nossa missão",
+    "missionP1": "A Compensall torna a compensação de voos simples. As companhias aéreas frequentemente atrasam respostas, rejeitam pedidos válidos e tornam o processo stressante, pelo que demasiados passageiros nunca recebem o que o regulamento da UE EC 261/2004 lhes confere.",
+    "missionP2": "Tratamos de tudo: documentação, negociações com a companhia aérea e prossecução do seu caso quando necessário. Carregue o seu cartão de embarque, confirme os seus dados e deixe a nossa equipa lutar pela sua compensação numa base sem vitória sem taxa.",
+    "whyChooseTitle": "Porque nos escolhem os passageiros",
+    "whyChoose": [
+      "Sem vitória, sem taxa: não paga nada a menos que tenhamos sucesso",
+      "Tratamento de ponta a ponta, da verificação de elegibilidade ao acompanhamento junto da companhia aérea",
+      "Taxa de sucesso previsível. Não somos um escritório de advogados",
+      "Abordagem RGPD em primeiro lugar para os seus dados pessoais",
+      "Até €600 por passageiro em voos elegíveis",
+      "Confiado por milhares de viajantes em toda a Europa"
+    ],
+    "valuesTitle": "O que defendemos",
+    "values": {
+      "fastRiskFree": {
+        "title": "Rápido e sem risco",
+        "description": "Verifique a elegibilidade em minutos sem custos iniciais. Só cobramos se ganharmos o seu pedido."
+      },
+      "humanSupport": {
+        "title": "Apoio com equipa humana",
+        "description": "O nosso assistente acelera o processo, mas pessoas reais analisam o seu caso e tratam da companhia aérea por si."
+      },
+      "security": {
+        "title": "Máxima segurança",
+        "description": "O seu cartão de embarque e dados pessoais estão protegidos. Mantém o controlo em cada etapa."
+      }
+    }
+  },
+  "knowYourRights": {
+    "heroTitle": "Conheça os seus direitos",
+    "heroSubtitle": "Compreenda os seus direitos ao abrigo do UK261 e do EC 261/2004 e como a Compensall o ajuda a reclamar com o nosso apoio digital.",
+    "whatHappenedTitle": "O que aconteceu no seu",
+    "whatHappenedAccent": "voo?",
+    "howItWorksTitle": "Como",
+    "howItWorksAccent": "funciona?",
+    "howItWorksSubtitle": "Carregue o seu cartão de embarque. O nosso assistente verifica o seu pedido. A nossa equipa trata da companhia aérea.",
+    "flightIssues": {
+      "flightCancellation": {
+        "title": "Cancelamento de voo",
+        "description": "Se o seu voo foi cancelado com pouca antecedência, pode ter direito a compensação de até €600."
+      },
+      "deniedBoarding": {
+        "title": "Embarque recusado",
+        "description": "Se lhe recusaram o embarque contra a sua vontade, pode reclamar até €600."
+      },
+      "flightDelay": {
+        "title": "Atraso de voo",
+        "description": "Se o seu voo chegou com mais de 3 horas de atraso, pode ter direito a compensação."
+      },
+      "missedConnection": {
+        "title": "Ligação perdida",
+        "description": "Se um atraso ou cancelamento fez com que perdesse um voo de ligação, pode ter direito a compensação."
+      },
+      "overbooking": {
+        "title": "Overbooking",
+        "description": "Se a companhia aérea vendeu mais lugares do que os disponíveis e não conseguiu viajar como planeado, pode reclamar."
+      },
+      "airlineStrike": {
+        "title": "Greve da companhia aérea",
+        "description": "Se o seu voo foi afetado por uma greve da companhia aérea, pode ainda ter direitos a compensação."
+      },
+      "passengerRights": {
+        "title": "Direitos dos passageiros",
+        "description": "Saiba o que as companhias aéreas podem dever-lhe quando a sua viagem é afetada."
+      },
+      "passengersWithDisabilities": {
+        "title": "Passageiros com deficiência",
+        "description": "Compreenda os seus direitos a assistência, acessibilidade e apoio durante a viagem."
+      }
+    }
+  },
+  "prices": {
+    "title": "Preços e taxas",
+    "breadcrumb": "Preços",
+    "summary": "Sem custos iniciais. Só cobramos uma taxa de sucesso quando recuperamos compensação para si.",
+    "noWinNoFeeIntro": "Sem vitória, sem taxa:",
+    "noWinNoFeeBody": "Verificar a elegibilidade e utilizar o nosso site é gratuito. Se nos nomear para prosseguir a compensação, a nossa taxa aplica-se apenas quando o seu pedido for bem-sucedido, conforme estabelecido no nosso {noWinNoFeeAgreement}.",
+    "noWinNoFeeAgreement": "Acordo Sem Vitória, Sem Taxa",
+    "successFeeTitle": "Taxa de sucesso",
+    "successFeeDescription": "Quando recuperamos compensação em seu nome, deduzimos uma taxa de sucesso antes de transferir o saldo para si. Recebe pelo menos 75% do montante recuperado antes de ajustes de IVA.",
+    "tableCompensationRecovered": "Compensação recuperada",
+    "tableSuccessFee": "Taxa de sucesso",
+    "tierUpTo220": "Até £220 / €250",
+    "tier221to350": "£221–£350 / €251–€400",
+    "tier351to520": "£351–£520 / €401–€600",
+    "fee25Vat": "25% + IVA",
+    "uk261Title": "Montantes de compensação (UK261)",
+    "uk261Intro": "Para partidas do Reino Unido, a compensação fixa ao abrigo do UK261 depende da distância do voo:",
+    "ec261Title": "Montantes de compensação (EC 261/2004)"
+  },
+  "cta": {
+    "title": "Verificação segura do pedido. Com apoio humano.",
+    "titleLine2": "Sem vitória, sem taxa.",
+    "subtitle": "O seu pedido é orientado por IA e apoiado por pessoas reais.",
+    "subtitleLine2": "Rápido, seguro e simples desde o primeiro carregamento.",
+    "body": "A nossa taxa padrão só é cobrada se ganharmos compensação para si. A {brandName} trata do processo desde o carregamento do cartão de embarque até ao acompanhamento junto da companhia aérea, para que possa reclamar com confiança.",
+    "fastRiskFree": "Rápido e sem risco",
+    "noHiddenFees": "Sem taxas ocultas",
+    "talkToUs": "Fale connosco",
+    "humanSupportAvailable": "Apoio humano disponível",
+    "highestSecurity": "Máxima segurança",
+    "dataProtected": "Os seus dados estão sempre protegidos"
+  },
+  "passengerRights": {
+    "rightsHeading": "Os seus direitos ao abrigo do",
+    "rightsAccent": "UK261 e EC 261",
+    "rightsIntro": "Os passageiros aéreos no Reino Unido e na UE estão protegidos quando os voos são atrasados, cancelados ou afetados sem culpa sua.",
+    "uk261Card": {
+      "title": "UK261 — partidas do Reino Unido",
+      "body": "Após o Brexit, o Reino Unido manteve os direitos dos passageiros através do UK261. Aplica-se a voos com partida de aeroportos do Reino Unido e define compensação fixa em libras: £220, £350 ou £520 consoante a distância."
+    },
+    "ec261Card": {
+      "title": "EC 261/2004 — partidas da UE",
+      "body": "O Regulamento da UE EC 261/2004 continua a proteger os passageiros em voos elegíveis com partida de aeroportos da UE, com compensação de €250, €400 ou €600 nas mesmas faixas de distância."
+    },
+    "rightsDetailP1": "Se o seu voo tiver um atraso de três horas ou mais à chegada, for cancelado com pouca antecedência ou lhe recusarem o embarque contra a sua vontade, pode ter direito a compensação fixa. Pode também ter direitos a assistência, reencaminhamento e reembolsos consoante as circunstâncias.",
+    "rightsDetailP2": "Ligações perdidas e greves de companhias aéreas também podem qualificar quando a perturbação está sob o controlo da companhia aérea. A Compensall ajuda-o a verificar a elegibilidade, preparar o seu pedido e prosseguir a compensação junto da companhia aérea numa base sem vitória sem taxa.",
+    "eligibilityHeading": "Quando pode reclamar",
+    "eligibilityAccent": "compensação?",
+    "eligibilityIntro": "Pode ser elegível se todas as condições seguintes se aplicarem à sua viagem.",
+    "eligibility": {
+      "ukEuDeparture": {
+        "title": "Partida do Reino Unido ou da UE",
+        "body": "O seu voo partiu de um aeroporto do Reino Unido (UK261) ou da UE (EC 261/2004), ou cumpre outras regras de elegibilidade para a sua rota."
+      },
+      "significantDisruption": {
+        "title": "Perturbação significativa",
+        "body": "Chegou ao destino final com três ou mais horas de atraso, ou o seu voo foi cancelado ou lhe recusaram o embarque."
+      },
+      "airlineResponsibility": {
+        "title": "Responsabilidade da companhia aérea",
+        "body": "A perturbação não foi causada por circunstâncias extraordinárias fora do controlo da companhia aérea, como condições meteorológicas severas ou restrições de tráfego aéreo."
+      },
+      "validBooking": {
+        "title": "Reserva válida",
+        "body": "Fez o check-in a tempo e tem uma reserva válida para o voo afetado."
+      },
+      "withinTimeLimits": {
+        "title": "Dentro dos prazos",
+        "body": "Inicia o seu pedido dentro do prazo aplicável — geralmente até seis anos em Inglaterra e País de Gales."
+      }
+    },
+    "ec261Note": "Para voos da UE elegíveis, o EC 261/2004 prevê €250, €400 ou €600 nas mesmas faixas de distância.",
+    "tiers": {
+      "uk261": {
+        "220": {
+          "label": "Voos até 1 500 km",
+          "desc": "Compensação UK261 para voos elegíveis mais curtos."
+        },
+        "350": {
+          "label": "Voos entre 1 500 km e 3 500 km",
+          "desc": "Compensação UK261 para voos de distância média."
+        },
+        "520": {
+          "label": "Voos acima de 3 500 km",
+          "desc": "Compensação UK261 para voos de longa distância."
+        }
+      },
+      "ec261": {
+        "250": {
+          "label": "Voos até 1 500 km",
+          "desc": "Compensação EC 261/2004 para voos elegíveis mais curtos."
+        },
+        "400": {
+          "label": "Voos entre 1 500 km e 3 500 km",
+          "desc": "Compensação EC 261/2004 para voos de distância média."
+        },
+        "600": {
+          "label": "Voos acima de 3 500 km",
+          "desc": "Compensação EC 261/2004 para voos de longa distância."
+        }
+      }
+    }
+  },
+  "metadata": {
+    "site": {
+      "title": "Compensall – Voo atrasado ou cancelado? Reclame até £520 ou €600",
+      "description": "Voo atrasado ou cancelado? Reclame até £520 ao abrigo do UK261 ou €600 ao abrigo do EC 261/2004. Carregamento seguro do cartão de embarque, apoio humano, sem vitória sem taxa."
+    },
+    "home": {
+      "title": "Voo atrasado ou cancelado? Reclame até £520 ou €600",
+      "description": "Carregue o seu cartão de embarque e reclame compensação de voo ao abrigo do UK261 ou do EC 261/2004. Seguro, com apoio humano, sem vitória sem taxa."
+    },
+    "faq": {
+      "title": "Perguntas frequentes sobre compensação de voo",
+      "description": "Respostas sobre UK261, EC 261/2004, montantes de compensação, sem vitória sem taxa, carregamento de cartões de embarque e como a Compensall trata o seu pedido."
+    },
+    "about": {
+      "title": "Sobre a Compensall",
+      "description": "A Compensall ajuda os passageiros aéreos a reclamar até €600 ao abrigo do EU261 com carregamento seguro do cartão de embarque, verificações assistidas e tratamento junto da companhia aérea com apoio humano, numa base sem vitória sem taxa."
+    },
+    "knowYourRights": {
+      "title": "Conheça os seus direitos de compensação de voo",
+      "description": "Saiba quando o UK261 e o Regulamento da UE EC 261/2004 lhe conferem até £520 ou €600 por atrasos, cancelamentos, embarque recusado, ligações perdidas e greves de companhias aéreas."
+    },
+    "prices": {
+      "title": "Preços e taxas",
+      "description": "A Compensall trabalha numa base sem vitória sem taxa. Consulte a nossa estrutura de taxas de sucesso e os montantes de compensação UK261 e EC 261 que os passageiros podem receber."
+    }
+  }
+}

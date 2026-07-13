@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
+import { Link } from "@/i18n/routing";
 import type { NavMenuGroup } from "@/lib/nav-menu";
 
 type NavDropdownProps = {

@@ -57,3 +57,12 @@ export const airlinesNav: NavMenuGroup[] = [
     ],
   },
 ];
+
+/** Top-level nav links shared by header and footer (same labels and order). */
+export const primaryNavLinks: NavMenuItem[] = [
+  { label: "Know your rights", href: "/know-your-rights" },
+  { label: "Airlines", href: "/airlines" },
+  { label: "About us", href: "/about" },
+  { label: "Blog", href: "/blog" },
+  { label: "FAQ", href: "/faq" },
+];

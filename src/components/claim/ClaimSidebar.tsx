@@ -1,6 +1,6 @@
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import ClaimUploadPreview from "@/components/claim/ClaimUploadPreview";
-import { ASSISTANT_SCAN_MESSAGE } from "@/components/claim/claim-ui";
 import type { ClaimEntryMode, ClaimFlightData, ClaimUploadMeta } from "@/lib/claim-types";
 
 type ClaimSidebarProps = {
@@ -10,21 +10,25 @@ type ClaimSidebarProps = {
 };
 
 export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebarProps) {
+  const tSidebar = useTranslations("claim.sidebar");
+  const tStep2 = useTranslations("claim.step2");
+  const tCommon = useTranslations("common");
+
   const detailCards = [
-    { icon: "/assets/claim/claim-person.svg", label: "Passenger", value: flight.passenger || "N/A" },
-    { icon: "/assets/claim/claim-flight.svg", label: "Flight", value: flight.flight || "N/A" },
+    { icon: "/assets/claim/claim-person.svg", label: tStep2("passenger"), value: flight.passenger || tCommon("notApplicable") },
+    { icon: "/assets/claim/claim-flight.svg", label: tStep2("flight"), value: flight.flight || tCommon("notApplicable") },
     {
       icon: "/assets/claim/claim-route.svg",
-      label: "Route",
+      label: tStep2("route"),
       value: (
         <>
-          {flight.routeFrom || "N/A"}
+          {flight.routeFrom || tCommon("notApplicable")}
           <br />
-          {flight.routeTo || "N/A"}
+          {flight.routeTo || tCommon("notApplicable")}
         </>
       ),
     },
-    { icon: "/assets/claim/claim-calendar.svg", label: "Date", value: flight.date || "N/A" },
+    { icon: "/assets/claim/claim-calendar.svg", label: tStep2("date"), value: flight.date || tCommon("notApplicable") },
   ];
 
   return (
@@ -33,7 +37,7 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
         <div className="flex items-start gap-3 mb-3">
           <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 object-contain" />
           <h3 className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] xl:text-[19px]">
-            {entryMode === "upload" ? "Uploaded boarding pass" : "Manual flight entry"}
+            {entryMode === "upload" ? tSidebar("uploadedBoardingPass") : tSidebar("manualFlightEntry")}
           </h3>
         </div>
 
@@ -42,7 +46,7 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
         ) : (
           <div className="bg-[#f1f5fe] rounded-xl px-4 py-3 text-left">
             <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">
-              You entered your route and flight details manually. Confirm everything looks correct before signing.
+              {tSidebar("manualEntryHint")}
             </p>
           </div>
         )}
@@ -53,7 +57,7 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
 
         <div className="flex items-center gap-3 mb-4">
           <img src="/assets/claim/claim-extracted-icon.svg" alt="" className="w-7 h-7 sm:w-8 sm:h-8 object-contain" />
-          <h3 className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] xl:text-[19px]">Extracted flight details</h3>
+          <h3 className="font-bold text-[#1f3664] text-[15px] sm:text-[17px] xl:text-[19px]">{tSidebar("extractedFlightDetails")}</h3>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mb-5">
@@ -74,9 +78,9 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
             <img src="/assets/icons/stars.svg" alt="" className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 object-contain" />
             <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">
               {entryMode === "upload"
-                ? `${ASSISTANT_SCAN_MESSAGE} `
-                : "Your flight details are ready for review. "}
-              <span className="text-[#2669f3] font-bold">Please confirm they look correct.</span>
+                ? `${tCommon("assistantScanMessage")} `
+                : `${tSidebar("detailsReady")} `}
+              <span className="text-[#2669f3] font-bold">{tSidebar("confirmCorrect")}</span>
             </p>
           </div>
         </div>

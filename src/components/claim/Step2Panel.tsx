@@ -1,9 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
 import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
 import { InfoBoardRow } from "@/components/claim/ClaimSidebar";
-import { ACTION_BTN, ASSISTANT_NAME } from "@/components/claim/claim-ui";
+import { ACTION_BTN } from "@/components/claim/claim-ui";
 
 type Step2PanelProps = {
   flight: ClaimFlightData;
@@ -26,27 +27,30 @@ export default function Step2Panel({
   onDelete,
   onContinue,
 }: Step2PanelProps) {
+  const tStep2 = useTranslations("claim.step2");
+  const tCommon = useTranslations("common");
+
   return (
     <div className="border border-[#d5e0f9] rounded-[21px] p-4 sm:p-5 xl:p-6 flex flex-col h-full bg-white">
       <div className="flex items-start gap-3 mb-4">
         <img src="/assets/claim/claim-ai-icon.svg" alt="" className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 object-contain" />
         <div>
           <div className="flex items-center gap-3 flex-wrap">
-            <p className="font-bold text-[#2669f3] text-base sm:text-lg">{ASSISTANT_NAME}</p>
-            <span className="text-[#7b8094] text-sm">Just now</span>
+            <p className="font-bold text-[#2669f3] text-base sm:text-lg">{tCommon("assistantName")}</p>
+            <span className="text-[#7b8094] text-sm">{tCommon("justNow")}</span>
           </div>
           <p className="text-[#1f3664] text-sm sm:text-base mt-2 leading-relaxed">
             {extractWarning ? (
               <>
-                Your boarding pass is saved, but we couldn&apos;t read every detail automatically.
+                {tStep2("extractPartial")}
                 <br />
-                Please fill in or confirm the information below.
+                {tStep2("fillInDetails")}
               </>
             ) : (
               <>
-                Thanks! I&apos;ve extracted your flight details.
+                {tStep2("extractedSuccess")}
                 <br />
-                Please confirm the information below is correct.
+                {tStep2("confirmDetails")}
               </>
             )}
           </p>
@@ -65,22 +69,22 @@ export default function Step2Panel({
         </div>
       ) : (
         <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-2 mb-4">
-          <InfoBoardRow icon="/assets/claim/claim-person.svg" label="Passenger" value={flight.passenger || "N/A"} />
-          <InfoBoardRow icon="/assets/claim/claim-flight.svg" label="Flight" value={flight.flight || "N/A"} />
+          <InfoBoardRow icon="/assets/claim/claim-person.svg" label={tStep2("passenger")} value={flight.passenger || tCommon("notApplicable")} />
+          <InfoBoardRow icon="/assets/claim/claim-flight.svg" label={tStep2("flight")} value={flight.flight || tCommon("notApplicable")} />
           <InfoBoardRow
             icon="/assets/claim/claim-route.svg"
-            label="Route"
-            value={`${flight.routeFrom || "N/A"} → ${flight.routeTo || "N/A"}`}
+            label={tStep2("route")}
+            value={`${flight.routeFrom || tCommon("notApplicable")} → ${flight.routeTo || tCommon("notApplicable")}`}
           />
-          <InfoBoardRow icon="/assets/claim/claim-calendar.svg" label="Date" value={flight.date || "N/A"} />
+          <InfoBoardRow icon="/assets/claim/claim-calendar.svg" label={tStep2("date")} value={flight.date || tCommon("notApplicable")} />
         </div>
       )}
 
       <div className="bg-[#f0f3fe] rounded-[13px] px-4 py-4 mb-4 max-w-sm">
         <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">
-          <span className="font-bold">Is all of this correct?</span>
+          <span className="font-bold">{tStep2("confirmPrompt")}</span>
           <br />
-          This helps us assess your eligibility.
+          {tStep2("confirmHint")}
         </p>
       </div>
 
@@ -96,21 +100,21 @@ export default function Step2Panel({
           onClick={onDelete}
           className={`border-2 border-[#e82828] text-[#e82828] hover:bg-[#e82828]/5 ${ACTION_BTN}`}
         >
-          Delete data
+          {tStep2("deleteData")}
         </button>
         <button
           type="button"
           onClick={onToggleEdit}
           className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 ${ACTION_BTN}`}
         >
-          {isEditing ? "Done editing" : "Edit details"}
+          {isEditing ? tStep2("doneEditing") : tStep2("editDetails")}
         </button>
         <button
           type="button"
           onClick={onContinue}
           className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto ${ACTION_BTN}`}
         >
-          Yes, continue
+          {tStep2("yesContinue")}
         </button>
       </div>
     </div>

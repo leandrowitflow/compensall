@@ -12,6 +12,8 @@ const STATIC_ROUTES = [
   "/privacy-policy",
   "/terms",
   "/cookies",
+  "/faq",
+  "/prices",
   "/documents/authority-to-act",
   "/documents/no-win-no-fee",
   "/documents/privacy-data-consent",

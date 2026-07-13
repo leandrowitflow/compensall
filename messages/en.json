@@ -1,0 +1,546 @@
+{
+  "common": {
+    "brandName": "Compensall",
+    "assistantName": "Assistant",
+    "assistantStepLabel": "Assistant check",
+    "assistantScanMessage": "Our assistant has scanned your boarding pass and extracted the key details.",
+    "justNow": "Just now",
+    "notApplicable": "N/A",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "selectLanguage": "Select language",
+    "learnMore": "Learn more",
+    "startYourClaim": "Start your claim",
+    "checkCompensation": "Check compensation"
+  },
+  "nav": {
+    "knowYourRights": "Know your rights",
+    "airlines": "Airlines",
+    "airlinesAndAirports": "Airlines & airports",
+    "aboutUs": "About us",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "talkToUs": "Talk to us",
+    "knowYourRightsMenu": {
+      "yourRights": "Your rights",
+      "overview": "Overview",
+      "overviewDescription": "How EC 261 protects you",
+      "flightCancellation": "Flight cancellation",
+      "flightDelay": "Flight delay",
+      "deniedBoarding": "Denied boarding",
+      "missedConnection": "Missed connection",
+      "overbooking": "Overbooking",
+      "airlineStrike": "Airline strike",
+      "passengerRights": "Passenger rights",
+      "passengersWithDisabilities": "Passengers with disabilities"
+    },
+    "airlinesMenu": {
+      "browse": "Browse",
+      "allAirlinesAirports": "All airlines & airports",
+      "allAirlinesAirportsDescription": "Full catalog",
+      "popularAirlines": "Popular airlines",
+      "popularAirports": "Popular airports"
+    }
+  },
+  "footer": {
+    "contactUs": "Contact us",
+    "addressLine1": "Rua Paulo da Gama 629",
+    "addressLine2": "4150-589 Porto",
+    "email": "help@compensall.com",
+    "phone": "+351 928 370 420",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookies": "Cookies",
+    "prices": "Prices",
+    "noWinNoFee": "No Win, No Fee",
+    "socialX": "X",
+    "socialFacebook": "Facebook",
+    "socialLinkedIn": "LinkedIn",
+    "socialInstagram": "Instagram",
+    "newsletterTitle": "Don't miss any opportunity",
+    "newsletterSubtitle": "Subscribe to our newsletter",
+    "newsletterPlaceholder": "Enter email address",
+    "newsletterSubscribe": "Subscribe",
+    "newsletterConsent": "I agree to receive marketing emails and have read the <privacyPolicy>Privacy Policy</privacyPolicy>.",
+    "copyright": "© 2026 Compensall"
+  },
+  "home": {
+    "metadata": {
+      "title": "Delayed or cancelled flight? Claim up to £520 or €600",
+      "description": "Upload your boarding pass and claim flight compensation under UK261 or EC 261/2004. Secure, human-backed, no win no fee."
+    },
+    "hero": {
+      "trustpilotAlt": "Excellent Trustpilot 4.8 out of 5",
+      "title": "Delayed or cancelled flight?",
+      "titleLine2": "Claim up to £520 or €600",
+      "subtitle": "UK261 and EC 261/2004 protect your rights. The most secure flight compensation platform on the market.",
+      "fastRiskFree": "Fast & risk-free",
+      "noHiddenFees": "No hidden fees",
+      "talkToUs": "Talk to us",
+      "humanSupportAvailable": "Human support available",
+      "highestSecurity": "Highest security",
+      "dataProtected": "Your data is always protected"
+    },
+    "trustBar": {
+      "trustpilotRated": "Trustpilot rated",
+      "trustpilotScore": "4.8 out of 5",
+      "gdprFirst": "GDPR-first",
+      "privacyByDesign": "Privacy by design",
+      "deleteYourData": "Delete your data",
+      "fullControl": "Full control",
+      "humanSupport": "Human support",
+      "realPeopleHelp": "Real people, real help"
+    },
+    "claimCards": {
+      "title": "What can you",
+      "titleAccent": "claim?",
+      "subtitle": "We help you get compensation for a wide range of flight problems.",
+      "flightDelay": {
+        "title": "Flight delay",
+        "description": "If your flight arrived more than 3 hours late, you may be entitled to compensation of up to £520 or €600.",
+        "iconAlt": "Flight delay icon"
+      },
+      "flightCancellation": {
+        "title": "Flight cancellation",
+        "description": "If your flight is cancelled with short notice, you may be entitled to compensation of up to £520 or €600.",
+        "iconAlt": "Flight cancellation"
+      },
+      "deniedBoarding": {
+        "title": "Denied boarding",
+        "description": "If you were refused boarding against your will, you could claim up to £520 or €600.",
+        "iconAlt": "Denied boarding"
+      },
+      "missedConnection": {
+        "title": "Missed connection",
+        "description": "If you miss your connecting flight due to a delay, you may be entitled to compensation.",
+        "iconAlt": "Missed connection"
+      },
+      "airlineStrike": {
+        "title": "Airline strike",
+        "description": "If your flight was disrupted by an airline strike, you may still be entitled to compensation.",
+        "iconAlt": "Airline strike"
+      }
+    },
+    "howItWorks": {
+      "title": "How it",
+      "titleAccent": "works?",
+      "subtitle": "Upload your boarding pass. Our assistant checks your claim. Our team handles the airline.",
+      "steps": {
+        "upload": {
+          "title": "Upload your boarding pass",
+          "description": "Add your boarding pass in seconds."
+        },
+        "assistant": {
+          "title": "Assistant checks your claim",
+          "description": "Our assistant verifies your eligibility."
+        },
+        "airline": {
+          "title": "We handle the airline",
+          "description": "We fight for your compensation."
+        }
+      }
+    },
+    "compensation": {
+      "title": "What is the",
+      "titleAccent": "compensation?",
+      "ukIntro": "For UK departures, UK261 sets fixed amounts in pounds. The amount depends on your flight distance.",
+      "ukHeading": "UK261 — UK flights",
+      "ecHeading": "EC 261/2004 — eligible EU flights",
+      "tierAlt": "{amount} compensation tier"
+    }
+  },
+  "claim": {
+    "steps": {
+      "upload": "Upload",
+      "assistantCheck": "Assistant check",
+      "signSubmit": "Sign & submit"
+    },
+    "step1": {
+      "rightsContext": "Under UK and EU passenger rights law (UK261 and EC 261/2004), you may be entitled to compensation for delays, cancellations, and denied boarding. Upload your boarding pass to check eligibility — free and no win, no fee.",
+      "readingBoardingPass": "Reading your boarding pass…",
+      "extractingDetails": "{assistantName} is extracting your flight details",
+      "uploadTitle": "Upload your boarding pass",
+      "uploadHint": "Drag & drop or click to upload (PDF, JPG, PNG)",
+      "orCheckManually": "Or",
+      "checkManually": "check manually",
+      "departureAirport": "Departure airport",
+      "arrivalAirport": "Arrival airport",
+      "swapAirports": "Swap airports",
+      "dataProtected": "Your data is protected, Always.",
+      "errors": {
+        "selectBothAirports": "Select both departure and arrival airports from the list.",
+        "airportsMustDiffer": "Departure and arrival airports must be different.",
+        "extractFailed": "We couldn't read every detail automatically. Please fill in your flight details below.",
+        "somethingWentWrong": "Something went wrong. Please fill in your flight details below."
+      }
+    },
+    "step2": {
+      "extractedSuccess": "Thanks! I've extracted your flight details.",
+      "confirmDetails": "Please confirm the information below is correct.",
+      "extractPartial": "Your boarding pass is saved, but we couldn't read every detail automatically.",
+      "fillInDetails": "Please fill in or confirm the information below.",
+      "passenger": "Passenger",
+      "flight": "Flight",
+      "route": "Route",
+      "date": "Date",
+      "confirmPrompt": "Is all of this correct?",
+      "confirmHint": "This helps us assess your eligibility.",
+      "deleteData": "Delete data",
+      "editDetails": "Edit details",
+      "doneEditing": "Done editing",
+      "yesContinue": "Yes, continue",
+      "errors": {
+        "passengerRequired": "Passenger name is required.",
+        "flightRequired": "Flight number is required.",
+        "routeRequired": "Route is required.",
+        "dateRequired": "Flight date is required."
+      },
+      "fields": {
+        "passenger": "Passenger",
+        "passengerPlaceholder": "Full name as on boarding pass",
+        "flightNumber": "Flight number",
+        "flightPlaceholder": "e.g. BA1234",
+        "date": "Date",
+        "departure": "Departure",
+        "departurePlaceholder": "e.g. London (LHR)",
+        "arrival": "Arrival",
+        "arrivalPlaceholder": "e.g. Rome (FCO)"
+      }
+    },
+    "step3": {
+      "claimReady": "Your claim is ready.",
+      "confirmContact": "Confirm your contact details.",
+      "readAndSign": "Read the Power of Attorney fully, then sign once to continue.",
+      "signedReview": "Your Power of Attorney is signed. Review and submit.",
+      "fullLegalName": "Full legal name",
+      "namePlaceholder": "As shown on your boarding pass",
+      "emailAddress": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "signOnce": "Sign once",
+      "documentPreview": "Document preview",
+      "openFullPage": "Open full page ↗",
+      "readComplete": "✓ You've read the Power of Attorney. You can sign below",
+      "scrollToUnlock": "Scroll to the end of the Power of Attorney to unlock signing ↓",
+      "yourSignature": "Your signature",
+      "clear": "Clear",
+      "drawSignatureHint": "Draw here — your signature appears on the document under \"The passenger\". Set the signing date on the document too.",
+      "scrollToUnlockSigning": "Scroll to the end of the document to unlock signing.",
+      "signedBy": "Signed by",
+      "flightDate": "Flight date: {date}",
+      "signingDate": "Signing date: {date}",
+      "signedAt": "Signed {date}",
+      "continueToSigning": "Continue to signing",
+      "back": "Back",
+      "signing": "Signing…",
+      "signAndReview": "Sign & review",
+      "reSign": "Re-sign",
+      "submitting": "Submitting…",
+      "submitClaim": "Submit claim",
+      "claimSubmitted": "Claim submitted",
+      "thankYou": "Thank you, {name}. We've received your signed Power of Attorney and will start working on your claim for flight {flight}.",
+      "trackingNumber": "Your tracking number",
+      "trackYourClaim": "Track your claim",
+      "confirmationEmail": "We'll send confirmation and updates to {email}.",
+      "powerOfAttorney": {
+        "title": "Power of Attorney",
+        "description": "Authorises Compensall to pursue your EC 261/2004 compensation claim."
+      },
+      "errors": {
+        "nameRequired": "Enter your full legal name.",
+        "emailInvalid": "Enter a valid email address. We need it to send your tracking number and case updates.",
+        "scrollBeforeSign": "Please scroll to the end of the document before signing.",
+        "signatureRequired": "Draw your signature to confirm you have read and agree to this document.",
+        "signFailed": "Could not record your signature. Please try again.",
+        "signConnectionError": "Could not record your signature. Check your connection and try again.",
+        "signBeforeSubmit": "Please sign the Power of Attorney before submitting.",
+        "submitFailed": "Could not submit your claim.",
+        "sessionExpired": "Claim session expired. Please start again."
+      }
+    },
+    "sidebar": {
+      "uploadedBoardingPass": "Uploaded boarding pass",
+      "manualFlightEntry": "Manual flight entry",
+      "manualEntryHint": "You entered your route and flight details manually. Confirm everything looks correct before signing.",
+      "extractedFlightDetails": "Extracted flight details",
+      "confirmCorrect": "Please confirm they look correct.",
+      "detailsReady": "Your flight details are ready for review."
+    }
+  },
+  "faq": {
+    "sectionTitle": "Frequently asked",
+    "sectionTitleAccent": "questions",
+    "pageTitle": "Flight compensation",
+    "pageTitleAccent": "FAQ",
+    "pageIntro": "Everything you need to know about claiming under UK261 and EC 261/2004, our no win no fee service, and how we protect your data.",
+    "default": [
+      {
+        "question": "Is it safe to upload my boarding pass?",
+        "answer": "Yes, absolutely. Your boarding pass is encrypted and stored securely. We only use the information necessary to process your claim and never share it with third parties."
+      },
+      {
+        "question": "Does the assistant handle everything?",
+        "answer": "The assistant helps speed up the process, but your claim is also supported by real people. Our team can review your case, contact the airline and help manage the claim from start to finish."
+      },
+      {
+        "question": "How much compensation can I receive?",
+        "answer": "For UK flights, UK261 provides up to £520 per passenger (£220 for flights under 1,500 km, £350 for 1,500–3,500 km, and £520 over 3,500 km). For eligible EU flights, EC 261/2004 provides €250, €400, or €600 on the same distance bands."
+      },
+      {
+        "question": "What does 'no win, no fee' mean?",
+        "answer": "It means you pay nothing if we don't win your claim. We only charge a success fee when we successfully recover compensation on your behalf."
+      },
+      {
+        "question": "What does the assistant do?",
+        "answer": "Our assistant analyzes your boarding pass, checks eligibility under UK261 and EU Regulation EC 261/2004, and prepares all necessary documentation to file your compensation claim."
+      },
+      {
+        "question": "Can I speak to a real person?",
+        "answer": "Yes! Our human support team is available to assist you throughout the claim process. You can reach us via chat, email or phone."
+      },
+      {
+        "question": "How much does it cost?",
+        "answer": "There is no upfront cost. Compensall works on a no win, no fee basis, which means we only charge a fee if your claim is successful."
+      },
+      {
+        "question": "Can I delete my data?",
+        "answer": "Yes. You can request deletion of your personal data at any time. Contact our support team and we will process your request within 30 days in compliance with GDPR."
+      }
+    ],
+    "uk": [
+      {
+        "question": "What is UK261 and how is it different from EC 261?",
+        "answer": "After Brexit, the UK retained passenger rights through UK261, which mirrors EU Regulation EC 261/2004 for flights departing from the UK. UK261 sets compensation in pounds (£220, £350, or £520) while EC 261 uses euros (€250, €400, or €600) for eligible EU departures."
+      },
+      {
+        "question": "Does UK261 apply to my flight?",
+        "answer": "UK261 generally applies to flights departing from UK airports. EC 261/2004 may apply to flights departing from EU airports, and in some cases to flights arriving in the EU on EU or UK carriers. The regulation that applies depends on your route and airline."
+      },
+      {
+        "question": "Can I claim for a delayed flight under UK261?",
+        "answer": "Yes. If your flight arrived at its final destination more than three hours late, and the delay was not caused by extraordinary circumstances, you may be entitled to compensation under UK261 or EC 261/2004, depending on which regulation applies to your journey."
+      },
+      {
+        "question": "How long do I have to claim flight compensation in the UK?",
+        "answer": "Time limits depend on where your claim is pursued. In England and Wales, you generally have six years to bring a claim. We recommend starting as soon as possible while flight records and evidence are easier to obtain."
+      }
+    ]
+  },
+  "cookies": {
+    "bannerTitle": "We use cookies",
+    "bannerDescription": "We use essential cookies to run the site and, with your consent, optional cookies to understand how Compensall is used. Read our <cookiePolicy>Cookie Policy</cookiePolicy> and <privacyPolicy>Privacy Policy</privacyPolicy>.",
+    "cookiePolicy": "Cookie Policy",
+    "essentialOnly": "Essential only",
+    "acceptAll": "Accept all",
+    "pageTitle": "Cookie Policy",
+    "pageDescription": "Understand how Compensall uses cookies and similar technologies, and how you can manage your preferences.",
+    "breadcrumb": "Cookies",
+    "summary": "How we use cookies and how you can control them."
+  },
+  "legal": {
+    "breadcrumbPrices": "Prices"
+  },
+  "about": {
+    "title": "About us",
+    "subtitle": "We help passengers claim the compensation they are owed with our assistant and human support every step of the way.",
+    "missionTitle": "Our mission",
+    "missionP1": "Compensall makes flight compensation simple. Airlines often delay responses, reject valid claims, and make the process stressful, so too many passengers never receive what EU regulation EC 261/2004 entitles them to.",
+    "missionP2": "We take care of everything: paperwork, negotiations with the airline, and pursuing your case when needed. Upload your boarding pass, confirm your details, and let our team fight for your compensation on a no win, no fee basis.",
+    "whyChooseTitle": "Why passengers choose us",
+    "whyChoose": [
+      "No win, no fee: you pay nothing unless we succeed",
+      "End-to-end handling from eligibility check to airline follow-up",
+      "Predictable success fee. We are not a law firm",
+      "GDPR-first approach to your personal data",
+      "Up to €600 per passenger on eligible flights",
+      "Trusted by thousands of travellers across Europe"
+    ],
+    "valuesTitle": "What we stand for",
+    "values": {
+      "fastRiskFree": {
+        "title": "Fast & risk-free",
+        "description": "Check eligibility in minutes with no upfront cost. We only charge if we win your claim."
+      },
+      "humanSupport": {
+        "title": "Human-backed support",
+        "description": "Our assistant speeds things up, but real people review your case and handle the airline for you."
+      },
+      "security": {
+        "title": "Highest security",
+        "description": "Your boarding pass and personal data are protected. You stay in control at every step."
+      }
+    }
+  },
+  "knowYourRights": {
+    "heroTitle": "Know your rights",
+    "heroSubtitle": "Understand your rights under UK261 and EC 261/2004 and how Compensall helps you claim with our digital support.",
+    "whatHappenedTitle": "What happened on your",
+    "whatHappenedAccent": "flight?",
+    "howItWorksTitle": "How it",
+    "howItWorksAccent": "works?",
+    "howItWorksSubtitle": "Upload your boarding pass. Our assistant checks your claim. Our team handles the airline.",
+    "flightIssues": {
+      "flightCancellation": {
+        "title": "Flight cancellation",
+        "description": "If your flight is cancelled with short notice, you may be entitled to compensation of up to €600."
+      },
+      "deniedBoarding": {
+        "title": "Denied boarding",
+        "description": "If you were refused boarding against your will, you could claim up to €600."
+      },
+      "flightDelay": {
+        "title": "Flight delay",
+        "description": "If your flight arrived more than 3 hours late, you may be entitled to compensation."
+      },
+      "missedConnection": {
+        "title": "Missed connection",
+        "description": "If a delay or cancellation caused you to miss a connecting flight, you may be entitled to compensation."
+      },
+      "overbooking": {
+        "title": "Overbooking",
+        "description": "If the airline overbooked your flight and you could not travel as planned, you may be able to claim."
+      },
+      "airlineStrike": {
+        "title": "Airline strike",
+        "description": "If your flight was disrupted by an airline strike, you may still have compensation rights."
+      },
+      "passengerRights": {
+        "title": "Passenger rights",
+        "description": "Learn what airlines may owe you when your trip is disrupted."
+      },
+      "passengersWithDisabilities": {
+        "title": "Passengers with disabilities",
+        "description": "Understand your rights to assistance, accessibility and support when travelling."
+      }
+    }
+  },
+  "prices": {
+    "title": "Prices and fees",
+    "breadcrumb": "Prices",
+    "summary": "No upfront cost. We only charge a success fee when we recover compensation for you.",
+    "noWinNoFeeIntro": "No win, no fee:",
+    "noWinNoFeeBody": "Checking eligibility and using our website is free. If you appoint us to pursue compensation, our fee applies only when your claim is successful, as set out in our {noWinNoFeeAgreement}.",
+    "noWinNoFeeAgreement": "No Win, No Fee Agreement",
+    "successFeeTitle": "Success fee",
+    "successFeeDescription": "When we recover compensation on your behalf, we deduct a success fee before transferring the balance to you. You receive at least 75% of the recovered amount before VAT adjustments.",
+    "tableCompensationRecovered": "Compensation recovered",
+    "tableSuccessFee": "Success fee",
+    "tierUpTo220": "Up to £220 / €250",
+    "tier221to350": "£221–£350 / €251–€400",
+    "tier351to520": "£351–£520 / €401–€600",
+    "fee25Vat": "25% + VAT",
+    "uk261Title": "Compensation amounts (UK261)",
+    "uk261Intro": "For UK departures, fixed compensation under UK261 depends on flight distance:",
+    "ec261Title": "Compensation amounts (EC 261/2004)"
+  },
+  "cta": {
+    "title": "Secure claim check. Human-backed.",
+    "titleLine2": "No win, no fee.",
+    "subtitle": "Your claim is guided by AI and backed by real people.",
+    "subtitleLine2": "Fast, secure and simple from the first upload.",
+    "body": "Our standard fee is only charged if we win compensation for you. {brandName} handles the process from boarding pass upload to airline follow-up, so you can claim with confidence.",
+    "fastRiskFree": "Fast & risk-free",
+    "noHiddenFees": "No hidden fees",
+    "talkToUs": "Talk to us",
+    "humanSupportAvailable": "Human support available",
+    "highestSecurity": "Highest security",
+    "dataProtected": "Your data is always protected"
+  },
+  "passengerRights": {
+    "rightsHeading": "Your rights under",
+    "rightsAccent": "UK261 and EC 261",
+    "rightsIntro": "Air passengers in the UK and EU are protected when flights are delayed, cancelled, or disrupted through no fault of their own.",
+    "uk261Card": {
+      "title": "UK261 — UK departures",
+      "body": "After Brexit, the UK retained passenger rights through UK261. It applies to flights departing from UK airports and sets fixed compensation in pounds: £220, £350, or £520 depending on distance."
+    },
+    "ec261Card": {
+      "title": "EC 261/2004 — EU departures",
+      "body": "EU Regulation EC 261/2004 continues to protect passengers on eligible flights departing from EU airports, with compensation of €250, €400, or €600 on the same distance bands."
+    },
+    "rightsDetailP1": "If your flight is delayed by three hours or more at arrival, cancelled with short notice, or you are denied boarding against your will, you may be entitled to fixed compensation. You may also have rights to care, rerouting, and refunds depending on the circumstances.",
+    "rightsDetailP2": "Missed connections and airline strikes can also qualify when the disruption is within the airline's control. Compensall helps you check eligibility, prepare your claim, and pursue compensation with the airline on a no win, no fee basis.",
+    "eligibilityHeading": "When can you claim",
+    "eligibilityAccent": "compensation?",
+    "eligibilityIntro": "You may be eligible if all of the following apply to your journey.",
+    "eligibility": {
+      "ukEuDeparture": {
+        "title": "UK or EU departure",
+        "body": "Your flight departed from a UK airport (UK261) or an EU airport (EC 261/2004), or meets other eligibility rules for your route."
+      },
+      "significantDisruption": {
+        "title": "Significant disruption",
+        "body": "You arrived at your final destination three or more hours late, or your flight was cancelled or you were denied boarding."
+      },
+      "airlineResponsibility": {
+        "title": "Airline responsibility",
+        "body": "The disruption was not caused by extraordinary circumstances outside the airline's control, such as severe weather or air traffic restrictions."
+      },
+      "validBooking": {
+        "title": "Valid booking",
+        "body": "You checked in on time and hold a valid booking for the affected flight."
+      },
+      "withinTimeLimits": {
+        "title": "Within time limits",
+        "body": "You start your claim within the applicable time limit — generally up to six years in England and Wales."
+      }
+    },
+    "ec261Note": "For eligible EU flights, EC 261/2004 provides €250, €400, or €600 on the same distance bands.",
+    "tiers": {
+      "uk261": {
+        "220": {
+          "label": "Flights up to 1,500 km",
+          "desc": "UK261 compensation for shorter eligible flights."
+        },
+        "350": {
+          "label": "Flights between 1,500 km and 3,500 km",
+          "desc": "UK261 compensation for medium-distance flights."
+        },
+        "520": {
+          "label": "Flights over 3,500 km",
+          "desc": "UK261 compensation for long-distance flights."
+        }
+      },
+      "ec261": {
+        "250": {
+          "label": "Flights up to 1,500 km",
+          "desc": "EC 261/2004 compensation for shorter eligible flights."
+        },
+        "400": {
+          "label": "Flights between 1,500 km and 3,500 km",
+          "desc": "EC 261/2004 compensation for medium-distance flights."
+        },
+        "600": {
+          "label": "Flights over 3,500 km",
+          "desc": "EC 261/2004 compensation for long-distance flights."
+        }
+      }
+    }
+  },
+  "metadata": {
+    "site": {
+      "title": "Compensall – Delayed or cancelled flight? Claim up to £520 or €600",
+      "description": "Delayed or cancelled flight? Claim up to £520 under UK261 or €600 under EC 261/2004. Secure boarding pass upload, human-backed support, no win no fee."
+    },
+    "home": {
+      "title": "Delayed or cancelled flight? Claim up to £520 or €600",
+      "description": "Upload your boarding pass and claim flight compensation under UK261 or EC 261/2004. Secure, human-backed, no win no fee."
+    },
+    "faq": {
+      "title": "Frequently asked questions about flight compensation",
+      "description": "Answers about UK261, EC 261/2004, compensation amounts, no win no fee, boarding pass uploads, and how Compensall handles your claim."
+    },
+    "about": {
+      "title": "About Compensall",
+      "description": "Compensall helps air passengers claim up to €600 under EU261 with secure boarding pass upload, assistant-led checks, and human-backed airline handling on a no win, no fee basis."
+    },
+    "knowYourRights": {
+      "title": "Know your flight compensation rights",
+      "description": "Learn when UK261 and EU Regulation EC 261/2004 entitle you to up to £520 or €600 for delays, cancellations, denied boarding, missed connections, and airline strikes."
+    },
+    "prices": {
+      "title": "Prices and fees",
+      "description": "Compensall works on a no win, no fee basis. See our success fee structure and the UK261 and EC 261 compensation amounts passengers may receive."
+    }
+  }
+}

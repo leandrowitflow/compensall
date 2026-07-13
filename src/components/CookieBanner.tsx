@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { Link } from "@/i18n/routing";
 import {
   readCookieConsent,
   writeCookieConsent,
@@ -9,6 +10,7 @@ import {
 } from "@/lib/cookie-consent";
 
 export default function CookieBanner() {
+  const t = useTranslations("cookies");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -35,19 +37,21 @@ export default function CookieBanner() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0">
             <p id="cookie-banner-title" className="font-bold text-[#1f3664] text-sm sm:text-base mb-1">
-              We use cookies
+              {t("bannerTitle")}
             </p>
             <p id="cookie-banner-description" className="text-muted text-sm leading-relaxed">
-              We use essential cookies to run the site and, with your consent, optional cookies to understand how
-              Compensall is used. Read our{" "}
-              <Link href="/cookies" className="text-[#2669f3] font-semibold hover:underline">
-                Cookie Policy
-              </Link>{" "}
-              and{" "}
-              <Link href="/privacy-policy" className="text-[#2669f3] font-semibold hover:underline">
-                Privacy Policy
-              </Link>
-              .
+              {t.rich("bannerDescription", {
+                cookiePolicy: (chunks) => (
+                  <Link href="/cookies" className="text-[#2669f3] font-semibold hover:underline">
+                    {chunks}
+                  </Link>
+                ),
+                privacyPolicy: (chunks) => (
+                  <Link href="/privacy-policy" className="text-[#2669f3] font-semibold hover:underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
             </p>
           </div>
 
@@ -57,14 +61,14 @@ export default function CookieBanner() {
               onClick={() => saveChoice("essential")}
               className="border-2 border-[#d5e0f9] text-[#1f3664] font-semibold px-5 py-2.5 rounded-full text-sm hover:border-[#2669f3] transition-colors"
             >
-              Essential only
+              {t("essentialOnly")}
             </button>
             <button
               type="button"
               onClick={() => saveChoice("all")}
               className="bg-[#2669f3] text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-[#1a55d4] transition-colors"
             >
-              Accept all
+              {t("acceptAll")}
             </button>
           </div>
         </div>

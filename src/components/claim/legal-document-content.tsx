@@ -1,5 +1,12 @@
 import type { ComponentType, ReactNode } from "react";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
+import {
+  BRAND_NAME,
+  LEGAL_ENTITY_ADDRESS,
+  LEGAL_ENTITY_EMAIL,
+  LEGAL_ENTITY_NAME,
+  LEGAL_ENTITY_NIF,
+} from "@/lib/passenger-rights";
 
 export function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -114,10 +121,11 @@ export function PrivacyDataConsentContent() {
 
       <Section title="1. Data Controller">
         <p>
-          <strong>Compensall Ltd</strong> is the data controller responsible for your personal data. Registered
-          address: 123 Creative Blvd, Innovation City, NY 10001. Contact:{" "}
-          <a href="mailto:privacy@compensall.com" className="text-[#2669f3] underline">
-            privacy@compensall.com
+          <strong>{LEGAL_ENTITY_NAME}</strong> (NIF {LEGAL_ENTITY_NIF}), trading as <strong>{BRAND_NAME}</strong>,
+          is the data controller responsible for your personal data. Registered address: {LEGAL_ENTITY_ADDRESS}.
+          Contact:{" "}
+          <a href={`mailto:${LEGAL_ENTITY_EMAIL}`} className="text-[#2669f3] underline">
+            {LEGAL_ENTITY_EMAIL}
           </a>
         </p>
       </Section>
@@ -200,8 +208,8 @@ export function PrivacyDataConsentContent() {
         </div>
         <p className="mt-3">
           To exercise any of these rights, contact us at{" "}
-          <a href="mailto:privacy@compensall.com" className="text-[#2669f3] underline">
-            privacy@compensall.com
+          <a href={`mailto:${LEGAL_ENTITY_EMAIL}`} className="text-[#2669f3] underline">
+            {LEGAL_ENTITY_EMAIL}
           </a>
           . You also have the right to lodge a complaint with your national supervisory authority.
         </p>

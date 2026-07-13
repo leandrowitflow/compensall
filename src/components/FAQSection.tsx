@@ -1,11 +1,14 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
-import { DEFAULT_FAQS, type FaqItem } from "@/lib/default-faqs";
+import { useMemo, useState, type ReactNode } from "react";
+import { useTranslations } from "next-intl";
+import { parseFaqItems, type FaqItem } from "@/lib/faq-items";
 
 interface FAQSectionProps {
   faqs?: FaqItem[];
+  includeUkFaqs?: boolean;
   title?: ReactNode;
+  showHeading?: boolean;
 }
 
 function FAQCard({
@@ -31,6 +34,7 @@ function FAQCard({
         <img
           src="/assets/icons/faq-chevron-down.svg"
           alt=""
+          aria-hidden="true"
           className={`w-3.5 h-2.5 sm:w-4 sm:h-2.5 xl:w-[17px] xl:h-[11px] flex-shrink-0 mt-1 sm:mt-1.5 xl:mt-[9px] transition-transform duration-200 object-contain ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
@@ -45,22 +49,41 @@ function FAQCard({
   );
 }
 
-export default function FAQSection({ faqs = DEFAULT_FAQS, title }: FAQSectionProps) {
+export default function FAQSection({
+  faqs: faqsProp,
+  includeUkFaqs = false,
+  title,
+  showHeading = true,
+}: FAQSectionProps) {
+  const t = useTranslations("faq");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = useMemo(() => {
+    if (faqsProp && faqsProp.length > 0) {
+      return faqsProp;
+    }
+
+    const items = parseFaqItems(t.raw("default"));
+    if (includeUkFaqs) {
+      items.push(...parseFaqItems(t.raw("uk")));
+    }
+    return items;
+  }, [faqsProp, includeUkFaqs, t]);
 
   const rowCount = Math.ceil(faqs.length / 2);
 
   return (
     <section className="pt-0 pb-12 md:pb-16 lg:pb-16 xl:pb-[80px] px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto">
-        <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-6 md:mb-8 lg:mb-6 xl:mb-14 leading-[1.2]">
-          {title ?? (
-            <>
-              Frequently asked{" "}
-              <span className="text-[#2669f3]">questions</span>
-            </>
-          )}
-        </h2>
+        {showHeading && (
+          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-6 md:mb-8 lg:mb-6 xl:mb-14 leading-[1.2]">
+            {title ?? (
+              <>
+                {t("sectionTitle")} <span className="text-[#2669f3]">{t("sectionTitleAccent")}</span>
+              </>
+            )}
+          </h2>
+        )}
 
         <div className="flex flex-col gap-4 md:gap-5 lg:gap-6 xl:gap-[30px]">
           {Array.from({ length: rowCount }).map((_, rowIdx) => {
@@ -99,5 +122,4 @@ export default function FAQSection({ faqs = DEFAULT_FAQS, title }: FAQSectionPro
   );
 }
 
-export { DEFAULT_FAQS };
 export type { FaqItem as FAQItem };

@@ -1,11 +1,11 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 import Step1Upload from "@/components/claim/Step1Upload";
 import type { ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
-import { ASSISTANT_NAME, ASSISTANT_STEP_LABEL } from "@/components/claim/claim-ui";
 import {
   EMPTY_FLIGHT,
   normalizeFlightData,
@@ -32,10 +32,12 @@ function StepSeparators() {
 }
 
 function ClaimStepIndicator({ step }: { step: ClaimStep }) {
+  const t = useTranslations("claim.steps");
+  const tCommon = useTranslations("common");
   const steps = [
-    { num: 1, label: "Upload" },
-    { num: 2, label: ASSISTANT_STEP_LABEL },
-    { num: 3, label: "Sign & submit" },
+    { num: 1, label: t("upload") },
+    { num: 2, label: t("assistantCheck") },
+    { num: 3, label: t("signSubmit") },
   ] as const;
 
   return (
@@ -55,7 +57,7 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
                 }`}
               >
                 {isComplete && s.num === 1 && step > 1 ? (
-                  <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-4 h-4 object-contain" />
+                  <img src="/assets/claim/claim-checkmark.svg" alt={tCommon("assistantStepLabel")} aria-hidden="true" className="w-4 h-4 object-contain" />
                 ) : (
                   s.num
                 )}
@@ -69,24 +71,32 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
   );
 }
 
-function AssistantPill({ label = ASSISTANT_NAME }: { label?: string }) {
+function AssistantPill({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-2 bg-[#f1f5fe] rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-      <img src="/assets/icons/stars.svg" alt="" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
+      <img src="/assets/icons/stars.svg" alt="" aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
       <span className="text-blue-accessible font-bold text-sm sm:text-base">{label}</span>
     </div>
   );
 }
 
-function validateStep2(flight: ClaimFlightData): string | null {
-  if (!flight.passenger.trim()) return "Passenger name is required.";
-  if (!flight.flight.trim()) return "Flight number is required.";
-  if (!flight.routeFrom.trim() || !flight.routeTo.trim()) return "Route is required.";
-  if (!flight.date.trim()) return "Flight date is required.";
+function validateStep2(
+  flight: ClaimFlightData,
+  t: (key: "errors.passengerRequired" | "errors.flightRequired" | "errors.routeRequired" | "errors.dateRequired") => string,
+): string | null {
+  if (!flight.passenger.trim()) return t("errors.passengerRequired");
+  if (!flight.flight.trim()) return t("errors.flightRequired");
+  if (!flight.routeFrom.trim() || !flight.routeTo.trim()) return t("errors.routeRequired");
+  if (!flight.date.trim()) return t("errors.dateRequired");
   return null;
 }
 
 export default function HeroClaimForm() {
+  const tCommon = useTranslations("common");
+  const tStep1 = useTranslations("claim.step1");
+  const tStep2 = useTranslations("claim.step2");
+  const tStep3 = useTranslations("claim.step3");
+
   const [step, setStep] = useState<ClaimStep>(1);
   const [entryMode, setEntryMode] = useState<ClaimEntryMode | null>(null);
   const [upload, setUpload] = useState<ClaimUploadMeta | null>(null);
@@ -144,7 +154,7 @@ export default function HeroClaimForm() {
         setIsEditing(true);
         setExtractError(
           data.error ??
-            "We couldn't read every detail automatically. Please fill in your flight details below.",
+            tStep1("errors.extractFailed"),
         );
         return;
       }
@@ -157,7 +167,7 @@ export default function HeroClaimForm() {
       advanceWithFile();
       setFlight(EMPTY_FLIGHT);
       setIsEditing(true);
-      setExtractError("Something went wrong. Please fill in your flight details below.");
+      setExtractError(tStep1("errors.somethingWentWrong"));
     } finally {
       setIsExtracting(false);
     }
@@ -174,7 +184,7 @@ export default function HeroClaimForm() {
   };
 
   const handleContinueToStep3 = () => {
-    const error = validateStep2(flight);
+    const error = validateStep2(flight, tStep2);
     if (error) {
       setStep2Error(error);
       setIsEditing(true);
@@ -187,7 +197,7 @@ export default function HeroClaimForm() {
 
   const handleClaimSubmit = async (payload: ClaimSubmitPayload) => {
     if (!entryMode) {
-      throw new Error("Claim session expired. Please start again.");
+      throw new Error(tStep3("errors.sessionExpired"));
     }
 
     const formData = new FormData();
@@ -215,7 +225,7 @@ export default function HeroClaimForm() {
     };
 
     if (!response.ok || !data.trackingNumber || !data.status) {
-      throw new Error(data.error ?? "Could not submit your claim.");
+      throw new Error(data.error ?? tStep3("errors.submitFailed"));
     }
 
     return {
@@ -235,7 +245,7 @@ export default function HeroClaimForm() {
       }`}
     >
       <div className="flex items-center justify-between gap-3 sm:gap-4 px-6 sm:px-10 xl:px-14 pt-6 sm:pt-7 xl:pt-8 pb-3 sm:pb-4 flex-wrap">
-        <AssistantPill />
+        <AssistantPill label={tCommon("assistantName")} />
         <ClaimStepIndicator step={step} />
       </div>
 

@@ -1,13 +1,28 @@
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-metadata";
+import {
+  LEGAL_ENTITY_EMAIL,
+  LEGAL_ENTITY_NAME,
+  LEGAL_ENTITY_NIF,
+} from "@/lib/passenger-rights";
 
 export function buildOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: SITE_NAME,
+    legalName: LEGAL_ENTITY_NAME,
+    taxID: LEGAL_ENTITY_NIF,
     url: SITE_URL,
     logo: `${SITE_URL}/assets/logo.svg`,
     description: SITE_DESCRIPTION,
+    email: LEGAL_ENTITY_EMAIL,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Rua Paulo da Gama 629",
+      addressLocality: "Porto",
+      postalCode: "4150-589",
+      addressCountry: "PT",
+    },
     sameAs: [] as string[],
   };
 }
