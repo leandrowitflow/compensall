@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 import Step1Upload from "@/components/claim/Step1Upload";
 import type { ClaimSubmitPayload } from "@/components/claim/Step3Panel";
@@ -92,6 +92,7 @@ function validateStep2(
 }
 
 export default function HeroClaimForm() {
+  const locale = useLocale();
   const tCommon = useTranslations("common");
   const tStep1 = useTranslations("claim.step1");
   const tStep2 = useTranslations("claim.step2");
@@ -208,6 +209,7 @@ export default function HeroClaimForm() {
     formData.append("acceptedDocuments", JSON.stringify(payload.acceptedDocuments));
     formData.append("documentSignatures", JSON.stringify(payload.documentSignatures));
     formData.append("userAgent", navigator.userAgent);
+    formData.append("locale", locale);
 
     if (boardingPassFile) {
       formData.append("file", boardingPassFile);
