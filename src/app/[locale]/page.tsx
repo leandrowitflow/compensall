@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import TrustpilotBadge from "@/components/TrustpilotBadge";
 import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
@@ -91,16 +92,10 @@ export default function HomePage() {
             className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
           >
             <div className="flex justify-center mb-5">
-              <Image
-                src="/assets/icons/trustpilot-score.png"
-                alt="Excellent Trustpilot 4.8 out of 5"
-                width={200}
-                height={36}
-                className="h-9 w-auto object-contain"
-              />
+              <TrustpilotBadge priority />
             </div>
 
-            <h1 className="font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[760px] mx-auto">
+            <h1 className="font-bold text-[28px] sm:text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.15] sm:leading-[1.2] mb-4 max-w-[760px] mx-auto">
               Delayed or cancelled flight?<br />Claim up to £520 or €600
             </h1>
             <p className="text-white/80 text-base md:text-lg font-semibold mb-8 max-w-[640px] mx-auto">
@@ -109,22 +104,22 @@ export default function HomePage() {
 
             <HeroClaimForm />
 
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
-              <div className="flex items-center gap-4 justify-center sm:justify-start">
+            <div className="flex flex-col items-start text-left sm:flex-row sm:items-center sm:justify-start gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
+              <div className="flex items-center gap-4 justify-start">
                 <img src="/assets/icons/lightning-charge.svg" alt="Fast and risk-free" aria-hidden="true" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left">
                   <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Fast &amp; risk-free</p>
                   <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">No hidden fees</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 justify-center sm:justify-start">
+              <div className="flex items-center gap-4 justify-start">
                 <img src="/assets/icons/headset.svg" alt="Human support" aria-hidden="true" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left">
                   <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Talk to us</p>
                   <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">Human support available</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 justify-center sm:justify-start">
+              <div className="flex items-center gap-4 justify-start">
                 <img src="/assets/icons/secured.svg" alt="Highest security" aria-hidden="true" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left">
                   <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Highest security</p>

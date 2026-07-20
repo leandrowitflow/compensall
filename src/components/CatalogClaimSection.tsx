@@ -1,4 +1,4 @@
-import Image from "next/image";
+import TrustpilotBadge from "@/components/TrustpilotBadge";
 import Link from "next/link";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 
@@ -23,13 +23,7 @@ export default function CatalogClaimSection({
 
           <div className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-10 pb-6 lg:pb-8 xl:pb-10 text-center">
             <div className="flex justify-center mb-5">
-              <Image
-                src="/assets/icons/trustpilot-score.png"
-                alt="Excellent Trustpilot 4.8 out of 5"
-                width={200}
-                height={36}
-                className="h-9 w-auto object-contain"
-              />
+              <TrustpilotBadge />
             </div>
 
             <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[44px] text-white leading-[1.2] mb-3 max-w-[760px] mx-auto">
