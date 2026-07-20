@@ -1,4 +1,5 @@
 import type { ClaimAuditTrail, ClaimFlightData, ClaimVerification } from "@/lib/claim-types";
+import type { OdooCrmLeadSummary } from "@/lib/odoo-client";
 
 type ClaimEmailPayload = {
   trackingNumber: string;
@@ -8,6 +9,7 @@ type ClaimEmailPayload = {
   entryMode: "upload" | "manual";
   verification: ClaimVerification;
   auditTrail: ClaimAuditTrail;
+  odooLead?: OdooCrmLeadSummary | null;
   boardingPass?: {
     fileName: string;
     mimeType: string;
@@ -83,16 +85,32 @@ function buildOpsHtml(payload: ClaimEmailPayload): string {
     <p><strong>Result:</strong> ${payload.verification.result}</p>
     <p>${payload.verification.summary}</p>
     <ul>${mismatchRows}</ul>
+    ${
+      payload.odooLead
+        ? `<h3>Odoo CRM</h3>
+    <p><strong>Lead ID:</strong> ${payload.odooLead.id}</p>
+    <p><strong>Lead name:</strong> ${payload.odooLead.name}</p>
+    <p><strong>Stage:</strong> ${payload.odooLead.stageName ?? "New"}</p>
+    <p><a href="${payload.odooLead.crmUrl}">${payload.odooLead.crmUrl}</a></p>`
+        : ""
+    }
   `;
 }
 
 function buildUserHtml(payload: ClaimEmailPayload, trackUrl: string): string {
+  const odooSection = payload.odooLead
+    ? `<p><strong>Case reference (Odoo):</strong> #${payload.odooLead.id}</p>
+    <p><strong>Case name:</strong> ${payload.odooLead.name}</p>
+    ${payload.odooLead.stageName ? `<p><strong>Status:</strong> ${payload.odooLead.stageName}</p>` : ""}`
+    : "";
+
   return `
     <h2>Your Compensall claim is submitted</h2>
     <p>Hi ${payload.signedName},</p>
-    <p>We've received your signed documents for flight <strong>${payload.flight.flight}</strong>.</p>
+    <p>We've received your signed documents for flight <strong>${payload.flight.flight}</strong> (${payload.flight.routeFrom} → ${payload.flight.routeTo}).</p>
     <p><strong>Tracking number:</strong> ${payload.trackingNumber}</p>
-    <p>Use this number to follow your claim status:</p>
+    ${odooSection}
+    <p>Use your tracking number to follow your claim status:</p>
     <p><a href="${trackUrl}">${trackUrl}</a></p>
     <p>We'll keep you updated as your case progresses.</p>
   `;

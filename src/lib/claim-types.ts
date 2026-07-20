@@ -63,6 +63,8 @@ export type ClaimRecord = {
   auditTrail: ClaimAuditTrail;
   verification: ClaimVerification;
   createdAt: string;
+  odooLeadId?: number | null;
+  odooLeadName?: string | null;
 };
 
 export type ClaimSubmitResponse = {

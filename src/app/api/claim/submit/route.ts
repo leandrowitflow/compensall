@@ -5,6 +5,7 @@ import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
 import { saveClaim } from "@/lib/claim-store";
 import { generateTrackingNumber } from "@/lib/claim-tracking";
 import { sendClaimEmails } from "@/lib/send-claim-email";
+import { syncClaimToOdoo } from "@/lib/odoo-crm-lead";
 import { normalizeFlightData, type ClaimRecord } from "@/lib/claim-types";
 import { dataUrlToBase64, getClientIp, hasSignatureInk, hashSignature } from "@/lib/signature-utils";
 import { verifyBoardingPassClaim } from "@/lib/verify-boarding-pass";
@@ -53,6 +54,26 @@ function getSiteUrl(request: Request): string {
   );
 }
 
+function getRequestLocale(request: Request, formData: FormData): string | null {
+  const localeRaw = formData.get("locale");
+  if (typeof localeRaw === "string" && /^[a-z]{2}$/i.test(localeRaw.trim())) {
+    return localeRaw.trim().toLowerCase();
+  }
+
+  const referer = request.headers.get("referer");
+  if (!referer) {
+    return null;
+  }
+
+  try {
+    const pathname = new URL(referer).pathname;
+    const match = pathname.match(/^\/([a-z]{2})(?:\/|$)/i);
+    return match?.[1]?.toLowerCase() ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
@@ -73,8 +94,8 @@ export async function POST(request: Request) {
       return Response.json({ error: "Signed name is required." }, { status: 400 });
     }
 
-    const emailResult = z.string().trim().email().safeParse(contactEmailRaw);
-    if (!emailResult.success) {
+    const parsedContactEmail = z.string().trim().email().safeParse(contactEmailRaw);
+    if (!parsedContactEmail.success) {
       return Response.json({ error: "A valid email address is required." }, { status: 400 });
     }
 
@@ -124,7 +145,7 @@ export async function POST(request: Request) {
       }
     }
 
-    const contactEmail = emailResult.data;
+    const contactEmail = parsedContactEmail.data;
     const userAgent = typeof userAgentRaw === "string" && userAgentRaw.trim() ? userAgentRaw.trim() : null;
 
     let boardingPassBuffer: Buffer | null = null;
@@ -182,7 +203,28 @@ export async function POST(request: Request) {
       documentSignatures.map((signature) => consumeSignatureToken(signature.token, trackingNumber)),
     );
 
-    await sendClaimEmails(
+    const siteUrl = getSiteUrl(request);
+    const locale = getRequestLocale(request, formData);
+    const landingPage = locale ? `/${locale}/#claim` : "/#claim";
+
+    const odooLead = await syncClaimToOdoo({
+      trackingNumber,
+      signedName: signedNameRaw.trim(),
+      contactEmail,
+      entryMode: entryModeRaw,
+      flight,
+      verification,
+      siteUrl,
+      locale,
+      landingPage,
+    });
+
+    if (odooLead) {
+      record.odooLeadId = odooLead.id;
+      record.odooLeadName = odooLead.name;
+    }
+
+    const emailResult = await sendClaimEmails(
       {
         trackingNumber,
         flight,
@@ -191,6 +233,7 @@ export async function POST(request: Request) {
         entryMode: entryModeRaw,
         verification,
         auditTrail: record.auditTrail,
+        odooLead,
         boardingPass:
           boardingPassBuffer && boardingPassMime && boardingPassFileName
             ? {
@@ -207,13 +250,15 @@ export async function POST(request: Request) {
           base64: dataUrlToBase64(signature.signatureDataUrl) ?? "",
         })),
       },
-      getSiteUrl(request),
+      siteUrl,
     );
 
     return Response.json({
       trackingNumber,
       status: record.status,
       verificationResult: verification.result,
+      odooLeadId: odooLead?.id ?? null,
+      emailsSent: emailResult,
     });
   } catch (error) {
     console.error("Claim submission failed:", error);

@@ -55,11 +55,11 @@ export default function CTABanner() {
             Check compensation
           </Link>
 
-          <div className="flex w-full shrink-0 flex-col items-stretch gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 xl:max-w-[1280px] xl:gap-10 2xl:gap-12 2xl:mt-2 xl:px-6 2xl:px-14">
+          <div className="flex w-full shrink-0 flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-start sm:gap-8 xl:max-w-[1280px] xl:gap-10 2xl:gap-12 2xl:mt-2 xl:px-6 2xl:px-14 self-start">
             {CTA_FEATURES.map((feature) => (
               <div
                 key={feature.title}
-                className="flex items-center gap-3 xl:gap-4 justify-center sm:justify-start sm:flex-1 min-w-0"
+                className="flex items-center gap-3 xl:gap-4 justify-start min-w-0"
               >
                 <img
                   src={feature.icon}
