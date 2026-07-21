@@ -16,12 +16,15 @@
   },
   "nav": {
     "knowYourRights": "Know your rights",
+    "knowYourRightsShort": "Your rights",
     "airlines": "Airlines",
+    "airlinesShort": "Airlines",
     "airlinesAndAirports": "Airlines & airports",
     "aboutUs": "About us",
     "blog": "Blog",
     "faq": "FAQ",
     "talkToUs": "Talk to us",
+    "talkToUsShort": "Talk to us",
     "knowYourRightsMenu": {
       "yourRights": "Your rights",
       "overview": "Overview",

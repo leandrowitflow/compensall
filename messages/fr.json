@@ -16,12 +16,15 @@
   },
   "nav": {
     "knowYourRights": "Connaître vos droits",
+    "knowYourRightsShort": "Vos droits",
     "airlines": "Compagnies aériennes",
+    "airlinesShort": "Compagnies",
     "airlinesAndAirports": "Compagnies aériennes et aéroports",
     "aboutUs": "À propos",
     "blog": "Blog",
     "faq": "FAQ",
     "talkToUs": "Nous contacter",
+    "talkToUsShort": "Contact",
     "knowYourRightsMenu": {
       "yourRights": "Vos droits",
       "overview": "Vue d'ensemble",
