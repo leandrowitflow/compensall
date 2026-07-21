@@ -36,7 +36,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
         <p className="text-[#1f3664] text-base max-w-[640px] mx-auto leading-relaxed">{t("pageIntro")}</p>
       </div>
 
-      <FAQSection faqs={ALL_FAQS} includeUkFaqs />
+      <FAQSection faqs={ALL_FAQS} includeUkFaqs showHeading={false} />
       <Footer />
     </div>
   );
