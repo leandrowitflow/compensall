@@ -1,19 +1,11 @@
 import type { BlogBlock } from "./types";
 
-function stripInlineMarkdown(text: string): string {
-  return text
-    .replace(/\*\*(.+?)\*\*/g, "$1")
-    .replace(/\*(.+?)\*/g, "$1")
-    .replace(/`(.+?)`/g, "$1")
-    .replace(/\[(.+?)\]\(.+?\)/g, "$1")
-    .trim();
-}
-
 export function markdownToBlocks(contentMd: string): BlogBlock[] {
   const lines = contentMd.replace(/\r\n/g, "\n").split("\n");
   const blocks: BlogBlock[] = [];
   let paragraphLines: string[] = [];
   let listItems: string[] = [];
+  let orderedItems: string[] = [];
 
   const flushParagraph = () => {
     if (paragraphLines.length === 0) {
@@ -21,7 +13,7 @@ export function markdownToBlocks(contentMd: string): BlogBlock[] {
     }
     blocks.push({
       type: "paragraph",
-      text: stripInlineMarkdown(paragraphLines.join(" ")),
+      text: paragraphLines.join(" ").trim(),
     });
     paragraphLines = [];
   };
@@ -32,9 +24,20 @@ export function markdownToBlocks(contentMd: string): BlogBlock[] {
     }
     blocks.push({
       type: "list",
-      items: listItems.map(stripInlineMarkdown),
+      items: listItems.map((item) => item.trim()),
     });
     listItems = [];
+  };
+
+  const flushOrderedList = () => {
+    if (orderedItems.length === 0) {
+      return;
+    }
+    blocks.push({
+      type: "ordered-list",
+      items: orderedItems.map((item) => item.trim()),
+    });
+    orderedItems = [];
   };
 
   for (const line of lines) {
@@ -43,47 +46,85 @@ export function markdownToBlocks(contentMd: string): BlogBlock[] {
     if (!trimmed) {
       flushParagraph();
       flushList();
+      flushOrderedList();
       continue;
     }
 
     if (trimmed.startsWith("# ")) {
       flushParagraph();
       flushList();
+      flushOrderedList();
+      continue;
+    }
+
+    if (trimmed.startsWith("### ")) {
+      flushParagraph();
+      flushList();
+      flushOrderedList();
+      blocks.push({ type: "subheading", text: trimmed.slice(4).trim() });
       continue;
     }
 
     if (trimmed.startsWith("## ")) {
       flushParagraph();
       flushList();
-      blocks.push({ type: "heading", text: stripInlineMarkdown(trimmed.slice(3)) });
+      flushOrderedList();
+      blocks.push({ type: "heading", text: trimmed.slice(3).trim() });
       continue;
     }
 
     if (/^[-*]\s+/.test(trimmed)) {
       flushParagraph();
+      flushOrderedList();
       listItems.push(trimmed.replace(/^[-*]\s+/, ""));
+      continue;
+    }
+
+    if (/^\d+\.\s+/.test(trimmed)) {
+      flushParagraph();
+      flushList();
+      orderedItems.push(trimmed.replace(/^\d+\.\s+/, ""));
       continue;
     }
 
     if (trimmed.startsWith("> ")) {
       flushParagraph();
       flushList();
-      blocks.push({ type: "callout", text: stripInlineMarkdown(trimmed.slice(2)) });
+      flushOrderedList();
+      blocks.push({ type: "callout", text: trimmed.slice(2).trim() });
+      continue;
+    }
+
+    if (/^\*\*(.+)\*\*$/.test(trimmed)) {
+      flushParagraph();
+      flushList();
+      flushOrderedList();
+      blocks.push({ type: "callout", text: trimmed });
       continue;
     }
 
     if (trimmed.startsWith("![")) {
       flushParagraph();
       flushList();
+      flushOrderedList();
+      continue;
+    }
+
+    if (trimmed.startsWith("<div")) {
+      flushParagraph();
+      flushList();
+      flushOrderedList();
       continue;
     }
 
     flushList();
+    flushOrderedList();
     paragraphLines.push(trimmed);
   }
 
   flushParagraph();
   flushList();
+  flushOrderedList();
 
   return blocks;
 }
