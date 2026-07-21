@@ -1,82 +1,104 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 import LegalPageShell from "@/components/legal/LegalPageShell";
-import { EC261_NOTE, EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
-import { buildPageMetadata } from "@/lib/site-metadata";
+import type { AppLocale } from "@/i18n/routing";
+import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
+import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Prices and fees",
-  description:
-    "Compensall works on a no win, no fee basis. See our success fee structure and the UK261 and EC 261 compensation amounts passengers may receive.",
-  path: "/prices",
-});
+type PricesPageProps = {
+  params: Promise<{ locale: string }>;
+};
 
-export default function PricesPage() {
+function tierTranslationKey(amount: string): string {
+  return amount.replace(/[£€]/g, "");
+}
+
+export async function generateMetadata({ params }: PricesPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return buildLocalizedPageMetadata(locale as AppLocale, "/prices", "prices");
+}
+
+export default async function PricesPage({ params }: PricesPageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("prices");
+  const tTiers = await getTranslations("passengerRights");
+
+  const ukTierItems = UK261_TIERS.map((tier) => {
+    const key = tierTranslationKey(tier.amount);
+    return {
+      amount: tier.amount,
+      label: tTiers(`tiers.uk261.${key}.label`),
+    };
+  });
+
+  const ecTierItems = EC261_TIERS.map((tier) => {
+    const key = tierTranslationKey(tier.amount);
+    return {
+      amount: tier.amount,
+      label: tTiers(`tiers.ec261.${key}.label`),
+    };
+  });
+
   return (
-    <LegalPageShell
-      title="Prices and fees"
-      breadcrumbLabel="Prices"
-      summary="No upfront cost. We only charge a success fee when we recover compensation for you."
-    >
+    <LegalPageShell title={t("title")} breadcrumbLabel={t("breadcrumb")} summary={t("summary")}>
       <div className="mb-6 p-4 bg-[#f0f5ff] rounded-xl border border-[#d5e0f9]">
         <p className="text-sm text-muted leading-relaxed">
-          <strong className="text-[#1f3664]">No win, no fee:</strong> Checking eligibility and using our website is
-          free. If you appoint us to pursue compensation, our fee applies only when your claim is successful, as set
-          out in our{" "}
-          <Link href="/documents/no-win-no-fee" className="text-[#2669f3] underline">
-            No Win, No Fee Agreement
-          </Link>
-          .
+          <strong className="text-[#1f3664]">{t("noWinNoFeeIntro")}</strong>{" "}
+          {t.rich("noWinNoFeeBody", {
+            noWinNoFeeAgreement: (chunks) => (
+              <Link href="/documents/no-win-no-fee" className="text-[#2669f3] underline">
+                {chunks}
+              </Link>
+            ),
+          })}
         </p>
       </div>
 
-      <h2 className="font-bold text-[#1f3664] text-lg mb-2">Success fee</h2>
-      <p className="text-muted text-sm leading-relaxed mb-4">
-        When we recover compensation on your behalf, we deduct a success fee before transferring the balance to you.
-        You receive at least 75% of the recovered amount before VAT adjustments.
-      </p>
+      <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("successFeeTitle")}</h2>
+      <p className="text-muted text-sm leading-relaxed mb-4">{t("successFeeDescription")}</p>
 
       <div className="overflow-hidden rounded-xl border border-[#d5e0f9] mb-8">
         <table className="w-full text-sm">
           <thead className="bg-[#f0f5ff]">
             <tr>
-              <th className="text-left px-4 py-3 font-semibold text-[#1f3664]">Compensation recovered</th>
-              <th className="text-left px-4 py-3 font-semibold text-[#1f3664]">Success fee</th>
+              <th className="text-left px-4 py-3 font-semibold text-[#1f3664]">{t("tableCompensationRecovered")}</th>
+              <th className="text-left px-4 py-3 font-semibold text-[#1f3664]">{t("tableSuccessFee")}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[#d5e0f9]">
             <tr>
-              <td className="px-4 py-3 text-muted">Up to £220 / €250</td>
-              <td className="px-4 py-3 text-muted">25% + VAT</td>
+              <td className="px-4 py-3 text-muted">{t("tierUpTo220")}</td>
+              <td className="px-4 py-3 text-muted">{t("fee25Vat")}</td>
             </tr>
             <tr>
-              <td className="px-4 py-3 text-muted">£221–£350 / €251–€400</td>
-              <td className="px-4 py-3 text-muted">25% + VAT</td>
+              <td className="px-4 py-3 text-muted">{t("tier221to350")}</td>
+              <td className="px-4 py-3 text-muted">{t("fee25Vat")}</td>
             </tr>
             <tr>
-              <td className="px-4 py-3 text-muted">£351–£520 / €401–€600</td>
-              <td className="px-4 py-3 text-muted">25% + VAT</td>
+              <td className="px-4 py-3 text-muted">{t("tier351to520")}</td>
+              <td className="px-4 py-3 text-muted">{t("fee25Vat")}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h2 className="font-bold text-[#1f3664] text-lg mb-2">Compensation amounts (UK261)</h2>
-      <p className="text-muted text-sm leading-relaxed mb-4">
-        For UK departures, fixed compensation under UK261 depends on flight distance:
-      </p>
+      <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("uk261Title")}</h2>
+      <p className="text-muted text-sm leading-relaxed mb-4">{t("uk261Intro")}</p>
       <ul className="list-disc pl-5 text-sm text-muted space-y-1 mb-8">
-        {UK261_TIERS.map((tier) => (
+        {ukTierItems.map((tier) => (
           <li key={tier.amount}>
             <strong className="text-[#1f3664]">{tier.amount}</strong> — {tier.label}
           </li>
         ))}
       </ul>
 
-      <h2 className="font-bold text-[#1f3664] text-lg mb-2">Compensation amounts (EC 261/2004)</h2>
-      <p className="text-muted text-sm leading-relaxed mb-4">{EC261_NOTE}</p>
+      <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("ec261Title")}</h2>
+      <p className="text-muted text-sm leading-relaxed mb-4">{tTiers("ec261Note")}</p>
       <ul className="list-disc pl-5 text-sm text-muted space-y-1">
-        {EC261_TIERS.map((tier) => (
+        {ecTierItems.map((tier) => (
           <li key={tier.amount}>
             <strong className="text-[#1f3664]">{tier.amount}</strong> — {tier.label}
           </li>

@@ -3,6 +3,7 @@ type ClaimBentoIconProps = {
   alt: string;
   frameClassName: string;
   imageClassName: string;
+  priority?: boolean;
 };
 
 export default function ClaimBentoIcon({
@@ -10,18 +11,21 @@ export default function ClaimBentoIcon({
   alt,
   frameClassName,
   imageClassName,
+  priority = false,
 }: ClaimBentoIconProps) {
   return (
-      <div
-        className={`relative overflow-hidden pointer-events-none shrink-0 mb-4 ${frameClassName}`}
-      >
-        <img
-          src={src}
-          alt={alt}
-          draggable={false}
-          className={`absolute max-w-none select-none ${imageClassName}`}
-        />
-      </div>
+    <div className={`relative overflow-hidden pointer-events-none shrink-0 mb-4 ${frameClassName}`}>
+      <img
+        src={src}
+        alt={alt}
+        draggable={false}
+        width={161}
+        height={161}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        className={`absolute max-w-none select-none ${imageClassName}`}
+      />
+    </div>
   );
 }
 

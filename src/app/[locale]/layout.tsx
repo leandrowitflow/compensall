@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import DeferredAnchorScroll from "@/components/DeferredAnchorScroll";
 import DeferredCookieBanner from "@/components/DeferredCookieBanner";
 import JsonLd from "@/components/seo/JsonLd";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/structured-data";
-import { openSans, siteFontClassNames } from "@/lib/site-fonts-next";
-import { getSiteMetadata } from "@/lib/site-metadata";
+import { openSans } from "@/lib/site-fonts-next";
+import { getSiteMetadata, HTML_LANG_MAP } from "@/lib/site-metadata";
 import "../globals.css";
 
 type LocaleLayoutProps = {
@@ -26,7 +26,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return getSiteMetadata(locale as AppLocale);
+  const appLocale = locale as AppLocale;
+  const t = await getTranslations({ locale: appLocale, namespace: "metadata.site" });
+
+  return getSiteMetadata(appLocale, {
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
@@ -40,7 +46,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={siteFontClassNames} suppressHydrationWarning>
+    <html lang={HTML_LANG_MAP[locale as AppLocale]} className={openSans.variable} suppressHydrationWarning>
       <body className={openSans.className} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />

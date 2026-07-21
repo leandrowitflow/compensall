@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/lib/site-metadata";
+import { localizedPath, SITE_URL } from "@/lib/site-metadata";
 
 type LlmsLink = {
   title: string;
@@ -123,7 +123,7 @@ const LLMS_SECTIONS: LlmsSection[] = [
 ];
 
 function formatLink({ title, path, description }: LlmsLink): string {
-  const url = path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`;
+  const url = `${SITE_URL}${localizedPath(path, "en")}`;
   return `- [${title}](${url}): ${description}`;
 }
 
@@ -135,13 +135,13 @@ export function buildLlmsTxt(): string {
   return [
     "# Compensall",
     "",
-    "> Compensall helps air passengers claim compensation of up to €600 per person under EU regulation EC 261/2004 for delayed, cancelled, and disrupted flights. Passengers upload a boarding pass, confirm flight details, sign legal documents, and track their claim online.",
+    "> Compensall helps air passengers claim compensation of up to €600 per person under EU regulation EC 261/2004 for delayed, cancelled, and disrupted flights. Localized site versions: English (en-GB), Portuguese (pt-PT), and French (fr-FR) at /en/, /pt/, and /fr/.",
     "",
     sections,
     "",
     "## Contact",
     "",
-    `- [Start a claim](${SITE_URL}/#claim): Use the homepage boarding pass upload form; human support is available throughout the process.`,
+    `- [Start a claim](${SITE_URL}/en#claim): Use the homepage boarding pass upload form; human support is available throughout the process.`,
     "",
   ].join("\n");
 }

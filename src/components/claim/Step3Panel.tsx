@@ -31,10 +31,14 @@ export type ClaimSubmitPayload = {
   contactEmail: string;
   acceptedDocuments: string[];
   documentSignatures: ClaimDocumentSignaturePayload[];
+  odooLeadId?: number | null;
+  formSessionId: string;
 };
 
 type Step3PanelProps = {
   flight: ClaimFlightData;
+  entryMode: "upload" | "manual";
+  locale: string;
   onDelete: () => void;
   onSubmit: (payload: ClaimSubmitPayload) => Promise<{ trackingNumber: string; status: ClaimStatus }>;
 };
@@ -60,7 +64,7 @@ function formatFlightDateForDisplay(date: string): string {
   return date;
 }
 
-export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelProps) {
+export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubmit }: Step3PanelProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
 
@@ -82,6 +86,8 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [trackingNumber, setTrackingNumber] = useState<string | null>(null);
+  const [odooLeadId, setOdooLeadId] = useState<number | null>(null);
+  const [isSyncingLead, setIsSyncingLead] = useState(false);
 
   const currentDoc = CLAIM_DOCUMENTS[0];
 
@@ -167,7 +173,7 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
     setSignaturePreview(canvas.toDataURL("image/png"));
   };
 
-  const handleContinueFromContact = () => {
+  const handleContinueFromContact = async () => {
     setContactError(null);
     if (!signedName.trim()) {
       setContactError("Enter your full legal name.");
@@ -177,7 +183,34 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
       setContactError("Enter a valid email address. We need it to send your tracking number and case updates.");
       return;
     }
-    setPhase("sign");
+
+    setIsSyncingLead(true);
+    try {
+      const response = await fetch("/api/claim/odoo-partial-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          formSessionId: sessionId,
+          signedName: signedName.trim(),
+          contactEmail: contactEmail.trim(),
+          entryMode,
+          flight,
+          locale,
+          odooLeadId,
+          step: "contact_confirmed",
+        }),
+      });
+
+      const data = (await response.json()) as { odooLeadId?: number; error?: string };
+      if (response.ok && data.odooLeadId) {
+        setOdooLeadId(data.odooLeadId);
+      }
+    } catch {
+      // Non-blocking: user can still continue signing even if Odoo sync fails.
+    } finally {
+      setIsSyncingLead(false);
+      setPhase("sign");
+    }
   };
 
   const handleSignDocument = async () => {
@@ -251,6 +284,8 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
         contactEmail: contactEmail.trim(),
         acceptedDocuments: documentSignatures.map((signature) => signature.documentId),
         documentSignatures,
+        odooLeadId,
+        formSessionId: sessionId,
       });
       setTrackingNumber(result.trackingNumber);
     } catch (error) {
@@ -465,9 +500,10 @@ export default function Step3Panel({ flight, onDelete, onSubmit }: Step3PanelPro
           <button
             type="button"
             onClick={handleContinueFromContact}
-            className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto ${ACTION_BTN}`}
+            disabled={isSyncingLead}
+            className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-60 ${ACTION_BTN}`}
           >
-            Continue to signing
+            {isSyncingLead ? "Saving..." : "Continue to signing"}
           </button>
         )}
 

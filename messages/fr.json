@@ -337,6 +337,18 @@
     "breadcrumb": "Cookies",
     "summary": "Comment nous utilisons les cookies et comment vous pouvez les contrôler."
   },
+  "privacyPolicy": {
+    "pageTitle": "Politique de confidentialité",
+    "pageDescription": "Découvrez comment Compensall collecte, utilise, stocke et protège vos données personnelles lorsque vous utilisez notre site web et notre service de réclamation d'indemnisation de vol.",
+    "breadcrumb": "Politique de confidentialité",
+    "summary": "Comment nous traitons vos données personnelles sur notre site web et notre service de réclamation."
+  },
+  "terms": {
+    "pageTitle": "Conditions d'utilisation",
+    "pageDescription": "Consultez les Conditions d'utilisation de Compensall, y compris les règles de soumission de réclamation, les frais, les responsabilités et le droit applicable.",
+    "breadcrumb": "Conditions d'utilisation",
+    "summary": "Les règles d'utilisation de Compensall et de soumission d'une réclamation d'indemnisation de vol."
+  },
   "legal": {
     "breadcrumbPrices": "Tarifs"
   },
@@ -419,7 +431,7 @@
     "breadcrumb": "Tarifs",
     "summary": "Aucun coût initial. Nous ne facturons des frais de succès que lorsque nous récupérons une indemnisation pour vous.",
     "noWinNoFeeIntro": "Pas de gain, pas de frais :",
-    "noWinNoFeeBody": "La vérification d'éligibilité et l'utilisation de notre site sont gratuites. Si vous nous mandatez pour poursuivre une indemnisation, nos frais ne s'appliquent que lorsque votre réclamation aboutit, conformément à notre {noWinNoFeeAgreement}.",
+    "noWinNoFeeBody": "La vérification d'éligibilité et l'utilisation de notre site sont gratuites. Si vous nous mandatez pour poursuivre une indemnisation, nos frais ne s'appliquent que lorsque votre réclamation aboutit, conformément à notre <noWinNoFeeAgreement>Accord pas de gain pas de frais</noWinNoFeeAgreement>.",
     "noWinNoFeeAgreement": "Accord Pas de gain, pas de frais",
     "successFeeTitle": "Frais de succès",
     "successFeeDescription": "Lorsque nous récupérons une indemnisation en votre nom, nous déduisons des frais de succès avant de vous transférer le solde. Vous recevez au moins 75 % du montant récupéré avant ajustements de TVA.",
@@ -438,7 +450,7 @@
     "titleLine2": "Pas de gain, pas de frais.",
     "subtitle": "Votre réclamation est guidée par l'IA et soutenue par de vraies personnes.",
     "subtitleLine2": "Rapide, sécurisé et simple dès le premier téléchargement.",
-    "body": "Nos frais standard ne sont facturés que si nous obtenons une indemnisation pour vous. {brandName} gère le processus du téléchargement de la carte d'embarquement au suivi auprès de la compagnie aérienne, pour que vous puissiez réclamer en toute confiance.",
+    "body": "Nos frais standard ne sont facturés que si nous obtenons une indemnisation pour vous. <brandName>Compensall</brandName> gère le processus du téléchargement de la carte d'embarquement au suivi auprès de la compagnie aérienne, pour que vous puissiez réclamer en toute confiance.",
     "fastRiskFree": "Rapide et sans risque",
     "noHiddenFees": "Aucun frais caché",
     "talkToUs": "Nous contacter",
@@ -541,6 +553,49 @@
     "prices": {
       "title": "Tarifs et frais",
       "description": "Compensall fonctionne sur la base pas de gain pas de frais. Consultez notre structure de frais de succès et les montants d'indemnisation UK261 et CE 261 que les passagers peuvent recevoir."
+    },
+    "blog": {
+      "title": "Guides d'indemnisation de vol et droits des passagers",
+      "description": "Guides pratiques sur le CE 261/2004 : retards, annulations, refus d'embarquement, correspondances manquées et comment réclamer jusqu'à €600."
+    },
+    "cookies": {
+      "title": "Politique de cookies",
+      "description": "Comprenez comment Compensall utilise les cookies et technologies similaires, et comment gérer vos préférences."
+    },
+    "privacyPolicy": {
+      "title": "Politique de confidentialité",
+      "description": "Découvrez comment Compensall collecte, utilise, stocke et protège vos données personnelles lorsque vous utilisez notre site et notre service d'indemnisation de vol."
+    },
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "description": "Lisez les conditions d'utilisation de Compensall, y compris les règles de soumission, les frais, les responsabilités et le droit applicable."
+    },
+    "airlines": {
+      "title": "Guides d'indemnisation par compagnie aérienne et aéroport",
+      "description": "Trouvez votre compagnie aérienne ou aéroport et vérifiez votre éligibilité à l'indemnisation EU261. Guides pour Ryanair, easyJet, British Airways et les principaux aéroports européens."
+    },
+    "authorityToAct": {
+      "title": "Procuration",
+      "description": "Procuration autorisant Compensall à poursuivre votre réclamation d'indemnisation de vol au titre du CE 261/2004."
+    },
+    "noWinNoFee": {
+      "title": "Accord pas de gain pas de frais",
+      "description": "Accord pas de gain pas de frais de Compensall. Vous ne payez que si nous récupérons votre indemnisation avec succès."
+    },
+    "privacyDataConsent": {
+      "title": "Consentement confidentialité et données",
+      "description": "Document de consentement confidentialité et données de Compensall expliquant comment nous traitons et protégeons vos données personnelles."
+    },
+    "track": {
+      "title": "Suivre votre réclamation",
+      "description": "Consultez l'état de votre réclamation d'indemnisation de vol Compensall à l'aide de votre référence de suivi."
     }
+  },
+  "blogPage": {
+    "title": "Blog",
+    "subtitle": "Guides pratiques sur les droits des passagers au titre du CE 261/2004 : retards, annulations, refus d'embarquement et plus, pour savoir ce que vous pourriez recevoir avant de voler.",
+    "readArticle": "Lire l'article",
+    "backToBlog": "Retour au blog",
+    "englishOnlyNotice": "Ce guide est actuellement disponible uniquement en anglais."
   }
 }

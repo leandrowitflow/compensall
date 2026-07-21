@@ -4,14 +4,19 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import DocumentPageHeader from "@/components/legal/DocumentPageHeader";
 import { PrivacyDataConsentContent } from "@/components/claim/legal-document-content";
-import { buildPageMetadata } from "@/lib/site-metadata";
+import type { AppLocale } from "@/i18n/routing";
+import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Privacy and Data Consent",
-  description: "Compensall's Privacy and Data Consent document explaining how we process and protect your personal data.",
-  path: "/documents/privacy-data-consent",
-  noIndex: true,
-});
+type PrivacyDataConsentPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: PrivacyDataConsentPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return buildLocalizedPageMetadata(locale as AppLocale, "/documents/privacy-data-consent", "privacyDataConsent", {
+    noIndex: true,
+  });
+}
 
 export default function PrivacyDataConsentPage() {
   return (

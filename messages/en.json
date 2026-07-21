@@ -337,6 +337,18 @@
     "breadcrumb": "Cookies",
     "summary": "How we use cookies and how you can control them."
   },
+  "privacyPolicy": {
+    "pageTitle": "Privacy Policy",
+    "pageDescription": "Learn how Compensall collects, uses, stores, and protects your personal data when you use our website and flight compensation claim service.",
+    "breadcrumb": "Privacy Policy",
+    "summary": "How we handle your personal data across our website and claim service."
+  },
+  "terms": {
+    "pageTitle": "Terms of Service",
+    "pageDescription": "Read the Terms of Service for using Compensall, including claim submission rules, fees, responsibilities, and governing law.",
+    "breadcrumb": "Terms of Service",
+    "summary": "The rules for using Compensall and submitting a flight compensation claim."
+  },
   "legal": {
     "breadcrumbPrices": "Prices"
   },
@@ -419,7 +431,7 @@
     "breadcrumb": "Prices",
     "summary": "No upfront cost. We only charge a success fee when we recover compensation for you.",
     "noWinNoFeeIntro": "No win, no fee:",
-    "noWinNoFeeBody": "Checking eligibility and using our website is free. If you appoint us to pursue compensation, our fee applies only when your claim is successful, as set out in our {noWinNoFeeAgreement}.",
+    "noWinNoFeeBody": "Checking eligibility and using our website is free. If you appoint us to pursue compensation, our fee applies only when your claim is successful, as set out in our <noWinNoFeeAgreement>No Win, No Fee Agreement</noWinNoFeeAgreement>.",
     "noWinNoFeeAgreement": "No Win, No Fee Agreement",
     "successFeeTitle": "Success fee",
     "successFeeDescription": "When we recover compensation on your behalf, we deduct a success fee before transferring the balance to you. You receive at least 75% of the recovered amount before VAT adjustments.",
@@ -438,7 +450,7 @@
     "titleLine2": "No win, no fee.",
     "subtitle": "Your claim is guided by AI and backed by real people.",
     "subtitleLine2": "Fast, secure and simple from the first upload.",
-    "body": "Our standard fee is only charged if we win compensation for you. {brandName} handles the process from boarding pass upload to airline follow-up, so you can claim with confidence.",
+    "body": "Our standard fee is only charged if we win compensation for you. <brandName>Compensall</brandName> handles the process from boarding pass upload to airline follow-up, so you can claim with confidence.",
     "fastRiskFree": "Fast & risk-free",
     "noHiddenFees": "No hidden fees",
     "talkToUs": "Talk to us",
@@ -541,6 +553,49 @@
     "prices": {
       "title": "Prices and fees",
       "description": "Compensall works on a no win, no fee basis. See our success fee structure and the UK261 and EC 261 compensation amounts passengers may receive."
+    },
+    "blog": {
+      "title": "Flight compensation guides and passenger rights",
+      "description": "Practical EC 261/2004 guides on delays, cancellations, denied boarding, missed connections, and how to claim up to €600."
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "description": "Understand how Compensall uses cookies and similar technologies, and how you can manage your preferences."
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "Learn how Compensall collects, uses, stores, and protects your personal data when you use our website and flight compensation claim service."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "description": "Read the Terms of Service for using Compensall, including claim submission rules, fees, responsibilities, and governing law."
+    },
+    "airlines": {
+      "title": "Airlines and airports compensation guides",
+      "description": "Find your airline or airport and check EU261 flight compensation eligibility. Guides for Ryanair, easyJet, British Airways, and major European airports."
+    },
+    "authorityToAct": {
+      "title": "Power of Attorney",
+      "description": "Power of Attorney authorising Compensall to pursue your EC 261/2004 flight compensation claim."
+    },
+    "noWinNoFee": {
+      "title": "No Win, No Fee Agreement",
+      "description": "Compensall's No Win, No Fee agreement. You only pay if we successfully recover your compensation."
+    },
+    "privacyDataConsent": {
+      "title": "Privacy and Data Consent",
+      "description": "Compensall's Privacy and Data Consent document explaining how we process and protect your personal data."
+    },
+    "track": {
+      "title": "Track your claim",
+      "description": "Check the status of your Compensall flight compensation claim using your tracking reference."
     }
+  },
+  "blogPage": {
+    "title": "Blog",
+    "subtitle": "Practical guides on EC 261/2004 passenger rights: delays, cancellations, denied boarding, and more, so you know what you may be owed before you fly.",
+    "readArticle": "Read article",
+    "backToBlog": "Back to blog",
+    "englishOnlyNotice": "This guide is currently available in English only."
   }
 }

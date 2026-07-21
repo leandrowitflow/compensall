@@ -3,14 +3,19 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
-import { buildPageMetadata } from "@/lib/site-metadata";
+import type { AppLocale } from "@/i18n/routing";
+import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Power of Attorney",
-  description: "Power of Attorney authorising Compensall to pursue your EC 261/2004 flight compensation claim.",
-  path: "/documents/authority-to-act",
-  noIndex: true,
-});
+type AuthorityToActPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: AuthorityToActPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return buildLocalizedPageMetadata(locale as AppLocale, "/documents/authority-to-act", "authorityToAct", {
+    noIndex: true,
+  });
+}
 
 export default function AuthorityToActPage() {
   return (

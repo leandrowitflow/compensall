@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CatalogDetailPage from "@/components/CatalogDetailPage";
+import type { AppLocale } from "@/i18n/routing";
 import { airlinesCatalog } from "@/lib/catalog";
 import { getCatalogItem } from "@/lib/catalog-detail";
 import { buildCatalogMetadata } from "@/lib/site-metadata";
 
 type AirlinePageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
@@ -14,14 +15,14 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: AirlinePageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const item = getCatalogItem("airlines", slug);
 
   if (!item) {
     return { title: "Airline not found | Compensall" };
   }
 
-  return buildCatalogMetadata(item, "airlines");
+  return buildCatalogMetadata(item, "airlines", locale as AppLocale);
 }
 
 export default async function AirlinePage({ params }: AirlinePageProps) {

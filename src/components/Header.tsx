@@ -89,7 +89,7 @@ export default function Header() {
       <header className="w-full bg-white sticky top-0 z-50 px-4 md:px-8 lg:px-8 xl:px-12">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto h-16 lg:h-16 xl:h-[90px] flex items-center justify-between gap-3 min-w-0">
           <Link href="/">
-            <img src="/assets/logo.svg?v=2" alt="Compensall" className="h-8 w-auto" />
+            <img src="/assets/logo.svg?v=2" alt="Compensall" width={120} height={32} className="h-8 w-auto" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 min-w-0">

@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import NewsletterFormClient from "@/components/NewsletterFormClient";
 import { Link } from "@/i18n/routing";
+import { poppins, roboto } from "@/lib/site-fonts-next";
 
 const SOCIAL_LINKS = [
   { href: "#", labelKey: "socialX", icon: "/assets/icons/social-x.svg" },
@@ -94,10 +95,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#1f3664] text-white px-4 md:px-8 lg:px-8 xl:px-12 overflow-x-clip">
+    <footer className={`${roboto.variable} ${poppins.variable} bg-[#1f3664] text-white px-4 md:px-8 lg:px-8 xl:px-12 overflow-x-clip`}>
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto pt-12 pb-8 md:pb-10 lg:pt-12 xl:pt-[83px] xl:pb-12">
         <div className="flex flex-col items-center text-center gap-8 md:gap-10 lg:hidden">
-          <img src="/assets/logo-white.svg?v=2" alt="Compensall" className="h-8 w-auto" />
+          <img src="/assets/logo-white.svg?v=2" alt="Compensall" width={120} height={32} className="h-8 w-auto" />
 
           <nav className="grid grid-cols-2 gap-x-6 gap-y-4 w-full max-w-[320px] sm:max-w-[360px]">
             {primaryNavLinks.map((link) => (
@@ -131,7 +132,7 @@ export default function Footer() {
 
         <div className="hidden lg:grid lg:grid-cols-[minmax(0,180px)_1fr_minmax(0,240px)] xl:grid-cols-[minmax(0,260px)_1fr_minmax(0,320px)] gap-x-8 xl:gap-x-16 gap-y-8">
           <div className="lg:row-start-1 lg:col-start-1">
-            <img src="/assets/logo-white.svg?v=2" alt="Compensall" className="h-8 xl:h-[39px] w-auto" />
+            <img src="/assets/logo-white.svg?v=2" alt="Compensall" width={120} height={39} className="h-8 xl:h-[39px] w-auto" />
           </div>
 
           <nav className="lg:row-start-1 lg:col-start-2 flex flex-wrap items-center justify-center gap-6 xl:gap-10">

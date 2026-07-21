@@ -1,129 +1,100 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTABanner from "@/components/CTABanner";
 import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
+import type { AppLocale } from "@/i18n/routing";
+import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { buildProfessionalServiceSchema } from "@/lib/structured-data";
-import { buildPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "About Compensall",
-  description:
-    "Compensall helps air passengers claim up to €600 under EU261 with secure boarding pass upload, assistant-led checks, and human-backed airline handling on a no win, no fee basis.",
-  path: "/about",
-});
+type AboutPageProps = {
+  params: Promise<{ locale: string }>;
+};
 
-const values = [
-  {
-    image: "/assets/about/about-fast-risk-free.svg",
-    title: "Fast & risk-free",
-    description: "Check eligibility in minutes with no upfront cost. We only charge if we win your claim.",
-  },
-  {
-    image: "/assets/about/about-human-support.svg",
-    title: "Human-backed support",
-    description:
-      "Our assistant speeds things up, but real people review your case and handle the airline for you.",
-  },
-  {
-    image: "/assets/about/about-security.svg",
-    title: "Highest security",
-    description: "Your boarding pass and personal data are protected. You stay in control at every step.",
-  },
-];
+const VALUE_ICONS = [
+  { key: "fastRiskFree", image: "/assets/about/about-fast-risk-free.svg" },
+  { key: "humanSupport", image: "/assets/about/about-human-support.svg" },
+  { key: "security", image: "/assets/about/about-security.svg" },
+] as const;
 
-export default function AboutPage() {
+export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return buildLocalizedPageMetadata(locale as AppLocale, "/about", "about");
+}
+
+export default async function AboutPage({ params }: AboutPageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("about");
+  const tCommon = await getTranslations("common");
+  const whyChooseItems = t.raw("whyChoose") as string[];
+
   return (
     <div className="min-h-screen bg-white">
       <JsonLd data={buildProfessionalServiceSchema()} />
       <Header />
 
-      <PageHero
-        title="About us"
-        subtitle={
-          <>
-            We help passengers claim the compensation they are owed with our assistant and human
-            support every step of the way.
-          </>
-        }
-      />
+      <PageHero title={t("title")} subtitle={t("subtitle")} />
 
       <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12 items-start mb-12 xl:mb-16">
             <div>
               <h2 className="font-bold text-2xl lg:text-[28px] xl:text-[36px] text-[#1f3664] mb-4 leading-[1.2]">
-                Our mission
+                {t("missionTitle")}
               </h2>
-              <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-4">
-                Compensall makes flight compensation simple. Airlines often delay responses, reject
-                valid claims, and make the process stressful, so too many passengers never receive
-                what EU regulation EC 261/2004 entitles them to.
-              </p>
-              <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
-                We take care of everything: paperwork, negotiations with the airline, and pursuing
-                your case when needed. Upload your boarding pass, confirm your details, and let our
-                team fight for your compensation on a no win, no fee basis.
-              </p>
+              <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-4">{t("missionP1")}</p>
+              <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">{t("missionP2")}</p>
             </div>
 
             <div className="bg-[#f0f5fe] border-2 border-[#d5e0f9] rounded-[20px] p-6 xl:p-8">
-              <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-4">Why passengers choose us</h3>
+              <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-4">{t("whyChooseTitle")}</h3>
               <ul className="space-y-3 text-[#1f3664] text-sm xl:text-base leading-relaxed">
-                <li className="flex gap-3">
-                  <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
-                  No win, no fee: you pay nothing unless we succeed
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
-                  End-to-end handling from eligibility check to airline follow-up
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
-                  Predictable success fee. We are not a law firm
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
-                  GDPR-first approach to your personal data
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
-                  Up to €600 per passenger on eligible flights
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
-                  Trusted by thousands of travellers across Europe
-                </li>
+                {whyChooseItems.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-[#2669f3] font-bold flex-shrink-0">✓</span>
+                    {item}
+                  </li>
+                ))}
               </ul>
               <Link
                 href="/#claim"
                 className="inline-flex mt-6 bg-[#2669f3] text-white font-bold text-base px-6 h-11 items-center rounded-[11px] hover:bg-[#1a55d4] transition-colors"
               >
-                Start your claim
+                {tCommon("checkCompensation")}
               </Link>
             </div>
           </div>
 
           <h2 className="font-bold text-2xl lg:text-[28px] xl:text-[36px] text-[#1f3664] text-center mb-8 xl:mb-10 leading-[1.2]">
-            What we stand for
+            {t("valuesTitle")}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 xl:gap-6">
-            {values.map((item) => (
+            {VALUE_ICONS.map(({ key, image }) => (
               <div
-                key={item.title}
+                key={key}
                 className="bg-white border-2 border-[#d5e0f9] rounded-[20px] p-6 xl:p-8 text-center"
               >
                 <img
-                  src={item.image}
+                  src={image}
                   alt=""
                   aria-hidden="true"
+                  width={112}
+                  height={112}
+                  loading="lazy"
                   className="w-24 h-24 xl:w-28 xl:h-28 mx-auto mb-4 object-contain"
                 />
-                <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mb-2">{item.title}</h3>
-                <p className="text-[#1f3664] text-sm xl:text-[15px] leading-relaxed">{item.description}</p>
+                <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mb-2">
+                  {t(`values.${key}.title`)}
+                </h3>
+                <p className="text-[#1f3664] text-sm xl:text-[15px] leading-relaxed">
+                  {t(`values.${key}.description`)}
+                </p>
               </div>
             ))}
           </div>
