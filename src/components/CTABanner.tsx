@@ -19,7 +19,7 @@ export default function CTABanner() {
 
   return (
     <section className="px-4 md:px-8 lg:px-8 xl:px-12 pb-0 bg-white">
-      <div className="relative w-full max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto overflow-clip rounded-[28px] xl:rounded-[34px] 2xl:aspect-[155/66]">
+      <div className="relative w-full max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto overflow-clip rounded-[28px] xl:rounded-[34px]">
         <Image
           src="/assets/cta-banner-bg.png"
           alt=""
@@ -51,22 +51,25 @@ export default function CTABanner() {
 
           <Link
             href="/#claim"
-            className="inline-flex shrink-0 items-center justify-center whitespace-nowrap bg-[#2669f3] text-white font-bold h-12 lg:h-14 xl:h-[60px] 2xl:h-[73px] px-10 lg:px-11 xl:px-12 rounded-[11px] hover:bg-[#1f5ae0] transition-colors text-base lg:text-lg xl:text-[18px] 2xl:text-[19px] min-w-[240px] lg:min-w-[280px] xl:min-w-[300px] 2xl:min-w-[316px]"
+            className="inline-flex shrink-0 items-center justify-center bg-[#2669f3] text-white font-bold h-12 lg:h-14 xl:h-[60px] 2xl:h-[73px] px-6 sm:px-8 lg:px-10 xl:px-12 rounded-[11px] hover:bg-[#1f5ae0] transition-colors text-sm sm:text-base lg:text-lg xl:text-[18px] 2xl:text-[19px] min-w-0 max-w-full text-center leading-tight"
           >
-            {tCommon("checkCompensation")}
+            <span className="xl:hidden">{tCommon("checkCompensationShort")}</span>
+            <span className="hidden xl:inline">{tCommon("checkCompensation")}</span>
           </Link>
 
-          <div className="flex w-full shrink-0 flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-center sm:gap-8 xl:max-w-[1280px] xl:gap-10 2xl:gap-12 2xl:mt-2 xl:px-6 2xl:px-14">
+          <div className="flex w-full shrink-0 flex-col items-start text-left gap-8 lg:flex-row lg:items-center lg:justify-center lg:gap-8 xl:max-w-[1280px] xl:gap-10 2xl:gap-12 2xl:mt-2 xl:px-6 2xl:px-14">
             {CTA_FEATURE_KEYS.map((key, index) => (
-              <div key={key} className="flex items-center gap-3 xl:gap-4 justify-start min-w-0">
+              <div key={key} className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
                 <img
                   src={CTA_ICONS[index]}
                   alt=""
-                  className="w-10 h-10 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0"
+                  aria-hidden="true"
+                  loading="lazy"
+                  className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0"
                 />
                 <div className="text-left min-w-0">
-                  <p className="text-white font-bold text-sm xl:text-[19px] xl:leading-[27px]">{t(key)}</p>
-                  <p className="text-white text-xs xl:text-[16px] xl:leading-[28px]">{t(CTA_SUBTITLE_KEYS[index])}</p>
+                  <p className="text-white font-bold text-base xl:text-[19px] xl:leading-[27px] leading-snug">{t(key)}</p>
+                  <p className="text-white/60 text-sm xl:text-[16px] xl:leading-[28px] leading-relaxed">{t(CTA_SUBTITLE_KEYS[index])}</p>
                 </div>
               </div>
             ))}

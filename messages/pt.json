@@ -12,11 +12,12 @@
     "selectLanguage": "Selecionar idioma",
     "learnMore": "Saber mais",
     "startYourClaim": "Iniciar o seu pedido",
-    "checkCompensation": "Verificar compensação"
+    "checkCompensation": "Verificar compensação",
+    "checkCompensationShort": "Verificar"
   },
   "nav": {
     "knowYourRights": "Conheça os seus direitos",
-    "knowYourRightsShort": "Os seus direitos",
+    "knowYourRightsShort": "Direitos",
     "airlines": "Companhias aéreas",
     "airlinesShort": "Companhias",
     "airlinesAndAirports": "Companhias aéreas e aeroportos",
@@ -157,6 +158,7 @@
     "steps": {
       "upload": "Carregar",
       "assistantCheck": "Verificação do assistente",
+      "assistantCheckShort": "Verificação",
       "signSubmit": "Assinar e submeter"
     },
     "step1": {
@@ -175,7 +177,9 @@
         "selectBothAirports": "Selecione o aeroporto de partida e de chegada na lista.",
         "airportsMustDiffer": "Os aeroportos de partida e chegada devem ser diferentes.",
         "extractFailed": "Não foi possível ler todos os detalhes automaticamente. Preencha os dados do seu voo abaixo.",
-        "somethingWentWrong": "Algo correu mal. Preencha os dados do seu voo abaixo."
+        "somethingWentWrong": "Algo correu mal. Preencha os dados do seu voo abaixo.",
+        "unsupportedType": "Tipo de ficheiro não suportado. Carregue um cartão de embarque em PDF, JPG, PNG, WebP ou HEIC.",
+        "tooLarge": "Ficheiro demasiado grande. O tamanho máximo é 10 MB."
       }
     },
     "step2": {

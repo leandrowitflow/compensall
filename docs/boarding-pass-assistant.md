@@ -83,7 +83,9 @@ Optional env vars for web lookup (`src/lib/lookup-flight-status-web.ts`):
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `GEMINI_FLIGHT_WEB_LOOKUP` | `true` | Set to `false` to skip web search after upload |
-| `GEMINI_FLIGHT_LOOKUP_MODEL` | `gemini-2.5-flash` | Model used for Google Search + URL fetch |
+| `GEMINI_FLIGHT_LOOKUP_MODEL` | `gemini-3.5-flash` | Model used for Google Search + URL fetch |
+| `GEMINI_VISION_MODEL` | `gemini-3.5-flash` | Model used to read boarding pass images/PDFs |
+| `GEMINI_TEXT_MODEL` | `gemini-3.5-flash` | Model used for text-only structuring |
 
 ### Reference-based extraction (how it works)
 

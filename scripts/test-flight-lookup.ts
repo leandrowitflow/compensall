@@ -24,7 +24,7 @@ async function main() {
   console.log("  enabled:", isFlightWebLookupEnabled());
   console.log("  flight:", flight);
   console.log("  date:", date);
-  console.log("  model:", process.env.GEMINI_FLIGHT_LOOKUP_MODEL ?? "gemini-2.5-flash");
+  console.log("  model:", process.env.GEMINI_FLIGHT_LOOKUP_MODEL ?? "gemini-3.5-flash");
   console.log("---");
 
   const started = Date.now();

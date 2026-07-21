@@ -2,7 +2,7 @@ import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { generateText, isStepCount, Output } from "ai";
 import { z } from "zod";
 import type { FlightStatus } from "@/lib/claim-types";
-import { getGeminiApiKey } from "@/lib/gemini";
+import { getGeminiApiKey, resolveGeminiModel } from "@/lib/gemini";
 import { parseJsonFromModelText } from "@/lib/gemini-document";
 
 export const flightWebLookupSchema = z.object({
@@ -24,8 +24,8 @@ export type FlightWebLookupQuery = {
   airlineName?: string | null;
 };
 
-const LOOKUP_MODEL = process.env.GEMINI_FLIGHT_LOOKUP_MODEL ?? "gemini-2.5-flash";
-const LOOKUP_MODEL_FALLBACK = "gemini-2.5-pro";
+const LOOKUP_MODEL = resolveGeminiModel(process.env.GEMINI_FLIGHT_LOOKUP_MODEL, "gemini-3.5-flash");
+const LOOKUP_MODEL_FALLBACK = "gemini-3.1-pro-preview";
 
 function isRetryableModelError(error: unknown): boolean {
   const message = error instanceof Error ? error.message : String(error);

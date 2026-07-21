@@ -152,7 +152,7 @@ export default function MobileMenu({
   if (!open) return null;
 
   return (
-    <div className="md:hidden fixed inset-0 z-[100]">
+    <div className="xl:hidden fixed inset-0 z-[100]">
       <button
         type="button"
         className="absolute inset-0 bg-[#1f3664]/40 backdrop-blur-[2px]"

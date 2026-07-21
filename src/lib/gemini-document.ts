@@ -13,7 +13,7 @@ export const GEMINI_VISION_PROVIDER_OPTIONS: ProviderOptions = {
 export function buildGeminiDocumentPart(fileBuffer: Buffer, mimeType: string) {
   return {
     type: "file" as const,
-    data: { type: "data" as const, data: fileBuffer },
+    data: fileBuffer,
     mediaType: mimeType.toLowerCase(),
   };
 }

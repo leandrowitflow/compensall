@@ -6,6 +6,13 @@ import TrustpilotBadge from "@/components/TrustpilotBadge";
 import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
+import {
+  CTABanner,
+  FAQSection,
+  Footer,
+  HomePassengerRightsSection,
+  HowItWorksSteps,
+} from "@/components/home/HomeDeferredSections";
 import JsonLd from "@/components/seo/JsonLd";
 import type { AppLocale } from "@/i18n/routing";
 import { DEFAULT_FAQS } from "@/lib/default-faqs";
@@ -13,12 +20,7 @@ import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 import { buildFaqPageSchema, buildHowToSchema } from "@/lib/structured-data";
 
-const CTABanner = dynamic(() => import("@/components/CTABanner"));
-const FAQSection = dynamic(() => import("@/components/FAQSection"));
-const Footer = dynamic(() => import("@/components/Footer"));
 const HeroClaimForm = dynamic(() => import("@/components/HeroClaimForm"));
-const HowItWorksSteps = dynamic(() => import("@/components/HowItWorksSteps"));
-const HomePassengerRightsSection = dynamic(() => import("@/components/HomePassengerRightsSection"));
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -146,24 +148,24 @@ export default async function HomePage({ params }: HomePageProps) {
 
               <HeroClaimForm />
 
-              <div className="flex flex-col items-start text-left sm:flex-row sm:items-center sm:justify-center gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
-                <div className="flex items-center gap-4 justify-start">
-                  <img src="/assets/icons/lightning-charge.svg" alt="" aria-hidden="true" width={46} height={46} className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
-                  <div className="text-left">
+              <div className="flex flex-col items-start text-left lg:flex-row lg:items-center lg:justify-center gap-8 lg:gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
+                <div className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
+                  <img src="/assets/icons/lightning-charge.svg" alt="" aria-hidden="true" width={46} height={46} loading="lazy" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
+                  <div className="text-left min-w-0">
                     <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{t("hero.fastRiskFree")}</p>
                     <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{t("hero.noHiddenFees")}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 justify-start">
-                  <img src="/assets/icons/headset.svg" alt="" aria-hidden="true" width={46} height={46} className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
-                  <div className="text-left">
+                <div className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
+                  <img src="/assets/icons/headset.svg" alt="" aria-hidden="true" width={46} height={46} loading="lazy" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
+                  <div className="text-left min-w-0">
                     <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{t("hero.talkToUs")}</p>
                     <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{t("hero.humanSupportAvailable")}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 justify-start">
-                  <img src="/assets/icons/secured.svg" alt="" aria-hidden="true" width={46} height={46} className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
-                  <div className="text-left">
+                <div className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
+                  <img src="/assets/icons/secured.svg" alt="" aria-hidden="true" width={46} height={46} loading="lazy" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
+                  <div className="text-left min-w-0">
                     <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{t("hero.highestSecurity")}</p>
                     <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{t("hero.dataProtected")}</p>
                   </div>
@@ -199,13 +201,13 @@ export default async function HomePage({ params }: HomePageProps) {
               className="absolute inset-0 w-full h-full pointer-events-none"
               style={{ objectFit: "fill" }}
             />
-            <div className="relative flex items-center">
+            <div className="relative flex flex-wrap items-stretch xl:items-center">
               {trustItems.map((item) => (
-                <div key={item.title} className="flex-1 flex items-center gap-3 px-6 py-[33px]">
+                <div key={item.title} className="flex-1 min-w-[220px] xl:min-w-0 flex items-center gap-3 px-4 xl:px-6 py-6 xl:py-[33px]">
                   <img src={item.icon} alt="" aria-hidden="true" width={40} height={40} loading="lazy" className="w-10 h-10 flex-shrink-0 object-contain" />
-                  <div>
-                    <p className="font-bold text-[#1f3664] text-[19px] leading-[1.4]">{item.title}</p>
-                    <p className="text-[#1f3664] text-base leading-[1.7]">{item.sub}</p>
+                  <div className="min-w-0">
+                    <p className="font-bold text-[#1f3664] text-base xl:text-[17px] 2xl:text-[19px] leading-[1.4]">{item.title}</p>
+                    <p className="text-[#1f3664] text-sm xl:text-[15px] 2xl:text-base leading-[1.5] 2xl:leading-[1.7]">{item.sub}</p>
                   </div>
                 </div>
               ))}
@@ -225,8 +227,8 @@ export default async function HomePage({ params }: HomePageProps) {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[729fr_374fr_374fr] gap-6 lg:gap-7 xl:gap-9">
-            <div className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] min-h-[300px] lg:min-h-[340px] xl:min-h-[609px] flex flex-col items-start">
-              <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[21px]">
+            <div className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] bg-[#f5f8ff] min-h-[300px] lg:min-h-[340px] xl:min-h-[520px] flex flex-col items-start">
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <Image
                   src="/assets/icons/flight-delay-bg.png"
                   alt=""
@@ -234,7 +236,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   sizes="(max-width: 768px) 100vw, 729px"
                   quality={60}
                   loading="lazy"
-                  className="object-cover pointer-events-none rounded-[21px]"
+                  className="object-cover pointer-events-none scale-[1.12]"
                 />
               </div>
               <div className="relative z-10 flex flex-col flex-1 items-start w-full p-5 lg:p-6 xl:pt-[92px] xl:pl-[67px] xl:pr-8 xl:pb-[74px]">
@@ -247,7 +249,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   <h3 className="font-bold text-[#1f3664] text-xl lg:text-xl xl:text-[30px] xl:leading-[43px] mb-2 xl:mb-3">
                     {t("claimCards.flightDelay.title")}
                   </h3>
-                  <p className="text-[#1f3664] text-sm lg:text-sm xl:text-[25px] xl:leading-[44px] xl:max-w-[482px]">
+                  <p className="text-[#1f3664] text-sm lg:text-sm xl:text-[20px] xl:leading-[32px] xl:max-w-[482px]">
                     {t("claimCards.flightDelay.description")}
                   </p>
                 </div>

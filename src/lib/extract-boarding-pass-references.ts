@@ -42,7 +42,7 @@ export type BoardingPassReferences = z.infer<typeof boardingPassReferencesSchema
 
 
 
-const EXTRACT_REFERENCES_PROMPT = `You extract PRINTED REFERENCE CODES from an airline boarding pass (mobile PDF, paper, or wallet pass screenshot).
+const EXTRACT_REFERENCES_PROMPT = `You extract PRINTED REFERENCE CODES from an airline boarding pass, e-ticket, or booking confirmation (mobile PDF, email screenshot, paper pass, or wallet pass).
 
 
 
@@ -50,7 +50,11 @@ Do NOT guess city names or expand codes — only read codes and labels exactly a
 
 
 
-Look for these printed fields (labels vary by airline):
+If the document shows multiple flights (round-trip, "voo de ida/regresso", outbound/return), extract the OUTBOUND / first departure leg only.
+
+
+
+Look for these printed fields (labels vary by airline and language — e.g. "Reserva", "Booking ref", "PNR", "Voo de ida"):
 
 
 

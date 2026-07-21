@@ -35,9 +35,9 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
   const t = useTranslations("claim.steps");
   const tCommon = useTranslations("common");
   const steps = [
-    { num: 1, label: t("upload") },
-    { num: 2, label: t("assistantCheck") },
-    { num: 3, label: t("signSubmit") },
+    { num: 1, label: t("upload"), shortLabel: t("upload") },
+    { num: 2, label: t("assistantCheck"), shortLabel: t("assistantCheckShort") },
+    { num: 3, label: t("signSubmit"), shortLabel: t("signSubmit") },
   ] as const;
 
   return (
@@ -62,7 +62,8 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
                   s.num
                 )}
               </div>
-              <span className="text-[#1f3664] font-bold text-sm hidden md:inline">{s.label}</span>
+              <span className="text-[#1f3664] font-bold text-sm hidden md:inline 2xl:hidden">{s.shortLabel}</span>
+              <span className="text-[#1f3664] font-bold text-sm hidden 2xl:inline">{s.label}</span>
             </div>
           </div>
         );

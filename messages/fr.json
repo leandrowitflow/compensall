@@ -12,7 +12,8 @@
     "selectLanguage": "Sélectionner la langue",
     "learnMore": "En savoir plus",
     "startYourClaim": "Démarrer votre réclamation",
-    "checkCompensation": "Vérifier l'indemnisation"
+    "checkCompensation": "Vérifier l'indemnisation",
+    "checkCompensationShort": "Vérifier"
   },
   "nav": {
     "knowYourRights": "Connaître vos droits",
@@ -157,6 +158,7 @@
     "steps": {
       "upload": "Télécharger",
       "assistantCheck": "Vérification par l'assistant",
+      "assistantCheckShort": "Vérification",
       "signSubmit": "Signer et soumettre"
     },
     "step1": {
@@ -175,7 +177,9 @@
         "selectBothAirports": "Sélectionnez les aéroports de départ et d'arrivée dans la liste.",
         "airportsMustDiffer": "Les aéroports de départ et d'arrivée doivent être différents.",
         "extractFailed": "Nous n'avons pas pu lire tous les détails automatiquement. Veuillez renseigner les informations de votre vol ci-dessous.",
-        "somethingWentWrong": "Une erreur s'est produite. Veuillez renseigner les informations de votre vol ci-dessous."
+        "somethingWentWrong": "Une erreur s'est produite. Veuillez renseigner les informations de votre vol ci-dessous.",
+        "unsupportedType": "Type de fichier non pris en charge. Téléchargez une carte d'embarquement PDF, JPG, PNG, WebP ou HEIC.",
+        "tooLarge": "Fichier trop volumineux. La taille maximale est de 10 Mo."
       }
     },
     "step2": {

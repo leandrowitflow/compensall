@@ -1,8 +1,8 @@
 import { extractBoardingPassFromFile, formatExtractionError } from "@/lib/extract-boarding-pass";
-import { inferMimeType, isAllowedBoardingPassMime } from "@/lib/boarding-pass-file";
+import { inferMimeType, isAllowedBoardingPassMime, MAX_BOARDING_PASS_SIZE } from "@/lib/boarding-pass-file";
 import { isGeminiConfigured } from "@/lib/gemini";
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024;
+const MAX_FILE_SIZE = MAX_BOARDING_PASS_SIZE;
 
 export async function POST(request: Request) {
   try {

@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import NewsletterFormClient from "@/components/NewsletterFormClient";
 import { Link } from "@/i18n/routing";
-import { poppins, roboto } from "@/lib/site-fonts-next";
 
 const SOCIAL_LINKS = [
   { href: "#", labelKey: "socialX", icon: "/assets/icons/social-x.svg" },
@@ -17,20 +16,20 @@ function ContactDetails({ className = "", contactUsLabel }: { className?: string
 
   return (
     <div className={`flex flex-col gap-4 xl:gap-6 ${className}`}>
-      <h4 className="font-roboto font-medium text-[19px] xl:text-[21px] tracking-[-0.21px] leading-[1.5]">
+      <h4 className="font-medium text-[19px] xl:text-[21px] tracking-[-0.21px] leading-[1.5]">
         {contactUsLabel}
       </h4>
-      <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px] max-w-[280px] lg:max-w-[237px]">
+      <p className="text-[rgba(255,255,255,0.63)] text-base leading-[30px] max-w-[280px] lg:max-w-[237px]">
         {tFooter("addressLine1")}
         <br />
         {tFooter("addressLine2")}
       </p>
-      <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
+      <p className="text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
         <a href="mailto:help@compensall.com" className="hover:text-white transition-colors break-all">
           {tFooter("email")}
         </a>
       </p>
-      <p className="font-poppins text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
+      <p className="text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
         <a href="tel:+351928370420" className="hover:text-white transition-colors">
           {tFooter("phone")}
         </a>
@@ -55,7 +54,7 @@ function LegalLinks({ className = "" }: { className?: string }) {
         <Link
           key={link.href}
           href={link.href}
-          className="font-roboto text-sm sm:text-base tracking-[-0.16px] leading-[1.5] text-white hover:text-white/70 transition-colors"
+          className="text-sm sm:text-base tracking-[-0.16px] leading-[1.5] text-white hover:text-white/70 transition-colors"
         >
           {link.label}
         </Link>
@@ -87,15 +86,15 @@ export default function Footer() {
   const tNav = useTranslations("nav");
   const tFooter = useTranslations("footer");
   const primaryNavLinks = [
-    { label: tNav("knowYourRights"), href: "/know-your-rights" },
-    { label: tNav("airlines"), href: "/airlines" },
-    { label: tNav("aboutUs"), href: "/about" },
-    { label: tNav("blog"), href: "/blog" },
-    { label: tNav("faq"), href: "/faq" },
+    { label: tNav("knowYourRights"), shortLabel: tNav("knowYourRightsShort"), href: "/know-your-rights" },
+    { label: tNav("airlines"), shortLabel: tNav("airlinesShort"), href: "/airlines" },
+    { label: tNav("aboutUs"), shortLabel: tNav("aboutUs"), href: "/about" },
+    { label: tNav("blog"), shortLabel: tNav("blog"), href: "/blog" },
+    { label: tNav("faq"), shortLabel: tNav("faq"), href: "/faq" },
   ];
 
   return (
-    <footer className={`${roboto.variable} ${poppins.variable} bg-[#1f3664] text-white px-4 md:px-8 lg:px-8 xl:px-12 overflow-x-clip`}>
+    <footer className="bg-[#1f3664] text-white px-4 md:px-8 lg:px-8 xl:px-12 overflow-x-clip">
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto pt-12 pb-8 md:pb-10 lg:pt-12 xl:pt-[83px] xl:pb-12">
         <div className="flex flex-col items-center text-center gap-8 md:gap-10 lg:hidden">
           <img src="/assets/logo-white.svg?v=2" alt="Compensall" width={120} height={32} className="h-8 w-auto" />
@@ -124,7 +123,7 @@ export default function Footer() {
           <div className="w-full max-w-[340px] pt-6 border-t border-white/15 flex flex-col items-center gap-5">
             <LegalLinks />
             <SocialLinks />
-            <p className="font-roboto text-sm sm:text-base tracking-[-0.16px] leading-[1.5] text-white/90">
+            <p className="text-sm sm:text-base tracking-[-0.16px] leading-[1.5] text-white/90">
               {tFooter("copyright")}
             </p>
           </div>
@@ -135,14 +134,15 @@ export default function Footer() {
             <img src="/assets/logo-white.svg?v=2" alt="Compensall" width={120} height={39} className="h-8 xl:h-[39px] w-auto" />
           </div>
 
-          <nav className="lg:row-start-1 lg:col-start-2 flex flex-wrap items-center justify-center gap-6 xl:gap-10">
+          <nav className="lg:row-start-1 lg:col-start-2 flex flex-wrap items-center justify-center gap-4 xl:gap-6 2xl:gap-10">
             {primaryNavLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-white text-[17px] leading-[23px] hover:text-white/70 transition-colors"
+                className="text-white text-[15px] xl:text-[16px] 2xl:text-[17px] leading-[23px] hover:text-white/70 transition-colors text-center"
               >
-                {link.label}
+                <span className="2xl:hidden">{link.shortLabel}</span>
+                <span className="hidden 2xl:inline">{link.label}</span>
               </Link>
             ))}
           </nav>
@@ -156,7 +156,7 @@ export default function Footer() {
             <NewsletterFormClient />
           </div>
 
-          <p className="lg:row-start-3 lg:col-start-1 font-roboto text-base tracking-[-0.16px] leading-[1.5] lg:self-end lg:pt-8 xl:pt-[68px]">
+          <p className="lg:row-start-3 lg:col-start-1 text-base tracking-[-0.16px] leading-[1.5] lg:self-end lg:pt-8 xl:pt-[68px]">
             {tFooter("copyright")}
           </p>
 

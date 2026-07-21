@@ -37,6 +37,22 @@ export const BOARDING_PASS_MIME_TYPES = new Set([
   "application/pdf",
 ]);
 
+export const BOARDING_PASS_ACCEPT =
+  ".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,application/pdf,image/jpeg,image/png,image/webp,image/heic,image/heif";
+
+export const MAX_BOARDING_PASS_SIZE = 10 * 1024 * 1024;
+
+export function validateBoardingPassFile(file: File): "unsupportedType" | "tooLarge" | null {
+  const mimeType = inferMimeType(file.name, file.type);
+  if (!mimeType || !isAllowedBoardingPassMime(mimeType)) {
+    return "unsupportedType";
+  }
+  if (file.size > MAX_BOARDING_PASS_SIZE) {
+    return "tooLarge";
+  }
+  return null;
+}
+
 export function isAllowedBoardingPassMime(mimeType: string): boolean {
   return BOARDING_PASS_MIME_TYPES.has(mimeType.toLowerCase());
 }

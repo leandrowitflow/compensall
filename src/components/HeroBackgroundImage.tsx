@@ -1,10 +1,6 @@
-import Image, { getImageProps } from "next/image";
-import { preload } from "react-dom";
 import type { CSSProperties } from "react";
-import heroBg from "../../public/assets/hero-bg.png";
 
-const HERO_IMAGE_SIZES = "(max-width: 640px) 640px, (max-width: 1024px) 960px, 1550px";
-const HERO_IMAGE_QUALITY = 55;
+const HERO_BG_SRC = "/assets/hero-bg.webp";
 
 export const HERO_BG_VARIANTS = {
   home: {
@@ -40,30 +36,15 @@ export default function HeroBackgroundImage({
 }: HeroBackgroundImageProps) {
   const frameStyle = HERO_BG_VARIANTS[variant];
 
-  if (priority) {
-    const {
-      props: { src: heroSrc },
-    } = getImageProps({
-      src: heroBg,
-      alt: "",
-      fill: true,
-      priority: true,
-      sizes: HERO_IMAGE_SIZES,
-      quality: HERO_IMAGE_QUALITY,
-    });
-    preload(heroSrc, { as: "image", fetchPriority: "high" });
-  }
-
   return (
     <div aria-hidden className="absolute max-w-none" style={frameStyle}>
-      <Image
-        src={heroBg}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={HERO_BG_SRC}
         alt=""
-        fill
-        priority={priority}
-        sizes={HERO_IMAGE_SIZES}
-        quality={HERO_IMAGE_QUALITY}
-        className="object-cover"
+        decoding="async"
+        fetchPriority={priority ? "high" : "auto"}
+        className="absolute inset-0 h-full w-full object-cover"
       />
     </div>
   );

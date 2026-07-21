@@ -12,7 +12,8 @@
     "selectLanguage": "Select language",
     "learnMore": "Learn more",
     "startYourClaim": "Start your claim",
-    "checkCompensation": "Check compensation"
+    "checkCompensation": "Check compensation",
+    "checkCompensationShort": "Check now"
   },
   "nav": {
     "knowYourRights": "Know your rights",
@@ -157,6 +158,7 @@
     "steps": {
       "upload": "Upload",
       "assistantCheck": "Assistant check",
+      "assistantCheckShort": "Check",
       "signSubmit": "Sign & submit"
     },
     "step1": {
@@ -175,7 +177,9 @@
         "selectBothAirports": "Select both departure and arrival airports from the list.",
         "airportsMustDiffer": "Departure and arrival airports must be different.",
         "extractFailed": "We couldn't read every detail automatically. Please fill in your flight details below.",
-        "somethingWentWrong": "Something went wrong. Please fill in your flight details below."
+        "somethingWentWrong": "Something went wrong. Please fill in your flight details below.",
+        "unsupportedType": "Unsupported file type. Upload a PDF, JPG, PNG, WebP, or HEIC boarding pass.",
+        "tooLarge": "File is too large. Maximum size is 10 MB."
       }
     },
     "step2": {

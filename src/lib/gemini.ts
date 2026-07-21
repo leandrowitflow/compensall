@@ -1,11 +1,34 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import type { LanguageModel } from "ai";
 
+const DEPRECATED_GEMINI_MODELS: Record<string, string> = {
+  "gemini-2.5-pro": "gemini-3.5-flash",
+  "gemini-2.5-flash": "gemini-3.5-flash",
+  "gemini-2.5-flash-lite": "gemini-3.5-flash",
+  "gemini-2.0-flash": "gemini-3.5-flash",
+  "gemini-2.0-flash-lite": "gemini-3.5-flash",
+};
+
+function resolveGeminiModelId(envValue: string | undefined, fallback: string): string {
+  const configured = envValue?.trim() || fallback;
+  return DEPRECATED_GEMINI_MODELS[configured] ?? configured;
+}
+
+export function resolveGeminiModel(envValue: string | undefined, fallback: string): string {
+  return resolveGeminiModelId(envValue, fallback);
+}
+
 /** Vision model for reading boarding passes (multimodal). */
-export const GEMINI_VISION_MODEL = process.env.GEMINI_VISION_MODEL ?? "gemini-2.5-pro";
+export const GEMINI_VISION_MODEL = resolveGeminiModelId(
+  process.env.GEMINI_VISION_MODEL,
+  "gemini-3.5-flash",
+);
 
 /** Text model for structuring OCR output (no vision needed). */
-export const GEMINI_TEXT_MODEL = process.env.GEMINI_TEXT_MODEL ?? "gemini-2.5-flash";
+export const GEMINI_TEXT_MODEL = resolveGeminiModelId(
+  process.env.GEMINI_TEXT_MODEL,
+  "gemini-3.5-flash",
+);
 
 export function getGeminiApiKey(): string | undefined {
   return process.env.GEMINI_API_KEY ?? process.env.GOOGLE_GENERATIVE_AI_API_KEY;

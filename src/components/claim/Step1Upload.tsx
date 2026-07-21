@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useRef, useState, type DragEvent } from "react";
 import AirportSelect from "@/components/claim/AirportSelect";
+import { validateBoardingPassFile, BOARDING_PASS_ACCEPT } from "@/lib/boarding-pass-file";
 import {
   normalizeFlightData,
   type ClaimFlightData,
@@ -29,6 +30,7 @@ export default function Step1Upload({
   const [departure, setDeparture] = useState<AirportOption | null>(null);
   const [arrival, setArrival] = useState<AirportOption | null>(null);
   const [manualError, setManualError] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
   const openFilePicker = () => {
@@ -39,6 +41,13 @@ export default function Step1Upload({
   const handleFile = async (file: File | null) => {
     if (!file || isExtracting || processingRef.current) return;
 
+    const validationError = validateBoardingPassFile(file);
+    if (validationError) {
+      setUploadError(tStep1(`errors.${validationError}`));
+      return;
+    }
+
+    setUploadError(null);
     processingRef.current = true;
     try {
       await onExtract(file);
@@ -117,7 +126,7 @@ export default function Step1Upload({
         ref={inputRef}
         type="file"
         className="hidden"
-        accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,application/pdf,image/jpeg,image/png,image/webp,image/heic,image/heif"
+        accept={BOARDING_PASS_ACCEPT}
         onChange={(e) => void handleFile(e.target.files?.[0] ?? null)}
       />
 
@@ -153,9 +162,9 @@ export default function Step1Upload({
         )}
       </button>
 
-      {extractError && (
+      {(uploadError || extractError) && (
         <p className="mt-3 text-sm text-[#e82828] text-center" role="alert">
-          {extractError}
+          {uploadError ?? extractError}
         </p>
       )}
 
@@ -200,9 +209,10 @@ export default function Step1Upload({
           type="button"
           onClick={submitManual}
           disabled={isExtracting}
-          className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-base sm:text-[19px] leading-[27px] px-6 sm:px-8 xl:px-10 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px] disabled:cursor-not-allowed disabled:bg-[#2669f3]/70 disabled:hover:bg-[#2669f3]/70"
+          className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-sm sm:text-base xl:text-[19px] leading-tight px-4 sm:px-6 xl:px-8 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center text-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px] disabled:cursor-not-allowed disabled:bg-[#2669f3]/70 disabled:hover:bg-[#2669f3]/70"
         >
-          {tCommon("checkCompensation")}
+          <span className="xl:hidden">{tCommon("checkCompensationShort")}</span>
+          <span className="hidden xl:inline">{tCommon("checkCompensation")}</span>
         </button>
       </div>
 

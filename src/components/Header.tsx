@@ -87,12 +87,12 @@ export default function Header() {
   return (
     <>
       <header className="w-full bg-white sticky top-0 z-50 px-4 md:px-8 lg:px-8 xl:px-12">
-        <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto h-16 lg:h-16 xl:h-[90px] grid grid-cols-[auto_1fr_auto] items-center gap-3 min-w-0">
+        <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto h-16 lg:h-16 xl:h-[90px] grid grid-cols-[auto_1fr_auto] items-center gap-2 xl:gap-3 min-w-0">
           <Link href="/" className="shrink-0">
             <img src="/assets/logo.svg?v=2" alt="Compensall" width={120} height={32} className="h-8 w-auto" />
           </Link>
 
-          <nav className="hidden lg:flex items-center justify-center gap-2 xl:gap-4 min-w-0 overflow-hidden px-1">
+          <nav className="hidden xl:flex items-center justify-center gap-1.5 2xl:gap-4 min-w-0 px-1">
             <NavDropdown
               label={tNav("knowYourRightsShort")}
               groups={knowYourRightsNav}
@@ -103,7 +103,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[#1f3664] text-[14px] xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors whitespace-nowrap shrink-0"
+                className="text-[#1f3664] text-[14px] 2xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors whitespace-nowrap px-0.5"
               >
                 {link.label}
               </Link>
@@ -111,18 +111,18 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center justify-end gap-2 shrink-0">
-            <div className="hidden lg:flex items-center gap-2 xl:gap-3">
+            <div className="hidden xl:flex items-center gap-2 2xl:gap-3">
               <LanguageSwitcher />
               <Link
                 href="/#claim"
-                className="bg-[#2669f3] text-white text-[14px] xl:text-[17px] font-bold px-4 xl:px-8 h-10 xl:h-[51px] flex items-center rounded-[11px] hover:bg-[#1a55d4] transition-colors whitespace-nowrap"
+                className="bg-[#2669f3] text-white text-[14px] 2xl:text-[17px] font-bold px-4 2xl:px-8 h-10 2xl:h-[51px] flex items-center rounded-[11px] hover:bg-[#1a55d4] transition-colors whitespace-nowrap"
               >
-                <span className="xl:hidden">{tNav("talkToUsShort")}</span>
-                <span className="hidden xl:inline">{tNav("talkToUs")}</span>
+                <span className="2xl:hidden">{tNav("talkToUsShort")}</span>
+                <span className="hidden 2xl:inline">{tNav("talkToUs")}</span>
               </Link>
             </div>
 
-            <div className="flex lg:hidden items-center gap-2">
+            <div className="flex xl:hidden items-center gap-2">
               <LanguageSwitcher />
               <button
                 type="button"

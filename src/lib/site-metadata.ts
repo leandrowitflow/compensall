@@ -14,13 +14,9 @@ const PRODUCTION_SITE_URL = "https://compensall.com";
 
 function resolveSiteUrl(): string {
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
-  if (fromEnv && !fromEnv.includes("localhost")) {
-    return fromEnv;
-  }
 
-  const vercelUrl = process.env.VERCEL_URL?.replace(/\/$/, "");
-  if (vercelUrl) {
-    return `https://${vercelUrl}`;
+  if (fromEnv && !fromEnv.includes("localhost") && !fromEnv.includes("vercel.app")) {
+    return fromEnv;
   }
 
   if (process.env.NODE_ENV === "development") {
