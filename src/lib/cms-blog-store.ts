@@ -224,6 +224,12 @@ function pickTranslation(
   return null;
 }
 
+const CMS_BLOG_CATEGORY_BY_LOCALE: Record<AppLocale, string> = {
+  en: "Know your rights",
+  pt: "Conheça os seus direitos",
+  fr: "Connaissez vos droits",
+};
+
 export function cmsRecordToBlogPost(record: CmsBlogRecord, locale: AppLocale): BlogPost | null {
   const translation = pickTranslation(record, locale);
   if (!translation?.title) {
@@ -235,7 +241,7 @@ export function cmsRecordToBlogPost(record: CmsBlogRecord, locale: AppLocale): B
 
   return {
     slug: record.slug,
-    category: "Blog",
+    category: CMS_BLOG_CATEGORY_BY_LOCALE[locale],
     date: formatBlogDisplayDate(dateSource),
     readTime: estimateReadTime(contentMd),
     title: translation.title,
