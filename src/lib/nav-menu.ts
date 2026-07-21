@@ -1,3 +1,5 @@
+import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
+
 export type NavMenuItem = {
   label: string;
   href: string;
@@ -14,16 +16,16 @@ export const knowYourRightsNav: NavMenuGroup[] = [
     title: "Your rights",
     items: [
       { label: "Overview", href: "/know-your-rights", description: "How EC 261 protects you" },
-      { label: "Flight cancellation", href: "/blog/flight-cancellation" },
-      { label: "Flight delay", href: "/blog/flight-delay" },
-      { label: "Denied boarding", href: "/blog/denied-boarding" },
-      { label: "Missed connection", href: "/blog/missed-connection" },
-      { label: "Overbooking", href: "/blog/overbooking" },
-      { label: "Airline strike", href: "/blog/airline-strike" },
-      { label: "Passenger rights", href: "/blog/passenger-rights" },
+      { label: "Flight cancellation", href: `/blog/${COMPENSALL_GUIDE_SLUGS[0]}` },
+      { label: "Flight delay", href: `/blog/${COMPENSALL_GUIDE_SLUGS[2]}` },
+      { label: "Denied boarding", href: `/blog/${COMPENSALL_GUIDE_SLUGS[1]}` },
+      { label: "Missed connection", href: `/blog/${COMPENSALL_GUIDE_SLUGS[3]}` },
+      { label: "Overbooking", href: `/blog/${COMPENSALL_GUIDE_SLUGS[4]}` },
+      { label: "Airline strike", href: `/blog/${COMPENSALL_GUIDE_SLUGS[5]}` },
+      { label: "Passenger rights", href: `/blog/${COMPENSALL_GUIDE_SLUGS[6]}` },
       {
         label: "Passengers with disabilities",
-        href: "/blog/passengers-with-disabilities",
+        href: `/blog/${COMPENSALL_GUIDE_SLUGS[7]}`,
       },
     ],
   },
@@ -66,3 +68,5 @@ export const primaryNavLinks: NavMenuItem[] = [
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
 ];
+
+export { COMPENSALL_GUIDE_SLUGS };

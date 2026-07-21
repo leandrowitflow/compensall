@@ -1,4 +1,5 @@
 import { localizedPath, SITE_URL } from "@/lib/site-metadata";
+import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
 
 type LlmsLink = {
   title: string;
@@ -50,18 +51,43 @@ const LLMS_SECTIONS: LlmsSection[] = [
     links: [
       {
         title: "Flight cancellation compensation",
-        path: "/blog/flight-cancellation",
+        path: `/blog/${COMPENSALL_GUIDE_SLUGS[0]}`,
         description: "When cancelled flights qualify for EU261 compensation and how much you can claim.",
       },
       {
         title: "Flight delay compensation",
-        path: "/blog/flight-delay",
+        path: `/blog/${COMPENSALL_GUIDE_SLUGS[2]}`,
         description: "Delay thresholds, payout amounts by distance, and how to document your claim.",
       },
       {
         title: "Denied boarding rights",
-        path: "/blog/denied-boarding",
+        path: `/blog/${COMPENSALL_GUIDE_SLUGS[1]}`,
         description: "Rights when involuntarily denied boarding and steps to pursue compensation.",
+      },
+      {
+        title: "Missed connection compensation",
+        path: `/blog/${COMPENSALL_GUIDE_SLUGS[3]}`,
+        description: "When missed connections on one booking still qualify for EU261 payouts.",
+      },
+      {
+        title: "Overbooking compensation",
+        path: `/blog/${COMPENSALL_GUIDE_SLUGS[4]}`,
+        description: "What airlines owe when you are bumped from an overbooked flight.",
+      },
+      {
+        title: "Airline strike disruptions",
+        path: `/blog/${COMPENSALL_GUIDE_SLUGS[5]}`,
+        description: "When strike-related cancellations still trigger passenger compensation.",
+      },
+      {
+        title: "EU air passenger rights overview",
+        path: `/blog/${COMPENSALL_GUIDE_SLUGS[6]}`,
+        description: "Plain-language guide to EC 261/2004 compensation, refunds, and care.",
+      },
+      {
+        title: "Flying with a disability",
+        path: `/blog/${COMPENSALL_GUIDE_SLUGS[7]}`,
+        description: "Assistance, accessibility, and compensation rights for passengers with disabilities.",
       },
     ],
   },

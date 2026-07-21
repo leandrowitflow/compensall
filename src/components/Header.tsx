@@ -6,6 +6,7 @@ import { useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Link } from "@/i18n/routing";
 import type { NavMenuGroup, NavMenuItem } from "@/lib/nav-menu";
+import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
 
 const NavDropdown = dynamic(() => import("@/components/NavDropdown"));
 const MobileMenu = dynamic(() => import("@/components/MobileMenu"));
@@ -26,16 +27,16 @@ export default function Header() {
           href: "/know-your-rights",
           description: tNav("knowYourRightsMenu.overviewDescription"),
         },
-        { label: tNav("knowYourRightsMenu.flightCancellation"), href: "/blog/flight-cancellation" },
-        { label: tNav("knowYourRightsMenu.flightDelay"), href: "/blog/flight-delay" },
-        { label: tNav("knowYourRightsMenu.deniedBoarding"), href: "/blog/denied-boarding" },
-        { label: tNav("knowYourRightsMenu.missedConnection"), href: "/blog/missed-connection" },
-        { label: tNav("knowYourRightsMenu.overbooking"), href: "/blog/overbooking" },
-        { label: tNav("knowYourRightsMenu.airlineStrike"), href: "/blog/airline-strike" },
-        { label: tNav("knowYourRightsMenu.passengerRights"), href: "/blog/passenger-rights" },
+        { label: tNav("knowYourRightsMenu.flightCancellation"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[0]}` },
+        { label: tNav("knowYourRightsMenu.flightDelay"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[2]}` },
+        { label: tNav("knowYourRightsMenu.deniedBoarding"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[1]}` },
+        { label: tNav("knowYourRightsMenu.missedConnection"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[3]}` },
+        { label: tNav("knowYourRightsMenu.overbooking"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[4]}` },
+        { label: tNav("knowYourRightsMenu.airlineStrike"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[5]}` },
+        { label: tNav("knowYourRightsMenu.passengerRights"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[6]}` },
         {
           label: tNav("knowYourRightsMenu.passengersWithDisabilities"),
-          href: "/blog/passengers-with-disabilities",
+          href: `/blog/${COMPENSALL_GUIDE_SLUGS[7]}`,
         },
       ],
     },

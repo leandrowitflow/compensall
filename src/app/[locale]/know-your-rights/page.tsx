@@ -11,6 +11,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
 import { DEFAULT_FAQS } from "@/lib/default-faqs";
+import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { buildFaqPageSchema } from "@/lib/structured-data";
 
@@ -19,15 +20,15 @@ type KnowYourRightsPageProps = {
 };
 
 const FLIGHT_ISSUE_DEFS = [
-  { slug: "flight-cancellation", key: "flightCancellation", image: "/assets/icons/flight-cancellation.png" },
-  { slug: "denied-boarding", key: "deniedBoarding", image: "/assets/icons/denied-boarding.png" },
-  { slug: "flight-delay", key: "flightDelay", image: "/assets/icons/flight-delay.png" },
-  { slug: "missed-connection", key: "missedConnection", image: "/assets/icons/missed-connection.png" },
-  { slug: "overbooking", key: "overbooking", image: "/assets/icons/overbooking.png" },
-  { slug: "airline-strike", key: "airlineStrike", image: "/assets/icons/airline-strike.png" },
-  { slug: "passenger-rights", key: "passengerRights", image: "/assets/icons/passenger-rights.png" },
+  { slug: COMPENSALL_GUIDE_SLUGS[0], key: "flightCancellation", image: "/assets/icons/flight-cancellation.png" },
+  { slug: COMPENSALL_GUIDE_SLUGS[1], key: "deniedBoarding", image: "/assets/icons/denied-boarding.png" },
+  { slug: COMPENSALL_GUIDE_SLUGS[2], key: "flightDelay", image: "/assets/icons/flight-delay.png" },
+  { slug: COMPENSALL_GUIDE_SLUGS[3], key: "missedConnection", image: "/assets/icons/missed-connection.png" },
+  { slug: COMPENSALL_GUIDE_SLUGS[4], key: "overbooking", image: "/assets/icons/overbooking.png" },
+  { slug: COMPENSALL_GUIDE_SLUGS[5], key: "airlineStrike", image: "/assets/icons/airline-strike.png" },
+  { slug: COMPENSALL_GUIDE_SLUGS[6], key: "passengerRights", image: "/assets/icons/passenger-rights.png" },
   {
-    slug: "passengers-with-disabilities",
+    slug: COMPENSALL_GUIDE_SLUGS[7],
     key: "passengersWithDisabilities",
     image: "/assets/icons/passengers-with-disabilities.png",
   },
