@@ -3,8 +3,8 @@ import { preload } from "react-dom";
 import type { CSSProperties } from "react";
 import heroBg from "../../public/assets/hero-bg.png";
 
-const HERO_IMAGE_SIZES = "(max-width: 640px) 100vw, (max-width: 1024px) 95vw, 1550px";
-const HERO_IMAGE_QUALITY = 75;
+const HERO_IMAGE_SIZES = "(max-width: 640px) 640px, (max-width: 1024px) 960px, 1550px";
+const HERO_IMAGE_QUALITY = 55;
 
 export const HERO_BG_VARIANTS = {
   home: {

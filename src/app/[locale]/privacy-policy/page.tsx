@@ -1,23 +1,57 @@
 import type { Metadata } from "next";
+
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import LegalDocumentContent from "@/components/legal/LegalDocumentContent";
+
 import LegalPageShell from "@/components/legal/LegalPageShell";
-import { PrivacyPolicyContent } from "@/components/legal/site-legal-content";
-import { buildPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Privacy Policy",
-  description:
-    "Learn how Compensall collects, uses, stores, and protects your personal data when you use our website and flight compensation claim service.",
-  path: "/privacy-policy",
-});
+import type { AppLocale } from "@/i18n/routing";
 
-export default function PrivacyPolicyPage() {
-  return (
-    <LegalPageShell
-      title="Privacy Policy"
-      breadcrumbLabel="Privacy Policy"
-      summary="How we handle your personal data across our website and claim service."
-    >
-      <PrivacyPolicyContent />
-    </LegalPageShell>
-  );
+import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
+
+
+
+type PrivacyPolicyPageProps = {
+
+  params: Promise<{ locale: string }>;
+
+};
+
+
+
+export async function generateMetadata({ params }: PrivacyPolicyPageProps): Promise<Metadata> {
+
+  const { locale } = await params;
+
+  return buildLocalizedPageMetadata(locale as AppLocale, "/privacy-policy", "privacyPolicy");
+
 }
+
+
+
+export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPageProps) {
+
+  const { locale } = await params;
+
+  setRequestLocale(locale);
+
+
+
+  const t = await getTranslations("privacyPolicy");
+
+
+
+  return (
+
+    <LegalPageShell title={t("pageTitle")} breadcrumbLabel={t("breadcrumb")} summary={t("summary")}>
+
+      <LegalDocumentContent document="privacy-policy" locale={locale as AppLocale} />
+
+    </LegalPageShell>
+
+  );
+
+}
+
+

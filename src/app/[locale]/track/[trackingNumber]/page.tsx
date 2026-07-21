@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
-import { buildPageMetadata } from "@/lib/site-metadata";
+import { getTranslations } from "next-intl/server";
 import TrackClaimPage from "@/components/TrackClaimPage";
+import type { AppLocale } from "@/i18n/routing";
 import { normalizeTrackingNumber } from "@/lib/claim-tracking";
+import { buildPageMetadata } from "@/lib/site-metadata";
 
 type TrackPageProps = {
-  params: Promise<{ trackingNumber: string }>;
+  params: Promise<{ locale: string; trackingNumber: string }>;
 };
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Track your claim",
-  description: "Check the status of your Compensall flight compensation claim using your tracking reference.",
-  path: "/track",
-  noIndex: true,
-});
+export async function generateMetadata({ params }: TrackPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return buildPageMetadata({
+    title: t("track.title"),
+    description: t("track.description"),
+    path: "/track",
+    locale: locale as AppLocale,
+    noIndex: true,
+  });
+}
 
 export default async function TrackPage({ params }: TrackPageProps) {
   const { trackingNumber } = await params;

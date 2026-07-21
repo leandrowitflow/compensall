@@ -7,16 +7,19 @@ import FAQSection from "@/components/FAQSection";
 import AirlinesCatalog from "@/components/AirlinesCatalog";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import JsonLd from "@/components/seo/JsonLd";
+import type { AppLocale } from "@/i18n/routing";
 import { DEFAULT_FAQS } from "@/lib/default-faqs";
+import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { buildFaqPageSchema } from "@/lib/structured-data";
-import { buildPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Airlines and airports compensation guides",
-  description:
-    "Find your airline or airport and check EU261 flight compensation eligibility. Guides for Ryanair, easyJet, British Airways, and major European airports.",
-  path: "/airlines",
-});
+type AirlinesPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: AirlinesPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return buildLocalizedPageMetadata(locale as AppLocale, "/airlines", "airlines");
+}
 
 export default function AirlinesPage() {
   return (

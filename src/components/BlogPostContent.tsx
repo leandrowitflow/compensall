@@ -1,4 +1,4 @@
-import type { BlogBlock } from "@/lib/blog-posts";
+import type { BlogBlock } from "@/lib/blog";
 
 export default function BlogPostContent({ blocks }: { blocks: BlogBlock[] }) {
   return (

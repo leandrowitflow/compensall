@@ -207,6 +207,15 @@ export async function POST(request: Request) {
     const locale = getRequestLocale(request, formData);
     const landingPage = locale ? `/${locale}/#claim` : "/#claim";
 
+    const odooLeadIdRaw = formData.get("odooLeadId");
+    const formSessionIdRaw = formData.get("formSessionId");
+    const odooLeadId =
+      typeof odooLeadIdRaw === "string" && odooLeadIdRaw.trim()
+        ? Number.parseInt(odooLeadIdRaw, 10)
+        : null;
+    const formSessionId =
+      typeof formSessionIdRaw === "string" && formSessionIdRaw.trim() ? formSessionIdRaw.trim() : null;
+
     const odooLead = await syncClaimToOdoo({
       trackingNumber,
       signedName: signedNameRaw.trim(),
@@ -217,6 +226,8 @@ export async function POST(request: Request) {
       siteUrl,
       locale,
       landingPage,
+      odooLeadId: Number.isFinite(odooLeadId) ? odooLeadId : null,
+      formSessionId,
     });
 
     if (odooLead) {

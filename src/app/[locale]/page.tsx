@@ -1,57 +1,57 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import TrustpilotBadge from "@/components/TrustpilotBadge";
 import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
-import HowItWorksSteps from "@/components/HowItWorksSteps";
-import HomePassengerRightsSection from "@/components/HomePassengerRightsSection";
 import JsonLd from "@/components/seo/JsonLd";
+import type { AppLocale } from "@/i18n/routing";
 import { DEFAULT_FAQS } from "@/lib/default-faqs";
-import { EC261_NOTE, EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
+import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
+import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 import { buildFaqPageSchema, buildHowToSchema } from "@/lib/structured-data";
-import { buildPageMetadata } from "@/lib/site-metadata";
 
 const CTABanner = dynamic(() => import("@/components/CTABanner"));
 const FAQSection = dynamic(() => import("@/components/FAQSection"));
 const Footer = dynamic(() => import("@/components/Footer"));
 const HeroClaimForm = dynamic(() => import("@/components/HeroClaimForm"));
+const HowItWorksSteps = dynamic(() => import("@/components/HowItWorksSteps"));
+const HomePassengerRightsSection = dynamic(() => import("@/components/HomePassengerRightsSection"));
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Delayed or cancelled flight? Claim up to £520 or €600",
-  description:
-    "Upload your boarding pass and claim flight compensation under UK261 or EC 261/2004. Secure, human-backed, no win no fee.",
-  path: "/",
-});
+type HomePageProps = {
+  params: Promise<{ locale: string }>;
+};
 
-const TRUST_ITEMS = [
-  { icon: "/assets/icons/trust-star.svg", title: "Trustpilot rated", sub: "4.8 out of 5" },
-  { icon: "/assets/icons/trust-gdpr.svg", title: "GDPR-first", sub: "Privacy by design" },
-  { icon: "/assets/icons/trust-lock.svg", title: "Delete your data", sub: "Full control" },
-  { icon: "/assets/icons/trust-headset.svg", title: "Human support", sub: "Real people, real help" },
-];
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  return buildLocalizedPageMetadata(locale as AppLocale, "/", "home");
+}
 
 function CompensationTierCard({
   amount,
   image,
   label,
   desc,
+  tierAlt,
 }: {
   amount: string;
   image?: string;
   label: string;
   desc: string;
+  tierAlt: string;
 }) {
   return (
     <div className="relative bg-white/28 border-2 border-[#d5e0f9] rounded-2xl overflow-hidden text-center pt-6 pb-8 px-6">
       {image && (
         <Image
           src={image}
-          alt={`${amount} compensation tier`}
+          alt={tierAlt}
           width={208}
           height={208}
           sizes="(max-width: 1280px) 112px, 208px"
+          loading="lazy"
           className="w-28 h-28 lg:w-28 lg:h-28 xl:w-52 xl:h-52 mx-auto object-contain mb-2"
         />
       )}
@@ -64,14 +64,55 @@ function CompensationTierCard({
   );
 }
 
-export default function HomePage() {
+function tierTranslationKey(amount: string): string {
+  return amount.replace(/[£€]/g, "");
+}
+
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("home");
+  const tTiers = await getTranslations("passengerRights");
+
+  const trustItems = [
+    { icon: "/assets/icons/trust-star.svg", title: t("trustBar.trustpilotRated"), sub: t("trustBar.trustpilotScore") },
+    { icon: "/assets/icons/trust-gdpr.svg", title: t("trustBar.gdprFirst"), sub: t("trustBar.privacyByDesign") },
+    { icon: "/assets/icons/trust-lock.svg", title: t("trustBar.deleteYourData"), sub: t("trustBar.fullControl") },
+    { icon: "/assets/icons/trust-headset.svg", title: t("trustBar.humanSupport"), sub: t("trustBar.realPeopleHelp") },
+  ];
+
+  const ukTiers = UK261_TIERS.map((tier) => {
+    const key = tierTranslationKey(tier.amount);
+    return {
+      ...tier,
+      label: tTiers(`tiers.uk261.${key}.label`),
+      desc: tTiers(`tiers.uk261.${key}.desc`),
+    };
+  });
+
+  const ecTiers = EC261_TIERS.map((tier) => {
+    const key = tierTranslationKey(tier.amount);
+    return {
+      ...tier,
+      label: tTiers(`tiers.ec261.${key}.label`),
+      desc: tTiers(`tiers.ec261.${key}.desc`),
+    };
+  });
+
   const howToSchema = buildHowToSchema([
-    { name: "Upload your boarding pass", text: "Add your boarding pass in seconds from the homepage claim form." },
     {
-      name: "Assistant checks your claim",
-      text: "Our assistant verifies eligibility under UK261 and EU Regulation EC 261/2004.",
+      name: t("howItWorks.steps.upload.title"),
+      text: t("howItWorks.steps.upload.description"),
     },
-    { name: "We handle the airline", text: "Our team pursues compensation with the airline on a no win, no fee basis." },
+    {
+      name: t("howItWorks.steps.assistant.title"),
+      text: t("howItWorks.steps.assistant.description"),
+    },
+    {
+      name: t("howItWorks.steps.airline.title"),
+      text: t("howItWorks.steps.airline.description"),
+    },
   ]);
 
   return (
@@ -79,68 +120,67 @@ export default function HomePage() {
       <JsonLd data={[buildFaqPageSchema(DEFAULT_FAQS), howToSchema]} />
       <Header />
 
-      {/* ─── Hero: rounded dark-blue card on white ─── */}
       <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-0 pb-0">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
-        <div className="relative rounded-[28px] xl:rounded-[38px] overflow-clip">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]">
-            <HeroBackgroundImage variant="home" priority />
-          </div>
-
-          <div
-            id="claim"
-            className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
-          >
-            <div className="flex justify-center mb-5">
-              <TrustpilotBadge priority />
+          <div className="relative rounded-[28px] xl:rounded-[38px] overflow-clip">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]">
+              <HeroBackgroundImage variant="home" priority />
             </div>
 
-            <h1 className="font-bold text-[28px] sm:text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.15] sm:leading-[1.2] mb-4 max-w-[760px] mx-auto">
-              Delayed or cancelled flight?<br />Claim up to £520 or €600
-            </h1>
-            <p className="text-white/80 text-base md:text-lg font-semibold mb-8 max-w-[640px] mx-auto">
-              UK261 and EC 261/2004 protect your rights. The most secure flight compensation platform on the market.
-            </p>
-
-            <HeroClaimForm />
-
-            <div className="flex flex-col items-start text-left sm:flex-row sm:items-center sm:justify-start gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
-              <div className="flex items-center gap-4 justify-start">
-                <img src="/assets/icons/lightning-charge.svg" alt="Fast and risk-free" aria-hidden="true" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
-                <div className="text-left">
-                  <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Fast &amp; risk-free</p>
-                  <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">No hidden fees</p>
-                </div>
+            <div
+              id="claim"
+              className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
+            >
+              <div className="flex justify-center mb-5">
+                <TrustpilotBadge />
               </div>
-              <div className="flex items-center gap-4 justify-start">
-                <img src="/assets/icons/headset.svg" alt="Human support" aria-hidden="true" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
-                <div className="text-left">
-                  <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Talk to us</p>
-                  <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">Human support available</p>
+
+              <h1 className="font-bold text-[28px] sm:text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.15] sm:leading-[1.2] mb-4 max-w-[760px] mx-auto">
+                {t("hero.title")}
+                <br />
+                {t("hero.titleLine2")}
+              </h1>
+              <p className="text-white/80 text-base md:text-lg font-semibold mb-8 max-w-[640px] mx-auto">
+                {t("hero.subtitle")}
+              </p>
+
+              <HeroClaimForm />
+
+              <div className="flex flex-col items-start text-left sm:flex-row sm:items-center sm:justify-center gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
+                <div className="flex items-center gap-4 justify-start">
+                  <img src="/assets/icons/lightning-charge.svg" alt="" aria-hidden="true" width={46} height={46} className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
+                  <div className="text-left">
+                    <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{t("hero.fastRiskFree")}</p>
+                    <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{t("hero.noHiddenFees")}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-4 justify-start">
-                <img src="/assets/icons/secured.svg" alt="Highest security" aria-hidden="true" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
-                <div className="text-left">
-                  <p className="text-white font-bold text-base xl:text-[17px] leading-snug">Highest security</p>
-                  <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">Your data is always protected</p>
+                <div className="flex items-center gap-4 justify-start">
+                  <img src="/assets/icons/headset.svg" alt="" aria-hidden="true" width={46} height={46} className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
+                  <div className="text-left">
+                    <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{t("hero.talkToUs")}</p>
+                    <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{t("hero.humanSupportAvailable")}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 justify-start">
+                  <img src="/assets/icons/secured.svg" alt="" aria-hidden="true" width={46} height={46} className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
+                  <div className="text-left">
+                    <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{t("hero.highestSecurity")}</p>
+                    <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{t("hero.dataProtected")}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </section>
 
-      {/* ─── Trust / Feature bar ─── */}
       <section className="pt-8 lg:pt-8 xl:pt-[60px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto">
-          {/* Mobile / tablet / laptop: 2×2 grid */}
           <div className="xl:hidden border-2 border-[#d5e0f9] rounded-[21px] p-4 md:p-5">
             <div className="grid grid-cols-2 gap-4 md:gap-5">
-              {TRUST_ITEMS.map((item) => (
+              {trustItems.map((item) => (
                 <div key={item.title} className="flex items-center gap-2 md:gap-3">
-                  <img src={item.icon} alt="" aria-hidden="true" width={40} height={40} className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 object-contain" />
+                  <img src={item.icon} alt="" aria-hidden="true" width={40} height={40} loading="lazy" className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 object-contain" />
                   <div className="min-w-0">
                     <p className="font-bold text-[#1f3664] text-sm md:text-base leading-[1.4]">{item.title}</p>
                     <p className="text-[#1f3664] text-xs md:text-sm leading-[1.5]">{item.sub}</p>
@@ -150,19 +190,19 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Desktop: horizontal row with SVG dividers */}
           <div className="relative rounded-[21px] overflow-hidden hidden xl:block">
             <img
               src="/assets/trust-bar-bg.svg"
               alt=""
               aria-hidden="true"
+              loading="lazy"
               className="absolute inset-0 w-full h-full pointer-events-none"
               style={{ objectFit: "fill" }}
             />
             <div className="relative flex items-center">
-              {TRUST_ITEMS.map((item) => (
+              {trustItems.map((item) => (
                 <div key={item.title} className="flex-1 flex items-center gap-3 px-6 py-[33px]">
-                  <img src={item.icon} alt="" aria-hidden="true" width={40} height={40} className="w-10 h-10 flex-shrink-0 object-contain" />
+                  <img src={item.icon} alt="" aria-hidden="true" width={40} height={40} loading="lazy" className="w-10 h-10 flex-shrink-0 object-contain" />
                   <div>
                     <p className="font-bold text-[#1f3664] text-[19px] leading-[1.4]">{item.title}</p>
                     <p className="text-[#1f3664] text-base leading-[1.7]">{item.sub}</p>
@@ -174,133 +214,112 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── What can you claim? — bento grid ─── */}
       <section className="pt-8 lg:pt-8 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
           <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-4 leading-[1.2]">
-            What can you{" "}
-            <span className="text-[#0060fe]">claim?</span>
+            {t("claimCards.title")}{" "}
+            <span className="text-[#0060fe]">{t("claimCards.titleAccent")}</span>
           </h2>
           <p className="text-[#1f3664] text-center text-base mb-6 lg:mb-6 xl:mb-12 max-w-[646px] mx-auto">
-            We help you get compensation for a wide range of flight problems.
+            {t("claimCards.subtitle")}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[729fr_374fr_374fr] gap-6 lg:gap-7 xl:gap-9">
             <div className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] min-h-[300px] lg:min-h-[340px] xl:min-h-[609px] flex flex-col items-start">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[21px]">
-                <img
+                <Image
                   src="/assets/icons/flight-delay-bg.png"
                   alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 size-full max-w-none object-cover pointer-events-none rounded-[21px]"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 729px"
+                  quality={60}
+                  loading="lazy"
+                  className="object-cover pointer-events-none rounded-[21px]"
                 />
               </div>
               <div className="relative z-10 flex flex-col flex-1 items-start w-full p-5 lg:p-6 xl:pt-[92px] xl:pl-[67px] xl:pr-8 xl:pb-[74px]">
                 <ClaimBentoIcon
                   src="/assets/icons/flight-delay-home.png"
-                  alt="Flight delay icon"
+                  alt={t("claimCards.flightDelay.iconAlt")}
                   {...CLAIM_BENTO_ICON_FRAMES.flightDelay}
                 />
                 <div className="mt-auto pt-4 xl:pt-0">
                   <h3 className="font-bold text-[#1f3664] text-xl lg:text-xl xl:text-[30px] xl:leading-[43px] mb-2 xl:mb-3">
-                    Flight delay
+                    {t("claimCards.flightDelay.title")}
                   </h3>
                   <p className="text-[#1f3664] text-sm lg:text-sm xl:text-[25px] xl:leading-[44px] xl:max-w-[482px]">
-                    If your flight arrived more than 3 hours late, you may be entitled to compensation of up to £520 or €600.
+                    {t("claimCards.flightDelay.description")}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
-              <ClaimBentoIcon
-                src="/assets/icons/flight-cancellation-home.png"
-                alt="Flight cancellation"
-                {...CLAIM_BENTO_ICON_FRAMES.flightCancellation}
-              />
-              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">Flight cancellation</h3>
-              <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
-                If your flight is cancelled with short notice, you may be entitled to compensation of up to £520 or €600.
-              </p>
-            </div>
-
-            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
-              <ClaimBentoIcon
-                src="/assets/icons/denied-boarding-home.png"
-                alt="Denied boarding"
-                {...CLAIM_BENTO_ICON_FRAMES.deniedBoarding}
-              />
-              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">Denied boarding</h3>
-              <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
-                If you were refused boarding against your will, you could claim up to £520 or €600.
-              </p>
-            </div>
-
-            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
-              <ClaimBentoIcon
-                src="/assets/icons/missed-connection-home.png"
-                alt="Missed connection"
-                {...CLAIM_BENTO_ICON_FRAMES.missedConnection}
-              />
-              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">Missed connection</h3>
-              <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
-                If you miss your connecting flight due to a delay, you may be entitled to compensation.
-              </p>
-            </div>
-
-            <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
-              <ClaimBentoIcon
-                src="/assets/icons/airline-strike-home.png"
-                alt="Airline strike"
-                {...CLAIM_BENTO_ICON_FRAMES.airlineStrike}
-              />
-              <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">Airline strike</h3>
-              <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
-                If your flight was disrupted by an airline strike, you may still be entitled to compensation.
-              </p>
-            </div>
+            {(
+              [
+                ["flightCancellation", "/assets/icons/flight-cancellation-home.png", CLAIM_BENTO_ICON_FRAMES.flightCancellation],
+                ["deniedBoarding", "/assets/icons/denied-boarding-home.png", CLAIM_BENTO_ICON_FRAMES.deniedBoarding],
+                ["missedConnection", "/assets/icons/missed-connection-home.png", CLAIM_BENTO_ICON_FRAMES.missedConnection],
+                ["airlineStrike", "/assets/icons/airline-strike-home.png", CLAIM_BENTO_ICON_FRAMES.airlineStrike],
+              ] as const
+            ).map(([cardKey, iconSrc, frame]) => (
+              <div key={cardKey} className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
+                <ClaimBentoIcon src={iconSrc} alt={t(`claimCards.${cardKey}.iconAlt`)} {...frame} />
+                <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">
+                  {t(`claimCards.${cardKey}.title`)}
+                </h3>
+                <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
+                  {t(`claimCards.${cardKey}.description`)}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ─── How it works ─── */}
       <section className="pt-8 lg:pt-8 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto text-center">
           <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
-            How it{" "}
-            <span className="text-[#005ffe]">works?</span>
+            {t("howItWorks.title")}{" "}
+            <span className="text-[#005ffe]">{t("howItWorks.titleAccent")}</span>
           </h2>
           <p className="text-[#1f3664] text-base mb-6 lg:mb-6 xl:mb-14 max-w-[968px] mx-auto">
-            Upload your boarding pass. Our assistant checks your claim. Our team handles the airline.
+            {t("howItWorks.subtitle")}
           </p>
 
           <HowItWorksSteps />
         </div>
       </section>
 
-      {/* ─── What is the compensation? ─── */}
       <section className="pt-8 lg:pt-8 xl:pt-[89px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto text-center">
           <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
-            What is the{" "}
-            <span className="text-[#005ffe]">compensation?</span>
+            {t("compensation.title")}{" "}
+            <span className="text-[#005ffe]">{t("compensation.titleAccent")}</span>
           </h2>
           <p className="text-[#1f3664] text-base mb-6 lg:mb-6 xl:mb-4 max-w-[968px] mx-auto">
-            For UK departures, UK261 sets fixed amounts in pounds. The amount depends on your flight distance.
+            {t("compensation.ukIntro")}
           </p>
 
-          <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-6">UK261 — UK flights</h3>
+          <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-6">{t("compensation.ukHeading")}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 xl:mb-14">
-            {UK261_TIERS.map((tier) => (
-              <CompensationTierCard key={tier.amount} {...tier} />
+            {ukTiers.map((tier) => (
+              <CompensationTierCard
+                key={tier.amount}
+                {...tier}
+                tierAlt={t("compensation.tierAlt", { amount: tier.amount })}
+              />
             ))}
           </div>
 
-          <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-2">EC 261/2004 — eligible EU flights</h3>
-          <p className="text-muted text-sm mb-6 max-w-[768px] mx-auto">{EC261_NOTE}</p>
+          <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-2">{t("compensation.ecHeading")}</h3>
+          <p className="text-muted text-sm mb-6 max-w-[768px] mx-auto">{tTiers("ec261Note")}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {EC261_TIERS.map((tier) => (
-              <CompensationTierCard key={tier.amount} {...tier} />
+            {ecTiers.map((tier) => (
+              <CompensationTierCard
+                key={tier.amount}
+                {...tier}
+                tierAlt={t("compensation.tierAlt", { amount: tier.amount })}
+              />
             ))}
           </div>
         </div>

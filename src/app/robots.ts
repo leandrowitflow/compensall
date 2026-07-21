@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/track/"],
+        disallow: ["/api/", "/*/track/"],
       },
       {
         userAgent: "GPTBot",
@@ -20,7 +20,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: ["OAI-SearchBot", "PerplexityBot", "Google-Extended", "ClaudeBot"],
         allow: "/",
-        disallow: ["/api/", "/track/"],
+        disallow: ["/api/", "/*/track/"],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

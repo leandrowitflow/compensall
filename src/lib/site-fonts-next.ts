@@ -2,9 +2,10 @@ import { Open_Sans, Poppins, Roboto } from "next/font/google";
 
 export const openSans = Open_Sans({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["400", "600", "700"],
   display: "swap",
   variable: "--font-open-sans",
+  preload: true,
 });
 
 export const roboto = Roboto({

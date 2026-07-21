@@ -13,6 +13,9 @@ export type OdooConfig = {
   utmSourceName: string;
   utmMediumName: string;
   utmCampaignName: string;
+  utmMediumIncompleteName: string;
+  incompleteTagName: string | null;
+  submittedTagName: string | null;
 };
 
 export function getOdooConfig(): OdooConfig | null {
@@ -38,6 +41,10 @@ export function getOdooConfig(): OdooConfig | null {
     utmSourceName: process.env.ODOO_UTM_SOURCE?.trim() || "Compensall Website",
     utmMediumName: process.env.ODOO_UTM_MEDIUM?.trim() || "Claim Form",
     utmCampaignName: process.env.ODOO_UTM_CAMPAIGN?.trim() || "Website Claim",
+    utmMediumIncompleteName:
+      process.env.ODOO_UTM_MEDIUM_INCOMPLETE?.trim() || "Claim Form - Incomplete",
+    incompleteTagName: process.env.ODOO_TAG_INCOMPLETE?.trim() || "Form Incomplete",
+    submittedTagName: process.env.ODOO_TAG_SUBMITTED?.trim() || "Claim Submitted",
   };
 }
 
@@ -142,6 +149,31 @@ async function resolveUtmId(
   return executeKw<number>(config, uid, model, "create", [{ name }]);
 }
 
+async function resolveTagId(
+  config: OdooConfig,
+  uid: number,
+  name: string | null | undefined,
+): Promise<number | undefined> {
+  if (!name) {
+    return undefined;
+  }
+
+  const matches = await executeKw<Array<{ id: number }>>(
+    config,
+    uid,
+    "crm.tag",
+    "search_read",
+    [[["name", "=", name]]],
+    { fields: ["id"], limit: 1 },
+  );
+
+  if (matches[0]?.id) {
+    return matches[0].id;
+  }
+
+  return executeKw<number>(config, uid, "crm.tag", "create", [{ name }]);
+}
+
 export type OdooCrmLeadSummary = {
   id: number;
   name: string;
@@ -177,7 +209,58 @@ async function readCrmLead(config: OdooConfig, uid: number, leadId: number): Pro
   };
 }
 
-export async function odooCreateCrmLead(values: Record<string, unknown>): Promise<OdooCrmLeadSummary> {
+type CreateLeadOptions = {
+  utmMediumName?: string;
+  tagIds?: number[];
+};
+
+export async function odooUpdateCrmLead(
+  leadId: number,
+  values: Record<string, unknown>,
+): Promise<OdooCrmLeadSummary> {
+  const config = getOdooConfig();
+  if (!config) {
+    throw new Error("Odoo is not configured.");
+  }
+
+  const uid = await authenticate(config);
+  await executeKw<boolean>(config, uid, "crm.lead", "write", [[leadId], values]);
+  return readCrmLead(config, uid, leadId);
+}
+
+export async function odooFindLeadBySessionId(sessionId: string): Promise<number | null> {
+  const config = getOdooConfig();
+  if (!config) {
+    return null;
+  }
+
+  const uid = await authenticate(config);
+  const matches = await executeKw<number[]>(
+    config,
+    uid,
+    "crm.lead",
+    "search",
+    [[["description", "ilike", `Session: ${sessionId}`]]],
+    { limit: 1, order: "id desc" },
+  );
+
+  return matches[0] ?? null;
+}
+
+export async function resolveOdooTagId(name: string | null | undefined): Promise<number | undefined> {
+  const config = getOdooConfig();
+  if (!config || !name) {
+    return undefined;
+  }
+
+  const uid = await authenticate(config);
+  return resolveTagId(config, uid, name);
+}
+
+export async function odooCreateCrmLead(
+  values: Record<string, unknown>,
+  options: CreateLeadOptions = {},
+): Promise<OdooCrmLeadSummary> {
   const config = getOdooConfig();
   if (!config) {
     throw new Error("Odoo is not configured.");
@@ -188,7 +271,7 @@ export async function odooCreateCrmLead(values: Record<string, unknown>): Promis
 
   const [sourceId, mediumId, campaignId] = await Promise.all([
     resolveUtmId(config, uid, "utm.source", config.utmSourceName),
-    resolveUtmId(config, uid, "utm.medium", config.utmMediumName),
+    resolveUtmId(config, uid, "utm.medium", options.utmMediumName ?? config.utmMediumName),
     resolveUtmId(config, uid, "utm.campaign", config.utmCampaignName),
   ]);
 
@@ -208,6 +291,9 @@ export async function odooCreateCrmLead(values: Record<string, unknown>): Promis
   }
   if (campaignId) {
     leadValues.campaign_id = campaignId;
+  }
+  if (options.tagIds && options.tagIds.length > 0) {
+    leadValues.tag_ids = [[6, 0, options.tagIds]];
   }
 
   const leadId = await executeKw<number>(config, uid, "crm.lead", "create", [leadValues]);

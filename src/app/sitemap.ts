@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
-import { blogPosts } from "@/lib/blog-posts";
+import { getBlogPosts } from "@/lib/blog";
 import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
-import { SITE_URL } from "@/lib/site-metadata";
+import { routing, type AppLocale } from "@/i18n/routing";
+import { localizedPath, SITE_URL } from "@/lib/site-metadata";
 
 const STATIC_ROUTES = [
   "",
@@ -19,36 +20,47 @@ const STATIC_ROUTES = [
   "/documents/privacy-data-consent",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const entries: MetadataRoute.Sitemap = [];
 
-  const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((path) => ({
-    url: `${SITE_URL}${path}`,
-    lastModified: now,
-    changeFrequency: path === "" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : 0.8,
-  }));
+  for (const locale of routing.locales) {
+    for (const path of STATIC_ROUTES) {
+      entries.push({
+        url: `${SITE_URL}${localizedPath(path, locale as AppLocale)}`,
+        lastModified: now,
+        changeFrequency: path === "" ? "weekly" : "monthly",
+        priority: path === "" ? 1 : 0.8,
+      });
+    }
 
-  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+    for (const post of await getBlogPosts(locale as AppLocale)) {
+      entries.push({
+        url: `${SITE_URL}${localizedPath(`/blog/${post.slug}`, locale as AppLocale)}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
 
-  const airlineEntries: MetadataRoute.Sitemap = airlinesCatalog.map((item) => ({
-    url: `${SITE_URL}/airlines/${item.id}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+    for (const item of airlinesCatalog) {
+      entries.push({
+        url: `${SITE_URL}${localizedPath(`/airlines/${item.id}`, locale as AppLocale)}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
 
-  const airportEntries: MetadataRoute.Sitemap = airportsCatalog.map((item) => ({
-    url: `${SITE_URL}/airports/${item.id}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
+    for (const item of airportsCatalog) {
+      entries.push({
+        url: `${SITE_URL}${localizedPath(`/airports/${item.id}`, locale as AppLocale)}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.6,
+      });
+    }
+  }
 
-  return [...staticEntries, ...blogEntries, ...airlineEntries, ...airportEntries];
+  return entries;
 }

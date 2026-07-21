@@ -210,6 +210,10 @@ export default function HeroClaimForm() {
     formData.append("documentSignatures", JSON.stringify(payload.documentSignatures));
     formData.append("userAgent", navigator.userAgent);
     formData.append("locale", locale);
+    if (payload.odooLeadId) {
+      formData.append("odooLeadId", String(payload.odooLeadId));
+    }
+    formData.append("formSessionId", payload.formSessionId);
 
     if (boardingPassFile) {
       formData.append("file", boardingPassFile);
@@ -279,7 +283,13 @@ export default function HeroClaimForm() {
                 onContinue={handleContinueToStep3}
               />
             ) : (
-              <Step3Panel flight={flight} onDelete={resetClaim} onSubmit={handleClaimSubmit} />
+              <Step3Panel
+                flight={flight}
+                entryMode={entryMode}
+                locale={locale}
+                onDelete={resetClaim}
+                onSubmit={handleClaimSubmit}
+              />
             )}
           </div>
         </div>

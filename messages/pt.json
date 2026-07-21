@@ -337,6 +337,18 @@
     "breadcrumb": "Cookies",
     "summary": "Como utilizamos cookies e como pode controlá-los."
   },
+  "privacyPolicy": {
+    "pageTitle": "Política de Privacidade",
+    "pageDescription": "Saiba como a Compensall recolhe, utiliza, armazena e protege os seus dados pessoais quando utiliza o nosso website e serviço de reclamação de compensação por voos.",
+    "breadcrumb": "Política de Privacidade",
+    "summary": "Como tratamos os seus dados pessoais no nosso website e serviço de reclamação."
+  },
+  "terms": {
+    "pageTitle": "Termos de Serviço",
+    "pageDescription": "Leia os Termos de Serviço para utilizar a Compensall, incluindo regras de submissão de pedidos, taxas, responsabilidades e lei aplicável.",
+    "breadcrumb": "Termos de Serviço",
+    "summary": "As regras para utilizar a Compensall e submeter um pedido de compensação por voo."
+  },
   "legal": {
     "breadcrumbPrices": "Preços"
   },
@@ -419,7 +431,7 @@
     "breadcrumb": "Preços",
     "summary": "Sem custos iniciais. Só cobramos uma taxa de sucesso quando recuperamos compensação para si.",
     "noWinNoFeeIntro": "Sem vitória, sem taxa:",
-    "noWinNoFeeBody": "Verificar a elegibilidade e utilizar o nosso site é gratuito. Se nos nomear para prosseguir a compensação, a nossa taxa aplica-se apenas quando o seu pedido for bem-sucedido, conforme estabelecido no nosso {noWinNoFeeAgreement}.",
+    "noWinNoFeeBody": "Verificar a elegibilidade e utilizar o nosso site é gratuito. Se nos nomear para prosseguir a compensação, a nossa taxa aplica-se apenas quando o seu pedido for bem-sucedido, conforme estabelecido no nosso <noWinNoFeeAgreement>Acordo Sem Vitória, Sem Taxa</noWinNoFeeAgreement>.",
     "noWinNoFeeAgreement": "Acordo Sem Vitória, Sem Taxa",
     "successFeeTitle": "Taxa de sucesso",
     "successFeeDescription": "Quando recuperamos compensação em seu nome, deduzimos uma taxa de sucesso antes de transferir o saldo para si. Recebe pelo menos 75% do montante recuperado antes de ajustes de IVA.",
@@ -438,7 +450,7 @@
     "titleLine2": "Sem vitória, sem taxa.",
     "subtitle": "O seu pedido é orientado por IA e apoiado por pessoas reais.",
     "subtitleLine2": "Rápido, seguro e simples desde o primeiro carregamento.",
-    "body": "A nossa taxa padrão só é cobrada se ganharmos compensação para si. A {brandName} trata do processo desde o carregamento do cartão de embarque até ao acompanhamento junto da companhia aérea, para que possa reclamar com confiança.",
+    "body": "A nossa taxa padrão só é cobrada se ganharmos compensação para si. A <brandName>Compensall</brandName> trata do processo desde o carregamento do cartão de embarque até ao acompanhamento junto da companhia aérea, para que possa reclamar com confiança.",
     "fastRiskFree": "Rápido e sem risco",
     "noHiddenFees": "Sem taxas ocultas",
     "talkToUs": "Fale connosco",
@@ -541,6 +553,49 @@
     "prices": {
       "title": "Preços e taxas",
       "description": "A Compensall trabalha numa base sem vitória sem taxa. Consulte a nossa estrutura de taxas de sucesso e os montantes de compensação UK261 e EC 261 que os passageiros podem receber."
+    },
+    "blog": {
+      "title": "Guias de compensação de voo e direitos dos passageiros",
+      "description": "Guias práticos sobre o EC 261/2004: atrasos, cancelamentos, embarque recusado, ligações perdidas e como reclamar até €600."
+    },
+    "cookies": {
+      "title": "Política de cookies",
+      "description": "Saiba como a Compensall utiliza cookies e tecnologias semelhantes e como pode gerir as suas preferências."
+    },
+    "privacyPolicy": {
+      "title": "Política de privacidade",
+      "description": "Saiba como a Compensall recolhe, utiliza, armazena e protege os seus dados pessoais quando utiliza o nosso site e serviço de compensação de voos."
+    },
+    "terms": {
+      "title": "Termos de serviço",
+      "description": "Leia os Termos de Serviço da Compensall, incluindo regras de submissão de pedidos, taxas, responsabilidades e lei aplicável."
+    },
+    "airlines": {
+      "title": "Guias de compensação por companhia aérea e aeroporto",
+      "description": "Encontre a sua companhia aérea ou aeroporto e verifique a elegibilidade para compensação ao abrigo do EU261. Guias para Ryanair, easyJet, British Airways e principais aeroportos europeus."
+    },
+    "authorityToAct": {
+      "title": "Procuração",
+      "description": "Procuração que autoriza a Compensall a prosseguir o seu pedido de compensação de voo ao abrigo do EC 261/2004."
+    },
+    "noWinNoFee": {
+      "title": "Acordo Sem Vitória, Sem Taxa",
+      "description": "Acordo Sem Vitória, Sem Taxa da Compensall. Só paga se recuperarmos com sucesso a sua compensação."
+    },
+    "privacyDataConsent": {
+      "title": "Consentimento de privacidade e dados",
+      "description": "Documento de consentimento de privacidade e dados da Compensall que explica como tratamos e protegemos os seus dados pessoais."
+    },
+    "track": {
+      "title": "Acompanhar o seu pedido",
+      "description": "Consulte o estado do seu pedido de compensação de voo Compensall utilizando a sua referência de acompanhamento."
     }
+  },
+  "blogPage": {
+    "title": "Blog",
+    "subtitle": "Guias práticos sobre direitos dos passageiros ao abrigo do EC 261/2004: atrasos, cancelamentos, embarque recusado e mais, para saber o que pode ter direito a receber antes de voar.",
+    "readArticle": "Ler artigo",
+    "backToBlog": "Voltar ao blog",
+    "englishOnlyNotice": "Este guia está atualmente disponível apenas em inglês."
   }
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,22 +7,26 @@ import PageHero from "@/components/PageHero";
 import CTABanner from "@/components/CTABanner";
 import BlogPostContent from "@/components/BlogPostContent";
 import JsonLd from "@/components/seo/JsonLd";
+import { Link } from "@/i18n/routing";
+import type { AppLocale } from "@/i18n/routing";
 import { parseBlogDisplayDate } from "@/lib/blog-date";
-import { blogPosts, blogPostsBySlug } from "@/lib/blog-posts";
-import { buildArticleMetadata } from "@/lib/site-metadata";
+import { getBlogPost, getBlogPosts } from "@/lib/blog";
+import { buildArticleMetadata, localizedPath } from "@/lib/site-metadata";
 import { buildArticleSchema, buildBreadcrumbSchema } from "@/lib/structured-data";
 
 type BlogPostPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const posts = await getBlogPosts("en");
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = blogPostsBySlug[slug];
+  const { locale, slug } = await params;
+  const appLocale = locale as AppLocale;
+  const post = await getBlogPost(slug, appLocale);
 
   if (!post) {
     return { title: "Article not found | Compensall" };
@@ -32,6 +36,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     title: post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
+    locale: locale as AppLocale,
     image: post.image,
     imageAlt: post.imageAlt,
     publishedTime: parseBlogDisplayDate(post.date),
@@ -39,25 +44,32 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const post = blogPostsBySlug[slug];
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+
+  const appLocale = locale as AppLocale;
+  const post = await getBlogPost(slug, appLocale);
 
   if (!post) {
     notFound();
   }
 
+  const t = await getTranslations("blogPage");
+  const tNav = await getTranslations("nav");
+  const blogPath = `/blog/${post.slug}`;
   const publishedIso = parseBlogDisplayDate(post.date);
+
   const articleSchema = buildArticleSchema({
     title: post.title,
     description: post.excerpt,
-    path: `/blog/${post.slug}`,
+    path: localizedPath(blogPath, appLocale),
     image: post.image,
     datePublished: publishedIso,
   });
   const breadcrumbSchema = buildBreadcrumbSchema([
-    { name: "Home", path: "/" },
-    { name: "Blog", path: "/blog" },
-    { name: post.title, path: `/blog/${post.slug}` },
+    { name: "Home", path: localizedPath("/", appLocale) },
+    { name: tNav("blog"), path: localizedPath("/blog", appLocale) },
+    { name: post.title, path: localizedPath(blogPath, appLocale) },
   ]);
 
   return (
@@ -74,15 +86,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               href="/blog"
               className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-sm mb-6 hover:opacity-80"
             >
-              ← Back to blog
+              ← {t("backToBlog")}
             </Link>
 
             <div className="rounded-[20px] overflow-hidden border-2 border-[#d5e0f9] mb-8">
-              <img
-                src={post.image}
-                alt={post.imageAlt}
-                className="w-full aspect-[16/9] object-cover"
-              />
+              <img src={post.image} alt={post.imageAlt} className="w-full aspect-[16/9] object-cover" />
             </div>
 
             <div className="flex items-center justify-between gap-4 mb-8 text-sm flex-wrap">
