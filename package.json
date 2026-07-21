@@ -12,7 +12,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:aeo": "npx tsx scripts/test-aeo.ts",
+    "test:geo": "npx tsx scripts/test-geo.ts",
+    "test:aeo-geo": "npx tsx scripts/test-geo.ts && npx tsx scripts/test-aeo.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.3",

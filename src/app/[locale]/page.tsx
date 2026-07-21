@@ -148,22 +148,22 @@ export default async function HomePage({ params }: HomePageProps) {
 
               <HeroClaimForm />
 
-              <div className="flex flex-col items-start text-left lg:flex-row lg:items-center lg:justify-center gap-8 lg:gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
-                <div className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
+              <div className="flex flex-col items-start text-left sm:flex-row sm:items-center sm:justify-center gap-8 sm:gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
+                <div className="flex items-center gap-4 justify-start sm:justify-center min-w-0 w-full sm:w-auto">
                   <img src="/assets/icons/lightning-charge.svg" alt="" aria-hidden="true" width={46} height={46} loading="lazy" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                   <div className="text-left min-w-0">
                     <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{t("hero.fastRiskFree")}</p>
                     <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{t("hero.noHiddenFees")}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
+                <div className="flex items-center gap-4 justify-start sm:justify-center min-w-0 w-full sm:w-auto">
                   <img src="/assets/icons/headset.svg" alt="" aria-hidden="true" width={46} height={46} loading="lazy" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                   <div className="text-left min-w-0">
                     <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{t("hero.talkToUs")}</p>
                     <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{t("hero.humanSupportAvailable")}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
+                <div className="flex items-center gap-4 justify-start sm:justify-center min-w-0 w-full sm:w-auto">
                   <img src="/assets/icons/secured.svg" alt="" aria-hidden="true" width={46} height={46} loading="lazy" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                   <div className="text-left min-w-0">
                     <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{t("hero.highestSecurity")}</p>
