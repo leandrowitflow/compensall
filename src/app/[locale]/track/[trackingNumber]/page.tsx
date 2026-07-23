@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import TrackClaimPage from "@/components/TrackClaimPage";
 import type { AppLocale } from "@/i18n/routing";
 import { normalizeTrackingNumber } from "@/lib/claim-tracking";
@@ -24,5 +26,12 @@ export async function generateMetadata({ params }: TrackPageProps): Promise<Meta
 
 export default async function TrackPage({ params }: TrackPageProps) {
   const { trackingNumber } = await params;
-  return <TrackClaimPage trackingNumber={normalizeTrackingNumber(trackingNumber)} />;
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+      <TrackClaimPage trackingNumber={normalizeTrackingNumber(trackingNumber)} />
+      <Footer />
+    </div>
+  );
 }

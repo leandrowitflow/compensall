@@ -10,7 +10,7 @@ type PageHeroProps = {
 
 export default function PageHero({ title, subtitle, priority = true }: PageHeroProps) {
   return (
-    <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-0 pb-0">
+    <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-4 md:pt-6 pb-0">
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
         <div className="relative rounded-[28px] xl:rounded-[38px] overflow-clip">
           <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]">
