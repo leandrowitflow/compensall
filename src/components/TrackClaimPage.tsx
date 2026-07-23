@@ -29,12 +29,12 @@ function StatusTimeline({ currentStatus }: { currentStatus: ClaimStatus }) {
   const currentIndex = CLAIM_STATUS_ORDER.indexOf(currentStatus);
 
   return (
-    <ol className="space-y-4">
+    <ol className="space-y-5">
       {CLAIM_STATUS_ORDER.map((status, index) => {
         const isComplete = index <= currentIndex;
         const isCurrent = index === currentIndex;
         return (
-          <li key={status} className="flex items-start gap-3">
+          <li key={status} className="flex items-start gap-3.5">
             <div
               className={`mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold ${
                 isComplete ? "bg-[#2669f3] text-white" : "border-2 border-[#d5e0f9] text-[#7b8094]"
@@ -42,12 +42,12 @@ function StatusTimeline({ currentStatus }: { currentStatus: ClaimStatus }) {
             >
               {index + 1}
             </div>
-            <div>
-              <p className={`font-bold ${isCurrent ? "text-[#2669f3]" : "text-[#1f3664]"}`}>
+            <div className="min-w-0 pt-0.5">
+              <p className={`font-bold leading-snug ${isCurrent ? "text-[#2669f3]" : "text-[#1f3664]"}`}>
                 {CLAIM_STATUS_LABELS[status]}
               </p>
               {isCurrent && (
-                <p className="text-[#7b8094] text-sm mt-1">
+                <p className="text-[#7b8094] text-sm mt-1.5 leading-relaxed">
                   {CLAIM_STATUS_MESSAGES[status]}
                 </p>
               )}
@@ -104,7 +104,7 @@ export default function TrackClaimPage({ trackingNumber }: { trackingNumber: str
   }, [trackingNumber]);
 
   return (
-    <main className="pb-16">
+    <main className="pb-16 md:pb-24">
       <PageHero
         title="Track your claim"
         subtitle={
@@ -114,13 +114,13 @@ export default function TrackClaimPage({ trackingNumber }: { trackingNumber: str
         }
       />
 
-      <section className="px-4 md:px-8 lg:px-8 xl:px-12 -mt-6">
-        <div className="max-w-[760px] mx-auto">
-          <div className="bg-white border border-[#d5e0f9] rounded-[24px] p-6 sm:p-8 shadow-sm">
+      <section className="relative z-10 px-4 md:px-8 lg:px-8 xl:px-12 -mt-8">
+        <div className="max-w-[960px] mx-auto">
+          <div className="bg-white border border-[#d5e0f9] rounded-[24px] p-8 sm:p-10 md:p-12 shadow-sm">
             {loading && <p className="text-[#1f3664]">Loading claim status…</p>}
 
             {!loading && error && (
-              <div className="text-center">
+              <div className="text-center py-4">
                 <p className="text-[#e82828] mb-4">{error}</p>
                 <Link href="/#claim" className="text-[#2669f3] font-bold hover:underline">
                   Start a new claim
@@ -129,30 +129,30 @@ export default function TrackClaimPage({ trackingNumber }: { trackingNumber: str
             )}
 
             {!loading && claim && (
-              <div className="grid gap-8 md:grid-cols-[1fr_1.1fr]">
+              <div className="grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
                 <div>
-                  <h2 className="font-bold text-[#1f3664] text-xl mb-4">Claim details</h2>
-                  <dl className="space-y-3 text-sm sm:text-base">
+                  <h2 className="font-bold text-[#1f3664] text-xl mb-6">Claim details</h2>
+                  <dl className="space-y-5 text-sm sm:text-base">
                     <div>
-                      <dt className="text-[#7b8094]">Passenger</dt>
-                      <dd className="font-semibold text-[#1f3664]">{claim.signedName}</dd>
+                      <dt className="text-[#7b8094] mb-1">Passenger</dt>
+                      <dd className="font-semibold text-[#1f3664] break-words">{claim.signedName}</dd>
                     </div>
                     <div>
-                      <dt className="text-[#7b8094]">Flight</dt>
+                      <dt className="text-[#7b8094] mb-1">Flight</dt>
                       <dd className="font-semibold text-[#1f3664]">{claim.flight.flight}</dd>
                     </div>
                     <div>
-                      <dt className="text-[#7b8094]">Route</dt>
+                      <dt className="text-[#7b8094] mb-1">Route</dt>
                       <dd className="font-semibold text-[#1f3664]">
                         {claim.flight.routeFrom} → {claim.flight.routeTo}
                       </dd>
                     </div>
                     <div>
-                      <dt className="text-[#7b8094]">Date</dt>
+                      <dt className="text-[#7b8094] mb-1">Date</dt>
                       <dd className="font-semibold text-[#1f3664]">{claim.flight.date}</dd>
                     </div>
                     <div>
-                      <dt className="text-[#7b8094]">Submitted</dt>
+                      <dt className="text-[#7b8094] mb-1">Submitted</dt>
                       <dd className="font-semibold text-[#1f3664]">
                         {new Date(claim.createdAt).toLocaleString()}
                       </dd>
@@ -161,7 +161,7 @@ export default function TrackClaimPage({ trackingNumber }: { trackingNumber: str
                 </div>
 
                 <div>
-                  <h2 className="font-bold text-[#1f3664] text-xl mb-4">Status</h2>
+                  <h2 className="font-bold text-[#1f3664] text-xl mb-6">Status</h2>
                   <StatusTimeline currentStatus={claim.status} />
                 </div>
               </div>
