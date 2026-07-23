@@ -8,7 +8,7 @@ type NavDropdownProps = {
   label: string;
   groups: NavMenuGroup[];
   columns?: 1 | 2 | 3;
-  align?: "start" | "end";
+  align?: "start" | "center" | "end";
 };
 
 function panelWidthClass(columns: 1 | 2 | 3): string {
@@ -75,7 +75,22 @@ export default function NavDropdown({
   }, [open]);
 
   const columnClass = gridClass(columns);
-  const panelAlignClass = align === "end" ? "right-0 left-auto" : "left-0";
+  let panelAlignClass: string;
+  switch (align) {
+    case "end":
+      panelAlignClass = "right-0 left-auto";
+      break;
+    case "center":
+      panelAlignClass = "left-1/2 right-auto -translate-x-1/2";
+      break;
+    case "start":
+      panelAlignClass = "left-0 right-auto";
+      break;
+    default: {
+      const _exhaustive: never = align;
+      panelAlignClass = _exhaustive;
+    }
+  }
 
   return (
     <div ref={rootRef} className="relative shrink-0">

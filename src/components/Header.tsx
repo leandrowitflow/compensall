@@ -99,7 +99,7 @@ export default function Header() {
               groups={knowYourRightsNav}
               columns={1}
             />
-            <NavDropdown label={tNav("airlinesShort")} groups={airlinesNav} columns={3} align="end" />
+            <NavDropdown label={tNav("airlinesShort")} groups={airlinesNav} columns={3} align="center" />
             {primaryNavLinks.slice(2).map((link) => (
               <Link
                 key={link.href}

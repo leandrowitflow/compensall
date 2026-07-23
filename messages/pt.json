@@ -598,6 +598,46 @@
       "description": "Consulte o estado do seu pedido de compensação de voo Compensall utilizando a sua referência de acompanhamento."
     }
   },
+  "trackPage": {
+    "title": "Acompanhar o seu pedido",
+    "reference": "Referência <tracking>{trackingNumber}</tracking>",
+    "loading": "A carregar o estado do pedido…",
+    "notFound": "Não foi possível encontrar este pedido.",
+    "invalidReference": "Formato de número de acompanhamento inválido.",
+    "errorGeneric": "Algo correu mal. Tente novamente.",
+    "startNewClaim": "Iniciar um novo pedido",
+    "claimDetails": "Detalhes do pedido",
+    "status": "Estado",
+    "fields": {
+      "passenger": "Passageiro",
+      "flight": "Voo",
+      "route": "Rota",
+      "date": "Data",
+      "submitted": "Submetido"
+    },
+    "statuses": {
+      "submitted": {
+        "label": "Submetido",
+        "message": "O seu pedido está na nossa fila. Vamos analisá-lo em breve."
+      },
+      "under_review": {
+        "label": "Em análise",
+        "message": "A nossa equipa está a analisar o seu pedido e a preparar os próximos passos."
+      },
+      "airline_contacted": {
+        "label": "Companhia contactada",
+        "message": "Contactámos a companhia aérea e estamos a aguardar a resposta."
+      },
+      "compensated": {
+        "label": "Compensado",
+        "message": "A compensação foi aceite. Mantê-lo-emos informado sobre o pagamento."
+      },
+      "closed": {
+        "label": "Encerrado",
+        "message": "Este pedido está encerrado. Contacte-nos se precisar de mais alguma coisa."
+      }
+    }
+  },
   "blogPage": {
     "title": "Blog",
     "subtitle": "Guias práticos sobre direitos dos passageiros ao abrigo do EC 261/2004: atrasos, cancelamentos, embarque recusado e mais, para saber o que pode ter direito a receber antes de voar.",

@@ -598,6 +598,46 @@
       "description": "Check the status of your Compensall flight compensation claim using your tracking reference."
     }
   },
+  "trackPage": {
+    "title": "Track your claim",
+    "reference": "Reference <tracking>{trackingNumber}</tracking>",
+    "loading": "Loading claim status…",
+    "notFound": "Could not find this claim.",
+    "invalidReference": "Invalid tracking number format.",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "startNewClaim": "Start a new claim",
+    "claimDetails": "Claim details",
+    "status": "Status",
+    "fields": {
+      "passenger": "Passenger",
+      "flight": "Flight",
+      "route": "Route",
+      "date": "Date",
+      "submitted": "Submitted"
+    },
+    "statuses": {
+      "submitted": {
+        "label": "Submitted",
+        "message": "Your claim is in our queue. We will review it shortly."
+      },
+      "under_review": {
+        "label": "Under review",
+        "message": "Our team is reviewing your claim and preparing the next steps."
+      },
+      "airline_contacted": {
+        "label": "Airline contacted",
+        "message": "We’ve contacted the airline and are waiting for their response."
+      },
+      "compensated": {
+        "label": "Compensated",
+        "message": "Compensation has been accepted. We’ll keep you updated on payment."
+      },
+      "closed": {
+        "label": "Closed",
+        "message": "This claim is closed. Contact us if you need anything else."
+      }
+    }
+  },
   "blogPage": {
     "title": "Blog",
     "subtitle": "Practical guides on EC 261/2004 passenger rights: delays, cancellations, denied boarding, and more, so you know what you may be owed before you fly.",

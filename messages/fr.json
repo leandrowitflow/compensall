@@ -598,6 +598,46 @@
       "description": "Consultez l'état de votre réclamation d'indemnisation de vol Compensall à l'aide de votre référence de suivi."
     }
   },
+  "trackPage": {
+    "title": "Suivre votre réclamation",
+    "reference": "Référence <tracking>{trackingNumber}</tracking>",
+    "loading": "Chargement de l'état de la réclamation…",
+    "notFound": "Impossible de trouver cette réclamation.",
+    "invalidReference": "Format de numéro de suivi invalide.",
+    "errorGeneric": "Une erreur s'est produite. Veuillez réessayer.",
+    "startNewClaim": "Démarrer une nouvelle réclamation",
+    "claimDetails": "Détails de la réclamation",
+    "status": "Statut",
+    "fields": {
+      "passenger": "Passager",
+      "flight": "Vol",
+      "route": "Itinéraire",
+      "date": "Date",
+      "submitted": "Soumis"
+    },
+    "statuses": {
+      "submitted": {
+        "label": "Soumis",
+        "message": "Votre réclamation est dans notre file d'attente. Nous l'examinerons sous peu."
+      },
+      "under_review": {
+        "label": "En cours d'examen",
+        "message": "Notre équipe examine votre réclamation et prépare les prochaines étapes."
+      },
+      "airline_contacted": {
+        "label": "Compagnie contactée",
+        "message": "Nous avons contacté la compagnie aérienne et attendons leur réponse."
+      },
+      "compensated": {
+        "label": "Indemnisé",
+        "message": "L'indemnisation a été acceptée. Nous vous tiendrons informé du paiement."
+      },
+      "closed": {
+        "label": "Clôturé",
+        "message": "Cette réclamation est clôturée. Contactez-nous si vous avez besoin d'autre chose."
+      }
+    }
+  },
   "blogPage": {
     "title": "Blog",
     "subtitle": "Guides pratiques sur les droits des passagers au titre du CE 261/2004 : retards, annulations, refus d'embarquement et plus, pour savoir ce que vous pourriez recevoir avant de voler.",
