@@ -1,0 +1,187 @@
+/**
+ * Approximate airport coordinates (WGS84) for great-circle distance.
+ * Coverage: UK/EU hubs + common Compensall catalog / boarding-pass routes.
+ */
+export type AirportCoords = { lat: number; lon: number };
+
+const AIRPORT_COORDINATES: Record<string, AirportCoords> = {
+  // United Kingdom
+  LHR: { lat: 51.47, lon: -0.4619 },
+  LGW: { lat: 51.1537, lon: -0.1821 },
+  STN: { lat: 51.885, lon: 0.235 },
+  LTN: { lat: 51.8747, lon: -0.3683 },
+  LCY: { lat: 51.5053, lon: 0.0553 },
+  MAN: { lat: 53.3537, lon: -2.275 },
+  BHX: { lat: 52.4539, lon: -1.748 },
+  EDI: { lat: 55.95, lon: -3.3725 },
+  GLA: { lat: 55.8719, lon: -4.4331 },
+  BRS: { lat: 51.3827, lon: -2.7191 },
+  NCL: { lat: 55.0375, lon: -1.6917 },
+  LBA: { lat: 53.8659, lon: -1.6606 },
+  EMA: { lat: 52.8311, lon: -1.3281 },
+  LPL: { lat: 53.3336, lon: -2.8497 },
+  BFS: { lat: 54.6575, lon: -6.2158 },
+  BHD: { lat: 54.6181, lon: -5.8725 },
+  ABZ: { lat: 57.2019, lon: -2.1978 },
+  INV: { lat: 57.5425, lon: -4.0475 },
+  SOU: { lat: 50.9503, lon: -1.3568 },
+  EXT: { lat: 50.7344, lon: -3.4139 },
+  CWL: { lat: 51.3967, lon: -3.3433 },
+  DSA: { lat: 53.4805, lon: -1.0107 },
+  HUY: { lat: 53.5744, lon: -0.3508 },
+  NQY: { lat: 50.4406, lon: -4.9954 },
+  MME: { lat: 54.5092, lon: -1.4294 },
+  BOH: { lat: 50.78, lon: -1.8425 },
+
+  // Ireland
+  DUB: { lat: 53.4213, lon: -6.2701 },
+  ORK: { lat: 51.8413, lon: -8.4911 },
+  SNN: { lat: 52.702, lon: -8.9248 },
+
+  // Portugal
+  LIS: { lat: 38.7813, lon: -9.1359 },
+  OPO: { lat: 41.2481, lon: -8.6814 },
+  FAO: { lat: 37.0144, lon: -7.9659 },
+  FNC: { lat: 32.6979, lon: -16.7745 },
+  PDL: { lat: 37.7412, lon: -25.6979 },
+
+  // Spain
+  MAD: { lat: 40.4936, lon: -3.5668 },
+  BCN: { lat: 41.2971, lon: 2.0785 },
+  AGP: { lat: 36.6749, lon: -4.4991 },
+  PMI: { lat: 39.5517, lon: 2.7388 },
+  ALC: { lat: 38.2822, lon: -0.5582 },
+  VLC: { lat: 39.4893, lon: -0.4816 },
+  SVQ: { lat: 37.418, lon: -5.8931 },
+  BIO: { lat: 43.3011, lon: -2.9106 },
+  TFN: { lat: 28.4827, lon: -16.3415 },
+  TFS: { lat: 28.0445, lon: -16.5725 },
+  LPA: { lat: 27.9319, lon: -15.3866 },
+  ACE: { lat: 28.9455, lon: -13.6052 },
+  IBZ: { lat: 38.8729, lon: 1.3731 },
+  MAH: { lat: 39.8626, lon: 4.2186 },
+
+  // France
+  CDG: { lat: 49.0097, lon: 2.5479 },
+  ORY: { lat: 48.7253, lon: 2.3594 },
+  NCE: { lat: 43.6584, lon: 7.2159 },
+  LYS: { lat: 45.7256, lon: 5.0811 },
+  MRS: { lat: 43.4393, lon: 5.2214 },
+  TLS: { lat: 43.6291, lon: 1.3638 },
+  BOD: { lat: 44.8283, lon: -0.7156 },
+  NTE: { lat: 47.1532, lon: -1.6107 },
+  BSL: { lat: 47.59, lon: 7.5292 },
+
+  // Germany
+  FRA: { lat: 50.0379, lon: 8.5622 },
+  MUC: { lat: 48.3538, lon: 11.7861 },
+  BER: { lat: 52.3667, lon: 13.5033 },
+  DUS: { lat: 51.2895, lon: 6.7668 },
+  HAM: { lat: 53.6304, lon: 9.9882 },
+  CGN: { lat: 50.8659, lon: 7.1427 },
+  STR: { lat: 48.6899, lon: 9.222 },
+  HAJ: { lat: 52.4605, lon: 9.685 },
+
+  // Italy
+  FCO: { lat: 41.8003, lon: 12.2389 },
+  CIA: { lat: 41.7994, lon: 12.5949 },
+  MXP: { lat: 45.6306, lon: 8.7281 },
+  LIN: { lat: 45.4451, lon: 9.2767 },
+  BGY: { lat: 45.6739, lon: 9.7042 },
+  VCE: { lat: 45.5053, lon: 12.3519 },
+  NAP: { lat: 40.886, lon: 14.2908 },
+  BLQ: { lat: 44.5354, lon: 11.2887 },
+  PSA: { lat: 43.6839, lon: 10.3927 },
+  CTA: { lat: 37.4668, lon: 15.0664 },
+  PMO: { lat: 38.176, lon: 13.091 },
+
+  // Benelux / Nordics / Central Europe
+  AMS: { lat: 52.3105, lon: 4.7683 },
+  BRU: { lat: 50.9014, lon: 4.4844 },
+  CRL: { lat: 50.4592, lon: 4.4538 },
+  CPH: { lat: 55.618, lon: 12.656 },
+  OSL: { lat: 60.1939, lon: 11.1004 },
+  ARN: { lat: 59.6519, lon: 17.9186 },
+  GOT: { lat: 57.6628, lon: 12.2798 },
+  HEL: { lat: 60.3172, lon: 24.9633 },
+  VIE: { lat: 48.1103, lon: 16.5697 },
+  ZRH: { lat: 47.4582, lon: 8.5555 },
+  GVA: { lat: 46.2381, lon: 6.1089 },
+  PRG: { lat: 50.1008, lon: 14.26 },
+  BUD: { lat: 47.4298, lon: 19.2611 },
+  WAW: { lat: 52.1657, lon: 20.9671 },
+  KRK: { lat: 50.0777, lon: 19.7848 },
+  GDN: { lat: 54.3776, lon: 18.4662 },
+  WRO: { lat: 51.1027, lon: 16.8858 },
+  OTP: { lat: 44.5711, lon: 26.085 },
+  ATH: { lat: 37.9364, lon: 23.9445 },
+  SKG: { lat: 40.5197, lon: 22.9709 },
+  LCA: { lat: 34.8751, lon: 33.6249 },
+  MLA: { lat: 35.8575, lon: 14.4775 },
+  RIX: { lat: 56.9236, lon: 23.9711 },
+  TLL: { lat: 59.4133, lon: 24.8328 },
+  VNO: { lat: 54.6341, lon: 25.2858 },
+  SOF: { lat: 42.6952, lon: 23.4062 },
+  ZAG: { lat: 45.7429, lon: 16.0688 },
+  LJU: { lat: 46.2237, lon: 14.4576 },
+  BEG: { lat: 44.8184, lon: 20.3091 },
+  SJJ: { lat: 43.8246, lon: 18.3315 },
+  TIA: { lat: 41.4147, lon: 19.7206 },
+  SKP: { lat: 41.9616, lon: 21.6214 },
+  KEF: { lat: 63.985, lon: -22.6056 },
+  AYT: { lat: 36.8987, lon: 30.8005 },
+  IST: { lat: 41.2753, lon: 28.7519 },
+  SAW: { lat: 40.8986, lon: 29.3092 },
+  DXB: { lat: 25.2532, lon: 55.3657 },
+  AUH: { lat: 24.433, lon: 54.6511 },
+  DOH: { lat: 25.2731, lon: 51.6081 },
+  JFK: { lat: 40.6413, lon: -73.7781 },
+  EWR: { lat: 40.6895, lon: -74.1745 },
+  BOS: { lat: 42.3656, lon: -71.0096 },
+  MIA: { lat: 25.7959, lon: -80.287 },
+  LAX: { lat: 33.9416, lon: -118.4085 },
+  ORD: { lat: 41.9742, lon: -87.9073 },
+  YYZ: { lat: 43.6777, lon: -79.6248 },
+};
+
+/** UK (and Crown Dependency) departure airports → UK261. */
+const UK261_DEPARTURE_IATAS = new Set([
+  "LHR",
+  "LGW",
+  "STN",
+  "LTN",
+  "LCY",
+  "MAN",
+  "BHX",
+  "EDI",
+  "GLA",
+  "BRS",
+  "NCL",
+  "LBA",
+  "EMA",
+  "LPL",
+  "BFS",
+  "BHD",
+  "ABZ",
+  "INV",
+  "SOU",
+  "EXT",
+  "CWL",
+  "DSA",
+  "HUY",
+  "NQY",
+  "MME",
+  "BOH",
+  "JER",
+  "GCI",
+  "IOM",
+]);
+
+export function getAirportCoordinates(iata: string): AirportCoords | null {
+  const code = iata.trim().toUpperCase();
+  return AIRPORT_COORDINATES[code] ?? null;
+}
+
+export function isUk261Departure(iata: string): boolean {
+  return UK261_DEPARTURE_IATAS.has(iata.trim().toUpperCase());
+}

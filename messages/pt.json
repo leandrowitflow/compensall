@@ -215,6 +215,12 @@
         "arrivalPlaceholder": "ex. Roma (FCO)"
       }
     },
+    "compensationEstimate": {
+      "label": "Compensação estimada",
+      "upTo": "Até {amount}",
+      "detail": "Com base em {regulation} para uma rota de cerca de {distance}.",
+      "disclaimer": "Valor indicativo. A elegibilidade final depende da duração do atraso, da responsabilidade da companhia aérea e de circunstâncias extraordinárias."
+    },
     "step3": {
       "claimReady": "O seu pedido está pronto.",
       "confirmContact": "Confirme os seus dados de contacto.",
@@ -613,8 +619,12 @@
       "flight": "Voo",
       "route": "Rota",
       "date": "Data",
-      "submitted": "Submetido"
+      "submitted": "Submetido",
+      "estimate": "Compensação estimada"
     },
+    "estimateUpTo": "Até {amount}",
+    "estimateDetail": "Com base em {regulation} para uma rota de cerca de {distance}.",
+    "estimateDisclaimer": "Valor indicativo. A elegibilidade final depende da duração do atraso, da responsabilidade da companhia aérea e de circunstâncias extraordinárias.",
     "statuses": {
       "submitted": {
         "label": "Submetido",

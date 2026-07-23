@@ -1,6 +1,6 @@
 # Odoo Helpdesk → Compensall claim status webhook
 
-When a Helpdesk ticket stage changes, Odoo should POST to Compensall so the track page timeline updates and the client receives an email.
+When a Helpdesk ticket stage changes, Odoo should POST to Compensall so the track page timeline updates. Client notification emails stay in Helpdesk.
 
 ## Endpoint
 
@@ -56,6 +56,6 @@ ODOO_WEBHOOK_SECRET=replace-with-a-long-random-secret
 ## Behaviour
 
 - Same stage again → `changed: false`, no email
-- Mapped stage change → updates Supabase claim status + sends client status email with track link
+- Mapped stage change → updates Supabase claim status for the track page (no client email — Helpdesk already notifies)
 - Unknown stage → HTTP 422
 - Bad secret → HTTP 401

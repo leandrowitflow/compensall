@@ -7,6 +7,7 @@ import { generateTrackingNumber } from "@/lib/claim-tracking";
 import { sendClaimEmails } from "@/lib/send-claim-email";
 import { syncClaimCaseToOdoo } from "@/lib/odoo-crm-lead";
 import { normalizeFlightData, type ClaimRecord } from "@/lib/claim-types";
+import { withCompensationEstimate } from "@/lib/compensation-estimate";
 import { dataUrlToBase64, getClientIp, hasSignatureInk, hashSignature } from "@/lib/signature-utils";
 import { verifyBoardingPassClaim } from "@/lib/verify-boarding-pass";
 
@@ -169,7 +170,7 @@ export async function POST(request: Request) {
       return Response.json({ error: "Boarding pass file is required for upload claims." }, { status: 400 });
     }
 
-    const flight = normalizeFlightData(flightResult.data);
+    const flight = withCompensationEstimate(normalizeFlightData(flightResult.data));
     const verification = await verifyBoardingPassClaim(
       flight,
       boardingPassBuffer,

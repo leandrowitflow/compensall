@@ -4,7 +4,12 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import PageHero from "@/components/PageHero";
 import { Link } from "@/i18n/routing";
-import { CLAIM_STATUS_ORDER, type ClaimStatus } from "@/lib/claim-types";
+import {
+  CLAIM_STATUS_ORDER,
+  type ClaimStatus,
+  type CompensationEstimate,
+} from "@/lib/claim-types";
+import { formatEstimateDistance } from "@/lib/compensation-estimate";
 
 type TrackResponse = {
   trackingNumber: string;
@@ -16,6 +21,7 @@ type TrackResponse = {
     date: string;
     status: string;
   };
+  compensationEstimate: CompensationEstimate | null;
   signedName: string;
   verificationResult: string;
   createdAt: string;
@@ -161,6 +167,25 @@ export default function TrackClaimPage({ trackingNumber }: { trackingNumber: str
                         {new Date(claim.createdAt).toLocaleString(locale)}
                       </dd>
                     </div>
+                    {claim.compensationEstimate && (
+                      <div className="rounded-[14px] border border-[#d5e0f9] bg-[#f5f8ff] px-4 py-4">
+                        <dt className="text-xs font-bold uppercase tracking-wide text-[#2669f3] mb-1">
+                          {t("fields.estimate")}
+                        </dt>
+                        <dd>
+                          <p className="font-bold text-[#1f3664] text-2xl leading-none mb-2">
+                            {t("estimateUpTo", { amount: claim.compensationEstimate.amountLabel })}
+                          </p>
+                          <p className="text-[#5a6d8f] text-sm leading-relaxed">
+                            {t("estimateDetail", {
+                              regulation: claim.compensationEstimate.regulation,
+                              distance: formatEstimateDistance(claim.compensationEstimate.distanceKm),
+                            })}
+                          </p>
+                          <p className="text-[#7b8094] text-xs leading-relaxed mt-2">{t("estimateDisclaimer")}</p>
+                        </dd>
+                      </div>
+                    )}
                   </dl>
                 </div>
 

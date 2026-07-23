@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import ClaimUploadPreview from "@/components/claim/ClaimUploadPreview";
+import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
 import type { ClaimEntryMode, ClaimFlightData, ClaimUploadMeta } from "@/lib/claim-types";
 
 type ClaimSidebarProps = {
@@ -72,6 +73,13 @@ export default function ClaimSidebar({ entryMode, upload, flight }: ClaimSidebar
             </div>
           ))}
         </div>
+
+        <CompensationEstimateBanner
+          routeFrom={flight.routeFrom}
+          routeTo={flight.routeTo}
+          estimate={flight.compensationEstimate}
+          className="mb-5"
+        />
 
         <div className="bg-[#f0f3fe] rounded-2xl p-4 mt-auto">
           <div className="flex gap-3">

@@ -215,6 +215,12 @@
         "arrivalPlaceholder": "ex. Rome (FCO)"
       }
     },
+    "compensationEstimate": {
+      "label": "Indemnisation estimée",
+      "upTo": "Jusqu'à {amount}",
+      "detail": "Selon {regulation} pour un trajet d'environ {distance}.",
+      "disclaimer": "Indicatif uniquement. L'éligibilité finale dépend de la durée du retard, de la responsabilité de la compagnie et des circonstances extraordinaires."
+    },
     "step3": {
       "claimReady": "Votre réclamation est prête.",
       "confirmContact": "Confirmez vos coordonnées.",
@@ -613,8 +619,12 @@
       "flight": "Vol",
       "route": "Itinéraire",
       "date": "Date",
-      "submitted": "Soumis"
+      "submitted": "Soumis",
+      "estimate": "Indemnisation estimée"
     },
+    "estimateUpTo": "Jusqu'à {amount}",
+    "estimateDetail": "Selon {regulation} pour un trajet d'environ {distance}.",
+    "estimateDisclaimer": "Indicatif uniquement. L'éligibilité finale dépend de la durée du retard, de la responsabilité de la compagnie et des circonstances extraordinaires.",
     "statuses": {
       "submitted": {
         "label": "Soumis",

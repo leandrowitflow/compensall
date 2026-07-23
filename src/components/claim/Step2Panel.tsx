@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
+import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
 import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
 import { InfoBoardRow } from "@/components/claim/ClaimSidebar";
 import { ACTION_BTN } from "@/components/claim/claim-ui";
@@ -79,6 +80,13 @@ export default function Step2Panel({
           <InfoBoardRow icon="/assets/claim/claim-calendar.svg" label={tStep2("date")} value={flight.date || tCommon("notApplicable")} />
         </div>
       )}
+
+      <CompensationEstimateBanner
+        routeFrom={flight.routeFrom}
+        routeTo={flight.routeTo}
+        estimate={flight.compensationEstimate}
+        className="mb-4"
+      />
 
       <div className="bg-[#f0f3fe] rounded-[13px] px-4 py-4 mb-4 max-w-sm">
         <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">

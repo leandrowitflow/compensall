@@ -21,6 +21,17 @@ export type ClaimVerification = {
   }>;
 };
 
+export type CompensationEstimate = {
+  distanceKm: number;
+  amount: number;
+  amountLabel: string;
+  currency: "GBP" | "EUR";
+  regulation: "UK261" | "EC261";
+  band: "short" | "medium" | "long";
+  fromIata: string;
+  toIata: string;
+};
+
 export type ClaimFlightData = {
   passenger: string;
   flight: string;
@@ -29,6 +40,8 @@ export type ClaimFlightData = {
   date: string;
   status: FlightStatus;
   delay: string;
+  /** Distance-based UK261 / EC261 estimate; stored for tracking + emails. */
+  compensationEstimate?: CompensationEstimate | null;
 };
 
 export type ClaimDocumentSignature = {
@@ -117,6 +130,48 @@ export function formatFileSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+function normalizeCompensationEstimate(
+  value: ClaimFlightData["compensationEstimate"],
+): CompensationEstimate | null {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+
+  const amount = Number(value.amount);
+  const distanceKm = Number(value.distanceKm);
+  if (!Number.isFinite(amount) || !Number.isFinite(distanceKm)) {
+    return null;
+  }
+
+  if (value.currency !== "GBP" && value.currency !== "EUR") {
+    return null;
+  }
+  if (value.regulation !== "UK261" && value.regulation !== "EC261") {
+    return null;
+  }
+  if (value.band !== "short" && value.band !== "medium" && value.band !== "long") {
+    return null;
+  }
+
+  const amountLabel = typeof value.amountLabel === "string" ? value.amountLabel.trim() : "";
+  const fromIata = typeof value.fromIata === "string" ? value.fromIata.trim().toUpperCase() : "";
+  const toIata = typeof value.toIata === "string" ? value.toIata.trim().toUpperCase() : "";
+  if (!amountLabel || fromIata.length !== 3 || toIata.length !== 3) {
+    return null;
+  }
+
+  return {
+    distanceKm: Math.round(distanceKm),
+    amount,
+    amountLabel,
+    currency: value.currency,
+    regulation: value.regulation,
+    band: value.band,
+    fromIata,
+    toIata,
+  };
+}
+
 export function normalizeFlightData(
   partial: Partial<ClaimFlightData> | null | undefined,
 ): ClaimFlightData {
@@ -128,5 +183,6 @@ export function normalizeFlightData(
     date: partial?.date?.trim() || "",
     status: partial?.status ?? "Unknown",
     delay: partial?.delay?.trim() || "",
+    compensationEstimate: normalizeCompensationEstimate(partial?.compensationEstimate),
   };
 }

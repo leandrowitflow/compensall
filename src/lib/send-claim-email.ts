@@ -7,6 +7,10 @@ import type {
 import { CLAIM_STATUS_LABELS, CLAIM_STATUS_MESSAGES } from "@/lib/claim-types";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
 import { buildSignedPowerOfAttorneyAttachment } from "@/lib/build-signed-poa-html";
+import {
+  estimateCompensationForFlight,
+  formatEstimateDistance,
+} from "@/lib/compensation-estimate";
 import type { OdooCrmLeadSummary } from "@/lib/odoo-client";
 
 type ClaimEmailPayload = {
@@ -126,6 +130,8 @@ function detailRows(rows: Array<[string, string | null | undefined]>): string {
 }
 
 function flightSummaryTable(flight: ClaimFlightData): string {
+  const estimate = estimateCompensationForFlight(flight);
+
   return `
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
       ${detailRows([
@@ -135,7 +141,41 @@ function flightSummaryTable(flight: ClaimFlightData): string {
         ["Date", flight.date],
         ["Status", flight.status],
         ["Delay", flight.delay || null],
+        [
+          "Estimated compensation",
+          estimate
+            ? `Up to ${estimate.amountLabel} (${estimate.regulation}, ~${formatEstimateDistance(estimate.distanceKm)})`
+            : null,
+        ],
       ])}
+    </table>
+  `;
+}
+
+function compensationEstimateCard(flight: ClaimFlightData): string {
+  const estimate = estimateCompensationForFlight(flight);
+  if (!estimate) {
+    return "";
+  }
+
+  return `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 0 18px 0;background:${BRAND.soft};border:1px solid ${BRAND.border};border-radius:14px;">
+      <tr>
+        <td style="padding:20px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${BRAND.blue};margin-bottom:8px;">
+            Estimated compensation
+          </div>
+          <div style="font-size:26px;line-height:1.2;font-weight:700;color:${BRAND.navy};margin-bottom:8px;">
+            Up to ${escapeHtml(estimate.amountLabel)}
+          </div>
+          <div style="font-size:14px;line-height:1.5;color:${BRAND.muted};">
+            Based on ${escapeHtml(estimate.regulation)} for a route of about ${escapeHtml(formatEstimateDistance(estimate.distanceKm))}.
+          </div>
+          <div style="font-size:12px;line-height:1.5;color:${BRAND.muted};margin-top:10px;">
+            Indicative only. Final eligibility depends on delay length, airline responsibility, and extraordinary circumstances.
+          </div>
+        </td>
+      </tr>
     </table>
   `;
 }
@@ -329,6 +369,7 @@ export function buildUserHtml(
       </tr>
     </table>
     ${sectionCard("Your flight", flightSummaryTable(payload.flight))}
+    ${compensationEstimateCard(payload.flight)}
     <div style="text-align:center;margin:8px 0 6px 0;">
       ${ctaButton("Track your claim", trackUrl)}
     </div>
@@ -387,6 +428,7 @@ export function buildStatusUpdateHtml(options: {
         </td>
       </tr>
     </table>
+    ${compensationEstimateCard(options.flight)}
     <div style="text-align:center;margin:8px 0 6px 0;">
       ${ctaButton("Track your claim", options.trackUrl)}
     </div>

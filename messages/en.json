@@ -215,6 +215,12 @@
         "arrivalPlaceholder": "e.g. Rome (FCO)"
       }
     },
+    "compensationEstimate": {
+      "label": "Estimated compensation",
+      "upTo": "Up to {amount}",
+      "detail": "Based on {regulation} for a route of about {distance}.",
+      "disclaimer": "Indicative only. Final eligibility depends on delay length, airline responsibility, and extraordinary circumstances."
+    },
     "step3": {
       "claimReady": "Your claim is ready.",
       "confirmContact": "Confirm your contact details.",
@@ -613,8 +619,12 @@
       "flight": "Flight",
       "route": "Route",
       "date": "Date",
-      "submitted": "Submitted"
+      "submitted": "Submitted",
+      "estimate": "Estimated compensation"
     },
+    "estimateUpTo": "Up to {amount}",
+    "estimateDetail": "Based on {regulation} for a route of about {distance}.",
+    "estimateDisclaimer": "Indicative only. Final eligibility depends on delay length, airline responsibility, and extraordinary circumstances.",
     "statuses": {
       "submitted": {
         "label": "Submitted",

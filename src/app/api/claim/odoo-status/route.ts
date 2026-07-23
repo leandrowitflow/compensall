@@ -6,7 +6,6 @@ import {
 } from "@/lib/claim-store";
 import { isValidTrackingNumber, normalizeTrackingNumber } from "@/lib/claim-tracking";
 import { mapOdooHelpdeskStageToClaimStatus } from "@/lib/odoo-stage-map";
-import { sendClaimStatusEmail } from "@/lib/send-claim-email";
 
 const payloadSchema = z
   .object({
@@ -21,14 +20,6 @@ const payloadSchema = z
 
 function getWebhookSecret(): string | null {
   return process.env.ODOO_WEBHOOK_SECRET?.trim() || null;
-}
-
-function getSiteUrl(request: Request): string {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-    request.headers.get("origin") ??
-    "https://compensall.com"
-  );
 }
 
 function isAuthorized(request: Request): boolean {
@@ -99,19 +90,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "Could not update claim status." }, { status: 500 });
   }
 
-  let emailSent = false;
-  if (result.changed) {
-    emailSent = await sendClaimStatusEmail({
-      trackingNumber: result.claim.trackingNumber,
-      signedName: result.claim.signedName,
-      contactEmail: result.claim.contactEmail,
-      flight: result.claim.flight,
-      status: result.claim.status,
-      siteUrl: getSiteUrl(request),
-      locale: result.claim.locale,
-    });
-  }
-
+  // Helpdesk already emails on stage change — only sync status for the track page.
   return Response.json({
     ok: true,
     trackingNumber: result.claim.trackingNumber,
@@ -119,6 +98,6 @@ export async function POST(request: Request) {
     status: result.claim.status,
     stageName: parsed.data.stageName,
     changed: result.changed,
-    emailSent,
+    emailSent: false,
   });
 }
