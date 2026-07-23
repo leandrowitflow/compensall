@@ -2,10 +2,10 @@ import { z } from "zod";
 import { inferMimeType, isAllowedBoardingPassMime } from "@/lib/boarding-pass-file";
 import { consumeSignatureToken, getSignatureToken } from "@/lib/claim-signature-tokens";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
-import { saveClaim } from "@/lib/claim-store";
+import { saveClaim, updateClaimFields } from "@/lib/claim-store";
 import { generateTrackingNumber } from "@/lib/claim-tracking";
 import { sendClaimEmails } from "@/lib/send-claim-email";
-import { syncClaimToOdoo } from "@/lib/odoo-crm-lead";
+import { syncClaimCaseToOdoo } from "@/lib/odoo-crm-lead";
 import { normalizeFlightData, type ClaimRecord } from "@/lib/claim-types";
 import { dataUrlToBase64, getClientIp, hasSignatureInk, hashSignature } from "@/lib/signature-utils";
 import { verifyBoardingPassClaim } from "@/lib/verify-boarding-pass";
@@ -178,6 +178,7 @@ export async function POST(request: Request) {
 
     const trackingNumber = generateTrackingNumber();
     const createdAt = new Date().toISOString();
+    const locale = getRequestLocale(request, formData);
 
     const record: ClaimRecord = {
       trackingNumber,
@@ -196,6 +197,7 @@ export async function POST(request: Request) {
       auditTrail: { ipAddress: getClientIp(request), userAgent },
       verification,
       createdAt,
+      locale,
     };
 
     await saveClaim(record);
@@ -204,7 +206,6 @@ export async function POST(request: Request) {
     );
 
     const siteUrl = getSiteUrl(request);
-    const locale = getRequestLocale(request, formData);
     const landingPage = locale ? `/${locale}/#claim` : "/#claim";
 
     const odooLeadIdRaw = formData.get("odooLeadId");
@@ -216,7 +217,7 @@ export async function POST(request: Request) {
     const formSessionId =
       typeof formSessionIdRaw === "string" && formSessionIdRaw.trim() ? formSessionIdRaw.trim() : null;
 
-    const odooLead = await syncClaimToOdoo({
+    const { lead: odooLead, ticket: odooTicket } = await syncClaimCaseToOdoo({
       trackingNumber,
       signedName: signedNameRaw.trim(),
       contactEmail,
@@ -234,6 +235,18 @@ export async function POST(request: Request) {
       record.odooLeadId = odooLead.id;
       record.odooLeadName = odooLead.name;
     }
+    if (odooTicket) {
+      record.odooTicketId = odooTicket.id;
+      record.odooTicketName = odooTicket.name;
+    }
+
+    if (record.odooLeadId || record.odooTicketId) {
+      await updateClaimFields(trackingNumber, {
+        odooLeadId: record.odooLeadId ?? null,
+        odooTicketId: record.odooTicketId ?? null,
+        locale,
+      });
+    }
 
     const emailResult = await sendClaimEmails(
       {
@@ -244,6 +257,7 @@ export async function POST(request: Request) {
         entryMode: entryModeRaw,
         verification,
         auditTrail: record.auditTrail,
+        locale,
         odooLead,
         boardingPass:
           boardingPassBuffer && boardingPassMime && boardingPassFileName
@@ -269,6 +283,7 @@ export async function POST(request: Request) {
       status: record.status,
       verificationResult: verification.result,
       odooLeadId: odooLead?.id ?? null,
+      odooTicketId: odooTicket?.id ?? null,
       emailsSent: emailResult,
     });
   } catch (error) {

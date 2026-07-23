@@ -1,15 +1,24 @@
-import type { ClaimEntryMode, ClaimFlightData, ClaimVerification } from "@/lib/claim-types";
+import type {
+  ClaimEntryMode,
+  ClaimFlightData,
+  ClaimVerification,
+  FlightStatus,
+} from "@/lib/claim-types";
+import { lookupAirlineByCarrierCode } from "@/lib/lookup-airline";
 import {
   getOdooConfig,
   isOdooConfigured,
   odooCreateCrmLead,
+  odooCreateHelpdeskTicket,
+  odooFindHelpdeskTicketByTrackingNumber,
   odooFindLeadBySessionId,
   odooUpdateCrmLead,
-  resolveOdooTagId,
+  odooUpdateHelpdeskTicket,
   type OdooCrmLeadSummary,
+  type OdooHelpdeskTicketSummary,
 } from "@/lib/odoo-client";
 
-export type { OdooCrmLeadSummary };
+export type { OdooCrmLeadSummary, OdooHelpdeskTicketSummary };
 
 export type OdooClaimLeadInput = {
   trackingNumber: string;
@@ -38,15 +47,140 @@ export type OdooPartialClaimLeadInput = {
   step?: string;
 };
 
-function buildFlightLines(flight: ClaimFlightData): string[] {
-  return [
-    `Passenger: ${flight.passenger}`,
-    `Flight: ${flight.flight}`,
-    `Route: ${flight.routeFrom} → ${flight.routeTo}`,
-    `Date: ${flight.date}`,
-    `Status: ${flight.status}`,
-    flight.delay ? `Delay: ${flight.delay}` : null,
-  ].filter((line): line is string => Boolean(line));
+export type OdooClaimSyncResult = {
+  lead: OdooCrmLeadSummary | null;
+  ticket: OdooHelpdeskTicketSummary | null;
+};
+
+function splitPassengerName(fullName: string): { firstName: string; lastName: string } {
+  const trimmed = fullName.trim();
+  if (!trimmed) {
+    return { firstName: "", lastName: "" };
+  }
+
+  if (trimmed.includes("/")) {
+    const [lastName, firstName] = trimmed.split("/").map((part) => part.trim());
+    return {
+      firstName: firstName || trimmed,
+      lastName: lastName || "",
+    };
+  }
+
+  const parts = trimmed.split(/\s+/);
+  if (parts.length === 1) {
+    return { firstName: parts[0], lastName: "" };
+  }
+
+  return {
+    firstName: parts[0],
+    lastName: parts.slice(1).join(" "),
+  };
+}
+
+function toOdooDate(value: string): string | undefined {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return undefined;
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  const parsed = Date.parse(trimmed);
+  if (Number.isNaN(parsed)) {
+    return undefined;
+  }
+
+  return new Date(parsed).toISOString().slice(0, 10);
+}
+
+function mapDisruptionType(status: FlightStatus): string | undefined {
+  switch (status) {
+    case "Delayed":
+      return "delayed";
+    case "Cancelled":
+      return "cancelled";
+    case "Denied boarding":
+      return "denied_boarding";
+    case "Unknown":
+      return undefined;
+    default: {
+      const exhaustive: never = status;
+      return exhaustive;
+    }
+  }
+}
+
+function mapDelayDuration(delay: string, status: FlightStatus): string | undefined {
+  if (status === "Cancelled" || status === "Denied boarding") {
+    return "more_than_3";
+  }
+
+  const hoursMatch = delay.match(/(\d+(?:[.,]\d+)?)\s*h/i);
+  const hours = hoursMatch ? Number.parseFloat(hoursMatch[1].replace(",", ".")) : Number.NaN;
+  if (Number.isFinite(hours)) {
+    return hours >= 3 ? "more_than_3" : "less_than_3";
+  }
+
+  const minutesMatch = delay.match(/(\d+)\s*m/i);
+  const minutes = minutesMatch ? Number.parseInt(minutesMatch[1], 10) : Number.NaN;
+  if (Number.isFinite(minutes)) {
+    return minutes >= 180 ? "more_than_3" : "less_than_3";
+  }
+
+  return undefined;
+}
+
+function resolveAirlineName(flightNumber: string): string | undefined {
+  const match = flightNumber.trim().toUpperCase().match(/^([A-Z]{2})\d/);
+  if (!match) {
+    return undefined;
+  }
+
+  return lookupAirlineByCarrierCode(match[1]) ?? match[1];
+}
+
+function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, unknown> {
+  const { firstName, lastName } = splitPassengerName(input.signedName || input.flight.passenger);
+  const flightDate = toOdooDate(input.flight.date);
+  const disruptionType = mapDisruptionType(input.flight.status);
+  const delayDuration = mapDelayDuration(input.flight.delay, input.flight.status);
+  const airline = resolveAirlineName(input.flight.flight);
+  const trackUrl = `${input.siteUrl.replace(/\/$/, "")}/track/${input.trackingNumber}`;
+
+  const values: Record<string, unknown> = {
+    name: `Compensall claim ${input.trackingNumber} — ${input.flight.flight}`,
+    partner_name: input.signedName.trim(),
+    partner_email: input.contactEmail.trim(),
+    x_studio_first_name: firstName,
+    x_studio_last_name: lastName,
+    x_studio_email: input.contactEmail.trim(),
+    x_studio_flight_number: input.flight.flight.trim(),
+    x_studio_departed_from: input.flight.routeFrom.trim(),
+    x_studio_final_destination: input.flight.routeTo.trim(),
+    x_studio_number_of_passengers: "1",
+    // Keep description minimal — case data lives in dedicated fields.
+    description: `<p>Compensall website claim ${input.trackingNumber}.</p><p><a href="${trackUrl}">${trackUrl}</a></p>`,
+  };
+
+  if (flightDate) {
+    values.x_studio_flight_date = flightDate;
+  }
+  if (disruptionType) {
+    values.x_studio_disruption_type = disruptionType;
+  }
+  if (delayDuration) {
+    values.x_studio_delay_duration = delayDuration;
+  }
+  if (airline) {
+    values.x_studio_airline = airline;
+  }
+  if (input.verification.summary.trim()) {
+    values.x_studio_reason_detail = input.verification.summary.trim();
+  }
+
+  return values;
 }
 
 function buildSubmittedLeadDescription(input: OdooClaimLeadInput): string {
@@ -54,10 +188,6 @@ function buildSubmittedLeadDescription(input: OdooClaimLeadInput): string {
     "Form status: Submitted",
     input.formSessionId ? `Session: ${input.formSessionId}` : null,
     `Tracking number: ${input.trackingNumber}`,
-    `Entry mode: ${input.entryMode}`,
-    ...buildFlightLines(input.flight),
-    `Verification: ${input.verification.result}`,
-    `Verification summary: ${input.verification.summary}`,
     input.locale ? `Locale: ${input.locale}` : null,
     input.landingPage ? `Landing page: ${input.landingPage}` : null,
     `Track claim: ${input.siteUrl.replace(/\/$/, "")}/track/${input.trackingNumber}`,
@@ -71,8 +201,6 @@ function buildPartialLeadDescription(input: OdooPartialClaimLeadInput): string {
     "Form status: Incomplete",
     `Session: ${input.formSessionId}`,
     `Step: ${input.step ?? "contact_confirmed"}`,
-    `Entry mode: ${input.entryMode}`,
-    ...buildFlightLines(input.flight),
     input.locale ? `Locale: ${input.locale}` : null,
     input.landingPage ? `Landing page: ${input.landingPage}` : null,
     `Resume claim: ${input.siteUrl.replace(/\/$/, "")}/#claim`,
@@ -81,14 +209,26 @@ function buildPartialLeadDescription(input: OdooPartialClaimLeadInput): string {
   return lines.join("\n");
 }
 
-async function getSubmittedTagId(): Promise<number | undefined> {
+async function syncHelpdeskTicket(
+  input: OdooClaimLeadInput,
+): Promise<OdooHelpdeskTicketSummary | null> {
   const config = getOdooConfig();
-  return resolveOdooTagId(config?.submittedTagName);
-}
+  if (!config) {
+    return null;
+  }
 
-async function getIncompleteTagId(): Promise<number | undefined> {
-  const config = getOdooConfig();
-  return resolveOdooTagId(config?.incompleteTagName);
+  const values = buildHelpdeskTicketValues(input);
+  const existingTicketId = await odooFindHelpdeskTicketByTrackingNumber(input.trackingNumber);
+
+  if (existingTicketId) {
+    return odooUpdateHelpdeskTicket(existingTicketId, values, {
+      extraTagNames: [config.submittedTagName],
+    });
+  }
+
+  return odooCreateHelpdeskTicket(values, {
+    extraTagNames: [config.submittedTagName],
+  });
 }
 
 export async function syncPartialClaimToOdoo(
@@ -99,7 +239,6 @@ export async function syncPartialClaimToOdoo(
   }
 
   const config = getOdooConfig();
-  const incompleteTagId = await getIncompleteTagId();
   const leadName = `Compensall incomplete — ${input.flight.flight} — ${input.signedName.trim()}`;
   const values = {
     name: leadName,
@@ -107,7 +246,6 @@ export async function syncPartialClaimToOdoo(
     email_from: input.contactEmail.trim(),
     description: buildPartialLeadDescription(input),
     website: input.landingPage ?? `${input.siteUrl.replace(/\/$/, "")}/#claim`,
-    ...(incompleteTagId ? { tag_ids: [[6, 0, [incompleteTagId]]] } : {}),
   };
 
   const existingLeadId =
@@ -115,22 +253,32 @@ export async function syncPartialClaimToOdoo(
     (await odooFindLeadBySessionId(input.formSessionId));
 
   if (existingLeadId) {
-    return odooUpdateCrmLead(existingLeadId, values);
+    return odooUpdateCrmLead(existingLeadId, values, {
+      extraTagNames: [config?.incompleteTagName],
+    });
   }
 
   return odooCreateCrmLead(values, {
     utmMediumName: config?.utmMediumIncompleteName,
-    tagIds: incompleteTagId ? [incompleteTagId] : undefined,
+    extraTagNames: [config?.incompleteTagName],
   });
 }
 
 export async function syncClaimToOdoo(input: OdooClaimLeadInput): Promise<OdooCrmLeadSummary | null> {
+  const result = await syncClaimCaseToOdoo(input);
+  return result.lead;
+}
+
+export async function syncClaimCaseToOdoo(input: OdooClaimLeadInput): Promise<OdooClaimSyncResult> {
   if (!isOdooConfigured()) {
-    return null;
+    return { lead: null, ticket: null };
   }
 
+  let lead: OdooCrmLeadSummary | null = null;
+  let ticket: OdooHelpdeskTicketSummary | null = null;
+
   try {
-    const submittedTagId = await getSubmittedTagId();
+    const config = getOdooConfig();
     const leadName = `Compensall claim ${input.trackingNumber} — ${input.flight.flight}`;
     const values = {
       name: leadName,
@@ -138,24 +286,30 @@ export async function syncClaimToOdoo(input: OdooClaimLeadInput): Promise<OdooCr
       email_from: input.contactEmail,
       description: buildSubmittedLeadDescription(input),
       website: input.landingPage ?? `${input.siteUrl.replace(/\/$/, "")}/#claim`,
-      ...(submittedTagId ? { tag_ids: [[6, 0, [submittedTagId]]] } : {}),
     };
 
     const existingLeadId =
       input.odooLeadId ??
       (input.formSessionId ? await odooFindLeadBySessionId(input.formSessionId) : null);
 
-    if (existingLeadId) {
-      return odooUpdateCrmLead(existingLeadId, values);
-    }
-
-    return odooCreateCrmLead(values, {
-      tagIds: submittedTagId ? [submittedTagId] : undefined,
-    });
+    lead = existingLeadId
+      ? await odooUpdateCrmLead(existingLeadId, values, {
+          extraTagNames: [config?.submittedTagName],
+        })
+      : await odooCreateCrmLead(values, {
+          extraTagNames: [config?.submittedTagName],
+        });
   } catch (error) {
     console.error("Odoo CRM lead sync failed:", error);
-    return null;
   }
+
+  try {
+    ticket = await syncHelpdeskTicket(input);
+  } catch (error) {
+    console.error("Odoo Helpdesk ticket sync failed:", error);
+  }
+
+  return { lead, ticket };
 }
 
 export async function safeSyncPartialClaimToOdoo(

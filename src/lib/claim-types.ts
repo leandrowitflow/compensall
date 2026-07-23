@@ -63,8 +63,21 @@ export type ClaimRecord = {
   auditTrail: ClaimAuditTrail;
   verification: ClaimVerification;
   createdAt: string;
+  updatedAt?: string | null;
+  statusUpdatedAt?: string | null;
   odooLeadId?: number | null;
   odooLeadName?: string | null;
+  odooTicketId?: number | null;
+  odooTicketName?: string | null;
+  locale?: string | null;
+};
+
+export const CLAIM_STATUS_MESSAGES: Record<ClaimStatus, string> = {
+  submitted: "Your claim is in our queue. We will review it shortly.",
+  under_review: "Our team is reviewing your claim and preparing the next steps.",
+  airline_contacted: "We’ve contacted the airline and are waiting for their response.",
+  compensated: "Compensation has been accepted. We’ll keep you updated on payment.",
+  closed: "This claim is closed. Contact us if you need anything else.",
 };
 
 export type ClaimSubmitResponse = {

@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { generateTrackingNumber } from "../src/lib/claim-tracking";
-import { isOdooConfigured } from "../src/lib/odoo-client";
-import { syncClaimToOdoo } from "../src/lib/odoo-crm-lead";
+import { isOdooConfigured, resolveOdooTagId } from "../src/lib/odoo-client";
+import { syncClaimCaseToOdoo } from "../src/lib/odoo-crm-lead";
 
 function loadEnvLocal(): void {
   try {
@@ -24,7 +24,7 @@ function loadEnvLocal(): void {
 loadEnvLocal();
 
 async function main() {
-  console.log("=== Compensall → Odoo integration test ===\n");
+  console.log("=== Compensall → Odoo case fields test ===\n");
   console.log("1. Odoo configured:", isOdooConfigured());
 
   if (!isOdooConfigured()) {
@@ -33,9 +33,9 @@ async function main() {
   }
 
   const trackingNumber = generateTrackingNumber();
-  console.log("2. Generated site tracking number:", trackingNumber);
+  console.log("2. Tracking number:", trackingNumber);
 
-  const lead = await syncClaimToOdoo({
+  const { lead, ticket } = await syncClaimCaseToOdoo({
     trackingNumber,
     signedName: "Integration Test Passenger",
     contactEmail: "integration-test@compensall.test",
@@ -43,8 +43,8 @@ async function main() {
     flight: {
       passenger: "Integration Test Passenger",
       flight: "BA123",
-      routeFrom: "LHR",
-      routeTo: "LIS",
+      routeFrom: "London Heathrow - LHR",
+      routeTo: "Lisbon - LIS",
       date: "2026-07-17",
       status: "Delayed",
       delay: "2h 45m",
@@ -59,30 +59,63 @@ async function main() {
     landingPage: "/en/#claim",
   });
 
-  if (!lead) {
-    console.error("3. FAILED — Odoo lead was not created.");
+  if (!lead || !ticket) {
+    console.error("FAILED — CRM lead or Helpdesk ticket was not created.");
     process.exit(1);
   }
 
-  console.log("3. Odoo lead created successfully:");
-  console.log("   - Odoo case ID:", lead.id);
-  console.log("   - Odoo case name:", lead.name);
-  console.log("   - Contact:", lead.contactName);
-  console.log("   - Email:", lead.emailFrom);
-  console.log("   - Stage:", lead.stageName ?? "New");
-  console.log("   - CRM URL:", lead.crmUrl);
-  console.log("\n4. What the client sees on the site:");
-  console.log("   - Tracking number:", trackingNumber);
-  console.log("   - Track URL:", `http://localhost:3000/track/${trackingNumber}`);
-  console.log("\n5. What the client would get by email:");
-  console.log(`   Subject: Your Compensall claim ${trackingNumber}`);
-  console.log(`   Body includes: tracking ${trackingNumber}, Odoo case #${lead.id}, stage "${lead.stageName ?? "New"}"`);
-  console.log("\n6. Resend configured:", Boolean(process.env.RESEND_API_KEY));
-  if (!process.env.RESEND_API_KEY) {
-    console.log("   → Add RESEND_API_KEY to .env.local to actually send client emails.");
+  console.log("3. CRM lead:", lead.id, lead.companyName, lead.crmUrl);
+  console.log("4. Helpdesk ticket:", ticket.id, ticket.ticketUrl);
+  console.log("   brand:", ticket.brand);
+  console.log("   company:", ticket.companyName);
+  console.log("   first/last:", ticket.firstName, ticket.lastName);
+  console.log("   email:", ticket.email);
+  console.log("   flight:", ticket.flightNumber, ticket.flightDate);
+  console.log("   route:", ticket.departedFrom, "→", ticket.finalDestination);
+  console.log("   disruption:", ticket.disruptionType, ticket.delayDuration);
+  console.log("   airline:", ticket.airline);
+
+  const failures: string[] = [];
+  const warnings: string[] = [];
+
+  if (ticket.brand !== "Compensall") failures.push(`brand=${ticket.brand}`);
+  if (ticket.firstName !== "Integration") failures.push(`firstName=${ticket.firstName}`);
+  if (ticket.lastName !== "Test Passenger") failures.push(`lastName=${ticket.lastName}`);
+  if (ticket.email !== "integration-test@compensall.test") failures.push(`email=${ticket.email}`);
+  if (ticket.flightNumber !== "BA123") failures.push(`flightNumber=${ticket.flightNumber}`);
+  if (ticket.flightDate !== "2026-07-17") failures.push(`flightDate=${ticket.flightDate}`);
+  if (ticket.departedFrom !== "London Heathrow - LHR") failures.push(`departedFrom=${ticket.departedFrom}`);
+  if (ticket.finalDestination !== "Lisbon - LIS") failures.push(`finalDestination=${ticket.finalDestination}`);
+  if (ticket.disruptionType !== "delayed") failures.push(`disruptionType=${ticket.disruptionType}`);
+  if (ticket.delayDuration !== "less_than_3") failures.push(`delayDuration=${ticket.delayDuration}`);
+  if (ticket.airline !== "British Airways") failures.push(`airline=${ticket.airline}`);
+
+  const [crmAaTagId, helpdeskAaTagId] = await Promise.all([
+    resolveOdooTagId("AA", "crm.tag"),
+    resolveOdooTagId("AA", "helpdesk.tag"),
+  ]);
+  if (!crmAaTagId || !lead.tagIds.includes(crmAaTagId)) failures.push("CRM missing AA tag");
+  if (!helpdeskAaTagId || !ticket.tagIds.includes(helpdeskAaTagId)) failures.push("Helpdesk missing AA tag");
+
+  if (lead.companyName !== "Compensall") {
+    warnings.push(`CRM company_id=${lead.companyName}`);
+  }
+  if (ticket.companyName !== "Compensall") {
+    warnings.push(`Helpdesk company_id=${ticket.companyName}`);
   }
 
-  console.log("\n✓ Test complete. Open the CRM URL above to verify the card in Odoo.");
+  if (warnings.length > 0) {
+    console.warn("\nWarnings:");
+    for (const warning of warnings) console.warn(" -", warning);
+  }
+
+  if (failures.length > 0) {
+    console.error("\nFAILED:");
+    for (const failure of failures) console.error(" -", failure);
+    process.exit(1);
+  }
+
+  console.log("\n✓ Case data written to Helpdesk fields (not only description).");
 }
 
 main().catch((error) => {

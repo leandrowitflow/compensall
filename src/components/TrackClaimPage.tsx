@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import PageHero from "@/components/PageHero";
 import {
   CLAIM_STATUS_LABELS,
+  CLAIM_STATUS_MESSAGES,
   CLAIM_STATUS_ORDER,
   type ClaimStatus,
 } from "@/lib/claim-types";
@@ -47,9 +48,7 @@ function StatusTimeline({ currentStatus }: { currentStatus: ClaimStatus }) {
               </p>
               {isCurrent && (
                 <p className="text-[#7b8094] text-sm mt-1">
-                  {status === "submitted"
-                    ? "Your claim is in our queue. We will review it shortly."
-                    : "This step will update automatically once connected to our case system (ODOO)."}
+                  {CLAIM_STATUS_MESSAGES[status]}
                 </p>
               )}
             </div>
