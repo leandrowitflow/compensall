@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 
 const HERO_BG_SRC = "/assets/hero-bg.webp";
+const HERO_BG_SRC_MOBILE = "/assets/hero-bg-900.webp";
 
 export const HERO_BG_VARIANTS = {
   home: {
@@ -38,14 +39,17 @@ export default function HeroBackgroundImage({
 
   return (
     <div aria-hidden className="absolute max-w-none" style={frameStyle}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={HERO_BG_SRC}
-        alt=""
-        decoding="async"
-        fetchPriority={priority ? "high" : "auto"}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      <picture>
+        <source media="(max-width: 767px)" srcSet={HERO_BG_SRC_MOBILE} type="image/webp" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={HERO_BG_SRC}
+          alt=""
+          decoding={priority ? "sync" : "async"}
+          fetchPriority={priority ? "high" : "auto"}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </picture>
     </div>
   );
 }

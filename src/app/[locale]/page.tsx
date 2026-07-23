@@ -119,6 +119,23 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <div className="min-h-screen bg-white overflow-x-clip flex flex-col">
+      {/* Hoisted to <head> — discover LCP hero early without waiting on CSS/JS. */}
+      <link
+        rel="preload"
+        as="image"
+        href="/assets/hero-bg-900.webp"
+        type="image/webp"
+        fetchPriority="high"
+        media="(max-width: 767px)"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href="/assets/hero-bg.webp"
+        type="image/webp"
+        fetchPriority="high"
+        media="(min-width: 768px)"
+      />
       <JsonLd data={[buildFaqPageSchema(DEFAULT_FAQS), howToSchema]} />
       <Header />
 

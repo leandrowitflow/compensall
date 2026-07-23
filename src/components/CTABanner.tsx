@@ -21,11 +21,11 @@ export default function CTABanner() {
     <section className="px-4 md:px-8 lg:px-8 xl:px-12 pb-0 bg-white">
       <div className="relative w-full max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto overflow-clip rounded-[28px] xl:rounded-[34px]">
         <Image
-          src="/assets/cta-banner-bg.png"
+          src="/assets/cta-banner-bg.webp"
           alt=""
           fill
           sizes="(max-width: 1280px) 100vw, 1550px"
-          quality={60}
+          quality={75}
           loading="lazy"
           className="object-cover pointer-events-none rounded-[28px] xl:rounded-[34px]"
         />

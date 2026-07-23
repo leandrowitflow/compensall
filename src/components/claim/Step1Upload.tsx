@@ -1,14 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { useRef, useState, type DragEvent } from "react";
-import AirportSelect from "@/components/claim/AirportSelect";
 import { validateBoardingPassFile, BOARDING_PASS_ACCEPT } from "@/lib/boarding-pass-file";
 import {
   normalizeFlightData,
   type ClaimFlightData,
 } from "@/lib/claim-types";
 import { formatAirportRouteLabel, type AirportOption } from "@/lib/airport-search";
+
+const AirportSelect = dynamic(() => import("@/components/claim/AirportSelect"), {
+  ssr: false,
+  loading: () => <div className="h-[73px] rounded-[14px] border border-[#d5e0f9] bg-white" aria-hidden />,
+});
 
 type Step1UploadProps = {
   isExtracting: boolean;
