@@ -45,7 +45,7 @@ export default function CatalogClaimSection({
             <div className="py-10 xl:py-12">
               <Link
                 href="/#claim"
-                className="inline-flex items-center justify-center bg-[#DDF444] text-[#1f3664] font-bold px-6 sm:px-10 py-4 sm:py-5 rounded-xl hover:bg-[#c8df2e] transition-colors text-sm sm:text-base text-center leading-tight max-w-full shadow-[0_4px_20px_rgba(221,244,68,0.45)]"
+                className="inline-flex items-center justify-center bg-[#2669f3] text-white font-bold px-6 sm:px-10 py-4 sm:py-5 rounded-xl hover:bg-[#1f5ae0] transition-colors text-sm sm:text-base text-center leading-tight max-w-full"
               >
                 <span className="xl:hidden">{tCommon("checkCompensationShort")}</span>
                 <span className="hidden xl:inline">{buttonLabel}</span>

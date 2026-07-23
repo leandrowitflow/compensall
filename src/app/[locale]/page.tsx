@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import TrustpilotBadge from "@/components/TrustpilotBadge";
 import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
-import {
-  CTABanner,
-  FAQSection,
-  Footer,
-  HomePassengerRightsSection,
-  HowItWorksSteps,
-} from "@/components/home/HomeDeferredSections";
+import CTABanner from "@/components/CTABanner";
+import HomePassengerRightsSection from "@/components/HomePassengerRightsSection";
+import HowItWorksSteps from "@/components/HowItWorksSteps";
+import { FAQSection, Footer } from "@/components/home/HomeDeferredSections";
 import JsonLd from "@/components/seo/JsonLd";
 import type { AppLocale } from "@/i18n/routing";
 import { DEFAULT_FAQS } from "@/lib/default-faqs";
@@ -47,13 +43,15 @@ function CompensationTierCard({
   return (
     <div className="relative bg-white/28 border-2 border-[#d5e0f9] rounded-2xl overflow-hidden text-center pt-6 pb-8 px-6">
       {image && (
-        <Image
+        // eslint-disable-next-line @next/next/no-img-element -- pre-optimized WebP; avoid /_next/image competing with LCP
+        <img
           src={image}
           alt={tierAlt}
           width={208}
           height={208}
-          sizes="(max-width: 1280px) 112px, 208px"
           loading="lazy"
+          decoding="async"
+          fetchPriority="low"
           className="w-28 h-28 lg:w-28 lg:h-28 xl:w-52 xl:h-52 mx-auto object-contain mb-2"
         />
       )}
@@ -246,14 +244,17 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[729fr_374fr_374fr] gap-6 lg:gap-7 xl:gap-9">
             <div className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] bg-[#f5f8ff] min-h-[300px] lg:min-h-[340px] xl:min-h-[520px] flex flex-col items-start">
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <Image
-                  src="/assets/icons/flight-delay-bg.png"
+                {/* eslint-disable-next-line @next/next/no-img-element -- tiny WebP; skip image optimizer on critical path */}
+                <img
+                  src="/assets/icons/flight-delay-bg.webp"
                   alt=""
-                  fill
-                  sizes="(max-width: 768px) 100vw, 729px"
-                  quality={60}
+                  aria-hidden="true"
+                  width={1466}
+                  height={1226}
                   loading="lazy"
-                  className="object-cover pointer-events-none scale-[1.12]"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="absolute inset-0 h-full w-full object-cover pointer-events-none scale-[1.12]"
                 />
               </div>
               <div className="relative z-10 flex flex-col flex-1 items-start w-full p-5 lg:p-6 xl:pt-[92px] xl:pl-[67px] xl:pr-8 xl:pb-[74px]">

@@ -1,6 +1,4 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
 function SectionHeading({
@@ -23,8 +21,8 @@ function SectionHeading({
   );
 }
 
-export default function HomePassengerRightsSection() {
-  const t = useTranslations("passengerRights");
+export default async function HomePassengerRightsSection() {
+  const t = await getTranslations("passengerRights");
   const rightsCards = [
     { title: t("uk261Card.title"), body: t("uk261Card.body") },
     { title: t("ec261Card.title"), body: t("ec261Card.body") },
@@ -59,12 +57,8 @@ export default function HomePassengerRightsSection() {
           </div>
 
           <div className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 sm:p-6 xl:p-8 text-[#1f3664]/80 text-sm sm:text-base leading-relaxed space-y-4">
-            <p>
-              {t("rightsDetailP1")}
-            </p>
-            <p>
-              {t("rightsDetailP2")}
-            </p>
+            <p>{t("rightsDetailP1")}</p>
+            <p>{t("rightsDetailP2")}</p>
           </div>
 
           <div className="my-8 xl:my-12 h-px bg-[#d5e0f9]" />

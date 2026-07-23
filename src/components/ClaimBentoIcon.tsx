@@ -1,6 +1,7 @@
-import Image from "next/image";
-
-const BENTO_ICON_SIZES = "(max-width: 640px) 80px, (max-width: 1280px) 110px, 161px";
+const BENTO_ICON_SIZES = {
+  flightDelay: { w: 161, h: 161 },
+  default: { w: 109, h: 77 },
+} as const;
 
 type ClaimBentoIconProps = {
   src: string;
@@ -10,6 +11,10 @@ type ClaimBentoIconProps = {
   priority?: boolean;
 };
 
+/**
+ * Native img avoids Next/Image preloads competing with the hero LCP on mobile.
+ * Icons are already tiny PNGs; optimizer gains are negligible.
+ */
 export default function ClaimBentoIcon({
   src,
   alt,
@@ -17,17 +22,21 @@ export default function ClaimBentoIcon({
   objectPosition,
   priority = false,
 }: ClaimBentoIconProps) {
+  const dims = src.includes("flight-delay-home") ? BENTO_ICON_SIZES.flightDelay : BENTO_ICON_SIZES.default;
+
   return (
     <div className={`relative overflow-hidden pointer-events-none shrink-0 mb-4 ${frameClassName}`}>
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={src}
         alt={alt}
-        fill
-        sizes={BENTO_ICON_SIZES}
-        quality={70}
-        priority={priority}
+        width={dims.w}
+        height={dims.h}
         draggable={false}
-        className="object-contain select-none"
+        decoding="async"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "low"}
+        className="absolute inset-0 h-full w-full object-contain select-none"
         style={{ objectPosition }}
       />
     </div>

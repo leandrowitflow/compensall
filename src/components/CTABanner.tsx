@@ -1,7 +1,4 @@
-"use client";
-
-import { useTranslations } from "next-intl";
-import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { BRAND_NAME } from "@/lib/passenger-rights";
 
@@ -13,21 +10,29 @@ const CTA_ICONS = [
   "/assets/icons/secured.svg",
 ] as const;
 
-export default function CTABanner() {
-  const t = useTranslations("cta");
-  const tCommon = useTranslations("common");
+export default async function CTABanner() {
+  const t = await getTranslations("cta");
+  const tCommon = await getTranslations("common");
 
   return (
     <section className="px-4 md:px-8 lg:px-8 xl:px-12 pb-0 bg-white">
       <div className="relative w-full max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto overflow-clip rounded-[28px] xl:rounded-[34px]">
-        <Image
+        {/*
+          Soft green corner glows live near the edges of the art. object-cover
+          crops them away when the banner is tall/narrow — stretch instead so
+          the accents stay visible at every breakpoint.
+        */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/assets/cta-banner-bg.webp"
           alt=""
-          fill
-          sizes="(max-width: 1280px) 100vw, 1550px"
-          quality={75}
+          aria-hidden="true"
+          width={1550}
+          height={600}
           loading="lazy"
-          className="object-cover pointer-events-none rounded-[28px] xl:rounded-[34px]"
+          decoding="async"
+          fetchPriority="low"
+          className="absolute inset-0 h-full w-full object-fill pointer-events-none rounded-[28px] xl:rounded-[34px]"
         />
 
         <div className="relative z-10 flex w-full max-w-[1189px] mx-auto flex-col items-center text-center px-6 pt-14 pb-12 sm:px-8 sm:pt-16 sm:pb-14 md:pt-20 md:pb-16 xl:px-8 xl:pt-16 xl:pb-16 2xl:h-full 2xl:justify-center 2xl:pt-[72px] 2xl:pb-[74px] gap-5 sm:gap-6 xl:gap-6 2xl:gap-8">

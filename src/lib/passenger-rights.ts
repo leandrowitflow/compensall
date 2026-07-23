@@ -14,19 +14,19 @@ export const BRAND_NAME = "Compensall";
 export const UK261_TIERS: CompensationTier[] = [
   {
     amount: "£220",
-    image: "/assets/compensation/250.png",
+    image: "/assets/compensation/250.webp",
     label: "Flights up to 1,500 km",
     desc: "UK261 compensation for shorter eligible flights.",
   },
   {
     amount: "£350",
-    image: "/assets/compensation/400.png",
+    image: "/assets/compensation/400.webp",
     label: "Flights between 1,500 km and 3,500 km",
     desc: "UK261 compensation for medium-distance flights.",
   },
   {
     amount: "£520",
-    image: "/assets/compensation/600.png",
+    image: "/assets/compensation/600.webp",
     label: "Flights over 3,500 km",
     desc: "UK261 compensation for long-distance flights.",
   },
@@ -35,19 +35,19 @@ export const UK261_TIERS: CompensationTier[] = [
 export const EC261_TIERS: CompensationTier[] = [
   {
     amount: "€250",
-    image: "/assets/compensation/250.png",
+    image: "/assets/compensation/250.webp",
     label: "Flights up to 1,500 km",
     desc: "EC 261/2004 compensation for shorter eligible flights.",
   },
   {
     amount: "€400",
-    image: "/assets/compensation/400.png",
+    image: "/assets/compensation/400.webp",
     label: "Flights between 1,500 km and 3,500 km",
     desc: "EC 261/2004 compensation for medium-distance flights.",
   },
   {
     amount: "€600",
-    image: "/assets/compensation/600.png",
+    image: "/assets/compensation/600.webp",
     label: "Flights over 3,500 km",
     desc: "EC 261/2004 compensation for long-distance flights.",
   },

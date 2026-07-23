@@ -2,31 +2,18 @@
 
 import dynamic from "next/dynamic";
 
-/** Code-split below-fold sections while keeping SSR HTML for faster first paint. */
-const HowItWorksSteps = dynamic(() => import("@/components/HowItWorksSteps"), {
-  loading: () => <div className="min-h-[267px]" aria-hidden />,
-});
-
-const HomePassengerRightsSection = dynamic(() => import("@/components/HomePassengerRightsSection"), {
-  loading: () => <div className="min-h-[400px]" aria-hidden />,
-});
-
-const CTABanner = dynamic(() => import("@/components/CTABanner"), {
-  loading: () => <div className="min-h-[200px]" aria-hidden />,
-});
-
+/**
+ * Interactive / heavy below-fold islands only.
+ * Keep SSR off so their client chunks and images stay out of the LCP path.
+ */
 const FAQSection = dynamic(() => import("@/components/FAQSection"), {
+  ssr: false,
   loading: () => <div className="min-h-[300px]" aria-hidden />,
 });
 
 const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: false,
   loading: () => <div className="min-h-[300px]" aria-hidden />,
 });
 
-export {
-  CTABanner,
-  FAQSection,
-  Footer,
-  HomePassengerRightsSection,
-  HowItWorksSteps,
-};
+export { FAQSection, Footer };
