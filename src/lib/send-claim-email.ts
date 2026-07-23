@@ -33,7 +33,7 @@ type ClaimEmailPayload = {
   }>;
 };
 
-const DEFAULT_OPS_EMAIL = "leandro@witflow.co";
+const DEFAULT_OPS_EMAIL = "help@compensall.com";
 
 const BRAND = {
   navy: "#1f3664",

@@ -215,7 +215,7 @@ Implemented in `src/lib/verify-boarding-pass.ts` using **Gemini** (`GEMINI_API_K
 
 Implemented in `src/lib/send-claim-email.ts` via **Resend** (`RESEND_API_KEY`).
 
-- Sends to `CLAIM_OPS_EMAIL` (default: `leandro@witflow.co`)
+- Sends to `CLAIM_OPS_EMAIL` (default: `help@compensall.com`)
 - Includes tracking number, flight details, signed name, verification summary
 - Attaches boarding pass and signature image when available
 
@@ -296,7 +296,7 @@ POST /api/claim/submit
 **Side effects:**
 
 1. Run post-submit AI verification
-2. Email `leandro@witflow.co`
+2. Email `help@compensall.com`
 3. Email user (when email field exists) with tracking number
 4. (Future) Create ODOO case and persist mapping
 

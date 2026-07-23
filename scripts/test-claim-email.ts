@@ -38,7 +38,7 @@ async function main() {
   const previewTo =
     process.argv[2]?.trim() ||
     process.env.CLAIM_OPS_EMAIL ||
-    "leandro@witflow.co";
+    "help@compensall.com";
 
   const payload = {
     trackingNumber,
