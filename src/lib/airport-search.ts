@@ -4,7 +4,11 @@ import {
   catalogLogoSvgFallback,
   type CatalogItem,
 } from "@/lib/catalog";
+import type { AirportOption } from "@/lib/airport-option";
 import { sortCatalogByLocale } from "@/lib/localize-catalog";
+
+export type { AirportOption } from "@/lib/airport-option";
+export { formatAirportRouteLabel } from "@/lib/airport-option";
 
 const AIRPORT_IATA: Record<string, string> = {
   heathrow: "LHR",
@@ -54,15 +58,6 @@ const AIRPORT_IATA: Record<string, string> = {
   bucharest: "OTP",
 };
 
-export type AirportOption = {
-  id: string;
-  name: string;
-  city: string;
-  iata: string;
-  logo: string;
-  logoFallback?: string;
-};
-
 function cityFromName(name: string): string {
   return name
     .replace(/\s*Airport\s*$/i, "")
@@ -83,10 +78,6 @@ export function toAirportOption(item: CatalogItem): AirportOption {
 }
 
 export const airportOptionsList = airportsCatalog.map(toAirportOption);
-
-export function formatAirportRouteLabel(airport: AirportOption): string {
-  return `${airport.city} (${airport.iata})`;
-}
 
 function normalizeQuery(query: string): string {
   return query.trim().toLowerCase();

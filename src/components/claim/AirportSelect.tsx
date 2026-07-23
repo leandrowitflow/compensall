@@ -2,7 +2,8 @@
 
 import { useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-import { searchAirports, type AirportOption } from "@/lib/airport-search";
+import type { AirportOption } from "@/lib/airport-option";
+import { searchAirports } from "@/lib/airport-search";
 import { resolveBrowserLanguage } from "@/lib/localize-catalog";
 
 type AirportSelectProps = {

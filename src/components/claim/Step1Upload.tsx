@@ -8,7 +8,7 @@ import {
   normalizeFlightData,
   type ClaimFlightData,
 } from "@/lib/claim-types";
-import { formatAirportRouteLabel, type AirportOption } from "@/lib/airport-search";
+import { formatAirportRouteLabel, type AirportOption } from "@/lib/airport-option";
 
 const AirportSelect = dynamic(() => import("@/components/claim/AirportSelect"), {
   ssr: false,
