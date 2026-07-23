@@ -25,7 +25,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const posts = await getBlogPosts(locale as AppLocale);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
       <PageHero title={t("title")} subtitle={t("subtitle")} />

@@ -28,7 +28,7 @@ export default async function TrackPage({ params }: TrackPageProps) {
   const { trackingNumber } = await params;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <Header />
       <TrackClaimPage trackingNumber={normalizeTrackingNumber(trackingNumber)} />
       <Footer />

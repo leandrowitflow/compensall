@@ -24,19 +24,22 @@ export default async function FaqPage({ params }: FaqPageProps) {
   const t = await getTranslations("faq");
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <JsonLd data={buildFaqPageSchema(ALL_FAQS)} />
       <Header />
 
-      <div className="max-w-[960px] mx-auto px-4 md:px-8 pt-10 pb-4 text-center">
-        <h1 className="font-bold text-3xl md:text-4xl xl:text-[48px] text-[#1f3664] mb-4 leading-[1.2]">
-          {t("pageTitle")}{" "}
-          <span className="text-[#2669f3]">{t("pageTitleAccent")}</span>
-        </h1>
-        <p className="text-[#1f3664] text-base max-w-[640px] mx-auto leading-relaxed">{t("pageIntro")}</p>
+      <div className="flex-1">
+        <div className="max-w-[960px] mx-auto px-4 md:px-8 pt-10 pb-4 text-center">
+          <h1 className="font-bold text-3xl md:text-4xl xl:text-[48px] text-[#1f3664] mb-4 leading-[1.2]">
+            {t("pageTitle")}{" "}
+            <span className="text-[#2669f3]">{t("pageTitleAccent")}</span>
+          </h1>
+          <p className="text-[#1f3664] text-base max-w-[640px] mx-auto leading-relaxed">{t("pageIntro")}</p>
+        </div>
+
+        <FAQSection faqs={ALL_FAQS} includeUkFaqs showHeading={false} />
       </div>
 
-      <FAQSection faqs={ALL_FAQS} includeUkFaqs showHeading={false} />
       <Footer />
     </div>
   );

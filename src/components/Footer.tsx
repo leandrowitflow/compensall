@@ -5,10 +5,26 @@ import NewsletterFormClient from "@/components/NewsletterFormClient";
 import { Link } from "@/i18n/routing";
 
 const SOCIAL_LINKS = [
-  { href: "#", labelKey: "socialX", icon: "/assets/icons/social-x.svg" },
-  { href: "#", labelKey: "socialFacebook", icon: "/assets/icons/social-facebook.svg" },
-  { href: "#", labelKey: "socialLinkedIn", icon: "/assets/icons/social-linkedin.svg" },
-  { href: "#", labelKey: "socialInstagram", icon: "/assets/icons/social-instagram.svg?v=2" },
+  {
+    href: "https://www.linkedin.com/company/compensall",
+    labelKey: "socialLinkedIn",
+    icon: "/assets/icons/social-linkedin.svg",
+  },
+  {
+    href: "https://www.instagram.com/compensall/",
+    labelKey: "socialInstagram",
+    icon: "/assets/icons/social-instagram.svg?v=2",
+  },
+  {
+    href: "https://www.facebook.com/profile.php?id=61591145513794",
+    labelKey: "socialFacebook",
+    icon: "/assets/icons/social-facebook.svg",
+  },
+  {
+    href: "https://www.tiktok.com/@compensall",
+    labelKey: "socialTikTok",
+    icon: "/assets/icons/social-tiktok.svg",
+  },
 ] as const;
 
 function ContactDetails({ className = "", contactUsLabel }: { className?: string; contactUsLabel: string }) {
@@ -72,6 +88,8 @@ function SocialLinks({ className = "" }: { className?: string }) {
         <a
           key={social.labelKey}
           href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label={tFooter(social.labelKey)}
           className="hover:opacity-70 transition-opacity p-1"
         >
@@ -94,7 +112,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#1f3664] text-white px-4 md:px-8 lg:px-8 xl:px-12 overflow-x-clip">
+    <footer className="mt-auto bg-[#1f3664] text-white px-4 md:px-8 lg:px-8 xl:px-12 overflow-x-clip">
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto pt-12 pb-8 md:pb-10 lg:pt-12 xl:pt-[83px] xl:pb-12">
         <div className="flex flex-col items-center text-center gap-8 md:gap-10 lg:hidden">
           <img src="/assets/logo-white.svg?v=2" alt="Compensall" width={120} height={32} className="h-8 w-auto" />

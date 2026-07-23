@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PrivacyDataConsentPageProps):
 
 export default function PrivacyDataConsentPage() {
   return (
-    <div className="min-h-screen bg-[#f8faff]">
+    <div className="min-h-screen bg-[#f8faff] flex flex-col">
       <Header />
 
       <div className="max-w-[900px] mx-auto px-6 py-16">

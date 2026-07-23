@@ -23,7 +23,12 @@ export function buildOrganizationSchema() {
       postalCode: "4150-589",
       addressCountry: "PT",
     },
-    sameAs: [] as string[],
+    sameAs: [
+      "https://www.linkedin.com/company/compensall",
+      "https://www.instagram.com/compensall/",
+      "https://www.facebook.com/profile.php?id=61591145513794",
+      "https://www.tiktok.com/@compensall",
+    ],
   };
 }
 

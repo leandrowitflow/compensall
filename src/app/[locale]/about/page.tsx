@@ -34,7 +34,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const whyChooseItems = t.raw("whyChoose") as string[];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <JsonLd data={buildProfessionalServiceSchema()} />
       <Header />
 

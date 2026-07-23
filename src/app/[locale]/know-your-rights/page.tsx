@@ -47,7 +47,7 @@ export default async function KnowYourRightsPage({ params }: KnowYourRightsPageP
   const tCommon = await getTranslations("common");
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <JsonLd data={buildFaqPageSchema(DEFAULT_FAQS)} />
       <Header />
 

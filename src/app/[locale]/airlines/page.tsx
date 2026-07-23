@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: AirlinesPageProps): Promise<M
 
 export default function AirlinesPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <JsonLd data={buildFaqPageSchema(DEFAULT_FAQS)} />
       <Header />
 

@@ -118,7 +118,7 @@ export default async function HomePage({ params }: HomePageProps) {
   ]);
 
   return (
-    <div className="min-h-screen bg-white overflow-x-clip">
+    <div className="min-h-screen bg-white overflow-x-clip flex flex-col">
       <JsonLd data={[buildFaqPageSchema(DEFAULT_FAQS), howToSchema]} />
       <Header />
 

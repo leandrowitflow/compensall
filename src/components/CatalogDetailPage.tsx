@@ -36,7 +36,7 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
   const catalogPath = kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <JsonLd
         data={[
           buildFaqPageSchema(faqs),

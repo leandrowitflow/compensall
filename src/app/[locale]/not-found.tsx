@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <Header />
       <main className="px-4 md:px-8 py-16 text-center max-w-[760px] mx-auto">
         <h1 className="font-bold text-3xl text-[#1f3664] mb-4">Page not found</h1>
