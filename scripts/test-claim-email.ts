@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { generateTrackingNumber } from "../src/lib/claim-tracking";
+import { buildSignedPowerOfAttorneyHtml } from "../src/lib/build-signed-poa-html";
 import { buildOpsHtml, sendClaimEmails } from "../src/lib/send-claim-email";
 
 function loadEnvLocal(): void {
@@ -83,18 +84,29 @@ async function main() {
   const outDir = resolve(process.cwd(), "tmp/email-previews");
   mkdirSync(outDir, { recursive: true });
   const opsPath = resolve(outDir, "claim-ops-preview.html");
+  const poaFilename = `Power-of-Attorney-${trackingNumber}.html`;
+  const poaHtml = buildSignedPowerOfAttorneyHtml({
+    trackingNumber,
+    signedName: payload.signedName,
+    flight: payload.flight,
+    signingDate: payload.signatures[0].signedAt,
+    signatureBase64OrDataUrl: SAMPLE_PNG_BASE64,
+  });
+  const poaPath = resolve(outDir, poaFilename);
+  writeFileSync(poaPath, poaHtml, "utf8");
   writeFileSync(
     opsPath,
     buildOpsHtml(payload, [
       "boarding-pass-boarding-pass-sample.pdf",
-      "Power-of-Attorney-signed.png",
+      poaFilename,
     ]),
     "utf8",
   );
 
   console.log("Ops preview:", opsPath);
+  console.log("PoA attachment preview:", poaPath);
   console.log("Sending NEW CLAIM emails (ops + client) to:", previewTo);
-  console.log("Attachments included: boarding pass PDF + Power of Attorney signature PNG");
+  console.log("Attachments included: boarding pass PDF + full Power of Attorney HTML");
 
   const result = await sendClaimEmails(payload, siteUrl);
   console.log("Ops email sent:", result.opsSent);

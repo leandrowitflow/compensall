@@ -6,6 +6,7 @@ import type {
 } from "@/lib/claim-types";
 import { CLAIM_STATUS_LABELS, CLAIM_STATUS_MESSAGES } from "@/lib/claim-types";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
+import { buildSignedPowerOfAttorneyAttachment } from "@/lib/build-signed-poa-html";
 import type { OdooCrmLeadSummary } from "@/lib/odoo-client";
 
 type ClaimEmailPayload = {
@@ -445,6 +446,20 @@ function buildOpsAttachments(payload: ClaimEmailPayload): Array<{ filename: stri
 
   for (const signature of payload.signatures) {
     if (!signature.base64) continue;
+
+    if (signature.documentId === "authority-to-act") {
+      attachments.push(
+        buildSignedPowerOfAttorneyAttachment({
+          trackingNumber: payload.trackingNumber,
+          signedName: payload.signedName,
+          flight: payload.flight,
+          signingDate: signature.signedAt || payload.flight.date,
+          signatureBase64OrDataUrl: signature.base64,
+        }),
+      );
+      continue;
+    }
+
     const title = documentTitle(signature.documentId)
       .replace(/[^a-z0-9]+/gi, "-")
       .replace(/^-|-$/g, "");
