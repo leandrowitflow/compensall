@@ -140,12 +140,20 @@ function flightSummaryTable(flight: ClaimFlightData): string {
   `;
 }
 
+function getLogoUrl(siteUrl: string): string {
+  return `${siteUrl.replace(/\/$/, "")}/assets/logo-email.png`;
+}
+
 function emailShell(options: {
   preheader: string;
   title: string;
   eyebrow?: string;
   bodyHtml: string;
+  siteUrl: string;
 }): string {
+  const logoUrl = getLogoUrl(options.siteUrl);
+  const homeUrl = options.siteUrl.replace(/\/$/, "");
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,8 +169,15 @@ function emailShell(options: {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;max-width:600px;width:100%;">
           <tr>
             <td style="padding:0 8px 18px 8px;text-align:left;">
-              <div style="font-size:22px;font-weight:700;letter-spacing:-0.02em;color:${BRAND.navy};">Compensall</div>
-              <div style="margin-top:4px;font-size:13px;color:${BRAND.muted};">Flight compensation claims</div>
+              <a href="${escapeHtml(homeUrl)}" style="display:inline-block;text-decoration:none;">
+                <img
+                  src="${escapeHtml(logoUrl)}"
+                  alt="Compensall"
+                  width="160"
+                  height="30"
+                  style="display:block;border:0;outline:none;text-decoration:none;height:30px;width:auto;max-width:160px;"
+                />
+              </a>
             </td>
           </tr>
           <tr>
@@ -233,6 +248,7 @@ function ctaButton(label: string, href: string): string {
 export function buildOpsHtml(
   payload: ClaimEmailPayload,
   attachmentNames: string[] = [],
+  siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.compensall.com",
 ): string {
   const signedDocs =
     payload.signatures.length > 0
@@ -286,10 +302,15 @@ export function buildOpsHtml(
     eyebrow: "Operations",
     title: `New claim ${payload.trackingNumber}`,
     bodyHtml,
+    siteUrl,
   });
 }
 
-export function buildUserHtml(payload: ClaimEmailPayload, trackUrl: string): string {
+export function buildUserHtml(
+  payload: ClaimEmailPayload,
+  trackUrl: string,
+  siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.compensall.com",
+): string {
   const firstName = payload.signedName.trim().split(/\s+/)[0] || payload.signedName;
 
   const bodyHtml = `
@@ -321,6 +342,7 @@ export function buildUserHtml(payload: ClaimEmailPayload, trackUrl: string): str
     eyebrow: "Claim submitted",
     title: "We’ve got your claim",
     bodyHtml,
+    siteUrl,
   });
 }
 
@@ -330,6 +352,7 @@ export function buildStatusUpdateHtml(options: {
   flight: ClaimFlightData;
   status: ClaimStatus;
   trackUrl: string;
+  siteUrl: string;
 }): string {
   const firstName = options.signedName.trim().split(/\s+/)[0] || options.signedName;
   const statusLabel = CLAIM_STATUS_LABELS[options.status];
@@ -374,6 +397,7 @@ export function buildStatusUpdateHtml(options: {
     eyebrow: "Claim update",
     title: `Status: ${statusLabel}`,
     bodyHtml,
+    siteUrl: options.siteUrl,
   });
 }
 
@@ -483,14 +507,14 @@ export async function sendClaimEmails(
   const opsSent = await sendViaResend({
     to: [getOpsEmail()],
     subject: `[Compensall] New claim ${payload.trackingNumber}: ${payload.flight.flight}`,
-    html: buildOpsHtml(payload, attachmentNames),
+    html: buildOpsHtml(payload, attachmentNames, siteUrl),
     attachments: attachments.length > 0 ? attachments : undefined,
   });
 
   const userSent = await sendViaResend({
     to: [payload.contactEmail],
     subject: `Your Compensall claim ${payload.trackingNumber}`,
-    html: buildUserHtml(payload, trackUrl),
+    html: buildUserHtml(payload, trackUrl, siteUrl),
   });
 
   return { opsSent, userSent };
@@ -521,6 +545,7 @@ export async function sendClaimStatusEmail(options: {
       flight: options.flight,
       status: options.status,
       trackUrl,
+      siteUrl: options.siteUrl,
     }),
   });
 }

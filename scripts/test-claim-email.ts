@@ -96,10 +96,11 @@ async function main() {
   writeFileSync(poaPath, poaHtml, "utf8");
   writeFileSync(
     opsPath,
-    buildOpsHtml(payload, [
-      "boarding-pass-boarding-pass-sample.pdf",
-      poaFilename,
-    ]),
+    buildOpsHtml(
+      payload,
+      ["boarding-pass-boarding-pass-sample.pdf", poaFilename],
+      siteUrl,
+    ),
     "utf8",
   );
 
