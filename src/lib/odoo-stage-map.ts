@@ -1,35 +1,36 @@
 import type { ClaimStatus } from "@/lib/claim-types";
 
 /**
- * Maps Odoo Helpdesk stage names to the public Compensall claim timeline.
- * Adjust names here when ops rename stages in Odoo.
+ * Maps Odoo Helpdesk stage names → public Compensall track statuses.
+ * Only stages listed here update the website tracker.
  */
 const STAGE_NAME_TO_STATUS: Record<string, ClaimStatus> = {
-  New: "submitted",
+  New: "received",
+  Submeter: "received",
 
-  Submeter: "under_review",
-  "Submeter expenses": "under_review",
-  "Falta algo": "under_review",
-  "Legal - falta algo": "under_review",
-  "Legal - submeter": "under_review",
-  Legal: "under_review",
-  NTD: "under_review",
-  teste: "under_review",
-  vimax: "under_review",
+  "Falta algo": "needs_documents",
+  "Legal - falta algo": "needs_documents",
 
-  Submetido: "airline_contacted",
-  Insistidos: "airline_contacted",
-  "Nega - a refutar": "airline_contacted",
+  Submetido: "with_airline",
+  Insistidos: "with_airline",
+  Legal: "with_airline",
+  "Aceite - cobranças al": "with_airline",
+  "Aceite - recebido al": "with_airline",
+  "Aceite - recebido da al": "with_airline",
 
-  "Aceite - cobranças al": "compensated",
-  "Aceite - em pagamento": "compensated",
-  "Aceite - recebido da al": "compensated",
-  "Aceite - cobrança cli": "compensated",
-  "Aceite - pago ao cliente": "compensated",
+  "Nega - a refutar": "following_up",
 
-  Closed: "closed",
-  Congelado: "closed",
-  "Não responde - congelado": "closed",
+  "Aceite - em pagamento": "payment_processing",
+
+  "Aceite - cobrança cli": "awaiting_fee",
+
+  "Aceite - pago ao cliente": "paid",
+
+  NTD: "closed_ntd",
+
+  "Não responde - congelado": "paused",
+
+  Closed: "closed_declined",
 };
 
 function normalizeStageName(stageName: string): string {

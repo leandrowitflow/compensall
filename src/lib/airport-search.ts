@@ -1,108 +1,53 @@
-import {
-  airportsCatalog,
-  catalogLogoPath,
-  catalogLogoSvgFallback,
-  type CatalogItem,
-} from "@/lib/catalog";
 import type { AirportOption } from "@/lib/airport-option";
-import { sortCatalogByLocale } from "@/lib/localize-catalog";
+import {
+  findWorldAirportOptionById,
+  getAllWorldAirportOptions,
+  getPopularWorldAirportOptions,
+} from "@/lib/world-airports";
 
 export type { AirportOption } from "@/lib/airport-option";
 export { formatAirportRouteLabel } from "@/lib/airport-option";
 
-const AIRPORT_IATA: Record<string, string> = {
-  heathrow: "LHR",
-  gatwick: "LGW",
-  manchester: "MAN",
-  lisbon: "LIS",
-  stansted: "STN",
-  luton: "LTN",
-  birmingham: "BHX",
-  edinburgh: "EDI",
-  glasgow: "GLA",
-  bristol: "BRS",
-  porto: "OPO",
-  faro: "FAO",
-  madrid: "MAD",
-  barcelona: "BCN",
-  malaga: "AGP",
-  palma: "PMI",
-  "paris-cdg": "CDG",
-  "paris-orly": "ORY",
-  nice: "NCE",
-  lyon: "LYS",
-  frankfurt: "FRA",
-  munich: "MUC",
-  berlin: "BER",
-  dusseldorf: "DUS",
-  hamburg: "HAM",
-  "rome-fiumicino": "FCO",
-  "milan-malpensa": "MXP",
-  "milan-linate": "LIN",
-  venice: "VCE",
-  amsterdam: "AMS",
-  brussels: "BRU",
-  dublin: "DUB",
-  warsaw: "WAW",
-  krakow: "KRK",
-  athens: "ATH",
-  vienna: "VIE",
-  zurich: "ZRH",
-  geneva: "GVA",
-  copenhagen: "CPH",
-  oslo: "OSL",
-  stockholm: "ARN",
-  helsinki: "HEL",
-  prague: "PRG",
-  budapest: "BUD",
-  bucharest: "OTP",
-};
-
-function cityFromName(name: string): string {
-  return name
-    .replace(/\s*Airport\s*$/i, "")
-    .replace(/\s*(International|El Prat|Barajas|Heathrow|Gatwick|Stansted|Luton|Fiumicino|Malpensa|Linate)\s*/gi, " ")
-    .trim();
-}
-
-export function toAirportOption(item: CatalogItem): AirportOption {
-  const iata = AIRPORT_IATA[item.id] ?? item.id.slice(0, 3).toUpperCase();
-  return {
-    id: item.id,
-    name: item.name,
-    city: cityFromName(item.name),
-    iata,
-    logo: catalogLogoPath(item, "airports"),
-    logoFallback: catalogLogoSvgFallback(item, "airports"),
-  };
-}
-
-export const airportOptionsList = airportsCatalog.map(toAirportOption);
+/** Full worldwide list used by the claim form search. */
+export const airportOptionsList = getAllWorldAirportOptions();
 
 function normalizeQuery(query: string): string {
-  return query.trim().toLowerCase();
+  return query
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "");
 }
 
 function scoreAirport(airport: AirportOption, query: string): number {
   const q = normalizeQuery(query);
   if (!q) return 0;
 
-  if (airport.iata.toLowerCase() === q) return 100;
-  if (airport.name.toLowerCase().startsWith(q)) return 90;
-  if (airport.city.toLowerCase().startsWith(q)) return 85;
-  if (airport.iata.toLowerCase().startsWith(q)) return 80;
-  if (airport.name.toLowerCase().includes(q)) return 70;
-  if (airport.city.toLowerCase().includes(q)) return 65;
-  if (airport.id.replace(/-/g, " ").includes(q)) return 50;
+  const iata = airport.iata.toLowerCase();
+  const name = normalizeQuery(airport.name);
+  const city = normalizeQuery(airport.city);
+
+  if (iata === q) return 100;
+  if (iata.startsWith(q)) return 95;
+  if (city === q) return 90;
+  if (name.startsWith(q)) return 88;
+  if (city.startsWith(q)) return 86;
+  if (name.includes(q)) return 75;
+  if (city.includes(q)) return 72;
+  // Multi-word: match any word in airport name or city (e.g. "Heathrow", "Humberto")
+  const tokens = q.split(/\s+/).filter(Boolean);
+  if (tokens.length > 1 && tokens.every((token) => name.includes(token) || city.includes(token))) {
+    return 70;
+  }
   return 0;
 }
 
-export function getAllAirportsSorted(language: string): AirportOption[] {
-  return sortCatalogByLocale(airportsCatalog, language, "airports").map(toAirportOption);
+export function getAllAirportsSorted(_language?: string): AirportOption[] {
+  return [...airportOptionsList].sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function getPopularAirports(language: string, limit = 4): AirportOption[] {
-  return getAllAirportsSorted(language).slice(0, limit);
+export function getPopularAirports(_language?: string, limit = 8): AirportOption[] {
+  return getPopularWorldAirportOptions(limit);
 }
 
 export type SearchAirportsOptions = {
@@ -111,20 +56,19 @@ export type SearchAirportsOptions = {
 
 export function searchAirports(
   query: string,
-  language: string,
+  _language?: string,
   options: SearchAirportsOptions = {},
 ): AirportOption[] {
   const { excludeId } = options;
-  let airports = getAllAirportsSorted(language);
+  let airports = airportOptionsList;
 
   if (excludeId) {
-    airports = airports.filter((airport) => airport.id !== excludeId);
+    airports = airports.filter((airport) => airport.id !== excludeId && airport.iata !== excludeId);
   }
 
   const normalized = normalizeQuery(query);
-
   if (!normalized) {
-    return airports;
+    return getPopularAirports(undefined, 12);
   }
 
   return airports
@@ -134,10 +78,10 @@ export function searchAirports(
       if (b.score !== a.score) return b.score - a.score;
       return a.airport.name.localeCompare(b.airport.name);
     })
+    .slice(0, 40)
     .map((entry) => entry.airport);
 }
 
 export function findAirportById(id: string): AirportOption | null {
-  const item = airportsCatalog.find((airport) => airport.id === id);
-  return item ? toAirportOption(item) : null;
+  return findWorldAirportOptionById(id);
 }

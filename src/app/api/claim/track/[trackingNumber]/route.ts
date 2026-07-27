@@ -1,4 +1,5 @@
 import { getClaim } from "@/lib/claim-store";
+import { normalizeClaimStatus } from "@/lib/claim-types";
 import { isValidTrackingNumber, normalizeTrackingNumber } from "@/lib/claim-tracking";
 import { estimateCompensationForFlight } from "@/lib/compensation-estimate";
 
@@ -23,7 +24,7 @@ export async function GET(_request: Request, context: RouteContext) {
 
   return Response.json({
     trackingNumber: claim.trackingNumber,
-    status: claim.status,
+    status: normalizeClaimStatus(claim.status),
     flight: {
       flight: claim.flight.flight,
       routeFrom: claim.flight.routeFrom,

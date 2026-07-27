@@ -5,9 +5,9 @@ export type CompensationTier = {
   desc: string;
 };
 
-export const LEGAL_ENTITY_NAME = "Albuquerque, Araújo, Lda";
+export const LEGAL_ENTITY_NAME = "Albuquerque & Araújo, Lda";
 export const LEGAL_ENTITY_NIF = "PT518929485";
-export const LEGAL_ENTITY_ADDRESS = "Rua Paulo da Gama 629, 4150-589 Porto, Portugal";
+export const LEGAL_ENTITY_ADDRESS = "R. da Beneditina 6, 4150-133 Porto, Portugal";
 export const LEGAL_ENTITY_EMAIL = "help@compensall.com";
 export const BRAND_NAME = "Compensall";
 

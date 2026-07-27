@@ -18,9 +18,9 @@ export function buildOrganizationSchema() {
     email: LEGAL_ENTITY_EMAIL,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Rua Paulo da Gama 629",
+      streetAddress: "R. da Beneditina 6",
       addressLocality: "Porto",
-      postalCode: "4150-589",
+      postalCode: "4150-133",
       addressCountry: "PT",
     },
     sameAs: [

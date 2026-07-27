@@ -6,6 +6,7 @@ import PageHero from "@/components/PageHero";
 import { Link } from "@/i18n/routing";
 import {
   CLAIM_STATUS_ORDER,
+  normalizeClaimStatus,
   type ClaimStatus,
   type CompensationEstimate,
 } from "@/lib/claim-types";
@@ -29,15 +30,25 @@ type TrackResponse = {
 
 function StatusTimeline({ currentStatus }: { currentStatus: ClaimStatus }) {
   const t = useTranslations("trackPage");
-  const currentIndex = CLAIM_STATUS_ORDER.indexOf(currentStatus);
+  const status = normalizeClaimStatus(currentStatus);
+  const currentIndex = CLAIM_STATUS_ORDER.indexOf(status);
+
+  if (currentIndex < 0) {
+    return (
+      <div className="rounded-[14px] border border-[#d5e0f9] bg-[#f5f8ff] px-4 py-5">
+        <p className="font-bold text-[#2669f3] leading-snug">{t(`statuses.${status}.label`)}</p>
+        <p className="text-[#7b8094] text-sm mt-2 leading-relaxed">{t(`statuses.${status}.message`)}</p>
+      </div>
+    );
+  }
 
   return (
     <ol className="space-y-5">
-      {CLAIM_STATUS_ORDER.map((status, index) => {
+      {CLAIM_STATUS_ORDER.map((step, index) => {
         const isComplete = index <= currentIndex;
         const isCurrent = index === currentIndex;
         return (
-          <li key={status} className="flex items-start gap-3.5">
+          <li key={step} className="flex items-start gap-3.5">
             <div
               className={`mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold ${
                 isComplete ? "bg-[#2669f3] text-white" : "border-2 border-[#d5e0f9] text-[#7b8094]"
@@ -47,11 +58,11 @@ function StatusTimeline({ currentStatus }: { currentStatus: ClaimStatus }) {
             </div>
             <div className="min-w-0 pt-0.5">
               <p className={`font-bold leading-snug ${isCurrent ? "text-[#2669f3]" : "text-[#1f3664]"}`}>
-                {t(`statuses.${status}.label`)}
+                {t(`statuses.${step}.label`)}
               </p>
               {isCurrent && (
                 <p className="text-[#7b8094] text-sm mt-1.5 leading-relaxed">
-                  {t(`statuses.${status}.message`)}
+                  {t(`statuses.${step}.message`)}
                 </p>
               )}
             </div>

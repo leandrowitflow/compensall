@@ -4,7 +4,7 @@ When a Helpdesk ticket stage changes, Odoo should POST to Compensall so the trac
 
 ## Endpoint
 
-- **URL:** `https://compensall.com/api/claim/odoo-status`
+- **URL:** `https://www.compensall.com/api/claim/odoo-status`
 - **Method:** `POST`
 - **Header:** `x-odoo-webhook-secret: <ODOO_WEBHOOK_SECRET>`
 - **Content-Type:** `application/json`
@@ -26,16 +26,22 @@ Notes:
 - `trackingNumber` is a fallback if the ticket id is missing.
 - `stageName` is required and must match an Odoo Helpdesk stage name exactly.
 - `stageId` is optional.
+- Only mapped stages update the website tracker; unmapped stages return HTTP 422.
 
 ## Stage mapping
 
-| Compensall timeline | Odoo Helpdesk stages |
-|---------------------|----------------------|
-| Submitted | New |
-| Under review | Submeter, Submeter expenses, Falta algo, Legal - falta algo, Legal - submeter, Legal, NTD, teste, vimax |
-| Airline contacted | Submetido, Insistidos, Nega - a refutar |
-| Compensated | Aceite - cobranças al, Aceite - em pagamento, Aceite - recebido da al, Aceite - cobrança cli, Aceite - pago ao cliente |
-| Closed | Closed, Congelado, Não responde - congelado |
+| Compensall track status | Odoo Helpdesk stages | Message (EN) |
+|-------------------------|----------------------|--------------|
+| Received | New, Submeter | We've received your claim and our team is reviewing it… |
+| Documents needed | Falta algo, Legal - falta algo | We need a few more documents… |
+| With the airline | Submetido, Insistidos, Legal, Aceite - cobranças al, Aceite - recebido al / Aceite - recebido da al | Your claim has been submitted to the airline… |
+| Following up | Nega - a refutar | The airline has responded, and we're following up… |
+| Payment processing | Aceite - em pagamento | Great news — the airline has approved… |
+| Service fee | Aceite - cobrança cli | Congratulations, your claim was successful… |
+| Paid | Aceite - pago ao cliente | Your payment has been completed!… |
+| Closed (NTD) | NTD | Unfortunately, we're unable to pursue… |
+| Paused | Não responde - congelado | Your case has been paused… |
+| Closed (declined) | Closed | Unfortunately, the airline has declined… |
 
 ## Odoo Automated Action (suggested)
 
@@ -47,15 +53,19 @@ Notes:
    - ticket stage display name as `stageName`
    - tracking number parsed from ticket name (`Compensall claim CMP-...`) if available
 
-## Env var required on Compensall
+## Env vars
 
 ```bash
 ODOO_WEBHOOK_SECRET=replace-with-a-long-random-secret
+ODOO_HELPDESK_TEAM_ID=2
+RESEND_FROM_EMAIL=Compensall <help@compensall.com>
 ```
+
+Helpdesk tickets created from the website must use `team_id: 2` (Compensall), not `1` (Aireclaim).
 
 ## Behaviour
 
-- Same stage again → `changed: false`, no email
-- Mapped stage change → updates Supabase claim status for the track page (no client email — Helpdesk already notifies)
+- Same stage again → `changed: false`
+- Mapped stage change → updates claim status for the track page (`emailSent: false` — Helpdesk already notifies)
 - Unknown stage → HTTP 422
 - Bad secret → HTTP 401

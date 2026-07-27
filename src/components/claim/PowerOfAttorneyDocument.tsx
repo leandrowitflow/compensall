@@ -4,6 +4,7 @@ import {
   POA_CONTACT_EMAIL,
   POA_CONTACT_PHONE,
   POA_CONTACT_PHONE_DISPLAY,
+  POA_FOOTER_LINE,
   POWER_OF_ATTORNEY_BODY,
 } from "@/lib/poa-content";
 
@@ -172,13 +173,16 @@ export default function PowerOfAttorneyDocument({
       </div>
 
       {showContactFooter && (
-        <footer className="border-t border-[#d5e0f9] pt-4 text-xs text-[#1f3664]/70 flex flex-col sm:flex-row sm:justify-between gap-2">
-          <a href={`mailto:${POA_CONTACT_EMAIL}`} className="hover:text-[#2669f3]">
-            {POA_CONTACT_EMAIL}
-          </a>
-          <a href={`tel:+351${POA_CONTACT_PHONE}`} className="hover:text-[#2669f3]">
-            {POA_CONTACT_PHONE_DISPLAY}
-          </a>
+        <footer className="border-t border-[#d5e0f9] pt-4 text-xs text-[#1f3664]/70 space-y-2">
+          <p>{POA_FOOTER_LINE}</p>
+          <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
+            <a href={`mailto:${POA_CONTACT_EMAIL}`} className="hover:text-[#2669f3]">
+              {POA_CONTACT_EMAIL}
+            </a>
+            <a href={`tel:+351${POA_CONTACT_PHONE}`} className="hover:text-[#2669f3]">
+              {POA_CONTACT_PHONE_DISPLAY}
+            </a>
+          </div>
         </footer>
       )}
     </article>

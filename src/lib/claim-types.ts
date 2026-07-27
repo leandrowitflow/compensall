@@ -3,6 +3,17 @@ export type ClaimEntryMode = "upload" | "manual";
 export type FlightStatus = "Delayed" | "Cancelled" | "Denied boarding" | "Unknown";
 
 export type ClaimStatus =
+  | "received"
+  | "needs_documents"
+  | "with_airline"
+  | "following_up"
+  | "payment_processing"
+  | "awaiting_fee"
+  | "paid"
+  | "closed_ntd"
+  | "paused"
+  | "closed_declined"
+  /** @deprecated legacy values still present on older claims */
   | "submitted"
   | "under_review"
   | "airline_contacted"
@@ -86,11 +97,36 @@ export type ClaimRecord = {
 };
 
 export const CLAIM_STATUS_MESSAGES: Record<ClaimStatus, string> = {
-  submitted: "Your claim is in our queue. We will review it shortly.",
-  under_review: "Our team is reviewing your claim and preparing the next steps.",
-  airline_contacted: "We’ve contacted the airline and are waiting for their response.",
-  compensated: "Compensation has been accepted. We’ll keep you updated on payment.",
-  closed: "This claim is closed. Contact us if you need anything else.",
+  received:
+    "We've received your claim and our team is reviewing it. We'll update you here as soon as there's news.",
+  needs_documents:
+    "We need a few more documents to move your claim forward. Please check your email for details, or message us on +351 928370420. We're happy to help!",
+  with_airline:
+    "Your claim has been submitted to the airline. We're waiting for their response and will update you as soon as we hear back.",
+  following_up:
+    "The airline has responded, and we're following up on your behalf. We'll keep you informed of any developments.",
+  payment_processing:
+    "Great news — the airline has approved your compensation! We're now processing your payment and will update you shortly.",
+  awaiting_fee:
+    "Congratulations, your claim was successful! Please complete payment of our service fee so we can close your case.",
+  paid: "Your payment has been completed! Thank you for trusting us with your claim. If you have any questions, we're always here to help.",
+  closed_ntd:
+    "Unfortunately, we're unable to pursue your claim further and your case has been closed. If you have questions, please don't hesitate to contact us.",
+  paused:
+    "Your case has been paused as we haven't received a response from you. Please get in touch on +351 928370420 if you'd like to reactivate it.",
+  closed_declined:
+    "Unfortunately, the airline has declined your claim and we're unable to take it further. Your case has been closed — contact us if you'd like to discuss the outcome.",
+  // Legacy fallbacks
+  submitted:
+    "We've received your claim and our team is reviewing it. We'll update you here as soon as there's news.",
+  under_review:
+    "We've received your claim and our team is reviewing it. We'll update you here as soon as there's news.",
+  airline_contacted:
+    "Your claim has been submitted to the airline. We're waiting for their response and will update you as soon as we hear back.",
+  compensated:
+    "Your payment has been completed! Thank you for trusting us with your claim. If you have any questions, we're always here to help.",
+  closed:
+    "Unfortunately, the airline has declined your claim and we're unable to take it further. Your case has been closed — contact us if you'd like to discuss the outcome.",
 };
 
 export type ClaimSubmitResponse = {
@@ -99,20 +135,60 @@ export type ClaimSubmitResponse = {
 };
 
 export const CLAIM_STATUS_LABELS: Record<ClaimStatus, string> = {
-  submitted: "Submitted",
-  under_review: "Under review",
-  airline_contacted: "Airline contacted",
-  compensated: "Compensated",
+  received: "Received",
+  needs_documents: "Documents needed",
+  with_airline: "With the airline",
+  following_up: "Following up",
+  payment_processing: "Payment processing",
+  awaiting_fee: "Service fee",
+  paid: "Paid",
+  closed_ntd: "Closed",
+  paused: "Paused",
+  closed_declined: "Closed",
+  submitted: "Received",
+  under_review: "Received",
+  airline_contacted: "With the airline",
+  compensated: "Paid",
   closed: "Closed",
 };
 
+/** Happy-path timeline shown on the track page (branch outcomes render as the current step). */
 export const CLAIM_STATUS_ORDER: ClaimStatus[] = [
-  "submitted",
-  "under_review",
-  "airline_contacted",
-  "compensated",
-  "closed",
+  "received",
+  "needs_documents",
+  "with_airline",
+  "following_up",
+  "payment_processing",
+  "awaiting_fee",
+  "paid",
 ];
+
+export function normalizeClaimStatus(status: string | null | undefined): ClaimStatus {
+  switch (status) {
+    case "received":
+    case "needs_documents":
+    case "with_airline":
+    case "following_up":
+    case "payment_processing":
+    case "awaiting_fee":
+    case "paid":
+    case "closed_ntd":
+    case "paused":
+    case "closed_declined":
+      return status;
+    case "submitted":
+    case "under_review":
+      return "received";
+    case "airline_contacted":
+      return "with_airline";
+    case "compensated":
+      return "paid";
+    case "closed":
+      return "closed_declined";
+    default:
+      return "received";
+  }
+}
 
 export const EMPTY_FLIGHT: ClaimFlightData = {
   passenger: "",

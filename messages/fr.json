@@ -49,8 +49,8 @@
   },
   "footer": {
     "contactUs": "Nous contacter",
-    "addressLine1": "Rua Paulo da Gama 629",
-    "addressLine2": "4150-589 Porto",
+    "addressLine1": "R. da Beneditina 6",
+    "addressLine2": "4150-133 Porto",
     "email": "help@compensall.com",
     "phone": "+351 928 370 420",
     "privacyPolicy": "Politique de confidentialité",
@@ -626,25 +626,45 @@
     "estimateDetail": "Selon {regulation} pour un trajet d'environ {distance}.",
     "estimateDisclaimer": "Indicatif uniquement. L'éligibilité finale dépend de la durée du retard, de la responsabilité de la compagnie et des circonstances extraordinaires.",
     "statuses": {
-      "submitted": {
-        "label": "Soumis",
-        "message": "Votre réclamation est dans notre file d'attente. Nous l'examinerons sous peu."
+      "received": {
+        "label": "Reçu",
+        "message": "Nous avons reçu votre réclamation et notre équipe l'examine. Nous vous mettrons à jour ici dès qu'il y aura des nouvelles."
       },
-      "under_review": {
-        "label": "En cours d'examen",
-        "message": "Notre équipe examine votre réclamation et prépare les prochaines étapes."
+      "needs_documents": {
+        "label": "Documents nécessaires",
+        "message": "Nous avons besoin de quelques documents supplémentaires pour faire avancer votre dossier. Vérifiez votre e-mail ou contactez-nous au +351 928370420. Nous sommes là pour vous aider !"
       },
-      "airline_contacted": {
-        "label": "Compagnie contactée",
-        "message": "Nous avons contacté la compagnie aérienne et attendons leur réponse."
+      "with_airline": {
+        "label": "Chez la compagnie",
+        "message": "Votre réclamation a été soumise à la compagnie aérienne. Nous attendons leur réponse et vous informerons dès que possible."
       },
-      "compensated": {
-        "label": "Indemnisé",
-        "message": "L'indemnisation a été acceptée. Nous vous tiendrons informé du paiement."
+      "following_up": {
+        "label": "Suivi en cours",
+        "message": "La compagnie a répondu et nous assurons le suivi pour vous. Nous vous tiendrons informé de toute évolution."
       },
-      "closed": {
+      "payment_processing": {
+        "label": "Paiement en cours",
+        "message": "Bonne nouvelle — la compagnie a approuvé votre indemnisation ! Nous traitons maintenant le paiement et vous tiendrons informé sous peu."
+      },
+      "awaiting_fee": {
+        "label": "Frais de service",
+        "message": "Félicitations, votre réclamation a abouti ! Veuillez régler nos frais de service afin que nous puissions clôturer votre dossier."
+      },
+      "paid": {
+        "label": "Payé",
+        "message": "Votre paiement a été effectué ! Merci de votre confiance. Pour toute question, nous restons à votre disposition."
+      },
+      "closed_ntd": {
         "label": "Clôturé",
-        "message": "Cette réclamation est clôturée. Contactez-nous si vous avez besoin d'autre chose."
+        "message": "Malheureusement, nous ne pouvons pas poursuivre votre réclamation et votre dossier a été clôturé. N'hésitez pas à nous contacter pour toute question."
+      },
+      "paused": {
+        "label": "En pause",
+        "message": "Votre dossier est en pause car nous n'avons pas reçu de réponse de votre part. Contactez-nous au +351 928370420 si vous souhaitez le réactiver."
+      },
+      "closed_declined": {
+        "label": "Clôturé",
+        "message": "Malheureusement, la compagnie a refusé votre réclamation et nous ne pouvons pas aller plus loin. Votre dossier est clôturé — contactez-nous pour en discuter."
       }
     }
   },

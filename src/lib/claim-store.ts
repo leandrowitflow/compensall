@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { ClaimRecord, ClaimStatus } from "@/lib/claim-types";
+import { normalizeClaimStatus, type ClaimRecord, type ClaimStatus } from "@/lib/claim-types";
 import { normalizeTrackingNumber } from "@/lib/claim-tracking";
 import { supabaseRestUrl } from "@/lib/supabase-rest";
 
@@ -32,7 +32,7 @@ function hasSupabaseConfig(): boolean {
 function rowToClaim(row: ClaimsRow): ClaimRecord {
   return {
     trackingNumber: row.tracking_number,
-    status: row.status,
+    status: normalizeClaimStatus(row.status),
     entryMode: row.entry_mode,
     flight: row.flight,
     signedName: row.signed_name,
@@ -81,7 +81,11 @@ async function getClaimLocally(trackingNumber: string): Promise<ClaimRecord | nu
   try {
     const filePath = path.join(LOCAL_CLAIMS_DIR, `${trackingNumber}.json`);
     const raw = await readFile(filePath, "utf8");
-    return JSON.parse(raw) as ClaimRecord;
+    const claim = JSON.parse(raw) as ClaimRecord;
+    return {
+      ...claim,
+      status: normalizeClaimStatus(claim.status),
+    };
   } catch {
     return null;
   }

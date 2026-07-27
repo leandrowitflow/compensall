@@ -183,7 +183,7 @@ export async function POST(request: Request) {
 
     const record: ClaimRecord = {
       trackingNumber,
-      status: "submitted",
+      status: "received",
       entryMode: entryModeRaw,
       flight,
       signedName: signedNameRaw.trim(),

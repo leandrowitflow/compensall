@@ -56,7 +56,7 @@ function getOpsEmail(): string {
 }
 
 function getFromEmail(): string {
-  return process.env.RESEND_FROM_EMAIL ?? "Compensall <claims@compensall.com>";
+  return process.env.RESEND_FROM_EMAIL ?? "Compensall <help@compensall.com>";
 }
 
 export function buildTrackUrl(

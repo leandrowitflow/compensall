@@ -17,6 +17,15 @@ type AirportSelectProps = {
 
 function AirportLogo({ airport }: { airport: AirportOption }) {
   const [src, setSrc] = useState(airport.logo);
+  const [failed, setFailed] = useState(!airport.logo);
+
+  if (failed) {
+    return (
+      <div className="w-9 h-9 rounded-lg bg-[#f8faff] border border-[#d5e0f9]/80 flex items-center justify-center flex-shrink-0">
+        <span className="text-[10px] font-bold text-[#2669f3] leading-none">{airport.iata}</span>
+      </div>
+    );
+  }
 
   return (
     <div className="w-9 h-9 rounded-lg bg-[#f8faff] border border-[#d5e0f9]/80 flex items-center justify-center flex-shrink-0 overflow-hidden">
@@ -27,7 +36,9 @@ function AirportLogo({ airport }: { airport: AirportOption }) {
         onError={() => {
           if (airport.logoFallback && src !== airport.logoFallback) {
             setSrc(airport.logoFallback);
+            return;
           }
+          setFailed(true);
         }}
       />
     </div>
@@ -58,7 +69,7 @@ export default function AirportSelect({
   });
   const showAll = !query.trim();
   const listTitle = showAll
-    ? `All airports (${results.length})`
+    ? `Popular airports`
     : `${results.length} result${results.length === 1 ? "" : "s"}`;
 
   useEffect(() => {

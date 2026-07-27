@@ -149,10 +149,15 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
   const airline = resolveAirlineName(input.flight.flight);
   const trackUrl = `${input.siteUrl.replace(/\/$/, "")}/track/${input.trackingNumber}`;
 
+  const teamIdRaw = process.env.ODOO_HELPDESK_TEAM_ID?.trim();
+  const teamId = teamIdRaw ? Number.parseInt(teamIdRaw, 10) : 2;
+
   const values: Record<string, unknown> = {
     name: `Compensall claim ${input.trackingNumber} — ${input.flight.flight}`,
     partner_name: input.signedName.trim(),
     partner_email: input.contactEmail.trim(),
+    // Compensall Helpdesk team (not Aireclaim team_id 1).
+    team_id: Number.isFinite(teamId) ? teamId : 2,
     x_studio_first_name: firstName,
     x_studio_last_name: lastName,
     x_studio_email: input.contactEmail.trim(),

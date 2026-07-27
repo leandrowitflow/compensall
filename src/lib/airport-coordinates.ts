@@ -1,6 +1,8 @@
+import { getWorldAirportByIata, getWorldAirportCoords } from "@/lib/world-airports";
+
 /**
  * Approximate airport coordinates (WGS84) for great-circle distance.
- * Coverage: UK/EU hubs + common Compensall catalog / boarding-pass routes.
+ * Prefers the worldwide client airport list; falls back to a curated map.
  */
 export type AirportCoords = { lat: number; lon: number };
 
@@ -179,9 +181,13 @@ const UK261_DEPARTURE_IATAS = new Set([
 
 export function getAirportCoordinates(iata: string): AirportCoords | null {
   const code = iata.trim().toUpperCase();
-  return AIRPORT_COORDINATES[code] ?? null;
+  return getWorldAirportCoords(code) ?? AIRPORT_COORDINATES[code] ?? null;
 }
 
 export function isUk261Departure(iata: string): boolean {
-  return UK261_DEPARTURE_IATAS.has(iata.trim().toUpperCase());
+  const code = iata.trim().toUpperCase();
+  if (UK261_DEPARTURE_IATAS.has(code)) {
+    return true;
+  }
+  return getWorldAirportByIata(code)?.country === "GB";
 }

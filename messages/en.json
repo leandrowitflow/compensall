@@ -49,8 +49,8 @@
   },
   "footer": {
     "contactUs": "Contact us",
-    "addressLine1": "Rua Paulo da Gama 629",
-    "addressLine2": "4150-589 Porto",
+    "addressLine1": "R. da Beneditina 6",
+    "addressLine2": "4150-133 Porto",
     "email": "help@compensall.com",
     "phone": "+351 928 370 420",
     "privacyPolicy": "Privacy Policy",
@@ -626,25 +626,45 @@
     "estimateDetail": "Based on {regulation} for a route of about {distance}.",
     "estimateDisclaimer": "Indicative only. Final eligibility depends on delay length, airline responsibility, and extraordinary circumstances.",
     "statuses": {
-      "submitted": {
-        "label": "Submitted",
-        "message": "Your claim is in our queue. We will review it shortly."
+      "received": {
+        "label": "Received",
+        "message": "We've received your claim and our team is reviewing it. We'll update you here as soon as there's news."
       },
-      "under_review": {
-        "label": "Under review",
-        "message": "Our team is reviewing your claim and preparing the next steps."
+      "needs_documents": {
+        "label": "Documents needed",
+        "message": "We need a few more documents to move your claim forward. Please check your email for details, or message us on +351 928370420. We're happy to help!"
       },
-      "airline_contacted": {
-        "label": "Airline contacted",
-        "message": "We’ve contacted the airline and are waiting for their response."
+      "with_airline": {
+        "label": "With the airline",
+        "message": "Your claim has been submitted to the airline. We're waiting for their response and will update you as soon as we hear back."
       },
-      "compensated": {
-        "label": "Compensated",
-        "message": "Compensation has been accepted. We’ll keep you updated on payment."
+      "following_up": {
+        "label": "Following up",
+        "message": "The airline has responded, and we're following up on your behalf. We'll keep you informed of any developments."
       },
-      "closed": {
+      "payment_processing": {
+        "label": "Payment processing",
+        "message": "Great news — the airline has approved your compensation! We're now processing your payment and will update you shortly."
+      },
+      "awaiting_fee": {
+        "label": "Service fee",
+        "message": "Congratulations, your claim was successful! Please complete payment of our service fee so we can close your case."
+      },
+      "paid": {
+        "label": "Paid",
+        "message": "Your payment has been completed! Thank you for trusting us with your claim. If you have any questions, we're always here to help."
+      },
+      "closed_ntd": {
         "label": "Closed",
-        "message": "This claim is closed. Contact us if you need anything else."
+        "message": "Unfortunately, we're unable to pursue your claim further and your case has been closed. If you have questions, please don't hesitate to contact us."
+      },
+      "paused": {
+        "label": "Paused",
+        "message": "Your case has been paused as we haven't received a response from you. Please get in touch on +351 928370420 if you'd like to reactivate it."
+      },
+      "closed_declined": {
+        "label": "Closed",
+        "message": "Unfortunately, the airline has declined your claim and we're unable to take it further. Your case has been closed — contact us if you'd like to discuss the outcome."
       }
     }
   },

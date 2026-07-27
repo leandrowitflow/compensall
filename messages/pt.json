@@ -49,8 +49,8 @@
   },
   "footer": {
     "contactUs": "Contacte-nos",
-    "addressLine1": "Rua Paulo da Gama 629",
-    "addressLine2": "4150-589 Porto",
+    "addressLine1": "R. da Beneditina 6",
+    "addressLine2": "4150-133 Porto",
     "email": "help@compensall.com",
     "phone": "+351 928 370 420",
     "privacyPolicy": "Política de Privacidade",
@@ -626,25 +626,45 @@
     "estimateDetail": "Com base em {regulation} para uma rota de cerca de {distance}.",
     "estimateDisclaimer": "Valor indicativo. A elegibilidade final depende da duração do atraso, da responsabilidade da companhia aérea e de circunstâncias extraordinárias.",
     "statuses": {
-      "submitted": {
-        "label": "Submetido",
-        "message": "O seu pedido está na nossa fila. Vamos analisá-lo em breve."
+      "received": {
+        "label": "Recebido",
+        "message": "Recebemos o seu pedido e a nossa equipa está a analisá-lo. Atualizaremos aqui assim que houver novidades."
       },
-      "under_review": {
-        "label": "Em análise",
-        "message": "A nossa equipa está a analisar o seu pedido e a preparar os próximos passos."
+      "needs_documents": {
+        "label": "Documentos necessários",
+        "message": "Precisamos de mais alguns documentos para avançar com o seu pedido. Verifique o email ou contacte-nos no +351 928370420. Estamos disponíveis para ajudar!"
       },
-      "airline_contacted": {
-        "label": "Companhia contactada",
-        "message": "Contactámos a companhia aérea e estamos a aguardar a resposta."
+      "with_airline": {
+        "label": "Com a companhia",
+        "message": "O seu pedido foi submetido à companhia aérea. Estamos a aguardar a resposta e atualizaremos assim que tivermos novidades."
       },
-      "compensated": {
-        "label": "Compensado",
-        "message": "A compensação foi aceite. Mantê-lo-emos informado sobre o pagamento."
+      "following_up": {
+        "label": "Em seguimento",
+        "message": "A companhia aérea respondeu e estamos a fazer o seguimento em seu nome. Mantê-lo-emos informado."
       },
-      "closed": {
+      "payment_processing": {
+        "label": "Pagamento em processamento",
+        "message": "Boas notícias — a companhia aprovou a compensação! Estamos a processar o pagamento e atualizaremos em breve."
+      },
+      "awaiting_fee": {
+        "label": "Taxa de serviço",
+        "message": "Parabéns, o seu pedido foi bem-sucedido! Conclua o pagamento da nossa taxa de serviço para podermos encerrar o caso."
+      },
+      "paid": {
+        "label": "Pago",
+        "message": "O seu pagamento foi concluído! Obrigado pela confiança. Se tiver questões, estamos sempre disponíveis."
+      },
+      "closed_ntd": {
         "label": "Encerrado",
-        "message": "Este pedido está encerrado. Contacte-nos se precisar de mais alguma coisa."
+        "message": "Infelizmente, não podemos continuar com o seu pedido e o caso foi encerrado. Se tiver questões, contacte-nos."
+      },
+      "paused": {
+        "label": "Em pausa",
+        "message": "O seu caso está em pausa porque não recebemos resposta. Contacte-nos no +351 928370420 se quiser reativá-lo."
+      },
+      "closed_declined": {
+        "label": "Encerrado",
+        "message": "Infelizmente, a companhia aérea recusou o pedido e não podemos avançar. O caso foi encerrado — contacte-nos se quiser discutir o resultado."
       }
     }
   },

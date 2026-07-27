@@ -4,6 +4,7 @@ import type { ClaimFlightData } from "@/lib/claim-types";
 import {
   POA_CONTACT_EMAIL,
   POA_CONTACT_PHONE_DISPLAY,
+  POA_FOOTER_LINE,
   POWER_OF_ATTORNEY_BODY,
 } from "@/lib/poa-content";
 
@@ -147,10 +148,13 @@ export function buildSignedPowerOfAttorneyHtml(input: SignedPoaInput): string {
       </div>
     </div>
 
-    <footer style="border-top:1px solid #d5e0f9;padding-top:14px;font-size:12px;opacity:0.75;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;">
-      <span>${escapeHtml(POA_CONTACT_EMAIL)}</span>
-      <span>${escapeHtml(POA_CONTACT_PHONE_DISPLAY)}</span>
-      <span>Claim ${escapeHtml(input.trackingNumber)}</span>
+    <footer style="border-top:1px solid #d5e0f9;padding-top:14px;font-size:12px;opacity:0.75;">
+      <div style="margin-bottom:8px;">${escapeHtml(POA_FOOTER_LINE)}</div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;">
+        <span>${escapeHtml(POA_CONTACT_EMAIL)}</span>
+        <span>${escapeHtml(POA_CONTACT_PHONE_DISPLAY)}</span>
+        <span>Claim ${escapeHtml(input.trackingNumber)}</span>
+      </div>
     </footer>
   </article>
 </body>
