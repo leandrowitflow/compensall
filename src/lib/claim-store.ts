@@ -13,6 +13,7 @@ type ClaimsRow = {
   flight: ClaimRecord["flight"];
   signed_name: string;
   contact_email: string;
+  contact_phone?: string | null;
   accepted_documents: string[];
   document_signatures: ClaimRecord["documentSignatures"];
   audit_trail: ClaimRecord["auditTrail"];
@@ -37,6 +38,7 @@ function rowToClaim(row: ClaimsRow): ClaimRecord {
     flight: row.flight,
     signedName: row.signed_name,
     contactEmail: row.contact_email,
+    contactPhone: row.contact_phone ?? null,
     acceptedDocuments: row.accepted_documents,
     documentSignatures: row.document_signatures ?? [],
     auditTrail: row.audit_trail ?? { ipAddress: null, userAgent: null },
@@ -58,6 +60,7 @@ function claimToRow(record: ClaimRecord): Record<string, unknown> {
     flight: record.flight,
     signed_name: record.signedName,
     contact_email: record.contactEmail,
+    contact_phone: record.contactPhone ?? null,
     accepted_documents: record.acceptedDocuments,
     document_signatures: record.documentSignatures,
     audit_trail: record.auditTrail,

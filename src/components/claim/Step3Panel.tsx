@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState, type PointerEvent, type UIEvent } from "react";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
 import type { ClaimFlightData, ClaimStatus } from "@/lib/claim-types";
@@ -10,6 +11,11 @@ import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument"
 const SCROLL_END_THRESHOLD_PX = 8;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_SIGNATURE_BYTES = 800;
+
+function isValidPhone(value: string): boolean {
+  const digits = value.replace(/\D/g, "");
+  return digits.length >= 7 && digits.length <= 15;
+}
 
 export type ClaimDocumentSignaturePayload = {
   documentId: string;
@@ -29,6 +35,7 @@ function createSessionId(): string {
 export type ClaimSubmitPayload = {
   signedName: string;
   contactEmail: string;
+  contactPhone: string;
   acceptedDocuments: string[];
   documentSignatures: ClaimDocumentSignaturePayload[];
   odooLeadId?: number | null;
@@ -65,12 +72,14 @@ function formatFlightDateForDisplay(date: string): string {
 }
 
 export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubmit }: Step3PanelProps) {
+  const t = useTranslations("claim.step3");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
 
   const [phase, setPhase] = useState<WizardPhase>("contact");
   const [signedName, setSignedName] = useState(flight.passenger);
   const [contactEmail, setContactEmail] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
   const [contactError, setContactError] = useState<string | null>(null);
 
   const [sessionId] = useState(createSessionId);
@@ -176,11 +185,15 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
   const handleContinueFromContact = async () => {
     setContactError(null);
     if (!signedName.trim()) {
-      setContactError("Enter your full legal name.");
+      setContactError(t("errors.nameRequired"));
       return;
     }
     if (!contactEmail.trim() || !EMAIL_PATTERN.test(contactEmail.trim())) {
-      setContactError("Enter a valid email address. We need it to send your tracking number and case updates.");
+      setContactError(t("errors.emailInvalid"));
+      return;
+    }
+    if (!contactPhone.trim() || !isValidPhone(contactPhone.trim())) {
+      setContactError(t("errors.phoneInvalid"));
       return;
     }
 
@@ -193,6 +206,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
           formSessionId: sessionId,
           signedName: signedName.trim(),
           contactEmail: contactEmail.trim(),
+          contactPhone: contactPhone.trim(),
           entryMode,
           flight,
           locale,
@@ -282,6 +296,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
       const result = await onSubmit({
         signedName: signedName.trim(),
         contactEmail: contactEmail.trim(),
+        contactPhone: contactPhone.trim(),
         acceptedDocuments: documentSignatures.map((signature) => signature.documentId),
         documentSignatures,
         odooLeadId,
@@ -356,7 +371,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
           </div>
           <div>
             <label className={FIELD_LABEL} htmlFor="contact-email">
-              Email address <span className="text-[#e82828]">*</span>
+              {t("emailAddress")} <span className="text-[#e82828]">*</span>
             </label>
             <input
               id="contact-email"
@@ -365,8 +380,24 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               className={FIELD_INPUT}
               value={contactEmail}
               onChange={(e) => setContactEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder={t("emailPlaceholder")}
               autoComplete="email"
+            />
+          </div>
+          <div>
+            <label className={FIELD_LABEL} htmlFor="contact-phone">
+              {t("phoneNumber")} <span className="text-[#e82828]">*</span>
+            </label>
+            <input
+              id="contact-phone"
+              type="tel"
+              required
+              className={FIELD_INPUT}
+              value={contactPhone}
+              onChange={(e) => setContactPhone(e.target.value)}
+              placeholder={t("phonePlaceholder")}
+              autoComplete="tel"
+              inputMode="tel"
             />
           </div>
           {contactError && (

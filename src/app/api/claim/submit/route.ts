@@ -4,12 +4,18 @@ import { consumeSignatureToken, getSignatureToken } from "@/lib/claim-signature-
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
 import { saveClaim, updateClaimFields } from "@/lib/claim-store";
 import { generateTrackingNumber } from "@/lib/claim-tracking";
+import { buildSignedPowerOfAttorneyAttachment } from "@/lib/build-signed-poa-html";
 import { sendClaimEmails } from "@/lib/send-claim-email";
 import { syncClaimCaseToOdoo } from "@/lib/odoo-crm-lead";
 import { normalizeFlightData, type ClaimRecord } from "@/lib/claim-types";
 import { withCompensationEstimate } from "@/lib/compensation-estimate";
 import { dataUrlToBase64, getClientIp, hasSignatureInk, hashSignature } from "@/lib/signature-utils";
 import { verifyBoardingPassClaim } from "@/lib/verify-boarding-pass";
+
+function isValidPhone(value: string): boolean {
+  const digits = value.replace(/\D/g, "");
+  return digits.length >= 7 && digits.length <= 15;
+}
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
@@ -82,6 +88,7 @@ export async function POST(request: Request) {
     const entryModeRaw = formData.get("entryMode");
     const signedNameRaw = formData.get("signedName");
     const contactEmailRaw = formData.get("contactEmail");
+    const contactPhoneRaw = formData.get("contactPhone");
     const userAgentRaw = formData.get("userAgent");
     const flightRaw = formData.get("flight");
     const documentSignatures = parseDocumentSignatures(formData.get("documentSignatures"));
@@ -98,6 +105,12 @@ export async function POST(request: Request) {
     const parsedContactEmail = z.string().trim().email().safeParse(contactEmailRaw);
     if (!parsedContactEmail.success) {
       return Response.json({ error: "A valid email address is required." }, { status: 400 });
+    }
+
+    const contactPhone =
+      typeof contactPhoneRaw === "string" ? contactPhoneRaw.trim() : "";
+    if (!contactPhone || !isValidPhone(contactPhone)) {
+      return Response.json({ error: "A valid phone number is required." }, { status: 400 });
     }
 
     if (typeof flightRaw !== "string") {
@@ -188,6 +201,7 @@ export async function POST(request: Request) {
       flight,
       signedName: signedNameRaw.trim(),
       contactEmail,
+      contactPhone,
       acceptedDocuments: documentSignatures.map((signature) => signature.documentId),
       documentSignatures: documentSignatures.map((signature) => ({
         documentId: signature.documentId,
@@ -218,10 +232,23 @@ export async function POST(request: Request) {
     const formSessionId =
       typeof formSessionIdRaw === "string" && formSessionIdRaw.trim() ? formSessionIdRaw.trim() : null;
 
+    const poaSignature = documentSignatures.find((signature) => signature.documentId === "authority-to-act");
+    const signaturePngBase64 = poaSignature ? dataUrlToBase64(poaSignature.signatureDataUrl) : null;
+    const signedPoaHtmlBase64 = signaturePngBase64
+      ? buildSignedPowerOfAttorneyAttachment({
+          trackingNumber,
+          signedName: signedNameRaw.trim(),
+          flight,
+          signingDate: poaSignature?.signedAt || flight.date,
+          signatureBase64OrDataUrl: signaturePngBase64,
+        }).content
+      : null;
+
     const { lead: odooLead, ticket: odooTicket } = await syncClaimCaseToOdoo({
       trackingNumber,
       signedName: signedNameRaw.trim(),
       contactEmail,
+      contactPhone,
       entryMode: entryModeRaw,
       flight,
       verification,
@@ -230,6 +257,16 @@ export async function POST(request: Request) {
       landingPage,
       odooLeadId: Number.isFinite(odooLeadId) ? odooLeadId : null,
       formSessionId,
+      signaturePngBase64,
+      signedPoaHtmlBase64,
+      boardingPass:
+        boardingPassBuffer && boardingPassMime && boardingPassFileName
+          ? {
+              fileName: boardingPassFileName,
+              mimeType: boardingPassMime,
+              base64: boardingPassBuffer.toString("base64"),
+            }
+          : null,
     });
 
     if (odooLead) {
@@ -255,6 +292,7 @@ export async function POST(request: Request) {
         flight,
         signedName: signedNameRaw.trim(),
         contactEmail,
+        contactPhone,
         entryMode: entryModeRaw,
         verification,
         auditTrail: record.auditTrail,

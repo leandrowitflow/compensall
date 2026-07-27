@@ -635,3 +635,44 @@ export async function odooUpdateHelpdeskTicket(
   );
   return readHelpdeskTicket(config, uid, ticketId);
 }
+
+export type OdooAttachmentInput = {
+  name: string;
+  mimetype: string;
+  /** Raw base64 (no data: URL prefix). */
+  datas: string;
+};
+
+/** Attach binary files to a helpdesk ticket (Chatter / Documents). */
+export async function odooAttachFilesToHelpdeskTicket(
+  ticketId: number,
+  files: OdooAttachmentInput[],
+): Promise<number[]> {
+  const config = getOdooConfig();
+  if (!config) {
+    throw new Error("Odoo is not configured.");
+  }
+  if (files.length === 0) {
+    return [];
+  }
+
+  const uid = await authenticate(config);
+  const ids: number[] = [];
+
+  for (const file of files) {
+    if (!file.datas.trim()) continue;
+    const attachmentId = await executeKw<number>(config, uid, "ir.attachment", "create", [
+      {
+        name: file.name,
+        type: "binary",
+        datas: file.datas,
+        res_model: "helpdesk.ticket",
+        res_id: ticketId,
+        mimetype: file.mimetype,
+      },
+    ]);
+    ids.push(attachmentId);
+  }
+
+  return ids;
+}

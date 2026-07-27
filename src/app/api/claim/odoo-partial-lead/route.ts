@@ -17,6 +17,14 @@ const bodySchema = z.object({
   formSessionId: z.string().min(1),
   signedName: z.string().min(1),
   contactEmail: z.string().trim().email(),
+  contactPhone: z
+    .string()
+    .trim()
+    .min(7)
+    .refine((value) => {
+      const digits = value.replace(/\D/g, "");
+      return digits.length >= 7 && digits.length <= 15;
+    }, "Invalid phone"),
   entryMode: z.enum(["upload", "manual"]),
   flight: flightSchema,
   locale: z.string().length(2).optional().nullable(),
@@ -52,6 +60,7 @@ export async function POST(request: Request) {
       formSessionId: parsed.data.formSessionId,
       signedName: parsed.data.signedName,
       contactEmail: parsed.data.contactEmail,
+      contactPhone: parsed.data.contactPhone,
       entryMode: parsed.data.entryMode,
       flight: normalizeFlightData(parsed.data.flight),
       siteUrl,

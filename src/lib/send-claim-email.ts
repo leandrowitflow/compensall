@@ -18,6 +18,7 @@ type ClaimEmailPayload = {
   flight: ClaimFlightData;
   signedName: string;
   contactEmail: string;
+  contactPhone?: string | null;
   entryMode: "upload" | "manual";
   verification: ClaimVerification;
   auditTrail: ClaimAuditTrail;
@@ -311,6 +312,7 @@ export function buildOpsHtml(
           ["Tracking", payload.trackingNumber],
           ["Passenger", payload.signedName],
           ["Email", payload.contactEmail],
+          ["Phone", payload.contactPhone?.trim() || "—"],
           ["Entry", payload.entryMode === "upload" ? "Boarding pass upload" : "Manual entry"],
           ["Documents signed", signedDocs],
         ])}

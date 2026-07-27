@@ -57,7 +57,7 @@
     "termsOfService": "Conditions d'utilisation",
     "cookies": "Cookies",
     "prices": "Tarifs",
-    "noWinNoFee": "Pas de gain, pas de frais",
+    "noWinNoFee": "Vous ne payez que si on gagne",
     "socialLinkedIn": "LinkedIn",
     "socialInstagram": "Instagram",
     "socialFacebook": "Facebook",
@@ -72,7 +72,7 @@
   "home": {
     "metadata": {
       "title": "Vol retardé ou annulé ? Réclamez jusqu'à £520 ou €600",
-      "description": "Téléchargez votre carte d'embarquement et réclamez une indemnisation au titre du UK261 ou du CE 261/2004. Sécurisé, accompagné par des humains, pas de gain pas de frais."
+      "description": "Téléchargez votre carte d'embarquement et réclamez une indemnisation au titre du UK261 ou du CE 261/2004. Sécurisé, accompagné par des humains, vous ne payez que si on gagne."
     },
     "hero": {
       "trustpilotAlt": "Excellent Trustpilot 4,8 sur 5",
@@ -162,7 +162,7 @@
       "signSubmit": "Signer et soumettre"
     },
     "step1": {
-      "rightsContext": "En vertu de la législation britannique et européenne sur les droits des passagers (UK261 et CE 261/2004), vous pouvez avoir droit à une indemnisation pour les retards, annulations et refus d'embarquement. Téléchargez votre carte d'embarquement pour vérifier votre éligibilité — gratuitement et sans gain sans frais.",
+      "rightsContext": "En vertu de la législation britannique et européenne sur les droits des passagers (UK261 et CE 261/2004), vous pouvez avoir droit à une indemnisation pour les retards, annulations et refus d'embarquement. Téléchargez votre carte d'embarquement pour vérifier votre éligibilité — c'est gratuit et vous ne payez que si on gagne.",
       "readingBoardingPass": "Lecture de votre carte d'embarquement…",
       "extractingDetails": "{assistantName} extrait les détails de votre vol",
       "uploadTitle": "Téléchargez votre carte d'embarquement",
@@ -230,6 +230,8 @@
       "namePlaceholder": "Tel qu'indiqué sur votre carte d'embarquement",
       "emailAddress": "Adresse e-mail",
       "emailPlaceholder": "vous@exemple.com",
+      "phoneNumber": "Numéro de téléphone",
+      "phonePlaceholder": "+33 6 12 34 56 78",
       "signOnce": "Signer une fois",
       "documentPreview": "Aperçu du document",
       "openFullPage": "Ouvrir la page complète ↗",
@@ -262,6 +264,7 @@
       "errors": {
         "nameRequired": "Saisissez votre nom légal complet.",
         "emailInvalid": "Saisissez une adresse e-mail valide. Nous en avons besoin pour vous envoyer votre numéro de suivi et les mises à jour de votre dossier.",
+        "phoneInvalid": "Saisissez un numéro de téléphone valide pour que nous puissions vous joindre au sujet de votre réclamation.",
         "scrollBeforeSign": "Veuillez faire défiler jusqu'à la fin du document avant de signer.",
         "signatureRequired": "Dessinez votre signature pour confirmer que vous avez lu et accepté ce document.",
         "signFailed": "Impossible d'enregistrer votre signature. Veuillez réessayer.",
@@ -285,7 +288,7 @@
     "sectionTitleAccent": "fréquentes",
     "pageTitle": "Indemnisation de vol",
     "pageTitleAccent": "FAQ",
-    "pageIntro": "Tout ce que vous devez savoir sur les réclamations au titre du UK261 et du CE 261/2004, notre service pas de gain pas de frais et la protection de vos données.",
+    "pageIntro": "Tout ce que vous devez savoir sur les réclamations au titre du UK261 et du CE 261/2004, notre formule « vous ne payez que si on gagne » et la protection de vos données.",
     "default": [
       {
         "question": "Est-il sûr de télécharger ma carte d'embarquement ?",
@@ -300,7 +303,7 @@
         "answer": "Pour les vols au Royaume-Uni, le UK261 prévoit jusqu'à £520 par passager (£220 pour les vols de moins de 1 500 km, £350 pour 1 500–3 500 km et £520 au-delà de 3 500 km). Pour les vols de l'UE éligibles, le CE 261/2004 prévoit €250, €400 ou €600 selon les mêmes tranches de distance."
       },
       {
-        "question": "Que signifie « pas de gain, pas de frais » ?",
+        "question": "Que signifie « vous ne payez que si on gagne » ?",
         "answer": "Cela signifie que vous ne payez rien si nous ne gagnons pas votre réclamation. Nous ne facturons des frais de succès que lorsque nous récupérons une indemnisation en votre nom."
       },
       {
@@ -313,7 +316,7 @@
       },
       {
         "question": "Combien cela coûte-t-il ?",
-        "answer": "Aucun coût initial. Compensall fonctionne sur la base pas de gain pas de frais, ce qui signifie que nous ne facturons des frais que si votre réclamation aboutit."
+        "answer": "Aucun coût initial. Compensall ne facture des frais que si votre réclamation aboutit."
       },
       {
         "question": "Puis-je supprimer mes données ?",
@@ -370,10 +373,10 @@
     "subtitle": "Nous aidons les passagers à réclamer l'indemnisation qui leur est due grâce à notre assistant et à un accompagnement humain à chaque étape.",
     "missionTitle": "Notre mission",
     "missionP1": "Compensall simplifie l'indemnisation de vol. Les compagnies aériennes retardent souvent leurs réponses, rejettent des réclamations valides et rendent le processus stressant, si bien que trop de passagers ne reçoivent jamais ce que le règlement européen CE 261/2004 leur accorde.",
-    "missionP2": "Nous nous occupons de tout : paperasse, négociations avec la compagnie aérienne et poursuite de votre dossier si nécessaire. Téléchargez votre carte d'embarquement, confirmez vos informations et laissez notre équipe se battre pour votre indemnisation sur la base pas de gain pas de frais.",
+    "missionP2": "Nous nous occupons de tout : paperasse, négociations avec la compagnie aérienne et poursuite de votre dossier si nécessaire. Téléchargez votre carte d'embarquement, confirmez vos informations et laissez notre équipe se battre pour votre indemnisation selon la règle « vous ne payez que si on gagne ».",
     "whyChooseTitle": "Pourquoi les passagers nous choisissent",
     "whyChoose": [
-      "Pas de gain, pas de frais : vous ne payez rien sauf en cas de succès",
+      "Vous ne payez que si on gagne : aucun frais sauf en cas de succès",
       "Prise en charge de bout en bout, de la vérification d'éligibilité au suivi auprès de la compagnie aérienne",
       "Frais de succès prévisibles. Nous ne sommes pas un cabinet d'avocats",
       "Approche RGPD d'abord pour vos données personnelles",
@@ -443,9 +446,9 @@
     "title": "Tarifs et frais",
     "breadcrumb": "Tarifs",
     "summary": "Aucun coût initial. Nous ne facturons des frais de succès que lorsque nous récupérons une indemnisation pour vous.",
-    "noWinNoFeeIntro": "Pas de gain, pas de frais :",
-    "noWinNoFeeBody": "La vérification d'éligibilité et l'utilisation de notre site sont gratuites. Si vous nous mandatez pour poursuivre une indemnisation, nos frais ne s'appliquent que lorsque votre réclamation aboutit, conformément à notre <noWinNoFeeAgreement>Accord pas de gain pas de frais</noWinNoFeeAgreement>.",
-    "noWinNoFeeAgreement": "Accord Pas de gain, pas de frais",
+    "noWinNoFeeIntro": "Vous ne payez que si on gagne :",
+    "noWinNoFeeBody": "La vérification d'éligibilité et l'utilisation de notre site sont gratuites. Si vous nous mandatez pour poursuivre une indemnisation, nos frais ne s'appliquent que lorsque votre réclamation aboutit, conformément à notre <noWinNoFeeAgreement>Accord « vous ne payez que si on gagne »</noWinNoFeeAgreement>.",
+    "noWinNoFeeAgreement": "Accord « vous ne payez que si on gagne »",
     "successFeeTitle": "Frais de succès",
     "successFeeDescription": "Lorsque nous récupérons une indemnisation en votre nom, nous déduisons des frais de succès avant de vous transférer le solde. Vous recevez au moins 75 % du montant récupéré avant ajustements de TVA.",
     "tableCompensationRecovered": "Indemnisation récupérée",
@@ -460,7 +463,7 @@
   },
   "cta": {
     "title": "Vérification sécurisée. Accompagnement humain.",
-    "titleLine2": "Pas de gain, pas de frais.",
+    "titleLine2": "Vous ne payez que si on gagne.",
     "subtitle": "Votre réclamation est guidée par l'IA et soutenue par de vraies personnes.",
     "subtitleLine2": "Rapide, sécurisé et simple dès le premier téléchargement.",
     "body": "Nos frais standard ne sont facturés que si nous obtenons une indemnisation pour vous. <brandName>Compensall</brandName> gère le processus du téléchargement de la carte d'embarquement au suivi auprès de la compagnie aérienne, pour que vous puissiez réclamer en toute confiance.",
@@ -484,7 +487,7 @@
       "body": "Le règlement européen CE 261/2004 continue de protéger les passagers sur les vols éligibles au départ d'aéroports de l'UE, avec une indemnisation de €250, €400 ou €600 selon les mêmes tranches de distance."
     },
     "rightsDetailP1": "Si votre vol a un retard de trois heures ou plus à l'arrivée, est annulé avec un court préavis ou si l'embarquement vous est refusé contre votre volonté, vous pouvez avoir droit à une indemnisation fixe. Vous pouvez également avoir droit à une assistance, un réacheminement et des remboursements selon les circonstances.",
-    "rightsDetailP2": "Les correspondances manquées et les grèves de compagnies aériennes peuvent également être éligibles lorsque la perturbation relève du contrôle de la compagnie aérienne. Compensall vous aide à vérifier l'éligibilité, préparer votre réclamation et obtenir une indemnisation auprès de la compagnie aérienne sur la base pas de gain pas de frais.",
+    "rightsDetailP2": "Les correspondances manquées et les grèves de compagnies aériennes peuvent également être éligibles lorsque la perturbation relève du contrôle de la compagnie aérienne. Compensall vous aide à vérifier l'éligibilité, préparer votre réclamation et obtenir une indemnisation auprès de la compagnie aérienne selon la règle « vous ne payez que si on gagne ».",
     "eligibilityHeading": "Quand pouvez-vous réclamer une",
     "eligibilityAccent": "indemnisation ?",
     "eligibilityIntro": "Vous pouvez être éligible si toutes les conditions suivantes s'appliquent à votre voyage.",
@@ -545,19 +548,19 @@
   "metadata": {
     "site": {
       "title": "Compensall – Vol retardé ou annulé ? Réclamez jusqu'à £520 ou €600",
-      "description": "Vol retardé ou annulé ? Réclamez jusqu'à £520 au titre du UK261 ou €600 au titre du CE 261/2004. Téléchargement sécurisé de la carte d'embarquement, assistance humaine, pas de gain pas de frais."
+      "description": "Vol retardé ou annulé ? Réclamez jusqu'à £520 au titre du UK261 ou €600 au titre du CE 261/2004. Téléchargement sécurisé de la carte d'embarquement, assistance humaine, vous ne payez que si on gagne."
     },
     "home": {
       "title": "Vol retardé ou annulé ? Réclamez jusqu'à £520 ou €600",
-      "description": "Téléchargez votre carte d'embarquement et réclamez une indemnisation au titre du UK261 ou du CE 261/2004. Sécurisé, accompagné par des humains, pas de gain pas de frais."
+      "description": "Téléchargez votre carte d'embarquement et réclamez une indemnisation au titre du UK261 ou du CE 261/2004. Sécurisé, accompagné par des humains, vous ne payez que si on gagne."
     },
     "faq": {
       "title": "Questions fréquentes sur l'indemnisation de vol",
-      "description": "Réponses sur le UK261, le CE 261/2004, les montants d'indemnisation, le pas de gain pas de frais, le téléchargement des cartes d'embarquement et la gestion de votre réclamation par Compensall."
+      "description": "Réponses sur le UK261, le CE 261/2004, les montants d'indemnisation, la formule « vous ne payez que si on gagne », le téléchargement des cartes d'embarquement et la gestion de votre réclamation par Compensall."
     },
     "about": {
       "title": "À propos de Compensall",
-      "description": "Compensall aide les passagers aériens à réclamer jusqu'à €600 au titre de l'EU261 grâce à un téléchargement sécurisé de la carte d'embarquement, des vérifications assistées et une prise en charge auprès de la compagnie aérienne avec accompagnement humain, sur la base pas de gain pas de frais."
+      "description": "Compensall aide les passagers aériens à réclamer jusqu'à €600 au titre de l'EU261 grâce à un téléchargement sécurisé de la carte d'embarquement, des vérifications assistées et une prise en charge auprès de la compagnie aérienne avec accompagnement humain, selon la règle « vous ne payez que si on gagne »."
     },
     "knowYourRights": {
       "title": "Connaître vos droits à l'indemnisation de vol",
@@ -565,7 +568,7 @@
     },
     "prices": {
       "title": "Tarifs et frais",
-      "description": "Compensall fonctionne sur la base pas de gain pas de frais. Consultez notre structure de frais de succès et les montants d'indemnisation UK261 et CE 261 que les passagers peuvent recevoir."
+      "description": "Compensall ne facture des frais que si votre réclamation aboutit. Consultez notre structure de frais de succès et les montants d'indemnisation UK261 et CE 261 que les passagers peuvent recevoir."
     },
     "blog": {
       "title": "Guides d'indemnisation de vol et droits des passagers",
@@ -592,8 +595,8 @@
       "description": "Procuration autorisant Compensall à poursuivre votre réclamation d'indemnisation de vol au titre du CE 261/2004."
     },
     "noWinNoFee": {
-      "title": "Accord pas de gain pas de frais",
-      "description": "Accord pas de gain pas de frais de Compensall. Vous ne payez que si nous récupérons votre indemnisation avec succès."
+      "title": "Accord « vous ne payez que si on gagne »",
+      "description": "Accord « vous ne payez que si on gagne » de Compensall. Vous ne payez que si nous récupérons votre indemnisation avec succès."
     },
     "privacyDataConsent": {
       "title": "Consentement confidentialité et données",

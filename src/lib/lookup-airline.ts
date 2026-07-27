@@ -1,8 +1,10 @@
-/** IATA 2-letter operating carrier codes common on European boarding passes. */
+/** IATA/ICAO operating carrier codes common on European boarding passes. */
 const CARRIER_NAMES: Record<string, string> = {
   FR: "Ryanair",
   RK: "Ryanair",
   U2: "easyJet",
+  EZY: "easyJet",
+  EJU: "easyJet",
   BA: "British Airways",
   W6: "Wizz Air",
   W9: "Wizz Air",
@@ -34,12 +36,12 @@ const CARRIER_NAMES: Record<string, string> = {
 
 export function lookupAirlineByCarrierCode(code: string): string | null {
   const normalized = code.trim().toUpperCase();
-  if (normalized.length !== 2) return null;
+  if (normalized.length < 2 || normalized.length > 3) return null;
   return CARRIER_NAMES[normalized] ?? null;
 }
 
 export function normalizeCarrierCode(value: string | null | undefined): string | null {
   if (!value) return null;
-  const match = value.trim().toUpperCase().match(/\b([A-Z0-9]{2})\b/);
+  const match = value.trim().toUpperCase().match(/\b([A-Z0-9]{2,3})\b/);
   return match?.[1] ?? null;
 }

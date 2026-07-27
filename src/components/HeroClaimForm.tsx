@@ -206,6 +206,7 @@ export default function HeroClaimForm() {
     formData.append("entryMode", entryMode);
     formData.append("signedName", payload.signedName);
     formData.append("contactEmail", payload.contactEmail);
+    formData.append("contactPhone", payload.contactPhone);
     formData.append("flight", JSON.stringify(flight));
     formData.append("acceptedDocuments", JSON.stringify(payload.acceptedDocuments));
     formData.append("documentSignatures", JSON.stringify(payload.documentSignatures));

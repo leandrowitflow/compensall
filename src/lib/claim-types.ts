@@ -82,6 +82,7 @@ export type ClaimRecord = {
   flight: ClaimFlightData;
   signedName: string;
   contactEmail: string;
+  contactPhone?: string | null;
   acceptedDocuments: string[];
   documentSignatures: ClaimDocumentSignature[];
   auditTrail: ClaimAuditTrail;
