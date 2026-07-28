@@ -5,6 +5,7 @@ import type {
   FlightStatus,
 } from "@/lib/claim-types";
 import { lookupAirlineByCarrierCode } from "@/lib/lookup-airline";
+import { toDateInputValue } from "@/lib/resolve-boarding-pass-references";
 import {
   getOdooConfig,
   isOdooConfigured,
@@ -13,6 +14,7 @@ import {
   odooCreateHelpdeskTicket,
   odooFindHelpdeskTicketByTrackingNumber,
   odooFindLeadBySessionId,
+  odooFindOrCreatePartner,
   odooUpdateCrmLead,
   odooUpdateHelpdeskTicket,
   type OdooAttachmentInput,
@@ -44,6 +46,12 @@ export type OdooClaimLeadInput = {
     mimeType: string;
     base64: string;
   } | null;
+  /** Extra supporting docs (ID, receipts, booking confirmation, etc.). */
+  additionalDocuments?: Array<{
+    fileName: string;
+    mimeType: string;
+    base64: string;
+  }> | null;
 };
 
 export type OdooPartialClaimLeadInput = {
@@ -63,61 +71,6 @@ export type OdooPartialClaimLeadInput = {
 export type OdooClaimSyncResult = {
   lead: OdooCrmLeadSummary | null;
   ticket: OdooHelpdeskTicketSummary | null;
-};
-
-const MONTH_INDEX: Record<string, number> = {
-  january: 1,
-  jan: 1,
-  february: 2,
-  feb: 2,
-  march: 3,
-  mar: 3,
-  april: 4,
-  apr: 4,
-  may: 5,
-  june: 6,
-  jun: 6,
-  july: 7,
-  jul: 7,
-  august: 8,
-  aug: 8,
-  september: 9,
-  sep: 9,
-  sept: 9,
-  october: 10,
-  oct: 10,
-  november: 11,
-  nov: 11,
-  december: 12,
-  dec: 12,
-  janeiro: 1,
-  fevereiro: 2,
-  marco: 3,
-  março: 3,
-  abril: 4,
-  maio: 5,
-  junho: 6,
-  julho: 7,
-  agosto: 8,
-  setembro: 9,
-  outubro: 10,
-  novembro: 11,
-  dezembro: 12,
-  janvier: 1,
-  fevrier: 2,
-  février: 2,
-  mars: 3,
-  avril: 4,
-  mai: 5,
-  juin: 6,
-  juillet: 7,
-  aout: 8,
-  août: 8,
-  septembre: 9,
-  octobre: 10,
-  novembre: 11,
-  decembre: 12,
-  décembre: 12,
 };
 
 function stripNameTitle(value: string): string {
@@ -158,53 +111,9 @@ function splitPassengerName(fullName: string): { firstName: string; lastName: st
   };
 }
 
-function pad2(value: number): string {
-  return String(value).padStart(2, "0");
-}
-
 function toOdooDate(value: string): string | undefined {
-  const trimmed = value.trim();
-  if (!trimmed) {
-    return undefined;
-  }
-
-  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
-    return trimmed;
-  }
-
-  const dmy = trimmed.match(/^(\d{1,2})[/\-.](\d{1,2})[/\-.](\d{4})$/);
-  if (dmy) {
-    const day = Number(dmy[1]);
-    const month = Number(dmy[2]);
-    const year = Number(dmy[3]);
-    if (year >= 2000 && year <= 2100 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
-      return `${year}-${pad2(month)}-${pad2(day)}`;
-    }
-  }
-
-  const named = trimmed.match(/^(\d{1,2})\s+([A-Za-zà-úÀ-Ú.]+)\s+(\d{4})$/u);
-  if (named) {
-    const day = Number(named[1]);
-    const year = Number(named[3]);
-    const monthKey = named[2].replace(/\./g, "").toLowerCase();
-    const month = MONTH_INDEX[monthKey];
-    if (month && year >= 2000 && year <= 2100 && day >= 1 && day <= 31) {
-      return `${year}-${pad2(month)}-${pad2(day)}`;
-    }
-  }
-
-  const parsed = Date.parse(trimmed);
-  if (Number.isNaN(parsed)) {
-    return undefined;
-  }
-
-  const date = new Date(parsed);
-  const year = date.getUTCFullYear();
-  if (year < 2000 || year > 2100) {
-    return undefined;
-  }
-
-  return `${year}-${pad2(date.getUTCMonth() + 1)}-${pad2(date.getUTCDate())}`;
+  const iso = toDateInputValue(value);
+  return iso || undefined;
 }
 
 function mapDisruptionType(status: FlightStatus): string | undefined {
@@ -285,13 +194,18 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
     x_studio_departed_from: input.flight.routeFrom.trim(),
     x_studio_final_destination: input.flight.routeTo.trim(),
     x_studio_number_of_passengers: "1",
-    // Keep description minimal — case data lives in dedicated fields.
-    description: `<p>Compensall website claim ${input.trackingNumber}.</p><p><a href="${trackUrl}">${trackUrl}</a></p>`,
+    // Keep description empty of ops-email HTML — case data lives in studio fields.
+    description: `<p><a href="${trackUrl}">Track ${input.trackingNumber}</a></p>`,
   };
 
   if (phone) {
     values.partner_phone = phone;
     values.x_studio_phone = phone;
+  }
+
+  const bookingReference = input.flight.bookingReference?.trim();
+  if (bookingReference) {
+    values.x_studio_booking_reference = bookingReference;
   }
 
   if (flightDate) {
@@ -314,6 +228,12 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
   if (signature) {
     values.x_studio_signature = signature;
     values.x_studio_signature_filename = `signature-${input.trackingNumber}.png`;
+  }
+
+  const otherDocs = input.additionalDocuments?.filter((doc) => doc.base64.trim()) ?? [];
+  if (otherDocs[0]) {
+    values.x_studio_other_documents = otherDocs[0].base64;
+    values.x_studio_other_documents_filename = otherDocs[0].fileName || "supporting-document";
   }
 
   return values;
@@ -345,6 +265,17 @@ function buildTicketAttachments(input: OdooClaimLeadInput): OdooAttachmentInput[
       name: hasExtension ? original : `${original}.bin`,
       mimetype: input.boardingPass.mimeType,
       datas: input.boardingPass.base64,
+    });
+  }
+
+  for (const [index, doc] of (input.additionalDocuments ?? []).entries()) {
+    if (!doc.base64.trim()) continue;
+    const original = doc.fileName.trim() || `supporting-document-${index + 1}`;
+    const hasExtension = /\.[a-z0-9]+$/i.test(original);
+    attachments.push({
+      name: hasExtension ? original : `${original}.bin`,
+      mimetype: doc.mimeType || "application/octet-stream",
+      datas: doc.base64,
     });
   }
 
@@ -388,6 +319,18 @@ async function syncHelpdeskTicket(
   }
 
   const values = buildHelpdeskTicketValues(input);
+
+  try {
+    const partnerId = await odooFindOrCreatePartner({
+      name: input.signedName.trim(),
+      email: input.contactEmail.trim(),
+      phone: input.contactPhone,
+    });
+    values.partner_id = partnerId;
+  } catch (error) {
+    console.error("Odoo partner sync failed:", error);
+  }
+
   const existingTicketId = await odooFindHelpdeskTicketByTrackingNumber(input.trackingNumber);
 
   const ticket = existingTicketId

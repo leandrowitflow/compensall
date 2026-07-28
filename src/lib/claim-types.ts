@@ -51,6 +51,8 @@ export type ClaimFlightData = {
   date: string;
   status: FlightStatus;
   delay: string;
+  /** PNR / booking reference when extracted from the boarding pass. */
+  bookingReference?: string | null;
   /** Distance-based UK261 / EC261 estimate; stored for tracking + emails. */
   compensationEstimate?: CompensationEstimate | null;
 };
@@ -260,6 +262,7 @@ export function normalizeFlightData(
     date: partial?.date?.trim() || "",
     status: partial?.status ?? "Unknown",
     delay: partial?.delay?.trim() || "",
+    bookingReference: partial?.bookingReference?.trim() || null,
     compensationEstimate: normalizeCompensationEstimate(partial?.compensationEstimate),
   };
 }

@@ -38,6 +38,7 @@ export type ClaimSubmitPayload = {
   contactPhone: string;
   acceptedDocuments: string[];
   documentSignatures: ClaimDocumentSignaturePayload[];
+  additionalDocuments?: File[];
   odooLeadId?: number | null;
   formSessionId: string;
 };
@@ -81,6 +82,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [contactError, setContactError] = useState<string | null>(null);
+  const [additionalDocuments, setAdditionalDocuments] = useState<File[]>([]);
 
   const [sessionId] = useState(createSessionId);
   const [docSignatures, setDocSignatures] = useState<Record<string, ClaimDocumentSignaturePayload>>({});
@@ -299,6 +301,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         contactPhone: contactPhone.trim(),
         acceptedDocuments: documentSignatures.map((signature) => signature.documentId),
         documentSignatures,
+        additionalDocuments,
         odooLeadId,
         formSessionId: sessionId,
       });
@@ -507,6 +510,30 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
             <p className="text-[#7b8094] text-xs mt-2">{contactEmail}</p>
             <p className="text-[#7b8094] text-xs mt-2">Flight date: {formatFlightDateForDisplay(flight.date)}</p>
             <p className="text-[#7b8094] text-xs mt-2">Signing date: {formatFlightDateForDisplay(signingDate)}</p>
+          </div>
+          <div className="bg-white border border-[#d5e0f9] rounded-xl p-4 space-y-2">
+            <label className={FIELD_LABEL} htmlFor="additional-documents">
+              {t("additionalDocuments")}
+            </label>
+            <p className="text-[#7b8094] text-xs leading-relaxed">{t("additionalDocumentsHint")}</p>
+            <input
+              id="additional-documents"
+              type="file"
+              multiple
+              accept="image/*,.pdf,application/pdf"
+              className="block w-full text-sm text-[#1f3664] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2669f3] file:px-3 file:py-2 file:text-sm file:font-bold file:text-white"
+              onChange={(event) => {
+                const files = Array.from(event.target.files ?? []);
+                setAdditionalDocuments(files.slice(0, 8));
+              }}
+            />
+            {additionalDocuments.length > 0 && (
+              <ul className="text-[#7b8094] text-xs space-y-1">
+                {additionalDocuments.map((file) => (
+                  <li key={`${file.name}-${file.size}`}>{file.name}</li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       )}

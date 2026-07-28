@@ -232,6 +232,8 @@
       "emailPlaceholder": "voce@exemplo.com",
       "phoneNumber": "Número de telefone",
       "phonePlaceholder": "+351 912 345 678",
+      "additionalDocuments": "Documentos adicionais (opcional)",
+      "additionalDocumentsHint": "Carregue o cartão de cidadão/ID, confirmação da reserva, recibos de despesas ou outros documentos de suporte.",
       "signOnce": "Assinar uma vez",
       "documentPreview": "Pré-visualização do documento",
       "openFullPage": "Abrir página completa ↗",
@@ -634,23 +636,23 @@
         "message": "Recebemos o seu pedido e a nossa equipa está a analisá-lo. Atualizaremos aqui assim que houver novidades."
       },
       "needs_documents": {
-        "label": "Documentos necessários",
-        "message": "Precisamos de mais alguns documentos para avançar com o seu pedido. Verifique o email ou contacte-nos no +351 928370420. Estamos disponíveis para ajudar!"
+        "label": "Falta documentação",
+        "message": "Para avançarmos, precisamos de mais documentos. Veja o seu email ou contacte-nos no +351 928 370 420 — estamos disponíveis para ajudar."
       },
       "with_airline": {
-        "label": "Com a companhia",
-        "message": "O seu pedido foi submetido à companhia aérea. Estamos a aguardar a resposta e atualizaremos assim que tivermos novidades."
+        "label": "Enviado à companhia aérea",
+        "message": "Já submetemos o seu pedido à companhia aérea e estamos a aguardar resposta. Atualizamos aqui assim que houver novidades."
       },
       "following_up": {
-        "label": "Em seguimento",
-        "message": "A companhia aérea respondeu e estamos a fazer o seguimento em seu nome. Mantê-lo-emos informado."
+        "label": "A acompanhar a resposta",
+        "message": "A companhia aérea já respondeu e estamos a tratar do seguimento por si. Mantemo-lo informado."
       },
       "payment_processing": {
-        "label": "Pagamento em processamento",
-        "message": "Boas notícias — a companhia aprovou a compensação! Estamos a processar o pagamento e atualizaremos em breve."
+        "label": "A processar o pagamento",
+        "message": "Boas notícias — a companhia aprovou a compensação. Estamos a processar o pagamento e atualizamos em breve."
       },
       "awaiting_fee": {
-        "label": "Taxa de serviço",
+        "label": "Pagamento da taxa",
         "message": "Parabéns, o seu pedido foi bem-sucedido! Conclua o pagamento da nossa taxa de serviço para podermos encerrar o caso."
       },
       "paid": {

@@ -72,7 +72,7 @@ flightNumber — numeric part only (e.g. 8542 from "FR8542" or "Flight FR 8542")
 
 flightDesignator — combined airline code + number as printed (e.g. FR8542, U2 1234 → U21234)
 
-flightDate — date as printed (boarding date or departure date)
+flightDate — departure/boarding date. Prefer ISO YYYY-MM-DD (e.g. 2026-07-22). If only a 2-digit year is printed (e.g. 22JUL26), expand it to 20YY (2026), never 19YY. Digits must be read carefully (26 is not 01).
 
 
 

@@ -543,17 +543,22 @@ function buildOpsAttachments(payload: ClaimEmailPayload): Array<{ filename: stri
 export async function sendClaimEmails(
   payload: ClaimEmailPayload,
   siteUrl: string,
+  options: { skipOpsEmail?: boolean } = {},
 ): Promise<{ opsSent: boolean; userSent: boolean }> {
   const trackUrl = buildTrackUrl(siteUrl, payload.trackingNumber, payload.locale);
   const attachments = buildOpsAttachments(payload);
   const attachmentNames = attachments.map((item) => item.filename);
 
-  const opsSent = await sendViaResend({
-    to: [getOpsEmail()],
-    subject: `[Compensall] New claim ${payload.trackingNumber}: ${payload.flight.flight}`,
-    html: buildOpsHtml(payload, attachmentNames, siteUrl),
-    attachments: attachments.length > 0 ? attachments : undefined,
-  });
+  // Do not email help@ when Odoo already created the ticket — IMAP would paste the
+  // ops HTML into Description and duplicate the claim card.
+  const opsSent = options.skipOpsEmail
+    ? false
+    : await sendViaResend({
+        to: [getOpsEmail()],
+        subject: `[Compensall] New claim ${payload.trackingNumber}: ${payload.flight.flight}`,
+        html: buildOpsHtml(payload, attachmentNames, siteUrl),
+        attachments: attachments.length > 0 ? attachments : undefined,
+      });
 
   const userSent = await sendViaResend({
     to: [payload.contactEmail],

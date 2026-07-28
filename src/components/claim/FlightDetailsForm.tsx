@@ -3,6 +3,10 @@
 import { useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
 import { FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
+import {
+  normalizeFlightDate,
+  toDateInputValue,
+} from "@/lib/resolve-boarding-pass-references";
 
 type FlightDetailsFormProps = {
   flight: ClaimFlightData;
@@ -48,8 +52,12 @@ export default function FlightDetailsForm({ flight, onChange, idPrefix = "flight
           id={`${idPrefix}-date`}
           type="date"
           className={FIELD_INPUT}
-          value={flight.date}
-          onChange={(e) => update({ date: e.target.value })}
+          value={toDateInputValue(flight.date)}
+          onChange={(e) =>
+            update({
+              date: e.target.value ? normalizeFlightDate(e.target.value) : "",
+            })
+          }
         />
       </div>
       <div>

@@ -232,6 +232,8 @@
       "emailPlaceholder": "you@example.com",
       "phoneNumber": "Phone number",
       "phonePlaceholder": "+351 912 345 678",
+      "additionalDocuments": "Additional documents (optional)",
+      "additionalDocumentsHint": "Upload ID, booking confirmation, expense receipts, or other supporting files.",
       "signOnce": "Sign once",
       "documentPreview": "Document preview",
       "openFullPage": "Open full page ↗",

@@ -220,6 +220,9 @@ export default function HeroClaimForm() {
     if (boardingPassFile) {
       formData.append("file", boardingPassFile);
     }
+    for (const file of payload.additionalDocuments ?? []) {
+      formData.append("additionalDocuments", file);
+    }
 
     const response = await fetch("/api/claim/submit", {
       method: "POST",

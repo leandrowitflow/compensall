@@ -232,6 +232,8 @@
       "emailPlaceholder": "vous@exemple.com",
       "phoneNumber": "Numéro de téléphone",
       "phonePlaceholder": "+33 6 12 34 56 78",
+      "additionalDocuments": "Documents supplémentaires (facultatif)",
+      "additionalDocumentsHint": "Téléchargez une pièce d'identité, la confirmation de réservation, des reçus de frais ou d'autres justificatifs.",
       "signOnce": "Signer une fois",
       "documentPreview": "Aperçu du document",
       "openFullPage": "Ouvrir la page complète ↗",

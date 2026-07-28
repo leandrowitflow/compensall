@@ -676,3 +676,54 @@ export async function odooAttachFilesToHelpdeskTicket(
 
   return ids;
 }
+
+/** Find or create a customer partner so tickets are not linked to Aireclaim/Compensall company. */
+export async function odooFindOrCreatePartner(input: {
+  name: string;
+  email: string;
+  phone?: string | null;
+}): Promise<number> {
+  const config = getOdooConfig();
+  if (!config) {
+    throw new Error("Odoo is not configured.");
+  }
+
+  const uid = await authenticate(config);
+  const email = input.email.trim();
+  const name = input.name.trim() || email;
+  const phone = input.phone?.trim() || "";
+
+  if (!email) {
+    throw new Error("Partner email is required.");
+  }
+
+  const existing = await executeKw<Array<{ id: number }>>(
+    config,
+    uid,
+    "res.partner",
+    "search_read",
+    [[["email", "=ilike", email]]],
+    { fields: ["id"], limit: 1 },
+  );
+
+  if (existing[0]?.id) {
+    const updates: Record<string, unknown> = {};
+    if (name) updates.name = name;
+    if (phone) updates.phone = phone;
+    if (Object.keys(updates).length > 0) {
+      await executeKw<boolean>(config, uid, "res.partner", "write", [[existing[0].id], updates]);
+    }
+    return existing[0].id;
+  }
+
+  const companyId = await resolveAccessibleCompanyId(config, uid);
+  const values: Record<string, unknown> = {
+    name,
+    email,
+    type: "contact",
+  };
+  if (phone) values.phone = phone;
+  if (companyId) values.company_id = companyId;
+
+  return executeKw<number>(config, uid, "res.partner", "create", [values]);
+}

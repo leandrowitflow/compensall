@@ -29,6 +29,7 @@ const flightSchema = z.object({
   date: z.string().min(1),
   status: z.enum(["Delayed", "Cancelled", "Denied boarding", "Unknown"]),
   delay: z.string(),
+  bookingReference: z.string().nullable().optional(),
 });
 
 const documentSignatureSchema = z.object({
@@ -183,6 +184,25 @@ export async function POST(request: Request) {
       return Response.json({ error: "Boarding pass file is required for upload claims." }, { status: 400 });
     }
 
+    const additionalDocuments: Array<{ fileName: string; mimeType: string; base64: string }> = [];
+    for (const entry of formData.getAll("additionalDocuments")) {
+      if (!(entry instanceof File) || entry.size <= 0) continue;
+      if (additionalDocuments.length >= 8) break;
+      if (entry.size > MAX_FILE_SIZE) {
+        return Response.json({ error: "One of the additional documents is too large." }, { status: 400 });
+      }
+      const mimeType = inferMimeType(entry.name, entry.type);
+      if (!isAllowedBoardingPassMime(mimeType)) {
+        return Response.json({ error: "Unsupported additional document type." }, { status: 400 });
+      }
+      const buffer = Buffer.from(await entry.arrayBuffer());
+      additionalDocuments.push({
+        fileName: entry.name,
+        mimeType,
+        base64: buffer.toString("base64"),
+      });
+    }
+
     const flight = withCompensationEstimate(normalizeFlightData(flightResult.data));
     const verification = await verifyBoardingPassClaim(
       flight,
@@ -267,6 +287,7 @@ export async function POST(request: Request) {
               base64: boardingPassBuffer.toString("base64"),
             }
           : null,
+      additionalDocuments,
     });
 
     if (odooLead) {
@@ -315,6 +336,7 @@ export async function POST(request: Request) {
         })),
       },
       siteUrl,
+      { skipOpsEmail: Boolean(odooTicket) },
     );
 
     return Response.json({
