@@ -549,16 +549,16 @@ export async function sendClaimEmails(
   const attachments = buildOpsAttachments(payload);
   const attachmentNames = attachments.map((item) => item.filename);
 
-  // Do not email help@ when Odoo already created the ticket — IMAP would paste the
-  // ops HTML into Description and duplicate the claim card.
-  const opsSent = options.skipOpsEmail
-    ? false
-    : await sendViaResend({
+  // Ops email to help@ is skipped by default — Odoo IMAP would create a duplicate ticket.
+  // Pass skipOpsEmail: false only for explicit internal testing.
+  const opsSent = options.skipOpsEmail === false
+    ? await sendViaResend({
         to: [getOpsEmail()],
         subject: `[Compensall] New claim ${payload.trackingNumber}: ${payload.flight.flight}`,
         html: buildOpsHtml(payload, attachmentNames, siteUrl),
         attachments: attachments.length > 0 ? attachments : undefined,
-      });
+      })
+    : false;
 
   const userSent = await sendViaResend({
     to: [payload.contactEmail],

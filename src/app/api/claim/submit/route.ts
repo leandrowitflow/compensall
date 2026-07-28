@@ -336,7 +336,9 @@ export async function POST(request: Request) {
         })),
       },
       siteUrl,
-      { skipOpsEmail: Boolean(odooTicket) },
+      // Never notify help@ by email — Odoo IMAP would create a duplicate ticket.
+      // The Helpdesk ticket is created via API with the claim data and attachments.
+      { skipOpsEmail: true },
     );
 
     return Response.json({
