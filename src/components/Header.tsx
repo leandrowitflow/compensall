@@ -93,7 +93,7 @@ export default function Header() {
             <img src="/assets/logo.svg?v=2" alt="Compensall" width={120} height={32} className="h-8 w-auto" />
           </Link>
 
-          <nav className="hidden xl:flex items-center justify-center gap-1.5 2xl:gap-4 min-w-0 px-1">
+          <nav className="hidden xl:flex items-center justify-center gap-3 2xl:gap-5 min-w-0 px-2">
             <NavDropdown
               label={tNav("knowYourRightsShort")}
               groups={knowYourRightsNav}
@@ -104,7 +104,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[#1f3664] text-[14px] 2xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors whitespace-nowrap px-0.5"
+                className="text-[#1f3664] text-[14px] 2xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors whitespace-nowrap px-1.5"
               >
                 {link.label}
               </Link>

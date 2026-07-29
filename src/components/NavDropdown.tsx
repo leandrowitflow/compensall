@@ -96,7 +96,7 @@ export default function NavDropdown({
     <div ref={rootRef} className="relative shrink-0">
       <button
         type="button"
-        className="inline-flex items-center gap-1 text-[#1f3664] text-[14px] lg:text-[15px] xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors whitespace-nowrap"
+        className="inline-flex items-center gap-1 px-1.5 text-[#1f3664] text-[14px] lg:text-[15px] xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors whitespace-nowrap"
         aria-expanded={open}
         aria-haspopup="true"
         aria-controls={panelId}
