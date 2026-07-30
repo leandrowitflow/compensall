@@ -1,5 +1,9 @@
 import type { AirportOption } from "@/lib/airport-option";
 import {
+  airportMatchesCountryQuery,
+  resolveCountryCodesFromQuery,
+} from "@/lib/country-search-aliases";
+import {
   findWorldAirportOptionById,
   getAllWorldAirportOptions,
   getPopularWorldAirportOptions,
@@ -19,6 +23,10 @@ function normalizeQuery(query: string): string {
     .replace(/\p{M}/gu, "");
 }
 
+function countryAliasHit(airport: AirportOption, query: string): boolean {
+  return airportMatchesCountryQuery(airport.country, airport.countryName, query);
+}
+
 function scoreAirport(airport: AirportOption, query: string): number {
   const q = normalizeQuery(query);
   if (!q) return 0;
@@ -34,7 +42,7 @@ function scoreAirport(airport: AirportOption, query: string): number {
   if (iata === q) return 100;
   if (iata.startsWith(q)) return 95;
   if (city === q || altCities.includes(q)) return 92;
-  if (countryName === q || countryCode === q) return 91;
+  if (countryName === q || countryCode === q || countryAliasHit(airport, q)) return 91;
   if (name.startsWith(q)) return 88;
   if (city.startsWith(q) || altCities.some((value) => value.startsWith(q))) return 86;
   if (countryName.startsWith(q)) return 84;
@@ -52,6 +60,7 @@ function scoreAirport(airport: AirportOption, query: string): number {
         city.includes(token) ||
         altCities.some((value) => value.includes(token)) ||
         countryName.includes(token) ||
+        countryAliasHit(airport, token) ||
         keywords.includes(token),
     )
   ) {
@@ -59,14 +68,6 @@ function scoreAirport(airport: AirportOption, query: string): number {
   }
 
   return 0;
-}
-
-function isCountryQuery(airport: AirportOption, query: string): boolean {
-  const q = normalizeQuery(query);
-  if (!q || q.length < 2) return false;
-  const countryName = normalizeQuery(airport.countryName);
-  const countryCode = normalizeQuery(airport.country);
-  return countryName === q || countryCode === q || (q.length >= 4 && countryName.startsWith(q));
 }
 
 export function getAllAirportsSorted(_language?: string): AirportOption[] {
@@ -98,15 +99,27 @@ export function searchAirports(
     return getPopularAirports(undefined, 12);
   }
 
-  const countryMatches = airports.filter((airport) => isCountryQuery(airport, normalized));
-  if (countryMatches.length > 0 && countryMatches.length <= 80) {
-    const exactCountry = countryMatches.some((airport) => {
-      const countryName = normalizeQuery(airport.countryName);
-      const countryCode = normalizeQuery(airport.country);
-      return countryName === normalized || countryCode === normalized;
-    });
-    if (exactCountry || normalized.length >= 4) {
-      return [...countryMatches].sort((a, b) => a.city.localeCompare(b.city) || a.name.localeCompare(b.name));
+  const resolvedCodes = new Set(resolveCountryCodesFromQuery(normalized));
+  const countryMatches = airports.filter((airport) => {
+    if (resolvedCodes.size > 0 && resolvedCodes.has(airport.country.toUpperCase())) {
+      return true;
+    }
+    return airportMatchesCountryQuery(airport.country, airport.countryName, normalized);
+  });
+
+  if (countryMatches.length > 0) {
+    const exactOrAlias =
+      resolvedCodes.size > 0 ||
+      countryMatches.some((airport) => {
+        const countryName = normalizeQuery(airport.countryName);
+        const countryCode = normalizeQuery(airport.country);
+        return countryName === normalized || countryCode === normalized;
+      });
+
+    if (exactOrAlias || normalized.length >= 4) {
+      return [...countryMatches].sort(
+        (a, b) => a.city.localeCompare(b.city) || a.name.localeCompare(b.name),
+      );
     }
   }
 
