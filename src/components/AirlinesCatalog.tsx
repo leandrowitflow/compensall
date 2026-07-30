@@ -101,8 +101,9 @@ function CatalogSection({
   const isSearching = query.trim().length > 0;
   const isExpanded = showAll || isSearching;
 
-  const featuredItems = visibleItems.slice(0, 4);
-  const remainingItems = visibleItems.slice(4);
+  // Country / text search: show the full result set in one grid.
+  const featuredItems = isSearching ? visibleItems : visibleItems.slice(0, 4);
+  const remainingItems = isSearching ? [] : visibleItems.slice(4);
 
   const handleQueryChange = (value: string) => {
     setQuery(value);

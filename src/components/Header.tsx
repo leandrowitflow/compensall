@@ -1,10 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Link } from "@/i18n/routing";
+import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
+import { getPopularCatalogItems } from "@/lib/localize-catalog";
 import type { NavMenuGroup, NavMenuItem } from "@/lib/nav-menu";
 import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
 
@@ -12,9 +14,13 @@ const NavDropdown = dynamic(() => import("@/components/NavDropdown"));
 const MobileMenu = dynamic(() => import("@/components/MobileMenu"));
 
 export default function Header() {
+  const locale = useLocale();
   const tNav = useTranslations("nav");
   const tCommon = useTranslations("common");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const popularAirlines = getPopularCatalogItems(airlinesCatalog, locale, "airlines", 6);
+  const popularAirports = getPopularCatalogItems(airportsCatalog, locale, "airports", 6);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -55,25 +61,17 @@ export default function Header() {
     },
     {
       title: tNav("airlinesMenu.popularAirlines"),
-      items: [
-        { label: "Ryanair", href: "/airlines/ryanair" },
-        { label: "easyJet", href: "/airlines/easyjet" },
-        { label: "British Airways", href: "/airlines/british-airways" },
-        { label: "Wizz Air", href: "/airlines/wizz-air" },
-        { label: "Lufthansa", href: "/airlines/lufthansa" },
-        { label: "TAP Air Portugal", href: "/airlines/tap" },
-      ],
+      items: popularAirlines.map((item) => ({
+        label: item.name,
+        href: `/airlines/${item.id}`,
+      })),
     },
     {
       title: tNav("airlinesMenu.popularAirports"),
-      items: [
-        { label: "London Heathrow", href: "/airports/heathrow" },
-        { label: "London Gatwick", href: "/airports/gatwick" },
-        { label: "Manchester", href: "/airports/manchester" },
-        { label: "Lisbon", href: "/airports/lisbon" },
-        { label: "Barcelona El Prat", href: "/airports/barcelona" },
-        { label: "Paris CDG", href: "/airports/paris-cdg" },
-      ],
+      items: popularAirports.map((item) => ({
+        label: item.name,
+        href: `/airports/${item.id}`,
+      })),
     },
   ];
 

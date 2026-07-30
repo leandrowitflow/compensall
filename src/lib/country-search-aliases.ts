@@ -24,6 +24,16 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   angleterre: ["GB"],
   ecosse: ["GB"],
   galles: ["GB"],
+  british: ["GB"],
+  britannique: ["GB"],
+  britanico: ["GB"],
+  britanica: ["GB"],
+  britannica: ["GB"],
+  english: ["GB"],
+  anglais: ["GB"],
+  ingles: ["GB"],
+  inglesa: ["GB"],
+  gb: ["GB"],
 
   // Portugal
   portugal: ["PT"],
@@ -38,6 +48,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
 
   // France
   france: ["FR"],
+  franca: ["FR"],
   francia: ["FR"],
   frankreich: ["FR"],
 
