@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 type TrustpilotBadgeProps = {
   priority?: boolean;
   className?: string;
@@ -13,13 +17,15 @@ const TRUSTPILOT_SRCSET = `${TRUSTPILOT_SRC_520} 520w, ${TRUSTPILOT_SRC} 1040w`;
 const TRUSTPILOT_SIZES = "(max-width: 640px) 100vw, 520px";
 
 export default function TrustpilotBadge({ priority = false, className = "" }: TrustpilotBadgeProps) {
+  const t = useTranslations("home.hero");
+
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={TRUSTPILOT_SRC}
       srcSet={TRUSTPILOT_SRCSET}
       sizes={TRUSTPILOT_SIZES}
-      alt="Excellent Trustpilot 4.8 out of 5"
+      alt={t("trustpilotAlt")}
       width={TRUSTPILOT_WIDTH}
       height={TRUSTPILOT_HEIGHT}
       decoding="async"

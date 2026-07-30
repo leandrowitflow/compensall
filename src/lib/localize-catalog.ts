@@ -108,7 +108,8 @@ export function filterCatalog(items: CatalogItem[], query: string): CatalogItem[
   return items.filter(
     (item) =>
       item.name.toLowerCase().includes(trimmed) ||
-      item.description.toLowerCase().includes(trimmed),
+      item.id.toLowerCase().includes(trimmed) ||
+      (item.description?.toLowerCase().includes(trimmed) ?? false),
   );
 }
 

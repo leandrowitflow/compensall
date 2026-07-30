@@ -2,9 +2,9 @@
 
 import { useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
+import { useLocale, useTranslations } from "next-intl";
 import type { AirportOption } from "@/lib/airport-option";
 import { searchAirports } from "@/lib/airport-search";
-import { resolveBrowserLanguage } from "@/lib/localize-catalog";
 
 type AirportSelectProps = {
   id: string;
@@ -53,6 +53,8 @@ export default function AirportSelect({
   excludeAirportId,
   disabled = false,
 }: AirportSelectProps) {
+  const t = useTranslations("claim.step1");
+  const locale = useLocale();
   const listboxId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -60,21 +62,19 @@ export default function AirportSelect({
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [highlightIndex, setHighlightIndex] = useState(0);
-  const [language, setLanguage] = useState("en");
   const [menuRect, setMenuRect] = useState<DOMRect | null>(null);
   const [mounted, setMounted] = useState(false);
 
-  const results = searchAirports(query, language, {
+  const results = searchAirports(query, locale, {
     excludeId: excludeAirportId ?? undefined,
   });
   const showAll = !query.trim();
   const listTitle = showAll
-    ? `Popular airports`
-    : `${results.length} result${results.length === 1 ? "" : "s"}`;
+    ? t("popularAirports")
+    : t("resultsCount", { count: results.length });
 
   useEffect(() => {
     setMounted(true);
-    setLanguage(resolveBrowserLanguage());
   }, []);
 
   const updateMenuRect = () => {
@@ -174,13 +174,13 @@ export default function AirportSelect({
             <div className="px-3 py-2 border-b border-[#d5e0f9]/80 bg-[#fafbff]">
               <p className="text-[11px] font-bold uppercase tracking-wide text-[#7b8094]">{listTitle}</p>
               {excludeAirportId && (
-                <p className="text-[11px] text-[#7b8094] mt-0.5">The other selected airport is hidden.</p>
+                <p className="text-[11px] text-[#7b8094] mt-0.5">{t("otherAirportHidden")}</p>
               )}
             </div>
             <ul id={listboxId} role="listbox" className="max-h-[min(360px,50vh)] overflow-y-auto py-1">
               {results.length === 0 ? (
                 <li className="px-4 py-6 text-center text-sm text-[#7b8094]">
-                  No airports found. Try a city, country, or code (e.g. Lisbon, Portugal, LHR).
+                  {t("noAirportsFound")}
                 </li>
               ) : (
                 results.map((airport, index) => {

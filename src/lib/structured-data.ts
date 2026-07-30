@@ -108,11 +108,14 @@ export function buildBreadcrumbSchema(items: Array<{ name: string; path: string 
   };
 }
 
-export function buildHowToSchema(steps: Array<{ name: string; text: string }>) {
+export function buildHowToSchema(
+  steps: Array<{ name: string; text: string }>,
+  name = "How to claim flight compensation with Compensall",
+) {
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "How to claim flight compensation with Compensall",
+    name,
     step: steps.map((step, index) => ({
       "@type": "HowToStep",
       position: index + 1,

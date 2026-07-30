@@ -11,9 +11,13 @@
     "language": "Langue",
     "selectLanguage": "Sélectionner la langue",
     "learnMore": "En savoir plus",
+    "checkClaims": "Vérifier les réclamations",
     "startYourClaim": "Démarrer votre réclamation",
     "checkCompensation": "Vérifier l'indemnisation",
-    "checkCompensationShort": "Vérifier"
+    "checkCompensationShort": "Vérifier",
+    "home": "Accueil",
+    "legal": "Mentions légales",
+    "airport": "Aéroport"
   },
   "nav": {
     "knowYourRights": "Connaître vos droits",
@@ -129,6 +133,7 @@
     "howItWorks": {
       "title": "Comment ça",
       "titleAccent": "marche ?",
+      "schemaName": "Comment réclamer une indemnisation de vol avec Compensall",
       "subtitle": "Téléchargez votre carte d'embarquement. Notre assistant vérifie votre réclamation. Notre équipe s'occupe de la compagnie aérienne.",
       "steps": {
         "upload": {
@@ -173,6 +178,25 @@
       "arrivalAirport": "Aéroport d'arrivée",
       "swapAirports": "Inverser les aéroports",
       "dataProtected": "Vos données sont protégées. Toujours.",
+      "popularAirports": "Aéroports populaires",
+      "resultsCount": "{count, plural, =1 {# résultat} other {# résultats}}",
+      "otherAirportHidden": "L'autre aéroport sélectionné est masqué.",
+      "noAirportsFound": "Aucun aéroport trouvé. Essayez une ville, un pays ou un code (ex. : Lisbonne, Portugal, LHR).",
+      "preview": {
+        "title": "Aperçu de la carte d'embarquement",
+        "fullTitle": "Aperçu complet de la carte d'embarquement",
+        "addedJustNow": "Ajouté à l'instant • {fileSize}",
+        "open": "Aperçu",
+        "viewFull": "Voir la carte d'embarquement complète",
+        "thumbnail": "Miniature de la carte d'embarquement",
+        "heicUnsupported": "L'aperçu HEIC n'est pas pris en charge dans le navigateur.",
+        "unavailable": "Aperçu indisponible pour ce type de fichier.",
+        "notAvailableSaved": "L'aperçu n'est pas disponible pour ce type de fichier dans le navigateur. Votre fichier reste enregistré pour la réclamation.",
+        "formatCannotPreview": "Ce format ne peut pas être prévisualisé{heicHint}.",
+        "heicHint": " (HEIC)",
+        "downloadFile": "Télécharger le fichier",
+        "closePreview": "Fermer l'aperçu"
+      },
       "errors": {
         "selectBothAirports": "Sélectionnez les aéroports de départ et d'arrivée dans la liste.",
         "airportsMustDiffer": "Les aéroports de départ et d'arrivée doivent être différents.",
@@ -740,6 +764,60 @@
         "message": "Malheureusement, la compagnie a refusé votre réclamation et nous ne pouvons pas aller plus loin. Votre dossier est clôturé — contactez-nous pour en discuter."
       }
     }
+  },
+  "airlinesPage": {
+    "title": "Aéroports et compagnies aériennes",
+    "subtitleLine1": "Trouvez votre compagnie aérienne ou aéroport.",
+    "subtitleLine2": "Vérifiez votre réclamation en quelques minutes."
+  },
+  "airlinesCatalog": {
+    "airlines": "Compagnies aériennes",
+    "airports": "Aéroports",
+    "mostPopular": "Les plus populaires",
+    "searchAirline": "Rechercher une compagnie...",
+    "searchAirport": "Rechercher un aéroport...",
+    "seeMore": "Voir plus de {section}",
+    "allSection": "Tous les {section}",
+    "showLess": "Afficher moins",
+    "noResults": "Aucun résultat. Essayez une autre recherche.",
+    "airlineCardDescription": "Retard, annulation ou refus d'embarquement {name} ? Vérifiez votre réclamation en quelques minutes.",
+    "airportCardDescription": "Vol retardé ou annulé via {name} ? Vérifiez votre réclamation en quelques minutes."
+  },
+  "catalogDetail": {
+    "airlineTitle": "Indemnisation pour retard ou annulation de vol {name}",
+    "airportTitle": "Indemnisation de vol depuis {name}",
+    "airlineIntroP1": "Si votre vol {name} a été retardé, annulé ou si l'embarquement vous a été refusé, vous pouvez avoir droit à une indemnisation allant jusqu'à 600 € au titre du règlement UE CE 261/2004 et du UK261.",
+    "airlineIntroP2": "Compensall vérifie votre éligibilité en quelques minutes. Téléversez votre carte d'embarquement ou saisissez les détails du vol — pas de gain, pas de frais.",
+    "airportIntroP1": "Vous voyagez depuis ou vers {name} ? Si votre vol a été retardé ou annulé, vous pouvez avoir droit à une indemnisation allant jusqu'à 600 € au titre du règlement UE CE 261/2004 et du UK261.",
+    "airportIntroP2": "Compensall vous aide à vérifier votre réclamation en quelques minutes. Commencez avec votre carte d'embarquement ou les détails du vol — pas de gain, pas de frais.",
+    "airlineCardDescription": "Retard, annulation ou refus d'embarquement {name} ? Vérifiez votre réclamation en quelques minutes.",
+    "airportCardDescription": "Vol retardé ou annulé via {name} ? Vérifiez votre réclamation en quelques minutes.",
+    "entityAirlineFlight": "votre vol {name}",
+    "entityAirportFlight": "un vol via {name}",
+    "faqDelayQuestion": "Ai-je droit à une indemnisation si {entity} a été retardé ou annulé ?",
+    "faqDelayAnswer": "Vous pouvez avoir droit à une indemnisation si votre vol est arrivé avec 3+ heures de retard ou a été annulé avec un court préavis, à condition que la perturbation soit sous le contrôle de la compagnie (pas de circonstances extraordinaires comme de fortes intempéries).",
+    "faqAmountQuestion": "Combien puis-je réclamer ?",
+    "faqAmountAnswer": "Au titre du CE 261/2004 et du UK261, l'indemnisation est généralement de 250 €, 400 € ou 600 € par passager selon la distance et le retard.",
+    "faqRejectedAirlineQuestion": "Et si {name} a déjà rejeté ma réclamation ?",
+    "faqRejectedAirportQuestion": "Et si la compagnie a déjà rejeté ma réclamation ?",
+    "faqRejectedAnswer": "Un rejet ne signifie pas toujours que vous n'avez aucun droit. Nous examinons votre dossier et pouvons poursuivre les réclamations valides sans gain, sans frais.",
+    "faqDeadlineQuestion": "Y a-t-il un délai pour réclamer ?",
+    "faqDeadlineAnswer": "Les délais varient selon les pays (souvent plusieurs années). Vérifiez tôt afin que nous puissions évaluer vos options.",
+    "faqSafeQuestion": "Est-il sûr de partager ma carte d'embarquement ?",
+    "faqSafeAnswer": "Oui. Vos données sont traitées de façon sécurisée et utilisées uniquement pour évaluer et traiter votre réclamation.",
+    "claimHeadlineAirline": "Prêt à réclamer contre {name} ?",
+    "claimHeadlineAirport": "Prêt à vérifier votre réclamation depuis {name} ?",
+    "claimSubheadline": "Utilisez l'assistant de carte d'embarquement sur la page d'accueil. C'est rapide, sécurisé et sans gain, sans frais.",
+    "breadcrumbCatalog": "Compagnies et aéroports",
+    "notFoundAirline": "Compagnie introuvable | Compensall",
+    "notFoundAirport": "Aéroport introuvable | Compensall"
+  },
+  "notFoundPage": {
+    "title": "Page introuvable",
+    "description": "Nous n'avons pas trouvé cette page. Lancez une vérification d'indemnisation ou consultez nos guides ci-dessous.",
+    "checkCompensation": "Vérifier l'indemnisation",
+    "knowYourRights": "Connaître vos droits",
+    "blog": "Blog"
   },
   "blogPage": {
     "title": "Blog",

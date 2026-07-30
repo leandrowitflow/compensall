@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import type { CatalogItem } from "@/lib/catalog";
 import type { AppLocale } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
@@ -222,13 +223,14 @@ export function buildArticleMetadata({
   };
 }
 
-export function buildCatalogMetadata(
+export async function buildCatalogMetadata(
   item: CatalogItem,
   kind: CatalogKind,
   locale: AppLocale = "en",
-): Metadata {
-  const title = buildCatalogTitle(item, kind);
-  const description = buildCatalogMetadataDescription(item, kind);
+): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "catalogDetail" });
+  const title = buildCatalogTitle(t, item, kind);
+  const description = buildCatalogMetadataDescription(t, item, kind);
   const path = kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`;
 
   return buildPageMetadata({ title, description, path, locale });

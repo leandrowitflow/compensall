@@ -42,12 +42,6 @@ export default async function CTABanner() {
             {t("titleLine2")}
           </h2>
 
-          <p className="shrink-0 text-white text-base md:text-lg xl:text-[17px] xl:leading-[26px] 2xl:text-[19px] 2xl:leading-[27px] max-w-[740px]">
-            {t("subtitle")}
-            <br className="hidden sm:block" />
-            {t("subtitleLine2")}
-          </p>
-
           <p className="shrink-0 text-white text-sm md:text-base xl:text-[17px] xl:leading-[26px] 2xl:text-[19px] 2xl:leading-[27px] max-w-[856px]">
             {t.rich("body", {
               brandName: () => <strong className="font-bold">{BRAND_NAME}</strong>,

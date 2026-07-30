@@ -1,15 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import CatalogLogo from "@/components/CatalogLogo";
+import { Link } from "@/i18n/routing";
 import type { CatalogItem } from "@/lib/catalog";
 import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
-import {
-  filterCatalog,
-  resolveBrowserLanguage,
-  sortCatalogByLocale,
-} from "@/lib/localize-catalog";
+import { buildCatalogCardDescription } from "@/lib/catalog-detail";
+import { filterCatalog, sortCatalogByLocale } from "@/lib/localize-catalog";
 
 function SearchField({
   placeholder,
@@ -40,22 +38,25 @@ function SearchField({
 }
 
 function CatalogCard({
-  id,
+  item,
   kind,
-  logo,
-  name,
   description,
   cta,
-}: CatalogItem & { kind: "airlines" | "airports" }) {
+}: {
+  item: CatalogItem;
+  kind: "airlines" | "airports";
+  description: string;
+  cta: string;
+}) {
   return (
     <div className="bg-white border-2 border-[#d5e0f9] rounded-[20px] p-6 xl:p-8 flex flex-col min-h-[280px] xl:min-h-[312px]">
       <div className="h-12 xl:h-[60px] mb-5 flex items-start rounded-[10px] bg-[#f8faff] px-2">
-        <CatalogLogo id={id} kind={kind} name={name} logo={logo} />
+        <CatalogLogo id={item.id} kind={kind} name={item.name} logo={item.logo} />
       </div>
-      <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mb-3 leading-snug">{name}</h3>
+      <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mb-3 leading-snug">{item.name}</h3>
       <p className="text-[#1f3664] text-sm xl:text-[15px] leading-[1.7] flex-1">{description}</p>
       <Link
-        href={kind === "airlines" ? `/airlines/${id}` : `/airports/${id}`}
+        href={kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`}
         className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] mt-5 hover:opacity-80 transition-opacity"
       >
         {cta}
@@ -86,6 +87,9 @@ function CatalogSection({
   language: string;
   kind: "airlines" | "airports";
 }) {
+  const t = useTranslations("airlinesCatalog");
+  const tCommon = useTranslations("common");
+  const tDetail = useTranslations("catalogDetail");
   const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
 
@@ -107,7 +111,11 @@ function CatalogSection({
     }
   };
 
+  const cta = kind === "airlines" ? tCommon("learnMore") : tCommon("checkClaims");
   const sectionLabel = title.toLowerCase();
+
+  const cardDescription = (item: CatalogItem) =>
+    buildCatalogCardDescription(tDetail, item, kind);
 
   return (
     <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
@@ -117,17 +125,23 @@ function CatalogSection({
         </h2>
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 xl:mb-8">
-          <p className="font-bold text-[#1f3664] text-[17px] xl:text-[18px]">Most popular</p>
+          <p className="font-bold text-[#1f3664] text-[17px] xl:text-[18px]">{t("mostPopular")}</p>
           <SearchField placeholder={searchPlaceholder} value={query} onChange={handleQueryChange} />
         </div>
 
         {visibleItems.length === 0 ? (
-          <p className="text-center text-[#7b8094] text-sm py-8">No results found. Try a different search.</p>
+          <p className="text-center text-[#7b8094] text-sm py-8">{t("noResults")}</p>
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 xl:gap-6">
               {featuredItems.map((item) => (
-                <CatalogCard key={item.id} kind={kind} {...item} />
+                <CatalogCard
+                  key={item.id}
+                  item={item}
+                  kind={kind}
+                  description={cardDescription(item)}
+                  cta={cta}
+                />
               ))}
             </div>
 
@@ -138,7 +152,7 @@ function CatalogSection({
                   onClick={() => setShowAll(true)}
                   className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] hover:opacity-80 transition-opacity"
                 >
-                  See more {sectionLabel}
+                  {t("seeMore", { section: sectionLabel })}
                   <span className="text-[#7b8094] font-normal text-sm">({remainingItems.length})</span>
                   <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true" className="rotate-90">
                     <path
@@ -156,11 +170,17 @@ function CatalogSection({
             {remainingItems.length > 0 && isExpanded && (
               <>
                 <p className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] mt-10 xl:mt-12 mb-6 xl:mb-8">
-                  All {sectionLabel}
+                  {t("allSection", { section: sectionLabel })}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 xl:gap-6">
                   {remainingItems.map((item) => (
-                    <CatalogCard key={item.id} kind={kind} {...item} />
+                    <CatalogCard
+                      key={item.id}
+                      item={item}
+                      kind={kind}
+                      description={cardDescription(item)}
+                      cta={cta}
+                    />
                   ))}
                 </div>
                 {!isSearching && (
@@ -170,7 +190,7 @@ function CatalogSection({
                       onClick={() => setShowAll(false)}
                       className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] hover:opacity-80 transition-opacity"
                     >
-                      Show less
+                      {t("showLess")}
                       <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true" className="-rotate-90">
                         <path
                           d="M1 6h14M10 1l5 5-5 5"
@@ -193,26 +213,23 @@ function CatalogSection({
 }
 
 export default function AirlinesCatalog() {
-  const [language, setLanguage] = useState("en");
-
-  useEffect(() => {
-    setLanguage(resolveBrowserLanguage());
-  }, []);
+  const locale = useLocale();
+  const t = useTranslations("airlinesCatalog");
 
   return (
     <>
       <CatalogSection
-        title="Airlines"
-        searchPlaceholder="Search airline..."
+        title={t("airlines")}
+        searchPlaceholder={t("searchAirline")}
         items={airlinesCatalog}
-        language={language}
+        language={locale}
         kind="airlines"
       />
       <CatalogSection
-        title="Airports"
-        searchPlaceholder="Search airport..."
+        title={t("airports")}
+        searchPlaceholder={t("searchAirport")}
         items={airportsCatalog}
-        language={language}
+        language={locale}
         kind="airports"
       />
     </>

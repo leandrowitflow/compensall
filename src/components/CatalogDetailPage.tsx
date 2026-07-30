@@ -1,10 +1,11 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
 import CatalogClaimSection from "@/components/CatalogClaimSection";
 import CatalogLogo from "@/components/CatalogLogo";
 import JsonLd from "@/components/seo/JsonLd";
+import { Link } from "@/i18n/routing";
 import {
   buildCatalogFaqs,
   buildCatalogIntro,
@@ -19,21 +20,21 @@ type CatalogDetailPageProps = {
   kind: CatalogKind;
 };
 
-export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps) {
-  const title = buildCatalogTitle(item, kind);
-  const intro = buildCatalogIntro(item, kind);
-  const faqs = buildCatalogFaqs(item, kind);
+export default async function CatalogDetailPage({ item, kind }: CatalogDetailPageProps) {
+  const t = await getTranslations("catalogDetail");
+  const tCommon = await getTranslations("common");
+
+  const title = buildCatalogTitle(t, item, kind);
+  const intro = buildCatalogIntro(t, item, kind);
+  const faqs = buildCatalogFaqs(t, item, kind);
 
   const claimHeadline =
     kind === "airlines"
-      ? `Ready to claim against ${item.name}?`
-      : `Ready to check your claim from ${item.name}?`;
+      ? t("claimHeadlineAirline", { name: item.name })
+      : t("claimHeadlineAirport", { name: item.name });
 
-  const claimSubheadline =
-    "Use our boarding pass assistant on the homepage. It's fast, secure, and no win, no fee.";
-
-  const claimCtaLabel = "Check compensation";
   const catalogPath = kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`;
+  const breadcrumbCatalog = t("breadcrumbCatalog");
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -41,8 +42,8 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
         data={[
           buildFaqPageSchema(faqs),
           buildBreadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Airlines & Airports", path: "/airlines" },
+            { name: tCommon("home"), path: "/" },
+            { name: breadcrumbCatalog, path: "/airlines" },
             { name: item.name, path: catalogPath },
           ]),
         ]}
@@ -53,7 +54,7 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
           <nav className="mb-6 xl:mb-8 text-sm">
             <Link href="/airlines" className="text-[#2669f3] font-bold hover:opacity-80">
-              Airlines &amp; Airports
+              {breadcrumbCatalog}
             </Link>
             <span className="text-[#7b8094] mx-2">/</span>
             <span className="text-[#1f3664]">{item.name}</span>
@@ -83,8 +84,8 @@ export default function CatalogDetailPage({ item, kind }: CatalogDetailPageProps
 
       <CatalogClaimSection
         headline={claimHeadline}
-        subheadline={claimSubheadline}
-        ctaLabel={claimCtaLabel}
+        subheadline={t("claimSubheadline")}
+        ctaLabel={tCommon("checkCompensation")}
       />
 
       <div className="mt-10 lg:mt-12 xl:mt-[109px]">

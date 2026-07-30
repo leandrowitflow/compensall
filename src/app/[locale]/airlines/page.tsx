@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import TrustpilotBadge from "@/components/TrustpilotBadge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,7 +9,7 @@ import AirlinesCatalog from "@/components/AirlinesCatalog";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import JsonLd from "@/components/seo/JsonLd";
 import type { AppLocale } from "@/i18n/routing";
-import { DEFAULT_FAQS } from "@/lib/default-faqs";
+import { getLocalizedFaqs } from "@/lib/i18n-faqs";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { buildFaqPageSchema } from "@/lib/structured-data";
 
@@ -21,10 +22,15 @@ export async function generateMetadata({ params }: AirlinesPageProps): Promise<M
   return buildLocalizedPageMetadata(locale as AppLocale, "/airlines", "airlines");
 }
 
-export default function AirlinesPage() {
+export default async function AirlinesPage({ params }: AirlinesPageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("airlinesPage");
+  const localizedFaqs = await getLocalizedFaqs(locale);
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <JsonLd data={buildFaqPageSchema(DEFAULT_FAQS)} />
+      <JsonLd data={buildFaqPageSchema(localizedFaqs)} />
       <Header />
 
       <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-0 pb-0">
@@ -40,12 +46,12 @@ export default function AirlinesPage() {
               </div>
 
               <h1 className="font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[1010px] mx-auto">
-                Airports &amp; Airlines
+                {t("title")}
               </h1>
               <p className="text-white font-bold text-base lg:text-[17px] xl:text-[19px] leading-relaxed max-w-[642px] mx-auto">
-                Find your airline or airport.
+                {t("subtitleLine1")}
                 <br />
-                Check your claim in minutes.
+                {t("subtitleLine2")}
               </p>
             </div>
           </div>

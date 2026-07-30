@@ -3,10 +3,12 @@ import { shouldUseAirportBadge } from "@/lib/airport-badges";
 export type CatalogItem = {
   id: string;
   name: string;
-  description: string;
+  /** @deprecated Prefer localized templates via airlinesCatalog / catalogDetail messages. */
+  description?: string;
   logo?: string;
   locales: string[];
-  cta: string;
+  /** @deprecated Prefer common.learnMore / common.checkClaims. */
+  cta?: string;
 };
 
 export const airlinesCatalog: CatalogItem[] = [

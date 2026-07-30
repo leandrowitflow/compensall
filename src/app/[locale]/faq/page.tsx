@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import JsonLd from "@/components/seo/JsonLd";
 import type { AppLocale } from "@/i18n/routing";
-import { ALL_FAQS } from "@/lib/default-faqs";
+import { parseFaqItems } from "@/lib/faq-items";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { buildFaqPageSchema } from "@/lib/structured-data";
 
@@ -22,10 +22,11 @@ export default async function FaqPage({ params }: FaqPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("faq");
+  const localizedFaqs = [...parseFaqItems(t.raw("default")), ...parseFaqItems(t.raw("uk"))];
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <JsonLd data={buildFaqPageSchema(ALL_FAQS)} />
+      <JsonLd data={buildFaqPageSchema(localizedFaqs)} />
       <Header />
 
       <div className="flex-1">
@@ -37,7 +38,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
           <p className="text-[#1f3664] text-base max-w-[640px] mx-auto leading-relaxed">{t("pageIntro")}</p>
         </div>
 
-        <FAQSection faqs={ALL_FAQS} includeUkFaqs showHeading={false} />
+        <FAQSection includeUkFaqs showHeading={false} />
       </div>
 
       <Footer />

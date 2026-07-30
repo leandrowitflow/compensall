@@ -11,9 +11,13 @@
     "language": "Language",
     "selectLanguage": "Select language",
     "learnMore": "Learn more",
+    "checkClaims": "Check claims",
     "startYourClaim": "Start your claim",
     "checkCompensation": "Check compensation",
-    "checkCompensationShort": "Check now"
+    "checkCompensationShort": "Check now",
+    "home": "Home",
+    "legal": "Legal",
+    "airport": "Airport"
   },
   "nav": {
     "knowYourRights": "Know your rights",
@@ -129,6 +133,7 @@
     "howItWorks": {
       "title": "How it",
       "titleAccent": "works?",
+      "schemaName": "How to claim flight compensation with Compensall",
       "subtitle": "Upload your boarding pass. Our assistant checks your claim. Our team handles the airline.",
       "steps": {
         "upload": {
@@ -173,6 +178,25 @@
       "arrivalAirport": "Arrival airport",
       "swapAirports": "Swap airports",
       "dataProtected": "Your data is protected, Always.",
+      "popularAirports": "Popular airports",
+      "resultsCount": "{count, plural, =1 {# result} other {# results}}",
+      "otherAirportHidden": "The other selected airport is hidden.",
+      "noAirportsFound": "No airports found. Try a city, country, or code (e.g. Lisbon, Portugal, LHR).",
+      "preview": {
+        "title": "Boarding pass preview",
+        "fullTitle": "Boarding pass full preview",
+        "addedJustNow": "Added just now • {fileSize}",
+        "open": "Preview",
+        "viewFull": "View full boarding pass",
+        "thumbnail": "Boarding pass thumbnail",
+        "heicUnsupported": "HEIC preview is not supported in the browser.",
+        "unavailable": "Preview unavailable for this file type.",
+        "notAvailableSaved": "Preview is not available for this file type in the browser. Your file is still saved for the claim.",
+        "formatCannotPreview": "This format cannot be previewed inline{heicHint}.",
+        "heicHint": " (HEIC)",
+        "downloadFile": "Download file",
+        "closePreview": "Close preview"
+      },
       "errors": {
         "selectBothAirports": "Select both departure and arrival airports from the list.",
         "airportsMustDiffer": "Departure and arrival airports must be different.",
@@ -740,6 +764,60 @@
         "message": "Unfortunately, the airline has declined your claim and we're unable to take it further. Your case has been closed — contact us if you'd like to discuss the outcome."
       }
     }
+  },
+  "airlinesPage": {
+    "title": "Airports & Airlines",
+    "subtitleLine1": "Find your airline or airport.",
+    "subtitleLine2": "Check your claim in minutes."
+  },
+  "airlinesCatalog": {
+    "airlines": "Airlines",
+    "airports": "Airports",
+    "mostPopular": "Most popular",
+    "searchAirline": "Search airline...",
+    "searchAirport": "Search airport...",
+    "seeMore": "See more {section}",
+    "allSection": "All {section}",
+    "showLess": "Show less",
+    "noResults": "No results found. Try a different search.",
+    "airlineCardDescription": "{name} delay, cancellation or denied boarding? Check your claim in minutes.",
+    "airportCardDescription": "Delayed or cancelled flight via {name}? Check your claim in minutes."
+  },
+  "catalogDetail": {
+    "airlineTitle": "{name} flight delay or cancellation compensation",
+    "airportTitle": "Flight compensation from {name}",
+    "airlineIntroP1": "If your {name} flight was delayed, cancelled, or you were denied boarding, you may be entitled to compensation of up to €600 under EU Regulation EC 261/2004 and UK261.",
+    "airlineIntroP2": "Compensall checks your eligibility in minutes. Upload your boarding pass or enter your flight details — no win, no fee.",
+    "airportIntroP1": "Flying from or to {name}? If your flight was delayed or cancelled, you may be entitled to compensation of up to €600 under EU Regulation EC 261/2004 and UK261.",
+    "airportIntroP2": "Compensall helps you check your claim in minutes. Start with your boarding pass or flight details — no win, no fee.",
+    "airlineCardDescription": "{name} delay, cancellation or denied boarding? Check your claim in minutes.",
+    "airportCardDescription": "Delayed or cancelled flight via {name}? Check your claim in minutes.",
+    "entityAirlineFlight": "your {name} flight",
+    "entityAirportFlight": "a flight via {name}",
+    "faqDelayQuestion": "Am I entitled to compensation if {entity} was delayed or cancelled?",
+    "faqDelayAnswer": "You may be entitled to compensation if your flight arrived 3+ hours late or was cancelled with short notice, provided the disruption was within the airline's control (not extraordinary circumstances like severe weather).",
+    "faqAmountQuestion": "How much compensation can I claim?",
+    "faqAmountAnswer": "Under EC 261/2004 and UK261, compensation is typically €250, €400 or €600 per passenger depending on flight distance and delay length.",
+    "faqRejectedAirlineQuestion": "What if {name} already rejected my claim?",
+    "faqRejectedAirportQuestion": "What if the airline already rejected my claim?",
+    "faqRejectedAnswer": "A rejection does not always mean you have no rights. We review your case and can pursue valid claims on a no win, no fee basis.",
+    "faqDeadlineQuestion": "Is there a deadline to claim?",
+    "faqDeadlineAnswer": "Time limits vary by country (often several years). Check sooner rather than later so we can assess your options.",
+    "faqSafeQuestion": "Is it safe to share my boarding pass?",
+    "faqSafeAnswer": "Yes. Your data is handled securely and only used to assess and pursue your claim.",
+    "claimHeadlineAirline": "Ready to claim against {name}?",
+    "claimHeadlineAirport": "Ready to check your claim from {name}?",
+    "claimSubheadline": "Use our boarding pass assistant on the homepage. It's fast, secure, and no win, no fee.",
+    "breadcrumbCatalog": "Airlines & Airports",
+    "notFoundAirline": "Airline not found | Compensall",
+    "notFoundAirport": "Airport not found | Compensall"
+  },
+  "notFoundPage": {
+    "title": "Page not found",
+    "description": "We could not find that page. Start a compensation check or browse our guides below.",
+    "checkCompensation": "Check compensation",
+    "knowYourRights": "Know your rights",
+    "blog": "Blog"
   },
   "blogPage": {
     "title": "Blog",

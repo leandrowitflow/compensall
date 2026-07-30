@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import CatalogDetailPage from "@/components/CatalogDetailPage";
 import type { AppLocale } from "@/i18n/routing";
@@ -19,7 +20,8 @@ export async function generateMetadata({ params }: AirportPageProps): Promise<Me
   const item = getCatalogItem("airports", slug);
 
   if (!item) {
-    return { title: "Airport not found | Compensall" };
+    const t = await getTranslations({ locale, namespace: "catalogDetail" });
+    return { title: t("notFoundAirport") };
   }
 
   return buildCatalogMetadata(item, "airports", locale as AppLocale);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 import type { ClaimUploadMeta } from "@/lib/claim-types";
 
 type BoardingPassPreviewModalProps = {
@@ -10,19 +11,17 @@ type BoardingPassPreviewModalProps = {
 };
 
 function ModalPreview({ upload }: { upload: ClaimUploadMeta }) {
+  const t = useTranslations("claim.step1.preview");
+
   if (!upload.previewUrl) {
-    return (
-      <p className="text-[#1f3664] text-sm text-center px-6">
-        Preview is not available for this file type in the browser. Your file is still saved for the claim.
-      </p>
-    );
+    return <p className="text-[#1f3664] text-sm text-center px-6">{t("notAvailableSaved")}</p>;
   }
 
   if (upload.previewKind === "pdf") {
     return (
       <iframe
         src={upload.previewUrl}
-        title="Boarding pass full preview"
+        title={t("fullTitle")}
         className="h-[min(80vh,720px)] w-full max-w-3xl rounded-xl border border-[#d5e0f9] bg-white"
       />
     );
@@ -32,7 +31,7 @@ function ModalPreview({ upload }: { upload: ClaimUploadMeta }) {
     return (
       <img
         src={upload.previewUrl}
-        alt="Boarding pass full preview"
+        alt={t("fullTitle")}
         className="max-h-[min(80vh,720px)] max-w-full rounded-xl border border-[#d5e0f9] bg-[#f8faff] object-contain"
       />
     );
@@ -41,21 +40,24 @@ function ModalPreview({ upload }: { upload: ClaimUploadMeta }) {
   return (
     <div className="text-center px-6">
       <p className="text-[#1f3664] text-sm mb-4">
-        This format cannot be previewed inline
-        {upload.mimeType.includes("heic") ? " (HEIC)" : ""}.
+        {t("formatCannotPreview", {
+          heicHint: upload.mimeType.includes("heic") ? t("heicHint") : "",
+        })}
       </p>
       <a
         href={upload.previewUrl}
         download={upload.fileName}
         className="inline-flex bg-[#2669f3] text-white font-bold px-5 py-3 rounded-[11px] hover:bg-[#1a55d4]"
       >
-        Download file
+        {t("downloadFile")}
       </a>
     </div>
   );
 }
 
 export default function BoardingPassPreviewModal({ upload, open, onClose }: BoardingPassPreviewModalProps) {
+  const t = useTranslations("claim.step1.preview");
+
   useEffect(() => {
     if (!open) return;
 
@@ -80,7 +82,7 @@ export default function BoardingPassPreviewModal({ upload, open, onClose }: Boar
       <button
         type="button"
         className="absolute inset-0 bg-[#1f3664]/50 backdrop-blur-[2px]"
-        aria-label="Close preview"
+        aria-label={t("closePreview")}
         onClick={onClose}
       />
       <div className="relative z-10 flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-[20px] bg-white shadow-xl">
@@ -93,7 +95,7 @@ export default function BoardingPassPreviewModal({ upload, open, onClose }: Boar
             type="button"
             onClick={onClose}
             className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border-2 border-[#d5e0f9] text-[#1f3664]"
-            aria-label="Close preview"
+            aria-label={t("closePreview")}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />

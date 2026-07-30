@@ -10,8 +10,8 @@ import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import JsonLd from "@/components/seo/JsonLd";
 import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
-import { DEFAULT_FAQS } from "@/lib/default-faqs";
 import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
+import { getLocalizedFaqs } from "@/lib/i18n-faqs";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { buildFaqPageSchema } from "@/lib/structured-data";
 
@@ -45,10 +45,11 @@ export default async function KnowYourRightsPage({ params }: KnowYourRightsPageP
 
   const t = await getTranslations("knowYourRights");
   const tCommon = await getTranslations("common");
+  const localizedFaqs = await getLocalizedFaqs(locale);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <JsonLd data={buildFaqPageSchema(DEFAULT_FAQS)} />
+      <JsonLd data={buildFaqPageSchema(localizedFaqs)} />
       <Header />
 
       <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-0 pb-0">

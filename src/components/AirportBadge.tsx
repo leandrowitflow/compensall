@@ -1,4 +1,7 @@
-import type { AirportBadge } from "@/lib/airport-badges";
+"use client";
+
+import { useTranslations } from "next-intl";
+import type { AirportBadge as AirportBadgeData } from "@/lib/airport-badges";
 
 function labelTextClass(label: string): string {
   if (label.length > 18) return "text-[9px]";
@@ -6,9 +9,11 @@ function labelTextClass(label: string): string {
   return "text-[11px]";
 }
 
-type AirportBadgeProps = AirportBadge;
+type AirportBadgeProps = AirportBadgeData;
 
 export default function AirportBadge({ iata, label }: AirportBadgeProps) {
+  const t = useTranslations("common");
+
   return (
     <div
       aria-hidden
@@ -21,7 +26,7 @@ export default function AirportBadge({ iata, label }: AirportBadgeProps) {
         <span className={`font-bold leading-tight tracking-[0.04em] text-[#1f3664] ${labelTextClass(label)}`}>
           {label}
         </span>
-        <span className="text-[10px] tracking-[0.06em] text-[#7b8094]">Airport</span>
+        <span className="text-[10px] tracking-[0.06em] text-[#7b8094]">{t("airport")}</span>
       </div>
     </div>
   );

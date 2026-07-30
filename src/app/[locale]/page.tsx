@@ -11,7 +11,7 @@ import HowItWorksSteps from "@/components/HowItWorksSteps";
 import { FAQSection, Footer } from "@/components/home/HomeDeferredSections";
 import JsonLd from "@/components/seo/JsonLd";
 import type { AppLocale } from "@/i18n/routing";
-import { DEFAULT_FAQS } from "@/lib/default-faqs";
+import { getLocalizedFaqs } from "@/lib/i18n-faqs";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 import { buildFaqPageSchema, buildHowToSchema } from "@/lib/structured-data";
@@ -100,20 +100,24 @@ export default async function HomePage({ params }: HomePageProps) {
     };
   });
 
-  const howToSchema = buildHowToSchema([
-    {
-      name: t("howItWorks.steps.upload.title"),
-      text: t("howItWorks.steps.upload.description"),
-    },
-    {
-      name: t("howItWorks.steps.assistant.title"),
-      text: t("howItWorks.steps.assistant.description"),
-    },
-    {
-      name: t("howItWorks.steps.airline.title"),
-      text: t("howItWorks.steps.airline.description"),
-    },
-  ]);
+  const localizedFaqs = await getLocalizedFaqs(locale);
+  const howToSchema = buildHowToSchema(
+    [
+      {
+        name: t("howItWorks.steps.upload.title"),
+        text: t("howItWorks.steps.upload.description"),
+      },
+      {
+        name: t("howItWorks.steps.assistant.title"),
+        text: t("howItWorks.steps.assistant.description"),
+      },
+      {
+        name: t("howItWorks.steps.airline.title"),
+        text: t("howItWorks.steps.airline.description"),
+      },
+    ],
+    t("howItWorks.schemaName"),
+  );
 
   return (
     <div className="min-h-screen bg-white overflow-x-clip flex flex-col">
@@ -134,7 +138,7 @@ export default async function HomePage({ params }: HomePageProps) {
         fetchPriority="high"
         media="(min-width: 768px)"
       />
-      <JsonLd data={[buildFaqPageSchema(DEFAULT_FAQS), howToSchema]} />
+      <JsonLd data={[buildFaqPageSchema(localizedFaqs), howToSchema]} />
       <Header />
 
       <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-0 pb-0">

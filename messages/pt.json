@@ -11,9 +11,13 @@
     "language": "Idioma",
     "selectLanguage": "Selecionar idioma",
     "learnMore": "Saber mais",
+    "checkClaims": "Verificar pedidos",
     "startYourClaim": "Iniciar o seu pedido",
     "checkCompensation": "Verificar compensação",
-    "checkCompensationShort": "Verificar"
+    "checkCompensationShort": "Verificar",
+    "home": "Início",
+    "legal": "Legal",
+    "airport": "Aeroporto"
   },
   "nav": {
     "knowYourRights": "Conheça os seus direitos",
@@ -129,6 +133,7 @@
     "howItWorks": {
       "title": "Como",
       "titleAccent": "funciona?",
+      "schemaName": "Como reclamar compensação de voo com a Compensall",
       "subtitle": "Carregue o seu cartão de embarque. O nosso assistente verifica o seu pedido. A nossa equipa trata da companhia aérea.",
       "steps": {
         "upload": {
@@ -173,6 +178,25 @@
       "arrivalAirport": "Aeroporto de chegada",
       "swapAirports": "Trocar aeroportos",
       "dataProtected": "Os seus dados estão protegidos. Sempre.",
+      "popularAirports": "Aeroportos populares",
+      "resultsCount": "{count, plural, =1 {# resultado} other {# resultados}}",
+      "otherAirportHidden": "O outro aeroporto selecionado está oculto.",
+      "noAirportsFound": "Nenhum aeroporto encontrado. Tente uma cidade, país ou código (ex.: Lisboa, Portugal, LHR).",
+      "preview": {
+        "title": "Pré-visualização do cartão de embarque",
+        "fullTitle": "Pré-visualização completa do cartão de embarque",
+        "addedJustNow": "Adicionado agora • {fileSize}",
+        "open": "Pré-visualizar",
+        "viewFull": "Ver cartão de embarque completo",
+        "thumbnail": "Miniatura do cartão de embarque",
+        "heicUnsupported": "A pré-visualização HEIC não é suportada no browser.",
+        "unavailable": "Pré-visualização indisponível para este tipo de ficheiro.",
+        "notAvailableSaved": "A pré-visualização não está disponível para este tipo de ficheiro no browser. O ficheiro continua guardado para o pedido.",
+        "formatCannotPreview": "Este formato não pode ser pré-visualizado{heicHint}.",
+        "heicHint": " (HEIC)",
+        "downloadFile": "Descarregar ficheiro",
+        "closePreview": "Fechar pré-visualização"
+      },
       "errors": {
         "selectBothAirports": "Selecione o aeroporto de partida e de chegada na lista.",
         "airportsMustDiffer": "Os aeroportos de partida e chegada devem ser diferentes.",
@@ -740,6 +764,60 @@
         "message": "Infelizmente, a companhia aérea recusou o pedido e não podemos avançar. O caso foi encerrado — contacte-nos se quiser discutir o resultado."
       }
     }
+  },
+  "airlinesPage": {
+    "title": "Aeroportos e companhias aéreas",
+    "subtitleLine1": "Encontre a sua companhia aérea ou aeroporto.",
+    "subtitleLine2": "Verifique o seu pedido em minutos."
+  },
+  "airlinesCatalog": {
+    "airlines": "Companhias aéreas",
+    "airports": "Aeroportos",
+    "mostPopular": "Mais populares",
+    "searchAirline": "Pesquisar companhia...",
+    "searchAirport": "Pesquisar aeroporto...",
+    "seeMore": "Ver mais {section}",
+    "allSection": "Todos os {section}",
+    "showLess": "Mostrar menos",
+    "noResults": "Nenhum resultado. Tente outra pesquisa.",
+    "airlineCardDescription": "Atraso, cancelamento ou embarque recusado na {name}? Verifique o seu pedido em minutos.",
+    "airportCardDescription": "Voo atrasado ou cancelado via {name}? Verifique o seu pedido em minutos."
+  },
+  "catalogDetail": {
+    "airlineTitle": "Compensação por atraso ou cancelamento de voo {name}",
+    "airportTitle": "Compensação de voo a partir de {name}",
+    "airlineIntroP1": "Se o seu voo {name} atrasou, foi cancelado ou lhe foi recusado o embarque, pode ter direito a uma compensação até €600 ao abrigo do Regulamento UE CE 261/2004 e do UK261.",
+    "airlineIntroP2": "A Compensall verifica a sua elegibilidade em minutos. Carregue o cartão de embarque ou introduza os dados do voo — sem ganho, sem taxas.",
+    "airportIntroP1": "Voa de ou para {name}? Se o seu voo atrasou ou foi cancelado, pode ter direito a uma compensação até €600 ao abrigo do Regulamento UE CE 261/2004 e do UK261.",
+    "airportIntroP2": "A Compensall ajuda-o a verificar o seu pedido em minutos. Comece com o cartão de embarque ou os dados do voo — sem ganho, sem taxas.",
+    "airlineCardDescription": "Atraso, cancelamento ou embarque recusado na {name}? Verifique o seu pedido em minutos.",
+    "airportCardDescription": "Voo atrasado ou cancelado via {name}? Verifique o seu pedido em minutos.",
+    "entityAirlineFlight": "o seu voo {name}",
+    "entityAirportFlight": "um voo via {name}",
+    "faqDelayQuestion": "Tenho direito a compensação se {entity} atrasou ou foi cancelado?",
+    "faqDelayAnswer": "Pode ter direito a compensação se o voo chegou com 3+ horas de atraso ou foi cancelado com pouco aviso, desde que a perturbação esteja no controlo da companhia (não circunstâncias extraordinárias como mau tempo grave).",
+    "faqAmountQuestion": "Quanto posso reclamar?",
+    "faqAmountAnswer": "Ao abrigo do CE 261/2004 e do UK261, a compensação é tipicamente €250, €400 ou €600 por passageiro, consoante a distância e o atraso.",
+    "faqRejectedAirlineQuestion": "E se a {name} já rejeitou o meu pedido?",
+    "faqRejectedAirportQuestion": "E se a companhia já rejeitou o meu pedido?",
+    "faqRejectedAnswer": "Uma rejeição não significa sempre que não tem direitos. Analisamos o seu caso e podemos avançar com pedidos válidos sem ganho, sem taxas.",
+    "faqDeadlineQuestion": "Há um prazo para reclamar?",
+    "faqDeadlineAnswer": "Os prazos variam consoante o país (muitas vezes vários anos). Verifique o mais cedo possível para avaliarmos as suas opções.",
+    "faqSafeQuestion": "É seguro partilhar o meu cartão de embarque?",
+    "faqSafeAnswer": "Sim. Os seus dados são tratados de forma segura e usados apenas para avaliar e tratar o seu pedido.",
+    "claimHeadlineAirline": "Pronto para reclamar contra a {name}?",
+    "claimHeadlineAirport": "Pronto para verificar o seu pedido a partir de {name}?",
+    "claimSubheadline": "Use o assistente de cartão de embarque na página inicial. É rápido, seguro e sem ganho, sem taxas.",
+    "breadcrumbCatalog": "Companhias e aeroportos",
+    "notFoundAirline": "Companhia não encontrada | Compensall",
+    "notFoundAirport": "Aeroporto não encontrado | Compensall"
+  },
+  "notFoundPage": {
+    "title": "Página não encontrada",
+    "description": "Não encontrámos essa página. Comece uma verificação de compensação ou consulte os nossos guias abaixo.",
+    "checkCompensation": "Verificar compensação",
+    "knowYourRights": "Conheça os seus direitos",
+    "blog": "Blog"
   },
   "blogPage": {
     "title": "Blog",
