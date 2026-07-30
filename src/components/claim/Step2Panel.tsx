@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
 import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
+import DisruptionDetailsForm from "@/components/claim/DisruptionDetailsForm";
 import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
 import { InfoBoardRow } from "@/components/claim/ClaimSidebar";
 import { ACTION_BTN } from "@/components/claim/claim-ui";
@@ -87,6 +88,10 @@ export default function Step2Panel({
         estimate={flight.compensationEstimate}
         className="mb-4"
       />
+
+      <div className="mb-4">
+        <DisruptionDetailsForm flight={flight} onChange={onFlightChange} />
+      </div>
 
       <div className="bg-[#f0f3fe] rounded-[13px] px-4 py-4 mb-4 max-w-sm">
         <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">

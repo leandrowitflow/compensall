@@ -83,12 +83,33 @@ function AssistantPill({ label }: { label: string }) {
 
 function validateStep2(
   flight: ClaimFlightData,
-  t: (key: "errors.passengerRequired" | "errors.flightRequired" | "errors.routeRequired" | "errors.dateRequired") => string,
+  messages: {
+    passengerRequired: string;
+    flightRequired: string;
+    routeRequired: string;
+    dateRequired: string;
+    typeRequired: string;
+    connectingRequired: string;
+    delayRequired: string;
+    noticeRequired: string;
+    reasonRequired: string;
+  },
 ): string | null {
-  if (!flight.passenger.trim()) return t("errors.passengerRequired");
-  if (!flight.flight.trim()) return t("errors.flightRequired");
-  if (!flight.routeFrom.trim() || !flight.routeTo.trim()) return t("errors.routeRequired");
-  if (!flight.date.trim()) return t("errors.dateRequired");
+  if (!flight.passenger.trim()) return messages.passengerRequired;
+  if (!flight.flight.trim()) return messages.flightRequired;
+  if (!flight.routeFrom.trim() || !flight.routeTo.trim()) return messages.routeRequired;
+  if (!flight.date.trim()) return messages.dateRequired;
+  if (flight.status === "Unknown") return messages.typeRequired;
+  if (flight.status === "Delayed") {
+    if (flight.hadConnectingFlight === null || flight.hadConnectingFlight === undefined) {
+      return messages.connectingRequired;
+    }
+    if (!flight.delayDuration) return messages.delayRequired;
+  }
+  if (flight.status === "Cancelled" && !flight.cancellationNotice) {
+    return messages.noticeRequired;
+  }
+  if (!flight.disruptionReason) return messages.reasonRequired;
   return null;
 }
 
@@ -97,6 +118,7 @@ export default function HeroClaimForm() {
   const tCommon = useTranslations("common");
   const tStep1 = useTranslations("claim.step1");
   const tStep2 = useTranslations("claim.step2");
+  const tDisruption = useTranslations("claim.disruption");
   const tStep3 = useTranslations("claim.step3");
 
   const [step, setStep] = useState<ClaimStep>(1);
@@ -186,7 +208,17 @@ export default function HeroClaimForm() {
   };
 
   const handleContinueToStep3 = () => {
-    const error = validateStep2(flight, tStep2);
+    const error = validateStep2(flight, {
+      passengerRequired: tStep2("errors.passengerRequired"),
+      flightRequired: tStep2("errors.flightRequired"),
+      routeRequired: tStep2("errors.routeRequired"),
+      dateRequired: tStep2("errors.dateRequired"),
+      typeRequired: tDisruption("errors.typeRequired"),
+      connectingRequired: tDisruption("errors.connectingRequired"),
+      delayRequired: tDisruption("errors.delayRequired"),
+      noticeRequired: tDisruption("errors.noticeRequired"),
+      reasonRequired: tDisruption("errors.reasonRequired"),
+    });
     if (error) {
       setStep2Error(error);
       setIsEditing(true);
@@ -210,6 +242,7 @@ export default function HeroClaimForm() {
     formData.append("flight", JSON.stringify(flight));
     formData.append("acceptedDocuments", JSON.stringify(payload.acceptedDocuments));
     formData.append("documentSignatures", JSON.stringify(payload.documentSignatures));
+    formData.append("additionalPassengers", JSON.stringify(payload.additionalPassengers));
     formData.append("userAgent", navigator.userAgent);
     formData.append("locale", locale);
     if (payload.odooLeadId) {
@@ -219,6 +252,18 @@ export default function HeroClaimForm() {
 
     if (boardingPassFile) {
       formData.append("file", boardingPassFile);
+    }
+    if (payload.claimDocuments.passportCopy) {
+      formData.append("passportCopy", payload.claimDocuments.passportCopy);
+    }
+    if (payload.claimDocuments.bookingConfirmation) {
+      formData.append("bookingConfirmation", payload.claimDocuments.bookingConfirmation);
+    }
+    if (payload.claimDocuments.expensesReceipts) {
+      formData.append("expensesReceipts", payload.claimDocuments.expensesReceipts);
+    }
+    for (const file of payload.claimDocuments.otherDocuments ?? []) {
+      formData.append("otherDocuments", file);
     }
     for (const file of payload.additionalDocuments ?? []) {
       formData.append("additionalDocuments", file);

@@ -165,7 +165,7 @@ export default function AirportSelect({
             className="rounded-xl border-2 border-[#d5e0f9] bg-white shadow-[0_12px_40px_rgba(31,54,100,0.12)] overflow-hidden"
             style={{
               position: "fixed",
-              top: menuRect.bottom + 4,
+              top: menuRect.bottom + 12,
               left: menuRect.left,
               width: menuRect.width,
               zIndex: 100,
@@ -180,7 +180,7 @@ export default function AirportSelect({
             <ul id={listboxId} role="listbox" className="max-h-[min(360px,50vh)] overflow-y-auto py-1">
               {results.length === 0 ? (
                 <li className="px-4 py-6 text-center text-sm text-[#7b8094]">
-                  No airports found. Try a city name or code (e.g. LHR).
+                  No airports found. Try a city, country, or code (e.g. Lisbon, Portugal, LHR).
                 </li>
               ) : (
                 results.map((airport, index) => {
@@ -199,7 +199,10 @@ export default function AirportSelect({
                         <AirportLogo airport={airport} />
                         <span className="min-w-0 flex-1">
                           <span className="block font-bold text-[#1f3664] text-sm truncate">{airport.city}</span>
-                          <span className="block text-[#7b8094] text-xs truncate">{airport.name}</span>
+                          <span className="block text-[#7b8094] text-xs truncate">
+                            {airport.name}
+                            {airport.countryName ? ` · ${airport.countryName}` : ""}
+                          </span>
                         </span>
                         <span className="flex-shrink-0 rounded-md bg-[#f1f5fe] px-2 py-1 text-xs font-bold text-[#2669f3]">
                           {airport.iata}

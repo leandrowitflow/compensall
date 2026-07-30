@@ -29,11 +29,26 @@ const flightSchema = z.object({
   date: z.string().min(1),
   status: z.enum(["Delayed", "Cancelled", "Denied boarding", "Unknown"]),
   delay: z.string(),
+  delayDuration: z.enum(["more_than_3", "less_than_3", ""]).optional(),
+  hadConnectingFlight: z.boolean().nullable().optional(),
+  cancellationNotice: z.enum(["14 days or more", "Less than 14 days", ""]).optional(),
+  disruptionReason: z
+    .enum(["technical", "weather", "strike", "crew", "airport", "other", ""])
+    .optional(),
   bookingReference: z.string().nullable().optional(),
+});
+
+const passengerSchema = z.object({
+  firstName: z.string().min(1),
+  lastName: z.string().min(1),
+  email: z.string().email(),
+  phone: z.string().min(1),
 });
 
 const documentSignatureSchema = z.object({
   documentId: z.enum(REQUIRED_DOCUMENT_IDS as [string, ...string[]]),
+  passengerIndex: z.number().int().min(0).max(9).optional().default(0),
+  passengerName: z.string().optional().default(""),
   signatureDataUrl: z.string().min(1),
   signedAt: z.string().min(1),
   token: z.string().min(1),
@@ -52,6 +67,40 @@ function parseDocumentSignatures(raw: FormDataEntryValue | null): z.infer<typeof
   } catch {
     return [];
   }
+}
+
+function parseAdditionalPassengers(raw: FormDataEntryValue | null): z.infer<typeof passengerSchema>[] {
+  if (typeof raw !== "string" || !raw.trim()) return [];
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((item) => passengerSchema.safeParse(item))
+      .filter((result): result is { success: true; data: z.infer<typeof passengerSchema> } => result.success)
+      .map((result) => result.data)
+      .slice(0, 9);
+  } catch {
+    return [];
+  }
+}
+
+async function readOptionalUpload(
+  entry: FormDataEntryValue | null,
+): Promise<{ fileName: string; mimeType: string; base64: string } | null> {
+  if (!(entry instanceof File) || entry.size <= 0) return null;
+  if (entry.size > MAX_FILE_SIZE) {
+    throw new Error("One of the uploaded documents is too large.");
+  }
+  const mimeType = inferMimeType(entry.name, entry.type);
+  if (!isAllowedBoardingPassMime(mimeType)) {
+    throw new Error("Unsupported document type.");
+  }
+  const buffer = Buffer.from(await entry.arrayBuffer());
+  return {
+    fileName: entry.name,
+    mimeType,
+    base64: buffer.toString("base64"),
+  };
 }
 
 function getSiteUrl(request: Request): string {
@@ -130,6 +179,14 @@ export async function POST(request: Request) {
       return Response.json({ error: "Flight details are incomplete." }, { status: 400 });
     }
 
+    const additionalPassengers = parseAdditionalPassengers(formData.get("additionalPassengers"));
+    const expectedSignatureCount = 1 + additionalPassengers.length;
+    if (documentSignatures.length !== expectedSignatureCount) {
+      return Response.json(
+        { error: "Every passenger must sign the Power of Attorney before submitting." },
+        { status: 400 },
+      );
+    }
     const signedDocumentIds = new Set(documentSignatures.map((signature) => signature.documentId));
     const missingDocuments = REQUIRED_DOCUMENT_IDS.filter((id) => !signedDocumentIds.has(id));
     if (missingDocuments.length > 0) {
@@ -184,24 +241,27 @@ export async function POST(request: Request) {
       return Response.json({ error: "Boarding pass file is required for upload claims." }, { status: 400 });
     }
 
-    const additionalDocuments: Array<{ fileName: string; mimeType: string; base64: string }> = [];
-    for (const entry of formData.getAll("additionalDocuments")) {
-      if (!(entry instanceof File) || entry.size <= 0) continue;
-      if (additionalDocuments.length >= 8) break;
-      if (entry.size > MAX_FILE_SIZE) {
-        return Response.json({ error: "One of the additional documents is too large." }, { status: 400 });
+    let passportCopy = null;
+    let bookingConfirmation = null;
+    let expensesReceipts = null;
+    const otherDocuments: Array<{ fileName: string; mimeType: string; base64: string }> = [];
+    try {
+      passportCopy = await readOptionalUpload(formData.get("passportCopy"));
+      bookingConfirmation = await readOptionalUpload(formData.get("bookingConfirmation"));
+      expensesReceipts = await readOptionalUpload(formData.get("expensesReceipts"));
+      for (const entry of [...formData.getAll("otherDocuments"), ...formData.getAll("additionalDocuments")]) {
+        if (!(entry instanceof File) || entry.size <= 0) continue;
+        if (otherDocuments.length >= 8) break;
+        const uploaded = await readOptionalUpload(entry);
+        if (uploaded) otherDocuments.push(uploaded);
       }
-      const mimeType = inferMimeType(entry.name, entry.type);
-      if (!isAllowedBoardingPassMime(mimeType)) {
-        return Response.json({ error: "Unsupported additional document type." }, { status: 400 });
-      }
-      const buffer = Buffer.from(await entry.arrayBuffer());
-      additionalDocuments.push({
-        fileName: entry.name,
-        mimeType,
-        base64: buffer.toString("base64"),
-      });
+    } catch (uploadError) {
+      return Response.json(
+        { error: uploadError instanceof Error ? uploadError.message : "Invalid document upload." },
+        { status: 400 },
+      );
     }
+    const additionalDocuments = otherDocuments;
 
     const flight = withCompensationEstimate(normalizeFlightData(flightResult.data));
     const verification = await verifyBoardingPassClaim(
@@ -252,17 +312,39 @@ export async function POST(request: Request) {
     const formSessionId =
       typeof formSessionIdRaw === "string" && formSessionIdRaw.trim() ? formSessionIdRaw.trim() : null;
 
-    const poaSignature = documentSignatures.find((signature) => signature.documentId === "authority-to-act");
-    const signaturePngBase64 = poaSignature ? dataUrlToBase64(poaSignature.signatureDataUrl) : null;
+    const poaSignatures = documentSignatures
+      .filter((signature) => signature.documentId === "authority-to-act")
+      .sort((a, b) => (a.passengerIndex ?? 0) - (b.passengerIndex ?? 0));
+    const primarySignature = poaSignatures.find((signature) => (signature.passengerIndex ?? 0) === 0) ?? poaSignatures[0];
+    const signaturePngBase64 = primarySignature ? dataUrlToBase64(primarySignature.signatureDataUrl) : null;
     const signedPoaHtmlBase64 = signaturePngBase64
       ? buildSignedPowerOfAttorneyAttachment({
           trackingNumber,
           signedName: signedNameRaw.trim(),
           flight,
-          signingDate: poaSignature?.signedAt || flight.date,
+          signingDate: primarySignature?.signedAt || flight.date,
           signatureBase64OrDataUrl: signaturePngBase64,
         }).content
       : null;
+
+    const odooAdditionalPassengers = additionalPassengers.map((passenger, index) => {
+      const signature = poaSignatures.find((item) => (item.passengerIndex ?? 0) === index + 1);
+      const passengerSignature = signature ? dataUrlToBase64(signature.signatureDataUrl) : null;
+      const passengerName = `${passenger.firstName} ${passenger.lastName}`.trim();
+      return {
+        ...passenger,
+        signaturePngBase64: passengerSignature,
+        signedPoaHtmlBase64: passengerSignature
+          ? buildSignedPowerOfAttorneyAttachment({
+              trackingNumber: `${trackingNumber}-pax${index + 2}`,
+              signedName: passengerName,
+              flight,
+              signingDate: signature?.signedAt || flight.date,
+              signatureBase64OrDataUrl: passengerSignature,
+            }).content
+          : null,
+      };
+    });
 
     const { lead: odooLead, ticket: odooTicket } = await syncClaimCaseToOdoo({
       trackingNumber,
@@ -288,6 +370,13 @@ export async function POST(request: Request) {
             }
           : null,
       additionalDocuments,
+      claimDocuments: {
+        passportCopy,
+        bookingConfirmation,
+        expensesReceipts,
+        otherDocuments,
+      },
+      additionalPassengers: odooAdditionalPassengers,
     });
 
     if (odooLead) {

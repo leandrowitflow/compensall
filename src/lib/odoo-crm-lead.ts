@@ -1,6 +1,7 @@
 import type {
   ClaimEntryMode,
   ClaimFlightData,
+  ClaimPassenger,
   ClaimVerification,
   FlightStatus,
 } from "@/lib/claim-types";
@@ -46,12 +47,24 @@ export type OdooClaimLeadInput = {
     mimeType: string;
     base64: string;
   } | null;
-  /** Extra supporting docs (ID, receipts, booking confirmation, etc.). */
+  /** Extra supporting docs (legacy / misc attachments). */
   additionalDocuments?: Array<{
     fileName: string;
     mimeType: string;
     base64: string;
   }> | null;
+  claimDocuments?: {
+    passportCopy?: { fileName: string; mimeType: string; base64: string } | null;
+    bookingConfirmation?: { fileName: string; mimeType: string; base64: string } | null;
+    expensesReceipts?: { fileName: string; mimeType: string; base64: string } | null;
+    otherDocuments?: Array<{ fileName: string; mimeType: string; base64: string }> | null;
+  } | null;
+  additionalPassengers?: Array<
+    ClaimPassenger & {
+      signaturePngBase64?: string | null;
+      signedPoaHtmlBase64?: string | null;
+    }
+  > | null;
 };
 
 export type OdooPartialClaimLeadInput = {
@@ -133,19 +146,28 @@ function mapDisruptionType(status: FlightStatus): string | undefined {
   }
 }
 
-function mapDelayDuration(delay: string, status: FlightStatus): string | undefined {
-  if (status === "Cancelled" || status === "Denied boarding") {
+function mapDelayDuration(flight: ClaimFlightData): string | undefined {
+  if (flight.status === "Cancelled" || flight.status === "Denied boarding") {
     return "more_than_3";
   }
 
+  if (flight.delayDuration === "more_than_3" || flight.delayDuration === "less_than_3") {
+    return flight.delayDuration;
+  }
+
+  const delay = flight.delay;
+  if (delay === "more_than_3" || delay === "less_than_3") {
+    return delay;
+  }
+
   const hoursMatch = delay.match(/(\d+(?:[.,]\d+)?)\s*h/i);
-  const hours = hoursMatch ? Number.parseFloat(hoursMatch[1].replace(",", ".")) : Number.NaN;
+  const hours = hoursMatch ? Number.parseFloat(hoursMatch[1]!.replace(",", ".")) : Number.NaN;
   if (Number.isFinite(hours)) {
     return hours >= 3 ? "more_than_3" : "less_than_3";
   }
 
   const minutesMatch = delay.match(/(\d+)\s*m/i);
-  const minutes = minutesMatch ? Number.parseInt(minutesMatch[1], 10) : Number.NaN;
+  const minutes = minutesMatch ? Number.parseInt(minutesMatch[1]!, 10) : Number.NaN;
   if (Number.isFinite(minutes)) {
     return minutes >= 180 ? "more_than_3" : "less_than_3";
   }
@@ -173,10 +195,12 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
   const { firstName, lastName } = splitPassengerName(input.signedName || input.flight.passenger);
   const flightDate = toOdooDate(input.flight.date);
   const disruptionType = mapDisruptionType(input.flight.status);
-  const delayDuration = mapDelayDuration(input.flight.delay, input.flight.status);
+  const delayDuration = mapDelayDuration(input.flight);
   const airline = resolveAirlineName(input.flight.flight);
   const trackUrl = `${input.siteUrl.replace(/\/$/, "")}/track/${input.trackingNumber}`;
   const phone = input.contactPhone?.trim() || "";
+  const extraPassengers = (input.additionalPassengers ?? []).slice(0, 9);
+  const passengerCount = Math.min(10, 1 + extraPassengers.length);
 
   const teamIdRaw = process.env.ODOO_HELPDESK_TEAM_ID?.trim();
   const teamId = teamIdRaw ? Number.parseInt(teamIdRaw, 10) : 2;
@@ -193,7 +217,8 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
     x_studio_flight_number: input.flight.flight.trim(),
     x_studio_departed_from: input.flight.routeFrom.trim(),
     x_studio_final_destination: input.flight.routeTo.trim(),
-    x_studio_number_of_passengers: "1",
+    x_studio_number_of_passengers: String(passengerCount),
+    x_studio_poa_confirm: true,
     // Keep description empty of ops-email HTML — case data lives in studio fields.
     description: `<p><a href="${trackUrl}">Track ${input.trackingNumber}</a></p>`,
   };
@@ -220,7 +245,16 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
   if (airline) {
     values.x_studio_airline = airline;
   }
-  if (input.verification.summary.trim()) {
+  if (typeof input.flight.hadConnectingFlight === "boolean") {
+    values.x_studio_connecting_flights = input.flight.hadConnectingFlight;
+  }
+  if (input.flight.cancellationNotice) {
+    values.x_studio_information_days_before_departure = input.flight.cancellationNotice;
+  }
+  if (input.flight.disruptionReason) {
+    values.x_studio_reason_detail = input.flight.disruptionReason;
+    values.x_studio_did_airline_provide_a_reason = "yes";
+  } else if (input.verification.summary.trim()) {
     values.x_studio_reason_detail = input.verification.summary.trim();
   }
 
@@ -229,11 +263,62 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
     values.x_studio_signature = signature;
     values.x_studio_signature_filename = `signature-${input.trackingNumber}.png`;
   }
+  if (input.signedPoaHtmlBase64?.trim()) {
+    values.x_studio_poa_report = input.signedPoaHtmlBase64.trim();
+    values.x_studio_poa_report_filename = `Power-of-Attorney-${input.trackingNumber}.html`;
+  }
 
-  const otherDocs = input.additionalDocuments?.filter((doc) => doc.base64.trim()) ?? [];
+  for (const [index, passenger] of extraPassengers.entries()) {
+    const n = index + 2;
+    const fullName = `${passenger.firstName} ${passenger.lastName}`.trim();
+    values[`x_studio_name_passenger_${n}`] = fullName;
+    if (passenger.email.trim()) {
+      values[`x_studio_email_passenger_${n}`] = passenger.email.trim();
+    }
+    if (passenger.phone.trim()) {
+      values[`x_studio_phone_passenger_${n}`] = passenger.phone.trim();
+    }
+    const passengerSignature = passenger.signaturePngBase64?.trim();
+    if (passengerSignature) {
+      values[`x_studio_signature_${n}`] = passengerSignature;
+    }
+    const passengerPoa = passenger.signedPoaHtmlBase64?.trim();
+    if (passengerPoa) {
+      values[`x_studio_poa_report_${n}`] = passengerPoa;
+      values[`x_studio_poa_report_${n}_filename`] = `Power-of-Attorney-${input.trackingNumber}-pax${n}.html`;
+    }
+  }
+
+  const passport = input.claimDocuments?.passportCopy;
+  if (passport?.base64.trim()) {
+    values.x_studio_passport_copy = passport.base64.trim();
+    values.x_studio_passport_copy_filename = passport.fileName || "passport-copy";
+    values.x_studio_passport_copy_send = true;
+  }
+
+  const bookingConfirmation = input.claimDocuments?.bookingConfirmation;
+  if (bookingConfirmation?.base64.trim()) {
+    values.x_studio_booking_confirmation = bookingConfirmation.base64.trim();
+    values.x_studio_booking_confirmation_filename =
+      bookingConfirmation.fileName || "booking-confirmation";
+    values.x_studio_booking_confirmation_send = true;
+  }
+
+  const expenses = input.claimDocuments?.expensesReceipts;
+  if (expenses?.base64.trim()) {
+    values.x_studio_expenses_receipts = expenses.base64.trim();
+    values.x_studio_expenses_receipts_filename = expenses.fileName || "expenses-receipts";
+    values.x_studio_expenses_receipts_send = true;
+  }
+
+  const otherDocs = [
+    ...(input.claimDocuments?.otherDocuments ?? []),
+    ...(input.additionalDocuments ?? []),
+  ].filter((doc) => doc.base64.trim());
   if (otherDocs[0]) {
     values.x_studio_other_documents = otherDocs[0].base64;
     values.x_studio_other_documents_filename = otherDocs[0].fileName || "supporting-document";
+    values.x_studio_other_documents_send = true;
   }
 
   return values;
@@ -268,15 +353,46 @@ function buildTicketAttachments(input: OdooClaimLeadInput): OdooAttachmentInput[
     });
   }
 
-  for (const [index, doc] of (input.additionalDocuments ?? []).entries()) {
-    if (!doc.base64.trim()) continue;
-    const original = doc.fileName.trim() || `supporting-document-${index + 1}`;
+  const categorizedDocs = [
+    input.claimDocuments?.passportCopy
+      ? { ...input.claimDocuments.passportCopy, prefix: "passport" }
+      : null,
+    input.claimDocuments?.bookingConfirmation
+      ? { ...input.claimDocuments.bookingConfirmation, prefix: "booking-confirmation" }
+      : null,
+    input.claimDocuments?.expensesReceipts
+      ? { ...input.claimDocuments.expensesReceipts, prefix: "expenses-receipts" }
+      : null,
+    ...(input.claimDocuments?.otherDocuments ?? []).map((doc) => ({ ...doc, prefix: "other" })),
+    ...(input.additionalDocuments ?? []).map((doc) => ({ ...doc, prefix: "other" })),
+  ].filter((doc): doc is NonNullable<typeof doc> => Boolean(doc?.base64.trim()));
+
+  for (const [index, doc] of categorizedDocs.entries()) {
+    const original = doc.fileName.trim() || `${doc.prefix}-${index + 1}`;
     const hasExtension = /\.[a-z0-9]+$/i.test(original);
     attachments.push({
       name: hasExtension ? original : `${original}.bin`,
       mimetype: doc.mimeType || "application/octet-stream",
       datas: doc.base64,
     });
+  }
+
+  for (const [index, passenger] of (input.additionalPassengers ?? []).entries()) {
+    const n = index + 2;
+    if (passenger.signedPoaHtmlBase64?.trim()) {
+      attachments.push({
+        name: `Power-of-Attorney-${input.trackingNumber}-pax${n}.html`,
+        mimetype: "text/html",
+        datas: passenger.signedPoaHtmlBase64.trim(),
+      });
+    }
+    if (passenger.signaturePngBase64?.trim()) {
+      attachments.push({
+        name: `signature-${input.trackingNumber}-pax${n}.png`,
+        mimetype: "image/png",
+        datas: passenger.signaturePngBase64.trim(),
+      });
+    }
   }
 
   return attachments;

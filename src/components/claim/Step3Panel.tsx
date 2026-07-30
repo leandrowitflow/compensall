@@ -2,15 +2,22 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState, type PointerEvent, type UIEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type PointerEvent, type UIEvent } from "react";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
-import type { ClaimFlightData, ClaimStatus } from "@/lib/claim-types";
+import {
+  EMPTY_PASSENGER,
+  type ClaimFlightData,
+  type ClaimPassenger,
+  type ClaimStatus,
+} from "@/lib/claim-types";
 import { ACTION_BTN, ASSISTANT_NAME, FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
 
 const SCROLL_END_THRESHOLD_PX = 8;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_SIGNATURE_BYTES = 800;
+const MAX_PASSENGERS = 10;
+const POA_DOCUMENT_ID = CLAIM_DOCUMENTS[0]!.id;
 
 function isValidPhone(value: string): boolean {
   const digits = value.replace(/\D/g, "");
@@ -19,18 +26,20 @@ function isValidPhone(value: string): boolean {
 
 export type ClaimDocumentSignaturePayload = {
   documentId: string;
+  passengerIndex: number;
+  passengerName: string;
   signatureDataUrl: string;
   signedAt: string;
   token: string;
   signatureHash: string;
 };
 
-function createSessionId(): string {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
-    return crypto.randomUUID();
-  }
-  return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-}
+export type ClaimDocumentsPayload = {
+  passportCopy?: File | null;
+  bookingConfirmation?: File | null;
+  expensesReceipts?: File | null;
+  otherDocuments?: File[];
+};
 
 export type ClaimSubmitPayload = {
   signedName: string;
@@ -38,6 +47,8 @@ export type ClaimSubmitPayload = {
   contactPhone: string;
   acceptedDocuments: string[];
   documentSignatures: ClaimDocumentSignaturePayload[];
+  additionalPassengers: ClaimPassenger[];
+  claimDocuments: ClaimDocumentsPayload;
   additionalDocuments?: File[];
   odooLeadId?: number | null;
   formSessionId: string;
@@ -51,7 +62,14 @@ type Step3PanelProps = {
   onSubmit: (payload: ClaimSubmitPayload) => Promise<{ trackingNumber: string; status: ClaimStatus }>;
 };
 
-type WizardPhase = "contact" | "sign" | "review";
+type WizardPhase = "contact" | "documents" | "sign" | "review";
+
+function createSessionId(): string {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
 
 function hasInk(dataUrl: string): boolean {
   const commaIndex = dataUrl.indexOf(",");
@@ -72,6 +90,37 @@ function formatFlightDateForDisplay(date: string): string {
   return date;
 }
 
+function FileUploadField({
+  id,
+  label,
+  hint,
+  file,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  hint: string;
+  file: File | null;
+  onChange: (file: File | null) => void;
+}) {
+  return (
+    <div className="bg-white border border-[#d5e0f9] rounded-xl p-4 space-y-2">
+      <label className={FIELD_LABEL} htmlFor={id}>
+        {label}
+      </label>
+      <p className="text-[#7b8094] text-xs leading-relaxed">{hint}</p>
+      <input
+        id={id}
+        type="file"
+        accept="image/*,.pdf,application/pdf"
+        className="block w-full text-sm text-[#1f3664] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2669f3] file:px-3 file:py-2 file:text-sm file:font-bold file:text-white"
+        onChange={(event) => onChange(event.target.files?.[0] ?? null)}
+      />
+      {file && <p className="text-[#7b8094] text-xs">{file.name}</p>}
+    </div>
+  );
+}
+
 export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubmit }: Step3PanelProps) {
   const t = useTranslations("claim.step3");
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -82,11 +131,17 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [contactError, setContactError] = useState<string | null>(null);
-  const [additionalDocuments, setAdditionalDocuments] = useState<File[]>([]);
+  const [additionalPassengers, setAdditionalPassengers] = useState<ClaimPassenger[]>([]);
+
+  const [passportCopy, setPassportCopy] = useState<File | null>(null);
+  const [bookingConfirmation, setBookingConfirmation] = useState<File | null>(null);
+  const [expensesReceipts, setExpensesReceipts] = useState<File | null>(null);
+  const [otherDocuments, setOtherDocuments] = useState<File[]>([]);
 
   const [sessionId] = useState(createSessionId);
   const [docSignatures, setDocSignatures] = useState<Record<string, ClaimDocumentSignaturePayload>>({});
   const docSignaturesRef = useRef<Record<string, ClaimDocumentSignaturePayload>>({});
+  const [signingPassengerIndex, setSigningPassengerIndex] = useState(0);
   const [hasReadDocument, setHasReadDocument] = useState(false);
   const [signingDate, setSigningDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [signaturePreview, setSignaturePreview] = useState<string | null>(null);
@@ -100,11 +155,28 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
   const [odooLeadId, setOdooLeadId] = useState<number | null>(null);
   const [isSyncingLead, setIsSyncingLead] = useState(false);
 
-  const currentDoc = CLAIM_DOCUMENTS[0];
+  const currentDoc = CLAIM_DOCUMENTS[0]!;
+  const allPassengers = useMemo(() => {
+    const primaryName = signedName.trim() || flight.passenger.trim();
+    const primary: ClaimPassenger = {
+      firstName: primaryName.split(/\s+/)[0] || primaryName,
+      lastName: primaryName.split(/\s+/).slice(1).join(" "),
+      email: contactEmail.trim(),
+      phone: contactPhone.trim(),
+    };
+    return [primary, ...additionalPassengers];
+  }, [additionalPassengers, contactEmail, contactPhone, flight.passenger, signedName]);
+
+  const activePassenger = allPassengers[signingPassengerIndex] ?? allPassengers[0]!;
+  const activePassengerName =
+    signingPassengerIndex === 0
+      ? signedName.trim()
+      : `${activePassenger.firstName} ${activePassenger.lastName}`.trim();
 
   const checkScrolledToEnd = (element: HTMLDivElement | null) => {
     if (!element) return;
-    const reachedEnd = element.scrollTop + element.clientHeight >= element.scrollHeight - SCROLL_END_THRESHOLD_PX;
+    const reachedEnd =
+      element.scrollTop + element.clientHeight >= element.scrollHeight - SCROLL_END_THRESHOLD_PX;
     if (reachedEnd) setHasReadDocument(true);
   };
 
@@ -121,9 +193,10 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
     if (!element || phase !== "sign") return;
     element.scrollTop = 0;
     setHasReadDocument(false);
+    setSignaturePreview(null);
     const frame = requestAnimationFrame(() => checkScrolledToEnd(element));
     return () => cancelAnimationFrame(frame);
-  }, [phase]);
+  }, [phase, signingPassengerIndex]);
 
   const getCanvasPoint = (event: PointerEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
@@ -184,6 +257,14 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
     setSignaturePreview(canvas.toDataURL("image/png"));
   };
 
+  const updateAdditionalPassenger = (index: number, patch: Partial<ClaimPassenger>) => {
+    setAdditionalPassengers((current) =>
+      current.map((passenger, passengerIndex) =>
+        passengerIndex === index ? { ...passenger, ...patch } : passenger,
+      ),
+    );
+  };
+
   const handleContinueFromContact = async () => {
     setContactError(null);
     if (!signedName.trim()) {
@@ -197,6 +278,21 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
     if (!contactPhone.trim() || !isValidPhone(contactPhone.trim())) {
       setContactError(t("errors.phoneInvalid"));
       return;
+    }
+
+    for (const [index, passenger] of additionalPassengers.entries()) {
+      if (!passenger.firstName.trim() || !passenger.lastName.trim()) {
+        setContactError(t("errors.passengerNameRequired", { number: index + 2 }));
+        return;
+      }
+      if (!passenger.email.trim() || !EMAIL_PATTERN.test(passenger.email.trim())) {
+        setContactError(t("errors.passengerEmailInvalid", { number: index + 2 }));
+        return;
+      }
+      if (!passenger.phone.trim() || !isValidPhone(passenger.phone.trim())) {
+        setContactError(t("errors.passengerPhoneInvalid", { number: index + 2 }));
+        return;
+      }
     }
 
     setIsSyncingLead(true);
@@ -222,28 +318,27 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         setOdooLeadId(data.odooLeadId);
       }
     } catch {
-      // Non-blocking: user can still continue signing even if Odoo sync fails.
+      // Non-blocking
     } finally {
       setIsSyncingLead(false);
-      setPhase("sign");
+      setPhase("documents");
     }
   };
 
   const handleSignDocument = async () => {
     setSignError(null);
     if (!hasReadDocument) {
-      setSignError("Please scroll to the end of the document before signing.");
+      setSignError(t("errors.scrollBeforeSign"));
       return;
     }
     const canvas = canvasRef.current;
     const dataUrl = canvas?.toDataURL("image/png") ?? "";
     if (!hasInk(dataUrl)) {
-      setSignError("Draw your signature to confirm you have read and agree to this document.");
+      setSignError(t("errors.signatureRequired"));
       return;
     }
 
     const signedAt = new Date().toISOString();
-    const documentId = currentDoc.id;
     setIsSigning(true);
     try {
       const response = await fetch("/api/claim/sign-document", {
@@ -251,7 +346,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           sessionId,
-          documentId,
+          documentId: POA_DOCUMENT_ID,
           signatureDataUrl: dataUrl,
           signedAt,
         }),
@@ -259,25 +354,34 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
 
       const data = (await response.json()) as { token?: string; signatureHash?: string; error?: string };
       if (!response.ok || !data.token || !data.signatureHash) {
-        setSignError(data.error ?? "Could not record your signature. Please try again.");
+        setSignError(data.error ?? t("errors.signFailed"));
         return;
       }
 
       const signed: ClaimDocumentSignaturePayload = {
-        documentId,
+        documentId: POA_DOCUMENT_ID,
+        passengerIndex: signingPassengerIndex,
+        passengerName: activePassengerName,
         signatureDataUrl: dataUrl,
         signedAt,
         token: data.token,
         signatureHash: data.signatureHash,
       };
 
-      const updated = { ...docSignaturesRef.current, [documentId]: signed };
+      const key = `${POA_DOCUMENT_ID}:${signingPassengerIndex}`;
+      const updated = { ...docSignaturesRef.current, [key]: signed };
       docSignaturesRef.current = updated;
       setDocSignatures(updated);
       clearSignature();
+
+      const nextIndex = signingPassengerIndex + 1;
+      if (nextIndex < allPassengers.length) {
+        setSigningPassengerIndex(nextIndex);
+        return;
+      }
       setPhase("review");
     } catch {
-      setSignError("Could not record your signature. Check your connection and try again.");
+      setSignError(t("errors.signConnectionError"));
     } finally {
       setIsSigning(false);
     }
@@ -285,11 +389,12 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
 
   const handleSubmit = async () => {
     setSubmitError(null);
-    const documentSignatures = CLAIM_DOCUMENTS.map((doc) => docSignatures[doc.id]).filter(
-      (signature): signature is ClaimDocumentSignaturePayload => Boolean(signature),
-    );
-    if (documentSignatures.length !== CLAIM_DOCUMENTS.length) {
-      setSubmitError("Please sign the Power of Attorney before submitting.");
+    const documentSignatures = allPassengers
+      .map((_, index) => docSignatures[`${POA_DOCUMENT_ID}:${index}`])
+      .filter((signature): signature is ClaimDocumentSignaturePayload => Boolean(signature));
+
+    if (documentSignatures.length !== allPassengers.length) {
+      setSubmitError(t("errors.signBeforeSubmit"));
       return;
     }
 
@@ -299,15 +404,22 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         signedName: signedName.trim(),
         contactEmail: contactEmail.trim(),
         contactPhone: contactPhone.trim(),
-        acceptedDocuments: documentSignatures.map((signature) => signature.documentId),
+        acceptedDocuments: [POA_DOCUMENT_ID],
         documentSignatures,
-        additionalDocuments,
+        additionalPassengers,
+        claimDocuments: {
+          passportCopy,
+          bookingConfirmation,
+          expensesReceipts,
+          otherDocuments,
+        },
+        additionalDocuments: otherDocuments,
         odooLeadId,
         formSessionId: sessionId,
       });
       setTrackingNumber(result.trackingNumber);
     } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : "Could not submit your claim.");
+      setSubmitError(error instanceof Error ? error.message : t("errors.submitFailed"));
     } finally {
       setIsSubmitting(false);
     }
@@ -317,23 +429,22 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
     return (
       <div className="border border-[#d5e0f9] rounded-[21px] p-6 sm:p-8 flex flex-col items-center text-center bg-white min-h-[320px] justify-center">
         <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-14 h-14 mb-4 object-contain" />
-        <h3 className="font-bold text-[#1f3664] text-xl mb-2">Claim submitted</h3>
+        <h3 className="font-bold text-[#1f3664] text-xl mb-2">{t("claimSubmitted")}</h3>
         <p className="text-[#1f3664] text-sm sm:text-base max-w-md leading-relaxed mb-4">
-          Thank you, {signedName}. We&apos;ve received your signed Power of Attorney and will start working on your claim
-          for flight {flight.flight}.
+          {t("thankYou", { name: signedName, flight: flight.flight })}
         </p>
         <div className="bg-[#f0f3fe] rounded-[14px] px-5 py-4 mb-5 w-full max-w-md">
-          <p className="text-[#7b8094] text-xs font-bold uppercase tracking-wide mb-1">Your tracking number</p>
+          <p className="text-[#7b8094] text-xs font-bold uppercase tracking-wide mb-1">{t("trackingNumber")}</p>
           <p className="font-bold text-[#1f3664] text-lg sm:text-xl tracking-wide">{trackingNumber}</p>
         </div>
         <Link
           href={`/track/${trackingNumber}`}
           className="bg-[#2669f3] text-white font-bold px-6 py-3 rounded-[11px] hover:bg-[#1a55d4] transition-colors text-sm sm:text-base"
         >
-          Track your claim
+          {t("trackYourClaim")}
         </Link>
         <p className="text-[#7b8094] text-sm mt-4 max-w-md">
-          We&apos;ll send confirmation and updates to {contactEmail.trim()}.
+          {t("confirmationEmail", { email: contactEmail.trim() })}
         </p>
       </div>
     );
@@ -346,30 +457,36 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         <div>
           <div className="flex items-center gap-3 flex-wrap">
             <p className="font-bold text-[#2669f3] text-base sm:text-lg">{ASSISTANT_NAME}</p>
-            <span className="text-[#7b8094] text-sm">Just now</span>
+            <span className="text-[#7b8094] text-sm">{t("justNow")}</span>
           </div>
           <p className="text-[#1f3664] text-sm sm:text-base mt-2 leading-relaxed">
-            Your claim is ready.
+            {t("claimReady")}
             <br />
-            {phase === "contact" && "Confirm your contact details."}
-            {phase === "sign" && "Read the Power of Attorney fully, then sign once to continue."}
-            {phase === "review" && "Your Power of Attorney is signed. Review and submit."}
+            {phase === "contact" && t("confirmContact")}
+            {phase === "documents" && t("uploadDocuments")}
+            {phase === "sign" &&
+              t("readAndSignPassenger", {
+                name: activePassengerName,
+                current: signingPassengerIndex + 1,
+                total: allPassengers.length,
+              })}
+            {phase === "review" && t("signedReview")}
           </p>
         </div>
       </div>
 
       {phase === "contact" && (
-        <div className="flex-1 border border-[#d5e0f9] rounded-[14px] bg-[#fafbff] p-4 sm:p-5 mb-4 space-y-4">
+        <div className="flex-1 border border-[#d5e0f9] rounded-[14px] bg-[#fafbff] p-4 sm:p-5 mb-4 space-y-4 overflow-y-auto">
           <div>
             <label className={FIELD_LABEL} htmlFor="signed-name">
-              Full legal name
+              {t("fullLegalName")}
             </label>
             <input
               id="signed-name"
               className={FIELD_INPUT}
               value={signedName}
               onChange={(e) => setSignedName(e.target.value)}
-              placeholder="As shown on your boarding pass"
+              placeholder={t("namePlaceholder")}
             />
           </div>
           <div>
@@ -403,6 +520,81 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               inputMode="tel"
             />
           </div>
+
+          <div className="border-t border-[#d5e0f9] pt-4 space-y-4">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="font-bold text-[#1f3664] text-sm">{t("otherPassengers")}</p>
+                <p className="text-[#7b8094] text-xs mt-1">{t("otherPassengersHint")}</p>
+              </div>
+              <button
+                type="button"
+                disabled={additionalPassengers.length >= MAX_PASSENGERS - 1}
+                onClick={() =>
+                  setAdditionalPassengers((current) =>
+                    current.length >= MAX_PASSENGERS - 1 ? current : [...current, { ...EMPTY_PASSENGER }],
+                  )
+                }
+                className="shrink-0 border-2 border-[#2669f3] text-[#2669f3] font-bold text-sm px-3 h-10 rounded-[11px] hover:bg-[#2669f3]/5 disabled:opacity-40"
+              >
+                {t("addPassenger")}
+              </button>
+            </div>
+
+            {additionalPassengers.map((passenger, index) => (
+              <div key={`passenger-${index}`} className="bg-white border border-[#d5e0f9] rounded-xl p-4 space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-bold text-[#1f3664] text-sm">{t("passengerNumber", { number: index + 2 })}</p>
+                  <button
+                    type="button"
+                    className="text-[#e82828] text-xs font-bold hover:underline"
+                    onClick={() =>
+                      setAdditionalPassengers((current) => current.filter((_, i) => i !== index))
+                    }
+                  >
+                    {t("removePassenger")}
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className={FIELD_LABEL}>{t("firstName")}</label>
+                    <input
+                      className={FIELD_INPUT}
+                      value={passenger.firstName}
+                      onChange={(e) => updateAdditionalPassenger(index, { firstName: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className={FIELD_LABEL}>{t("lastName")}</label>
+                    <input
+                      className={FIELD_INPUT}
+                      value={passenger.lastName}
+                      onChange={(e) => updateAdditionalPassenger(index, { lastName: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className={FIELD_LABEL}>{t("emailAddress")}</label>
+                    <input
+                      type="email"
+                      className={FIELD_INPUT}
+                      value={passenger.email}
+                      onChange={(e) => updateAdditionalPassenger(index, { email: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className={FIELD_LABEL}>{t("phoneNumber")}</label>
+                    <input
+                      type="tel"
+                      className={FIELD_INPUT}
+                      value={passenger.phone}
+                      onChange={(e) => updateAdditionalPassenger(index, { phone: e.target.value })}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
           {contactError && (
             <p className="text-sm text-[#e82828]" role="alert">
               {contactError}
@@ -411,23 +603,73 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         </div>
       )}
 
+      {phase === "documents" && (
+        <div className="flex-1 border border-[#d5e0f9] rounded-[14px] bg-[#fafbff] p-4 sm:p-5 mb-4 space-y-3 overflow-y-auto">
+          <p className="text-[#7b8094] text-xs sm:text-sm leading-relaxed">{t("documentsHint")}</p>
+          <FileUploadField
+            id="passport-copy"
+            label={t("docs.passport")}
+            hint={t("docs.passportHint")}
+            file={passportCopy}
+            onChange={setPassportCopy}
+          />
+          <FileUploadField
+            id="booking-confirmation"
+            label={t("docs.booking")}
+            hint={t("docs.bookingHint")}
+            file={bookingConfirmation}
+            onChange={setBookingConfirmation}
+          />
+          <FileUploadField
+            id="expenses-receipts"
+            label={t("docs.expenses")}
+            hint={t("docs.expensesHint")}
+            file={expensesReceipts}
+            onChange={setExpensesReceipts}
+          />
+          <div className="bg-white border border-[#d5e0f9] rounded-xl p-4 space-y-2">
+            <label className={FIELD_LABEL} htmlFor="other-documents">
+              {t("docs.other")}
+            </label>
+            <p className="text-[#7b8094] text-xs leading-relaxed">{t("docs.otherHint")}</p>
+            <input
+              id="other-documents"
+              type="file"
+              multiple
+              accept="image/*,.pdf,application/pdf"
+              className="block w-full text-sm text-[#1f3664] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2669f3] file:px-3 file:py-2 file:text-sm file:font-bold file:text-white"
+              onChange={(event) => setOtherDocuments(Array.from(event.target.files ?? []).slice(0, 6))}
+            />
+            {otherDocuments.length > 0 && (
+              <ul className="text-[#7b8094] text-xs space-y-1">
+                {otherDocuments.map((file) => (
+                  <li key={`${file.name}-${file.size}`}>{file.name}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      )}
+
       {phase === "sign" && (
         <div className="flex-1 border border-[#d5e0f9] rounded-[14px] bg-[#fafbff] p-4 sm:p-5 mb-4 space-y-4">
           <div className="rounded-xl border-2 border-[#2669f3] bg-gradient-to-r from-[#1f3664] to-[#2669f3] px-4 py-3 text-white">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-1">Sign once</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-1">
+              {t("signPassenger", { current: signingPassengerIndex + 1, total: allPassengers.length })}
+            </p>
             <h4 className="font-bold text-lg leading-tight">{currentDoc.title}</h4>
             <p className="text-white/80 text-sm mt-1">{currentDoc.description}</p>
           </div>
 
           <div className="bg-white border border-[#d5e0f9] rounded-xl overflow-hidden shadow-sm">
             <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-[#d5e0f9] bg-[#fafbff]">
-              <p className="text-[#7b8094] text-xs font-bold uppercase tracking-wide">Document preview</p>
+              <p className="text-[#7b8094] text-xs font-bold uppercase tracking-wide">{t("documentPreview")}</p>
               <Link
                 href={currentDoc.href}
                 target="_blank"
                 className="text-[#2669f3] font-bold text-xs whitespace-nowrap hover:underline"
               >
-                Open full page ↗
+                {t("openFullPage")}
               </Link>
             </div>
             <div
@@ -436,7 +678,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               className="max-h-64 sm:max-h-96 overflow-y-auto p-4"
             >
               <PowerOfAttorneyDocument
-                name={signedName}
+                name={activePassengerName}
                 flight={flight.flight}
                 routeFrom={flight.routeFrom}
                 routeTo={flight.routeTo}
@@ -453,17 +695,15 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
                 hasReadDocument ? "bg-[#eafaf0] text-[#1a9c5a]" : "bg-[#fff7e6] text-[#a06a00]"
               }`}
             >
-              {hasReadDocument
-                ? "✓ You've read the Power of Attorney. You can sign below"
-                : "Scroll to the end of the Power of Attorney to unlock signing ↓"}
+              {hasReadDocument ? t("readComplete") : t("scrollToUnlock")}
             </div>
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className={FIELD_LABEL}>Your signature</label>
+              <label className={FIELD_LABEL}>{t("yourSignature")}</label>
               <button type="button" onClick={clearSignature} className="text-[#2669f3] text-sm font-bold hover:underline">
-                Clear
+                {t("clear")}
               </button>
             </div>
             <canvas
@@ -479,9 +719,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               onPointerLeave={stopDrawing}
             />
             <p className="text-[#7b8094] text-xs mt-2">
-              {hasReadDocument
-                ? "Draw here — your signature appears on the document under “The passenger”. Set the signing date on the document too."
-                : "Scroll to the end of the document to unlock signing."}
+              {hasReadDocument ? t("drawSignatureHint") : t("scrollToUnlockSigning")}
             </p>
           </div>
 
@@ -495,45 +733,29 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
 
       {phase === "review" && (
         <div className="flex-1 border border-[#d5e0f9] rounded-[14px] bg-[#fafbff] p-4 sm:p-5 mb-4 space-y-3 overflow-y-auto">
-          <div className="bg-white border border-[#d5e0f9] rounded-xl p-4 flex items-center gap-3">
-            <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-6 h-6 flex-shrink-0 object-contain" />
-            <div>
-              <p className="font-bold text-[#1f3664] text-sm">{currentDoc.title}</p>
-              <p className="text-[#7b8094] text-xs mt-0.5">
-                Signed {new Date(docSignatures[currentDoc.id]?.signedAt ?? "").toLocaleString()}
-              </p>
-            </div>
-          </div>
+          {allPassengers.map((_, index) => {
+            const signature = docSignatures[`${POA_DOCUMENT_ID}:${index}`];
+            if (!signature) return null;
+            return (
+              <div key={signature.token} className="bg-white border border-[#d5e0f9] rounded-xl p-4 flex items-center gap-3">
+                <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-6 h-6 flex-shrink-0 object-contain" />
+                <div>
+                  <p className="font-bold text-[#1f3664] text-sm">{signature.passengerName}</p>
+                  <p className="text-[#7b8094] text-xs mt-0.5">
+                    {t("signedAt", { date: new Date(signature.signedAt).toLocaleString() })}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
           <div className="bg-white border border-[#d5e0f9] rounded-xl p-4">
-            <p className="text-[#7b8094] text-xs">Signed by</p>
+            <p className="text-[#7b8094] text-xs">{t("signedBy")}</p>
             <p className="font-bold text-[#1f3664] text-sm">{signedName}</p>
             <p className="text-[#7b8094] text-xs mt-2">{contactEmail}</p>
-            <p className="text-[#7b8094] text-xs mt-2">Flight date: {formatFlightDateForDisplay(flight.date)}</p>
-            <p className="text-[#7b8094] text-xs mt-2">Signing date: {formatFlightDateForDisplay(signingDate)}</p>
-          </div>
-          <div className="bg-white border border-[#d5e0f9] rounded-xl p-4 space-y-2">
-            <label className={FIELD_LABEL} htmlFor="additional-documents">
-              {t("additionalDocuments")}
-            </label>
-            <p className="text-[#7b8094] text-xs leading-relaxed">{t("additionalDocumentsHint")}</p>
-            <input
-              id="additional-documents"
-              type="file"
-              multiple
-              accept="image/*,.pdf,application/pdf"
-              className="block w-full text-sm text-[#1f3664] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2669f3] file:px-3 file:py-2 file:text-sm file:font-bold file:text-white"
-              onChange={(event) => {
-                const files = Array.from(event.target.files ?? []);
-                setAdditionalDocuments(files.slice(0, 8));
-              }}
-            />
-            {additionalDocuments.length > 0 && (
-              <ul className="text-[#7b8094] text-xs space-y-1">
-                {additionalDocuments.map((file) => (
-                  <li key={`${file.name}-${file.size}`}>{file.name}</li>
-                ))}
-              </ul>
-            )}
+            <p className="text-[#7b8094] text-xs mt-2">{t("flightDate", { date: formatFlightDateForDisplay(flight.date) })}</p>
+            <p className="text-[#7b8094] text-xs mt-2">
+              {t("passengersCount", { count: allPassengers.length })}
+            </p>
           </div>
         </div>
       )}
@@ -551,7 +773,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
           disabled={isSubmitting}
           className={`border-2 border-[#e82828] text-[#e82828] hover:bg-[#e82828]/5 disabled:opacity-50 ${ACTION_BTN}`}
         >
-          Delete data
+          {t("deleteData")}
         </button>
 
         {phase === "contact" && (
@@ -561,8 +783,30 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
             disabled={isSyncingLead}
             className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-60 ${ACTION_BTN}`}
           >
-            {isSyncingLead ? "Saving..." : "Continue to signing"}
+            {isSyncingLead ? t("saving") : t("continueToDocuments")}
           </button>
+        )}
+
+        {phase === "documents" && (
+          <>
+            <button
+              type="button"
+              onClick={() => setPhase("contact")}
+              className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 ${ACTION_BTN}`}
+            >
+              {t("back")}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setSigningPassengerIndex(0);
+                setPhase("sign");
+              }}
+              className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto ${ACTION_BTN}`}
+            >
+              {t("continueToSigning")}
+            </button>
+          </>
         )}
 
         {phase === "sign" && (
@@ -572,12 +816,16 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               onClick={() => {
                 setSignError(null);
                 clearSignature();
-                setPhase("contact");
+                if (signingPassengerIndex > 0) {
+                  setSigningPassengerIndex((index) => index - 1);
+                  return;
+                }
+                setPhase("documents");
               }}
               disabled={isSigning}
               className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 disabled:opacity-50 ${ACTION_BTN}`}
             >
-              Back
+              {t("back")}
             </button>
             <button
               type="button"
@@ -585,7 +833,11 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               disabled={isSigning || !hasReadDocument}
               className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-50 ${ACTION_BTN}`}
             >
-              {isSigning ? "Signing…" : "Sign & review"}
+              {isSigning
+                ? t("signing")
+                : signingPassengerIndex < allPassengers.length - 1
+                  ? t("signAndNext")
+                  : t("signAndReview")}
             </button>
           </>
         )}
@@ -595,6 +847,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
             <button
               type="button"
               onClick={() => {
+                setSigningPassengerIndex(0);
                 setPhase("sign");
                 setHasReadDocument(false);
                 setSignaturePreview(null);
@@ -602,7 +855,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               disabled={isSubmitting}
               className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 disabled:opacity-50 ${ACTION_BTN}`}
             >
-              Re-sign
+              {t("reSign")}
             </button>
             <button
               type="button"
@@ -610,7 +863,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               disabled={isSubmitting}
               className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-50 ${ACTION_BTN}`}
             >
-              {isSubmitting ? "Submitting…" : "Submit claim"}
+              {isSubmitting ? t("submitting") : t("submitClaim")}
             </button>
           </>
         )}

@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { AppLocale } from "@/i18n/routing";
+import { normalizeMarkdownInternalLinks } from "@/lib/blog/normalize-internal-href";
 import { estimateReadTime, markdownToBlocks } from "@/lib/blog/markdown-to-blocks";
 import type { BlogPost } from "@/lib/blog/types";
 import { formatBlogDisplayDate } from "@/lib/blog-date";
@@ -236,7 +237,7 @@ export function cmsRecordToBlogPost(record: CmsBlogRecord, locale: AppLocale): B
     return null;
   }
 
-  const contentMd = translation.content_md ?? "";
+  const contentMd = normalizeMarkdownInternalLinks(translation.content_md ?? "");
   const dateSource = record.published_at ?? record.updated_at;
 
   return {

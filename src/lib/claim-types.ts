@@ -2,6 +2,26 @@ export type ClaimEntryMode = "upload" | "manual";
 
 export type FlightStatus = "Delayed" | "Cancelled" | "Denied boarding" | "Unknown";
 
+export type DelayDurationOption = "more_than_3" | "less_than_3" | "";
+
+export type CancellationNoticeOption = "14 days or more" | "Less than 14 days" | "";
+
+export type DisruptionReasonOption =
+  | "technical"
+  | "weather"
+  | "strike"
+  | "crew"
+  | "airport"
+  | "other"
+  | "";
+
+export type ClaimPassenger = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+};
+
 export type ClaimStatus =
   | "received"
   | "needs_documents"
@@ -51,6 +71,14 @@ export type ClaimFlightData = {
   date: string;
   status: FlightStatus;
   delay: string;
+  /** User-selected delay band for Odoo (`more_than_3` / `less_than_3`). */
+  delayDuration?: DelayDurationOption;
+  /** Whether the itinerary included a connecting flight (delay cases). */
+  hadConnectingFlight?: boolean | null;
+  /** Cancellation notice window (cancellation cases). */
+  cancellationNotice?: CancellationNoticeOption;
+  /** Short disruption reason code for Odoo `x_studio_reason_detail`. */
+  disruptionReason?: DisruptionReasonOption;
   /** PNR / booking reference when extracted from the boarding pass. */
   bookingReference?: string | null;
   /** Distance-based UK261 / EC261 estimate; stored for tracking + emails. */
@@ -201,6 +229,17 @@ export const EMPTY_FLIGHT: ClaimFlightData = {
   date: "",
   status: "Unknown",
   delay: "",
+  delayDuration: "",
+  hadConnectingFlight: null,
+  cancellationNotice: "",
+  disruptionReason: "",
+};
+
+export const EMPTY_PASSENGER: ClaimPassenger = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
 };
 
 export function formatFileSize(bytes: number): string {
@@ -251,6 +290,30 @@ function normalizeCompensationEstimate(
   };
 }
 
+function normalizeDelayDuration(value: unknown): DelayDurationOption {
+  if (value === "more_than_3" || value === "less_than_3") return value;
+  return "";
+}
+
+function normalizeCancellationNotice(value: unknown): CancellationNoticeOption {
+  if (value === "14 days or more" || value === "Less than 14 days") return value;
+  return "";
+}
+
+function normalizeDisruptionReason(value: unknown): DisruptionReasonOption {
+  switch (value) {
+    case "technical":
+    case "weather":
+    case "strike":
+    case "crew":
+    case "airport":
+    case "other":
+      return value;
+    default:
+      return "";
+  }
+}
+
 export function normalizeFlightData(
   partial: Partial<ClaimFlightData> | null | undefined,
 ): ClaimFlightData {
@@ -262,6 +325,11 @@ export function normalizeFlightData(
     date: partial?.date?.trim() || "",
     status: partial?.status ?? "Unknown",
     delay: partial?.delay?.trim() || "",
+    delayDuration: normalizeDelayDuration(partial?.delayDuration),
+    hadConnectingFlight:
+      typeof partial?.hadConnectingFlight === "boolean" ? partial.hadConnectingFlight : null,
+    cancellationNotice: normalizeCancellationNotice(partial?.cancellationNotice),
+    disruptionReason: normalizeDisruptionReason(partial?.disruptionReason),
     bookingReference: partial?.bookingReference?.trim() || null,
     compensationEstimate: normalizeCompensationEstimate(partial?.compensationEstimate),
   };

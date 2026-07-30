@@ -3,6 +3,10 @@ export type AirportOption = {
   name: string;
   city: string;
   iata: string;
+  country: string;
+  countryName: string;
+  cities: string[];
+  keywords: string;
   logo: string;
   logoFallback?: string;
 };

@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/routing";
+import { normalizeInternalHref } from "@/lib/blog/normalize-internal-href";
 
 export type InlineSegment =
   | { type: "text"; value: string }
@@ -47,9 +48,14 @@ export function RenderInlineMarkdown({ text }: { text: string }) {
           return <strong key={index}>{segment.value}</strong>;
         }
         if (segment.type === "link") {
-          if (segment.href.startsWith("/")) {
+          const internalHref = normalizeInternalHref(segment.href);
+          if (internalHref) {
             return (
-              <Link key={index} href={segment.href} className="text-[#2669f3] font-semibold underline-offset-2 hover:underline">
+              <Link
+                key={index}
+                href={internalHref}
+                className="text-[#2669f3] font-semibold underline-offset-2 hover:underline"
+              >
                 {segment.label}
               </Link>
             );

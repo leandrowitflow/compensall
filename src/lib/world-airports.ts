@@ -6,8 +6,11 @@ export type WorldAirport = {
   name: string;
   city: string;
   country: string;
+  countryName?: string;
   lat: number;
   lon: number;
+  cities?: string[];
+  keywords?: string;
 };
 
 const worldAirports = worldAirportsJson as WorldAirport[];
@@ -37,11 +40,19 @@ const POPULAR_IATAS = [
 ] as const;
 
 function toOption(airport: WorldAirport): AirportOption {
+  const cities = airport.cities?.length
+    ? airport.cities
+    : [airport.city || airport.name].filter(Boolean);
+
   return {
     id: airport.iata.toLowerCase(),
     name: airport.name,
     city: airport.city || airport.name,
     iata: airport.iata.toUpperCase(),
+    country: (airport.country || "").toUpperCase(),
+    countryName: airport.countryName || airport.country || "",
+    cities,
+    keywords: airport.keywords || "",
     logo: "",
   };
 }
