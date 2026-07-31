@@ -3,10 +3,12 @@
 import { useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
 import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
+import ConnectingFlightsForm from "@/components/claim/ConnectingFlightsForm";
 import DisruptionDetailsForm from "@/components/claim/DisruptionDetailsForm";
 import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
 import { InfoBoardRow } from "@/components/claim/ClaimSidebar";
 import { ACTION_BTN } from "@/components/claim/claim-ui";
+import { isIneligibleForCompensation } from "@/lib/claim-types";
 
 type Step2PanelProps = {
   flight: ClaimFlightData;
@@ -31,6 +33,7 @@ export default function Step2Panel({
 }: Step2PanelProps) {
   const tStep2 = useTranslations("claim.step2");
   const tCommon = useTranslations("common");
+  const ineligible = isIneligibleForCompensation(flight);
 
   return (
     <div className="border border-[#d5e0f9] rounded-[21px] p-4 sm:p-5 xl:p-6 flex flex-col h-full bg-white">
@@ -90,6 +93,10 @@ export default function Step2Panel({
       />
 
       <div className="mb-4">
+        <ConnectingFlightsForm flight={flight} onChange={onFlightChange} />
+      </div>
+
+      <div className="mb-4">
         <DisruptionDetailsForm flight={flight} onChange={onFlightChange} />
       </div>
 
@@ -125,7 +132,8 @@ export default function Step2Panel({
         <button
           type="button"
           onClick={onContinue}
-          className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto ${ACTION_BTN}`}
+          disabled={ineligible}
+          className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed ${ACTION_BTN}`}
         >
           {tStep2("yesContinue")}
         </button>

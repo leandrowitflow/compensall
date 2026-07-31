@@ -63,6 +63,11 @@ export type CompensationEstimate = {
   toIata: string;
 };
 
+export type ConnectingFlightLeg = {
+  airport: string;
+  flightNumber: string;
+};
+
 export type ClaimFlightData = {
   passenger: string;
   flight: string;
@@ -73,8 +78,10 @@ export type ClaimFlightData = {
   delay: string;
   /** User-selected delay band for Odoo (`more_than_3` / `less_than_3`). */
   delayDuration?: DelayDurationOption;
-  /** Whether the itinerary included a connecting flight (delay cases). */
+  /** Whether the itinerary included a connecting flight. */
   hadConnectingFlight?: boolean | null;
+  /** Connecting legs (airport + flight number), when hadConnectingFlight is true. */
+  connectingFlights?: ConnectingFlightLeg[];
   /** Cancellation notice window (cancellation cases). */
   cancellationNotice?: CancellationNoticeOption;
   /** Short disruption reason code for Odoo `x_studio_reason_detail`. */
@@ -231,9 +238,21 @@ export const EMPTY_FLIGHT: ClaimFlightData = {
   delay: "",
   delayDuration: "",
   hadConnectingFlight: null,
+  connectingFlights: [],
   cancellationNotice: "",
   disruptionReason: "",
 };
+
+/** EC261: delay under 3h or cancellation notice ≥14 days → not eligible to proceed. */
+export function isIneligibleForCompensation(flight: ClaimFlightData): boolean {
+  if (flight.status === "Delayed" && flight.delayDuration === "less_than_3") {
+    return true;
+  }
+  if (flight.status === "Cancelled" && flight.cancellationNotice === "14 days or more") {
+    return true;
+  }
+  return false;
+}
 
 export const EMPTY_PASSENGER: ClaimPassenger = {
   firstName: "",
@@ -328,9 +347,28 @@ export function normalizeFlightData(
     delayDuration: normalizeDelayDuration(partial?.delayDuration),
     hadConnectingFlight:
       typeof partial?.hadConnectingFlight === "boolean" ? partial.hadConnectingFlight : null,
+    connectingFlights: normalizeConnectingFlights(partial?.connectingFlights),
     cancellationNotice: normalizeCancellationNotice(partial?.cancellationNotice),
     disruptionReason: normalizeDisruptionReason(partial?.disruptionReason),
     bookingReference: partial?.bookingReference?.trim() || null,
     compensationEstimate: normalizeCompensationEstimate(partial?.compensationEstimate),
   };
+}
+
+function normalizeConnectingFlights(value: unknown): ConnectingFlightLeg[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .slice(0, 2)
+    .map((leg) => {
+      if (!leg || typeof leg !== "object") return null;
+      const airport = typeof (leg as ConnectingFlightLeg).airport === "string"
+        ? (leg as ConnectingFlightLeg).airport.trim()
+        : "";
+      const flightNumber = typeof (leg as ConnectingFlightLeg).flightNumber === "string"
+        ? (leg as ConnectingFlightLeg).flightNumber.trim()
+        : "";
+      if (!airport && !flightNumber) return null;
+      return { airport, flightNumber };
+    })
+    .filter((leg): leg is ConnectingFlightLeg => leg !== null);
 }

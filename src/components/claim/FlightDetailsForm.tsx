@@ -51,13 +51,29 @@ export default function FlightDetailsForm({ flight, onChange, idPrefix = "flight
         <input
           id={`${idPrefix}-date`}
           type="date"
-          className={FIELD_INPUT}
+          className={`${FIELD_INPUT} cursor-pointer`}
           value={toDateInputValue(flight.date)}
           onChange={(e) =>
             update({
               date: e.target.value ? normalizeFlightDate(e.target.value) : "",
             })
           }
+          onClick={(e) => {
+            const input = e.currentTarget;
+            try {
+              input.showPicker?.();
+            } catch {
+              // showPicker can throw if the input is not available yet
+            }
+          }}
+          onFocus={(e) => {
+            const input = e.currentTarget;
+            try {
+              input.showPicker?.();
+            } catch {
+              // ignore
+            }
+          }}
         />
       </div>
       <div>

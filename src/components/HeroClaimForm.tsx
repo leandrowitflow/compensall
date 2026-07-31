@@ -90,24 +90,38 @@ function validateStep2(
     dateRequired: string;
     typeRequired: string;
     connectingRequired: string;
+    connectingDetailsRequired: string;
     delayRequired: string;
     noticeRequired: string;
     reasonRequired: string;
+    ineligible: string;
   },
 ): string | null {
   if (!flight.passenger.trim()) return messages.passengerRequired;
   if (!flight.flight.trim()) return messages.flightRequired;
   if (!flight.routeFrom.trim() || !flight.routeTo.trim()) return messages.routeRequired;
   if (!flight.date.trim()) return messages.dateRequired;
-  if (flight.status === "Unknown") return messages.typeRequired;
-  if (flight.status === "Delayed") {
-    if (flight.hadConnectingFlight === null || flight.hadConnectingFlight === undefined) {
-      return messages.connectingRequired;
-    }
-    if (!flight.delayDuration) return messages.delayRequired;
+
+  if (flight.hadConnectingFlight === null || flight.hadConnectingFlight === undefined) {
+    return messages.connectingRequired;
   }
+  if (flight.hadConnectingFlight === true) {
+    const first = flight.connectingFlights?.[0];
+    if (!first?.airport.trim() || !first.flightNumber.trim()) {
+      return messages.connectingDetailsRequired;
+    }
+  }
+
+  if (flight.status === "Unknown") return messages.typeRequired;
+  if (flight.status === "Delayed" && !flight.delayDuration) return messages.delayRequired;
   if (flight.status === "Cancelled" && !flight.cancellationNotice) {
     return messages.noticeRequired;
+  }
+  if (
+    (flight.status === "Delayed" && flight.delayDuration === "less_than_3") ||
+    (flight.status === "Cancelled" && flight.cancellationNotice === "14 days or more")
+  ) {
+    return messages.ineligible;
   }
   if (!flight.disruptionReason) return messages.reasonRequired;
   return null;
@@ -119,6 +133,7 @@ export default function HeroClaimForm() {
   const tStep1 = useTranslations("claim.step1");
   const tStep2 = useTranslations("claim.step2");
   const tDisruption = useTranslations("claim.disruption");
+  const tConnecting = useTranslations("claim.connecting");
   const tStep3 = useTranslations("claim.step3");
 
   const [step, setStep] = useState<ClaimStep>(1);
@@ -214,10 +229,12 @@ export default function HeroClaimForm() {
       routeRequired: tStep2("errors.routeRequired"),
       dateRequired: tStep2("errors.dateRequired"),
       typeRequired: tDisruption("errors.typeRequired"),
-      connectingRequired: tDisruption("errors.connectingRequired"),
+      connectingRequired: tConnecting("errors.connectingRequired"),
+      connectingDetailsRequired: tConnecting("errors.connectingDetailsRequired"),
       delayRequired: tDisruption("errors.delayRequired"),
       noticeRequired: tDisruption("errors.noticeRequired"),
       reasonRequired: tDisruption("errors.reasonRequired"),
+      ineligible: tDisruption("ineligibleTitle"),
     });
     if (error) {
       setStep2Error(error);

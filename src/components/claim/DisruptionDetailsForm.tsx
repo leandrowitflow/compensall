@@ -8,6 +8,7 @@ import type {
   DisruptionReasonOption,
   FlightStatus,
 } from "@/lib/claim-types";
+import { isIneligibleForCompensation } from "@/lib/claim-types";
 import { FIELD_LABEL, FIELD_SELECT } from "@/components/claim/claim-ui";
 
 type DisruptionDetailsFormProps = {
@@ -33,7 +34,6 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
       update({
         status,
         delayDuration: "",
-        hadConnectingFlight: null,
         cancellationNotice: "",
       });
       return;
@@ -42,7 +42,6 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
     update({
       status,
       delayDuration: status === "Delayed" ? flight.delayDuration || "" : "",
-      hadConnectingFlight: status === "Delayed" ? flight.hadConnectingFlight : null,
       cancellationNotice: status === "Cancelled" ? flight.cancellationNotice || "" : "",
       delay:
         status === "Delayed"
@@ -52,6 +51,8 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
             : flight.delay,
     });
   };
+
+  const ineligible = isIneligibleForCompensation(flight);
 
   return (
     <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-4 space-y-4">
@@ -83,56 +84,27 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
       </div>
 
       {flight.status === "Delayed" && (
-        <>
-          <div>
-            <label className={FIELD_LABEL} htmlFor="connecting-flight">
-              {t("connectingFlight")} <span className="text-[#e82828]">*</span>
-            </label>
-            <select
-              id="connecting-flight"
-              className={FIELD_SELECT}
-              value={
-                flight.hadConnectingFlight === true
-                  ? "yes"
-                  : flight.hadConnectingFlight === false
-                    ? "no"
-                    : ""
-              }
-              onChange={(event) => {
-                const value = event.target.value;
-                update({
-                  hadConnectingFlight: value === "yes" ? true : value === "no" ? false : null,
-                });
-              }}
-            >
-              <option value="">{t("selectPlaceholder")}</option>
-              <option value="yes">{t("yes")}</option>
-              <option value="no">{t("no")}</option>
-            </select>
-          </div>
-
-          <div>
-            <label className={FIELD_LABEL} htmlFor="delay-duration">
-              {t("delayDuration")} <span className="text-[#e82828]">*</span>
-            </label>
-            <select
-              id="delay-duration"
-              className={FIELD_SELECT}
-              value={flight.delayDuration || ""}
-              onChange={(event) => {
-                const delayDuration = event.target.value as DelayDurationOption;
-                update({
-                  delayDuration,
-                  delay: delayDuration || flight.delay,
-                });
-              }}
-            >
-              <option value="">{t("selectPlaceholder")}</option>
-              <option value="less_than_3">{t("delayLessThan3")}</option>
-              <option value="more_than_3">{t("delayMoreThan3")}</option>
-            </select>
-          </div>
-        </>
+        <div>
+          <label className={FIELD_LABEL} htmlFor="delay-duration">
+            {t("delayDuration")} <span className="text-[#e82828]">*</span>
+          </label>
+          <select
+            id="delay-duration"
+            className={FIELD_SELECT}
+            value={flight.delayDuration || ""}
+            onChange={(event) => {
+              const delayDuration = event.target.value as DelayDurationOption;
+              update({
+                delayDuration,
+                delay: delayDuration || flight.delay,
+              });
+            }}
+          >
+            <option value="">{t("selectPlaceholder")}</option>
+            <option value="less_than_3">{t("delayLessThan3")}</option>
+            <option value="more_than_3">{t("delayMoreThan3")}</option>
+          </select>
+        </div>
       )}
 
       {flight.status === "Cancelled" && (
@@ -154,13 +126,21 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
             <option value="14 days or more">{t("notice14OrMore")}</option>
             <option value="Less than 14 days">{t("noticeLessThan14")}</option>
           </select>
-          {flight.cancellationNotice === "14 days or more" && (
-            <p className="text-[#7b8094] text-xs mt-2 leading-relaxed">{t("noticeInfo")}</p>
-          )}
         </div>
       )}
 
-      {flight.status !== "Unknown" && (
+      {ineligible && (
+        <div
+          className="rounded-[12px] border border-[#ffd9b8] bg-[#fff7f0] px-4 py-3 text-sm text-[#1f3664] leading-relaxed space-y-2"
+          role="alert"
+        >
+          <p className="font-bold">{t("ineligibleTitle")}</p>
+          <p>{t("ineligibleBody")}</p>
+          <p>{t("ineligibleContact")}</p>
+        </div>
+      )}
+
+      {flight.status !== "Unknown" && !ineligible && (
         <div>
           <label className={FIELD_LABEL} htmlFor="disruption-reason">
             {t("reason")} <span className="text-[#e82828]">*</span>

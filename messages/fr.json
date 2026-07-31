@@ -239,23 +239,39 @@
         "arrivalPlaceholder": "ex. Rome (FCO)"
       }
     },
+    "connecting": {
+      "title": "Vols de correspondance",
+      "subtitle": "Indiquez si votre trajet comprenait une correspondance.",
+      "hadConnecting": "Aviez-vous un vol de correspondance ?",
+      "selectPlaceholder": "Sélectionnez une option",
+      "yes": "Oui",
+      "no": "Non",
+      "legLabel": "Vol de correspondance {number}",
+      "airport": "Aéroport",
+      "airportPlaceholder": "Saisir l'aéroport",
+      "flightNumber": "Numéro de vol",
+      "flightNumberPlaceholder": "ex. AF1234",
+      "errors": {
+        "connectingRequired": "Indiquez si vous aviez un vol de correspondance.",
+        "connectingDetailsRequired": "Saisissez l'aéroport et le numéro du vol de correspondance 1."
+      }
+    },
     "disruption": {
       "title": "Détails de la perturbation",
       "subtitle": "Indiquez ce qui s'est passé pour que nous puissions évaluer votre éligibilité.",
       "type": "Type de perturbation",
       "typePlaceholder": "Sélectionnez le type de perturbation",
       "selectPlaceholder": "Sélectionnez une option",
-      "connectingFlight": "Aviez-vous un vol de correspondance ?",
       "delayDuration": "Durée du retard",
       "delayLessThan3": "Moins de 3 heures",
       "delayMoreThan3": "Plus de 3 heures",
       "cancellationNotice": "Combien de jours avant le départ avez-vous été informé ?",
       "notice14OrMore": "14 jours ou plus",
       "noticeLessThan14": "Moins de 14 jours",
-      "noticeInfo": "Selon les règles UE/UK, les compagnies aériennes ne sont généralement pas tenues de verser une indemnisation si elles vous ont informé de l'annulation au moins 14 jours avant le départ. Vous pouvez toujours avoir droit à un remboursement ou à un réacheminement.",
+      "ineligibleTitle": "Nous regrettons de vous informer que vous n'avez pas droit à une indemnisation.",
+      "ineligibleBody": "Selon le règlement européen CE 261/2004, la compagnie aérienne n'est pas tenue de vous indemniser si votre vol a été retardé de moins de 3 heures, ou si vous avez été informé de l'annulation plus de 14 jours à l'avance. Nous comprenons que cela puisse être décevant et vous remercions de votre compréhension.",
+      "ineligibleContact": "Contactez-nous pour d'autres perturbations survenues au cours des 5 dernières années.",
       "reason": "Motif de la perturbation",
-      "yes": "Oui",
-      "no": "Non",
       "types": {
         "delay": "Retard",
         "cancellation": "Annulation",
@@ -271,7 +287,6 @@
       },
       "errors": {
         "typeRequired": "Sélectionnez le type de perturbation.",
-        "connectingRequired": "Indiquez si vous aviez un vol de correspondance.",
         "delayRequired": "Sélectionnez la durée du retard.",
         "noticeRequired": "Sélectionnez quand vous avez été informé de l'annulation.",
         "reasonRequired": "Sélectionnez le motif de la perturbation."
@@ -286,10 +301,10 @@
     "step3": {
       "claimReady": "Votre réclamation est prête.",
       "confirmContact": "Confirmez vos coordonnées et les éventuels passagers supplémentaires.",
-      "uploadDocuments": "Téléchargez des documents justificatifs (facultatif), puis continuez vers la signature.",
+      "uploadDocuments": "Téléchargez des documents justificatifs (facultatif), puis continuez vers la vérification.",
       "readAndSign": "Lisez intégralement la procuration, puis signez une fois pour continuer.",
       "readAndSignPassenger": "Passager {current} sur {total} : {name} — lisez et signez la procuration.",
-      "signedReview": "Toutes les procurations sont signées. Vérifiez et soumettez.",
+      "signedReview": "Signatures terminées. Vérifiez et soumettez votre réclamation.",
       "justNow": "À l'instant",
       "fullLegalName": "Nom légal complet",
       "namePlaceholder": "Tel qu'indiqué sur votre carte d'embarquement",
@@ -334,11 +349,13 @@
       "passengersCount": "Passagers : {count}",
       "continueToDocuments": "Continuer vers les documents",
       "continueToSigning": "Continuer vers la signature",
+      "continueToReview": "Continuer vers la vérification",
       "saving": "Enregistrement...",
       "deleteData": "Supprimer les données",
       "back": "Retour",
       "signing": "Signature en cours…",
       "signAndNext": "Signer et passager suivant",
+      "signAndContinue": "Signer et continuer",
       "signAndReview": "Signer et vérifier",
       "reSign": "Signer à nouveau",
       "submitting": "Envoi en cours…",

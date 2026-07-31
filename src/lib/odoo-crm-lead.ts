@@ -248,6 +248,21 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
   if (typeof input.flight.hadConnectingFlight === "boolean") {
     values.x_studio_connecting_flights = input.flight.hadConnectingFlight;
   }
+
+  const connectingLegs = (input.flight.connectingFlights ?? [])
+    .filter((leg) => leg.airport.trim() || leg.flightNumber.trim())
+    .slice(0, 2);
+  if (connectingLegs.length > 0) {
+    const connectingLines = connectingLegs
+      .map((leg, index) => {
+        const airport = leg.airport.trim() || "—";
+        const flightNumber = leg.flightNumber.trim() || "—";
+        return `<li>Connecting flight ${index + 1}: ${airport} / ${flightNumber}</li>`;
+      })
+      .join("");
+    // Indexed on the Helpdesk ticket description (safe without new Studio columns).
+    values.description = `${String(values.description ?? "")}<p><strong>Connecting flights</strong></p><ul>${connectingLines}</ul>`;
+  }
   if (input.flight.cancellationNotice) {
     values.x_studio_information_days_before_departure = input.flight.cancellationNotice;
   }

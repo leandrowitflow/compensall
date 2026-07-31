@@ -239,23 +239,39 @@
         "arrivalPlaceholder": "ex. Roma (FCO)"
       }
     },
+    "connecting": {
+      "title": "Voos de ligação",
+      "subtitle": "Indique se a sua viagem incluiu uma ligação.",
+      "hadConnecting": "Teve um voo de ligação?",
+      "selectPlaceholder": "Selecione uma opção",
+      "yes": "Sim",
+      "no": "Não",
+      "legLabel": "Voo de ligação {number}",
+      "airport": "Aeroporto",
+      "airportPlaceholder": "Escreva o aeroporto",
+      "flightNumber": "Número do voo",
+      "flightNumberPlaceholder": "ex. TP1234",
+      "errors": {
+        "connectingRequired": "Indique se teve um voo de ligação.",
+        "connectingDetailsRequired": "Introduza o aeroporto e o número do voo de ligação 1."
+      }
+    },
     "disruption": {
       "title": "Detalhes da disrupção",
       "subtitle": "Diga-nos o que aconteceu para avaliarmos a elegibilidade.",
       "type": "Tipo de disrupção",
       "typePlaceholder": "Selecione o tipo de disrupção",
       "selectPlaceholder": "Selecione uma opção",
-      "connectingFlight": "Teve um voo de ligação?",
       "delayDuration": "Duração do atraso",
       "delayLessThan3": "Menos de 3 horas",
       "delayMoreThan3": "Mais de 3 horas",
       "cancellationNotice": "Com quantos dias de antecedência foi informado do cancelamento?",
       "notice14OrMore": "14 dias ou mais",
       "noticeLessThan14": "Menos de 14 dias",
-      "noticeInfo": "Ao abrigo das regras da UE/UK, as companhias aéreas geralmente não são obrigadas a pagar compensação se o informaram do cancelamento com pelo menos 14 dias de antecedência. Pode ainda ter direito a reembolso ou reencaminhamento.",
+      "ineligibleTitle": "Lamentamos informar que não tem direito a compensação.",
+      "ineligibleBody": "De acordo com o regulamento europeu CE 261/2004, a companhia aérea não é obrigada a compensá-lo se o seu voo atrasou menos de 3 horas, ou se foi notificado do cancelamento com mais de 14 dias de antecedência. Compreendemos que isto possa ser dececionante e agradecemos a sua compreensão.",
+      "ineligibleContact": "Contacte-nos para outras disrupções nos últimos 5 anos.",
       "reason": "Motivo da disrupção",
-      "yes": "Sim",
-      "no": "Não",
       "types": {
         "delay": "Atraso",
         "cancellation": "Cancelamento",
@@ -271,7 +287,6 @@
       },
       "errors": {
         "typeRequired": "Selecione o tipo de disrupção.",
-        "connectingRequired": "Indique se teve um voo de ligação.",
         "delayRequired": "Selecione a duração do atraso.",
         "noticeRequired": "Selecione quando foi informado do cancelamento.",
         "reasonRequired": "Selecione o motivo da disrupção."
@@ -286,10 +301,10 @@
     "step3": {
       "claimReady": "O seu pedido está pronto.",
       "confirmContact": "Confirme os seus dados de contacto e quaisquer passageiros adicionais.",
-      "uploadDocuments": "Carregue documentos de suporte (opcional) e continue para a assinatura.",
+      "uploadDocuments": "Carregue documentos de suporte (opcional) e continue para a revisão.",
       "readAndSign": "Leia a Procuração na íntegra e assine uma vez para continuar.",
       "readAndSignPassenger": "Passageiro {current} de {total}: {name} — leia e assine a Procuração.",
-      "signedReview": "Todas as Procurações estão assinadas. Reveja e submeta.",
+      "signedReview": "Assinaturas concluídas. Reveja e submeta o pedido.",
       "justNow": "Agora mesmo",
       "fullLegalName": "Nome legal completo",
       "namePlaceholder": "Como indicado no cartão de embarque",
@@ -334,11 +349,13 @@
       "passengersCount": "Passageiros: {count}",
       "continueToDocuments": "Continuar para documentos",
       "continueToSigning": "Continuar para assinatura",
+      "continueToReview": "Continuar para revisão",
       "saving": "A guardar...",
       "deleteData": "Eliminar dados",
       "back": "Voltar",
       "signing": "A assinar…",
       "signAndNext": "Assinar e próximo passageiro",
+      "signAndContinue": "Assinar e continuar",
       "signAndReview": "Assinar e rever",
       "reSign": "Voltar a assinar",
       "submitting": "A submeter…",

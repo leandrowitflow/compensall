@@ -31,6 +31,15 @@ const flightSchema = z.object({
   delay: z.string(),
   delayDuration: z.enum(["more_than_3", "less_than_3", ""]).optional(),
   hadConnectingFlight: z.boolean().nullable().optional(),
+  connectingFlights: z
+    .array(
+      z.object({
+        airport: z.string(),
+        flightNumber: z.string(),
+      }),
+    )
+    .max(2)
+    .optional(),
   cancellationNotice: z.enum(["14 days or more", "Less than 14 days", ""]).optional(),
   disruptionReason: z
     .enum(["technical", "weather", "strike", "crew", "airport", "other", ""])
@@ -41,8 +50,8 @@ const flightSchema = z.object({
 const passengerSchema = z.object({
   firstName: z.string().min(1),
   lastName: z.string().min(1),
-  email: z.string().email(),
-  phone: z.string().min(1),
+  email: z.string().email().or(z.literal("")).optional().default(""),
+  phone: z.string().optional().default(""),
 });
 
 const documentSignatureSchema = z.object({

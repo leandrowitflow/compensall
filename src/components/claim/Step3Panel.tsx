@@ -285,11 +285,11 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         setContactError(t("errors.passengerNameRequired", { number: index + 2 }));
         return;
       }
-      if (!passenger.email.trim() || !EMAIL_PATTERN.test(passenger.email.trim())) {
+      if (passenger.email.trim() && !EMAIL_PATTERN.test(passenger.email.trim())) {
         setContactError(t("errors.passengerEmailInvalid", { number: index + 2 }));
         return;
       }
-      if (!passenger.phone.trim() || !isValidPhone(passenger.phone.trim())) {
+      if (passenger.phone.trim() && !isValidPhone(passenger.phone.trim())) {
         setContactError(t("errors.passengerPhoneInvalid", { number: index + 2 }));
         return;
       }
@@ -321,7 +321,8 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
       // Non-blocking
     } finally {
       setIsSyncingLead(false);
-      setPhase("documents");
+      setSigningPassengerIndex(0);
+      setPhase("sign");
     }
   };
 
@@ -379,7 +380,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         setSigningPassengerIndex(nextIndex);
         return;
       }
-      setPhase("review");
+      setPhase("documents");
     } catch {
       setSignError(t("errors.signConnectionError"));
     } finally {
@@ -460,16 +461,20 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
             <span className="text-[#7b8094] text-sm">{t("justNow")}</span>
           </div>
           <p className="text-[#1f3664] text-sm sm:text-base mt-2 leading-relaxed">
-            {t("claimReady")}
-            <br />
-            {phase === "contact" && t("confirmContact")}
-            {phase === "documents" && t("uploadDocuments")}
+            {phase === "contact" && (
+              <>
+                {t("claimReady")}
+                <br />
+                {t("confirmContact")}
+              </>
+            )}
             {phase === "sign" &&
               t("readAndSignPassenger", {
                 name: activePassengerName,
                 current: signingPassengerIndex + 1,
                 total: allPassengers.length,
               })}
+            {phase === "documents" && t("uploadDocuments")}
             {phase === "review" && t("signedReview")}
           </p>
         </div>
@@ -748,15 +753,6 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               </div>
             );
           })}
-          <div className="bg-white border border-[#d5e0f9] rounded-xl p-4">
-            <p className="text-[#7b8094] text-xs">{t("signedBy")}</p>
-            <p className="font-bold text-[#1f3664] text-sm">{signedName}</p>
-            <p className="text-[#7b8094] text-xs mt-2">{contactEmail}</p>
-            <p className="text-[#7b8094] text-xs mt-2">{t("flightDate", { date: formatFlightDateForDisplay(flight.date) })}</p>
-            <p className="text-[#7b8094] text-xs mt-2">
-              {t("passengersCount", { count: allPassengers.length })}
-            </p>
-          </div>
         </div>
       )}
 
@@ -783,30 +779,8 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
             disabled={isSyncingLead}
             className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-60 ${ACTION_BTN}`}
           >
-            {isSyncingLead ? t("saving") : t("continueToDocuments")}
+            {isSyncingLead ? t("saving") : t("continueToSigning")}
           </button>
-        )}
-
-        {phase === "documents" && (
-          <>
-            <button
-              type="button"
-              onClick={() => setPhase("contact")}
-              className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 ${ACTION_BTN}`}
-            >
-              {t("back")}
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setSigningPassengerIndex(0);
-                setPhase("sign");
-              }}
-              className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto ${ACTION_BTN}`}
-            >
-              {t("continueToSigning")}
-            </button>
-          </>
         )}
 
         {phase === "sign" && (
@@ -820,7 +794,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
                   setSigningPassengerIndex((index) => index - 1);
                   return;
                 }
-                setPhase("documents");
+                setPhase("contact");
               }}
               disabled={isSigning}
               className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 disabled:opacity-50 ${ACTION_BTN}`}
@@ -837,7 +811,29 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
                 ? t("signing")
                 : signingPassengerIndex < allPassengers.length - 1
                   ? t("signAndNext")
-                  : t("signAndReview")}
+                  : t("signAndContinue")}
+            </button>
+          </>
+        )}
+
+        {phase === "documents" && (
+          <>
+            <button
+              type="button"
+              onClick={() => {
+                setSigningPassengerIndex(Math.max(0, allPassengers.length - 1));
+                setPhase("sign");
+              }}
+              className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 ${ACTION_BTN}`}
+            >
+              {t("back")}
+            </button>
+            <button
+              type="button"
+              onClick={() => setPhase("review")}
+              className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto ${ACTION_BTN}`}
+            >
+              {t("continueToReview")}
             </button>
           </>
         )}
@@ -846,16 +842,11 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
           <>
             <button
               type="button"
-              onClick={() => {
-                setSigningPassengerIndex(0);
-                setPhase("sign");
-                setHasReadDocument(false);
-                setSignaturePreview(null);
-              }}
+              onClick={() => setPhase("documents")}
               disabled={isSubmitting}
               className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 disabled:opacity-50 ${ACTION_BTN}`}
             >
-              {t("reSign")}
+              {t("back")}
             </button>
             <button
               type="button"
