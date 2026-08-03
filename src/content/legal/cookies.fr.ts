@@ -66,7 +66,7 @@ export const cookiesFr: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "Certains cookies peuvent être déposés par des prestataires d'infrastructure ou de services qui nous aident à héberger et exploiter le site web, tels que les fournisseurs d'hébergement, de sécurité et de performance. Lorsque vous acceptez les cookies analytiques, nous utilisons Google Analytics (Google Ireland Limited / Google LLC) pour comprendre comment les visiteurs utilisent le site. Google peut déposer des cookies tels que _ga et _ga_* et traiter des données d'utilisation conformément à ses politiques. Les cookies analytiques ne sont déposés qu'après avoir choisi « Tout accepter ».",
+              text: "Certains cookies peuvent être déposés par des prestataires d'infrastructure ou de services qui nous aident à héberger et exploiter le site web, tels que les fournisseurs d'hébergement, de sécurité et de performance. Lorsque vous acceptez les cookies analytiques, nous utilisons Google Tag Manager et les balises de mesure Google associées (Google Ireland Limited / Google LLC), qui peuvent inclure Google Analytics, pour comprendre comment les visiteurs utilisent le site. Google peut déposer des cookies tels que _ga et _ga_* et traiter des données d'utilisation conformément à ses politiques. Les cookies analytiques ne sont déposés qu'après avoir choisi « Tout accepter ».",
             },
           ],
         },
