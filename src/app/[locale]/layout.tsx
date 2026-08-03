@@ -4,6 +4,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation";
 import DeferredAnchorScroll from "@/components/DeferredAnchorScroll";
 import DeferredCookieBanner from "@/components/DeferredCookieBanner";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import JsonLd from "@/components/seo/JsonLd";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/structured-data";
@@ -57,6 +58,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <NextIntlClientProvider messages={messages}>
           <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
           <div className="site-viewport min-w-0 overflow-x-clip">
+            <GoogleAnalytics />
             <DeferredAnchorScroll />
             <DeferredCookieBanner />
             {children}

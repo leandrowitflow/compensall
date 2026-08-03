@@ -66,7 +66,7 @@ export const cookiesPt: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "Alguns cookies podem ser definidos por prestadores de infraestrutura ou serviços que nos ajudam a alojar e operar o website, como fornecedores de alojamento, segurança e desempenho. Se activarmos ferramentas analíticas ou de marketing no futuro, esta política será actualizada para listar os prestadores e períodos de conservação relevantes.",
+              text: "Alguns cookies podem ser definidos por prestadores de infraestrutura ou serviços que nos ajudam a alojar e operar o website, como fornecedores de alojamento, segurança e desempenho. Quando aceita cookies de análise, utilizamos o Google Analytics (Google Ireland Limited / Google LLC) para compreender como os visitantes usam o site. A Google pode definir cookies como _ga e _ga_* e tratar dados de utilização de acordo com as suas políticas. Os cookies de análise só são colocados depois de escolher “Aceitar todos”.",
             },
           ],
         },

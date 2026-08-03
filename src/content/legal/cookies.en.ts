@@ -64,7 +64,7 @@ export const cookiesEn: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "Some cookies may be set by infrastructure or service providers that help us host and operate the website, such as hosting, security, and performance providers. If we enable analytics or marketing tools in future, this policy will be updated to list the relevant providers and retention periods.",
+              text: "Some cookies may be set by infrastructure or service providers that help us host and operate the website, such as hosting, security, and performance providers. When you accept analytics cookies, we use Google Analytics (Google Ireland Limited / Google LLC) to understand how visitors use the site. Google may set cookies such as _ga and _ga_* and process usage data according to Google’s policies. Analytics cookies are only placed after you choose “Accept all”.",
             },
           ],
         },

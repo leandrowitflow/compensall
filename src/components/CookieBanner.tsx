@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
+import { COOKIE_CONSENT_CHANGED_EVENT } from "@/lib/analytics";
 import {
   readCookieConsent,
   writeCookieConsent,
@@ -19,6 +20,7 @@ export default function CookieBanner() {
 
   const saveChoice = (choice: CookieConsentChoice) => {
     writeCookieConsent(choice);
+    window.dispatchEvent(new Event(COOKIE_CONSENT_CHANGED_EVENT));
     setVisible(false);
   };
 
