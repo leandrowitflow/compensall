@@ -5,10 +5,16 @@ import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 type PageHeroProps = {
   title: string;
   subtitle: ReactNode;
+  trustpilotAlt: string;
   priority?: boolean;
 };
 
-export default function PageHero({ title, subtitle, priority = false }: PageHeroProps) {
+export default function PageHero({
+  title,
+  subtitle,
+  trustpilotAlt,
+  priority = false,
+}: PageHeroProps) {
   return (
     <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-4 md:pt-6 pb-0">
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
@@ -20,7 +26,7 @@ export default function PageHero({ title, subtitle, priority = false }: PageHero
           <div className="relative px-4 sm:px-6 pt-10 lg:pt-10 xl:pt-12 pb-10 lg:pb-12 xl:pb-14 text-center">
             <div className="flex justify-center mb-5">
               {/* Keep Trustpilot low-priority so it never competes with the LCP hero image. */}
-              <TrustpilotBadge />
+              <TrustpilotBadge alt={trustpilotAlt} />
             </div>
 
             <h1 className="font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[1010px] mx-auto">

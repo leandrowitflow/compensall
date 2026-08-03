@@ -30,7 +30,7 @@ export default function CatalogClaimSection({
 
           <div className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-10 pb-6 lg:pb-8 xl:pb-10 text-center">
             <div className="flex justify-center mb-5">
-              <TrustpilotBadge />
+              <TrustpilotBadge alt={tHome("trustpilotAlt")} />
             </div>
 
             <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[44px] text-white leading-[1.2] mb-3 max-w-[760px] mx-auto">

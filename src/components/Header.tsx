@@ -6,7 +6,7 @@ import { useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Link } from "@/i18n/routing";
 import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
-import { getPopularCatalogItems } from "@/lib/localize-catalog";
+import { getPopularNavItems } from "@/lib/popular-nav";
 import type { NavMenuGroup, NavMenuItem } from "@/lib/nav-menu";
 import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
 
@@ -19,8 +19,8 @@ export default function Header() {
   const tCommon = useTranslations("common");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const popularAirlines = getPopularCatalogItems(airlinesCatalog, locale, "airlines", 6);
-  const popularAirports = getPopularCatalogItems(airportsCatalog, locale, "airports", 6);
+  const popularAirlines = getPopularNavItems(airlinesCatalog, locale, "airlines", 6);
+  const popularAirports = getPopularNavItems(airportsCatalog, locale, "airports", 6);
 
   const closeMenu = () => setMenuOpen(false);
 

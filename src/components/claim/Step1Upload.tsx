@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
-import { useRef, useState, type DragEvent } from "react";
+import { useEffect, useRef, useState, type DragEvent } from "react";
 import { validateBoardingPassFile, BOARDING_PASS_ACCEPT } from "@/lib/boarding-pass-file";
 import {
   normalizeFlightData,
@@ -12,8 +12,43 @@ import { formatAirportRouteLabel, type AirportOption } from "@/lib/airport-optio
 
 const AirportSelect = dynamic(() => import("@/components/claim/AirportSelect"), {
   ssr: false,
-  loading: () => <div className="h-[73px] rounded-[14px] border border-[#d5e0f9] bg-white" aria-hidden />,
+  loading: () => (
+    <div className="relative flex-1 min-w-0 self-stretch">
+      <div className="w-full h-full min-h-[73px]" aria-hidden />
+    </div>
+  ),
 });
+
+function AirportSelectPlaceholder({
+  id,
+  placeholder,
+  disabled,
+  onActivate,
+}: {
+  id: string;
+  placeholder: string;
+  disabled?: boolean;
+  onActivate: () => void;
+}) {
+  return (
+    <div className={`relative flex-1 min-w-0 self-stretch ${disabled ? "opacity-60" : ""}`}>
+      <span className="sr-only" id={`${id}-label`}>
+        {placeholder}
+      </span>
+      <button
+        type="button"
+        id={id}
+        aria-labelledby={`${id}-label`}
+        onClick={onActivate}
+        onFocus={onActivate}
+        disabled={disabled}
+        className="w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
+      >
+        <span className="text-[#1f3664] text-base sm:text-lg">{placeholder}</span>
+      </button>
+    </div>
+  );
+}
 
 type Step1UploadProps = {
   isExtracting: boolean;
@@ -37,6 +72,32 @@ export default function Step1Upload({
   const [manualError, setManualError] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  /** Defer world-airports JS until idle or first airport interaction (keeps LCP clear). */
+  const [loadAirportSelect, setLoadAirportSelect] = useState(false);
+  const [autoOpenAirportId, setAutoOpenAirportId] = useState<string | null>(null);
+
+  const activateAirportSelect = (id?: string) => {
+    if (id) setAutoOpenAirportId(id);
+    setLoadAirportSelect(true);
+  };
+
+  useEffect(() => {
+    if (loadAirportSelect) return;
+
+    const activate = () => setLoadAirportSelect(true);
+    const win = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+
+    if (typeof win.requestIdleCallback === "function") {
+      const idleId = win.requestIdleCallback(activate, { timeout: 3500 });
+      return () => win.cancelIdleCallback?.(idleId);
+    }
+
+    const timeoutId = window.setTimeout(activate, 2500);
+    return () => window.clearTimeout(timeoutId);
+  }, [loadAirportSelect]);
 
   const openFilePicker = () => {
     if (isExtracting || processingRef.current) return;
@@ -184,14 +245,24 @@ export default function Step1Upload({
         }`}
       >
         <div className="flex flex-col md:flex-row flex-1 min-w-0 items-stretch">
-          <AirportSelect
-            id="manual-departure"
-            placeholder={tStep1("departureAirport")}
-            value={departure}
-            onChange={handleDepartureChange}
-            excludeAirportId={arrival?.id}
-            disabled={isExtracting}
-          />
+          {loadAirportSelect ? (
+            <AirportSelect
+              id="manual-departure"
+              placeholder={tStep1("departureAirport")}
+              value={departure}
+              onChange={handleDepartureChange}
+              excludeAirportId={arrival?.id}
+              disabled={isExtracting}
+              autoOpen={autoOpenAirportId === "manual-departure"}
+            />
+          ) : (
+            <AirportSelectPlaceholder
+              id="manual-departure"
+              placeholder={tStep1("departureAirport")}
+              disabled={isExtracting}
+              onActivate={() => activateAirportSelect("manual-departure")}
+            />
+          )}
           <button
             type="button"
             onClick={swapAirports}
@@ -201,14 +272,24 @@ export default function Step1Upload({
           >
             <img src="/assets/icons/arrow-right-left.svg" alt="" aria-hidden="true" className="w-[23px] h-[23px] object-contain" />
           </button>
-          <AirportSelect
-            id="manual-arrival"
-            placeholder={tStep1("arrivalAirport")}
-            value={arrival}
-            onChange={handleArrivalChange}
-            excludeAirportId={departure?.id}
-            disabled={isExtracting}
-          />
+          {loadAirportSelect ? (
+            <AirportSelect
+              id="manual-arrival"
+              placeholder={tStep1("arrivalAirport")}
+              value={arrival}
+              onChange={handleArrivalChange}
+              excludeAirportId={departure?.id}
+              disabled={isExtracting}
+              autoOpen={autoOpenAirportId === "manual-arrival"}
+            />
+          ) : (
+            <AirportSelectPlaceholder
+              id="manual-arrival"
+              placeholder={tStep1("arrivalAirport")}
+              disabled={isExtracting}
+              onActivate={() => activateAirportSelect("manual-arrival")}
+            />
+          )}
         </div>
         <button
           type="button"

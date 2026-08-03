@@ -1,139 +1,13 @@
 import type { CatalogItem } from "@/lib/catalog";
 import { getCatalogHomeCountries } from "@/lib/catalog-countries";
+import {
+  POPULAR_AIRLINE_IDS,
+  POPULAR_AIRPORT_IDS,
+  appLanguage,
+  localePopularIds,
+} from "@/lib/catalog-popular-ids";
 import { resolveCountryCodesFromQuery } from "@/lib/country-search-aliases";
 import { getWorldAirportByIata } from "@/lib/world-airports";
-
-/** Default popularity when locale-specific lists do not apply. */
-const POPULAR_AIRLINE_IDS = [
-  "ryanair",
-  "easyjet",
-  "wizz-air",
-  "lufthansa",
-  "british-airways",
-  "tap",
-  "klm",
-  "air-france",
-  "jet2",
-  "virgin-atlantic",
-  "vueling",
-  "iberia",
-  "iberia-express",
-  "air-europa",
-  "sas",
-  "finnair",
-  "norwegian",
-  "eastern-airways",
-  "eurowings",
-  "ita-airways",
-];
-
-const POPULAR_AIRPORT_IDS = [
-  "heathrow",
-  "gatwick",
-  "manchester",
-  "lisbon",
-  "porto",
-  "frankfurt",
-  "amsterdam",
-  "paris-cdg",
-  "madrid",
-  "barcelona",
-  "dublin",
-  "stansted",
-  "munich",
-  "rome-fiumicino",
-  "malaga",
-  "palma",
-  "edinburgh",
-  "birmingham",
-  "brussels",
-  "warsaw",
-];
-
-/** Site-locale → country-first “Most popular” order. */
-const LOCALE_POPULAR_AIRLINES: Record<string, string[]> = {
-  en: [
-    "british-airways",
-    "ryanair",
-    "easyjet",
-    "jet2",
-    "wizz-air",
-    "virgin-atlantic",
-    "eastern-airways",
-    "lufthansa",
-    "klm",
-    "air-france",
-    "tap",
-  ],
-  pt: [
-    "tap",
-    "ryanair",
-    "easyjet",
-    "iberia",
-    "vueling",
-    "air-france",
-    "lufthansa",
-    "british-airways",
-    "klm",
-    "wizz-air",
-    "transavia",
-  ],
-  fr: [
-    "air-france",
-    "transavia-france",
-    "easyjet",
-    "ryanair",
-    "vueling",
-    "brussels-airlines",
-    "british-airways",
-    "lufthansa",
-    "klm",
-    "tap",
-    "swiss",
-  ],
-};
-
-const LOCALE_POPULAR_AIRPORTS: Record<string, string[]> = {
-  en: [
-    "heathrow",
-    "gatwick",
-    "manchester",
-    "stansted",
-    "luton",
-    "edinburgh",
-    "birmingham",
-    "bristol",
-    "glasgow",
-    "dublin",
-    "amsterdam",
-    "paris-cdg",
-  ],
-  pt: [
-    "lisbon",
-    "porto",
-    "faro",
-    "madrid",
-    "barcelona",
-    "paris-cdg",
-    "heathrow",
-    "amsterdam",
-    "frankfurt",
-    "brussels",
-  ],
-  fr: [
-    "paris-cdg",
-    "paris-orly",
-    "nice",
-    "lyon",
-    "brussels",
-    "geneva",
-    "amsterdam",
-    "barcelona",
-    "madrid",
-    "heathrow",
-    "frankfurt",
-  ],
-};
 
 /** Locale language → ISO countries treated as “home” for that site language. */
 const LOCALE_HOME_COUNTRIES: Record<string, string[]> = {
@@ -150,16 +24,6 @@ function popularRank(id: string, kind: "airlines" | "airports"): number {
 
 function normalizeLocale(locale: string): string {
   return locale.toLowerCase();
-}
-
-function appLanguage(language: string): string {
-  return normalizeLocale(language).split("-")[0] ?? "en";
-}
-
-function localePopularIds(language: string, kind: "airlines" | "airports"): string[] {
-  const lang = appLanguage(language);
-  const map = kind === "airlines" ? LOCALE_POPULAR_AIRLINES : LOCALE_POPULAR_AIRPORTS;
-  return map[lang] ?? (kind === "airlines" ? POPULAR_AIRLINE_IDS : POPULAR_AIRPORT_IDS);
 }
 
 function localePopularRank(id: string, language: string, kind: "airlines" | "airports"): number {

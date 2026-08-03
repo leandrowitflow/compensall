@@ -31,6 +31,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
   const t = await getTranslations("about");
   const tCommon = await getTranslations("common");
+  const tHero = await getTranslations("home.hero");
   const whyChooseItems = t.raw("whyChoose") as string[];
 
   return (
@@ -38,7 +39,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       <JsonLd data={buildProfessionalServiceSchema()} />
       <Header />
 
-      <PageHero title={t("title")} subtitle={t("subtitle")} />
+      <PageHero title={t("title")} subtitle={t("subtitle")} trustpilotAlt={tHero("trustpilotAlt")} />
 
       <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">

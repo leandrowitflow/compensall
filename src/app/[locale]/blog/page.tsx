@@ -22,13 +22,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
   setRequestLocale(locale);
 
   const t = await getTranslations("blogPage");
+  const tHero = await getTranslations("home.hero");
   const posts = await getBlogPosts(locale as AppLocale);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
-      <PageHero title={t("title")} subtitle={t("subtitle")} />
+      <PageHero title={t("title")} subtitle={t("subtitle")} trustpilotAlt={tHero("trustpilotAlt")} />
 
       <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-12 xl:pb-20 px-4 md:px-8 lg:px-8 xl:px-12">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">

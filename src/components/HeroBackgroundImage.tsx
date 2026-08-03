@@ -45,6 +45,8 @@ export default function HeroBackgroundImage({
         <img
           src={HERO_BG_SRC}
           alt=""
+          width={1920}
+          height={1080}
           decoding={priority ? "sync" : "async"}
           fetchPriority={priority ? "high" : "auto"}
           className="absolute inset-0 h-full w-full object-cover"

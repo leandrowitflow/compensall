@@ -56,6 +56,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const t = await getTranslations("blogPage");
   const tNav = await getTranslations("nav");
+  const tHero = await getTranslations("home.hero");
   const blogPath = `/blog/${post.slug}`;
   const publishedIso = parseBlogDisplayDate(post.date);
 
@@ -77,7 +78,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <JsonLd data={[articleSchema, breadcrumbSchema]} />
       <Header />
 
-      <PageHero title={post.title} subtitle={post.excerpt} />
+      <PageHero title={post.title} subtitle={post.excerpt} trustpilotAlt={tHero("trustpilotAlt")} />
 
       <article className="px-4 md:px-8 lg:px-8 xl:px-12 pt-8 lg:pt-10 xl:pt-[80px] pb-0">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">

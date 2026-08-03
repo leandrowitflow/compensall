@@ -153,7 +153,7 @@ export default async function HomePage({ params }: HomePageProps) {
               className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
             >
               <div className="flex justify-center mb-5">
-                <TrustpilotBadge />
+                <TrustpilotBadge alt={t("hero.trustpilotAlt")} />
               </div>
 
               <h1 className="font-bold text-[28px] sm:text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.15] sm:leading-[1.2] mb-4 max-w-[760px] mx-auto">
@@ -250,11 +250,11 @@ export default async function HomePage({ params }: HomePageProps) {
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* eslint-disable-next-line @next/next/no-img-element -- tiny WebP; skip image optimizer on critical path */}
                 <img
-                  src="/assets/icons/flight-delay-bg.webp"
+                  src="/assets/icons/flight-delay-bg-450.webp"
                   alt=""
                   aria-hidden="true"
-                  width={1466}
-                  height={1226}
+                  width={450}
+                  height={376}
                   loading="lazy"
                   decoding="async"
                   fetchPriority="low"

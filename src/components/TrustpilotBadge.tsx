@@ -1,8 +1,5 @@
-"use client";
-
-import { useTranslations } from "next-intl";
-
 type TrustpilotBadgeProps = {
+  alt: string;
   priority?: boolean;
   className?: string;
 };
@@ -16,16 +13,15 @@ const TRUSTPILOT_SRCSET = `${TRUSTPILOT_SRC_520} 520w, ${TRUSTPILOT_SRC} 1040w`;
 /** Matches className display widths: full-bleed on small screens, 480–520px from sm up. */
 const TRUSTPILOT_SIZES = "(max-width: 640px) 100vw, 520px";
 
-export default function TrustpilotBadge({ priority = false, className = "" }: TrustpilotBadgeProps) {
-  const t = useTranslations("home.hero");
-
+/** Server-safe badge — pass localized `alt` from the parent. */
+export default function TrustpilotBadge({ alt, priority = false, className = "" }: TrustpilotBadgeProps) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={TRUSTPILOT_SRC}
       srcSet={TRUSTPILOT_SRCSET}
       sizes={TRUSTPILOT_SIZES}
-      alt={t("trustpilotAlt")}
+      alt={alt}
       width={TRUSTPILOT_WIDTH}
       height={TRUSTPILOT_HEIGHT}
       decoding="async"

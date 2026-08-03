@@ -75,6 +75,7 @@ function StatusTimeline({ currentStatus }: { currentStatus: ClaimStatus }) {
 
 export default function TrackClaimPage({ trackingNumber }: { trackingNumber: string }) {
   const t = useTranslations("trackPage");
+  const tHero = useTranslations("home.hero");
   const locale = useLocale();
   const [claim, setClaim] = useState<TrackResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -129,6 +130,7 @@ export default function TrackClaimPage({ trackingNumber }: { trackingNumber: str
     <main className="pb-16 md:pb-24">
       <PageHero
         title={t("title")}
+        trustpilotAlt={tHero("trustpilotAlt")}
         subtitle={t.rich("reference", {
           trackingNumber,
           tracking: (chunks) => <strong>{chunks}</strong>,

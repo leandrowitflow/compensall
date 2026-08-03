@@ -13,6 +13,8 @@ type AirportSelectProps = {
   onChange: (airport: AirportOption | null) => void;
   excludeAirportId?: string | null;
   disabled?: boolean;
+  /** Open the picker once on mount (e.g. after a deferred load from a placeholder click). */
+  autoOpen?: boolean;
 };
 
 function AirportLogo({ airport }: { airport: AirportOption }) {
@@ -52,6 +54,7 @@ export default function AirportSelect({
   onChange,
   excludeAirportId,
   disabled = false,
+  autoOpen = false,
 }: AirportSelectProps) {
   const t = useTranslations("claim.step1");
   const locale = useLocale();
@@ -59,6 +62,7 @@ export default function AirportSelect({
   const rootRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const autoOpenedRef = useRef(false);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [highlightIndex, setHighlightIndex] = useState(0);
@@ -76,6 +80,14 @@ export default function AirportSelect({
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!autoOpen || disabled || autoOpenedRef.current) return;
+    autoOpenedRef.current = true;
+    setOpen(true);
+    setQuery("");
+    requestAnimationFrame(() => inputRef.current?.focus());
+  }, [autoOpen, disabled]);
 
   const updateMenuRect = () => {
     if (rootRef.current) {
