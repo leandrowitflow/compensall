@@ -7,6 +7,7 @@ import { Link } from "@/i18n/routing";
 import type { CatalogItem } from "@/lib/catalog";
 import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
 import { buildCatalogCardDescription } from "@/lib/catalog-detail";
+import { searchCatalogAirports } from "@/lib/catalog-world-airports";
 import { filterCatalog, sortCatalogByLocale } from "@/lib/localize-catalog";
 
 function SearchField({
@@ -94,6 +95,16 @@ function CatalogSection({
   const [showAll, setShowAll] = useState(false);
 
   const visibleItems = useMemo(() => {
+    const trimmed = query.trim();
+
+    // Airports: popular curated list by default; full world-airports file when searching.
+    if (kind === "airports") {
+      if (!trimmed) {
+        return sortCatalogByLocale(items, language, kind);
+      }
+      return searchCatalogAirports(trimmed, language);
+    }
+
     const sorted = sortCatalogByLocale(items, language, kind);
     return filterCatalog(sorted, query);
   }, [items, language, query, kind]);
@@ -101,7 +112,7 @@ function CatalogSection({
   const isSearching = query.trim().length > 0;
   const isExpanded = showAll || isSearching;
 
-  // Country / text search: show the full result set in one grid.
+  // Search: show the full result set in one grid.
   const featuredItems = isSearching ? visibleItems : visibleItems.slice(0, 4);
   const remainingItems = isSearching ? [] : visibleItems.slice(4);
 
@@ -126,7 +137,9 @@ function CatalogSection({
         </h2>
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 xl:mb-8">
-          <p className="font-bold text-[#1f3664] text-[17px] xl:text-[18px]">{t("mostPopular")}</p>
+          <p className="font-bold text-[#1f3664] text-[17px] xl:text-[18px]">
+            {isSearching ? t("searchResults", { count: visibleItems.length }) : t("mostPopular")}
+          </p>
           <SearchField placeholder={searchPlaceholder} value={query} onChange={handleQueryChange} />
         </div>
 

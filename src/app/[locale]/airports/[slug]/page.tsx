@@ -11,6 +11,9 @@ type AirportPageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
+/** Prebuild curated airports; any IATA from the full airports file can still resolve on demand. */
+export const dynamicParams = true;
+
 export function generateStaticParams() {
   return airportsCatalog.map((item) => ({ slug: item.id }));
 }

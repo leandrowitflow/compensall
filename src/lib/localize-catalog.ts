@@ -1,6 +1,7 @@
 import type { CatalogItem } from "@/lib/catalog";
 import { getCatalogHomeCountries } from "@/lib/catalog-countries";
 import { resolveCountryCodesFromQuery } from "@/lib/country-search-aliases";
+import { getWorldAirportByIata } from "@/lib/world-airports";
 
 /** Default popularity when locale-specific lists do not apply. */
 const POPULAR_AIRLINE_IDS = [
@@ -168,7 +169,17 @@ function localePopularRank(id: string, language: string, kind: "airlines" | "air
 }
 
 export function catalogItemCountries(item: CatalogItem): Set<string> {
-  return new Set(getCatalogHomeCountries(item.id));
+  const homes = getCatalogHomeCountries(item.id);
+  if (homes.length > 0) {
+    return new Set(homes);
+  }
+
+  const world = getWorldAirportByIata(item.id);
+  if (world?.country) {
+    return new Set([world.country.toUpperCase()]);
+  }
+
+  return new Set();
 }
 
 /**

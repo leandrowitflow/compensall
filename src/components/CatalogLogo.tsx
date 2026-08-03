@@ -24,6 +24,7 @@ export default function CatalogLogo({
   const item = { id, logo } satisfies Pick<CatalogItem, "id" | "logo">;
   const airportBadge = kind === "airports" ? getAirportBadge(id) : undefined;
   const useAirportBadge = kind === "airports" && shouldUseAirportBadge(id, logo);
+  const iataSlug = kind === "airports" && /^[a-z]{3}$/i.test(id) ? id.toUpperCase() : null;
   const primarySrc = catalogLogoPath(item, kind);
   const svgFallback = catalogLogoSvgFallback(item, kind);
   const [src, setSrc] = useState(primarySrc);
@@ -31,6 +32,10 @@ export default function CatalogLogo({
 
   if (useAirportBadge && airportBadge) {
     return <AirportBadge iata={airportBadge.iata} label={airportBadge.label} />;
+  }
+
+  if (iataSlug && !logo) {
+    return <AirportBadge iata={iataSlug} label={name} />;
   }
 
   const handleError = () => {

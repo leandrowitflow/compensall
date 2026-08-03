@@ -3,6 +3,7 @@ import {
   airportsCatalog,
   type CatalogItem,
 } from "@/lib/catalog";
+import { resolveAirportCatalogItem } from "@/lib/catalog-world-airports";
 import type { FaqItem } from "@/lib/faq-items";
 
 export type CatalogKind = "airlines" | "airports";
@@ -25,7 +26,7 @@ export function getCatalogItem(kind: CatalogKind, slug: string): CatalogItem | u
   if (kind === "airlines") {
     return airlinesBySlug[slug];
   }
-  return airportsBySlug[slug];
+  return resolveAirportCatalogItem(slug);
 }
 
 export function buildCatalogTitle(
