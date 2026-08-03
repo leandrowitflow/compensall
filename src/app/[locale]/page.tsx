@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import TrustpilotBadge from "@/components/TrustpilotBadge";
 import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import CTABanner from "@/components/CTABanner";
