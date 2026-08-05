@@ -10,12 +10,8 @@ import { syncClaimCaseToOdoo } from "@/lib/odoo-crm-lead";
 import { normalizeFlightData, type ClaimRecord } from "@/lib/claim-types";
 import { withCompensationEstimate } from "@/lib/compensation-estimate";
 import { dataUrlToBase64, getClientIp, hasSignatureInk, hashSignature } from "@/lib/signature-utils";
+import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
 import { verifyBoardingPassClaim } from "@/lib/verify-boarding-pass";
-
-function isValidPhone(value: string): boolean {
-  const digits = value.replace(/\D/g, "");
-  return digits.length >= 7 && digits.length <= 15;
-}
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
@@ -166,11 +162,12 @@ export async function POST(request: Request) {
       return Response.json({ error: "A valid email address is required." }, { status: 400 });
     }
 
-    const contactPhone =
+    const contactPhoneRawValue =
       typeof contactPhoneRaw === "string" ? contactPhoneRaw.trim() : "";
-    if (!contactPhone || !isValidPhone(contactPhone)) {
+    if (!contactPhoneRawValue || !isValidClaimPhone(contactPhoneRawValue)) {
       return Response.json({ error: "A valid phone number is required." }, { status: 400 });
     }
+    const contactPhone = toE164Phone(contactPhoneRawValue);
 
     if (typeof flightRaw !== "string") {
       return Response.json({ error: "Flight details are required." }, { status: 400 });
@@ -188,7 +185,19 @@ export async function POST(request: Request) {
       return Response.json({ error: "Flight details are incomplete." }, { status: 400 });
     }
 
-    const additionalPassengers = parseAdditionalPassengers(formData.get("additionalPassengers"));
+    const additionalPassengers = parseAdditionalPassengers(formData.get("additionalPassengers")).map(
+      (passenger) => ({
+        ...passenger,
+        phone: passenger.phone.trim() ? toE164Phone(passenger.phone) : "",
+      }),
+    );
+    if (
+      additionalPassengers.some(
+        (passenger) => passenger.phone && !isValidClaimPhone(passenger.phone),
+      )
+    ) {
+      return Response.json({ error: "A valid passenger phone number is required." }, { status: 400 });
+    }
     const expectedSignatureCount = 1 + additionalPassengers.length;
     if (documentSignatures.length !== expectedSignatureCount) {
       return Response.json(

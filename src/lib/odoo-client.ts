@@ -677,6 +677,42 @@ export async function odooAttachFilesToHelpdeskTicket(
   return ids;
 }
 
+const currencyIdCache = new Map<string, number | null>();
+
+/** Resolve `res.currency` id by ISO code (EUR, GBP, …). Cached per process. */
+export async function odooFindCurrencyIdByCode(code: string): Promise<number | null> {
+  const normalized = code.trim().toUpperCase();
+  if (!normalized) return null;
+  if (currencyIdCache.has(normalized)) {
+    return currencyIdCache.get(normalized) ?? null;
+  }
+
+  const config = getOdooConfig();
+  if (!config) {
+    currencyIdCache.set(normalized, null);
+    return null;
+  }
+
+  try {
+    const uid = await authenticate(config);
+    const matches = await executeKw<Array<{ id: number; name: string }>>(
+      config,
+      uid,
+      "res.currency",
+      "search_read",
+      [[["name", "=", normalized]]],
+      { fields: ["id", "name"], limit: 1 },
+    );
+    const id = matches[0]?.id ?? null;
+    currencyIdCache.set(normalized, id);
+    return id;
+  } catch (error) {
+    console.error(`Odoo currency lookup failed for ${normalized}:`, error);
+    currencyIdCache.set(normalized, null);
+    return null;
+  }
+}
+
 /** Find or create a customer partner so tickets are not linked to Aireclaim/Compensall company. */
 export async function odooFindOrCreatePartner(input: {
   name: string;

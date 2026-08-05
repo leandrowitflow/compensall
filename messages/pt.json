@@ -53,10 +53,8 @@
   },
   "footer": {
     "contactUs": "Contacte-nos",
-    "addressLine1": "R. da Beneditina 6",
-    "addressLine2": "4150-133 Porto",
     "email": "help@compensall.com",
-    "phone": "+351 928 370 420",
+    "phone": "+351 923 391 980",
     "privacyPolicy": "Política de Privacidade",
     "termsOfService": "Termos de Serviço",
     "cookies": "Cookies",
@@ -151,7 +149,7 @@
       }
     },
     "compensation": {
-      "title": "Qual é a",
+      "title": "Quanto é a",
       "titleAccent": "compensação?",
       "ukIntro": "Para partidas do Reino Unido, o UK261 define montantes fixos em libras. O valor depende da distância do voo.",
       "ukHeading": "UK261 — voos do Reino Unido",
@@ -311,7 +309,7 @@
       "emailAddress": "Endereço de e-mail",
       "emailPlaceholder": "voce@exemplo.com",
       "phoneNumber": "Número de telefone",
-      "phonePlaceholder": "+351 912 345 678",
+      "phonePlaceholder": "912 345 678",
       "firstName": "Nome",
       "lastName": "Apelido",
       "otherPassengers": "Outros passageiros da reserva",
@@ -411,7 +409,7 @@
       },
       {
         "question": "Quanto de compensação posso receber?",
-        "answer": "Para voos do Reino Unido, o UK261 prevê até £520 por passageiro (£220 para voos inferiores a 1 500 km, £350 para 1 500–3 500 km e £520 acima de 3 500 km). Para voos da UE elegíveis, o EC 261/2004 prevê €250, €400 ou €600 nas mesmas faixas de distância."
+        "answer": "Para voos do Reino Unido, o UK261 prevê até £520 por passageiro (£220 para voos inferiores a 1 500 km, £350 para 1 500–3 500 km e £520 acima de 3 500 km). Para voos da UE elegíveis, o EC 261/2004 prevê 250€, 400€ ou 600€ nas mesmas faixas de distância."
       },
       {
         "question": "O que significa «só paga se ganharmos»?",
@@ -437,7 +435,7 @@
     "uk": [
       {
         "question": "O que é o UK261 e em que difere do EC 261?",
-        "answer": "Após o Brexit, o Reino Unido manteve os direitos dos passageiros através do UK261, que espelha o Regulamento da UE EC 261/2004 para voos com partida do Reino Unido. O UK261 define compensação em libras (£220, £350 ou £520), enquanto o EC 261 utiliza euros (€250, €400 ou €600) para partidas da UE elegíveis."
+        "answer": "Após o Brexit, o Reino Unido manteve os direitos dos passageiros através do UK261, que espelha o Regulamento da UE EC 261/2004 para voos com partida do Reino Unido. O UK261 define compensação em libras (£220, £350 ou £520), enquanto o EC 261 utiliza euros (250€, 400€ ou 600€) para partidas da UE elegíveis."
       },
       {
         "question": "O UK261 aplica-se ao meu voo?",
@@ -521,11 +519,11 @@
     "flightIssues": {
       "flightCancellation": {
         "title": "Cancelamento de voo",
-        "description": "Se o seu voo foi cancelado com pouca antecedência, pode ter direito a compensação de até €600."
+        "description": "Se o seu voo foi cancelado com pouca antecedência, pode ter direito a compensação de até 600€."
       },
       "deniedBoarding": {
         "title": "Embarque recusado",
-        "description": "Se lhe recusaram o embarque contra a sua vontade, pode reclamar até €600."
+        "description": "Se lhe recusaram o embarque contra a sua vontade, pode reclamar até 600€."
       },
       "flightDelay": {
         "title": "Atraso de voo",
@@ -595,7 +593,7 @@
     },
     "ec261Card": {
       "title": "EC 261/2004 — partidas da UE",
-      "body": "O Regulamento da UE EC 261/2004 continua a proteger os passageiros em voos elegíveis com partida de aeroportos da UE, com compensação de €250, €400 ou €600 nas mesmas faixas de distância."
+      "body": "O Regulamento da UE EC 261/2004 continua a proteger os passageiros em voos elegíveis com partida de aeroportos da UE, com compensação de 250€, 400€ ou 600€ nas mesmas faixas de distância."
     },
     "rightsDetailP1": "Se o seu voo tiver um atraso de três horas ou mais à chegada, for cancelado com pouca antecedência ou lhe recusarem o embarque contra a sua vontade, pode ter direito a compensação fixa. Pode também ter direitos a assistência, reencaminhamento e reembolsos consoante as circunstâncias.",
     "rightsDetailP2": "Ligações perdidas e greves de companhias aéreas também podem qualificar quando a perturbação está sob o controlo da companhia aérea. A Compensall ajuda-o a verificar a elegibilidade, preparar o seu pedido e prosseguir a compensação junto da companhia aérea com a regra «só paga se ganharmos».",
@@ -624,7 +622,7 @@
         "body": "Inicia o seu pedido dentro do prazo aplicável — geralmente até seis anos em Inglaterra e País de Gales."
       }
     },
-    "ec261Note": "Para voos da UE elegíveis, o EC 261/2004 prevê €250, €400 ou €600 nas mesmas faixas de distância.",
+    "ec261Note": "Para voos da UE elegíveis, o EC 261/2004 prevê 250€, 400€ ou 600€ nas mesmas faixas de distância.",
     "tiers": {
       "uk261": {
         "220": {
@@ -746,7 +744,7 @@
       },
       "needs_documents": {
         "label": "Falta documentação",
-        "message": "Para avançarmos, precisamos de mais documentos. Veja o seu email ou contacte-nos no +351 928 370 420 — estamos disponíveis para ajudar."
+        "message": "Para avançarmos, precisamos de mais documentos. Veja o seu email ou contacte-nos no +351 923 391 980 — estamos disponíveis para ajudar."
       },
       "with_airline": {
         "label": "Enviado à companhia aérea",
@@ -774,7 +772,7 @@
       },
       "paused": {
         "label": "Em pausa",
-        "message": "O seu caso está em pausa porque não recebemos resposta. Contacte-nos no +351 928370420 se quiser reativá-lo."
+        "message": "O seu caso está em pausa porque não recebemos resposta. Contacte-nos no +351 923391980 se quiser reativá-lo."
       },
       "closed_declined": {
         "label": "Encerrado",

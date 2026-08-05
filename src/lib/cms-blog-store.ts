@@ -228,7 +228,7 @@ function pickTranslation(
 const CMS_BLOG_CATEGORY_BY_LOCALE: Record<AppLocale, string> = {
   en: "Know your rights",
   pt: "Conheça os seus direitos",
-  fr: "Connaissez vos droits",
+  fr: "Connaître vos droits",
 };
 
 export function cmsRecordToBlogPost(record: CmsBlogRecord, locale: AppLocale): BlogPost | null {

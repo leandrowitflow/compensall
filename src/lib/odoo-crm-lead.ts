@@ -5,6 +5,7 @@ import type {
   ClaimVerification,
   FlightStatus,
 } from "@/lib/claim-types";
+import { estimateCompensationForFlight } from "@/lib/compensation-estimate";
 import { lookupAirlineByCarrierCode } from "@/lib/lookup-airline";
 import { toDateInputValue } from "@/lib/resolve-boarding-pass-references";
 import {
@@ -16,6 +17,7 @@ import {
   odooFindHelpdeskTicketByTrackingNumber,
   odooFindLeadBySessionId,
   odooFindOrCreatePartner,
+  odooFindCurrencyIdByCode,
   odooUpdateCrmLead,
   odooUpdateHelpdeskTicket,
   type OdooAttachmentInput,
@@ -249,6 +251,12 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
     values.x_studio_connecting_flights = input.flight.hadConnectingFlight;
   }
 
+  // Montante = passengers × estimated compensation per person (ops field in Odoo).
+  const estimate = estimateCompensationForFlight(input.flight);
+  if (estimate?.amount != null) {
+    values.x_studio_montante = passengerCount * estimate.amount;
+  }
+
   const connectingLegs = (input.flight.connectingFlights ?? [])
     .filter((leg) => leg.airport.trim() || leg.flightNumber.trim())
     .slice(0, 2);
@@ -450,6 +458,18 @@ async function syncHelpdeskTicket(
   }
 
   const values = buildHelpdeskTicketValues(input);
+
+  const estimate = estimateCompensationForFlight(input.flight);
+  if (estimate?.amount != null && estimate.currency) {
+    try {
+      const currencyId = await odooFindCurrencyIdByCode(estimate.currency);
+      if (currencyId) {
+        values.x_studio_currency_id = currencyId;
+      }
+    } catch (error) {
+      console.error("Odoo currency sync for Montante failed:", error);
+    }
+  }
 
   try {
     const partnerId = await odooFindOrCreatePartner({

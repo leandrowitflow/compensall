@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./globals-phone.css";
 
 :root {
   --background: #ffffff;

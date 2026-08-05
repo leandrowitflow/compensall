@@ -53,10 +53,8 @@
   },
   "footer": {
     "contactUs": "Nous contacter",
-    "addressLine1": "R. da Beneditina 6",
-    "addressLine2": "4150-133 Porto",
     "email": "help@compensall.com",
-    "phone": "+351 928 370 420",
+    "phone": "+351 923 391 980",
     "privacyPolicy": "Politique de confidentialité",
     "termsOfService": "Conditions d'utilisation",
     "cookies": "Cookies",
@@ -151,8 +149,8 @@
       }
     },
     "compensation": {
-      "title": "Quelle est",
-      "titleAccent": "l'indemnisation ?",
+      "title": "Combien est",
+      "titleAccent": "l'indemnisation?",
       "ukIntro": "Pour les départs du Royaume-Uni, le UK261 fixe des montants en livres sterling. Le montant dépend de la distance du vol.",
       "ukHeading": "UK261 — vols au Royaume-Uni",
       "ecHeading": "CE 261/2004 — vols de l'UE éligibles",
@@ -311,7 +309,7 @@
       "emailAddress": "Adresse e-mail",
       "emailPlaceholder": "vous@exemple.com",
       "phoneNumber": "Numéro de téléphone",
-      "phonePlaceholder": "+33 6 12 34 56 78",
+      "phonePlaceholder": "6 12 34 56 78",
       "firstName": "Prénom",
       "lastName": "Nom",
       "otherPassengers": "Autres passagers de la réservation",
@@ -402,53 +400,53 @@
     "pageIntro": "Tout ce que vous devez savoir sur les réclamations au titre du UK261 et du CE 261/2004, notre formule « vous ne payez que si on gagne » et la protection de vos données.",
     "default": [
       {
-        "question": "Est-il sûr de télécharger ma carte d'embarquement ?",
+        "question": "Est-il sûr de télécharger ma carte d'embarquement?",
         "answer": "Oui, absolument. Votre carte d'embarquement est chiffrée et stockée en toute sécurité. Nous n'utilisons que les informations nécessaires au traitement de votre réclamation et ne les partageons jamais avec des tiers."
       },
       {
-        "question": "L'assistant s'occupe-t-il de tout ?",
+        "question": "L'assistant s'occupe-t-il de tout?",
         "answer": "L'assistant accélère le processus, mais votre réclamation est également prise en charge par de vraies personnes. Notre équipe peut examiner votre dossier, contacter la compagnie aérienne et gérer la réclamation de bout en bout."
       },
       {
-        "question": "Quel montant d'indemnisation puis-je recevoir ?",
-        "answer": "Pour les vols au Royaume-Uni, le UK261 prévoit jusqu'à £520 par passager (£220 pour les vols de moins de 1 500 km, £350 pour 1 500–3 500 km et £520 au-delà de 3 500 km). Pour les vols de l'UE éligibles, le CE 261/2004 prévoit €250, €400 ou €600 selon les mêmes tranches de distance."
+        "question": "Quel montant d'indemnisation puis-je recevoir?",
+        "answer": "Pour les vols au Royaume-Uni, le UK261 prévoit jusqu'à £520 par passager (£220 pour les vols de moins de 1 500 km, £350 pour 1 500–3 500 km et £520 au-delà de 3 500 km). Pour les vols de l'UE éligibles, le CE 261/2004 prévoit 250€, 400€ ou 600€ selon les mêmes tranches de distance."
       },
       {
-        "question": "Que signifie « vous ne payez que si on gagne » ?",
+        "question": "Que signifie « vous ne payez que si on gagne »?",
         "answer": "Cela signifie que vous ne payez rien si nous ne gagnons pas votre réclamation. Nous ne facturons des frais de succès que lorsque nous récupérons une indemnisation en votre nom."
       },
       {
-        "question": "Que fait l'assistant ?",
+        "question": "Que fait l'assistant?",
         "answer": "Notre assistant analyse votre carte d'embarquement, vérifie l'éligibilité au titre du UK261 et du règlement européen CE 261/2004, et prépare toute la documentation nécessaire pour déposer votre réclamation d'indemnisation."
       },
       {
-        "question": "Puis-je parler à une vraie personne ?",
-        "answer": "Oui ! Notre équipe d'assistance humaine est disponible pour vous accompagner tout au long du processus de réclamation. Vous pouvez nous joindre par chat, e-mail ou téléphone."
+        "question": "Puis-je parler à une vraie personne?",
+        "answer": "Oui! Notre équipe d'assistance humaine est disponible pour vous accompagner tout au long du processus de réclamation. Vous pouvez nous joindre par chat, e-mail ou téléphone."
       },
       {
-        "question": "Combien cela coûte-t-il ?",
+        "question": "Combien cela coûte-t-il?",
         "answer": "Aucun coût initial. Compensall ne facture des frais que si votre réclamation aboutit."
       },
       {
-        "question": "Puis-je supprimer mes données ?",
+        "question": "Puis-je supprimer mes données?",
         "answer": "Oui. Vous pouvez demander la suppression de vos données personnelles à tout moment. Contactez notre équipe d'assistance et nous traiterons votre demande dans un délai de 30 jours conformément au RGPD."
       }
     ],
     "uk": [
       {
-        "question": "Qu'est-ce que le UK261 et en quoi diffère-t-il du CE 261 ?",
-        "answer": "Après le Brexit, le Royaume-Uni a conservé les droits des passagers via le UK261, qui reprend le règlement européen CE 261/2004 pour les vols au départ du Royaume-Uni. Le UK261 fixe l'indemnisation en livres sterling (£220, £350 ou £520), tandis que le CE 261 utilise des euros (€250, €400 ou €600) pour les départs de l'UE éligibles."
+        "question": "Qu'est-ce que le UK261 et en quoi diffère-t-il du CE 261?",
+        "answer": "Après le Brexit, le Royaume-Uni a conservé les droits des passagers via le UK261, qui reprend le règlement européen CE 261/2004 pour les vols au départ du Royaume-Uni. Le UK261 fixe l'indemnisation en livres sterling (£220, £350 ou £520), tandis que le CE 261 utilise des euros (250€, 400€ ou 600€) pour les départs de l'UE éligibles."
       },
       {
-        "question": "Le UK261 s'applique-t-il à mon vol ?",
+        "question": "Le UK261 s'applique-t-il à mon vol?",
         "answer": "Le UK261 s'applique généralement aux vols au départ d'aéroports du Royaume-Uni. Le CE 261/2004 peut s'appliquer aux vols au départ d'aéroports de l'UE et, dans certains cas, aux vols arrivant dans l'UE sur des compagnies de l'UE ou du Royaume-Uni. Le règlement applicable dépend de votre itinéraire et de votre compagnie aérienne."
       },
       {
-        "question": "Puis-je réclamer pour un vol retardé au titre du UK261 ?",
+        "question": "Puis-je réclamer pour un vol retardé au titre du UK261?",
         "answer": "Oui. Si votre vol est arrivé à destination finale avec plus de trois heures de retard et que le retard n'est pas dû à des circonstances extraordinaires, vous pouvez avoir droit à une indemnisation au titre du UK261 ou du CE 261/2004, selon le règlement applicable à votre voyage."
       },
       {
-        "question": "Combien de temps ai-je pour réclamer une indemnisation de vol au Royaume-Uni ?",
+        "question": "Combien de temps ai-je pour réclamer une indemnisation de vol au Royaume-Uni?",
         "answer": "Les délais dépendent du lieu où la réclamation est engagée. En Angleterre et au Pays de Galles, vous disposez généralement de six ans pour introduire une réclamation. Nous vous recommandons de commencer le plus tôt possible, tant que les relevés de vol et les preuves sont plus faciles à obtenir."
       }
     ]
@@ -521,11 +519,11 @@
     "flightIssues": {
       "flightCancellation": {
         "title": "Annulation de vol",
-        "description": "Si votre vol a été annulé avec un court préavis, vous pouvez avoir droit à une indemnisation allant jusqu'à €600."
+        "description": "Si votre vol a été annulé avec un court préavis, vous pouvez avoir droit à une indemnisation allant jusqu'à 600€."
       },
       "deniedBoarding": {
         "title": "Refus d'embarquement",
-        "description": "Si l'embarquement vous a été refusé contre votre volonté, vous pouvez réclamer jusqu'à €600."
+        "description": "Si l'embarquement vous a été refusé contre votre volonté, vous pouvez réclamer jusqu'à 600€."
       },
       "flightDelay": {
         "title": "Retard de vol",
@@ -595,7 +593,7 @@
     },
     "ec261Card": {
       "title": "CE 261/2004 — départs de l'UE",
-      "body": "Le règlement européen CE 261/2004 continue de protéger les passagers sur les vols éligibles au départ d'aéroports de l'UE, avec une indemnisation de €250, €400 ou €600 selon les mêmes tranches de distance."
+      "body": "Le règlement européen CE 261/2004 continue de protéger les passagers sur les vols éligibles au départ d'aéroports de l'UE, avec une indemnisation de 250€, 400€ ou 600€ selon les mêmes tranches de distance."
     },
     "rightsDetailP1": "Si votre vol a un retard de trois heures ou plus à l'arrivée, est annulé avec un court préavis ou si l'embarquement vous est refusé contre votre volonté, vous pouvez avoir droit à une indemnisation fixe. Vous pouvez également avoir droit à une assistance, un réacheminement et des remboursements selon les circonstances.",
     "rightsDetailP2": "Les correspondances manquées et les grèves de compagnies aériennes peuvent également être éligibles lorsque la perturbation relève du contrôle de la compagnie aérienne. Compensall vous aide à vérifier l'éligibilité, préparer votre réclamation et obtenir une indemnisation auprès de la compagnie aérienne selon la règle « vous ne payez que si on gagne ».",
@@ -624,7 +622,7 @@
         "body": "Vous engagez votre réclamation dans le délai applicable — généralement jusqu'à six ans en Angleterre et au Pays de Galles."
       }
     },
-    "ec261Note": "Pour les vols de l'UE éligibles, le CE 261/2004 prévoit €250, €400 ou €600 selon les mêmes tranches de distance.",
+    "ec261Note": "Pour les vols de l'UE éligibles, le CE 261/2004 prévoit 250€, 400€ ou 600€ selon les mêmes tranches de distance.",
     "tiers": {
       "uk261": {
         "220": {
@@ -746,7 +744,7 @@
       },
       "needs_documents": {
         "label": "Documents nécessaires",
-        "message": "Nous avons besoin de quelques documents supplémentaires pour faire avancer votre dossier. Vérifiez votre e-mail ou contactez-nous au +351 928370420. Nous sommes là pour vous aider !"
+        "message": "Nous avons besoin de quelques documents supplémentaires pour faire avancer votre dossier. Vérifiez votre e-mail ou contactez-nous au +351 923391980. Nous sommes là pour vous aider !"
       },
       "with_airline": {
         "label": "Chez la compagnie",
@@ -774,7 +772,7 @@
       },
       "paused": {
         "label": "En pause",
-        "message": "Votre dossier est en pause car nous n'avons pas reçu de réponse de votre part. Contactez-nous au +351 928370420 si vous souhaitez le réactiver."
+        "message": "Votre dossier est en pause car nous n'avons pas reçu de réponse de votre part. Contactez-nous au +351 923391980 si vous souhaitez le réactiver."
       },
       "closed_declined": {
         "label": "Clôturé",

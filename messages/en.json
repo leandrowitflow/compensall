@@ -53,10 +53,8 @@
   },
   "footer": {
     "contactUs": "Contact us",
-    "addressLine1": "R. da Beneditina 6",
-    "addressLine2": "4150-133 Porto",
     "email": "help@compensall.com",
-    "phone": "+351 928 370 420",
+    "phone": "+351 923 391 980",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "cookies": "Cookies",
@@ -151,7 +149,7 @@
       }
     },
     "compensation": {
-      "title": "What is the",
+      "title": "How much is the",
       "titleAccent": "compensation?",
       "ukIntro": "For UK departures, UK261 sets fixed amounts in pounds. The amount depends on your flight distance.",
       "ukHeading": "UK261 — UK flights",
@@ -311,7 +309,7 @@
       "emailAddress": "Email address",
       "emailPlaceholder": "you@example.com",
       "phoneNumber": "Phone number",
-      "phonePlaceholder": "+351 912 345 678",
+      "phonePlaceholder": "7123 456789",
       "firstName": "First name",
       "lastName": "Last name",
       "otherPassengers": "Other passengers on the booking",
@@ -746,7 +744,7 @@
       },
       "needs_documents": {
         "label": "Documents needed",
-        "message": "We need a few more documents to move your claim forward. Please check your email for details, or message us on +351 928370420. We're happy to help!"
+        "message": "We need a few more documents to move your claim forward. Please check your email for details, or message us on +351 923391980. We're happy to help!"
       },
       "with_airline": {
         "label": "With the airline",
@@ -774,7 +772,7 @@
       },
       "paused": {
         "label": "Paused",
-        "message": "Your case has been paused as we haven't received a response from you. Please get in touch on +351 928370420 if you'd like to reactivate it."
+        "message": "Your case has been paused as we haven't received a response from you. Please get in touch on +351 923391980 if you'd like to reactivate it."
       },
       "closed_declined": {
         "label": "Closed",

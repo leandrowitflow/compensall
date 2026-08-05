@@ -86,7 +86,7 @@ export const termsPt: LegalDocument = {
             [
               {
                 type: "text",
-                text: "Assinar os documentos legais necessários, incluindo a Autorização para Agir, o Acordo Sem Vitória, Sem Taxa e o Consentimento de Privacidade e Dados.",
+                text: "Assinar os documentos legais necessários, incluindo a Autorização para Agir, o Acordo Só paga se ganharmos e o Consentimento de Privacidade e Dados.",
               },
             ],
             [
@@ -101,7 +101,7 @@ export const termsPt: LegalDocument = {
           type: "paragraph",
           content: [
             { type: "text", text: "Consulte os nossos documentos de pedido em " },
-            { type: "link", href: "/documents/no-win-no-fee", label: "Sem Vitória, Sem Taxa" },
+            { type: "link", href: "/documents/no-win-no-fee", label: "Só paga se ganharmos" },
             { type: "text", text: ", " },
             { type: "link", href: "/documents/authority-to-act", label: "Autorização para Agir" },
             { type: "text", text: " e " },

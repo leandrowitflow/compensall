@@ -56,11 +56,6 @@ function ContactDetails({ className = "", contactUsLabel }: { className?: string
       <h4 className="font-medium text-[19px] xl:text-[21px] tracking-[-0.21px] leading-[1.5]">
         {contactUsLabel}
       </h4>
-      <p className="text-[rgba(255,255,255,0.63)] text-base leading-[30px] max-w-[280px] lg:max-w-[237px]">
-        {tFooter("addressLine1")}
-        <br />
-        {tFooter("addressLine2")}
-      </p>
       <p className="text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
         <a
           href="mailto:help@compensall.com"
@@ -71,7 +66,7 @@ function ContactDetails({ className = "", contactUsLabel }: { className?: string
         </a>
       </p>
       <p className="text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
-        <a href="tel:+351928370420" className="hover:text-white transition-colors" {...gtmId("footer_contact_phone")}>
+        <a href="tel:+351923391980" className="hover:text-white transition-colors" {...gtmId("footer_contact_phone")}>
           {tFooter("phone")}
         </a>
       </p>

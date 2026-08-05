@@ -47,10 +47,7 @@ export const AIRPORTS_WITH_RASTER_LOGO = new Set([
   "lisbon",
   "porto",
   "faro",
-  "madrid",
-  "barcelona",
-  "malaga",
-  "palma",
+  // Spain airport PNGs are low-contrast on the catalog cards — use IATA badges instead.
   "paris-cdg",
   "paris-orly",
   "nice",

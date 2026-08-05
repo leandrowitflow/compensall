@@ -11,19 +11,16 @@ import {
   type ClaimStatus,
 } from "@/lib/claim-types";
 import { ACTION_BTN, ASSISTANT_NAME, FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
+import PhoneInputField from "@/components/claim/PhoneInputField";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
 import { gtmId } from "@/lib/gtm";
+import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
 const SCROLL_END_THRESHOLD_PX = 8;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_SIGNATURE_BYTES = 800;
 const MAX_PASSENGERS = 10;
 const POA_DOCUMENT_ID = CLAIM_DOCUMENTS[0]!.id;
-
-function isValidPhone(value: string): boolean {
-  const digits = value.replace(/\D/g, "");
-  return digits.length >= 7 && digits.length <= 15;
-}
 
 export type ClaimDocumentSignaturePayload = {
   documentId: string;
@@ -277,7 +274,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
       setContactError(t("errors.emailInvalid"));
       return;
     }
-    if (!contactPhone.trim() || !isValidPhone(contactPhone.trim())) {
+    if (!contactPhone.trim() || !isValidClaimPhone(contactPhone.trim())) {
       setContactError(t("errors.phoneInvalid"));
       return;
     }
@@ -291,11 +288,14 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         setContactError(t("errors.passengerEmailInvalid", { number: index + 2 }));
         return;
       }
-      if (passenger.phone.trim() && !isValidPhone(passenger.phone.trim())) {
+      if (passenger.phone.trim() && !isValidClaimPhone(passenger.phone.trim())) {
         setContactError(t("errors.passengerPhoneInvalid", { number: index + 2 }));
         return;
       }
     }
+
+    const normalizedPhone = toE164Phone(contactPhone);
+    setContactPhone(normalizedPhone);
 
     setIsSyncingLead(true);
     try {
@@ -306,7 +306,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
           formSessionId: sessionId,
           signedName: signedName.trim(),
           contactEmail: contactEmail.trim(),
-          contactPhone: contactPhone.trim(),
+          contactPhone: normalizedPhone,
           entryMode,
           flight,
           locale,
@@ -401,15 +401,23 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
       return;
     }
 
+    const normalizedPhone = toE164Phone(contactPhone);
+    const normalizedPassengers = additionalPassengers.map((passenger) => ({
+      ...passenger,
+      phone: passenger.phone.trim() ? toE164Phone(passenger.phone) : "",
+    }));
+    setContactPhone(normalizedPhone);
+    setAdditionalPassengers(normalizedPassengers);
+
     setIsSubmitting(true);
     try {
       const result = await onSubmit({
         signedName: signedName.trim(),
         contactEmail: contactEmail.trim(),
-        contactPhone: contactPhone.trim(),
+        contactPhone: normalizedPhone,
         acceptedDocuments: [POA_DOCUMENT_ID],
         documentSignatures,
-        additionalPassengers,
+        additionalPassengers: normalizedPassengers,
         claimDocuments: {
           passportCopy,
           bookingConfirmation,
@@ -516,16 +524,13 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
             <label className={FIELD_LABEL} htmlFor="contact-phone">
               {t("phoneNumber")} <span className="text-[#e82828]">*</span>
             </label>
-            <input
+            <PhoneInputField
               id="contact-phone"
-              type="tel"
               required
-              className={FIELD_INPUT}
               value={contactPhone}
-              onChange={(e) => setContactPhone(e.target.value)}
+              onChange={setContactPhone}
               placeholder={t("phonePlaceholder")}
               autoComplete="tel"
-              inputMode="tel"
             />
           </div>
 
@@ -593,11 +598,11 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
                   </div>
                   <div>
                     <label className={FIELD_LABEL}>{t("phoneNumber")}</label>
-                    <input
-                      type="tel"
-                      className={FIELD_INPUT}
+                    <PhoneInputField
                       value={passenger.phone}
-                      onChange={(e) => updateAdditionalPassenger(index, { phone: e.target.value })}
+                      onChange={(phone) => updateAdditionalPassenger(index, { phone })}
+                      placeholder={t("phonePlaceholder")}
+                      aria-label={t("phoneNumber")}
                     />
                   </div>
                 </div>

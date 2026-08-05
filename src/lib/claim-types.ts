@@ -138,7 +138,7 @@ export const CLAIM_STATUS_MESSAGES: Record<ClaimStatus, string> = {
   received:
     "We've received your claim and our team is reviewing it. We'll update you here as soon as there's news.",
   needs_documents:
-    "We need a few more documents to move your claim forward. Please check your email for details, or message us on +351 928370420. We're happy to help!",
+    "We need a few more documents to move your claim forward. Please check your email for details, or message us on +351 923391980. We're happy to help!",
   with_airline:
     "Your claim has been submitted to the airline. We're waiting for their response and will update you as soon as we hear back.",
   following_up:
@@ -151,7 +151,7 @@ export const CLAIM_STATUS_MESSAGES: Record<ClaimStatus, string> = {
   closed_ntd:
     "Unfortunately, we're unable to pursue your claim further and your case has been closed. If you have questions, please don't hesitate to contact us.",
   paused:
-    "Your case has been paused as we haven't received a response from you. Please get in touch on +351 928370420 if you'd like to reactivate it.",
+    "Your case has been paused as we haven't received a response from you. Please get in touch on +351 923391980 if you'd like to reactivate it.",
   closed_declined:
     "Unfortunately, the airline has declined your claim and we're unable to take it further. Your case has been closed — contact us if you'd like to discuss the outcome.",
   // Legacy fallbacks

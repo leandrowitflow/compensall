@@ -2,6 +2,7 @@ import { z } from "zod";
 import { normalizeFlightData } from "@/lib/claim-types";
 import { isOdooConfigured } from "@/lib/odoo-client";
 import { safeSyncPartialClaimToOdoo } from "@/lib/odoo-crm-lead";
+import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
 const flightSchema = z.object({
   passenger: z.string(),
@@ -21,10 +22,7 @@ const bodySchema = z.object({
     .string()
     .trim()
     .min(7)
-    .refine((value) => {
-      const digits = value.replace(/\D/g, "");
-      return digits.length >= 7 && digits.length <= 15;
-    }, "Invalid phone"),
+    .refine((value) => isValidClaimPhone(value), "Invalid phone"),
   entryMode: z.enum(["upload", "manual"]),
   flight: flightSchema,
   locale: z.string().length(2).optional().nullable(),
@@ -60,7 +58,7 @@ export async function POST(request: Request) {
       formSessionId: parsed.data.formSessionId,
       signedName: parsed.data.signedName,
       contactEmail: parsed.data.contactEmail,
-      contactPhone: parsed.data.contactPhone,
+      contactPhone: toE164Phone(parsed.data.contactPhone),
       entryMode: parsed.data.entryMode,
       flight: normalizeFlightData(parsed.data.flight),
       siteUrl,

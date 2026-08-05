@@ -1,0 +1,50 @@
+/* Compensall claim phone input (react-phone-number-input) */
+.PhoneInputClaim {
+  --PhoneInput-color--focus: #2669f3;
+}
+
+.PhoneInputClaim .PhoneInputCountry {
+  margin-left: 0.75rem;
+  margin-right: 0.25rem;
+  padding-right: 0.5rem;
+  border-right: 1px solid #d5e0f9;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.PhoneInputClaim .PhoneInputCountryIcon {
+  width: 1.5rem;
+  height: 1.125rem;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.PhoneInputClaim .PhoneInputCountrySelect {
+  cursor: pointer;
+}
+
+.PhoneInputClaim .PhoneInputCountrySelectArrow {
+  color: #2669f3;
+  opacity: 1;
+  border-color: #2669f3;
+  margin-left: 0.35rem;
+}
+
+.PhoneInputClaim .PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  height: 2.75rem;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent;
+  color: #1f3664;
+  font-size: 0.875rem;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+}
+
+.PhoneInputClaim .PhoneInputInput::placeholder {
+  color: #7b8094;
+}
