@@ -86,7 +86,7 @@ export const termsPt: LegalDocument = {
             [
               {
                 type: "text",
-                text: "Assinar os documentos legais necessários, incluindo a Autorização para Agir, o Acordo Só paga se ganharmos e o Consentimento de Privacidade e Dados.",
+                text: "Assinar os documentos legais necessários, incluindo a Autorização para Agir, o Acordo de não ganho, não pagamento e o Consentimento de Privacidade e Dados.",
               },
             ],
             [
@@ -101,7 +101,7 @@ export const termsPt: LegalDocument = {
           type: "paragraph",
           content: [
             { type: "text", text: "Consulte os nossos documentos de pedido em " },
-            { type: "link", href: "/documents/no-win-no-fee", label: "Só paga se ganharmos" },
+            { type: "link", href: "/documents/no-win-no-fee", label: "Acordo de não ganho, não pagamento" },
             { type: "text", text: ", " },
             { type: "link", href: "/documents/authority-to-act", label: "Autorização para Agir" },
             { type: "text", text: " e " },
@@ -123,7 +123,7 @@ export const termsPt: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "O acesso ao website e as verificações de elegibilidade são gratuitos. Se nos nomear para prosseguir a compensação, as nossas taxas aplicam-se apenas em caso de sucesso, conforme estabelecido no Acordo Sem Vitória, Sem Taxa. Não paga nada se não recuperarmos compensação para si, sujeito aos termos desse acordo.",
+              text: "O acesso ao website e as verificações de elegibilidade são gratuitos. Se nos nomear para prosseguir a compensação, as nossas taxas aplicam-se apenas em caso de sucesso, conforme estabelecido no Acordo de não ganho, não pagamento. Não paga nada se não recuperarmos compensação para si, sujeito aos termos desse acordo.",
             },
           ],
         },

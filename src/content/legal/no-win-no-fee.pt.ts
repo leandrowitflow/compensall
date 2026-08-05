@@ -20,7 +20,7 @@ export const noWinNoFeePt: LegalDocument = {
           content: [
             {
               type: "text",
-              text: 'Este Acordo Só Paga Se Ganharmos ("Acordo") é celebrado entre o reclamante (si) e a ',
+              text: 'Este Acordo de não ganho, não pagamento ("Acordo") é celebrado entre o reclamante (si) e a ',
             },
             { type: "strongBrand", field: "brandName" },
             {

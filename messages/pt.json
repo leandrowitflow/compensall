@@ -59,7 +59,7 @@
     "termsOfService": "Termos de Serviço",
     "cookies": "Cookies",
     "prices": "Preços",
-    "noWinNoFee": "Só paga se ganharmos",
+    "noWinNoFee": "Não ganho, não pagamento",
     "socialLinkedIn": "LinkedIn",
     "socialInstagram": "Instagram",
     "socialFacebook": "Facebook",
@@ -74,7 +74,7 @@
   "home": {
     "metadata": {
       "title": "Voo atrasado ou cancelado? Reclame até £520 ou €600",
-      "description": "Carregue o seu cartão de embarque e reclame compensação de voo ao abrigo do UK261 ou do EC 261/2004. Seguro, com apoio humano, só paga se ganharmos."
+      "description": "Carregue o seu cartão de embarque e reclame compensação de voo ao abrigo do UK261 ou do EC 261/2004. Seguro, com apoio humano e acordo de não ganho, não pagamento."
     },
     "hero": {
       "trustpilotAlt": "Excelente Trustpilot 4,8 em 5",
@@ -165,7 +165,7 @@
       "signSubmit": "Assinar e submeter"
     },
     "step1": {
-      "rightsContext": "Ao abrigo da legislação de direitos dos passageiros do Reino Unido e da UE (UK261 e EC 261/2004), pode ter direito a compensação por atrasos, cancelamentos e embarque recusado. Carregue o seu cartão de embarque para verificar a elegibilidade — é gratuito e só paga se ganharmos.",
+      "rightsContext": "Ao abrigo da legislação de direitos dos passageiros do Reino Unido e da UE (UK261 e EC 261/2004), pode ter direito a compensação por atrasos, cancelamentos e embarque recusado. Carregue o seu cartão de embarque para verificar a elegibilidade — é gratuito, com acordo de não ganho, não pagamento.",
       "readingBoardingPass": "A ler o seu cartão de embarque…",
       "extractingDetails": "{assistantName} está a extrair os dados do seu voo",
       "uploadTitle": "Carregue o seu cartão de embarque",
@@ -397,7 +397,7 @@
     "sectionTitleAccent": "frequentes",
     "pageTitle": "Compensação de voo",
     "pageTitleAccent": "FAQ",
-    "pageIntro": "Tudo o que precisa de saber sobre reclamações ao abrigo do UK261 e do EC 261/2004, a nossa fórmula «só paga se ganharmos» e como protegemos os seus dados.",
+    "pageIntro": "Tudo o que precisa de saber sobre reclamações ao abrigo do UK261 e do EC 261/2004, a nossa fórmula «não ganho, não pagamento» e como protegemos os seus dados.",
     "default": [
       {
         "question": "É seguro carregar o meu cartão de embarque?",
@@ -412,7 +412,7 @@
         "answer": "Para voos do Reino Unido, o UK261 prevê até £520 por passageiro (£220 para voos inferiores a 1 500 km, £350 para 1 500–3 500 km e £520 acima de 3 500 km). Para voos da UE elegíveis, o EC 261/2004 prevê 250€, 400€ ou 600€ nas mesmas faixas de distância."
       },
       {
-        "question": "O que significa «só paga se ganharmos»?",
+        "question": "O que significa «não ganho, não pagamento»?",
         "answer": "Significa que não paga nada se não ganharmos o seu pedido. Só cobramos uma taxa de sucesso quando recuperamos compensação em seu nome."
       },
       {
@@ -475,8 +475,8 @@
     "summary": "As regras para utilizar a Compensall e submeter um pedido de compensação por voo."
   },
   "noWinNoFeePage": {
-    "pageTitle": "Acordo Só Paga Se Ganharmos",
-    "breadcrumb": "Acordo Só Paga Se Ganharmos",
+    "pageTitle": "Acordo de não ganho, não pagamento",
+    "breadcrumb": "Acordo de não ganho, não pagamento",
     "summary": "Só paga se recuperarmos com sucesso a sua compensação de voo."
   },
   "legal": {
@@ -487,10 +487,10 @@
     "subtitle": "Ajudamos os passageiros a reclamar a compensação a que têm direito com o nosso assistente e apoio humano em cada etapa.",
     "missionTitle": "A nossa missão",
     "missionP1": "A Compensall torna a compensação de voos simples. As companhias aéreas frequentemente atrasam respostas, rejeitam pedidos válidos e tornam o processo stressante, pelo que demasiados passageiros nunca recebem o que o regulamento da UE EC 261/2004 lhes confere.",
-    "missionP2": "Tratamos de tudo: documentação, negociações com a companhia aérea e prossecução do seu caso quando necessário. Carregue o seu cartão de embarque, confirme os seus dados e deixe a nossa equipa lutar pela sua compensação com a regra «só paga se ganharmos».",
+    "missionP2": "Tratamos de tudo: documentação, negociações com a companhia aérea e prossecução do seu caso quando necessário. Carregue o seu cartão de embarque, confirme os seus dados e deixe a nossa equipa lutar pela sua compensação com a regra «não ganho, não pagamento».",
     "whyChooseTitle": "Porque nos escolhem os passageiros",
     "whyChoose": [
-      "Só paga se ganharmos: sem custos a menos que tenhamos sucesso",
+      "Não ganho, não pagamento: sem custos a menos que tenhamos sucesso",
       "Tratamento de ponta a ponta, da verificação de elegibilidade ao acompanhamento junto da companhia aérea",
       "Taxa de sucesso previsível. Não somos um escritório de advogados",
       "Abordagem RGPD em primeiro lugar para os seus dados pessoais",
@@ -560,9 +560,9 @@
     "title": "Preços e taxas",
     "breadcrumb": "Preços",
     "summary": "Sem custos iniciais. Só cobramos uma taxa de sucesso quando recuperamos compensação para si.",
-    "noWinNoFeeIntro": "Só paga se ganharmos:",
-    "noWinNoFeeBody": "Verificar a elegibilidade e utilizar o nosso site é gratuito. Se nos nomear para prosseguir a compensação, a nossa taxa aplica-se apenas quando o seu pedido for bem-sucedido, conforme estabelecido no nosso <noWinNoFeeAgreement>Acordo Só Paga Se Ganharmos</noWinNoFeeAgreement>.",
-    "noWinNoFeeAgreement": "Acordo Só Paga Se Ganharmos",
+    "noWinNoFeeIntro": "Não ganho, não pagamento:",
+    "noWinNoFeeBody": "Verificar a elegibilidade e utilizar o nosso site é gratuito. Se nos nomear para prosseguir a compensação, a nossa taxa aplica-se apenas quando o seu pedido for bem-sucedido, conforme estabelecido no nosso <noWinNoFeeAgreement>Acordo de não ganho, não pagamento</noWinNoFeeAgreement>.",
+    "noWinNoFeeAgreement": "Acordo de não ganho, não pagamento",
     "successFeeTitle": "Taxa de sucesso",
     "successFeeDescription": "Quando recuperamos compensação em seu nome, deduzimos uma taxa de sucesso antes de transferir o saldo para si. Recebe pelo menos 75% do montante recuperado antes de ajustes de IVA.",
     "tableCompensationRecovered": "Compensação recuperada",
@@ -577,7 +577,7 @@
   },
   "cta": {
     "title": "Verificação segura do pedido. Com apoio humano.",
-    "titleLine2": "Só paga se ganharmos.",
+    "titleLine2": "Não ganho, não pagamento.",
     "subtitle": "O seu pedido é orientado por IA e apoiado por pessoas reais.",
     "subtitleLine2": "Rápido, seguro e simples desde o primeiro carregamento.",
     "body": "A nossa taxa padrão só é cobrada se ganharmos compensação para si. A <brandName>Compensall</brandName> trata do processo desde o carregamento do cartão de embarque até ao acompanhamento junto da companhia aérea, para que possa reclamar com confiança.",
@@ -601,7 +601,7 @@
       "body": "O Regulamento da UE EC 261/2004 continua a proteger os passageiros em voos elegíveis com partida de aeroportos da UE, com compensação de 250€, 400€ ou 600€ nas mesmas faixas de distância."
     },
     "rightsDetailP1": "Se o seu voo tiver um atraso de três horas ou mais à chegada, for cancelado com pouca antecedência ou lhe recusarem o embarque contra a sua vontade, pode ter direito a compensação fixa. Pode também ter direitos a assistência, reencaminhamento e reembolsos consoante as circunstâncias.",
-    "rightsDetailP2": "Ligações perdidas e greves de companhias aéreas também podem qualificar quando a perturbação está sob o controlo da companhia aérea. A Compensall ajuda-o a verificar a elegibilidade, preparar o seu pedido e prosseguir a compensação junto da companhia aérea com a regra «só paga se ganharmos».",
+    "rightsDetailP2": "Ligações perdidas e greves de companhias aéreas também podem qualificar quando a perturbação está sob o controlo da companhia aérea. A Compensall ajuda-o a verificar a elegibilidade, preparar o seu pedido e prosseguir a compensação junto da companhia aérea com a regra «não ganho, não pagamento».",
     "eligibilityHeading": "Quando pode reclamar",
     "eligibilityAccent": "compensação?",
     "eligibilityIntro": "Pode ser elegível se todas as condições seguintes se aplicarem à sua viagem.",
@@ -662,19 +662,19 @@
   "metadata": {
     "site": {
       "title": "Compensall – Voo atrasado ou cancelado? Reclame até £520 ou €600",
-      "description": "Voo atrasado ou cancelado? Reclame até £520 ao abrigo do UK261 ou €600 ao abrigo do EC 261/2004. Carregamento seguro do cartão de embarque, apoio humano, só paga se ganharmos."
+      "description": "Voo atrasado ou cancelado? Reclame até £520 ao abrigo do UK261 ou €600 ao abrigo do EC 261/2004. Carregamento seguro do cartão de embarque, apoio humano e acordo de não ganho, não pagamento."
     },
     "home": {
       "title": "Voo atrasado ou cancelado? Reclame até £520 ou €600",
-      "description": "Carregue o seu cartão de embarque e reclame compensação de voo ao abrigo do UK261 ou do EC 261/2004. Seguro, com apoio humano, só paga se ganharmos."
+      "description": "Carregue o seu cartão de embarque e reclame compensação de voo ao abrigo do UK261 ou do EC 261/2004. Seguro, com apoio humano e acordo de não ganho, não pagamento."
     },
     "faq": {
       "title": "Perguntas frequentes sobre compensação de voo",
-      "description": "Respostas sobre UK261, EC 261/2004, montantes de compensação, só paga se ganharmos, carregamento de cartões de embarque e como a Compensall trata o seu pedido."
+      "description": "Respostas sobre UK261, EC 261/2004, montantes de compensação, acordo de não ganho, não pagamento, carregamento de cartões de embarque e como a Compensall trata o seu pedido."
     },
     "about": {
       "title": "Sobre a Compensall",
-      "description": "A Compensall ajuda os passageiros aéreos a reclamar até €600 ao abrigo do EU261 com carregamento seguro do cartão de embarque, verificações assistidas e tratamento junto da companhia aérea com apoio humano, com a regra «só paga se ganharmos»."
+      "description": "A Compensall ajuda os passageiros aéreos a reclamar até €600 ao abrigo do EU261 com carregamento seguro do cartão de embarque, verificações assistidas e tratamento junto da companhia aérea com apoio humano, com a regra «não ganho, não pagamento»."
     },
     "knowYourRights": {
       "title": "Conheça os seus direitos de compensação de voo",
@@ -709,8 +709,8 @@
       "description": "Procuração que autoriza a Compensall a prosseguir o seu pedido de compensação de voo ao abrigo do EC 261/2004."
     },
     "noWinNoFee": {
-      "title": "Acordo Só Paga Se Ganharmos",
-      "description": "Acordo Só Paga Se Ganharmos da Compensall. Só paga se recuperarmos com sucesso a sua compensação."
+      "title": "Acordo de não ganho, não pagamento",
+      "description": "Acordo de não ganho, não pagamento da Compensall. Só paga se recuperarmos com sucesso a sua compensação."
     },
     "privacyDataConsent": {
       "title": "Consentimento de privacidade e dados",
