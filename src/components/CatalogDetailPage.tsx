@@ -14,6 +14,7 @@ import {
 } from "@/lib/catalog-detail";
 import { buildBreadcrumbSchema, buildFaqPageSchema } from "@/lib/structured-data";
 import type { CatalogItem } from "@/lib/catalog";
+import { gtmId } from "@/lib/gtm";
 
 type CatalogDetailPageProps = {
   item: CatalogItem;
@@ -53,7 +54,11 @@ export default async function CatalogDetailPage({ item, kind }: CatalogDetailPag
       <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-8 lg:pt-10 xl:pt-12 pb-0">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
           <nav className="mb-6 xl:mb-8 text-sm">
-            <Link href="/airlines" className="text-[#2669f3] font-bold hover:opacity-80">
+            <Link
+              href="/airlines"
+              className="text-[#2669f3] font-bold hover:opacity-80"
+              {...gtmId("catalog_detail_breadcrumb")}
+            >
               {breadcrumbCatalog}
             </Link>
             <span className="text-[#7b8094] mx-2">/</span>

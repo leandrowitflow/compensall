@@ -37,17 +37,47 @@ export function buildHeaderNav(
           label: tNav("knowYourRightsMenu.overview"),
           href: "/know-your-rights",
           description: tNav("knowYourRightsMenu.overviewDescription"),
+          gtm: "nav_dropdown_rights_overview",
         },
-        { label: tNav("knowYourRightsMenu.flightCancellation"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[0]}` },
-        { label: tNav("knowYourRightsMenu.flightDelay"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[2]}` },
-        { label: tNav("knowYourRightsMenu.deniedBoarding"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[1]}` },
-        { label: tNav("knowYourRightsMenu.missedConnection"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[3]}` },
-        { label: tNav("knowYourRightsMenu.overbooking"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[4]}` },
-        { label: tNav("knowYourRightsMenu.airlineStrike"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[5]}` },
-        { label: tNav("knowYourRightsMenu.passengerRights"), href: `/blog/${COMPENSALL_GUIDE_SLUGS[6]}` },
+        {
+          label: tNav("knowYourRightsMenu.flightCancellation"),
+          href: `/blog/${COMPENSALL_GUIDE_SLUGS[0]}`,
+          gtm: `nav_dropdown_rights_${COMPENSALL_GUIDE_SLUGS[0]}`,
+        },
+        {
+          label: tNav("knowYourRightsMenu.flightDelay"),
+          href: `/blog/${COMPENSALL_GUIDE_SLUGS[2]}`,
+          gtm: `nav_dropdown_rights_${COMPENSALL_GUIDE_SLUGS[2]}`,
+        },
+        {
+          label: tNav("knowYourRightsMenu.deniedBoarding"),
+          href: `/blog/${COMPENSALL_GUIDE_SLUGS[1]}`,
+          gtm: `nav_dropdown_rights_${COMPENSALL_GUIDE_SLUGS[1]}`,
+        },
+        {
+          label: tNav("knowYourRightsMenu.missedConnection"),
+          href: `/blog/${COMPENSALL_GUIDE_SLUGS[3]}`,
+          gtm: `nav_dropdown_rights_${COMPENSALL_GUIDE_SLUGS[3]}`,
+        },
+        {
+          label: tNav("knowYourRightsMenu.overbooking"),
+          href: `/blog/${COMPENSALL_GUIDE_SLUGS[4]}`,
+          gtm: `nav_dropdown_rights_${COMPENSALL_GUIDE_SLUGS[4]}`,
+        },
+        {
+          label: tNav("knowYourRightsMenu.airlineStrike"),
+          href: `/blog/${COMPENSALL_GUIDE_SLUGS[5]}`,
+          gtm: `nav_dropdown_rights_${COMPENSALL_GUIDE_SLUGS[5]}`,
+        },
+        {
+          label: tNav("knowYourRightsMenu.passengerRights"),
+          href: `/blog/${COMPENSALL_GUIDE_SLUGS[6]}`,
+          gtm: `nav_dropdown_rights_${COMPENSALL_GUIDE_SLUGS[6]}`,
+        },
         {
           label: tNav("knowYourRightsMenu.passengersWithDisabilities"),
           href: `/blog/${COMPENSALL_GUIDE_SLUGS[7]}`,
+          gtm: `nav_dropdown_rights_${COMPENSALL_GUIDE_SLUGS[7]}`,
         },
       ],
     },
@@ -61,6 +91,7 @@ export function buildHeaderNav(
           label: tNav("airlinesMenu.allAirlinesAirports"),
           href: "/airlines",
           description: tNav("airlinesMenu.allAirlinesAirportsDescription"),
+          gtm: "nav_dropdown_catalog_all",
         },
       ],
     },
@@ -69,6 +100,7 @@ export function buildHeaderNav(
       items: popularAirlines.map((item) => ({
         label: item.name,
         href: `/airlines/${item.id}`,
+        gtm: `nav_dropdown_catalog_${item.id}`,
       })),
     },
     {
@@ -76,16 +108,17 @@ export function buildHeaderNav(
       items: popularAirports.map((item) => ({
         label: item.name,
         href: `/airports/${item.id}`,
+        gtm: `nav_dropdown_catalog_${item.id}`,
       })),
     },
   ];
 
   const primaryNavLinks: NavMenuItem[] = [
-    { label: tNav("knowYourRights"), href: "/know-your-rights" },
-    { label: tNav("airlines"), href: "/airlines" },
-    { label: tNav("aboutUs"), href: "/about" },
-    { label: tNav("blog"), href: "/blog" },
-    { label: tNav("faq"), href: "/faq" },
+    { label: tNav("knowYourRights"), href: "/know-your-rights", gtm: "nav_know_your_rights" },
+    { label: tNav("airlines"), href: "/airlines", gtm: "nav_airlines" },
+    { label: tNav("aboutUs"), href: "/about", gtm: "nav_about" },
+    { label: tNav("blog"), href: "/blog", gtm: "nav_blog" },
+    { label: tNav("faq"), href: "/faq", gtm: "nav_faq" },
   ];
 
   return {

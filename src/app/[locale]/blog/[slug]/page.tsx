@@ -11,6 +11,7 @@ import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
 import { parseBlogDisplayDate } from "@/lib/blog-date";
 import { getBlogPost, getBlogPosts } from "@/lib/blog";
+import { gtmId } from "@/lib/gtm";
 import { buildArticleMetadata, localizedPath } from "@/lib/site-metadata";
 import { buildArticleSchema, buildBreadcrumbSchema } from "@/lib/structured-data";
 
@@ -86,6 +87,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-sm mb-6 hover:opacity-80"
+              {...gtmId("blog_back_to_blog")}
             >
               ← {t("backToBlog")}
             </Link>

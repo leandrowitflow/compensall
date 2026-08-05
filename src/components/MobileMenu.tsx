@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { NavMenuGroup } from "@/lib/nav-menu";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Link } from "@/i18n/routing";
+import { gtmClaimCta, gtmId } from "@/lib/gtm";
 import type { NavMenuItem } from "@/lib/nav-menu";
 
 type MobileMenuProps = {
@@ -38,11 +39,13 @@ function MobileAccordion({
   groups,
   onNavigate,
   defaultOpen = false,
+  accordionGtm,
 }: {
   label: string;
   groups: NavMenuGroup[];
   onNavigate: () => void;
   defaultOpen?: boolean;
+  accordionGtm?: string;
 }) {
   const [open, setOpen] = useState(defaultOpen);
 
@@ -53,6 +56,7 @@ function MobileAccordion({
         className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left"
         aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
+        {...(accordionGtm ? gtmId(accordionGtm) : {})}
       >
         <span className="font-bold text-[#1f3664] text-base">{label}</span>
         <ChevronIcon open={open} />
@@ -72,6 +76,7 @@ function MobileAccordion({
                       href={item.href}
                       className="flex items-center justify-between gap-3 rounded-[12px] bg-white border border-[#d5e0f9] px-3 py-3 active:bg-[#f0f5fe] transition-colors"
                       onClick={onNavigate}
+                      {...(item.gtm ? gtmId(item.gtm) : {})}
                     >
                       <span className="min-w-0">
                         <span className="block font-semibold text-[#1f3664] text-sm leading-snug">
@@ -100,16 +105,19 @@ function MobileNavLink({
   href,
   label,
   onNavigate,
+  gtm,
 }: {
   href: string;
   label: string;
   onNavigate: () => void;
+  gtm?: string;
 }) {
   return (
     <Link
       href={href}
       className="flex items-center justify-between gap-3 rounded-[16px] border-2 border-[#d5e0f9] bg-white px-4 py-4 font-bold text-[#1f3664] text-base active:bg-[#f8faff] transition-colors"
       onClick={onNavigate}
+      {...(gtm ? gtmId(gtm) : {})}
     >
       {label}
       <svg width="8" height="12" viewBox="0 0 8 12" fill="none" aria-hidden="true" className="text-[#2669f3]">
@@ -162,7 +170,7 @@ export default function MobileMenu({
 
       <div className="absolute inset-y-0 right-0 flex w-full max-w-[min(100%,24rem)] flex-col bg-white shadow-[-8px_0_32px_rgba(31,54,100,0.15)]">
         <div className="flex items-center justify-between gap-3 border-b border-[#d5e0f9] px-4 py-4">
-          <Link href="/" onClick={onClose} className="flex-shrink-0">
+          <Link href="/" onClick={onClose} className="flex-shrink-0" {...gtmId("nav_logo_home")}>
             <img src="/assets/logo.svg?v=2" alt="Compensall" className="h-8 w-auto" />
           </Link>
           <button
@@ -183,11 +191,23 @@ export default function MobileMenu({
             groups={knowYourRightsNav}
             onNavigate={onClose}
             defaultOpen
+            accordionGtm="nav_mobile_accordion_rights"
           />
-          <MobileAccordion label={tNav("airlinesAndAirports")} groups={airlinesNav} onNavigate={onClose} />
+          <MobileAccordion
+            label={tNav("airlinesAndAirports")}
+            groups={airlinesNav}
+            onNavigate={onClose}
+            accordionGtm="nav_mobile_accordion_airlines"
+          />
 
           {primaryNavLinks.slice(2).map((link) => (
-            <MobileNavLink key={link.href} href={link.href} label={link.label} onNavigate={onClose} />
+            <MobileNavLink
+              key={link.href}
+              href={link.href}
+              label={link.label}
+              onNavigate={onClose}
+              gtm={link.gtm}
+            />
           ))}
 
           <div className="rounded-[16px] border-2 border-[#d5e0f9] bg-white px-4 py-3">
@@ -200,6 +220,7 @@ export default function MobileMenu({
             href="/#claim"
             className="flex items-center justify-center rounded-[14px] bg-[#2669f3] px-4 py-3.5 text-center font-bold text-white text-sm active:bg-[#1a55d4] transition-colors"
             onClick={onClose}
+            {...gtmClaimCta("header_mobile")}
           >
             {talkToUsLabel}
           </Link>

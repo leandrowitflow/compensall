@@ -9,6 +9,7 @@ import {
   type ClaimFlightData,
 } from "@/lib/claim-types";
 import { formatAirportRouteLabel, type AirportOption } from "@/lib/airport-option";
+import { gtmId } from "@/lib/gtm";
 
 const AirportSelect = dynamic(() => import("@/components/claim/AirportSelect"), {
   ssr: false,
@@ -204,6 +205,7 @@ export default function Step1Upload({
           isDragging ? "border-[#2669f3] bg-[#f1f5fe]/50" : "border-[#d5e0f9] hover:border-[#2669f3]/60"
         } ${isExtracting ? "opacity-70" : ""}`}
         onClick={openFilePicker}
+        {...gtmId("claim_step1_upload_boarding_pass")}
         onDragOver={(e) => {
           e.preventDefault();
           setIsDragging(true);
@@ -269,6 +271,7 @@ export default function Step1Upload({
             disabled={isExtracting}
             className="flex-shrink-0 self-center sm:self-stretch min-h-11 min-w-11 px-4 sm:px-0 sm:min-w-12 flex items-center justify-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
             aria-label={tStep1("swapAirports")}
+            {...gtmId("claim_step1_swap_airports")}
           >
             <img src="/assets/icons/arrow-right-left.svg" alt="" aria-hidden="true" className="w-[23px] h-[23px] object-contain" />
           </button>
@@ -296,6 +299,7 @@ export default function Step1Upload({
           onClick={submitManual}
           disabled={isExtracting}
           className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-sm sm:text-base xl:text-[19px] leading-tight px-4 sm:px-6 xl:px-8 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center text-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px] disabled:cursor-not-allowed disabled:bg-[#2669f3]/70 disabled:hover:bg-[#2669f3]/70"
+          {...gtmId("claim_step1_check_compensation")}
         >
           <span className="xl:hidden">{tCommon("checkCompensationShort")}</span>
           <span className="hidden xl:inline">{tCommon("checkCompensation")}</span>

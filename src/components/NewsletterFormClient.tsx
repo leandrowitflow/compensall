@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Link } from "@/i18n/routing";
+import { gtmId } from "@/lib/gtm";
 
 export default function NewsletterFormClient() {
   const t = useTranslations("footer");
@@ -29,6 +30,7 @@ export default function NewsletterFormClient() {
           disabled={!consent}
           className="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0 hover:bg-white/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           aria-label={t("newsletterSubscribe")}
+          {...gtmId("footer_newsletter_subscribe")}
         >
           <img
             src="/assets/icons/footer-newsletter-arrow.svg"
@@ -48,7 +50,11 @@ export default function NewsletterFormClient() {
         <span className="font-poppins text-[rgba(255,255,255,0.75)] text-xs leading-relaxed">
           {t.rich("newsletterConsent", {
             privacyPolicy: (chunks) => (
-              <Link href="/privacy-policy" className="text-white underline hover:text-white/90">
+              <Link
+                href="/privacy-policy"
+                className="text-white underline hover:text-white/90"
+                {...gtmId("footer_newsletter_privacy")}
+              >
                 {chunks}
               </Link>
             ),

@@ -5,6 +5,7 @@ import Link from "next/link";
 import DocumentPageHeader from "@/components/legal/DocumentPageHeader";
 import { NoWinNoFeeContent } from "@/components/claim/legal-document-content";
 import type { AppLocale } from "@/i18n/routing";
+import { gtmClaimCta } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 
 type NoWinNoFeePageProps = {
@@ -28,7 +29,9 @@ export default function NoWinNoFeePage() {
         <nav className="flex items-center gap-2 text-sm text-muted mb-8">
           <Link href="/" className="hover:text-[#2669f3] transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/#claim" className="hover:text-[#2669f3] transition-colors">Claim</Link>
+          <Link href="/#claim" className="hover:text-[#2669f3] transition-colors" {...gtmClaimCta("docs_breadcrumb")}>
+            Claim
+          </Link>
           <span>/</span>
           <span className="text-[#1f3664] font-medium">No Win, No Fee Agreement</span>
         </nav>
@@ -45,6 +48,7 @@ export default function NoWinNoFeePage() {
               <Link
                 href="/#claim"
                 className="bg-[#2669f3] text-white font-semibold px-6 py-2.5 rounded-full text-sm hover:bg-[#1a55d4] transition-colors whitespace-nowrap"
+                {...gtmClaimCta("docs")}
               >
                 Back to claim
               </Link>

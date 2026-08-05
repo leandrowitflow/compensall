@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Link } from "@/i18n/routing";
 import type { HeaderNavData } from "@/lib/build-header-nav";
+import { gtmClaimCta, gtmId } from "@/lib/gtm";
 
 const NavDropdown = dynamic(() => import("@/components/NavDropdown"));
 const MobileMenu = dynamic(() => import("@/components/MobileMenu"));
@@ -35,7 +36,7 @@ export default function HeaderClient({
     <>
       <header className="w-full bg-white sticky top-0 z-50 px-4 md:px-8 lg:px-8 xl:px-12">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto h-16 lg:h-16 xl:h-[90px] grid grid-cols-[auto_1fr_auto] items-center gap-2 xl:gap-3 min-w-0">
-          <Link href="/" className="shrink-0">
+          <Link href="/" className="shrink-0" {...gtmId("nav_logo_home")}>
             <img src="/assets/logo.svg?v=2" alt="Compensall" width={120} height={32} className="h-8 w-auto" />
           </Link>
 
@@ -46,20 +47,29 @@ export default function HeaderClient({
                   label={labels.knowYourRightsShort}
                   groups={knowYourRightsNav}
                   columns={1}
+                  triggerGtm="nav_know_your_rights"
                 />
-                <NavDropdown label={labels.airlinesShort} groups={airlinesNav} columns={3} align="center" />
+                <NavDropdown
+                  label={labels.airlinesShort}
+                  groups={airlinesNav}
+                  columns={3}
+                  align="center"
+                  triggerGtm="nav_airlines"
+                />
               </>
             ) : (
               <>
                 <Link
                   href="/know-your-rights"
                   className="text-[#1f3664] text-[14px] 2xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors whitespace-nowrap px-1.5"
+                  {...gtmId("nav_know_your_rights")}
                 >
                   {labels.knowYourRightsShort}
                 </Link>
                 <Link
                   href="/airlines"
                   className="text-[#1f3664] text-[14px] 2xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors whitespace-nowrap px-1.5"
+                  {...gtmId("nav_airlines")}
                 >
                   {labels.airlinesShort}
                 </Link>
@@ -70,6 +80,7 @@ export default function HeaderClient({
                 key={link.href}
                 href={link.href}
                 className="text-[#1f3664] text-[14px] 2xl:text-[17px] font-normal hover:text-[#2669f3] transition-colors whitespace-nowrap px-1.5"
+                {...(link.gtm ? gtmId(link.gtm) : {})}
               >
                 {link.label}
               </Link>
@@ -82,6 +93,7 @@ export default function HeaderClient({
               <Link
                 href="/#claim"
                 className="bg-[#2669f3] text-white text-[14px] 2xl:text-[17px] font-bold px-4 2xl:px-8 h-10 2xl:h-[51px] flex items-center rounded-[11px] hover:bg-[#1a55d4] transition-colors whitespace-nowrap"
+                {...gtmClaimCta("header")}
               >
                 <span className="2xl:hidden">{labels.talkToUsShort}</span>
                 <span className="hidden 2xl:inline">{labels.talkToUs}</span>
@@ -96,6 +108,7 @@ export default function HeaderClient({
                 onClick={() => setMenuOpen(true)}
                 aria-label={labels.openMenu}
                 aria-expanded={menuOpen}
+                {...gtmId("nav_mobile_menu_open")}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />

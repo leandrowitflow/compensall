@@ -11,6 +11,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
 import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
+import { gtmId } from "@/lib/gtm";
 import { getLocalizedFaqs } from "@/lib/i18n-faqs";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { buildFaqPageSchema } from "@/lib/structured-data";
@@ -105,6 +106,7 @@ export default async function KnowYourRightsPage({ params }: KnowYourRightsPageP
                 <Link
                   href={`/blog/${issue.slug}`}
                   className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] mt-5 hover:opacity-80 transition-opacity"
+                  {...gtmId(`kyr_learn_more_${issue.slug}`)}
                 >
                   {tCommon("learnMore")}
                   <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">

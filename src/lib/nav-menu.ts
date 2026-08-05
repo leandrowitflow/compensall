@@ -4,6 +4,8 @@ export type NavMenuItem = {
   label: string;
   href: string;
   description?: string;
+  /** Fixed GTM click id (`data-gtm`). */
+  gtm?: string;
 };
 
 export type NavMenuGroup = {

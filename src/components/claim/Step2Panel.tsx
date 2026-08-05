@@ -9,6 +9,7 @@ import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
 import { InfoBoardRow } from "@/components/claim/ClaimSidebar";
 import { ACTION_BTN } from "@/components/claim/claim-ui";
 import { isIneligibleForCompensation } from "@/lib/claim-types";
+import { gtmId } from "@/lib/gtm";
 
 type Step2PanelProps = {
   flight: ClaimFlightData;
@@ -119,6 +120,7 @@ export default function Step2Panel({
           type="button"
           onClick={onDelete}
           className={`border-2 border-[#e82828] text-[#e82828] hover:bg-[#e82828]/5 ${ACTION_BTN}`}
+          {...gtmId("claim_step2_delete_data")}
         >
           {tStep2("deleteData")}
         </button>
@@ -126,6 +128,7 @@ export default function Step2Panel({
           type="button"
           onClick={onToggleEdit}
           className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 ${ACTION_BTN}`}
+          {...gtmId("claim_step2_edit_details")}
         >
           {isEditing ? tStep2("doneEditing") : tStep2("editDetails")}
         </button>
@@ -134,6 +137,7 @@ export default function Step2Panel({
           onClick={onContinue}
           disabled={ineligible}
           className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed ${ACTION_BTN}`}
+          {...gtmId("claim_step2_yes_continue")}
         >
           {tStep2("yesContinue")}
         </button>

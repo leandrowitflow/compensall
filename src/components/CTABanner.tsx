@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
+import { gtmClaimCta } from "@/lib/gtm";
 import { BRAND_NAME } from "@/lib/passenger-rights";
 
 const CTA_FEATURE_KEYS = ["fastRiskFree", "talkToUs", "highestSecurity"] as const;
@@ -51,6 +52,7 @@ export default async function CTABanner() {
           <Link
             href="/#claim"
             className="inline-flex shrink-0 items-center justify-center bg-[#2669f3] text-white font-bold h-12 lg:h-14 xl:h-[60px] 2xl:h-[73px] px-6 sm:px-8 lg:px-10 xl:px-12 rounded-[11px] hover:bg-[#1f5ae0] transition-colors text-sm sm:text-base lg:text-lg xl:text-[18px] 2xl:text-[19px] min-w-0 max-w-full text-center leading-tight"
+            {...gtmClaimCta("banner")}
           >
             <span className="xl:hidden">{tCommon("checkCompensationShort")}</span>
             <span className="hidden xl:inline">{tCommon("checkCompensation")}</span>

@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { Link } from "@/i18n/routing";
+import { gtmId } from "@/lib/gtm";
 import type { NavMenuGroup } from "@/lib/nav-menu";
 
 type NavDropdownProps = {
@@ -9,6 +10,7 @@ type NavDropdownProps = {
   groups: NavMenuGroup[];
   columns?: 1 | 2 | 3;
   align?: "start" | "center" | "end";
+  triggerGtm?: string;
 };
 
 function panelWidthClass(columns: 1 | 2 | 3): string {
@@ -46,6 +48,7 @@ export default function NavDropdown({
   groups,
   columns = 2,
   align = "start",
+  triggerGtm,
 }: NavDropdownProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -101,6 +104,7 @@ export default function NavDropdown({
         aria-haspopup="true"
         aria-controls={panelId}
         onClick={() => setOpen((value) => !value)}
+        {...(triggerGtm ? gtmId(triggerGtm) : {})}
       >
         {label}
         <svg
@@ -133,6 +137,7 @@ export default function NavDropdown({
                         href={item.href}
                         className="block rounded-[10px] px-2 py-2 hover:bg-[#f0f5fe] transition-colors"
                         onClick={() => setOpen(false)}
+                        {...(item.gtm ? gtmId(item.gtm) : {})}
                       >
                         <span className="block text-[#1f3664] text-sm xl:text-[15px] font-semibold leading-snug">
                           {item.label}

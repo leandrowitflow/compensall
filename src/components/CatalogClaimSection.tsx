@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import TrustpilotBadge from "@/components/TrustpilotBadge";
 import { Link } from "@/i18n/routing";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
+import { gtmClaimCta } from "@/lib/gtm";
 
 type CatalogClaimSectionProps = {
   headline: string;
@@ -46,6 +47,7 @@ export default function CatalogClaimSection({
               <Link
                 href="/#claim"
                 className="inline-flex items-center justify-center bg-[#2669f3] text-white font-bold px-6 sm:px-10 py-4 sm:py-5 rounded-xl hover:bg-[#1f5ae0] transition-colors text-sm sm:text-base text-center leading-tight max-w-full"
+                {...gtmClaimCta("catalog_detail")}
               >
                 <span className="xl:hidden">{tCommon("checkCompensationShort")}</span>
                 <span className="hidden xl:inline">{buttonLabel}</span>

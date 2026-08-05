@@ -6,6 +6,7 @@ import PageHero from "@/components/PageHero";
 import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
 import { getBlogPosts } from "@/lib/blog";
+import { gtmId } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 
 type BlogPageProps = {
@@ -54,6 +55,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
                   <Link
                     href={`/blog/${post.slug}`}
                     className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] mt-5 hover:opacity-80 transition-opacity"
+                    {...gtmId("blog_read_article")}
                   >
                     {t("readArticle")}
                     <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">

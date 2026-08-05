@@ -12,6 +12,7 @@ import {
 } from "@/lib/claim-types";
 import { ACTION_BTN, ASSISTANT_NAME, FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
+import { gtmId } from "@/lib/gtm";
 
 const SCROLL_END_THRESHOLD_PX = 8;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -115,6 +116,7 @@ function FileUploadField({
         accept="image/*,.pdf,application/pdf"
         className="block w-full text-sm text-[#1f3664] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2669f3] file:px-3 file:py-2 file:text-sm file:font-bold file:text-white"
         onChange={(event) => onChange(event.target.files?.[0] ?? null)}
+        {...gtmId(`claim_step3_upload_${id.replace(/-/g, "_")}`)}
       />
       {file && <p className="text-[#7b8094] text-xs">{file.name}</p>}
     </div>
@@ -441,6 +443,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         <Link
           href={`/track/${trackingNumber}`}
           className="bg-[#2669f3] text-white font-bold px-6 py-3 rounded-[11px] hover:bg-[#1a55d4] transition-colors text-sm sm:text-base"
+          {...gtmId("claim_success_track_claim")}
         >
           {t("trackYourClaim")}
         </Link>
@@ -541,6 +544,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
                   )
                 }
                 className="shrink-0 border-2 border-[#2669f3] text-[#2669f3] font-bold text-sm px-3 h-10 rounded-[11px] hover:bg-[#2669f3]/5 disabled:opacity-40"
+                {...gtmId("claim_step3_add_passenger")}
               >
                 {t("addPassenger")}
               </button>
@@ -556,6 +560,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
                     onClick={() =>
                       setAdditionalPassengers((current) => current.filter((_, i) => i !== index))
                     }
+                    {...gtmId("claim_step3_remove_passenger")}
                   >
                     {t("removePassenger")}
                   </button>
@@ -644,6 +649,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               accept="image/*,.pdf,application/pdf"
               className="block w-full text-sm text-[#1f3664] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2669f3] file:px-3 file:py-2 file:text-sm file:font-bold file:text-white"
               onChange={(event) => setOtherDocuments(Array.from(event.target.files ?? []).slice(0, 6))}
+              {...gtmId("claim_step3_upload_other_documents")}
             />
             {otherDocuments.length > 0 && (
               <ul className="text-[#7b8094] text-xs space-y-1">
@@ -673,6 +679,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
                 href={currentDoc.href}
                 target="_blank"
                 className="text-[#2669f3] font-bold text-xs whitespace-nowrap hover:underline"
+                {...gtmId("claim_step3_open_poa")}
               >
                 {t("openFullPage")}
               </Link>
@@ -707,7 +714,12 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
           <div>
             <div className="flex items-center justify-between mb-2">
               <label className={FIELD_LABEL}>{t("yourSignature")}</label>
-              <button type="button" onClick={clearSignature} className="text-[#2669f3] text-sm font-bold hover:underline">
+              <button
+                type="button"
+                onClick={clearSignature}
+                className="text-[#2669f3] text-sm font-bold hover:underline"
+                {...gtmId("claim_step3_clear_signature")}
+              >
                 {t("clear")}
               </button>
             </div>
@@ -768,6 +780,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
           onClick={onDelete}
           disabled={isSubmitting}
           className={`border-2 border-[#e82828] text-[#e82828] hover:bg-[#e82828]/5 disabled:opacity-50 ${ACTION_BTN}`}
+          {...gtmId("claim_step3_delete_data")}
         >
           {t("deleteData")}
         </button>
@@ -778,6 +791,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
             onClick={handleContinueFromContact}
             disabled={isSyncingLead}
             className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-60 ${ACTION_BTN}`}
+            {...gtmId("claim_step3_continue_to_signing")}
           >
             {isSyncingLead ? t("saving") : t("continueToSigning")}
           </button>
@@ -798,6 +812,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               }}
               disabled={isSigning}
               className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 disabled:opacity-50 ${ACTION_BTN}`}
+              {...gtmId("claim_step3_sign_back")}
             >
               {t("back")}
             </button>
@@ -806,6 +821,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               onClick={() => void handleSignDocument()}
               disabled={isSigning || !hasReadDocument}
               className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-50 ${ACTION_BTN}`}
+              {...gtmId("claim_step3_sign_continue")}
             >
               {isSigning
                 ? t("signing")
@@ -825,6 +841,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
                 setPhase("sign");
               }}
               className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 ${ACTION_BTN}`}
+              {...gtmId("claim_step3_documents_back")}
             >
               {t("back")}
             </button>
@@ -832,6 +849,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               type="button"
               onClick={() => setPhase("review")}
               className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto ${ACTION_BTN}`}
+              {...gtmId("claim_step3_continue_to_review")}
             >
               {t("continueToReview")}
             </button>
@@ -845,6 +863,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               onClick={() => setPhase("documents")}
               disabled={isSubmitting}
               className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 disabled:opacity-50 ${ACTION_BTN}`}
+              {...gtmId("claim_step3_review_back")}
             >
               {t("back")}
             </button>
@@ -853,6 +872,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
               onClick={() => void handleSubmit()}
               disabled={isSubmitting}
               className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-50 ${ACTION_BTN}`}
+              {...gtmId("claim_step3_submit_claim")}
             >
               {isSubmitting ? t("submitting") : t("submitClaim")}
             </button>

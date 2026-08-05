@@ -7,6 +7,7 @@ import CTABanner from "@/components/CTABanner";
 import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
 import type { AppLocale } from "@/i18n/routing";
+import { gtmClaimCta } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { buildProfessionalServiceSchema } from "@/lib/structured-data";
 
@@ -65,6 +66,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               <Link
                 href="/#claim"
                 className="inline-flex mt-6 bg-[#2669f3] text-white font-bold text-base px-6 h-11 items-center rounded-[11px] hover:bg-[#1a55d4] transition-colors"
+                {...gtmClaimCta("about")}
               >
                 {tCommon("checkCompensation")}
               </Link>

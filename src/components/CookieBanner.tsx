@@ -9,6 +9,7 @@ import {
   writeCookieConsent,
   type CookieConsentChoice,
 } from "@/lib/cookie-consent";
+import { gtmId } from "@/lib/gtm";
 
 export default function CookieBanner() {
   const t = useTranslations("cookies");
@@ -44,12 +45,20 @@ export default function CookieBanner() {
             <p id="cookie-banner-description" className="text-muted text-sm leading-relaxed">
               {t.rich("bannerDescription", {
                 cookiePolicy: (chunks) => (
-                  <Link href="/cookies" className="text-[#2669f3] font-semibold hover:underline">
+                  <Link
+                    href="/cookies"
+                    className="text-[#2669f3] font-semibold hover:underline"
+                    {...gtmId("cookie_policy_link")}
+                  >
                     {chunks}
                   </Link>
                 ),
                 privacyPolicy: (chunks) => (
-                  <Link href="/privacy-policy" className="text-[#2669f3] font-semibold hover:underline">
+                  <Link
+                    href="/privacy-policy"
+                    className="text-[#2669f3] font-semibold hover:underline"
+                    {...gtmId("cookie_privacy_link")}
+                  >
                     {chunks}
                   </Link>
                 ),
@@ -62,6 +71,7 @@ export default function CookieBanner() {
               type="button"
               onClick={() => saveChoice("essential")}
               className="border-2 border-[#d5e0f9] text-[#1f3664] font-semibold px-5 py-2.5 rounded-full text-sm hover:border-[#2669f3] transition-colors"
+              {...gtmId("cookie_essential_only")}
             >
               {t("essentialOnly")}
             </button>
@@ -69,6 +79,7 @@ export default function CookieBanner() {
               type="button"
               onClick={() => saveChoice("all")}
               className="bg-[#2669f3] text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-[#1a55d4] transition-colors"
+              {...gtmId("cookie_accept_all")}
             >
               {t("acceptAll")}
             </button>

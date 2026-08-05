@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
 import type { AppLocale } from "@/i18n/routing";
+import { gtmClaimCta } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 
 type AuthorityToActPageProps = {
@@ -28,7 +29,7 @@ export default function AuthorityToActPage() {
             Home
           </Link>
           <span>/</span>
-          <Link href="/#claim" className="hover:text-[#2669f3] transition-colors">
+          <Link href="/#claim" className="hover:text-[#2669f3] transition-colors" {...gtmClaimCta("docs_breadcrumb")}>
             Claim
           </Link>
           <span>/</span>
@@ -44,6 +45,7 @@ export default function AuthorityToActPage() {
               <Link
                 href="/#claim"
                 className="bg-[#2669f3] text-white font-semibold px-6 py-2.5 rounded-full text-sm hover:bg-[#1a55d4] transition-colors whitespace-nowrap"
+                {...gtmClaimCta("docs")}
               >
                 Back to claim
               </Link>

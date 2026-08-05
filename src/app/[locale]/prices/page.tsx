@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 import LegalPageShell from "@/components/legal/LegalPageShell";
 import type { AppLocale } from "@/i18n/routing";
+import { gtmId } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 
@@ -49,7 +50,11 @@ export default async function PricesPage({ params }: PricesPageProps) {
           <strong className="text-[#1f3664]">{t("noWinNoFeeIntro")}</strong>{" "}
           {t.rich("noWinNoFeeBody", {
             noWinNoFeeAgreement: (chunks) => (
-              <Link href="/documents/no-win-no-fee" className="text-[#2669f3] underline">
+              <Link
+                href="/documents/no-win-no-fee"
+                className="text-[#2669f3] underline"
+                {...gtmId("prices_nwnf_agreement")}
+              >
                 {chunks}
               </Link>
             ),

@@ -11,6 +11,7 @@ import {
   type CompensationEstimate,
 } from "@/lib/claim-types";
 import { formatEstimateDistance } from "@/lib/compensation-estimate";
+import { gtmClaimCta } from "@/lib/gtm";
 
 type TrackResponse = {
   trackingNumber: string;
@@ -145,7 +146,11 @@ export default function TrackClaimPage({ trackingNumber }: { trackingNumber: str
             {!loading && error && (
               <div className="text-center py-4">
                 <p className="text-[#e82828] mb-4">{error}</p>
-                <Link href="/#claim" className="text-[#2669f3] font-bold hover:underline">
+                <Link
+                  href="/#claim"
+                  className="text-[#2669f3] font-bold hover:underline"
+                  {...gtmClaimCta("track")}
+                >
                   {t("startNewClaim")}
                 </Link>
               </div>

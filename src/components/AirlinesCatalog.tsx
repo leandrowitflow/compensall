@@ -9,6 +9,7 @@ import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
 import { buildCatalogCardDescription } from "@/lib/catalog-detail";
 import { searchCatalogAirports } from "@/lib/catalog-world-airports";
 import { filterCatalog, sortCatalogByLocale } from "@/lib/localize-catalog";
+import { gtmId } from "@/lib/gtm";
 
 function SearchField({
   placeholder,
@@ -59,6 +60,11 @@ function CatalogCard({
       <Link
         href={kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`}
         className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] mt-5 hover:opacity-80 transition-opacity"
+        {...gtmId(
+          kind === "airlines"
+            ? `catalog_airline_learn_more_${item.id}`
+            : `catalog_airport_check_claims_${item.id}`,
+        )}
       >
         {cta}
         <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
@@ -165,6 +171,7 @@ function CatalogSection({
                   type="button"
                   onClick={() => setShowAll(true)}
                   className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] hover:opacity-80 transition-opacity"
+                  {...gtmId(`catalog_see_more_${kind}`)}
                 >
                   {t("seeMore", { section: sectionLabel })}
                   <span className="text-[#7b8094] font-normal text-sm">({remainingItems.length})</span>
@@ -203,6 +210,7 @@ function CatalogSection({
                       type="button"
                       onClick={() => setShowAll(false)}
                       className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] hover:opacity-80 transition-opacity"
+                      {...gtmId("catalog_show_less")}
                     >
                       {t("showLess")}
                       <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true" className="-rotate-90">
