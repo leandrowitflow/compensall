@@ -474,6 +474,11 @@
     "breadcrumb": "Termos de Serviço",
     "summary": "As regras para utilizar a Compensall e submeter um pedido de compensação por voo."
   },
+  "noWinNoFeePage": {
+    "pageTitle": "Acordo Só Paga Se Ganharmos",
+    "breadcrumb": "Acordo Só Paga Se Ganharmos",
+    "summary": "Só paga se recuperarmos com sucesso a sua compensação de voo."
+  },
   "legal": {
     "breadcrumbPrices": "Preços"
   },

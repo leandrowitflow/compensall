@@ -1,4 +1,4 @@
-export type LegalDocumentKey = "privacy-policy" | "terms" | "cookies";
+export type LegalDocumentKey = "privacy-policy" | "terms" | "cookies" | "no-win-no-fee";
 
 export type LegalBrandField =
   | "brandName"

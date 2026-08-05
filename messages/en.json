@@ -474,6 +474,11 @@
     "breadcrumb": "Terms of Service",
     "summary": "The rules for using Compensall and submitting a flight compensation claim."
   },
+  "noWinNoFeePage": {
+    "pageTitle": "No Win, No Fee Agreement",
+    "breadcrumb": "No Win, No Fee Agreement",
+    "summary": "You only pay if we successfully recover your flight compensation."
+  },
   "legal": {
     "breadcrumbPrices": "Prices"
   },

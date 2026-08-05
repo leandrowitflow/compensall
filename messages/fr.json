@@ -474,6 +474,11 @@
     "breadcrumb": "Conditions d'utilisation",
     "summary": "Les règles d'utilisation de Compensall et de soumission d'une réclamation d'indemnisation de vol."
   },
+  "noWinNoFeePage": {
+    "pageTitle": "Accord « vous ne payez que si on gagne »",
+    "breadcrumb": "Accord « vous ne payez que si on gagne »",
+    "summary": "Vous ne payez que si nous récupérons votre indemnisation de vol avec succès."
+  },
   "legal": {
     "breadcrumbPrices": "Tarifs"
   },

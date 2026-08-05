@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import NewsletterFormClient from "@/components/NewsletterFormClient";
 import { Link } from "@/i18n/routing";
 import { gtmId } from "@/lib/gtm";
 
@@ -161,10 +160,6 @@ export default function Footer() {
             ))}
           </nav>
 
-          <div className="w-full max-w-[340px]">
-            <NewsletterFormClient />
-          </div>
-
           <ContactDetails
             className="w-full max-w-[320px] sm:max-w-[360px] mx-auto items-start text-left"
             contactUsLabel={tFooter("contactUs")}
@@ -179,8 +174,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="hidden lg:grid lg:grid-cols-[minmax(0,180px)_1fr_minmax(0,240px)] xl:grid-cols-[minmax(0,260px)_1fr_minmax(0,320px)] gap-x-8 xl:gap-x-16 gap-y-8">
-          <div className="lg:row-start-1 lg:col-start-1">
+        <div className="hidden lg:grid lg:grid-cols-[minmax(0,180px)_1fr_minmax(0,240px)] xl:grid-cols-[minmax(0,260px)_1fr_minmax(0,320px)] gap-x-8 xl:gap-x-16 gap-y-8 items-start">
+          <div className="lg:row-start-1 lg:col-start-1 flex items-center min-h-[32px] xl:min-h-[39px]">
             <img
               src="/assets/logo-white.svg?v=2"
               alt="Compensall"
@@ -193,7 +188,7 @@ export default function Footer() {
             />
           </div>
 
-          <nav className="lg:row-start-1 lg:col-start-2 flex flex-wrap items-center justify-center gap-4 xl:gap-6 2xl:gap-10">
+          <nav className="lg:row-start-1 lg:col-start-2 flex flex-wrap items-center justify-center gap-4 xl:gap-6 2xl:gap-10 min-h-[32px] xl:min-h-[39px]">
             {primaryNavLinks.map((link) => (
               <Link
                 key={link.href}
@@ -208,21 +203,17 @@ export default function Footer() {
           </nav>
 
           <ContactDetails
-            className="lg:row-start-1 lg:row-span-2 lg:col-start-3 items-start text-left"
+            className="lg:row-start-1 lg:col-start-3 items-start text-left"
             contactUsLabel={tFooter("contactUs")}
           />
 
-          <div className="lg:row-start-2 lg:col-start-2 flex flex-col items-center text-center">
-            <NewsletterFormClient />
-          </div>
-
-          <p className="lg:row-start-3 lg:col-start-1 text-base tracking-[-0.16px] leading-[1.5] lg:self-end lg:pt-8 xl:pt-[68px]">
+          <p className="lg:row-start-2 lg:col-start-1 text-base tracking-[-0.16px] leading-[1.5] lg:self-end lg:pt-8 xl:pt-[68px]">
             {tFooter("copyright")}
           </p>
 
-          <LegalLinks className="lg:row-start-3 lg:col-start-2 lg:self-end lg:pt-8 xl:pt-[68px]" />
+          <LegalLinks className="lg:row-start-2 lg:col-start-2 lg:self-end lg:pt-8 xl:pt-[68px]" />
 
-          <SocialLinks className="lg:row-start-3 lg:col-start-3 lg:self-end lg:pt-8 xl:pt-[68px]" />
+          <SocialLinks className="lg:row-start-2 lg:col-start-3 lg:self-end lg:pt-8 xl:pt-[68px]" />
         </div>
       </div>
     </footer>

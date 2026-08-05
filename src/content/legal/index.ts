@@ -2,6 +2,9 @@ import type { AppLocale } from "@/i18n/routing";
 import { cookiesEn } from "./cookies.en";
 import { cookiesFr } from "./cookies.fr";
 import { cookiesPt } from "./cookies.pt";
+import { noWinNoFeeEn } from "./no-win-no-fee.en";
+import { noWinNoFeeFr } from "./no-win-no-fee.fr";
+import { noWinNoFeePt } from "./no-win-no-fee.pt";
 import { privacyPolicyEn } from "./privacy-policy.en";
 import { privacyPolicyFr } from "./privacy-policy.fr";
 import { privacyPolicyPt } from "./privacy-policy.pt";
@@ -25,6 +28,11 @@ const documents: Record<LegalDocumentKey, Record<AppLocale, LegalDocument>> = {
     en: cookiesEn,
     pt: cookiesPt,
     fr: cookiesFr,
+  },
+  "no-win-no-fee": {
+    en: noWinNoFeeEn,
+    pt: noWinNoFeePt,
+    fr: noWinNoFeeFr,
   },
 };
 

@@ -1,5 +1,7 @@
 import type { ComponentType, ReactNode } from "react";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
+import LegalDocumentContent from "@/components/legal/LegalDocumentContent";
+import type { AppLocale } from "@/i18n/routing";
 import {
   BRAND_NAME,
   LEGAL_ENTITY_ADDRESS,
@@ -21,91 +23,8 @@ export function AuthorityToActContent() {
   return <PowerOfAttorneyDocument />;
 }
 
-export function NoWinNoFeeContent() {
-  return (
-    <>
-      <div className="mb-6 p-4 bg-[#f0f5ff] rounded-xl border border-[#d5e0f9]">
-        <p className="text-sm text-[#1f3664]/70 leading-relaxed">
-          <strong className="text-[#1f3664]">Summary:</strong> You pay nothing upfront and nothing if we do not
-          recover compensation on your behalf. Our success fee is only charged when your claim is successful.
-        </p>
-      </div>
-
-      <Section title="1. Agreement Overview">
-        <p>
-          This No Win, No Fee Agreement (&quot;Agreement&quot;) is entered into between the claimant (you) and{" "}
-          <strong>Compensall</strong> (&quot;the Company&quot;). By proceeding with a claim through the Compensall platform,
-          you agree to these terms.
-        </p>
-      </Section>
-
-      <Section title="2. No Upfront Costs">
-        <p>
-          There are no upfront fees, registration fees, or administration charges to submit your claim. You will
-          incur no costs whatsoever if we are unable to recover compensation on your behalf.
-        </p>
-      </Section>
-
-      <Section title="3. Success Fee">
-        <p>A success fee will be deducted from the compensation recovered on your behalf:</p>
-        <div className="mt-3 overflow-hidden rounded-xl border border-[#d5e0f9]">
-          <table className="w-full text-sm">
-            <thead className="bg-[#f0f5ff]">
-              <tr>
-                <th className="text-left px-4 py-3 font-semibold text-[#1f3664]">Compensation Amount</th>
-                <th className="text-left px-4 py-3 font-semibold text-[#1f3664]">Success Fee</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#d5e0f9]">
-              <tr>
-                <td className="px-4 py-3 text-[#1f3664]/70">Up to €250</td>
-                <td className="px-4 py-3 text-[#1f3664]/70">25% + VAT</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 text-[#1f3664]/70">€251 – €400</td>
-                <td className="px-4 py-3 text-[#1f3664]/70">25% + VAT</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 text-[#1f3664]/70">€401 – €600</td>
-                <td className="px-4 py-3 text-[#1f3664]/70">25% + VAT</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-3 text-xs">
-          The success fee is deducted before the remaining compensation is transferred to you. You will always
-          receive at least 75% of the recovered amount before VAT adjustments.
-        </p>
-      </Section>
-
-      <Section title="4. Payment Process">
-        <p>
-          Once the airline pays the compensation, Compensall will deduct the agreed success fee and transfer the
-          remaining balance to your nominated bank account within 5–10 business days. You will receive a full
-          breakdown of the settlement and deductions.
-        </p>
-      </Section>
-
-      <Section title="5. Cancellation">
-        <p>
-          You may cancel this agreement at any time before the claim is settled by notifying us in writing at{" "}
-          <strong>cancel@compensall.com</strong>. If substantial work has already been completed and the airline
-          has made an offer, a reduced cancellation fee may apply.
-        </p>
-      </Section>
-
-      <Section title="6. Governing Law">
-        <p>
-          This Agreement is governed by the laws of England and Wales. Any disputes shall be subject to the
-          exclusive jurisdiction of the courts of England and Wales.
-        </p>
-      </Section>
-
-      <p className="text-xs text-[#1f3664]/50 pt-2 border-t border-[#d5e0f9]">
-        Document version 3.0. Last updated January 2026
-      </p>
-    </>
-  );
+export function NoWinNoFeeContent({ locale = "en" }: { locale?: AppLocale }) {
+  return <LegalDocumentContent document="no-win-no-fee" locale={locale} />;
 }
 
 export function PrivacyDataConsentContent() {
@@ -232,6 +151,6 @@ export function PrivacyDataConsentContent() {
 
 export const LEGAL_DOCUMENT_CONTENT: Record<string, ComponentType> = {
   "authority-to-act": AuthorityToActContent,
-  "no-win-no-fee": NoWinNoFeeContent,
+  "no-win-no-fee": () => <NoWinNoFeeContent />,
   "privacy-data-consent": PrivacyDataConsentContent,
 };
