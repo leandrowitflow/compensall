@@ -22,11 +22,17 @@ export type OdooConfig = {
 
 type TagModel = "crm.tag" | "helpdesk.tag";
 
+function cleanEnvSecret(value: string | undefined): string | undefined {
+  if (value == null) return undefined;
+  const cleaned = value.trim().replace(/^['"]|['"]$/g, "");
+  return cleaned.length > 0 ? cleaned : undefined;
+}
+
 export function getOdooConfig(): OdooConfig | null {
   const url = process.env.ODOO_URL?.replace(/\/$/, "");
   const db = process.env.ODOO_DB?.trim();
   const login = process.env.ODOO_LOGIN?.trim();
-  const password = process.env.ODOO_PASSWORD;
+  const password = cleanEnvSecret(process.env.ODOO_PASSWORD);
 
   if (!url || !db || !login || !password) {
     return null;
@@ -747,7 +753,12 @@ export async function odooFindOrCreatePartner(input: {
     if (name) updates.name = name;
     if (phone) updates.phone = phone;
     if (Object.keys(updates).length > 0) {
-      await executeKw<boolean>(config, uid, "res.partner", "write", [[existing[0].id], updates]);
+      try {
+        await executeKw<boolean>(config, uid, "res.partner", "write", [[existing[0].id], updates]);
+      } catch (error) {
+        // Partners linked to portal/internal users can reject writes without Access Rights.
+        console.error("Odoo partner update skipped:", error);
+      }
     }
     return existing[0].id;
   }
