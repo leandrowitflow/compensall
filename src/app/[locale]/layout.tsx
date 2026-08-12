@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import DeferredAnchorScroll from "@/components/DeferredAnchorScroll";
 import DeferredCookieBanner from "@/components/DeferredCookieBanner";
 import GoogleTagManager from "@/components/GoogleTagManager";
+import MetaPixel from "@/components/MetaPixel";
 import JsonLd from "@/components/seo/JsonLd";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/structured-data";
@@ -59,6 +60,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
           <div className="site-viewport min-w-0 overflow-x-clip">
             <GoogleTagManager />
+            <MetaPixel />
             <DeferredAnchorScroll />
             <DeferredCookieBanner />
             {children}

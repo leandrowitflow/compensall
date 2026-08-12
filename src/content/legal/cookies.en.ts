@@ -64,7 +64,7 @@ export const cookiesEn: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "Some cookies may be set by infrastructure or service providers that help us host and operate the website, such as hosting, security, and performance providers. When you accept analytics cookies, we use Google Tag Manager and related Google measurement tags (Google Ireland Limited / Google LLC), which may include Google Analytics, to understand how visitors use the site. Google may set cookies such as _ga and _ga_* and process usage data according to Google’s policies. Analytics cookies are only placed after you choose “Accept all”.",
+              text: "Some cookies may be set by infrastructure or service providers that help us host and operate the website, such as hosting, security, and performance providers. When you accept analytics cookies, we use Google Tag Manager and related Google measurement tags (Google Ireland Limited / Google LLC), which may include Google Analytics, and the Meta Pixel (Meta Platforms Ireland Limited / Meta Platforms, Inc.) for advertising measurement and optimisation. Google and Meta may set cookies and process usage data according to their policies. Analytics and advertising cookies are only placed after you choose “Accept all”.",
             },
           ],
         },
