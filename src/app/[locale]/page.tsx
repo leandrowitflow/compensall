@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import TrustpilotBadge from "@/components/TrustpilotBadge";
+import TrustpilotTrustBox, {
+  isTrustpilotTrustBoxConfigured,
+} from "@/components/TrustpilotTrustBox";
 import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
@@ -76,11 +78,12 @@ export default async function HomePage({ params }: HomePageProps) {
   const tTiers = await getTranslations("passengerRights");
 
   const trustItems = [
-    { icon: "/assets/icons/trust-star.svg", title: t("trustBar.trustpilotRated"), sub: t("trustBar.trustpilotScore") },
+    { icon: "/assets/icons/trust-star.svg", title: t("trustBar.noWinNoFee"), sub: t("trustBar.onlyIfSuccessful") },
     { icon: "/assets/icons/trust-gdpr.svg", title: t("trustBar.gdprFirst"), sub: t("trustBar.privacyByDesign") },
     { icon: "/assets/icons/trust-lock.svg", title: t("trustBar.deleteYourData"), sub: t("trustBar.fullControl") },
     { icon: "/assets/icons/trust-headset.svg", title: t("trustBar.humanSupport"), sub: t("trustBar.realPeopleHelp") },
   ];
+  const showTrustpilot = isTrustpilotTrustBoxConfigured();
 
   const ukTiers = UK261_TIERS.map((tier) => {
     const key = tierTranslationKey(tier.amount);
@@ -152,9 +155,11 @@ export default async function HomePage({ params }: HomePageProps) {
               id="claim"
               className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
             >
-              <div className="flex justify-center mb-5">
-                <TrustpilotBadge alt={t("hero.trustpilotAlt")} />
-              </div>
+              {showTrustpilot && (
+                <div className="flex justify-center mb-5">
+                  <TrustpilotTrustBox />
+                </div>
+              )}
 
               <h1 className="font-bold text-[28px] sm:text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.15] sm:leading-[1.2] mb-4 max-w-[760px] mx-auto">
                 {t("hero.title")}

@@ -1,7 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import TrustpilotBadge from "@/components/TrustpilotBadge";
+import TrustpilotTrustBox, {
+  isTrustpilotTrustBoxConfigured,
+} from "@/components/TrustpilotTrustBox";
 import { Link } from "@/i18n/routing";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import { gtmClaimCta } from "@/lib/gtm";
@@ -20,6 +22,7 @@ export default function CatalogClaimSection({
   const tHome = useTranslations("home.hero");
   const tCommon = useTranslations("common");
   const buttonLabel = ctaLabel ?? tCommon("checkCompensation");
+  const showTrustpilot = isTrustpilotTrustBoxConfigured();
 
   return (
     <section className="px-4 md:px-8 lg:px-8 xl:px-12 pb-0">
@@ -30,9 +33,11 @@ export default function CatalogClaimSection({
           </div>
 
           <div className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-10 pb-6 lg:pb-8 xl:pb-10 text-center">
-            <div className="flex justify-center mb-5">
-              <TrustpilotBadge alt={tHome("trustpilotAlt")} />
-            </div>
+            {showTrustpilot && (
+              <div className="flex justify-center mb-5">
+                <TrustpilotTrustBox />
+              </div>
+            )}
 
             <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[44px] text-white leading-[1.2] mb-3 max-w-[760px] mx-auto">
               {headline}

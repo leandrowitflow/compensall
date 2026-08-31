@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import TrustpilotBadge from "@/components/TrustpilotBadge";
+import TrustpilotTrustBox, {
+  isTrustpilotTrustBoxConfigured,
+} from "@/components/TrustpilotTrustBox";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CTABanner from "@/components/CTABanner";
@@ -26,8 +28,8 @@ export default async function AirlinesPage({ params }: AirlinesPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("airlinesPage");
-  const tHero = await getTranslations("home.hero");
   const localizedFaqs = await getLocalizedFaqs(locale);
+  const showTrustpilot = isTrustpilotTrustBoxConfigured();
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -42,9 +44,11 @@ export default async function AirlinesPage({ params }: AirlinesPageProps) {
             </div>
 
             <div className="relative px-4 sm:px-6 pt-10 lg:pt-10 xl:pt-12 pb-10 lg:pb-12 xl:pb-14 text-center">
-              <div className="flex justify-center mb-5">
-                <TrustpilotBadge alt={tHero("trustpilotAlt")} priority />
-              </div>
+              {showTrustpilot && (
+                <div className="flex justify-center mb-5">
+                  <TrustpilotTrustBox />
+                </div>
+              )}
 
               <h1 className="font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[1010px] mx-auto">
                 {t("title")}

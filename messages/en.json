@@ -89,8 +89,8 @@
       "dataProtected": "Your data is always protected"
     },
     "trustBar": {
-      "trustpilotRated": "Trustpilot rated",
-      "trustpilotScore": "4.8 out of 5",
+      "noWinNoFee": "No win, no fee",
+      "onlyIfSuccessful": "You only pay if we win",
       "gdprFirst": "GDPR-first",
       "privacyByDesign": "Privacy by design",
       "deleteYourData": "Delete your data",

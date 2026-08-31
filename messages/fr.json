@@ -89,8 +89,8 @@
       "dataProtected": "Vos données sont toujours protégées"
     },
     "trustBar": {
-      "trustpilotRated": "Noté sur Trustpilot",
-      "trustpilotScore": "4,8 sur 5",
+      "noWinNoFee": "Pas de gain, pas de frais",
+      "onlyIfSuccessful": "Vous ne payez que si nous gagnons",
       "gdprFirst": "RGPD d'abord",
       "privacyByDesign": "Confidentialité dès la conception",
       "deleteYourData": "Supprimez vos données",
