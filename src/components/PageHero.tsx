@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
-import TrustpilotTrustBox, {
-  isTrustpilotTrustBoxConfigured,
-} from "@/components/TrustpilotTrustBox";
+import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
+import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
 
 type PageHeroProps = {
   title: string;

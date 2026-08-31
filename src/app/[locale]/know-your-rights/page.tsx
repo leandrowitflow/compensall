@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import TrustpilotTrustBox, {
-  isTrustpilotTrustBoxConfigured,
-} from "@/components/TrustpilotTrustBox";
+import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
+import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
 import HowItWorksSteps from "@/components/HowItWorksSteps";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";

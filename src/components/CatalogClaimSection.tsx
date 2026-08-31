@@ -1,9 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import TrustpilotTrustBox, {
-  isTrustpilotTrustBoxConfigured,
-} from "@/components/TrustpilotTrustBox";
+import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
+import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
 import { Link } from "@/i18n/routing";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import { gtmClaimCta } from "@/lib/gtm";

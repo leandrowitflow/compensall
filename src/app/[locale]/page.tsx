@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import TrustpilotTrustBox, {
-  isTrustpilotTrustBoxConfigured,
-} from "@/components/TrustpilotTrustBox";
+import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
+import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
 import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";

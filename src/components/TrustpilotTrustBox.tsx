@@ -3,6 +3,12 @@
 import Script from "next/script";
 import { useEffect, useRef } from "react";
 import { useLocale } from "next-intl";
+import {
+  getTrustpilotBusinessUnitId,
+  getTrustpilotReviewUrl,
+  getTrustpilotTemplateId,
+  isTrustpilotTrustBoxConfigured,
+} from "@/lib/trustpilot";
 
 declare global {
   interface Window {
@@ -11,12 +17,6 @@ declare global {
     };
   }
 }
-
-const BUSINESS_UNIT_ID = process.env.NEXT_PUBLIC_TRUSTPILOT_BUSINESS_UNIT_ID?.trim() || "";
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_TRUSTPILOT_TEMPLATE_ID?.trim() || "";
-const REVIEW_URL =
-  process.env.NEXT_PUBLIC_TRUSTPILOT_REVIEW_URL?.trim() ||
-  "https://www.trustpilot.com/review/www.compensall.com";
 
 function localeToTrustpilot(locale: string): string {
   switch (locale) {
@@ -47,13 +47,16 @@ export default function TrustpilotTrustBox({
 }: TrustpilotTrustBoxProps) {
   const locale = useLocale();
   const ref = useRef<HTMLDivElement>(null);
+  const businessUnitId = getTrustpilotBusinessUnitId();
+  const templateId = getTrustpilotTemplateId();
+  const reviewUrl = getTrustpilotReviewUrl();
 
   useEffect(() => {
-    if (!BUSINESS_UNIT_ID || !TEMPLATE_ID || !ref.current) return;
+    if (!businessUnitId || !templateId || !ref.current) return;
     window.Trustpilot?.loadFromElement(ref.current, true);
-  }, [locale]);
+  }, [locale, businessUnitId, templateId]);
 
-  if (!BUSINESS_UNIT_ID || !TEMPLATE_ID) {
+  if (!businessUnitId || !templateId) {
     return null;
   }
 
@@ -69,13 +72,13 @@ export default function TrustpilotTrustBox({
           ref={ref}
           className="trustpilot-widget"
           data-locale={localeToTrustpilot(locale)}
-          data-template-id={TEMPLATE_ID}
-          data-businessunit-id={BUSINESS_UNIT_ID}
+          data-template-id={templateId}
+          data-businessunit-id={businessUnitId}
           data-style-height={height}
           data-style-width="100%"
           data-theme="light"
         >
-          <a href={REVIEW_URL} target="_blank" rel="noopener noreferrer">
+          <a href={reviewUrl} target="_blank" rel="noopener noreferrer">
             Trustpilot
           </a>
         </div>
@@ -84,6 +87,4 @@ export default function TrustpilotTrustBox({
   );
 }
 
-export function isTrustpilotTrustBoxConfigured(): boolean {
-  return Boolean(BUSINESS_UNIT_ID && TEMPLATE_ID);
-}
+export { isTrustpilotTrustBoxConfigured };
