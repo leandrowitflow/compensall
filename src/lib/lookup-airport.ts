@@ -3,7 +3,9 @@ import {
   formatAirportRouteLabel,
   type AirportOption,
 } from "@/lib/airport-search";
-export { normalizeIata } from "@/lib/iata";
+import { normalizeIata } from "@/lib/iata";
+
+export { normalizeIata };
 
 const iataIndex = new Map<string, AirportOption>();
 
@@ -24,6 +26,10 @@ const FALLBACK_IATA_CITIES: Record<string, string> = {
   HAM: "Hamburg",
   NCE: "Nice",
   LYS: "Lyon",
+  MRS: "Marseille",
+  MIR: "Monastir",
+  TUN: "Tunis",
+  DJE: "Djerba",
   AGP: "Málaga",
   PMI: "Palma",
   OPO: "Porto",
@@ -58,12 +64,31 @@ const FALLBACK_IATA_CITIES: Record<string, string> = {
   FRA: "Frankfurt",
   MUC: "Munich",
   DUB: "Dublin",
+  BCM: "Bacău",
+  SXF: "Berlin",
+  TXL: "Berlin",
 };
 
 export function lookupAirportByIata(iata: string): AirportOption | null {
   const code = iata.trim().toUpperCase();
   if (code.length !== 3) return null;
-  return iataIndex.get(code) ?? null;
+  const catalog = iataIndex.get(code);
+  if (catalog) return catalog;
+
+  const city = FALLBACK_IATA_CITIES[code];
+  if (!city) return null;
+
+  return {
+    id: `fallback-${code}`,
+    name: `${city} Airport`,
+    city,
+    iata: code,
+    country: "",
+    countryName: "",
+    cities: [city],
+    keywords: `${city} ${code}`.toLowerCase(),
+    logo: "",
+  };
 }
 
 export function formatRouteFromIata(iata: string): string {
@@ -75,5 +100,15 @@ export function formatRouteFromIata(iata: string): string {
   if (city) return `${city} (${code})`;
 
   return code;
+}
+
+/** Prefer "City (IATA)" when we can resolve the code; keep richer labels as-is. */
+export function formatRouteLabel(route: string): string {
+  const trimmed = route.trim();
+  if (!trimmed) return "";
+  if (/\([A-Za-z]{3}\)\s*$/.test(trimmed)) return trimmed;
+  const iata = normalizeIata(trimmed);
+  if (!iata) return trimmed;
+  return formatRouteFromIata(iata);
 }
 

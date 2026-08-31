@@ -13,8 +13,8 @@
     "learnMore": "En savoir plus",
     "checkClaims": "Vérifier les réclamations",
     "startYourClaim": "Démarrer votre réclamation",
-    "checkCompensation": "Vérifier l'indemnisation",
-    "checkCompensationShort": "Vérifier",
+    "checkCompensation": "Réclamer l'indemnisation",
+    "checkCompensationShort": "Réclamer",
     "home": "Accueil",
     "legal": "Mentions légales",
     "airport": "Aéroport"
@@ -245,8 +245,9 @@
       "yes": "Oui",
       "no": "Non",
       "legLabel": "Vol de correspondance {number}",
+      "anotherConnecting": "J'avais un autre vol de correspondance",
       "airport": "Aéroport",
-      "airportPlaceholder": "Saisir l'aéroport",
+      "airportPlaceholder": "Sélectionner l'aéroport",
       "flightNumber": "Numéro de vol",
       "flightNumberPlaceholder": "ex. AF1234",
       "errors": {
@@ -260,7 +261,7 @@
       "type": "Type de perturbation",
       "typePlaceholder": "Sélectionnez le type de perturbation",
       "selectPlaceholder": "Sélectionnez une option",
-      "delayDuration": "Durée du retard",
+      "delayDuration": "Durée du retard à la destination finale",
       "delayLessThan3": "Moins de 3 heures",
       "delayMoreThan3": "Plus de 3 heures",
       "cancellationNotice": "Combien de jours avant le départ avez-vous été informé ?",
@@ -836,7 +837,7 @@
   "notFoundPage": {
     "title": "Page introuvable",
     "description": "Nous n'avons pas trouvé cette page. Lancez une vérification d'indemnisation ou consultez nos guides ci-dessous.",
-    "checkCompensation": "Vérifier l'indemnisation",
+    "checkCompensation": "Réclamer l'indemnisation",
     "knowYourRights": "Connaître vos droits",
     "blog": "Blog"
   },

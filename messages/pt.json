@@ -13,8 +13,8 @@
     "learnMore": "Saber mais",
     "checkClaims": "Verificar pedidos",
     "startYourClaim": "Iniciar o seu pedido",
-    "checkCompensation": "Verificar compensação",
-    "checkCompensationShort": "Verificar",
+    "checkCompensation": "Reclamar compensação",
+    "checkCompensationShort": "Reclamar",
     "home": "Início",
     "legal": "Legal",
     "airport": "Aeroporto"
@@ -245,8 +245,9 @@
       "yes": "Sim",
       "no": "Não",
       "legLabel": "Voo de ligação {number}",
+      "anotherConnecting": "Tive outro voo de ligação",
       "airport": "Aeroporto",
-      "airportPlaceholder": "Escreva o aeroporto",
+      "airportPlaceholder": "Selecionar aeroporto",
       "flightNumber": "Número do voo",
       "flightNumberPlaceholder": "ex. TP1234",
       "errors": {
@@ -260,7 +261,7 @@
       "type": "Tipo de disrupção",
       "typePlaceholder": "Selecione o tipo de disrupção",
       "selectPlaceholder": "Selecione uma opção",
-      "delayDuration": "Duração do atraso",
+      "delayDuration": "Duração do atraso no destino final",
       "delayLessThan3": "Menos de 3 horas",
       "delayMoreThan3": "Mais de 3 horas",
       "cancellationNotice": "Com quantos dias de antecedência foi informado do cancelamento?",
@@ -836,7 +837,7 @@
   "notFoundPage": {
     "title": "Página não encontrada",
     "description": "Não encontrámos essa página. Comece uma verificação de compensação ou consulte os nossos guias abaixo.",
-    "checkCompensation": "Verificar compensação",
+    "checkCompensation": "Reclamar compensação",
     "knowYourRights": "Conheça os seus direitos",
     "blog": "Blog"
   },

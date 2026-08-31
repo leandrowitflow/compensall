@@ -15,6 +15,8 @@ type AirportSelectProps = {
   disabled?: boolean;
   /** Open the picker once on mount (e.g. after a deferred load from a placeholder click). */
   autoOpen?: boolean;
+  /** Compact field style for secondary forms (connecting flights). */
+  variant?: "hero" | "field";
 };
 
 function AirportLogo({ airport }: { airport: AirportOption }) {
@@ -55,6 +57,7 @@ export default function AirportSelect({
   excludeAirportId,
   disabled = false,
   autoOpen = false,
+  variant = "hero",
 }: AirportSelectProps) {
   const t = useTranslations("claim.step1");
   const locale = useLocale();
@@ -233,10 +236,27 @@ export default function AirportSelect({
         )
       : null;
 
+  const isField = variant === "field";
+  const triggerClass = isField
+    ? "w-full h-11 px-4 flex items-center text-left border border-[#d5e0f9] rounded-[10px] bg-white hover:border-[#2669f3] transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+    : "w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent";
+  const triggerTextClass = isField
+    ? "text-[#1f3664] text-sm truncate"
+    : "text-[#1f3664] text-base sm:text-lg truncate";
+  const placeholderTextClass = isField
+    ? "text-[#7b8094] text-sm"
+    : "text-[#1f3664] text-base sm:text-lg";
+  const inputWrapClass = isField
+    ? "w-full h-11 px-4 flex items-center border border-[#2669f3] rounded-[10px] bg-white"
+    : "w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center";
+  const inputClass = isField
+    ? "w-full bg-transparent text-[#1f3664] text-sm outline-none placeholder:text-[#7b8094]"
+    : "w-full bg-transparent text-[#1f3664] text-base sm:text-lg text-center outline-none placeholder:text-[#1f3664]";
+
   return (
     <div
       ref={rootRef}
-      className={`relative flex-1 min-w-0 self-stretch ${disabled ? "opacity-60" : ""}`}
+      className={`relative ${isField ? "w-full" : "flex-1 min-w-0 self-stretch"} ${disabled ? "opacity-60" : ""}`}
       aria-disabled={disabled || undefined}
     >
       <span className="sr-only" id={`${id}-label`}>
@@ -250,9 +270,9 @@ export default function AirportSelect({
           aria-labelledby={`${id}-label`}
           onClick={openPicker}
           disabled={disabled}
-          className="w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
+          className={triggerClass}
         >
-          <span className="text-[#1f3664] text-base sm:text-lg truncate">
+          <span className={triggerTextClass}>
             {value.city} ({value.iata})
           </span>
         </button>
@@ -263,12 +283,12 @@ export default function AirportSelect({
           aria-labelledby={`${id}-label`}
           onClick={openPicker}
           disabled={disabled}
-          className="w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
+          className={triggerClass}
         >
-          <span className="text-[#1f3664] text-base sm:text-lg">{placeholder}</span>
+          <span className={placeholderTextClass}>{placeholder}</span>
         </button>
       ) : (
-        <div className="w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center">
+        <div className={inputWrapClass}>
           <input
             ref={inputRef}
             id={`${id}-input`}
@@ -291,7 +311,7 @@ export default function AirportSelect({
             }}
             onKeyDown={onKeyDown}
             placeholder={placeholder}
-            className="w-full bg-transparent text-[#1f3664] text-base sm:text-lg text-center outline-none placeholder:text-[#1f3664]"
+            className={inputClass}
           />
         </div>
       )}

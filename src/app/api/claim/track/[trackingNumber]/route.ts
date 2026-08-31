@@ -20,7 +20,7 @@ export async function GET(_request: Request, context: RouteContext) {
     return Response.json({ error: "Claim not found." }, { status: 404 });
   }
 
-  const compensationEstimate = estimateCompensationForFlight(claim.flight);
+  const compensationEstimate = estimateCompensationForFlight(claim.flight, claim.locale);
 
   return Response.json({
     trackingNumber: claim.trackingNumber,

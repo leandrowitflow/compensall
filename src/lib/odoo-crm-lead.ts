@@ -7,6 +7,7 @@ import type {
 } from "@/lib/claim-types";
 import { estimateCompensationForFlight } from "@/lib/compensation-estimate";
 import { lookupAirlineByCarrierCode } from "@/lib/lookup-airline";
+import { formatRouteLabel } from "@/lib/lookup-airport";
 import { toDateInputValue } from "@/lib/resolve-boarding-pass-references";
 import {
   getOdooConfig,
@@ -217,8 +218,8 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
     x_studio_last_name: lastName,
     x_studio_email: input.contactEmail.trim(),
     x_studio_flight_number: input.flight.flight.trim(),
-    x_studio_departed_from: input.flight.routeFrom.trim(),
-    x_studio_final_destination: input.flight.routeTo.trim(),
+    x_studio_departed_from: formatRouteLabel(input.flight.routeFrom),
+    x_studio_final_destination: formatRouteLabel(input.flight.routeTo),
     x_studio_number_of_passengers: String(passengerCount),
     x_studio_poa_confirm: true,
     // Keep description empty of ops-email HTML — case data lives in studio fields.
@@ -252,7 +253,7 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
   }
 
   // Montante = passengers × estimated compensation per person (ops field in Odoo).
-  const estimate = estimateCompensationForFlight(input.flight);
+  const estimate = estimateCompensationForFlight(input.flight, input.locale);
   if (estimate?.amount != null) {
     values.x_studio_montante = passengerCount * estimate.amount;
   }
@@ -263,7 +264,7 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
   if (connectingLegs.length > 0) {
     const connectingLines = connectingLegs
       .map((leg, index) => {
-        const airport = leg.airport.trim() || "—";
+        const airport = formatRouteLabel(leg.airport) || "—";
         const flightNumber = leg.flightNumber.trim() || "—";
         return `<li>Connecting flight ${index + 1}: ${airport} / ${flightNumber}</li>`;
       })
@@ -350,22 +351,9 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
 function buildTicketAttachments(input: OdooClaimLeadInput): OdooAttachmentInput[] {
   const attachments: OdooAttachmentInput[] = [];
 
-  if (input.signedPoaHtmlBase64?.trim()) {
-    attachments.push({
-      name: `Power-of-Attorney-${input.trackingNumber}.html`,
-      mimetype: "text/html",
-      datas: input.signedPoaHtmlBase64.trim(),
-    });
-  }
-
-  if (input.signaturePngBase64?.trim()) {
-    attachments.push({
-      name: `signature-${input.trackingNumber}.png`,
-      mimetype: "image/png",
-      datas: input.signaturePngBase64.trim(),
-    });
-  }
-
+  // Passport / booking / expenses / other / signature / PoA are written to Studio
+  // DOCUMENTS fields on the ticket. Keep only boarding pass (and extra-pax files
+  // without dedicated Studio slots) on the chatter paperclip.
   if (input.boardingPass?.base64) {
     const original = input.boardingPass.fileName.trim() || "boarding-pass";
     const hasExtension = /\.[a-z0-9]+$/i.test(original);
@@ -373,30 +361,6 @@ function buildTicketAttachments(input: OdooClaimLeadInput): OdooAttachmentInput[
       name: hasExtension ? original : `${original}.bin`,
       mimetype: input.boardingPass.mimeType,
       datas: input.boardingPass.base64,
-    });
-  }
-
-  const categorizedDocs = [
-    input.claimDocuments?.passportCopy
-      ? { ...input.claimDocuments.passportCopy, prefix: "passport" }
-      : null,
-    input.claimDocuments?.bookingConfirmation
-      ? { ...input.claimDocuments.bookingConfirmation, prefix: "booking-confirmation" }
-      : null,
-    input.claimDocuments?.expensesReceipts
-      ? { ...input.claimDocuments.expensesReceipts, prefix: "expenses-receipts" }
-      : null,
-    ...(input.claimDocuments?.otherDocuments ?? []).map((doc) => ({ ...doc, prefix: "other" })),
-    ...(input.additionalDocuments ?? []).map((doc) => ({ ...doc, prefix: "other" })),
-  ].filter((doc): doc is NonNullable<typeof doc> => Boolean(doc?.base64.trim()));
-
-  for (const [index, doc] of categorizedDocs.entries()) {
-    const original = doc.fileName.trim() || `${doc.prefix}-${index + 1}`;
-    const hasExtension = /\.[a-z0-9]+$/i.test(original);
-    attachments.push({
-      name: hasExtension ? original : `${original}.bin`,
-      mimetype: doc.mimeType || "application/octet-stream",
-      datas: doc.base64,
     });
   }
 
@@ -459,7 +423,7 @@ async function syncHelpdeskTicket(
 
   const values = buildHelpdeskTicketValues(input);
 
-  const estimate = estimateCompensationForFlight(input.flight);
+  const estimate = estimateCompensationForFlight(input.flight, input.locale);
   if (estimate?.amount != null && estimate.currency) {
     try {
       const currencyId = await odooFindCurrencyIdByCode(estimate.currency);

@@ -13,8 +13,8 @@
     "learnMore": "Learn more",
     "checkClaims": "Check claims",
     "startYourClaim": "Start your claim",
-    "checkCompensation": "Check compensation",
-    "checkCompensationShort": "Check now",
+    "checkCompensation": "Claim compensation",
+    "checkCompensationShort": "Claim now",
     "home": "Home",
     "legal": "Legal",
     "airport": "Airport"
@@ -245,8 +245,9 @@
       "yes": "Yes",
       "no": "No",
       "legLabel": "Connecting flight {number}",
+      "anotherConnecting": "I had another connecting flight",
       "airport": "Airport",
-      "airportPlaceholder": "Type airport",
+      "airportPlaceholder": "Select airport",
       "flightNumber": "Flight number",
       "flightNumberPlaceholder": "e.g. BA1234",
       "errors": {
@@ -260,7 +261,7 @@
       "type": "Disruption type",
       "typePlaceholder": "Select disruption type",
       "selectPlaceholder": "Select an option",
-      "delayDuration": "Delay duration",
+      "delayDuration": "Delay duration at final destination",
       "delayLessThan3": "Less than 3 hours",
       "delayMoreThan3": "More than 3 hours",
       "cancellationNotice": "How many days before departure were you informed?",
@@ -836,7 +837,7 @@
   "notFoundPage": {
     "title": "Page not found",
     "description": "We could not find that page. Start a compensation check or browse our guides below.",
-    "checkCompensation": "Check compensation",
+    "checkCompensation": "Claim compensation",
     "knowYourRights": "Know your rights",
     "blog": "Blog"
   },

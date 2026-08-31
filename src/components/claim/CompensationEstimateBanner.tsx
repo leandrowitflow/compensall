@@ -1,9 +1,10 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   estimateCompensationFromRoute,
   formatEstimateDistance,
+  prefersEuroCompensationDisplay,
   type CompensationEstimate,
 } from "@/lib/compensation-estimate";
 
@@ -21,7 +22,11 @@ export default function CompensationEstimateBanner({
   className = "",
 }: CompensationEstimateBannerProps) {
   const t = useTranslations("claim.compensationEstimate");
-  const estimate = estimateProp ?? estimateCompensationFromRoute(routeFrom, routeTo);
+  const locale = useLocale();
+  const preferEuroDisplay = prefersEuroCompensationDisplay(locale);
+  const estimate =
+    estimateCompensationFromRoute(routeFrom, routeTo, { preferEuroDisplay }) ??
+    (preferEuroDisplay ? null : (estimateProp ?? null));
 
   if (!estimate) {
     return null;

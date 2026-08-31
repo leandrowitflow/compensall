@@ -281,7 +281,8 @@ export async function POST(request: Request) {
     }
     const additionalDocuments = otherDocuments;
 
-    const flight = withCompensationEstimate(normalizeFlightData(flightResult.data));
+    const locale = getRequestLocale(request, formData);
+    const flight = withCompensationEstimate(normalizeFlightData(flightResult.data), locale);
     const verification = await verifyBoardingPassClaim(
       flight,
       boardingPassBuffer,
@@ -290,7 +291,6 @@ export async function POST(request: Request) {
 
     const trackingNumber = generateTrackingNumber();
     const createdAt = new Date().toISOString();
-    const locale = getRequestLocale(request, formData);
 
     const record: ClaimRecord = {
       trackingNumber,

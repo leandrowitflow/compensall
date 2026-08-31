@@ -74,6 +74,7 @@ function tierForBand(
 export function estimateCompensationFromIatas(
   fromIata: string,
   toIata: string,
+  options?: { preferEuroDisplay?: boolean },
 ): CompensationEstimate | null {
   const from = fromIata.trim().toUpperCase();
   const to = toIata.trim().toUpperCase();
@@ -89,7 +90,9 @@ export function estimateCompensationFromIatas(
 
   const distanceKm = Math.round(haversineDistanceKm(fromCoords, toCoords));
   const band = distanceBand(distanceKm);
-  const regulation: CompensationRegulation = isUk261Departure(from) ? "UK261" : "EC261";
+  const routeRegulation: CompensationRegulation = isUk261Departure(from) ? "UK261" : "EC261";
+  // Non-English UI shows EUR only (Francisca ops request).
+  const regulation: CompensationRegulation = options?.preferEuroDisplay ? "EC261" : routeRegulation;
   const tier = tierForBand(regulation, band);
 
   return {
@@ -105,26 +108,46 @@ export function estimateCompensationFromIatas(
 export function estimateCompensationFromRoute(
   routeFrom: string,
   routeTo: string,
+  options?: { preferEuroDisplay?: boolean },
 ): CompensationEstimate | null {
   const fromIata = normalizeIata(routeFrom);
   const toIata = normalizeIata(routeTo);
   if (!fromIata || !toIata) {
     return null;
   }
-  return estimateCompensationFromIatas(fromIata, toIata);
+  return estimateCompensationFromIatas(fromIata, toIata, options);
+}
+
+export function prefersEuroCompensationDisplay(locale?: string | null): boolean {
+  if (!locale) return false;
+  const normalized = locale.trim().toLowerCase();
+  return normalized !== "en" && !normalized.startsWith("en-");
 }
 
 export function estimateCompensationForFlight(
   flight: Pick<ClaimFlightData, "routeFrom" | "routeTo" | "compensationEstimate">,
+  locale?: string | null,
 ): CompensationEstimate | null {
-  if (flight.compensationEstimate) {
+  const preferEuroDisplay = prefersEuroCompensationDisplay(locale);
+  if (flight.compensationEstimate && !preferEuroDisplay) {
     return flight.compensationEstimate;
   }
-  return estimateCompensationFromRoute(flight.routeFrom, flight.routeTo);
+  if (flight.compensationEstimate && preferEuroDisplay) {
+    return (
+      estimateCompensationFromRoute(flight.routeFrom, flight.routeTo, { preferEuroDisplay: true }) ??
+      flight.compensationEstimate
+    );
+  }
+  return estimateCompensationFromRoute(flight.routeFrom, flight.routeTo, { preferEuroDisplay });
 }
 
-export function withCompensationEstimate(flight: ClaimFlightData): ClaimFlightData {
-  const estimate = estimateCompensationFromRoute(flight.routeFrom, flight.routeTo);
+export function withCompensationEstimate(
+  flight: ClaimFlightData,
+  locale?: string | null,
+): ClaimFlightData {
+  const estimate = estimateCompensationFromRoute(flight.routeFrom, flight.routeTo, {
+    preferEuroDisplay: prefersEuroCompensationDisplay(locale),
+  });
   return {
     ...flight,
     compensationEstimate: estimate,
