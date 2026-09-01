@@ -84,14 +84,18 @@ export default async function HomePage({ params }: HomePageProps) {
   ];
   const showTrustpilot = isTrustpilotTrustBoxConfigured();
 
-  const ukTiers = UK261_TIERS.map((tier) => {
-    const key = tierTranslationKey(tier.amount);
-    return {
-      ...tier,
-      label: tTiers(`tiers.uk261.${key}.label`),
-      desc: tTiers(`tiers.uk261.${key}.desc`),
-    };
-  });
+  const showUkTiers = locale === "en";
+
+  const ukTiers = showUkTiers
+    ? UK261_TIERS.map((tier) => {
+        const key = tierTranslationKey(tier.amount);
+        return {
+          ...tier,
+          label: tTiers(`tiers.uk261.${key}.label`),
+          desc: tTiers(`tiers.uk261.${key}.desc`),
+        };
+      })
+    : [];
 
   const ecTiers = EC261_TIERS.map((tier) => {
     const key = tierTranslationKey(tier.amount);
@@ -324,20 +328,28 @@ export default async function HomePage({ params }: HomePageProps) {
             {t("compensation.title")}{" "}
             <span className="text-[#005ffe]">{t("compensation.titleAccent")}</span>
           </h2>
-          <p className="text-[#1f3664] text-base mb-6 lg:mb-6 xl:mb-4 max-w-[968px] mx-auto">
-            {t("compensation.ukIntro")}
-          </p>
+          {showUkTiers ? (
+            <>
+              <p className="text-[#1f3664] text-base mb-6 lg:mb-6 xl:mb-4 max-w-[968px] mx-auto">
+                {t("compensation.ukIntro")}
+              </p>
 
-          <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-6">{t("compensation.ukHeading")}</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 xl:mb-14">
-            {ukTiers.map((tier) => (
-              <CompensationTierCard
-                key={tier.amount}
-                {...tier}
-                tierAlt={t("compensation.tierAlt", { amount: tier.amount })}
-              />
-            ))}
-          </div>
+              <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-6">{t("compensation.ukHeading")}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 xl:mb-14">
+                {ukTiers.map((tier) => (
+                  <CompensationTierCard
+                    key={tier.amount}
+                    {...tier}
+                    tierAlt={t("compensation.tierAlt", { amount: tier.amount })}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            <p className="text-[#1f3664] text-base mb-6 lg:mb-6 xl:mb-4 max-w-[968px] mx-auto">
+              {t("compensation.ecIntro")}
+            </p>
+          )}
 
           <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-2">{t("compensation.ecHeading")}</h3>
           <p className="text-muted text-sm mb-6 max-w-[768px] mx-auto">{tTiers("ec261Note")}</p>

@@ -24,6 +24,7 @@ export default async function PricesPage({ params }: PricesPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const showUkTiers = locale === "en";
   const t = await getTranslations("prices");
   const tTiers = await getTranslations("passengerRights");
 
@@ -90,15 +91,19 @@ export default async function PricesPage({ params }: PricesPageProps) {
         </table>
       </div>
 
-      <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("uk261Title")}</h2>
-      <p className="text-muted text-sm leading-relaxed mb-4">{t("uk261Intro")}</p>
-      <ul className="list-disc pl-5 text-sm text-muted space-y-1 mb-8">
-        {ukTierItems.map((tier) => (
-          <li key={tier.amount}>
-            <strong className="text-[#1f3664]">{tier.amount}</strong> — {tier.label}
-          </li>
-        ))}
-      </ul>
+      {showUkTiers ? (
+        <>
+          <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("uk261Title")}</h2>
+          <p className="text-muted text-sm leading-relaxed mb-4">{t("uk261Intro")}</p>
+          <ul className="list-disc pl-5 text-sm text-muted space-y-1 mb-8">
+            {ukTierItems.map((tier) => (
+              <li key={tier.amount}>
+                <strong className="text-[#1f3664]">{tier.amount}</strong> — {tier.label}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
 
       <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("ec261Title")}</h2>
       <p className="text-muted text-sm leading-relaxed mb-4">{tTiers("ec261Note")}</p>

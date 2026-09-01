@@ -20,7 +20,7 @@ export const noWinNoFeePt: LegalDocument = {
           content: [
             {
               type: "text",
-              text: 'Este Acordo de não ganho, não pagamento ("Acordo") é celebrado entre o reclamante (si) e a ',
+              text: 'Este Acordo No win, no fee ("Acordo") é celebrado entre o reclamante (si) e a ',
             },
             { type: "strongBrand", field: "brandName" },
             {
@@ -61,9 +61,9 @@ export const noWinNoFeePt: LegalDocument = {
           type: "table",
           headers: ["Montante da compensação", "Taxa de sucesso"],
           rows: [
-            { category: "Até 250€", purpose: "25% + IVA" },
-            { category: "251€ – 400€", purpose: "25% + IVA" },
-            { category: "401€ – 600€", purpose: "25% + IVA" },
+            { category: "Até 250€", purpose: "30% + IVA" },
+            { category: "251€ – 400€", purpose: "30% + IVA" },
+            { category: "401€ – 600€", purpose: "30% + IVA" },
           ],
         },
         {
@@ -71,7 +71,7 @@ export const noWinNoFeePt: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "A taxa de sucesso é deduzida antes de o restante da compensação lhe ser transferido. Receberá sempre pelo menos 75% do montante recuperado antes de ajustes de IVA.",
+              text: "A taxa de sucesso é deduzida antes de o restante da compensação lhe ser transferido. Receberá sempre pelo menos 70% do montante recuperado antes de ajustes de IVA.",
             },
           ],
         },

@@ -59,7 +59,7 @@
     "termsOfService": "Terms of Service",
     "cookies": "Cookies",
     "prices": "Prices",
-    "noWinNoFee": "No Win, No Fee",
+    "noWinNoFee": "No win, no fee.",
     "socialLinkedIn": "LinkedIn",
     "socialInstagram": "Instagram",
     "socialFacebook": "Facebook",
@@ -74,7 +74,7 @@
   "home": {
     "metadata": {
       "title": "Delayed or cancelled flight? Claim up to £520 or €600",
-      "description": "Upload your boarding pass and claim flight compensation under UK261 or EC 261/2004. Secure, human-backed, no win no fee."
+      "description": "Upload your boarding pass and claim flight compensation under UK261 or EC 261/2004. Secure, human-backed, No win, no fee."
     },
     "hero": {
       "trustpilotAlt": "Excellent Trustpilot 4.8 out of 5",
@@ -89,7 +89,7 @@
       "dataProtected": "Your data is always protected"
     },
     "trustBar": {
-      "noWinNoFee": "No win, no fee",
+      "noWinNoFee": "No win, no fee.",
       "onlyIfSuccessful": "You only pay if we win",
       "gdprFirst": "GDPR-first",
       "privacyByDesign": "Privacy by design",
@@ -152,6 +152,7 @@
       "title": "How much is the",
       "titleAccent": "compensation?",
       "ukIntro": "For UK departures, UK261 sets fixed amounts in pounds. The amount depends on your flight distance.",
+      "ecIntro": "For eligible EU flights, EC 261/2004 sets fixed amounts in euros. The amount depends on your flight distance.",
       "ukHeading": "UK261 — UK flights",
       "ecHeading": "EC 261/2004 — eligible EU flights",
       "tierAlt": "{amount} compensation tier"
@@ -165,7 +166,7 @@
       "signSubmit": "Sign & submit"
     },
     "step1": {
-      "rightsContext": "Under UK and EU passenger rights law (UK261 and EC 261/2004), you may be entitled to compensation for delays, cancellations, and denied boarding. Upload your boarding pass to check eligibility — free and no win, no fee.",
+      "rightsContext": "Under UK and EU passenger rights law (UK261 and EC 261/2004), you may be entitled to compensation for delays, cancellations, and denied boarding. Upload your boarding pass to check eligibility — free. No win, no fee.",
       "readingBoardingPass": "Reading your boarding pass…",
       "extractingDetails": "{assistantName} is extracting your flight details",
       "uploadTitle": "Upload your boarding pass",
@@ -398,7 +399,7 @@
     "sectionTitleAccent": "questions",
     "pageTitle": "Flight compensation",
     "pageTitleAccent": "FAQ",
-    "pageIntro": "Everything you need to know about claiming under UK261 and EC 261/2004, our no win no fee service, and how we protect your data.",
+    "pageIntro": "Everything you need to know about claiming under UK261 and EC 261/2004, our No win, no fee service, and how we protect your data.",
     "default": [
       {
         "question": "Is it safe to upload my boarding pass?",
@@ -426,7 +427,7 @@
       },
       {
         "question": "How much does it cost?",
-        "answer": "There is no upfront cost. Compensall works on a no win, no fee basis, which means we only charge a fee if your claim is successful."
+        "answer": "There is no upfront cost. Compensall works on a No win, no fee basis, which means we only charge a fee if your claim is successful."
       },
       {
         "question": "Can I delete my data?",
@@ -476,8 +477,8 @@
     "summary": "The rules for using Compensall and submitting a flight compensation claim."
   },
   "noWinNoFeePage": {
-    "pageTitle": "No Win, No Fee Agreement",
-    "breadcrumb": "No Win, No Fee Agreement",
+    "pageTitle": "No win, no fee Agreement",
+    "breadcrumb": "No win, no fee Agreement",
     "summary": "You only pay if we successfully recover your flight compensation."
   },
   "legal": {
@@ -488,7 +489,7 @@
     "subtitle": "We help passengers claim the compensation they are owed with our assistant and human support every step of the way.",
     "missionTitle": "Our mission",
     "missionP1": "Compensall makes flight compensation simple. Airlines often delay responses, reject valid claims, and make the process stressful, so too many passengers never receive what EU regulation EC 261/2004 entitles them to.",
-    "missionP2": "We take care of everything: paperwork, negotiations with the airline, and pursuing your case when needed. Upload your boarding pass, confirm your details, and let our team fight for your compensation on a no win, no fee basis.",
+    "missionP2": "We take care of everything: paperwork, negotiations with the airline, and pursuing your case when needed. Upload your boarding pass, confirm your details, and let our team fight for your compensation on a No win, no fee basis.",
     "whyChooseTitle": "Why passengers choose us",
     "whyChoose": [
       "No win, no fee: you pay nothing unless we succeed",
@@ -562,16 +563,16 @@
     "breadcrumb": "Prices",
     "summary": "No upfront cost. We only charge a success fee when we recover compensation for you.",
     "noWinNoFeeIntro": "No win, no fee:",
-    "noWinNoFeeBody": "Checking eligibility and using our website is free. If you appoint us to pursue compensation, our fee applies only when your claim is successful, as set out in our <noWinNoFeeAgreement>No Win, No Fee Agreement</noWinNoFeeAgreement>.",
-    "noWinNoFeeAgreement": "No Win, No Fee Agreement",
+    "noWinNoFeeBody": "Checking eligibility and using our website is free. If you appoint us to pursue compensation, our fee applies only when your claim is successful, as set out in our <noWinNoFeeAgreement>No win, no fee Agreement</noWinNoFeeAgreement>.",
+    "noWinNoFeeAgreement": "No win, no fee Agreement",
     "successFeeTitle": "Success fee",
-    "successFeeDescription": "When we recover compensation on your behalf, we deduct a success fee before transferring the balance to you. You receive at least 75% of the recovered amount before VAT adjustments.",
+    "successFeeDescription": "When we recover compensation on your behalf, we deduct a success fee before transferring the balance to you. You receive at least 70% of the recovered amount before VAT adjustments.",
     "tableCompensationRecovered": "Compensation recovered",
     "tableSuccessFee": "Success fee",
     "tierUpTo220": "Up to £220 / €250",
     "tier221to350": "£221–£350 / €251–€400",
     "tier351to520": "£351–£520 / €401–€600",
-    "fee25Vat": "25% + VAT",
+    "fee25Vat": "30% + VAT",
     "uk261Title": "Compensation amounts (UK261)",
     "uk261Intro": "For UK departures, fixed compensation under UK261 depends on flight distance:",
     "ec261Title": "Compensation amounts (EC 261/2004)"
@@ -602,7 +603,7 @@
       "body": "EU Regulation EC 261/2004 continues to protect passengers on eligible flights departing from EU airports, with compensation of €250, €400, or €600 on the same distance bands."
     },
     "rightsDetailP1": "If your flight is delayed by three hours or more at arrival, cancelled with short notice, or you are denied boarding against your will, you may be entitled to fixed compensation. You may also have rights to care, rerouting, and refunds depending on the circumstances.",
-    "rightsDetailP2": "Missed connections and airline strikes can also qualify when the disruption is within the airline's control. Compensall helps you check eligibility, prepare your claim, and pursue compensation with the airline on a no win, no fee basis.",
+    "rightsDetailP2": "Missed connections and airline strikes can also qualify when the disruption is within the airline's control. Compensall helps you check eligibility, prepare your claim, and pursue compensation with the airline on a No win, no fee basis.",
     "eligibilityHeading": "When can you claim",
     "eligibilityAccent": "compensation?",
     "eligibilityIntro": "You may be eligible if all of the following apply to your journey.",
@@ -663,19 +664,19 @@
   "metadata": {
     "site": {
       "title": "Compensall – Delayed or cancelled flight? Claim up to £520 or €600",
-      "description": "Delayed or cancelled flight? Claim up to £520 under UK261 or €600 under EC 261/2004. Secure boarding pass upload, human-backed support, no win no fee."
+      "description": "Delayed or cancelled flight? Claim up to £520 under UK261 or €600 under EC 261/2004. Secure boarding pass upload, human-backed support, No win, no fee."
     },
     "home": {
       "title": "Delayed or cancelled flight? Claim up to £520 or €600",
-      "description": "Upload your boarding pass and claim flight compensation under UK261 or EC 261/2004. Secure, human-backed, no win no fee."
+      "description": "Upload your boarding pass and claim flight compensation under UK261 or EC 261/2004. Secure, human-backed, No win, no fee."
     },
     "faq": {
       "title": "Frequently asked questions about flight compensation",
-      "description": "Answers about UK261, EC 261/2004, compensation amounts, no win no fee, boarding pass uploads, and how Compensall handles your claim."
+      "description": "Answers about UK261, EC 261/2004, compensation amounts, No win, no fee, boarding pass uploads, and how Compensall handles your claim."
     },
     "about": {
       "title": "About Compensall",
-      "description": "Compensall helps air passengers claim up to €600 under EU261 with secure boarding pass upload, assistant-led checks, and human-backed airline handling on a no win, no fee basis."
+      "description": "Compensall helps air passengers claim up to €600 under EU261 with secure boarding pass upload, assistant-led checks, and human-backed airline handling on a No win, no fee basis."
     },
     "knowYourRights": {
       "title": "Know your flight compensation rights",
@@ -683,7 +684,7 @@
     },
     "prices": {
       "title": "Prices and fees",
-      "description": "Compensall works on a no win, no fee basis. See our success fee structure and the UK261 and EC 261 compensation amounts passengers may receive."
+      "description": "Compensall works on a No win, no fee basis. See our success fee structure and the UK261 and EC 261 compensation amounts passengers may receive."
     },
     "blog": {
       "title": "Flight compensation guides and passenger rights",
@@ -710,8 +711,8 @@
       "description": "Power of Attorney authorising Compensall to pursue your EC 261/2004 flight compensation claim."
     },
     "noWinNoFee": {
-      "title": "No Win, No Fee Agreement",
-      "description": "Compensall's No Win, No Fee agreement. You only pay if we successfully recover your compensation."
+      "title": "No win, no fee Agreement",
+      "description": "Compensall's No win, no fee agreement. You only pay if we successfully recover your compensation."
     },
     "privacyDataConsent": {
       "title": "Privacy and Data Consent",
@@ -822,7 +823,7 @@
     "faqAmountAnswer": "Under EC 261/2004 and UK261, compensation is typically €250, €400 or €600 per passenger depending on flight distance and delay length.",
     "faqRejectedAirlineQuestion": "What if {name} already rejected my claim?",
     "faqRejectedAirportQuestion": "What if the airline already rejected my claim?",
-    "faqRejectedAnswer": "A rejection does not always mean you have no rights. We review your case and can pursue valid claims on a no win, no fee basis.",
+    "faqRejectedAnswer": "A rejection does not always mean you have no rights. We review your case and can pursue valid claims on a No win, no fee basis.",
     "faqDeadlineQuestion": "Is there a deadline to claim?",
     "faqDeadlineAnswer": "Time limits vary by country (often several years). Check sooner rather than later so we can assess your options.",
     "faqSafeQuestion": "Is it safe to share my boarding pass?",

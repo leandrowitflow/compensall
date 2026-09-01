@@ -20,7 +20,7 @@ export const noWinNoFeeFr: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "Le présent Accord « vous ne payez que si on gagne » (« Accord ») est conclu entre le demandeur (vous) et ",
+              text: 'Le présent Accord No win, no fee ("Accord") est conclu entre le demandeur (vous) et ',
             },
             { type: "strongBrand", field: "brandName" },
             {
@@ -61,9 +61,9 @@ export const noWinNoFeeFr: LegalDocument = {
           type: "table",
           headers: ["Montant de l'indemnisation", "Honoraires de succès"],
           rows: [
-            { category: "Jusqu'à 250€", purpose: "25% + TVA" },
-            { category: "251€ – 400€", purpose: "25% + TVA" },
-            { category: "401€ – 600€", purpose: "25% + TVA" },
+            { category: "Jusqu'à 250€", purpose: "30% + TVA" },
+            { category: "251€ – 400€", purpose: "30% + TVA" },
+            { category: "401€ – 600€", purpose: "30% + TVA" },
           ],
         },
         {
@@ -71,7 +71,7 @@ export const noWinNoFeeFr: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "Les honoraires de succès sont déduits avant le transfert du solde restant. Vous recevez toujours au moins 75% du montant récupéré avant ajustements de TVA.",
+              text: "Les honoraires de succès sont déduits avant le transfert du solde restant. Vous recevez toujours au moins 70% du montant récupéré avant ajustements de TVA.",
             },
           ],
         },

@@ -76,7 +76,7 @@ export function PrivacyDataConsentContent() {
         <p>We process your personal data on the following legal bases:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
           <li>
-            <strong>Contract performance:</strong> To fulfil our obligations under the No Win, No Fee Agreement.
+            <strong>Contract performance:</strong> To fulfil our obligations under the No win, no fee Agreement.
           </li>
           <li>
             <strong>Legitimate interests:</strong> To pursue flight compensation claims on your behalf.

@@ -20,7 +20,7 @@ export const noWinNoFeeEn: LegalDocument = {
           content: [
             {
               type: "text",
-              text: 'This No Win, No Fee Agreement ("Agreement") is entered into between the claimant (you) and ',
+              text: 'This No win, no fee Agreement ("Agreement") is entered into between the claimant (you) and ',
             },
             { type: "strongBrand", field: "brandName" },
             {
@@ -61,9 +61,9 @@ export const noWinNoFeeEn: LegalDocument = {
           type: "table",
           headers: ["Compensation Amount", "Success Fee"],
           rows: [
-            { category: "Up to €250", purpose: "25% + VAT" },
-            { category: "€251 – €400", purpose: "25% + VAT" },
-            { category: "€401 – €600", purpose: "25% + VAT" },
+            { category: "Up to €250", purpose: "30% + VAT" },
+            { category: "€251 – €400", purpose: "30% + VAT" },
+            { category: "€401 – €600", purpose: "30% + VAT" },
           ],
         },
         {
@@ -71,7 +71,7 @@ export const noWinNoFeeEn: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "The success fee is deducted before the remaining compensation is transferred to you. You will always receive at least 75% of the recovered amount before VAT adjustments.",
+              text: "The success fee is deducted before the remaining compensation is transferred to you. You will always receive at least 70% of the recovered amount before VAT adjustments.",
             },
           ],
         },

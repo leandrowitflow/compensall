@@ -30,7 +30,7 @@ function resolveSiteUrl(): string {
 export const SITE_URL = resolveSiteUrl();
 
 export const SITE_DESCRIPTION =
-  "Delayed or cancelled flight? Claim up to £520 under UK261 or €600 under EC 261/2004. Secure boarding pass upload, human-backed support, no win no fee.";
+  "Delayed or cancelled flight? Claim up to £520 under UK261 or €600 under EC 261/2004. Secure boarding pass upload, human-backed support, No win, no fee.";
 
 export const DEFAULT_OG_IMAGE = "/assets/blog/flight-cancellation.jpg";
 
