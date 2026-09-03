@@ -9,6 +9,7 @@ import CTABanner from "@/components/CTABanner";
 import FAQSection from "@/components/FAQSection";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import JsonLd from "@/components/seo/JsonLd";
+import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
 import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
 import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
@@ -71,6 +72,7 @@ export default async function KnowYourRightsPage({ params }: KnowYourRightsPageP
 
               <h1 className="font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[1010px] mx-auto">
                 {t("heroTitle")}
+                <MarkdownDownloadButton tone="onDark" />
               </h1>
               <p className="text-white font-bold text-base lg:text-[17px] xl:text-[19px] leading-relaxed max-w-[642px] mx-auto">
                 {t("heroSubtitle")}

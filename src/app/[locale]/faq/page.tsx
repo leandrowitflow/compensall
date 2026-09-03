@@ -4,6 +4,7 @@ import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import JsonLd from "@/components/seo/JsonLd";
+import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
 import type { AppLocale } from "@/i18n/routing";
 import { parseFaqItems } from "@/lib/faq-items";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
@@ -34,6 +35,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
           <h1 className="font-bold text-3xl md:text-4xl xl:text-[48px] text-[#1f3664] mb-4 leading-[1.2]">
             {t("pageTitle")}{" "}
             <span className="text-[#2669f3]">{t("pageTitleAccent")}</span>
+            <MarkdownDownloadButton tone="onLight" />
           </h1>
           <p className="text-[#1f3664] text-base max-w-[640px] mx-auto leading-relaxed">{t("pageIntro")}</p>
         </div>

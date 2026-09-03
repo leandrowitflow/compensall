@@ -5,6 +5,7 @@ import FAQSection from "@/components/FAQSection";
 import CatalogClaimSection from "@/components/CatalogClaimSection";
 import CatalogLogo from "@/components/CatalogLogo";
 import JsonLd from "@/components/seo/JsonLd";
+import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
 import { Link } from "@/i18n/routing";
 import {
   buildCatalogFaqs,
@@ -77,6 +78,7 @@ export default async function CatalogDetailPage({ item, kind }: CatalogDetailPag
 
           <h1 className="font-bold text-3xl md:text-4xl lg:text-[34px] xl:text-[44px] text-[#1f3664] leading-[1.2] mb-6 xl:mb-8">
             {title}
+            <MarkdownDownloadButton tone="onLight" />
           </h1>
 
           <div className="space-y-5 text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10 xl:mb-14">

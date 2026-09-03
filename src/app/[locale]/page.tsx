@@ -9,6 +9,7 @@ import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import CTABanner from "@/components/CTABanner";
 import HomePassengerRightsSection from "@/components/HomePassengerRightsSection";
 import HowItWorksSteps from "@/components/HowItWorksSteps";
+import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
 import { FAQSection, Footer } from "@/components/home/HomeDeferredSections";
 import JsonLd from "@/components/seo/JsonLd";
 import type { AppLocale } from "@/i18n/routing";
@@ -168,6 +169,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 {t("hero.title")}
                 <br />
                 {t("hero.titleLine2")}
+                <MarkdownDownloadButton tone="onDark" />
               </h1>
               <p className="text-white/80 text-base md:text-lg font-semibold mb-8 max-w-[640px] mx-auto">
                 {t("hero.subtitle")}

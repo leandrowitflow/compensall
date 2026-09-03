@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
+import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
 import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
 import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
 
@@ -35,6 +36,7 @@ export default function PageHero({
 
             <h1 className="font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[1010px] mx-auto">
               {title}
+              <MarkdownDownloadButton tone="onDark" />
             </h1>
             <div className="text-white font-bold text-base lg:text-[17px] xl:text-[19px] leading-relaxed max-w-[720px] mx-auto">
               {subtitle}

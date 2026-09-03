@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
 import { Link } from "@/i18n/routing";
 import { gtmClaimCta, gtmId } from "@/lib/gtm";
 
@@ -11,7 +12,10 @@ export default async function NotFound() {
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
       <main className="px-4 md:px-8 py-16 text-center max-w-[760px] mx-auto">
-        <h1 className="font-bold text-3xl text-[#1f3664] mb-4">{t("title")}</h1>
+        <h1 className="font-bold text-3xl text-[#1f3664] mb-4">
+          {t("title")}
+          <MarkdownDownloadButton tone="onLight" />
+        </h1>
         <p className="text-[#1f3664] mb-8">{t("description")}</p>
         <div className="flex flex-wrap justify-center gap-4">
           <Link

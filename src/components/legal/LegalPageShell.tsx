@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
 import { Link } from "@/i18n/routing";
 
 type LegalPageShellProps = {
@@ -35,8 +36,13 @@ export default async function LegalPageShell({
         <div className="bg-white rounded-2xl border border-[#d5e0f9] overflow-hidden shadow-sm">
           <div className="bg-gradient-to-r from-[#1f3664] to-[#2669f3] px-8 py-8">
             <p className="text-white/70 text-sm mb-1">{t("legal")}</p>
-            <h1 className="font-bold text-white text-2xl md:text-3xl">{title}</h1>
-            <p className="text-white/80 text-sm md:text-base mt-3 max-w-[640px] leading-relaxed">{summary}</p>
+            <h1 className="font-bold text-white text-2xl md:text-3xl">
+              {title}
+              <MarkdownDownloadButton tone="onDark" />
+            </h1>
+            <p className="text-white/80 text-sm md:text-base mt-3 max-w-[640px] leading-relaxed">
+              {summary}
+            </p>
           </div>
 
           <div className="px-8 py-8 text-[#1f3664]">{children}</div>
