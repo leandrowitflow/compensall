@@ -15,9 +15,15 @@ import {
   type ClaimUploadMeta,
 } from "@/lib/claim-types";
 
-const ClaimSidebar = dynamic(() => import("@/components/claim/ClaimSidebar"));
-const Step2Panel = dynamic(() => import("@/components/claim/Step2Panel"));
-const Step3Panel = dynamic(() => import("@/components/claim/Step3Panel"));
+const ClaimSidebar = dynamic(() => import("@/components/claim/ClaimSidebar"), {
+  loading: () => <div className="min-h-[200px] rounded-[21px] border border-[#d5e0f9] bg-[#f8faff] animate-pulse" />,
+});
+const Step2Panel = dynamic(() => import("@/components/claim/Step2Panel"), {
+  loading: () => <div className="min-h-[320px] rounded-[21px] border border-[#d5e0f9] bg-[#f8faff] animate-pulse" />,
+});
+const Step3Panel = dynamic(() => import("@/components/claim/Step3Panel"), {
+  loading: () => <div className="min-h-[320px] rounded-[21px] border border-[#d5e0f9] bg-[#f8faff] animate-pulse" />,
+});
 
 type ClaimStep = 1 | 2 | 3;
 
@@ -199,7 +205,15 @@ export default function HeroClaimForm() {
       }
 
       advanceWithFile();
-      setFlight(normalizeFlightData(data.flight));
+      try {
+        setFlight(normalizeFlightData(data.flight));
+      } catch (normalizeError) {
+        console.error("[HeroClaimForm] normalizeFlightData failed:", normalizeError);
+        setFlight(EMPTY_FLIGHT);
+        setIsEditing(true);
+        setExtractError(tStep1("errors.extractFailed"));
+        return;
+      }
       setIsEditing(Boolean(data.warning));
       setExtractError(data.warning ?? null);
     } catch {

@@ -106,7 +106,7 @@ export function formatExtractionError(error: unknown): string {
     (lower.includes("not found") && lower.includes("model")) ||
     lower.includes("no longer available")
   ) {
-    return "Vision model is unavailable. Set GEMINI_VISION_MODEL to a current model (e.g. gemini-3.5-flash).";
+    return "Vision model is unavailable. Set GEMINI_VISION_MODEL to a current model (e.g. gemini-2.5-flash).";
   }
 
   return "We couldn't read every detail automatically. You can still continue and fill in your flight details manually.";

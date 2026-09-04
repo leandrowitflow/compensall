@@ -60,8 +60,10 @@ export function isAllowedBoardingPassMime(mimeType: string): boolean {
 export function buildUploadMeta(file: File): ClaimUploadMeta {
   const mimeType = inferMimeType(file.name, file.type);
   const previewKind = getUploadPreviewKind(mimeType);
-  const canShowInlinePreview =
-    isBrowserImagePreview(mimeType) || isPdfMime(mimeType) || mimeType.startsWith("image/");
+  // Only create object URLs for formats browsers can actually render.
+  // HEIC/HEIF get a previewUrl under startsWith("image/") but Safari/Chrome often
+  // show a blank modal — keep them as non-previewable file kind instead.
+  const canShowInlinePreview = isBrowserImagePreview(mimeType) || isPdfMime(mimeType);
 
   let previewUrl: string | null = null;
   if (canShowInlinePreview) {

@@ -3,10 +3,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
 import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
 import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
-import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import CTABanner from "@/components/CTABanner";
+import HomeClaimFormSection from "@/components/HomeClaimFormSection";
 import HomePassengerRightsSection from "@/components/HomePassengerRightsSection";
 import HowItWorksSteps from "@/components/HowItWorksSteps";
 import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
@@ -17,8 +17,6 @@ import { getLocalizedFaqs } from "@/lib/i18n-faqs";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 import { buildFaqPageSchema, buildHowToSchema } from "@/lib/structured-data";
-
-const HeroClaimForm = dynamic(() => import("@/components/HeroClaimForm"));
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -175,7 +173,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 {t("hero.subtitle")}
               </p>
 
-              <HeroClaimForm />
+              <HomeClaimFormSection />
 
               <div className="flex flex-col items-start text-left sm:flex-row sm:items-center sm:justify-center gap-8 sm:gap-10 xl:gap-12 mt-12 sm:mt-14 xl:mt-16 max-w-[1100px] w-full mx-auto px-6 sm:px-10 xl:px-14 pb-6 xl:pb-10">
                 <div className="flex items-center gap-4 justify-start sm:justify-center min-w-0 w-full sm:w-auto">

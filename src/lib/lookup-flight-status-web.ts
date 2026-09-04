@@ -24,7 +24,7 @@ export type FlightWebLookupQuery = {
   airlineName?: string | null;
 };
 
-const LOOKUP_MODEL = resolveGeminiModel(process.env.GEMINI_FLIGHT_LOOKUP_MODEL, "gemini-3.5-flash");
+const LOOKUP_MODEL = resolveGeminiModel(process.env.GEMINI_FLIGHT_LOOKUP_MODEL, "gemini-2.5-flash");
 const LOOKUP_MODEL_FALLBACK = "gemini-3.1-pro-preview";
 
 function isRetryableModelError(error: unknown): boolean {

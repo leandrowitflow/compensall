@@ -2,10 +2,17 @@ import type { ProviderOptions } from "@ai-sdk/provider-utils";
 
 const BROWSER_IMAGE_MIMES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 
-/** High resolution helps read small boarding-pass text (flight no., airports, date). */
+/**
+ * High resolution helps read small boarding-pass text.
+ * thinkingBudget: 0 keeps Gemini 3.x from spending tokens on "thinking",
+ * which often returns empty/partial structured OCR for boarding passes.
+ */
 export const GEMINI_VISION_PROVIDER_OPTIONS: ProviderOptions = {
   google: {
     mediaResolution: "MEDIA_RESOLUTION_HIGH",
+    thinkingConfig: {
+      thinkingBudget: 0,
+    },
   },
 };
 
