@@ -5,6 +5,7 @@ import LegalPageShell from "@/components/legal/LegalPageShell";
 import type { AppLocale } from "@/i18n/routing";
 import { gtmId } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
+import { localizeEuroAmountLabel } from "@/lib/public-copy";
 import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 
 type PricesPageProps = {
@@ -31,7 +32,7 @@ export default async function PricesPage({ params }: PricesPageProps) {
   const ukTierItems = UK261_TIERS.map((tier) => {
     const key = tierTranslationKey(tier.amount);
     return {
-      amount: tier.amount,
+      amount: localizeEuroAmountLabel(tier.amount, locale),
       label: tTiers(`tiers.uk261.${key}.label`),
     };
   });
@@ -39,7 +40,7 @@ export default async function PricesPage({ params }: PricesPageProps) {
   const ecTierItems = EC261_TIERS.map((tier) => {
     const key = tierTranslationKey(tier.amount);
     return {
-      amount: tier.amount,
+      amount: localizeEuroAmountLabel(tier.amount, locale),
       label: tTiers(`tiers.ec261.${key}.label`),
     };
   });

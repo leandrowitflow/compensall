@@ -4,7 +4,7 @@ export const privacyPolicyFr: LegalDocument = {
   intro: {
     type: "callout",
     content: [
-      { type: "strong", text: "Dernière mise à jour :" },
+      { type: "strong", text: "Dernière mise à jour:" },
       {
         type: "text",
         text: " juillet 2026. La présente Politique de confidentialité explique comment Compensall collecte, utilise et protège les données personnelles lorsque vous utilisez notre site web et nos services de réclamation.",
@@ -27,7 +27,7 @@ export const privacyPolicyFr: LegalDocument = {
             { type: "brand", field: "brandName" },
             {
               type: "text",
-              text: '", "nous", "notre"), est le responsable du traitement des données personnelles traitées via ce site web et les services associés. Adresse enregistrée : ',
+              text: '", "nous", "notre"), est le responsable du traitement des données personnelles traitées via ce site web et les services associés. Adresse enregistrée: ',
             },
             { type: "brand", field: "legalEntityAddress" },
             { type: "text", text: "." },
@@ -36,7 +36,7 @@ export const privacyPolicyFr: LegalDocument = {
         {
           type: "paragraph",
           content: [
-            { type: "text", text: "Questions relatives à la confidentialité : " },
+            { type: "text", text: "Questions relatives à la confidentialité: " },
             { type: "email" },
           ],
         },
@@ -345,5 +345,5 @@ export const privacyPolicyFr: LegalDocument = {
       ],
     },
   ],
-  footer: "Version du document 1.0. Dernière mise à jour : juillet 2026",
+  footer: "Version du document 1.0. Dernière mise à jour: juillet 2026",
 };

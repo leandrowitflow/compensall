@@ -4,7 +4,7 @@ export const cookiesFr: LegalDocument = {
   intro: {
     type: "callout",
     content: [
-      { type: "strong", text: "Dernière mise à jour :" },
+      { type: "strong", text: "Dernière mise à jour:" },
       {
         type: "text",
         text: " juillet 2026. La présente Politique relative aux cookies explique comment Compensall utilise les cookies et technologies similaires sur notre site web.",
@@ -13,7 +13,7 @@ export const cookiesFr: LegalDocument = {
   },
   sections: [
     {
-      title: "1. Que sont les cookies ?",
+      title: "1. Que sont les cookies?",
       blocks: [
         {
           type: "paragraph",
@@ -120,7 +120,7 @@ export const cookiesFr: LegalDocument = {
               text: "Pour plus de détails sur la façon dont nous traitons les données personnelles, consultez notre ",
             },
             { type: "link", href: "/privacy-policy", label: "Politique de confidentialité" },
-            { type: "text", text: ". Questions relatives à la confidentialité : " },
+            { type: "text", text: ". Questions relatives à la confidentialité: " },
             { type: "email" },
           ],
         },
@@ -141,5 +141,5 @@ export const cookiesFr: LegalDocument = {
       ],
     },
   ],
-  footer: "Version du document 1.0. Dernière mise à jour : juillet 2026",
+  footer: "Version du document 1.0. Dernière mise à jour: juillet 2026",
 };

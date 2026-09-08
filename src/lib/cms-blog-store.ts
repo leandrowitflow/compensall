@@ -6,6 +6,7 @@ import { estimateReadTime, markdownToBlocks } from "@/lib/blog/markdown-to-block
 import type { BlogPost } from "@/lib/blog/types";
 import { formatBlogDisplayDate } from "@/lib/blog-date";
 import type { CmsWebhookPayload, CmsWebhookTranslation } from "@/lib/cms-webhook/types";
+import { polishPublicCopy } from "@/lib/public-copy";
 import { supabaseRestUrl } from "@/lib/supabase-rest";
 
 export const CMS_BLOG_TAG = "cms-blog-posts";
@@ -237,19 +238,26 @@ export function cmsRecordToBlogPost(record: CmsBlogRecord, locale: AppLocale): B
     return null;
   }
 
-  const contentMd = normalizeMarkdownInternalLinks(translation.content_md ?? "");
+  const contentMd = polishPublicCopy(
+    normalizeMarkdownInternalLinks(translation.content_md ?? ""),
+    locale,
+  );
+  const polishedContentMd =
+    locale === "pt" && record.slug === "overbooking"
+      ? contentMd.replace(/EC 261/g, "CE 261")
+      : contentMd;
   const dateSource = record.published_at ?? record.updated_at;
 
   return {
     slug: record.slug,
     category: CMS_BLOG_CATEGORY_BY_LOCALE[locale],
     date: formatBlogDisplayDate(dateSource),
-    readTime: estimateReadTime(contentMd),
-    title: translation.title,
-    excerpt: translation.excerpt ?? "",
+    readTime: estimateReadTime(polishedContentMd),
+    title: polishPublicCopy(translation.title ?? "", locale),
+    excerpt: polishPublicCopy(translation.excerpt ?? "", locale),
     image: record.cover_image_url ?? "/assets/blog/flight-cancellation.jpg",
-    imageAlt: translation.title,
-    body: markdownToBlocks(contentMd),
+    imageAlt: polishPublicCopy(translation.title ?? "", locale),
+    body: markdownToBlocks(polishedContentMd),
   };
 }
 

@@ -4,7 +4,7 @@ export const noWinNoFeeFr: LegalDocument = {
   intro: {
     type: "callout",
     content: [
-      { type: "strong", text: "Résumé :" },
+      { type: "strong", text: "Résumé:" },
       {
         type: "text",
         text: " Vous ne payez rien d'avance et rien si nous ne récupérons pas d'indemnisation en votre nom. Nos honoraires de succès ne sont facturés que lorsque votre réclamation aboutit.",
@@ -25,7 +25,7 @@ export const noWinNoFeeFr: LegalDocument = {
             { type: "strongBrand", field: "brandName" },
             {
               type: "text",
-              text: " (« la Société »). En poursuivant une réclamation via la plateforme Compensall, vous acceptez les présentes conditions.",
+              text: " («la Société»). En poursuivant une réclamation via la plateforme Compensall, vous acceptez les présentes conditions.",
             },
           ],
         },
@@ -53,7 +53,7 @@ export const noWinNoFeeFr: LegalDocument = {
           content: [
             {
               type: "text",
-              text: "Des honoraires de succès seront déduits de l'indemnisation récupérée en votre nom :",
+              text: "Des honoraires de succès seront déduits de l'indemnisation récupérée en votre nom:",
             },
           ],
         },
@@ -125,5 +125,5 @@ export const noWinNoFeeFr: LegalDocument = {
       ],
     },
   ],
-  footer: "Version du document 3.0. Dernière mise à jour : janvier 2026",
+  footer: "Version du document 3.0. Dernière mise à jour: janvier 2026",
 };
