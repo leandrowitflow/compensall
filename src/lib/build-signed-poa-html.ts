@@ -76,7 +76,7 @@ export type SignedPoaInput = {
 };
 
 export function buildSignedPowerOfAttorneyHtml(input: SignedPoaInput): string {
-  const logo = readPublicAssetAsDataUrl("assets/logo.svg", "image/svg+xml");
+  const logo = readPublicAssetAsDataUrl("assets/logo.png", "image/png");
   const qr = readPublicAssetAsDataUrl("assets/documents/poa-qr.png", "image/png");
   const euFlag = readPublicAssetAsDataUrl("assets/documents/eu-flag.svg", "image/svg+xml");
   const signatureUrl = toSignatureDataUrl(input.signatureBase64OrDataUrl);

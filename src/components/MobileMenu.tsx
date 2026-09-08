@@ -171,7 +171,7 @@ export default function MobileMenu({
       <div className="absolute inset-y-0 right-0 flex w-full max-w-[min(100%,24rem)] flex-col bg-white shadow-[-8px_0_32px_rgba(31,54,100,0.15)]">
         <div className="flex items-center justify-between gap-3 border-b border-[#d5e0f9] px-4 py-4">
           <Link href="/" onClick={onClose} className="flex-shrink-0" {...gtmId("nav_logo_home")}>
-            <img src="/assets/logo.svg?v=2" alt="Compensall" className="h-8 w-auto" />
+            <img src="/assets/logo.png?v=3" alt="Compensall" width={157} height={32} className="h-8 w-auto" />
           </Link>
           <button
             type="button"

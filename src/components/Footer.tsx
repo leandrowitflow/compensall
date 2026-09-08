@@ -137,9 +137,9 @@ export default function Footer() {
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto pt-12 pb-8 md:pb-10 lg:pt-12 xl:pt-[83px] xl:pb-12">
         <div className="flex flex-col items-center text-center gap-8 md:gap-10 lg:hidden">
           <img
-            src="/assets/logo-white.svg?v=2"
+            src="/assets/logo-white.png?v=3"
             alt="Compensall"
-            width={120}
+            width={157}
             height={32}
             className="h-8 w-auto"
             loading="lazy"
@@ -177,9 +177,9 @@ export default function Footer() {
         <div className="hidden lg:grid lg:grid-cols-[minmax(0,180px)_1fr_minmax(0,240px)] xl:grid-cols-[minmax(0,260px)_1fr_minmax(0,320px)] gap-x-8 xl:gap-x-16 gap-y-8 items-start">
           <div className="lg:row-start-1 lg:col-start-1 flex items-center min-h-[32px] xl:min-h-[39px]">
             <img
-              src="/assets/logo-white.svg?v=2"
+              src="/assets/logo-white.png?v=3"
               alt="Compensall"
-              width={120}
+              width={191}
               height={39}
               className="h-8 xl:h-[39px] w-auto"
               loading="lazy"

@@ -98,7 +98,7 @@ export default function PowerOfAttorneyDocument({
     <article className="bg-white text-[#1f3664]">
       <header className="border-b border-[#c5c5c5] pb-4 mb-6">
         <div className="flex items-center gap-3">
-          <img src="/assets/logo.svg?v=2" alt="Compensall" className="h-9 w-auto" />
+          <img src="/assets/logo.png?v=3" alt="Compensall" width={177} height={36} className="h-9 w-auto" />
         </div>
       </header>
 

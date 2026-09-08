@@ -37,7 +37,7 @@ export default function HeaderClient({
       <header className="w-full bg-white sticky top-0 z-50 px-4 md:px-8 lg:px-8 xl:px-12">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto h-16 lg:h-16 xl:h-[90px] grid grid-cols-[auto_1fr_auto] items-center gap-2 xl:gap-3 min-w-0">
           <Link href="/" className="shrink-0" {...gtmId("nav_logo_home")}>
-            <img src="/assets/logo.svg?v=2" alt="Compensall" width={120} height={32} className="h-8 w-auto" />
+            <img src="/assets/logo.png?v=3" alt="Compensall" width={157} height={32} className="h-8 w-auto" />
           </Link>
 
           <nav className="hidden xl:flex items-center justify-center gap-3 2xl:gap-5 min-w-0 px-2">

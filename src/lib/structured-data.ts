@@ -13,7 +13,7 @@ export function buildOrganizationSchema() {
     legalName: LEGAL_ENTITY_NAME,
     taxID: LEGAL_ENTITY_NIF,
     url: SITE_URL,
-    logo: `${SITE_URL}/assets/logo.svg`,
+    logo: `${SITE_URL}/assets/logo.png`,
     description: SITE_DESCRIPTION,
     email: LEGAL_ENTITY_EMAIL,
     address: {
@@ -88,7 +88,7 @@ export function buildArticleSchema(input: {
       name: SITE_NAME,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/assets/logo.svg`,
+        url: `${SITE_URL}/assets/logo.png`,
       },
     },
     mainEntityOfPage: `${SITE_URL}${input.path}`,
