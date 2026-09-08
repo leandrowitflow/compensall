@@ -596,12 +596,12 @@
     "rightsAccent": "UK261 e EC 261",
     "rightsIntro": "Os passageiros aéreos no Reino Unido e na UE estão protegidos quando os voos são atrasados, cancelados ou afetados sem culpa sua.",
     "uk261Card": {
-      "title": "UK261 — partidas do Reino Unido",
-      "body": "Após o Brexit, o Reino Unido manteve os direitos dos passageiros através do UK261. Aplica-se a voos com partida de aeroportos do Reino Unido e define compensação fixa consoante a distância do voo."
+      "title": "UK261 — voos do Reino Unido",
+      "body": "Após o Brexit, o Reino Unido manteve os direitos dos passageiros através do UK261. Aplica-se a voos que operam no espaço aéreo do Reino Unido e define compensação fixa consoante a distância do voo."
     },
     "ec261Card": {
-      "title": "EC 261/2004 — partidas da UE",
-      "body": "O Regulamento da UE EC 261/2004 continua a proteger os passageiros em voos elegíveis com partida de aeroportos da UE, com compensação de 250€, 400€ ou 600€ nas mesmas faixas de distância."
+      "title": "EC 261/2004 — voos da UE",
+      "body": "O Regulamento da UE EC 261/2004 continua a proteger os passageiros em voos elegíveis que operam no espaço aéreo da UE, com compensação de 250€, 400€ ou 600€ nas mesmas faixas de distância."
     },
     "rightsDetailP1": "Se o seu voo tiver um atraso de três horas ou mais à chegada, for cancelado com pouca antecedência ou lhe recusarem o embarque contra a sua vontade, pode ter direito a compensação fixa. Pode também ter direitos a assistência, reencaminhamento e reembolsos consoante as circunstâncias.",
     "rightsDetailP2": "Ligações perdidas e greves de companhias aéreas também podem qualificar quando a perturbação está sob o controlo da companhia aérea. A Compensall ajuda-o a verificar a elegibilidade, preparar o seu pedido e prosseguir a compensação junto da companhia aérea com a regra No win, no fee.",
@@ -610,8 +610,8 @@
     "eligibilityIntro": "Pode ser elegível se todas as condições seguintes se aplicarem à sua viagem.",
     "eligibility": {
       "ukEuDeparture": {
-        "title": "Partida do Reino Unido ou da UE",
-        "body": "O seu voo partiu de um aeroporto do Reino Unido (UK261) ou da UE (EC 261/2004), ou cumpre outras regras de elegibilidade para a sua rota."
+        "title": "Voo do Reino Unido ou da UE",
+        "body": "O seu voo operava no espaço aéreo do Reino Unido (UK261) ou da UE (EC 261/2004), ou chega a um aeroporto do Reino Unido ou da UE e é operado por uma companhia aérea do Reino Unido ou da UE."
       },
       "significantDisruption": {
         "title": "Perturbação significativa",

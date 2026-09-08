@@ -596,12 +596,12 @@
     "rightsAccent": "UK261 et CE 261",
     "rightsIntro": "Les passagers aériens au Royaume-Uni et dans l'UE sont protégés lorsque les vols sont retardés, annulés ou perturbés sans qu'ils en soient responsables.",
     "uk261Card": {
-      "title": "UK261 — départs du Royaume-Uni",
-      "body": "Après le Brexit, le Royaume-Uni a conservé les droits des passagers via le UK261. Il s'applique aux vols au départ d'aéroports du Royaume-Uni et fixe une indemnisation selon la distance du vol."
+      "title": "UK261 — vols du Royaume-Uni",
+      "body": "Après le Brexit, le Royaume-Uni a conservé les droits des passagers via le UK261. Il s'applique aux vols opérant dans l'espace aérien du Royaume-Uni et fixe une indemnisation selon la distance du vol."
     },
     "ec261Card": {
-      "title": "CE 261/2004 — départs de l'UE",
-      "body": "Le règlement européen CE 261/2004 continue de protéger les passagers sur les vols éligibles au départ d'aéroports de l'UE, avec une indemnisation de 250€, 400€ ou 600€ selon les mêmes tranches de distance."
+      "title": "CE 261/2004 — vols de l'UE",
+      "body": "Le règlement européen CE 261/2004 continue de protéger les passagers sur les vols éligibles opérant dans l'espace aérien de l'UE, avec une indemnisation de 250€, 400€ ou 600€ selon les mêmes tranches de distance."
     },
     "rightsDetailP1": "Si votre vol a un retard de trois heures ou plus à l'arrivée, est annulé avec un court préavis ou si l'embarquement vous est refusé contre votre volonté, vous pouvez avoir droit à une indemnisation fixe. Vous pouvez également avoir droit à une assistance, un réacheminement et des remboursements selon les circonstances.",
     "rightsDetailP2": "Les correspondances manquées et les grèves de compagnies aériennes peuvent également être éligibles lorsque la perturbation relève du contrôle de la compagnie aérienne. Compensall vous aide à vérifier l'éligibilité, préparer votre réclamation et obtenir une indemnisation auprès de la compagnie aérienne selon la règle No win, no fee.",
@@ -610,8 +610,8 @@
     "eligibilityIntro": "Vous pouvez être éligible si toutes les conditions suivantes s'appliquent à votre voyage.",
     "eligibility": {
       "ukEuDeparture": {
-        "title": "Départ du Royaume-Uni ou de l'UE",
-        "body": "Votre vol est parti d'un aéroport du Royaume-Uni (UK261) ou de l'UE (CE 261/2004), ou remplit d'autres règles d'éligibilité pour votre itinéraire."
+        "title": "Vol du Royaume-Uni ou de l'UE",
+        "body": "Votre vol opérait dans l'espace aérien du Royaume-Uni (UK261) ou de l'UE (CE 261/2004), ou arrive dans un aéroport du Royaume-Uni ou de l'UE et est exploité par une compagnie aérienne du Royaume-Uni ou de l'UE."
       },
       "significantDisruption": {
         "title": "Perturbation significative",

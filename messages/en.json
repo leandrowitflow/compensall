@@ -596,12 +596,12 @@
     "rightsAccent": "UK261 and EC 261",
     "rightsIntro": "Air passengers in the UK and EU are protected when flights are delayed, cancelled, or disrupted through no fault of their own.",
     "uk261Card": {
-      "title": "UK261 — UK departures",
-      "body": "After Brexit, the UK retained passenger rights through UK261. It applies to flights departing from UK airports and sets fixed compensation in pounds: £220, £350, or £520 depending on distance."
+      "title": "UK261 — UK flights",
+      "body": "After Brexit, the UK retained passenger rights through UK261. It applies to flights operating within UK airspace and sets fixed compensation in pounds: £220, £350, or £520 depending on distance."
     },
     "ec261Card": {
-      "title": "EC 261/2004 — EU departures",
-      "body": "EU Regulation EC 261/2004 continues to protect passengers on eligible flights departing from EU airports, with compensation of €250, €400, or €600 on the same distance bands."
+      "title": "EC 261/2004 — EU flights",
+      "body": "EU Regulation EC 261/2004 continues to protect passengers on eligible flights operating within EU airspace, with compensation of €250, €400, or €600 on the same distance bands."
     },
     "rightsDetailP1": "If your flight is delayed by three hours or more at arrival, cancelled with short notice, or you are denied boarding against your will, you may be entitled to fixed compensation. You may also have rights to care, rerouting, and refunds depending on the circumstances.",
     "rightsDetailP2": "Missed connections and airline strikes can also qualify when the disruption is within the airline's control. Compensall helps you check eligibility, prepare your claim, and pursue compensation with the airline on a No win, no fee basis.",
@@ -610,8 +610,8 @@
     "eligibilityIntro": "You may be eligible if all of the following apply to your journey.",
     "eligibility": {
       "ukEuDeparture": {
-        "title": "UK or EU departure",
-        "body": "Your flight departed from a UK airport (UK261) or an EU airport (EC 261/2004), or meets other eligibility rules for your route."
+        "title": "UK or EU flight",
+        "body": "Your flight was operating within UK airspace (UK261) or EU airspace (EC 261/2004), or arrives at a UK or EU airport and is operated by a UK or EU airline."
       },
       "significantDisruption": {
         "title": "Significant disruption",
