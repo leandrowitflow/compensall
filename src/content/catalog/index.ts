@@ -1,4 +1,5 @@
 import type { AppLocale } from "@/i18n/routing";
+import { polishPublicCopy } from "@/lib/public-copy";
 import { airlinesContentA } from "./airlines-content-a";
 import { airlinesContentB } from "./airlines-content-b";
 import { airlinesContentC } from "./airlines-content-c";
@@ -37,5 +38,6 @@ export function pickLocalized(
   localized: Record<CatalogLocale, string>,
   locale: string | AppLocale,
 ): string {
-  return localized[toCatalogLocale(locale)];
+  const catalogLocale = toCatalogLocale(locale);
+  return polishPublicCopy(localized[catalogLocale], catalogLocale);
 }

@@ -74,12 +74,12 @@
   },
   "home": {
     "metadata": {
-      "title": "Vol retardé ou annulé ? Réclamez jusqu'à €600",
+      "title": "Vol retardé ou annulé? Réclamez jusqu'à €600",
       "description": "Téléchargez votre carte d'embarquement et réclamez une indemnisation au titre du UK261 ou du CE 261/2004. Sécurisé, accompagné par des humains. No win, no fee."
     },
     "hero": {
       "trustpilotAlt": "Excellent Trustpilot 4,8 sur 5",
-      "title": "Vol retardé ou annulé ?",
+      "title": "Vol retardé ou annulé?",
       "titleLine2": "Réclamez jusqu'à €600",
       "subtitle": "Le UK261 et le CE 261/2004 protègent vos droits. La plateforme d'indemnisation de vol la plus sécurisée du marché.",
       "fastRiskFree": "Rapide et sans risque",
@@ -101,7 +101,7 @@
     },
     "claimCards": {
       "title": "Que pouvez-vous",
-      "titleAccent": "réclamer ?",
+      "titleAccent": "réclamer?",
       "subtitle": "Nous vous aidons à obtenir une indemnisation pour un large éventail de problèmes de vol.",
       "flightDelay": {
         "title": "Retard de vol",
@@ -131,7 +131,7 @@
     },
     "howItWorks": {
       "title": "Comment ça",
-      "titleAccent": "marche ?",
+      "titleAccent": "marche?",
       "schemaName": "Comment réclamer une indemnisation de vol avec Compensall",
       "subtitle": "Téléchargez votre carte d'embarquement. Notre assistant vérifie votre réclamation. Notre équipe s'occupe de la compagnie aérienne.",
       "steps": {
@@ -181,7 +181,7 @@
       "popularAirports": "Aéroports populaires",
       "resultsCount": "{count, plural, =1 {# résultat} other {# résultats}}",
       "otherAirportHidden": "L'autre aéroport sélectionné est masqué.",
-      "noAirportsFound": "Aucun aéroport trouvé. Essayez une ville, un pays ou un code (ex. : Lisbonne, Portugal, LHR).",
+      "noAirportsFound": "Aucun aéroport trouvé. Essayez une ville, un pays ou un code (ex.: Lisbonne, Portugal, LHR).",
       "preview": {
         "title": "Aperçu de la carte d'embarquement",
         "fullTitle": "Aperçu complet de la carte d'embarquement",
@@ -207,7 +207,7 @@
       }
     },
     "step2": {
-      "extractedSuccess": "Merci ! J'ai extrait les détails de votre vol.",
+      "extractedSuccess": "Merci! J'ai extrait les détails de votre vol.",
       "confirmDetails": "Veuillez confirmer que les informations ci-dessous sont correctes.",
       "extractPartial": "Votre carte d'embarquement est enregistrée, mais nous n'avons pas pu lire tous les détails automatiquement.",
       "fillInDetails": "Veuillez renseigner ou confirmer les informations ci-dessous.",
@@ -215,7 +215,7 @@
       "flight": "Vol",
       "route": "Itinéraire",
       "date": "Date",
-      "confirmPrompt": "Tout est-il correct ?",
+      "confirmPrompt": "Tout est-il correct?",
       "confirmHint": "Cela nous aide à évaluer votre éligibilité.",
       "deleteData": "Supprimer les données",
       "editDetails": "Modifier les détails",
@@ -242,7 +242,7 @@
     "connecting": {
       "title": "Vols de correspondance",
       "subtitle": "Indiquez si votre trajet comprenait une correspondance.",
-      "hadConnecting": "Aviez-vous un vol de correspondance ?",
+      "hadConnecting": "Aviez-vous un vol de correspondance?",
       "selectPlaceholder": "Sélectionnez une option",
       "yes": "Oui",
       "no": "Non",
@@ -266,7 +266,7 @@
       "delayDuration": "Durée du retard à la destination finale",
       "delayLessThan3": "Moins de 3 heures",
       "delayMoreThan3": "Plus de 3 heures",
-      "cancellationNotice": "Combien de jours avant le départ avez-vous été informé ?",
+      "cancellationNotice": "Combien de jours avant le départ avez-vous été informé?",
       "notice14OrMore": "14 jours ou plus",
       "noticeLessThan14": "Moins de 14 jours",
       "ineligibleTitle": "Nous regrettons de vous informer que vous n'avez pas droit à une indemnisation.",
@@ -304,7 +304,7 @@
       "confirmContact": "Confirmez vos coordonnées et les éventuels passagers supplémentaires.",
       "uploadDocuments": "Téléchargez des documents justificatifs (facultatif), puis continuez vers la vérification.",
       "readAndSign": "Lisez intégralement la procuration, puis signez une fois pour continuer.",
-      "readAndSignPassenger": "Passager {current} sur {total} : {name} — lisez et signez la procuration.",
+      "readAndSignPassenger": "Passager {current} sur {total}: {name} — lisez et signez la procuration.",
       "signedReview": "Signatures terminées. Vérifiez et soumettez votre réclamation.",
       "justNow": "À l'instant",
       "fullLegalName": "Nom légal complet",
@@ -341,13 +341,13 @@
       "scrollToUnlock": "Faites défiler jusqu'à la fin de la procuration pour débloquer la signature ↓",
       "yourSignature": "Votre signature",
       "clear": "Effacer",
-      "drawSignatureHint": "Dessinez ici — votre signature apparaît sur le document sous « Le passager ». Indiquez également la date de signature sur le document.",
+      "drawSignatureHint": "Dessinez ici — votre signature apparaît sur le document sous «Le passager». Indiquez également la date de signature sur le document.",
       "scrollToUnlockSigning": "Faites défiler jusqu'à la fin du document pour débloquer la signature.",
       "signedBy": "Signé par",
-      "flightDate": "Date du vol : {date}",
-      "signingDate": "Date de signature : {date}",
+      "flightDate": "Date du vol: {date}",
+      "signingDate": "Date de signature: {date}",
       "signedAt": "Signé le {date}",
-      "passengersCount": "Passagers : {count}",
+      "passengersCount": "Passagers: {count}",
       "continueToDocuments": "Continuer vers les documents",
       "continueToSigning": "Continuer vers la signature",
       "continueToReview": "Continuer vers la vérification",
@@ -490,10 +490,10 @@
     "subtitle": "Nous aidons les passagers à réclamer l'indemnisation qui leur est due grâce à notre assistant et à un accompagnement humain à chaque étape.",
     "missionTitle": "Notre mission",
     "missionP1": "Compensall simplifie l'indemnisation de vol. Les compagnies aériennes retardent souvent leurs réponses, rejettent des réclamations valides et rendent le processus stressant, si bien que trop de passagers ne reçoivent jamais ce que le règlement européen CE 261/2004 leur accorde.",
-    "missionP2": "Nous nous occupons de tout : paperasse, négociations avec la compagnie aérienne et poursuite de votre dossier si nécessaire. Téléchargez votre carte d'embarquement, confirmez vos informations et laissez notre équipe se battre pour votre indemnisation selon la règle No win, no fee.",
+    "missionP2": "Nous nous occupons de tout: paperasse, négociations avec la compagnie aérienne et poursuite de votre dossier si nécessaire. Téléchargez votre carte d'embarquement, confirmez vos informations et laissez notre équipe se battre pour votre indemnisation selon la règle No win, no fee.",
     "whyChooseTitle": "Pourquoi les passagers nous choisissent",
     "whyChoose": [
-      "No win, no fee : aucun frais sauf en cas de succès",
+      "No win, no fee: aucun frais sauf en cas de succès",
       "Prise en charge de bout en bout, de la vérification d'éligibilité au suivi auprès de la compagnie aérienne",
       "Frais de succès prévisibles. Nous ne sommes pas un cabinet d'avocats",
       "Approche RGPD d'abord pour vos données personnelles",
@@ -520,9 +520,9 @@
     "heroTitle": "Connaître vos droits",
     "heroSubtitle": "Comprenez vos droits au titre du UK261 et du CE 261/2004 et comment Compensall vous aide à réclamer grâce à notre accompagnement numérique.",
     "whatHappenedTitle": "Que s'est-il passé sur votre",
-    "whatHappenedAccent": "vol ?",
+    "whatHappenedAccent": "vol?",
     "howItWorksTitle": "Comment ça",
-    "howItWorksAccent": "marche ?",
+    "howItWorksAccent": "marche?",
     "howItWorksSubtitle": "Téléchargez votre carte d'embarquement. Notre assistant vérifie votre réclamation. Notre équipe s'occupe de la compagnie aérienne.",
     "flightIssues": {
       "flightCancellation": {
@@ -606,7 +606,7 @@
     "rightsDetailP1": "Si votre vol a un retard de trois heures ou plus à l'arrivée, est annulé avec un court préavis ou si l'embarquement vous est refusé contre votre volonté, vous pouvez avoir droit à une indemnisation fixe. Vous pouvez également avoir droit à une assistance, un réacheminement et des remboursements selon les circonstances.",
     "rightsDetailP2": "Les correspondances manquées et les grèves de compagnies aériennes peuvent également être éligibles lorsque la perturbation relève du contrôle de la compagnie aérienne. Compensall vous aide à vérifier l'éligibilité, préparer votre réclamation et obtenir une indemnisation auprès de la compagnie aérienne selon la règle No win, no fee.",
     "eligibilityHeading": "Quand pouvez-vous réclamer une",
-    "eligibilityAccent": "indemnisation ?",
+    "eligibilityAccent": "indemnisation?",
     "eligibilityIntro": "Vous pouvez être éligible si toutes les conditions suivantes s'appliquent à votre voyage.",
     "eligibility": {
       "ukEuDeparture": {
@@ -664,11 +664,11 @@
   },
   "metadata": {
     "site": {
-      "title": "Compensall – Vol retardé ou annulé ? Réclamez jusqu'à €600",
-      "description": "Vol retardé ou annulé ? Réclamez jusqu'à €600 au titre du CE 261/2004. Téléchargement sécurisé de la carte d'embarquement, assistance humaine. No win, no fee."
+      "title": "Compensall – Vol retardé ou annulé? Réclamez jusqu'à €600",
+      "description": "Vol retardé ou annulé? Réclamez jusqu'à €600 au titre du CE 261/2004. Téléchargement sécurisé de la carte d'embarquement, assistance humaine. No win, no fee."
     },
     "home": {
-      "title": "Vol retardé ou annulé ? Réclamez jusqu'à €600",
+      "title": "Vol retardé ou annulé? Réclamez jusqu'à €600",
       "description": "Téléchargez votre carte d'embarquement et réclamez une indemnisation au titre du UK261 ou du CE 261/2004. Sécurisé, accompagné par des humains. No win, no fee."
     },
     "faq": {
@@ -689,7 +689,7 @@
     },
     "blog": {
       "title": "Guides d'indemnisation de vol et droits des passagers",
-      "description": "Guides pratiques sur le CE 261/2004 : retards, annulations, refus d'embarquement, correspondances manquées et comment réclamer jusqu'à €600."
+      "description": "Guides pratiques sur le CE 261/2004: retards, annulations, refus d'embarquement, correspondances manquées et comment réclamer jusqu'à €600."
     },
     "cookies": {
       "title": "Politique de cookies",
@@ -752,7 +752,7 @@
       },
       "needs_documents": {
         "label": "Documents nécessaires",
-        "message": "Nous avons besoin de quelques documents supplémentaires pour faire avancer votre dossier. Vérifiez votre e-mail ou contactez-nous au +351 923391980. Nous sommes là pour vous aider !"
+        "message": "Nous avons besoin de quelques documents supplémentaires pour faire avancer votre dossier. Vérifiez votre e-mail ou contactez-nous au +351 923391980. Nous sommes là pour vous aider!"
       },
       "with_airline": {
         "label": "Chez la compagnie",
@@ -764,15 +764,15 @@
       },
       "payment_processing": {
         "label": "Paiement en cours",
-        "message": "Bonne nouvelle — la compagnie a approuvé votre indemnisation ! Nous traitons maintenant le paiement et vous tiendrons informé sous peu."
+        "message": "Bonne nouvelle — la compagnie a approuvé votre indemnisation! Nous traitons maintenant le paiement et vous tiendrons informé sous peu."
       },
       "awaiting_fee": {
         "label": "Frais de service",
-        "message": "Félicitations, votre réclamation a abouti ! Veuillez régler nos frais de service afin que nous puissions clôturer votre dossier."
+        "message": "Félicitations, votre réclamation a abouti! Veuillez régler nos frais de service afin que nous puissions clôturer votre dossier."
       },
       "paid": {
         "label": "Payé",
-        "message": "Votre paiement a été effectué ! Merci de votre confiance. Pour toute question, nous restons à votre disposition."
+        "message": "Votre paiement a été effectué! Merci de votre confiance. Pour toute question, nous restons à votre disposition."
       },
       "closed_ntd": {
         "label": "Clôturé",
@@ -804,35 +804,35 @@
     "allSection": "Tous les {section}",
     "showLess": "Afficher moins",
     "noResults": "Aucun résultat. Essayez une autre recherche.",
-    "airlineCardDescription": "Retard, annulation ou refus d'embarquement {name} ? Vérifiez votre réclamation en quelques minutes.",
-    "airportCardDescription": "Vol retardé ou annulé via {name} ? Vérifiez votre réclamation en quelques minutes."
+    "airlineCardDescription": "Retard, annulation ou refus d'embarquement {name}? Vérifiez votre réclamation en quelques minutes.",
+    "airportCardDescription": "Vol retardé ou annulé via {name}? Vérifiez votre réclamation en quelques minutes."
   },
   "catalogDetail": {
     "airlineTitle": "Indemnisation pour retard ou annulation de vol {name}",
     "airportTitle": "Indemnisation de vol depuis {name}",
     "airlineIntroP1": "Si votre vol {name} a été retardé, annulé ou si l'embarquement vous a été refusé, vous pouvez avoir droit à une indemnisation allant jusqu'à 600 € au titre du règlement UE CE 261/2004 et du UK261.",
     "airlineIntroP2": "Compensall vérifie votre éligibilité en quelques minutes. Téléversez votre carte d'embarquement ou saisissez les détails du vol — No win, no fee.",
-    "airportIntroP1": "Vous voyagez depuis ou vers {name} ? Si votre vol a été retardé ou annulé, vous pouvez avoir droit à une indemnisation allant jusqu'à 600 € au titre du règlement UE CE 261/2004 et du UK261.",
+    "airportIntroP1": "Vous voyagez depuis ou vers {name}? Si votre vol a été retardé ou annulé, vous pouvez avoir droit à une indemnisation allant jusqu'à 600 € au titre du règlement UE CE 261/2004 et du UK261.",
     "airportIntroP2": "Compensall vous aide à vérifier votre réclamation en quelques minutes. Commencez avec votre carte d'embarquement ou les détails du vol — No win, no fee.",
     "sectionRights": "Vos droits de passager",
     "sectionTips": "Conseils pour réclamer",
-    "airlineCardDescription": "Retard, annulation ou refus d'embarquement {name} ? Vérifiez votre réclamation en quelques minutes.",
-    "airportCardDescription": "Vol retardé ou annulé via {name} ? Vérifiez votre réclamation en quelques minutes.",
+    "airlineCardDescription": "Retard, annulation ou refus d'embarquement {name}? Vérifiez votre réclamation en quelques minutes.",
+    "airportCardDescription": "Vol retardé ou annulé via {name}? Vérifiez votre réclamation en quelques minutes.",
     "entityAirlineFlight": "votre vol {name}",
     "entityAirportFlight": "un vol via {name}",
-    "faqDelayQuestion": "Ai-je droit à une indemnisation si {entity} a été retardé ou annulé ?",
+    "faqDelayQuestion": "Ai-je droit à une indemnisation si {entity} a été retardé ou annulé?",
     "faqDelayAnswer": "Vous pouvez avoir droit à une indemnisation si votre vol est arrivé avec 3+ heures de retard ou a été annulé avec un court préavis, à condition que la perturbation soit sous le contrôle de la compagnie (pas de circonstances extraordinaires comme de fortes intempéries).",
-    "faqAmountQuestion": "Combien puis-je réclamer ?",
+    "faqAmountQuestion": "Combien puis-je réclamer?",
     "faqAmountAnswer": "Au titre du CE 261/2004 et du UK261, l'indemnisation est généralement de 250 €, 400 € ou 600 € par passager selon la distance et le retard.",
-    "faqRejectedAirlineQuestion": "Et si {name} a déjà rejeté ma réclamation ?",
-    "faqRejectedAirportQuestion": "Et si la compagnie a déjà rejeté ma réclamation ?",
+    "faqRejectedAirlineQuestion": "Et si {name} a déjà rejeté ma réclamation?",
+    "faqRejectedAirportQuestion": "Et si la compagnie a déjà rejeté ma réclamation?",
     "faqRejectedAnswer": "Un rejet ne signifie pas toujours que vous n'avez aucun droit. Nous examinons votre dossier et pouvons poursuivre les réclamations valides sans gain, sans frais.",
-    "faqDeadlineQuestion": "Y a-t-il un délai pour réclamer ?",
+    "faqDeadlineQuestion": "Y a-t-il un délai pour réclamer?",
     "faqDeadlineAnswer": "Les délais varient selon les pays (souvent plusieurs années). Vérifiez tôt afin que nous puissions évaluer vos options.",
-    "faqSafeQuestion": "Est-il sûr de partager ma carte d'embarquement ?",
+    "faqSafeQuestion": "Est-il sûr de partager ma carte d'embarquement?",
     "faqSafeAnswer": "Oui. Vos données sont traitées de façon sécurisée et utilisées uniquement pour évaluer et traiter votre réclamation.",
-    "claimHeadlineAirline": "Prêt à réclamer contre {name} ?",
-    "claimHeadlineAirport": "Prêt à vérifier votre réclamation depuis {name} ?",
+    "claimHeadlineAirline": "Prêt à réclamer contre {name}?",
+    "claimHeadlineAirport": "Prêt à vérifier votre réclamation depuis {name}?",
     "claimSubheadline": "Utilisez l'assistant de carte d'embarquement sur la page d'accueil. C'est rapide, sécurisé et sans gain, sans frais.",
     "breadcrumbCatalog": "Compagnies et aéroports",
     "notFoundAirline": "Compagnie introuvable | Compensall",
@@ -847,7 +847,7 @@
   },
   "blogPage": {
     "title": "Blog",
-    "subtitle": "Guides pratiques sur les droits des passagers au titre du CE 261/2004 : retards, annulations, refus d'embarquement et plus, pour savoir ce que vous pourriez recevoir avant de voler.",
+    "subtitle": "Guides pratiques sur les droits des passagers au titre du CE 261/2004: retards, annulations, refus d'embarquement et plus, pour savoir ce que vous pourriez recevoir avant de voler.",
     "readArticle": "Lire l'article",
     "backToBlog": "Retour au blog",
     "englishOnlyNotice": "Ce guide est actuellement disponible uniquement en anglais."

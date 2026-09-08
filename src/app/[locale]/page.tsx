@@ -15,6 +15,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import type { AppLocale } from "@/i18n/routing";
 import { getLocalizedFaqs } from "@/lib/i18n-faqs";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
+import { localizeEuroAmountLabel } from "@/lib/public-copy";
 import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 import { buildFaqPageSchema, buildHowToSchema } from "@/lib/structured-data";
 
@@ -90,6 +91,7 @@ export default async function HomePage({ params }: HomePageProps) {
         const key = tierTranslationKey(tier.amount);
         return {
           ...tier,
+          amount: localizeEuroAmountLabel(tier.amount, locale),
           label: tTiers(`tiers.uk261.${key}.label`),
           desc: tTiers(`tiers.uk261.${key}.desc`),
         };
@@ -100,6 +102,7 @@ export default async function HomePage({ params }: HomePageProps) {
     const key = tierTranslationKey(tier.amount);
     return {
       ...tier,
+      amount: localizeEuroAmountLabel(tier.amount, locale),
       label: tTiers(`tiers.ec261.${key}.label`),
       desc: tTiers(`tiers.ec261.${key}.desc`),
     };

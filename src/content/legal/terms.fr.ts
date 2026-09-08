@@ -4,12 +4,12 @@ export const termsFr: LegalDocument = {
   intro: {
     type: "callout",
     content: [
-      { type: "strong", text: "Résumé :" },
+      { type: "strong", text: "Résumé:" },
       { type: "text", text: " Les présentes Conditions Générales régissent votre relation avec " },
       { type: "brand", field: "brandName" },
       {
         type: "text",
-        text: ". Nous travaillons sur une base No win, no fee : notre assistance juridique ne vous coûte rien, sauf si nous obtenons avec succès votre indemnisation. Si la réclamation doit faire l'objet d'une procédure contentieuse, des honoraires de résultat supplémentaires de 20 % s'appliquent, dus uniquement en cas d'issue favorable. Tous les frais figurent dans la ",
+        text: ". Nous travaillons sur une base No win, no fee: notre assistance juridique ne vous coûte rien, sauf si nous obtenons avec succès votre indemnisation. Si la réclamation doit faire l'objet d'une procédure contentieuse, des honoraires de résultat supplémentaires de 20 % s'appliquent, dus uniquement en cas d'issue favorable. Tous les frais figurent dans la ",
       },
       { type: "link", href: "/prices", label: "Liste des Prix" },
       { type: "text", text: "." },
@@ -798,5 +798,5 @@ export const termsFr: LegalDocument = {
       ],
     },
   ],
-  footer: "Version 4.0 du document. Dernière mise à jour : septembre 2026",
+  footer: "Version 4.0 du document. Dernière mise à jour: septembre 2026",
 };

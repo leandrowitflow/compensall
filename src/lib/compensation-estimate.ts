@@ -4,6 +4,7 @@ import type {
   ClaimFlightData,
   CompensationEstimate,
 } from "@/lib/claim-types";
+import { formatEuroAmount } from "@/lib/public-copy";
 
 export type { CompensationEstimate };
 export type CompensationRegulation = CompensationEstimate["regulation"];
@@ -38,9 +39,15 @@ export function distanceBand(distanceKm: number): CompensationDistanceBand {
   return "long";
 }
 
+type EstimateOptions = {
+  preferEuroDisplay?: boolean;
+  locale?: string | null;
+};
+
 function tierForBand(
   regulation: CompensationRegulation,
   band: CompensationDistanceBand,
+  locale?: string | null,
 ): Pick<CompensationEstimate, "amount" | "amountLabel" | "currency"> {
   if (regulation === "UK261") {
     switch (band) {
@@ -59,11 +66,11 @@ function tierForBand(
 
   switch (band) {
     case "short":
-      return { amount: 250, amountLabel: "€250", currency: "EUR" };
+      return { amount: 250, amountLabel: formatEuroAmount(250, locale), currency: "EUR" };
     case "medium":
-      return { amount: 400, amountLabel: "€400", currency: "EUR" };
+      return { amount: 400, amountLabel: formatEuroAmount(400, locale), currency: "EUR" };
     case "long":
-      return { amount: 600, amountLabel: "€600", currency: "EUR" };
+      return { amount: 600, amountLabel: formatEuroAmount(600, locale), currency: "EUR" };
     default: {
       const exhaustive: never = band;
       return exhaustive;
@@ -74,7 +81,7 @@ function tierForBand(
 export function estimateCompensationFromIatas(
   fromIata: string,
   toIata: string,
-  options?: { preferEuroDisplay?: boolean },
+  options?: EstimateOptions,
 ): CompensationEstimate | null {
   const from = fromIata.trim().toUpperCase();
   const to = toIata.trim().toUpperCase();
@@ -93,7 +100,7 @@ export function estimateCompensationFromIatas(
   const routeRegulation: CompensationRegulation = isUk261Departure(from) ? "UK261" : "EC261";
   // Non-English UI shows EUR only (Francisca ops request).
   const regulation: CompensationRegulation = options?.preferEuroDisplay ? "EC261" : routeRegulation;
-  const tier = tierForBand(regulation, band);
+  const tier = tierForBand(regulation, band, options?.locale);
 
   return {
     distanceKm,
@@ -108,7 +115,7 @@ export function estimateCompensationFromIatas(
 export function estimateCompensationFromRoute(
   routeFrom: string,
   routeTo: string,
-  options?: { preferEuroDisplay?: boolean },
+  options?: EstimateOptions,
 ): CompensationEstimate | null {
   const fromIata = normalizeIata(routeFrom);
   const toIata = normalizeIata(routeTo);
@@ -134,11 +141,16 @@ export function estimateCompensationForFlight(
   }
   if (flight.compensationEstimate && preferEuroDisplay) {
     return (
-      estimateCompensationFromRoute(flight.routeFrom, flight.routeTo, { preferEuroDisplay: true }) ??
-      flight.compensationEstimate
+      estimateCompensationFromRoute(flight.routeFrom, flight.routeTo, {
+        preferEuroDisplay: true,
+        locale,
+      }) ?? flight.compensationEstimate
     );
   }
-  return estimateCompensationFromRoute(flight.routeFrom, flight.routeTo, { preferEuroDisplay });
+  return estimateCompensationFromRoute(flight.routeFrom, flight.routeTo, {
+    preferEuroDisplay,
+    locale,
+  });
 }
 
 export function withCompensationEstimate(
@@ -147,6 +159,7 @@ export function withCompensationEstimate(
 ): ClaimFlightData {
   const estimate = estimateCompensationFromRoute(flight.routeFrom, flight.routeTo, {
     preferEuroDisplay: prefersEuroCompensationDisplay(locale),
+    locale,
   });
   return {
     ...flight,

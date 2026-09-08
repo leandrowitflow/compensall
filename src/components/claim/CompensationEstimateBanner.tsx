@@ -25,7 +25,7 @@ export default function CompensationEstimateBanner({
   const locale = useLocale();
   const preferEuroDisplay = prefersEuroCompensationDisplay(locale);
   const estimate =
-    estimateCompensationFromRoute(routeFrom, routeTo, { preferEuroDisplay }) ??
+    estimateCompensationFromRoute(routeFrom, routeTo, { preferEuroDisplay, locale }) ??
     (preferEuroDisplay ? null : (estimateProp ?? null));
 
   if (!estimate) {
