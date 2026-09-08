@@ -63,7 +63,7 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
                 }`}
               >
                 {isComplete && s.num === 1 && step > 1 ? (
-                  <img src="/assets/claim/claim-checkmark.svg" alt={tCommon("assistantStepLabel")} aria-hidden="true" className="w-4 h-4 object-contain" />
+                  <img src="/assets/claim/claim-checkmark.svg" alt={tCommon("assistantStepLabel")} aria-hidden="true" width={16} height={16} className="w-4 h-4 object-contain" />
                 ) : (
                   s.num
                 )}
@@ -81,7 +81,7 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
 function AssistantPill({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-2 bg-[#f1f5fe] rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-      <img src="/assets/icons/stars.svg" alt="" aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
+      <img src="/assets/icons/stars.svg" alt="" aria-hidden="true" width={24} height={24} className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
       <span className="text-blue-accessible font-bold text-sm sm:text-base">{label}</span>
     </div>
   );

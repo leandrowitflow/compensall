@@ -1,20 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import ClaimFormErrorBoundary from "@/components/claim/ClaimFormErrorBoundary";
-
-function ClaimFormLoading() {
-  return (
-    <div className="bg-[#fefefe] mx-auto text-left overflow-hidden rounded-[24px] xl:rounded-[32px] max-w-full lg:max-w-[960px] xl:max-w-[1100px] w-full shadow-[0_1px_1px_1px_rgba(0,0,0,0.05)]">
-      <div className="px-6 sm:px-10 xl:px-14 pt-8 pb-10 animate-pulse">
-        <div className="h-8 w-36 rounded-full bg-[#e8eef9] mb-6" />
-        <div className="h-4 w-full max-w-xl rounded bg-[#e8eef9] mb-3" />
-        <div className="h-4 w-3/4 max-w-lg rounded bg-[#e8eef9] mb-8" />
-        <div className="h-40 w-full rounded-[16px] border-2 border-dashed border-[#d5e0f9] bg-[#f8faff]" />
-      </div>
-    </div>
-  );
-}
+import HeroClaimForm from "@/components/HeroClaimForm";
 
 function ClaimFormCrashFallback() {
   return (
@@ -39,10 +26,6 @@ function ClaimFormCrashFallback() {
     </div>
   );
 }
-
-const HeroClaimForm = dynamic(() => import("@/components/HeroClaimForm"), {
-  loading: () => <ClaimFormLoading />,
-});
 
 export default function HomeClaimFormSection() {
   return (

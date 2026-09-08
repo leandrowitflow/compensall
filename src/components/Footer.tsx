@@ -52,9 +52,9 @@ function ContactDetails({ className = "", contactUsLabel }: { className?: string
 
   return (
     <div className={`flex flex-col gap-4 xl:gap-6 ${className}`}>
-      <h4 className="font-medium text-[19px] xl:text-[21px] tracking-[-0.21px] leading-[1.5]">
+      <p className="font-medium text-[19px] xl:text-[21px] tracking-[-0.21px] leading-[1.5]">
         {contactUsLabel}
-      </h4>
+      </p>
       <p className="text-[rgba(255,255,255,0.63)] text-base leading-[30px]">
         <a
           href="mailto:help@compensall.com"

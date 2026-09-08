@@ -5,8 +5,7 @@ export const openSans = Open_Sans({
   weight: ["400", "700"],
   display: "swap",
   variable: "--font-open-sans",
-  // Keep fonts off the mobile LCP network path (hero image wins).
-  // display:swap + adjustFontFallback preserve the look without blocking paint.
-  preload: false,
+  // Preload so the webfont is ready before swap — late Open Sans was a CLS culprit.
+  preload: true,
   adjustFontFallback: true,
 });

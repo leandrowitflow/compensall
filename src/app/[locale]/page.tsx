@@ -158,7 +158,7 @@ export default async function HomePage({ params }: HomePageProps) {
               className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
             >
               {showTrustpilot && (
-                <div className="flex justify-center mb-5">
+                <div className="flex justify-center mb-5 min-h-[28px]">
                   <TrustpilotTrustBox />
                 </div>
               )}
