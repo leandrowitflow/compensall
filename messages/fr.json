@@ -814,6 +814,8 @@
     "airlineIntroP2": "Compensall vérifie votre éligibilité en quelques minutes. Téléversez votre carte d'embarquement ou saisissez les détails du vol — No win, no fee.",
     "airportIntroP1": "Vous voyagez depuis ou vers {name} ? Si votre vol a été retardé ou annulé, vous pouvez avoir droit à une indemnisation allant jusqu'à 600 € au titre du règlement UE CE 261/2004 et du UK261.",
     "airportIntroP2": "Compensall vous aide à vérifier votre réclamation en quelques minutes. Commencez avec votre carte d'embarquement ou les détails du vol — No win, no fee.",
+    "sectionRights": "Vos droits de passager",
+    "sectionTips": "Conseils pour réclamer",
     "airlineCardDescription": "Retard, annulation ou refus d'embarquement {name} ? Vérifiez votre réclamation en quelques minutes.",
     "airportCardDescription": "Vol retardé ou annulé via {name} ? Vérifiez votre réclamation en quelques minutes.",
     "entityAirlineFlight": "votre vol {name}",

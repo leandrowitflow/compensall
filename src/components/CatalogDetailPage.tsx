@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
@@ -13,6 +13,7 @@ import {
   buildCatalogTitle,
   type CatalogKind,
 } from "@/lib/catalog-detail";
+import { getCatalogEntityContent, pickLocalized } from "@/content/catalog";
 import { buildBreadcrumbSchema, buildFaqPageSchema } from "@/lib/structured-data";
 import type { CatalogItem } from "@/lib/catalog";
 import { gtmId } from "@/lib/gtm";
@@ -23,11 +24,15 @@ type CatalogDetailPageProps = {
 };
 
 export default async function CatalogDetailPage({ item, kind }: CatalogDetailPageProps) {
+  const locale = await getLocale();
   const t = await getTranslations("catalogDetail");
   const tCommon = await getTranslations("common");
 
   const title = buildCatalogTitle(t, item, kind);
-  const intro = buildCatalogIntro(t, item, kind);
+  const entityContent = getCatalogEntityContent(kind, item.id);
+  const intro = entityContent
+    ? [pickLocalized(entityContent.about, locale)]
+    : buildCatalogIntro(t, item, kind);
   const faqs = buildCatalogFaqs(t, item, kind);
 
   const claimHeadline =
@@ -81,11 +86,49 @@ export default async function CatalogDetailPage({ item, kind }: CatalogDetailPag
             <MarkdownDownloadButton tone="onLight" />
           </h1>
 
-          <div className="space-y-5 text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10 xl:mb-14">
-            {intro.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
+          {entityContent ? (
+            <div className="mb-10 xl:mb-14 space-y-8">
+              <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {entityContent.facts.map((fact) => {
+                  const text = pickLocalized(fact, locale);
+                  return (
+                    <li
+                      key={text}
+                      className="rounded-[14px] border border-[#d5e0f9] bg-[#f8faff] px-4 py-3 text-sm xl:text-[15px] leading-relaxed text-[#1f3664]"
+                    >
+                      {text}
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="space-y-5 text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
+                {intro.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+
+              <div>
+                <h2 className="font-bold text-[#1f3664] text-xl xl:text-2xl mb-3">{t("sectionRights")}</h2>
+                <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
+                  {pickLocalized(entityContent.rights, locale)}
+                </p>
+              </div>
+
+              <div>
+                <h2 className="font-bold text-[#1f3664] text-xl xl:text-2xl mb-3">{t("sectionTips")}</h2>
+                <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
+                  {pickLocalized(entityContent.tips, locale)}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-5 text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10 xl:mb-14">
+              {intro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

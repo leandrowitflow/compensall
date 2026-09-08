@@ -4,6 +4,7 @@ import {
   type CatalogItem,
 } from "@/lib/catalog";
 import { resolveAirportCatalogItem } from "@/lib/catalog-world-airports";
+import { getCatalogEntityContent, pickLocalized } from "@/content/catalog";
 import type { FaqItem } from "@/lib/faq-items";
 
 export type CatalogKind = "airlines" | "airports";
@@ -40,6 +41,7 @@ export function buildCatalogTitle(
   return t("airportTitle", { name: item.name });
 }
 
+/** Fallback template intros when curated entity content is missing (e.g. world airports). */
 export function buildCatalogIntro(
   t: CatalogTranslator,
   item: CatalogItem,
@@ -91,7 +93,14 @@ export function buildCatalogMetadataDescription(
   t: CatalogTranslator,
   item: CatalogItem,
   kind: CatalogKind,
+  locale = "en",
 ): string {
+  const content = getCatalogEntityContent(kind, item.id);
+  if (content) {
+    const about = pickLocalized(content.about, locale);
+    return about.length > 160 ? `${about.slice(0, 157)}...` : about;
+  }
+
   const intro = buildCatalogIntro(t, item, kind)[0] ?? "";
   return intro.length > 160 ? `${intro.slice(0, 157)}...` : intro;
 }

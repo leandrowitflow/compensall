@@ -230,7 +230,7 @@ export async function buildCatalogMetadata(
 ): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "catalogDetail" });
   const title = buildCatalogTitle(t, item, kind);
-  const description = buildCatalogMetadataDescription(t, item, kind);
+  const description = buildCatalogMetadataDescription(t, item, kind, locale);
   const path = kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`;
 
   return buildPageMetadata({ title, description, path, locale });
