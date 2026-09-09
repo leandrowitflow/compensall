@@ -563,7 +563,7 @@
     "title": "Tarifs et frais",
     "breadcrumb": "Tarifs",
     "summary": "Aucun coût initial. Nous ne facturons des frais de succès que lorsque nous récupérons une indemnisation pour vous.",
-    "noWinNoFeeIntro": "No win, no fee :",
+    "noWinNoFeeIntro": "No win, no fee:",
     "noWinNoFeeBody": "La vérification d'éligibilité et l'utilisation de notre site sont gratuites. Si vous nous mandatez pour poursuivre une indemnisation, nos frais ne s'appliquent que lorsque votre réclamation aboutit, conformément à notre <noWinNoFeeAgreement>Accord No win, no fee</noWinNoFeeAgreement>.",
     "noWinNoFeeAgreement": "Accord No win, no fee",
     "successFeeTitle": "Frais de succès",
@@ -575,7 +575,7 @@
     "tier351to520": "€401–€600",
     "fee25Vat": "30 % + TVA",
     "uk261Title": "Montants d'indemnisation (UK261)",
-    "uk261Intro": "Pour les départs du Royaume-Uni, l'indemnisation fixe au titre du UK261 dépend de la distance du vol :",
+    "uk261Intro": "Pour les départs du Royaume-Uni, l'indemnisation fixe au titre du UK261 dépend de la distance du vol:",
     "ec261Title": "Montants d'indemnisation (CE 261/2004)"
   },
   "cta": {

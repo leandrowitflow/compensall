@@ -5,7 +5,7 @@ import LegalPageShell from "@/components/legal/LegalPageShell";
 import type { AppLocale } from "@/i18n/routing";
 import { gtmId } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
-import { localizeEuroAmountLabel } from "@/lib/public-copy";
+import { localizeEuroAmountLabel, polishPublicCopy } from "@/lib/public-copy";
 import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 
 type PricesPageProps = {
@@ -49,7 +49,7 @@ export default async function PricesPage({ params }: PricesPageProps) {
     <LegalPageShell title={t("title")} breadcrumbLabel={t("breadcrumb")} summary={t("summary")}>
       <div className="mb-6 p-4 bg-[#f0f5ff] rounded-xl border border-[#d5e0f9]">
         <p className="text-sm text-muted leading-relaxed">
-          <strong className="text-[#1f3664]">{t("noWinNoFeeIntro")}</strong>{" "}
+          <strong className="text-[#1f3664]">{polishPublicCopy(t("noWinNoFeeIntro"), locale)}</strong>{" "}
           {t.rich("noWinNoFeeBody", {
             noWinNoFeeAgreement: (chunks) => (
               <Link
@@ -95,7 +95,7 @@ export default async function PricesPage({ params }: PricesPageProps) {
       {showUkTiers ? (
         <>
           <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("uk261Title")}</h2>
-          <p className="text-muted text-sm leading-relaxed mb-4">{t("uk261Intro")}</p>
+          <p className="text-muted text-sm leading-relaxed mb-4">{polishPublicCopy(t("uk261Intro"), locale)}</p>
           <ul className="list-disc pl-5 text-sm text-muted space-y-1 mb-8">
             {ukTierItems.map((tier) => (
               <li key={tier.amount}>

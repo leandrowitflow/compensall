@@ -24,7 +24,9 @@ export function attachEuroAfterAmount(text: string): string {
   return text
     .replace(/€\s*(\d[\d.]*)/g, "$1€")
     .replace(/(\d[\d.]*)\s+€/g, "$1€")
-    .replace(/(\d[\d.]*)\s+euros\b/gi, "$1€");
+    .replace(/(\d[\d.]*)\s+euros\b/gi, "$1€")
+    .replace(/(\d[\d.]*)\s+EUR\b/g, "$1€")
+    .replace(/(\d[\d.]*)\s*,\s*(\d[\d.]*)\s+e\s+(\d[\d.]*)€/g, "$1€, $2€ e $3€");
 }
 
 export function polishPortuguesePublicCopy(text: string): string {
