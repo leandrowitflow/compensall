@@ -6,6 +6,7 @@ import { useCallback, useState } from "react";
 import Step1Upload from "@/components/claim/Step1Upload";
 import type { ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
+import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import {
   EMPTY_FLIGHT,
   normalizeFlightData,
@@ -280,6 +281,7 @@ export default function HeroClaimForm() {
       formData.append("odooLeadId", String(payload.odooLeadId));
     }
     formData.append("formSessionId", payload.formSessionId);
+    formData.append("attribution", JSON.stringify(readClaimAttribution()));
 
     if (boardingPassFile) {
       formData.append("file", boardingPassFile);

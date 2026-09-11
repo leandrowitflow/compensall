@@ -1,13 +1,17 @@
+import {
+  DEFAULT_CLAIM_ATTRIBUTION,
+  userDeviceFromUserAgent,
+  type ClaimAttribution,
+} from "@/lib/claim-attribution";
 import type {
   ClaimEntryMode,
   ClaimFlightData,
   ClaimPassenger,
   ClaimVerification,
-  FlightStatus,
 } from "@/lib/claim-types";
 import { estimateCompensationForFlight } from "@/lib/compensation-estimate";
 import { lookupAirlineByCarrierCode } from "@/lib/lookup-airline";
-import { formatRouteLabel } from "@/lib/lookup-airport";
+import { formatRouteLabel, lookupAirportByIata, normalizeIata } from "@/lib/lookup-airport";
 import { toDateInputValue } from "@/lib/resolve-boarding-pass-references";
 import {
   getOdooConfig,
@@ -19,6 +23,7 @@ import {
   odooFindLeadBySessionId,
   odooFindOrCreatePartner,
   odooFindCurrencyIdByCode,
+  odooResolveUtmIds,
   odooUpdateCrmLead,
   odooUpdateHelpdeskTicket,
   type OdooAttachmentInput,
@@ -39,6 +44,8 @@ export type OdooClaimLeadInput = {
   siteUrl: string;
   locale?: string | null;
   landingPage?: string | null;
+  attribution?: ClaimAttribution | null;
+  userAgent?: string | null;
   odooLeadId?: number | null;
   formSessionId?: string | null;
   /** PNG signature as raw base64 (no data: prefix). */
@@ -80,6 +87,7 @@ export type OdooPartialClaimLeadInput = {
   siteUrl: string;
   locale?: string | null;
   landingPage?: string | null;
+  attribution?: ClaimAttribution | null;
   odooLeadId?: number | null;
   step?: string;
 };
@@ -132,8 +140,31 @@ function toOdooDate(value: string): string | undefined {
   return iso || undefined;
 }
 
-function mapDisruptionType(status: FlightStatus): string | undefined {
-  switch (status) {
+function formatOdooAirportField(route: string): string {
+  const iata = normalizeIata(route);
+  const airport = iata ? lookupAirportByIata(iata) : null;
+  if (airport?.name && airport.iata) {
+    return `${airport.name} - ${airport.iata}`;
+  }
+  return formatRouteLabel(route);
+}
+
+function itineraryHasConnection(flight: ClaimFlightData): boolean {
+  if (flight.hadConnectingFlight === true) {
+    return true;
+  }
+
+  return (flight.connectingFlights ?? []).some(
+    (leg) => Boolean(leg.airport.trim()) || Boolean(leg.flightNumber.trim()),
+  );
+}
+
+function mapDisruptionType(flight: ClaimFlightData): string | undefined {
+  if (itineraryHasConnection(flight)) {
+    return "missed_connection";
+  }
+
+  switch (flight.status) {
     case "Delayed":
       return "delayed";
     case "Cancelled":
@@ -143,10 +174,31 @@ function mapDisruptionType(status: FlightStatus): string | undefined {
     case "Unknown":
       return undefined;
     default: {
-      const exhaustive: never = status;
+      const exhaustive: never = flight.status;
       return exhaustive;
     }
   }
+}
+
+function resolveAttribution(attribution?: ClaimAttribution | null): ClaimAttribution {
+  return {
+    source: attribution?.source.trim() || DEFAULT_CLAIM_ATTRIBUTION.source,
+    medium: attribution?.medium.trim() || DEFAULT_CLAIM_ATTRIBUTION.medium,
+    campaign: attribution?.campaign.trim() || "",
+  };
+}
+
+function leadUtmOptions(attribution?: ClaimAttribution | null): {
+  utmSourceName: string;
+  utmMediumName: string;
+  utmCampaignName?: string;
+} {
+  const resolved = resolveAttribution(attribution);
+  return {
+    utmSourceName: resolved.source,
+    utmMediumName: resolved.medium,
+    ...(resolved.campaign ? { utmCampaignName: resolved.campaign } : {}),
+  };
 }
 
 function mapDelayDuration(flight: ClaimFlightData): string | undefined {
@@ -197,7 +249,7 @@ function resolveAirlineName(flightNumber: string): string | undefined {
 function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, unknown> {
   const { firstName, lastName } = splitPassengerName(input.signedName || input.flight.passenger);
   const flightDate = toOdooDate(input.flight.date);
-  const disruptionType = mapDisruptionType(input.flight.status);
+  const disruptionType = mapDisruptionType(input.flight);
   const delayDuration = mapDelayDuration(input.flight);
   const airline = resolveAirlineName(input.flight.flight);
   const trackUrl = `${input.siteUrl.replace(/\/$/, "")}/track/${input.trackingNumber}`;
@@ -248,7 +300,10 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
   if (airline) {
     values.x_studio_airline = airline;
   }
-  if (typeof input.flight.hadConnectingFlight === "boolean") {
+  const hasConnection = itineraryHasConnection(input.flight);
+  if (hasConnection) {
+    values.x_studio_connecting_flights = true;
+  } else if (typeof input.flight.hadConnectingFlight === "boolean") {
     values.x_studio_connecting_flights = input.flight.hadConnectingFlight;
   }
 
@@ -260,16 +315,19 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
 
   const connectingLegs = (input.flight.connectingFlights ?? [])
     .filter((leg) => leg.airport.trim() || leg.flightNumber.trim())
-    .slice(0, 2);
+    .slice(0, 4);
   if (connectingLegs.length > 0) {
     const connectingLines = connectingLegs
       .map((leg, index) => {
-        const airport = formatRouteLabel(leg.airport) || "—";
+        const airport = formatOdooAirportField(leg.airport) || "—";
         const flightNumber = leg.flightNumber.trim() || "—";
+        const field = `x_studio_connecting_flight_${index + 1}`;
+        values[field] = [airport !== "—" ? airport : "", flightNumber !== "—" ? flightNumber : ""]
+          .filter(Boolean)
+          .join(" · ");
         return `<li>Connecting flight ${index + 1}: ${airport} / ${flightNumber}</li>`;
       })
       .join("");
-    // Indexed on the Helpdesk ticket description (safe without new Studio columns).
     values.description = `${String(values.description ?? "")}<p><strong>Connecting flights</strong></p><ul>${connectingLines}</ul>`;
   }
   if (input.flight.cancellationNotice) {
@@ -422,6 +480,14 @@ async function syncHelpdeskTicket(
   }
 
   const values = buildHelpdeskTicketValues(input);
+  const attribution = resolveAttribution(input.attribution);
+  const utmIds = await odooResolveUtmIds({
+    source: attribution.source,
+    medium: attribution.medium,
+    campaign: attribution.campaign || null,
+  });
+  Object.assign(values, utmIds);
+  values.user_device = userDeviceFromUserAgent(input.userAgent);
 
   const estimate = estimateCompensationForFlight(input.flight, input.locale);
   if (estimate?.amount != null && estimate.currency) {
@@ -492,12 +558,13 @@ export async function syncPartialClaimToOdoo(
 
   if (existingLeadId) {
     return odooUpdateCrmLead(existingLeadId, values, {
+      ...leadUtmOptions(input.attribution),
       extraTagNames: [config?.incompleteTagName],
     });
   }
 
   return odooCreateCrmLead(values, {
-    utmMediumName: config?.utmMediumIncompleteName,
+    ...leadUtmOptions(input.attribution),
     extraTagNames: [config?.incompleteTagName],
   });
 }
@@ -536,9 +603,11 @@ export async function syncClaimCaseToOdoo(input: OdooClaimLeadInput): Promise<Od
 
     lead = existingLeadId
       ? await odooUpdateCrmLead(existingLeadId, values, {
+          ...leadUtmOptions(input.attribution),
           extraTagNames: [config?.submittedTagName],
         })
       : await odooCreateCrmLead(values, {
+          ...leadUtmOptions(input.attribution),
           extraTagNames: [config?.submittedTagName],
         });
   } catch (error) {

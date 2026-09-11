@@ -432,9 +432,35 @@ async function readHelpdeskTicket(
 }
 
 type CreateLeadOptions = {
+  utmSourceName?: string;
   utmMediumName?: string;
+  utmCampaignName?: string;
   extraTagNames?: Array<string | null | undefined>;
 };
+
+export async function odooResolveUtmIds(names: {
+  source?: string | null;
+  medium?: string | null;
+  campaign?: string | null;
+}): Promise<{ source_id?: number; medium_id?: number; campaign_id?: number }> {
+  const config = getOdooConfig();
+  if (!config) {
+    return {};
+  }
+
+  const uid = await authenticate(config);
+  const [sourceId, mediumId, campaignId] = await Promise.all([
+    names.source ? resolveUtmId(config, uid, "utm.source", names.source) : undefined,
+    names.medium ? resolveUtmId(config, uid, "utm.medium", names.medium) : undefined,
+    names.campaign ? resolveUtmId(config, uid, "utm.campaign", names.campaign) : undefined,
+  ]);
+
+  return {
+    ...(sourceId ? { source_id: sourceId } : {}),
+    ...(mediumId ? { medium_id: mediumId } : {}),
+    ...(campaignId ? { campaign_id: campaignId } : {}),
+  };
+}
 
 export async function odooUpdateCrmLead(
   leadId: number,
@@ -447,7 +473,12 @@ export async function odooUpdateCrmLead(
   }
 
   const uid = await authenticate(config);
-  const identityValues = await applyCompensallIdentity(config, uid, values, {
+  const utmValues = await odooResolveUtmIds({
+    source: options.utmSourceName,
+    medium: options.utmMediumName,
+    campaign: options.utmCampaignName,
+  });
+  const identityValues = await applyCompensallIdentity(config, uid, { ...values, ...utmValues }, {
     tagModel: "crm.tag",
     extraTagNames: options.extraTagNames,
   });
@@ -509,9 +540,9 @@ export async function odooCreateCrmLead(
   const uid = await authenticate(config);
 
   const [sourceId, mediumId, campaignId, identityValues] = await Promise.all([
-    resolveUtmId(config, uid, "utm.source", config.utmSourceName),
+    resolveUtmId(config, uid, "utm.source", options.utmSourceName ?? config.utmSourceName),
     resolveUtmId(config, uid, "utm.medium", options.utmMediumName ?? config.utmMediumName),
-    resolveUtmId(config, uid, "utm.campaign", config.utmCampaignName),
+    resolveUtmId(config, uid, "utm.campaign", options.utmCampaignName ?? config.utmCampaignName),
     applyCompensallIdentity(config, uid, values, {
       tagModel: "crm.tag",
       extraTagNames: options.extraTagNames,

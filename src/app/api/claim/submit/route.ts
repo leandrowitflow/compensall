@@ -6,6 +6,7 @@ import { saveClaim, updateClaimFields } from "@/lib/claim-store";
 import { generateTrackingNumber } from "@/lib/claim-tracking";
 import { buildSignedPowerOfAttorneyAttachment } from "@/lib/build-signed-poa-html";
 import { sendClaimEmails } from "@/lib/send-claim-email";
+import { parseClaimAttribution } from "@/lib/claim-attribution";
 import { syncClaimCaseToOdoo } from "@/lib/odoo-crm-lead";
 import { normalizeFlightData, type ClaimRecord } from "@/lib/claim-types";
 import { withCompensationEstimate } from "@/lib/compensation-estimate";
@@ -329,6 +330,15 @@ export async function POST(request: Request) {
         : null;
     const formSessionId =
       typeof formSessionIdRaw === "string" && formSessionIdRaw.trim() ? formSessionIdRaw.trim() : null;
+    let attribution = parseClaimAttribution(null);
+    const attributionRaw = formData.get("attribution");
+    if (typeof attributionRaw === "string" && attributionRaw.trim()) {
+      try {
+        attribution = parseClaimAttribution(JSON.parse(attributionRaw) as unknown);
+      } catch {
+        attribution = parseClaimAttribution(null);
+      }
+    }
 
     const poaSignatures = documentSignatures
       .filter((signature) => signature.documentId === "authority-to-act")
@@ -375,6 +385,8 @@ export async function POST(request: Request) {
       siteUrl,
       locale,
       landingPage,
+      attribution,
+      userAgent,
       odooLeadId: Number.isFinite(odooLeadId) ? odooLeadId : null,
       formSessionId,
       signaturePngBase64,

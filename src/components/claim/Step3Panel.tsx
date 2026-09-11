@@ -13,6 +13,7 @@ import {
 import { ACTION_BTN, ASSISTANT_NAME, FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
 import PhoneInputField from "@/components/claim/PhoneInputField";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
+import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { gtmId } from "@/lib/gtm";
 import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
@@ -310,6 +311,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
           entryMode,
           flight,
           locale,
+          attribution: readClaimAttribution(),
           odooLeadId,
           step: "contact_confirmed",
         }),

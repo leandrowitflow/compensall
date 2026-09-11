@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { parseClaimAttribution } from "@/lib/claim-attribution";
 import { normalizeFlightData } from "@/lib/claim-types";
 import { isOdooConfigured } from "@/lib/odoo-client";
 import { safeSyncPartialClaimToOdoo } from "@/lib/odoo-crm-lead";
@@ -26,6 +27,14 @@ const bodySchema = z.object({
   entryMode: z.enum(["upload", "manual"]),
   flight: flightSchema,
   locale: z.string().length(2).optional().nullable(),
+  attribution: z
+    .object({
+      source: z.string().optional(),
+      medium: z.string().optional(),
+      campaign: z.string().optional(),
+    })
+    .optional()
+    .nullable(),
   odooLeadId: z.number().int().positive().optional().nullable(),
   step: z.string().min(1).optional(),
 });
@@ -64,6 +73,7 @@ export async function POST(request: Request) {
       siteUrl,
       locale,
       landingPage,
+      attribution: parseClaimAttribution(parsed.data.attribution),
       odooLeadId: parsed.data.odooLeadId ?? null,
       step: parsed.data.step ?? "contact_confirmed",
     });

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import AttributionCapture from "@/components/AttributionCapture";
 import DeferredAnchorScroll from "@/components/DeferredAnchorScroll";
 import DeferredCookieBanner from "@/components/DeferredCookieBanner";
 import GoogleTagManager from "@/components/GoogleTagManager";
@@ -58,6 +59,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <NextIntlClientProvider messages={messages}>
           <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
           <div className="site-viewport min-w-0 overflow-x-clip">
+            <AttributionCapture />
             <GoogleTagManager />
             <DeferredAnchorScroll />
             <DeferredCookieBanner />
