@@ -10,7 +10,7 @@ import {
 
 } from "@/lib/gemini-document";
 
-import { getGeminiTextModel, getGeminiVisionModel } from "@/lib/gemini";
+import { withGeminiModelFallback } from "@/lib/gemini";
 
 
 
@@ -96,33 +96,22 @@ export async function extractBoardingPassReferences(
 
 ): Promise<BoardingPassReferences> {
 
-  const { output } = await generateText({
-
-    model: getGeminiVisionModel(),
-
-    providerOptions: GEMINI_VISION_PROVIDER_OPTIONS,
-
-    output: Output.object({ schema: boardingPassReferencesSchema }),
-
-    messages: [
-
-      {
-
-        role: "user",
-
-        content: [
-
-          buildGeminiDocumentPart(fileBuffer, mimeType),
-
-          { type: "text", text: EXTRACT_REFERENCES_PROMPT },
-
-        ],
-
-      },
-
-    ],
-
-  });
+  const { output } = await withGeminiModelFallback((model) =>
+    generateText({
+      model,
+      providerOptions: GEMINI_VISION_PROVIDER_OPTIONS,
+      output: Output.object({ schema: boardingPassReferencesSchema }),
+      messages: [
+        {
+          role: "user",
+          content: [
+            buildGeminiDocumentPart(fileBuffer, mimeType),
+            { type: "text", text: EXTRACT_REFERENCES_PROMPT },
+          ],
+        },
+      ],
+    }),
+  );
 
 
 
@@ -138,25 +127,20 @@ export async function extractBoardingPassReferencesFromText(
 
 ): Promise<BoardingPassReferences> {
 
-  const { output } = await generateText({
-
-    model: getGeminiTextModel(),
-
-    output: Output.object({ schema: boardingPassReferencesSchema }),
-
-    messages: [
-
-      {
-
-        role: "user",
-
-        content: `${EXTRACT_REFERENCES_PROMPT}\n\nOCR text from boarding pass:\n${transcription}`,
-
-      },
-
-    ],
-
-  });
+  const { output } = await withGeminiModelFallback(
+    (model) =>
+      generateText({
+        model,
+        output: Output.object({ schema: boardingPassReferencesSchema }),
+        messages: [
+          {
+            role: "user",
+            content: `${EXTRACT_REFERENCES_PROMPT}\n\nOCR text from boarding pass:\n${transcription}`,
+          },
+        ],
+      }),
+    "text",
+  );
 
 
 

@@ -4,7 +4,7 @@ import {
   buildGeminiDocumentPart,
   GEMINI_VISION_PROVIDER_OPTIONS,
 } from "@/lib/gemini-document";
-import { getGeminiVisionModel, isGeminiConfigured } from "@/lib/gemini";
+import { isGeminiConfigured, withGeminiModelFallback } from "@/lib/gemini";
 import type { ClaimFlightData, ClaimVerification } from "@/lib/claim-types";
 
 const verificationSchema = z.object({
@@ -57,23 +57,25 @@ export async function verifyBoardingPassClaim(
   const confirmedDetails = JSON.stringify(confirmedFlight, null, 2);
 
   try {
-    const { output } = await generateText({
-      model: getGeminiVisionModel(),
-      providerOptions: GEMINI_VISION_PROVIDER_OPTIONS,
-      output: Output.object({ schema: verificationSchema }),
-      messages: [
-        {
-          role: "user",
-          content: [
-            buildGeminiDocumentPart(fileBuffer, mimeType),
-            {
-              type: "text",
-              text: `${VERIFICATION_PROMPT}\n\nUser-confirmed details:\n${confirmedDetails}`,
-            },
-          ],
-        },
-      ],
-    });
+    const { output } = await withGeminiModelFallback((model) =>
+      generateText({
+        model,
+        providerOptions: GEMINI_VISION_PROVIDER_OPTIONS,
+        output: Output.object({ schema: verificationSchema }),
+        messages: [
+          {
+            role: "user",
+            content: [
+              buildGeminiDocumentPart(fileBuffer, mimeType),
+              {
+                type: "text",
+                text: `${VERIFICATION_PROMPT}\n\nUser-confirmed details:\n${confirmedDetails}`,
+              },
+            ],
+          },
+        ],
+      }),
+    );
 
     return {
       result: output.result,
