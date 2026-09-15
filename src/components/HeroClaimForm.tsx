@@ -1,14 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import Step1Upload from "@/components/claim/Step1Upload";
 import type { ClaimResumePrefill, ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
-import { CLAIM_RESUME_QUERY, isClaimResumeToken } from "@/lib/claim-draft-token";
+import { readClaimResumeTokenFromLocation } from "@/lib/claim-draft-token";
 import {
   EMPTY_FLIGHT,
   normalizeFlightData,
@@ -139,7 +138,6 @@ function validateStep2(
 
 export default function HeroClaimForm() {
   const locale = useLocale();
-  const searchParams = useSearchParams();
   const tCommon = useTranslations("common");
   const tStep1 = useTranslations("claim.step1");
   const tStep2 = useTranslations("claim.step2");
@@ -181,8 +179,8 @@ export default function HeroClaimForm() {
   }, [upload?.previewUrl]);
 
   useEffect(() => {
-    const token = searchParams.get(CLAIM_RESUME_QUERY);
-    if (!isClaimResumeToken(token)) {
+    const token = readClaimResumeTokenFromLocation();
+    if (!token) {
       return;
     }
 
@@ -242,7 +240,7 @@ export default function HeroClaimForm() {
     return () => {
       cancelled = true;
     };
-  }, [searchParams, tResume]);
+  }, [tResume]);
 
   const handleExtract = async (file: File) => {
     setExtractError(null);

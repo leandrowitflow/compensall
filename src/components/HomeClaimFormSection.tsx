@@ -1,6 +1,5 @@
 "use client";
 
-import { Suspense } from "react";
 import ClaimFormErrorBoundary from "@/components/claim/ClaimFormErrorBoundary";
 import HeroClaimForm from "@/components/HeroClaimForm";
 
@@ -31,9 +30,7 @@ function ClaimFormCrashFallback() {
 export default function HomeClaimFormSection() {
   return (
     <ClaimFormErrorBoundary fallback={<ClaimFormCrashFallback />}>
-      <Suspense fallback={<div className="min-h-[200px] rounded-[21px] bg-[#f8faff] animate-pulse" />}>
-        <HeroClaimForm />
-      </Suspense>
+      <HeroClaimForm />
     </ClaimFormErrorBoundary>
   );
 }
