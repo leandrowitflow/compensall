@@ -18,6 +18,7 @@ import { gtmId, trackClaimSubmitted } from "@/lib/gtm";
 import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
 const SCROLL_END_THRESHOLD_PX = 8;
+const DRAFT_HEARTBEAT_MS = 60_000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_SIGNATURE_BYTES = 800;
 const MAX_PASSENGERS = 10;
@@ -208,6 +209,28 @@ export default function Step3Panel({
   useEffect(() => {
     docSignaturesRef.current = docSignatures;
   }, [docSignatures]);
+
+  useEffect(() => {
+    if (phase === "contact" || trackingNumber) {
+      return;
+    }
+
+    const touchDraft = () => {
+      if (document.visibilityState !== "visible") {
+        return;
+      }
+      void fetch("/api/claim/draft-heartbeat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formSessionId: sessionId }),
+        keepalive: true,
+      }).catch(() => undefined);
+    };
+
+    touchDraft();
+    const intervalId = window.setInterval(touchDraft, DRAFT_HEARTBEAT_MS);
+    return () => window.clearInterval(intervalId);
+  }, [phase, sessionId, trackingNumber]);
 
   useEffect(() => {
     const element = documentViewerRef.current;

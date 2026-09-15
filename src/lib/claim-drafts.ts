@@ -1,5 +1,5 @@
 import { randomBytes } from "node:crypto";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import {
   normalizeFlightData,
@@ -12,6 +12,7 @@ import { supabaseRestUrl } from "@/lib/supabase-rest";
 
 export { CLAIM_RESUME_QUERY, isClaimResumeToken };
 export const CLAIM_DRAFT_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+export const CLAIM_RESUME_EMAIL_IDLE_MS = 15 * 60 * 1000;
 
 export type ClaimDraft = {
   token: string;
@@ -169,22 +170,24 @@ async function getDraftLocally(token: string): Promise<ClaimDraft | null> {
   }
 }
 
-async function findDraftBySessionLocally(formSessionId: string): Promise<ClaimDraft | null> {
+async function listDraftsLocally(): Promise<ClaimDraft[]> {
   try {
-    const { readdir } = await import("node:fs/promises");
     const files = await readdir(LOCAL_DRAFTS_DIR);
+    const drafts: ClaimDraft[] = [];
     for (const file of files) {
       if (!file.endsWith(".json")) continue;
-      const raw = await readFile(path.join(LOCAL_DRAFTS_DIR, file), "utf8");
-      const draft = JSON.parse(raw) as ClaimDraft;
-      if (draft.formSessionId === formSessionId) {
-        return draft;
-      }
+      const draft = await getDraftLocally(file.replace(/\.json$/, ""));
+      if (draft) drafts.push(draft);
     }
+    return drafts;
   } catch {
-    return null;
+    return [];
   }
-  return null;
+}
+
+async function findDraftBySessionLocally(formSessionId: string): Promise<ClaimDraft | null> {
+  const drafts = await listDraftsLocally();
+  return drafts.find((draft) => draft.formSessionId === formSessionId) ?? null;
 }
 
 async function supabaseHeaders(): Promise<Record<string, string>> {
@@ -279,16 +282,73 @@ export async function saveClaimDraft(input: ClaimDraftInput): Promise<ClaimDraft
     updatedAt: now.toISOString(),
   };
 
+  return persistDraft(draft);
+}
+
+async function persistDraft(draft: ClaimDraft): Promise<ClaimDraft> {
   if (hasSupabaseConfig()) {
     return writeDraftSupabase(draft);
   }
-
   if (process.env.NODE_ENV === "development") {
     await saveDraftLocally(draft);
     return draft;
   }
-
   throw new Error("Claim draft storage is not configured.");
+}
+
+export async function touchClaimDraftBySessionId(formSessionId: string): Promise<boolean> {
+  const existing = await getClaimDraftBySessionId(formSessionId);
+  if (!existing || !isClaimDraftActive(existing) || existing.resumeEmailSentAt) {
+    return false;
+  }
+
+  await persistDraft({ ...existing, updatedAt: new Date().toISOString() });
+  return true;
+}
+
+export async function listClaimDraftsPendingResumeEmail(
+  idleSince: Date,
+  limit = 50,
+): Promise<ClaimDraft[]> {
+  const now = new Date();
+  const nowIso = now.toISOString();
+  const cutoffIso = idleSince.toISOString();
+
+  if (hasSupabaseConfig()) {
+    const query = [
+      "resume_email_sent_at=is.null",
+      "consumed_at=is.null",
+      "consumed_by_tracking_number=is.null",
+      `expires_at=gt.${encodeURIComponent(nowIso)}`,
+      `updated_at=lt.${encodeURIComponent(cutoffIso)}`,
+      "order=updated_at.asc",
+      `limit=${limit}`,
+      "select=*",
+    ].join("&");
+    const response = await fetch(`${supabaseRestUrl("claim_drafts")}?${query}`, {
+      headers: await supabaseHeaders(),
+    });
+    if (!response.ok) {
+      const body = await response.text();
+      throw new Error(`Supabase pending resume drafts failed: ${response.status} ${body}`);
+    }
+    const rows = (await response.json()) as Array<Parameters<typeof rowToDraft>[0]>;
+    return rows.map(rowToDraft);
+  }
+
+  if (process.env.NODE_ENV === "development") {
+    return (await listDraftsLocally())
+      .filter((draft) => {
+        if (!isClaimDraftActive(draft, now.getTime()) || draft.resumeEmailSentAt) {
+          return false;
+        }
+        return new Date(draft.updatedAt).getTime() < idleSince.getTime();
+      })
+      .sort((left, right) => left.updatedAt.localeCompare(right.updatedAt))
+      .slice(0, limit);
+  }
+
+  return [];
 }
 
 export async function markClaimDraftEmailSent(token: string, sentAt = new Date().toISOString()): Promise<void> {

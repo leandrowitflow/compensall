@@ -1,15 +1,10 @@
 import { z } from "zod";
 import { parseClaimAttribution } from "@/lib/claim-attribution";
-import {
-  buildClaimResumeUrl,
-  markClaimDraftEmailSent,
-  saveClaimDraft,
-} from "@/lib/claim-drafts";
+import { buildClaimResumeUrl, saveClaimDraft } from "@/lib/claim-drafts";
 import { normalizeFlightData } from "@/lib/claim-types";
 import { isOdooConfigured } from "@/lib/odoo-client";
 import { safeSyncPartialClaimToOdoo } from "@/lib/odoo-crm-lead";
 import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
-import { sendResumeClaimEmail } from "@/lib/send-claim-email";
 
 const flightSchema = z.object({
   passenger: z.string(),
@@ -140,20 +135,6 @@ export async function POST(request: Request) {
         additionalPassengers,
         locale,
       });
-    }
-
-    if (!draft.resumeEmailSentAt) {
-      const sent = await sendResumeClaimEmail({
-        signedName: parsed.data.signedName,
-        contactEmail: parsed.data.contactEmail,
-        flight,
-        resumeUrl,
-        siteUrl,
-        locale,
-      });
-      if (sent) {
-        await markClaimDraftEmailSent(draft.token);
-      }
     }
 
     if (!lead) {

@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/claim-resume-emails",
+      "schedule": "*/5 * * * *"
+    }
+  ]
+}
