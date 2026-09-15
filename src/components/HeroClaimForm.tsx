@@ -1,17 +1,20 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Step1Upload from "@/components/claim/Step1Upload";
-import type { ClaimSubmitPayload } from "@/components/claim/Step3Panel";
+import type { ClaimResumePrefill, ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
+import { CLAIM_RESUME_QUERY, isClaimResumeToken } from "@/lib/claim-draft-token";
 import {
   EMPTY_FLIGHT,
   normalizeFlightData,
   type ClaimEntryMode,
   type ClaimFlightData,
+  type ClaimPassenger,
   type ClaimStatus,
   type ClaimUploadMeta,
 } from "@/lib/claim-types";
@@ -136,15 +139,21 @@ function validateStep2(
 
 export default function HeroClaimForm() {
   const locale = useLocale();
+  const searchParams = useSearchParams();
   const tCommon = useTranslations("common");
   const tStep1 = useTranslations("claim.step1");
   const tStep2 = useTranslations("claim.step2");
   const tDisruption = useTranslations("claim.disruption");
   const tConnecting = useTranslations("claim.connecting");
   const tStep3 = useTranslations("claim.step3");
+  const tResume = useTranslations("claim.resume");
 
   const [step, setStep] = useState<ClaimStep>(1);
   const [entryMode, setEntryMode] = useState<ClaimEntryMode | null>(null);
+  const [resumeToken, setResumeToken] = useState<string | null>(null);
+  const [resumePrefill, setResumePrefill] = useState<ClaimResumePrefill | null>(null);
+  const [resumeNotice, setResumeNotice] = useState<string | null>(null);
+  const [isResuming, setIsResuming] = useState(false);
   const [upload, setUpload] = useState<ClaimUploadMeta | null>(null);
   const [flight, setFlight] = useState<ClaimFlightData>(EMPTY_FLIGHT);
   const [isExtracting, setIsExtracting] = useState(false);
@@ -166,7 +175,74 @@ export default function HeroClaimForm() {
     setIsEditing(false);
     setStep2Error(null);
     setBoardingPassFile(null);
+    setResumeToken(null);
+    setResumePrefill(null);
+    setResumeNotice(null);
   }, [upload?.previewUrl]);
+
+  useEffect(() => {
+    const token = searchParams.get(CLAIM_RESUME_QUERY);
+    if (!isClaimResumeToken(token)) {
+      return;
+    }
+
+    let cancelled = false;
+    setIsResuming(true);
+    setResumeNotice(tResume("loading"));
+
+    void fetch(`/api/claim/resume/${token}`)
+      .then(async (response) => {
+        const data = (await response.json()) as {
+          draft?: {
+            formSessionId: string;
+            odooLeadId: number | null;
+            signedName: string;
+            contactEmail: string;
+            contactPhone: string;
+            additionalPassengers: ClaimPassenger[];
+            flight: ClaimFlightData;
+          };
+          error?: string;
+        };
+
+        if (cancelled) return;
+
+        if (!response.ok || !data.draft) {
+          setResumeNotice(response.status === 410 ? tResume("expired") : tResume("invalid"));
+          return;
+        }
+
+        setFlight(normalizeFlightData(data.draft.flight));
+        setEntryMode("manual");
+        setResumeToken(token);
+        setResumePrefill({
+          formSessionId: data.draft.formSessionId,
+          odooLeadId: data.draft.odooLeadId,
+          signedName: data.draft.signedName,
+          contactEmail: data.draft.contactEmail,
+          contactPhone: data.draft.contactPhone,
+          additionalPassengers: data.draft.additionalPassengers ?? [],
+        });
+        setIsEditing(false);
+        setStep(3);
+        setResumeNotice(tResume("loaded"));
+        document.getElementById("claim")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setResumeNotice(tResume("invalid"));
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setIsResuming(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [searchParams, tResume]);
 
   const handleExtract = async (file: File) => {
     setExtractError(null);
@@ -282,6 +358,9 @@ export default function HeroClaimForm() {
     }
     formData.append("formSessionId", payload.formSessionId);
     formData.append("attribution", JSON.stringify(readClaimAttribution()));
+    if (resumeToken) {
+      formData.append("resumeToken", resumeToken);
+    }
 
     if (boardingPassFile) {
       formData.append("file", boardingPassFile);
@@ -338,7 +417,11 @@ export default function HeroClaimForm() {
         <ClaimStepIndicator step={step} />
       </div>
 
-      {step === 1 && (
+      {resumeNotice && (
+        <p className="px-6 sm:px-10 xl:px-14 pb-3 text-sm text-[#1f3664] text-left">{resumeNotice}</p>
+      )}
+
+      {step === 1 && !isResuming && (
         <Step1Upload
           isExtracting={isExtracting}
           extractError={extractError}
@@ -370,6 +453,7 @@ export default function HeroClaimForm() {
                 flight={flight}
                 entryMode={entryMode}
                 locale={locale}
+                resumePrefill={resumePrefill}
                 onDelete={resetClaim}
                 onSubmit={handleClaimSubmit}
               />

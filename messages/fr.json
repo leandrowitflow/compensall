@@ -166,6 +166,12 @@
       "assistantCheckShort": "Vérification",
       "signSubmit": "Signer et soumettre"
     },
+    "resume": {
+      "loading": "Chargement de votre dossier enregistré…",
+      "loaded": "Nous avons chargé les détails du vol et vos coordonnées. Signez la procuration et envoyez pour terminer.",
+      "invalid": "Ce lien n'est plus valable. Vous pouvez commencer une nouvelle réclamation ci-dessous.",
+      "expired": "Ce lien a expiré ou a déjà été utilisé. Vous pouvez commencer une nouvelle réclamation ci-dessous."
+    },
     "step1": {
       "rightsContext": "En vertu de la législation britannique et européenne sur les droits des passagers (UK261 et CE 261/2004), vous pouvez avoir droit à une indemnisation pour les retards, annulations et refus d'embarquement. Téléchargez votre carte d'embarquement pour vérifier votre éligibilité — c'est gratuit. No win, no fee.",
       "readingBoardingPass": "Lecture de votre carte d'embarquement…",

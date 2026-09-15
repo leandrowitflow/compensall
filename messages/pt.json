@@ -166,6 +166,12 @@
       "assistantCheckShort": "Verificação",
       "signSubmit": "Assinar e submeter"
     },
+    "resume": {
+      "loading": "A carregar o seu pedido guardado…",
+      "loaded": "Carregámos os dados do voo e do contacto. Assine a procuração e envie para concluir.",
+      "invalid": "Este link já não é válido. Pode começar um pedido novo abaixo.",
+      "expired": "Este link expirou ou já foi usado. Pode começar um pedido novo abaixo."
+    },
     "step1": {
       "rightsContext": "Ao abrigo da legislação de direitos dos passageiros do Reino Unido e da UE (UK261 e EC 261/2004), pode ter direito a compensação por atrasos, cancelamentos e embarque recusado. Carregue o seu cartão de embarque para verificar a elegibilidade — é gratuito. No win, no fee.",
       "readingBoardingPass": "A ler o seu cartão de embarque…",

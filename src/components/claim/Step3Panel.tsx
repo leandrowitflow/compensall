@@ -14,7 +14,7 @@ import { ACTION_BTN, ASSISTANT_NAME, FIELD_INPUT, FIELD_LABEL } from "@/componen
 import PhoneInputField from "@/components/claim/PhoneInputField";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
-import { gtmId } from "@/lib/gtm";
+import { gtmId, trackClaimSubmitted } from "@/lib/gtm";
 import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
 const SCROLL_END_THRESHOLD_PX = 8;
@@ -53,10 +53,20 @@ export type ClaimSubmitPayload = {
   formSessionId: string;
 };
 
+export type ClaimResumePrefill = {
+  formSessionId: string;
+  odooLeadId: number | null;
+  signedName: string;
+  contactEmail: string;
+  contactPhone: string;
+  additionalPassengers: ClaimPassenger[];
+};
+
 type Step3PanelProps = {
   flight: ClaimFlightData;
   entryMode: "upload" | "manual";
   locale: string;
+  resumePrefill?: ClaimResumePrefill | null;
   onDelete: () => void;
   onSubmit: (payload: ClaimSubmitPayload) => Promise<{ trackingNumber: string; status: ClaimStatus }>;
 };
@@ -121,24 +131,36 @@ function FileUploadField({
   );
 }
 
-export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubmit }: Step3PanelProps) {
+export default function Step3Panel({
+  flight,
+  entryMode,
+  locale,
+  resumePrefill,
+  onDelete,
+  onSubmit,
+}: Step3PanelProps) {
   const t = useTranslations("claim.step3");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
 
-  const [phase, setPhase] = useState<WizardPhase>("contact");
-  const [signedName, setSignedName] = useState(flight.passenger);
-  const [contactEmail, setContactEmail] = useState("");
-  const [contactPhone, setContactPhone] = useState("");
+  const [phase, setPhase] = useState<WizardPhase>(
+    resumePrefill?.contactEmail && resumePrefill.contactPhone ? "sign" : "contact",
+  );
+  const [signedName, setSignedName] = useState(resumePrefill?.signedName.trim() || flight.passenger);
+  const [contactEmail, setContactEmail] = useState(resumePrefill?.contactEmail ?? "");
+  const [contactPhone, setContactPhone] = useState(resumePrefill?.contactPhone ?? "");
   const [contactError, setContactError] = useState<string | null>(null);
-  const [additionalPassengers, setAdditionalPassengers] = useState<ClaimPassenger[]>([]);
+  const [additionalPassengers, setAdditionalPassengers] = useState<ClaimPassenger[]>(
+    resumePrefill?.additionalPassengers ?? [],
+  );
 
   const [passportCopy, setPassportCopy] = useState<File | null>(null);
   const [bookingConfirmation, setBookingConfirmation] = useState<File | null>(null);
   const [expensesReceipts, setExpensesReceipts] = useState<File | null>(null);
   const [otherDocuments, setOtherDocuments] = useState<File[]>([]);
 
-  const [sessionId] = useState(createSessionId);
+  const [sessionId] = useState(resumePrefill?.formSessionId || createSessionId);
+  const [odooLeadId, setOdooLeadId] = useState<number | null>(resumePrefill?.odooLeadId ?? null);
   const [docSignatures, setDocSignatures] = useState<Record<string, ClaimDocumentSignaturePayload>>({});
   const docSignaturesRef = useRef<Record<string, ClaimDocumentSignaturePayload>>({});
   const [signingPassengerIndex, setSigningPassengerIndex] = useState(0);
@@ -152,7 +174,6 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [trackingNumber, setTrackingNumber] = useState<string | null>(null);
-  const [odooLeadId, setOdooLeadId] = useState<number | null>(null);
   const [isSyncingLead, setIsSyncingLead] = useState(false);
 
   const currentDoc = CLAIM_DOCUMENTS[0]!;
@@ -310,6 +331,7 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
           contactPhone: normalizedPhone,
           entryMode,
           flight,
+          additionalPassengers,
           locale,
           attribution: readClaimAttribution(),
           odooLeadId,
@@ -431,6 +453,12 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
         formSessionId: sessionId,
       });
       setTrackingNumber(result.trackingNumber);
+      trackClaimSubmitted({
+        trackingNumber: result.trackingNumber,
+        locale,
+        entryMode,
+        flightNumber: flight.flight,
+      });
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : t("errors.submitFailed"));
     } finally {
@@ -440,7 +468,10 @@ export default function Step3Panel({ flight, entryMode, locale, onDelete, onSubm
 
   if (trackingNumber) {
     return (
-      <div className="border border-[#d5e0f9] rounded-[21px] p-6 sm:p-8 flex flex-col items-center text-center bg-white min-h-[320px] justify-center">
+      <div
+        className="border border-[#d5e0f9] rounded-[21px] p-6 sm:p-8 flex flex-col items-center text-center bg-white min-h-[320px] justify-center"
+        {...gtmId("claim_submitted")}
+      >
         <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-14 h-14 mb-4 object-contain" />
         <h3 className="font-bold text-[#1f3664] text-xl mb-2">{t("claimSubmitted")}</h3>
         <p className="text-[#1f3664] text-sm sm:text-base max-w-md leading-relaxed mb-4">

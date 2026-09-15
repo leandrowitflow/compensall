@@ -87,9 +87,11 @@ export type OdooPartialClaimLeadInput = {
   siteUrl: string;
   locale?: string | null;
   landingPage?: string | null;
+  resumeUrl?: string | null;
   attribution?: ClaimAttribution | null;
   odooLeadId?: number | null;
   step?: string;
+  additionalPassengers?: ClaimPassenger[] | null;
 };
 
 export type OdooClaimSyncResult = {
@@ -458,6 +460,14 @@ function buildSubmittedLeadDescription(input: OdooClaimLeadInput): string {
 }
 
 function buildPartialLeadDescription(input: OdooPartialClaimLeadInput): string {
+  const flight = input.flight;
+  const extraPassengers = (input.additionalPassengers ?? [])
+    .map((passenger) => `${passenger.firstName} ${passenger.lastName}`.trim())
+    .filter(Boolean);
+  const connecting = (flight.connectingFlights ?? [])
+    .map((leg) => [leg.airport, leg.flightNumber].filter(Boolean).join(" · "))
+    .filter(Boolean);
+
   const lines = [
     "Form status: Incomplete",
     `Session: ${input.formSessionId}`,
@@ -465,8 +475,23 @@ function buildPartialLeadDescription(input: OdooPartialClaimLeadInput): string {
     input.contactPhone?.trim() ? `Phone: ${input.contactPhone.trim()}` : null,
     input.locale ? `Locale: ${input.locale}` : null,
     input.landingPage ? `Landing page: ${input.landingPage}` : null,
-    `Resume claim: ${input.siteUrl.replace(/\/$/, "")}/#claim`,
-  ].filter(Boolean);
+    `Resume claim: ${input.resumeUrl?.trim() || `${input.siteUrl.replace(/\/$/, "")}/#claim`}`,
+    "",
+    "Flight details",
+    `Passenger: ${flight.passenger || input.signedName}`,
+    `Flight: ${flight.flight}`,
+    `Route: ${flight.routeFrom} → ${flight.routeTo}`,
+    `Date: ${flight.date}`,
+    `Status: ${flight.status}`,
+    flight.delay ? `Delay: ${flight.delay}` : null,
+    flight.delayDuration ? `Delay duration: ${flight.delayDuration}` : null,
+    flight.cancellationNotice ? `Cancellation notice: ${flight.cancellationNotice}` : null,
+    flight.disruptionReason ? `Disruption reason: ${flight.disruptionReason}` : null,
+    flight.bookingReference ? `Booking reference: ${flight.bookingReference}` : null,
+    `Connecting flights: ${flight.hadConnectingFlight === true ? "yes" : flight.hadConnectingFlight === false ? "no" : "unknown"}`,
+    connecting.length > 0 ? `Connecting: ${connecting.join("; ")}` : null,
+    extraPassengers.length > 0 ? `Additional passengers: ${extraPassengers.join(", ")}` : null,
+  ].filter((line) => line !== null);
 
   return lines.join("\n");
 }

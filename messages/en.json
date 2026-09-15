@@ -166,6 +166,12 @@
       "assistantCheckShort": "Check",
       "signSubmit": "Sign & submit"
     },
+    "resume": {
+      "loading": "Loading your saved claim…",
+      "loaded": "We loaded your flight and contact details. Sign the Power of Attorney and submit to finish.",
+      "invalid": "This resume link is not valid. You can start a new claim below.",
+      "expired": "This resume link has expired or was already used. You can start a new claim below."
+    },
     "step1": {
       "rightsContext": "Under UK and EU passenger rights law (UK261 and EC 261/2004), you may be entitled to compensation for delays, cancellations, and denied boarding. Upload your boarding pass to check eligibility — free. No win, no fee.",
       "readingBoardingPass": "Reading your boarding pass…",

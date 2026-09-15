@@ -7,6 +7,11 @@ import { generateTrackingNumber } from "@/lib/claim-tracking";
 import { buildSignedPowerOfAttorneyAttachment } from "@/lib/build-signed-poa-html";
 import { sendClaimEmails } from "@/lib/send-claim-email";
 import { parseClaimAttribution } from "@/lib/claim-attribution";
+import {
+  consumeClaimDraft,
+  consumeClaimDraftBySessionId,
+  isClaimResumeToken,
+} from "@/lib/claim-drafts";
 import { syncClaimCaseToOdoo } from "@/lib/odoo-crm-lead";
 import { normalizeFlightData, type ClaimRecord } from "@/lib/claim-types";
 import { withCompensationEstimate } from "@/lib/compensation-estimate";
@@ -318,6 +323,24 @@ export async function POST(request: Request) {
     await Promise.all(
       documentSignatures.map((signature) => consumeSignatureToken(signature.token, trackingNumber)),
     );
+
+    const resumeTokenRaw = formData.get("resumeToken");
+    const resumeToken =
+      typeof resumeTokenRaw === "string" && isClaimResumeToken(resumeTokenRaw.trim())
+        ? resumeTokenRaw.trim()
+        : null;
+    try {
+      if (resumeToken) {
+        await consumeClaimDraft(resumeToken, trackingNumber);
+      } else {
+        const sessionForDraft = formData.get("formSessionId");
+        if (typeof sessionForDraft === "string" && sessionForDraft.trim()) {
+          await consumeClaimDraftBySessionId(sessionForDraft.trim(), trackingNumber);
+        }
+      }
+    } catch (error) {
+      console.error("Claim draft consume failed:", error);
+    }
 
     const siteUrl = getSiteUrl(request);
     const landingPage = locale ? `/${locale}/#claim` : "/#claim";

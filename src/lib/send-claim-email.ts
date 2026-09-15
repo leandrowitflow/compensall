@@ -569,6 +569,100 @@ export async function sendClaimEmails(
   return { opsSent, userSent };
 }
 
+function resumeClaimCopy(locale?: string | null): {
+  subject: string;
+  preheader: string;
+  eyebrow: string;
+  title: string;
+  hello: (firstName: string) => string;
+  body: (flightNumber: string) => string;
+  cta: string;
+  note: string;
+} {
+  switch (locale) {
+    case "pt":
+      return {
+        subject: "Conclua o seu pedido Compensall",
+        preheader: "Os seus dados estão guardados. Só falta assinar e enviar.",
+        eyebrow: "Pedido incompleto",
+        title: "Continue o seu pedido",
+        hello: (firstName) => `Olá ${firstName},`,
+        body: (flightNumber) =>
+          `Começou um pedido de compensação para o voo ${flightNumber}. Guardámos os dados do voo e do contacto para não ter de preencher tudo outra vez.`,
+        cta: "Continuar o pedido",
+        note: "O link é pessoal e é válido durante 30 dias. Só precisa de assinar a procuração e enviar.",
+      };
+    case "fr":
+      return {
+        subject: "Terminez votre dossier Compensall",
+        preheader: "Vos informations sont enregistrées. Il reste à signer et envoyer.",
+        eyebrow: "Dossier incomplet",
+        title: "Reprendre votre réclamation",
+        hello: (firstName) => `Bonjour ${firstName},`,
+        body: (flightNumber) =>
+          `Vous avez commencé une réclamation pour le vol ${flightNumber}. Nous avons enregistré les détails du vol et vos coordonnées pour éviter de tout ressaisir.`,
+        cta: "Continuer la réclamation",
+        note: "Ce lien est personnel et reste valable 30 jours. Il ne reste qu'à signer la procuration et envoyer.",
+      };
+    default:
+      return {
+        subject: "Finish your Compensall claim",
+        preheader: "Your details are saved. You only need to sign and send.",
+        eyebrow: "Incomplete claim",
+        title: "Continue your claim",
+        hello: (firstName) => `Hi ${firstName},`,
+        body: (flightNumber) =>
+          `You started a compensation claim for flight ${flightNumber}. We saved your flight and contact details so you don’t have to start again.`,
+        cta: "Continue your claim",
+        note: "This link is personal and stays valid for 30 days. You only need to sign the Power of Attorney and submit.",
+      };
+  }
+}
+
+export async function sendResumeClaimEmail(options: {
+  signedName: string;
+  contactEmail: string;
+  flight: ClaimFlightData;
+  resumeUrl: string;
+  siteUrl: string;
+  locale?: string | null;
+}): Promise<boolean> {
+  if (!options.contactEmail.trim()) {
+    return false;
+  }
+
+  const copy = resumeClaimCopy(options.locale);
+  const firstName = options.signedName.trim().split(/\s+/)[0] || options.signedName;
+
+  const bodyHtml = `
+    <p style="margin:0 0 16px 0;font-size:16px;line-height:1.55;color:${BRAND.navy};">
+      ${escapeHtml(copy.hello(firstName))}
+    </p>
+    <p style="margin:0 0 22px 0;font-size:15px;line-height:1.55;color:${BRAND.muted};">
+      ${escapeHtml(copy.body(options.flight.flight))}
+    </p>
+    ${sectionCard("Flight", flightSummaryTable(options.flight))}
+    <div style="text-align:center;margin:8px 0 6px 0;">
+      ${ctaButton(copy.cta, options.resumeUrl)}
+    </div>
+    <p style="margin:18px 0 0 0;font-size:13px;line-height:1.55;color:${BRAND.muted};text-align:center;">
+      ${escapeHtml(copy.note)}
+    </p>
+  `;
+
+  return sendViaResend({
+    to: [options.contactEmail],
+    subject: copy.subject,
+    html: emailShell({
+      preheader: copy.preheader,
+      eyebrow: copy.eyebrow,
+      title: copy.title,
+      bodyHtml,
+      siteUrl: options.siteUrl,
+    }),
+  });
+}
+
 export async function sendClaimStatusEmail(options: {
   trackingNumber: string;
   signedName: string;

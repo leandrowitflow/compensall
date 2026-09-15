@@ -2,7 +2,9 @@
 
 Labels em inglês (`messages/en.json`). UI i18n: `en` / `pt` / `fr`.
 
-**Destino principal de conversão:** `/#claim` (com prefixo de locale, ex. `/en/#claim`) — scroll para o formulário hero (`id="claim"`).
+**Destino dos CTAs de claim:** `/#claim` (com prefixo de locale, ex. `/en/#claim`) — scroll para o formulário hero (`id="claim"`).
+
+**Conversão paga (Meta / Google Ads):** disparar só no evento `claim_submitted` (dataLayer), depois do submit com tracking number. Não usar a última página do form, revisão, nem `claim_step3_continue_to_review`.
 
 Helper no código: `src/lib/gtm.ts` (`gtmId`, `gtmClaimCta`).
 
@@ -97,6 +99,7 @@ data-gtm="nav_about"
 | 3 docs | Back / Continue to review | `claim_step3_documents_back`, `claim_step3_continue_to_review` |
 | 3 review | Back / Submit claim | `claim_step3_review_back`, `claim_step3_submit_claim` |
 | 3 | Delete data | `claim_step3_delete_data` |
+| Success | Claim submitted (conversion) | `claim_submitted` (dataLayer + `data-gtm`) |
 | Success | Track your claim | `claim_success_track_claim` |
 
 ---
@@ -130,3 +133,4 @@ data-gtm="nav_about"
    - name: `cta_click`  
    - params: `gtm_id` = `{{data-gtm}}`, `gtm_location` = `{{data-gtm-location}}`
 4. Funil claim: filtrar `data-gtm` que começa por `claim_step`.
+5. **Conversões Meta / Google Ads:** trigger Custom Event `claim_submitted`. O site envia `claim_tracking_number`, `claim_locale`, `claim_entry_mode`, `claim_flight_number`. Desligar tags que disparam na apresentação da última página do form.
