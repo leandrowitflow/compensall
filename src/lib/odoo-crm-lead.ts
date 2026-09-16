@@ -77,6 +77,21 @@ export type OdooClaimLeadInput = {
   > | null;
 };
 
+/** Odoo URL widgets reject hashes and turn `/en/#claim` into `http:///en/#claim`. */
+function toOdooLeadUrl(url: string | null | undefined): string | undefined {
+  const trimmed = url?.trim();
+  if (!trimmed) {
+    return undefined;
+  }
+
+  const withoutHash = trimmed.replace(/#.*$/, "");
+  if (!/^https?:\/\//i.test(withoutHash)) {
+    return undefined;
+  }
+
+  return withoutHash;
+}
+
 export type OdooPartialClaimLeadInput = {
   formSessionId: string;
   signedName: string;
@@ -88,6 +103,7 @@ export type OdooPartialClaimLeadInput = {
   locale?: string | null;
   landingPage?: string | null;
   resumeUrl?: string | null;
+  odooWebsiteUrl?: string | null;
   attribution?: ClaimAttribution | null;
   odooLeadId?: number | null;
   step?: string;
@@ -572,8 +588,10 @@ export async function syncPartialClaimToOdoo(
     email_from: input.contactEmail.trim(),
     description: buildPartialLeadDescription(input),
     website:
-      input.resumeUrl?.trim() ||
-      `${input.siteUrl.replace(/\/$/, "")}${input.landingPage ?? "/#claim"}`,
+      toOdooLeadUrl(input.odooWebsiteUrl) ||
+      toOdooLeadUrl(input.resumeUrl) ||
+      toOdooLeadUrl(`${input.siteUrl.replace(/\/$/, "")}${input.landingPage ?? "/#claim"}`) ||
+      toOdooLeadUrl(input.siteUrl),
   };
   if (phone) {
     values.phone = phone;

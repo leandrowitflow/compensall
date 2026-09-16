@@ -148,10 +148,19 @@ export function isClaimDraftActive(draft: ClaimDraft, now = Date.now()): boolean
   return new Date(draft.expiresAt).getTime() > now;
 }
 
+function claimResumeLocale(locale?: string | null): string {
+  return locale && /^[a-z]{2}$/i.test(locale) ? locale.toLowerCase() : "en";
+}
+
 export function buildClaimResumeUrl(siteUrl: string, token: string, locale?: string | null): string {
   const base = siteUrl.replace(/\/$/, "");
-  const localeSegment = locale && /^[a-z]{2}$/i.test(locale) ? locale.toLowerCase() : "en";
-  return `${base}/${localeSegment}?${CLAIM_RESUME_QUERY}=${encodeURIComponent(token)}#claim`;
+  return `${base}/${claimResumeLocale(locale)}?${CLAIM_RESUME_QUERY}=${encodeURIComponent(token)}#claim`;
+}
+
+/** Path-only URL for Odoo Website — query/hash get stripped by the URL widget. */
+export function buildOdooClaimResumeUrl(siteUrl: string, token: string, locale?: string | null): string {
+  const base = siteUrl.replace(/\/$/, "");
+  return `${base}/${claimResumeLocale(locale)}/resume/${encodeURIComponent(token)}`;
 }
 
 async function saveDraftLocally(draft: ClaimDraft): Promise<void> {

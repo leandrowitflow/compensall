@@ -1,7 +1,7 @@
 import { after } from "next/server";
 import { z } from "zod";
 import { parseClaimAttribution } from "@/lib/claim-attribution";
-import { buildClaimResumeUrl, saveClaimDraft } from "@/lib/claim-drafts";
+import { buildClaimResumeUrl, buildOdooClaimResumeUrl, saveClaimDraft } from "@/lib/claim-drafts";
 import { sendPendingResumeClaimEmails } from "@/lib/claim-resume-email";
 import { normalizeFlightData } from "@/lib/claim-types";
 import { isOdooConfigured } from "@/lib/odoo-client";
@@ -107,6 +107,7 @@ export async function POST(request: Request) {
       locale,
     });
     const resumeUrl = buildClaimResumeUrl(siteUrl, draft.token, locale);
+    const odooWebsiteUrl = buildOdooClaimResumeUrl(siteUrl, draft.token, locale);
 
     const lead = await safeSyncPartialClaimToOdoo({
       formSessionId: parsed.data.formSessionId,
@@ -120,6 +121,7 @@ export async function POST(request: Request) {
       locale,
       landingPage,
       resumeUrl,
+      odooWebsiteUrl,
       attribution: parseClaimAttribution(parsed.data.attribution),
       odooLeadId: parsed.data.odooLeadId ?? draft.odooLeadId ?? null,
       step: parsed.data.step ?? "contact_confirmed",
