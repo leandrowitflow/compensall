@@ -41,6 +41,18 @@ export function buildCatalogTitle(
   return t("airportTitle", { name: item.name });
 }
 
+/** Shorter <title> for search results. Visible H1 stays on buildCatalogTitle. */
+export function buildCatalogMetaTitle(
+  t: CatalogTranslator,
+  item: CatalogItem,
+  kind: CatalogKind,
+): string {
+  if (kind === "airlines") {
+    return t("airlineMetaTitle", { name: item.name });
+  }
+  return t("airportMetaTitle", { name: item.name });
+}
+
 /** Fallback template intros when curated entity content is missing (e.g. world airports). */
 export function buildCatalogIntro(
   t: CatalogTranslator,

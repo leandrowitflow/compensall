@@ -682,7 +682,7 @@
       "description": "Réponses sur le UK261, le CE 261/2004, les montants d'indemnisation, la formule No win, no fee, le téléchargement des cartes d'embarquement et la gestion de votre réclamation par Compensall."
     },
     "about": {
-      "title": "À propos de Compensall",
+      "title": "À propos de Compensall et de l'indemnisation",
       "description": "Compensall aide les passagers aériens à réclamer jusqu'à €600 au titre de l'EU261 grâce à un téléchargement sécurisé de la carte d'embarquement, des vérifications assistées et une prise en charge auprès de la compagnie aérienne avec accompagnement humain, selon la règle No win, no fee."
     },
     "knowYourRights": {
@@ -690,7 +690,7 @@
       "description": "Découvrez quand le UK261 et le règlement européen CE 261/2004 vous donnent droit à jusqu'à €600 pour les retards, annulations, refus d'embarquement, correspondances manquées et grèves de compagnies aériennes."
     },
     "prices": {
-      "title": "Tarifs et frais",
+      "title": "Tarifs, frais et No win, no fee",
       "description": "Compensall ne facture des frais que si votre réclamation aboutit. Consultez notre structure de frais de succès et les montants d'indemnisation UK261 et CE 261 que les passagers peuvent recevoir."
     },
     "blog": {
@@ -698,7 +698,7 @@
       "description": "Guides pratiques sur le CE 261/2004: retards, annulations, refus d'embarquement, correspondances manquées et comment réclamer jusqu'à €600."
     },
     "cookies": {
-      "title": "Politique de cookies",
+      "title": "Politique de cookies et préférences",
       "description": "Comprenez comment Compensall utilise les cookies et technologies similaires, et comment gérer vos préférences."
     },
     "privacyPolicy": {
@@ -706,7 +706,7 @@
       "description": "Découvrez comment Compensall collecte, utilise, stocke et protège vos données personnelles lorsque vous utilisez notre site et notre service d'indemnisation de vol."
     },
     "terms": {
-      "title": "Conditions d'utilisation",
+      "title": "Conditions d'utilisation Compensall",
       "description": "Lisez les conditions d'utilisation de Compensall, y compris les règles de soumission, les frais, les responsabilités et le droit applicable."
     },
     "airlines": {
@@ -714,7 +714,7 @@
       "description": "Trouvez votre compagnie aérienne ou aéroport et vérifiez votre éligibilité à l'indemnisation EU261. Guides pour Ryanair, easyJet, British Airways et les principaux aéroports européens."
     },
     "authorityToAct": {
-      "title": "Procuration",
+      "title": "Procuration pour les dossiers Compensall",
       "description": "Procuration autorisant Compensall à poursuivre votre réclamation d'indemnisation de vol au titre du CE 261/2004."
     },
     "noWinNoFee": {
@@ -816,6 +816,8 @@
   "catalogDetail": {
     "airlineTitle": "Indemnisation pour retard ou annulation de vol {name}",
     "airportTitle": "Indemnisation de vol depuis {name}",
+    "airlineMetaTitle": "Indemnisation de vol {name}",
+    "airportMetaTitle": "Indemnisation de vol {name}",
     "airlineIntroP1": "Si votre vol {name} a été retardé, annulé ou si l'embarquement vous a été refusé, vous pouvez avoir droit à une indemnisation allant jusqu'à 600 € au titre du règlement UE CE 261/2004 et du UK261.",
     "airlineIntroP2": "Compensall vérifie votre éligibilité en quelques minutes. Téléversez votre carte d'embarquement ou saisissez les détails du vol — No win, no fee.",
     "airportIntroP1": "Vous voyagez depuis ou vers {name}? Si votre vol a été retardé ou annulé, vous pouvez avoir droit à une indemnisation allant jusqu'à 600 € au titre du règlement UE CE 261/2004 et du UK261.",

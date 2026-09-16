@@ -5,7 +5,7 @@ import type { AppLocale } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
 import {
   buildCatalogMetadataDescription,
-  buildCatalogTitle,
+  buildCatalogMetaTitle,
   type CatalogKind,
 } from "@/lib/catalog-detail";
 
@@ -95,8 +95,31 @@ export function clampMetaDescription(value: string, max = META_DESCRIPTION_MAX):
   return `${cut.trimEnd()}...`;
 }
 
+function clampTitle(value: string, max = 60): string {
+  if (value.length <= max) {
+    return value;
+  }
+
+  const slice = value.slice(0, max - 1);
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace >= 30 ? slice.slice(0, lastSpace) : slice;
+  return cut.trimEnd();
+}
+
 export function absolutePageTitle(title: string): string {
-  return /compensall/i.test(title) ? title : `${title} | ${SITE_NAME}`;
+  const trimmed = title.trim();
+  if (/compensall/i.test(trimmed)) {
+    return clampTitle(trimmed);
+  }
+
+  const branded = `${trimmed} | ${SITE_NAME}`;
+  if (trimmed.length < 30) {
+    return clampTitle(branded);
+  }
+  if (branded.length <= 60) {
+    return branded;
+  }
+  return clampTitle(trimmed);
 }
 
 export function localizedPath(path: string, locale: AppLocale): string {
@@ -253,7 +276,7 @@ export async function buildCatalogMetadata(
   locale: AppLocale = "en",
 ): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "catalogDetail" });
-  const title = buildCatalogTitle(t, item, kind);
+  const title = buildCatalogMetaTitle(t, item, kind);
   const description = buildCatalogMetadataDescription(t, item, kind, locale);
   const path = kind === "airlines" ? `/airlines/${item.id}` : `/airports/${item.id}`;
 

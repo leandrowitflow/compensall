@@ -682,7 +682,7 @@
       "description": "Respostas sobre UK261, EC 261/2004, montantes de compensação, No win, no fee, carregamento de cartões de embarque e como a Compensall trata o seu pedido."
     },
     "about": {
-      "title": "Sobre a Compensall",
+      "title": "Sobre a Compensall e a compensação de voo",
       "description": "A Compensall ajuda os passageiros aéreos a reclamar até 600€ ao abrigo do EU261 com carregamento seguro do cartão de embarque, verificações assistidas e tratamento junto da companhia aérea com apoio humano, com a regra No win, no fee."
     },
     "knowYourRights": {
@@ -690,7 +690,7 @@
       "description": "Saiba quando o UK261 e o Regulamento da UE EC 261/2004 lhe conferem até 600€ por atrasos, cancelamentos, embarque recusado, ligações perdidas e greves de companhias aéreas."
     },
     "prices": {
-      "title": "Preços e taxas",
+      "title": "Preços, taxas e No win, no fee",
       "description": "A Compensall só cobra se o seu pedido for bem-sucedido. Consulte a nossa estrutura de taxas de sucesso e os montantes de compensação UK261 e EC 261 que os passageiros podem receber."
     },
     "blog": {
@@ -698,7 +698,7 @@
       "description": "Guias práticos sobre o EC 261/2004: atrasos, cancelamentos, embarque recusado, ligações perdidas e como reclamar até 600€."
     },
     "cookies": {
-      "title": "Política de cookies",
+      "title": "Política de cookies e preferências",
       "description": "Saiba como a Compensall utiliza cookies e tecnologias semelhantes e como pode gerir as suas preferências."
     },
     "privacyPolicy": {
@@ -706,7 +706,7 @@
       "description": "Saiba como a Compensall recolhe, utiliza, armazena e protege os seus dados pessoais quando utiliza o nosso site e serviço de compensação de voos."
     },
     "terms": {
-      "title": "Termos de serviço",
+      "title": "Termos de serviço da Compensall",
       "description": "Leia os Termos de Serviço da Compensall, incluindo regras de submissão de pedidos, taxas, responsabilidades e lei aplicável."
     },
     "airlines": {
@@ -714,7 +714,7 @@
       "description": "Encontre a sua companhia aérea ou aeroporto e verifique a elegibilidade para compensação ao abrigo do EU261. Guias para Ryanair, easyJet, British Airways e principais aeroportos europeus."
     },
     "authorityToAct": {
-      "title": "Procuração",
+      "title": "Procuração para pedidos Compensall",
       "description": "Procuração que autoriza a Compensall a prosseguir o seu pedido de compensação de voo ao abrigo do EC 261/2004."
     },
     "noWinNoFee": {
@@ -816,6 +816,8 @@
   "catalogDetail": {
     "airlineTitle": "Compensação por atraso ou cancelamento de voo {name}",
     "airportTitle": "Compensação de voo a partir de {name}",
+    "airlineMetaTitle": "Compensação de voo {name}",
+    "airportMetaTitle": "Compensação de voo {name}",
     "airlineIntroP1": "Se o seu voo {name} atrasou, foi cancelado ou lhe foi recusado o embarque, pode ter direito a uma compensação até 600€ ao abrigo do Regulamento UE CE 261/2004 e do UK261.",
     "airlineIntroP2": "A Compensall verifica a sua elegibilidade em minutos. Carregue o cartão de embarque ou introduza os dados do voo — No win, no fee.",
     "airportIntroP1": "Voa de ou para {name}? Se o seu voo atrasou ou foi cancelado, pode ter direito a uma compensação até 600€ ao abrigo do Regulamento UE CE 261/2004 e do UK261.",

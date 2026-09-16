@@ -682,7 +682,7 @@
       "description": "Answers about UK261, EC 261/2004, compensation amounts, No win, no fee, boarding pass uploads, and how Compensall handles your claim."
     },
     "about": {
-      "title": "About Compensall",
+      "title": "About Compensall flight compensation",
       "description": "Compensall helps air passengers claim up to €600 under EU261 with secure boarding pass upload, assistant-led checks, and human-backed airline handling on a No win, no fee basis."
     },
     "knowYourRights": {
@@ -690,7 +690,7 @@
       "description": "Learn when UK261 and EU Regulation EC 261/2004 entitle you to up to £520 or €600 for delays, cancellations, denied boarding, missed connections, and airline strikes."
     },
     "prices": {
-      "title": "Prices and fees",
+      "title": "Prices, fees and No win, no fee",
       "description": "Compensall works on a No win, no fee basis. See our success fee structure and the UK261 and EC 261 compensation amounts passengers may receive."
     },
     "blog": {
@@ -698,15 +698,15 @@
       "description": "Practical EC 261/2004 guides on delays, cancellations, denied boarding, missed connections, and how to claim up to €600."
     },
     "cookies": {
-      "title": "Cookie Policy",
+      "title": "Cookie policy and preferences",
       "description": "Understand how Compensall uses cookies and similar technologies, and how you can manage your preferences."
     },
     "privacyPolicy": {
-      "title": "Privacy Policy",
+      "title": "Privacy policy and personal data",
       "description": "Learn how Compensall collects, uses, stores, and protects your personal data when you use our website and flight compensation claim service."
     },
     "terms": {
-      "title": "Terms of Service",
+      "title": "Terms of service for Compensall claims",
       "description": "Read the Terms of Service for using Compensall, including claim submission rules, fees, responsibilities, and governing law."
     },
     "airlines": {
@@ -714,7 +714,7 @@
       "description": "Find your airline or airport and check EU261 flight compensation eligibility. Guides for Ryanair, easyJet, British Airways, and major European airports."
     },
     "authorityToAct": {
-      "title": "Power of Attorney",
+      "title": "Power of Attorney for flight claims",
       "description": "Power of Attorney authorising Compensall to pursue your EC 261/2004 flight compensation claim."
     },
     "noWinNoFee": {
@@ -816,6 +816,8 @@
   "catalogDetail": {
     "airlineTitle": "{name} flight delay or cancellation compensation",
     "airportTitle": "Flight compensation from {name}",
+    "airlineMetaTitle": "{name} flight compensation",
+    "airportMetaTitle": "{name} flight compensation",
     "airlineIntroP1": "If your {name} flight was delayed, cancelled, or you were denied boarding, you may be entitled to compensation of up to €600 under EU Regulation EC 261/2004 and UK261.",
     "airlineIntroP2": "Compensall checks your eligibility in minutes. Upload your boarding pass or enter your flight details — No win, no fee.",
     "airportIntroP1": "Flying from or to {name}? If your flight was delayed or cancelled, you may be entitled to compensation of up to €600 under EU Regulation EC 261/2004 and UK261.",
