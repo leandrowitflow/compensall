@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import CatalogDetailPage from "@/components/CatalogDetailPage";
 import type { AppLocale } from "@/i18n/routing";
 import { airportsCatalog } from "@/lib/catalog";
@@ -31,11 +31,15 @@ export async function generateMetadata({ params }: AirportPageProps): Promise<Me
 }
 
 export default async function AirportPage({ params }: AirportPageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const item = getCatalogItem("airports", slug);
 
   if (!item) {
     notFound();
+  }
+
+  if (item.id !== slug.trim().toLowerCase()) {
+    permanentRedirect(`/${locale}/airports/${item.id}`);
   }
 
   return <CatalogDetailPage item={item} kind="airports" />;

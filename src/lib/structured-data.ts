@@ -39,11 +39,7 @@ export function buildWebSiteSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     description: SITE_DESCRIPTION,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE_URL}/airlines?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
+    inLanguage: ["en-GB", "pt-PT", "fr-FR"],
   };
 }
 

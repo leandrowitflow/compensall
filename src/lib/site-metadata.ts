@@ -11,7 +11,8 @@ import {
 
 export const SITE_NAME = "Compensall";
 
-const PRODUCTION_SITE_URL = "https://compensall.com";
+const PRODUCTION_SITE_URL = "https://www.compensall.com";
+const META_DESCRIPTION_MAX = 155;
 
 function resolveSiteUrl(): string {
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
@@ -82,6 +83,22 @@ type SiteMetadataMessages = {
   description: string;
 };
 
+export function clampMetaDescription(value: string, max = META_DESCRIPTION_MAX): string {
+  const trimmed = value.replace(/\s+/g, " ").trim();
+  if (trimmed.length <= max) {
+    return trimmed;
+  }
+
+  const slice = trimmed.slice(0, max - 3);
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace >= 80 ? slice.slice(0, lastSpace) : slice;
+  return `${cut.trimEnd()}...`;
+}
+
+export function absolutePageTitle(title: string): string {
+  return /compensall/i.test(title) ? title : `${title} | ${SITE_NAME}`;
+}
+
 export function localizedPath(path: string, locale: AppLocale): string {
   if (path === "" || path === "/") {
     return `/${locale}`;
@@ -106,7 +123,7 @@ export function buildHreflangAlternates(path: string): Metadata["alternates"] {
 
 export function getSiteMetadata(locale: AppLocale, messages?: SiteMetadataMessages): Metadata {
   const title = messages?.title ?? `${SITE_NAME} – Delayed or cancelled flight? Claim up to £520 or €600`;
-  const description = messages?.description ?? SITE_DESCRIPTION;
+  const description = clampMetaDescription(messages?.description ?? SITE_DESCRIPTION);
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -163,26 +180,33 @@ export function buildPageMetadata({
 }: PageMetadataInput): Metadata {
   const url = `${SITE_URL}${localizedPath(path, locale)}`;
   const hreflang = buildHreflangAlternates(path);
+  const pageTitle = absolutePageTitle(title);
+  const pageDescription = clampMetaDescription(description);
 
   return {
     metadataBase: new URL(SITE_URL),
-    title,
-    description,
+    title: {
+      absolute: pageTitle,
+    },
+    description: pageDescription,
     alternates: {
       canonical: url,
       languages: hreflang?.languages,
     },
     robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
     openGraph: {
-      title,
-      description,
+      type: "website",
+      title: pageTitle,
+      description: pageDescription,
       url,
       locale: OG_LOCALE_MAP[locale],
-      images: [{ url: image, alt: title }],
+      siteName: SITE_NAME,
+      images: [{ url: image, width: 1200, height: 630, alt: pageTitle }],
     },
     twitter: {
-      title,
-      description,
+      card: "summary_large_image",
+      title: pageTitle,
+      description: pageDescription,
       images: [image],
     },
   };
