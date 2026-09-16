@@ -1,4 +1,5 @@
 export const CLAIM_RESUME_QUERY = "resume";
+export const CLAIM_RESUME_EMAIL_IDLE_MS = 15 * 60 * 1000;
 
 export function isClaimResumeToken(value: string | null | undefined): boolean {
   return Boolean(value && /^[a-f0-9]{64}$/i.test(value));

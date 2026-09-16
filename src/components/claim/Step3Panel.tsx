@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo, useRef, useState, type PointerEvent, type UIEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { CLAIM_RESUME_EMAIL_IDLE_MS } from "@/lib/claim-draft-token";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
 import {
   EMPTY_PASSENGER,
@@ -17,7 +18,6 @@ import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { gtmId, trackClaimSubmitted } from "@/lib/gtm";
 import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
-const SCROLL_END_THRESHOLD_PX = 8;
 const DRAFT_HEARTBEAT_MS = 60_000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_SIGNATURE_BYTES = 800;
@@ -165,7 +165,6 @@ export default function Step3Panel({
   const [docSignatures, setDocSignatures] = useState<Record<string, ClaimDocumentSignaturePayload>>({});
   const docSignaturesRef = useRef<Record<string, ClaimDocumentSignaturePayload>>({});
   const [signingPassengerIndex, setSigningPassengerIndex] = useState(0);
-  const [hasReadDocument, setHasReadDocument] = useState(false);
   const [signingDate, setSigningDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [signaturePreview, setSignaturePreview] = useState<string | null>(null);
   const [signError, setSignError] = useState<string | null>(null);
@@ -195,17 +194,6 @@ export default function Step3Panel({
       ? signedName.trim()
       : `${activePassenger.firstName} ${activePassenger.lastName}`.trim();
 
-  const checkScrolledToEnd = (element: HTMLDivElement | null) => {
-    if (!element) return;
-    const reachedEnd =
-      element.scrollTop + element.clientHeight >= element.scrollHeight - SCROLL_END_THRESHOLD_PX;
-    if (reachedEnd) setHasReadDocument(true);
-  };
-
-  const handleDocumentScroll = (event: UIEvent<HTMLDivElement>) => {
-    checkScrolledToEnd(event.currentTarget);
-  };
-
   useEffect(() => {
     docSignaturesRef.current = docSignatures;
   }, [docSignatures]);
@@ -215,19 +203,11 @@ export default function Step3Panel({
       return;
     }
 
-    const touchDraft = () => {
-      if (document.visibilityState !== "visible") {
-        return;
-      }
-      void fetch("/api/claim/draft-heartbeat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formSessionId: sessionId }),
-        keepalive: true,
-      }).catch(() => undefined);
-    };
+    const lastActivityAt = { current: Date.now() };
+    let lastTouchAt = 0;
+    let idleEmailSent = false;
 
-    const sendResumeOnLeave = () => {
+    const postResumeEmail = () => {
       void fetch("/api/claim/send-resume-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -236,12 +216,46 @@ export default function Step3Panel({
       }).catch(() => undefined);
     };
 
-    touchDraft();
-    const intervalId = window.setInterval(touchDraft, DRAFT_HEARTBEAT_MS);
-    window.addEventListener("pagehide", sendResumeOnLeave);
+    const touchDraft = () => {
+      const now = Date.now();
+      if (now - lastTouchAt < DRAFT_HEARTBEAT_MS) {
+        return;
+      }
+      lastTouchAt = now;
+      void fetch("/api/claim/draft-heartbeat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formSessionId: sessionId }),
+        keepalive: true,
+      }).catch(() => undefined);
+    };
+
+    const markActivity = () => {
+      lastActivityAt.current = Date.now();
+      touchDraft();
+    };
+
+    const sendIfIdle = () => {
+      if (idleEmailSent || Date.now() - lastActivityAt.current < CLAIM_RESUME_EMAIL_IDLE_MS) {
+        return;
+      }
+      idleEmailSent = true;
+      postResumeEmail();
+    };
+
+    markActivity();
+    const intervalId = window.setInterval(sendIfIdle, DRAFT_HEARTBEAT_MS);
+    const activityEvents = ["pointerdown", "keydown", "scroll", "touchstart"] as const;
+    for (const eventName of activityEvents) {
+      document.addEventListener(eventName, markActivity, { passive: true, capture: true });
+    }
+    window.addEventListener("pagehide", postResumeEmail);
     return () => {
       window.clearInterval(intervalId);
-      window.removeEventListener("pagehide", sendResumeOnLeave);
+      for (const eventName of activityEvents) {
+        document.removeEventListener(eventName, markActivity, { capture: true });
+      }
+      window.removeEventListener("pagehide", postResumeEmail);
     };
   }, [phase, sessionId, trackingNumber]);
 
@@ -249,10 +263,7 @@ export default function Step3Panel({
     const element = documentViewerRef.current;
     if (!element || phase !== "sign") return;
     element.scrollTop = 0;
-    setHasReadDocument(false);
     setSignaturePreview(null);
-    const frame = requestAnimationFrame(() => checkScrolledToEnd(element));
-    return () => cancelAnimationFrame(frame);
   }, [phase, signingPassengerIndex]);
 
   const getCanvasPoint = (event: PointerEvent<HTMLCanvasElement>) => {
@@ -390,10 +401,6 @@ export default function Step3Panel({
 
   const handleSignDocument = async () => {
     setSignError(null);
-    if (!hasReadDocument) {
-      setSignError(t("errors.scrollBeforeSign"));
-      return;
-    }
     const canvas = canvasRef.current;
     const dataUrl = canvas?.toDataURL("image/png") ?? "";
     if (!hasInk(dataUrl)) {
@@ -758,11 +765,7 @@ export default function Step3Panel({
                 {t("openFullPage")}
               </Link>
             </div>
-            <div
-              ref={documentViewerRef}
-              onScroll={handleDocumentScroll}
-              className="max-h-64 sm:max-h-96 overflow-y-auto p-4"
-            >
+            <div ref={documentViewerRef} className="max-h-64 sm:max-h-96 overflow-y-auto p-4">
               <PowerOfAttorneyDocument
                 name={activePassengerName}
                 flight={flight.flight}
@@ -775,13 +778,6 @@ export default function Step3Panel({
                 interactiveSigning
                 showContactFooter={false}
               />
-            </div>
-            <div
-              className={`px-4 py-2.5 text-xs font-bold border-t border-[#d5e0f9] ${
-                hasReadDocument ? "bg-[#eafaf0] text-[#1a9c5a]" : "bg-[#fff7e6] text-[#a06a00]"
-              }`}
-            >
-              {hasReadDocument ? t("readComplete") : t("scrollToUnlock")}
             </div>
           </div>
 
@@ -801,17 +797,13 @@ export default function Step3Panel({
               ref={canvasRef}
               width={600}
               height={160}
-              className={`w-full h-40 border border-[#d5e0f9] rounded-xl bg-white touch-none ${
-                hasReadDocument ? "border-[#2669f3]/40" : "opacity-50 pointer-events-none"
-              }`}
+              className="w-full h-40 rounded-xl bg-white touch-none border border-[#2669f3]/40"
               onPointerDown={startDrawing}
               onPointerMove={draw}
               onPointerUp={stopDrawing}
               onPointerLeave={stopDrawing}
             />
-            <p className="text-[#7b8094] text-xs mt-2">
-              {hasReadDocument ? t("drawSignatureHint") : t("scrollToUnlockSigning")}
-            </p>
+            <p className="text-[#7b8094] text-xs mt-2">{t("drawSignatureHint")}</p>
           </div>
 
           {signError && (
@@ -893,7 +885,7 @@ export default function Step3Panel({
             <button
               type="button"
               onClick={() => void handleSignDocument()}
-              disabled={isSigning || !hasReadDocument}
+              disabled={isSigning}
               className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-50 ${ACTION_BTN}`}
               {...gtmId("claim_step3_sign_continue")}
             >

@@ -571,7 +571,9 @@ export async function syncPartialClaimToOdoo(
     contact_name: input.signedName.trim(),
     email_from: input.contactEmail.trim(),
     description: buildPartialLeadDescription(input),
-    website: input.landingPage ?? `${input.siteUrl.replace(/\/$/, "")}/#claim`,
+    website:
+      input.resumeUrl?.trim() ||
+      `${input.siteUrl.replace(/\/$/, "")}${input.landingPage ?? "/#claim"}`,
   };
   if (phone) {
     values.phone = phone;
@@ -611,12 +613,14 @@ export async function syncClaimCaseToOdoo(input: OdooClaimLeadInput): Promise<Od
     const config = getOdooConfig();
     const leadName = `Compensall claim ${input.trackingNumber} — ${input.flight.flight}`;
     const phone = input.contactPhone?.trim() || "";
+    const trackUrl = `${input.siteUrl.replace(/\/$/, "")}/track/${input.trackingNumber}`;
     const values: Record<string, unknown> = {
       name: leadName,
       contact_name: input.signedName,
       email_from: input.contactEmail,
       description: buildSubmittedLeadDescription(input),
-      website: input.landingPage ?? `${input.siteUrl.replace(/\/$/, "")}/#claim`,
+      website: trackUrl,
+      active: false,
     };
     if (phone) {
       values.phone = phone;

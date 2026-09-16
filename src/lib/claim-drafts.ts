@@ -7,12 +7,15 @@ import {
   type ClaimFlightData,
   type ClaimPassenger,
 } from "@/lib/claim-types";
-import { CLAIM_RESUME_QUERY, isClaimResumeToken } from "@/lib/claim-draft-token";
+import {
+  CLAIM_RESUME_EMAIL_IDLE_MS,
+  CLAIM_RESUME_QUERY,
+  isClaimResumeToken,
+} from "@/lib/claim-draft-token";
 import { supabaseRestUrl } from "@/lib/supabase-rest";
 
-export { CLAIM_RESUME_QUERY, isClaimResumeToken };
+export { CLAIM_RESUME_EMAIL_IDLE_MS, CLAIM_RESUME_QUERY, isClaimResumeToken };
 export const CLAIM_DRAFT_TTL_MS = 30 * 24 * 60 * 60 * 1000;
-export const CLAIM_RESUME_EMAIL_IDLE_MS = 15 * 60 * 1000;
 
 export type ClaimDraft = {
   token: string;
