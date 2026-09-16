@@ -1,6 +1,7 @@
 import {
   CLAIM_RESUME_EMAIL_IDLE_MS,
   buildClaimResumeUrl,
+  getClaimDraftBySessionId,
   isClaimDraftActive,
   listClaimDraftsPendingResumeEmail,
   markClaimDraftEmailSent,
@@ -32,6 +33,17 @@ export async function sendResumeEmailForDraft(
   }
 
   return sent;
+}
+
+export async function sendResumeEmailForSession(
+  formSessionId: string,
+  siteUrl: string,
+): Promise<boolean> {
+  const draft = await getClaimDraftBySessionId(formSessionId);
+  if (!draft) {
+    return false;
+  }
+  return sendResumeEmailForDraft(draft, siteUrl);
 }
 
 export async function sendPendingResumeClaimEmails(siteUrl: string): Promise<{

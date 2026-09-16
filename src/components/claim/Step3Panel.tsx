@@ -227,9 +227,22 @@ export default function Step3Panel({
       }).catch(() => undefined);
     };
 
+    const sendResumeOnLeave = () => {
+      void fetch("/api/claim/send-resume-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formSessionId: sessionId }),
+        keepalive: true,
+      }).catch(() => undefined);
+    };
+
     touchDraft();
     const intervalId = window.setInterval(touchDraft, DRAFT_HEARTBEAT_MS);
-    return () => window.clearInterval(intervalId);
+    window.addEventListener("pagehide", sendResumeOnLeave);
+    return () => {
+      window.clearInterval(intervalId);
+      window.removeEventListener("pagehide", sendResumeOnLeave);
+    };
   }, [phase, sessionId, trackingNumber]);
 
   useEffect(() => {

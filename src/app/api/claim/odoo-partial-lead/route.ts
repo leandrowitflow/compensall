@@ -1,6 +1,8 @@
+import { after } from "next/server";
 import { z } from "zod";
 import { parseClaimAttribution } from "@/lib/claim-attribution";
 import { buildClaimResumeUrl, saveClaimDraft } from "@/lib/claim-drafts";
+import { sendPendingResumeClaimEmails } from "@/lib/claim-resume-email";
 import { normalizeFlightData } from "@/lib/claim-types";
 import { isOdooConfigured } from "@/lib/odoo-client";
 import { safeSyncPartialClaimToOdoo } from "@/lib/odoo-crm-lead";
@@ -140,6 +142,8 @@ export async function POST(request: Request) {
     if (!lead) {
       return Response.json({ error: "Could not sync partial claim to Odoo." }, { status: 502 });
     }
+
+    after(() => sendPendingResumeClaimEmails(siteUrl));
 
     return Response.json({
       odooLeadId: lead.id,

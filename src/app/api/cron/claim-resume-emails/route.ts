@@ -4,10 +4,14 @@ export const dynamic = "force-dynamic";
 
 function isAuthorizedCron(request: Request): boolean {
   const secret = process.env.CRON_SECRET?.trim();
-  if (secret) {
-    return request.headers.get("authorization") === `Bearer ${secret}`;
+  const authorization = request.headers.get("authorization");
+  if (secret && authorization === `Bearer ${secret}`) {
+    return true;
   }
-  return request.headers.get("x-vercel-cron") === "1";
+  return (
+    request.headers.get("x-vercel-cron") === "1" ||
+    Boolean(request.headers.get("x-vercel-cron-schedule"))
+  );
 }
 
 export async function GET(request: Request) {
