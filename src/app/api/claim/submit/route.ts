@@ -170,10 +170,10 @@ export async function POST(request: Request) {
 
     const contactPhoneRawValue =
       typeof contactPhoneRaw === "string" ? contactPhoneRaw.trim() : "";
-    if (!contactPhoneRawValue || !isValidClaimPhone(contactPhoneRawValue)) {
-      return Response.json({ error: "A valid phone number is required." }, { status: 400 });
+    if (contactPhoneRawValue && !isValidClaimPhone(contactPhoneRawValue)) {
+      return Response.json({ error: "Enter a valid phone number or leave it blank." }, { status: 400 });
     }
-    const contactPhone = toE164Phone(contactPhoneRawValue);
+    const contactPhone = contactPhoneRawValue ? toE164Phone(contactPhoneRawValue) : "";
 
     if (typeof flightRaw !== "string") {
       return Response.json({ error: "Flight details are required." }, { status: 400 });

@@ -6,7 +6,7 @@ import { sendPendingResumeClaimEmails } from "@/lib/claim-resume-email";
 import { normalizeFlightData } from "@/lib/claim-types";
 import { isOdooConfigured } from "@/lib/odoo-client";
 import { safeSyncPartialClaimToOdoo } from "@/lib/odoo-crm-lead";
-import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
+import { isBlankOrValidClaimPhone, toE164Phone } from "@/lib/phone";
 
 const flightSchema = z.object({
   passenger: z.string(),
@@ -48,8 +48,9 @@ const bodySchema = z.object({
   contactPhone: z
     .string()
     .trim()
-    .min(7)
-    .refine((value) => isValidClaimPhone(value), "Invalid phone"),
+    .optional()
+    .default("")
+    .refine((value) => isBlankOrValidClaimPhone(value), "Invalid phone"),
   entryMode: z.enum(["upload", "manual"]),
   flight: flightSchema,
   additionalPassengers: z.array(passengerSchema).max(9).optional(),

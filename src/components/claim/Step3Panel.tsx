@@ -16,7 +16,7 @@ import PhoneInputField from "@/components/claim/PhoneInputField";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { gtmId, trackClaimSubmitted } from "@/lib/gtm";
-import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
+import { isBlankOrValidClaimPhone, isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
 const DRAFT_HEARTBEAT_MS = 60_000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -145,7 +145,7 @@ export default function Step3Panel({
   const [isDrawing, setIsDrawing] = useState(false);
 
   const [phase, setPhase] = useState<WizardPhase>(
-    resumePrefill?.contactEmail && resumePrefill.contactPhone ? "sign" : "contact",
+    resumePrefill?.contactEmail ? "sign" : "contact",
   );
   const [signedName, setSignedName] = useState(resumePrefill?.signedName.trim() || flight.passenger);
   const [contactEmail, setContactEmail] = useState(resumePrefill?.contactEmail ?? "");
@@ -343,7 +343,7 @@ export default function Step3Panel({
       setContactError(t("errors.emailInvalid"));
       return;
     }
-    if (!contactPhone.trim() || !isValidClaimPhone(contactPhone.trim())) {
+    if (!isBlankOrValidClaimPhone(contactPhone)) {
       setContactError(t("errors.phoneInvalid"));
       return;
     }
@@ -598,11 +598,10 @@ export default function Step3Panel({
           </div>
           <div>
             <label className={FIELD_LABEL} htmlFor="contact-phone">
-              {t("phoneNumber")} <span className="text-[#e82828]">*</span>
+              {t("phoneNumber")}
             </label>
             <PhoneInputField
               id="contact-phone"
-              required
               value={contactPhone}
               onChange={setContactPhone}
               placeholder={t("phonePlaceholder")}

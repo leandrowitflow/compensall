@@ -24,6 +24,11 @@ export function isValidClaimPhone(value: string): boolean {
   }
 }
 
+export function isBlankOrValidClaimPhone(value: string | null | undefined): boolean {
+  const trimmed = value?.trim() ?? "";
+  return !trimmed || isValidClaimPhone(trimmed);
+}
+
 /** Normalize to E.164 when possible; otherwise return trimmed input. */
 export function toE164Phone(value: string, defaultCountry?: CountryCode): string {
   const trimmed = value.trim();
