@@ -30,7 +30,18 @@ export function getCatalogEntityContent(
 }
 
 export function toCatalogLocale(locale: string): CatalogLocale {
-  if (locale === "pt" || locale === "fr") return locale;
+  if (
+    locale === "pt" ||
+    locale === "fr" ||
+    locale === "es" ||
+    locale === "ro" ||
+    locale === "hu" ||
+    locale === "sq" ||
+    locale === "de" ||
+    locale === "nl"
+  ) {
+    return locale;
+  }
   return "en";
 }
 

@@ -1,0 +1,883 @@
+{
+  "common": {
+    "brandName": "Compensall",
+    "assistantName": "Asistent",
+    "assistantStepLabel": "Verificarea asistentului",
+    "assistantScanMessage": "Asistentul nostru a citit cartea ta de îmbarcare și a extras datele esențiale.",
+    "justNow": "Chiar acum",
+    "notApplicable": "N/A",
+    "openMenu": "Deschide meniul",
+    "closeMenu": "Închide meniul",
+    "language": "Limbă",
+    "selectLanguage": "Alege limba",
+    "learnMore": "Află mai multe",
+    "checkClaims": "Verifică cererile",
+    "startYourClaim": "Începe cererea",
+    "checkCompensation": "Cere despăgubirea",
+    "checkCompensationShort": "Cere acum",
+    "home": "Acasă",
+    "legal": "Legal",
+    "airport": "Aeroport",
+    "downloadPageMarkdown": "Descarcă pagina în Markdown"
+  },
+  "nav": {
+    "knowYourRights": "Cunoaște-ți drepturile",
+    "knowYourRightsShort": "Drepturile tale",
+    "airlines": "Companii aeriene",
+    "airlinesShort": "Companii",
+    "airlinesAndAirports": "Companii aeriene și aeroporturi",
+    "aboutUs": "Despre noi",
+    "blog": "Blog",
+    "faq": "Întrebări frecvente",
+    "talkToUs": "Vorbește cu noi",
+    "talkToUsShort": "Contact",
+    "knowYourRightsMenu": {
+      "yourRights": "Drepturile tale",
+      "overview": "Prezentare generală",
+      "overviewDescription": "Cum te protejează Regulamentul CE 261",
+      "flightCancellation": "Anularea zborului",
+      "flightDelay": "Întârzierea zborului",
+      "deniedBoarding": "Refuzul la îmbarcare",
+      "missedConnection": "Corespondență ratată",
+      "overbooking": "Overbooking",
+      "airlineStrike": "Greva companiei aeriene",
+      "passengerRights": "Drepturile pasagerului",
+      "passengersWithDisabilities": "Pasageri cu dizabilități"
+    },
+    "airlinesMenu": {
+      "browse": "Explorează",
+      "allAirlinesAirports": "Toate companiile și aeroporturile",
+      "allAirlinesAirportsDescription": "Catalog complet",
+      "popularAirlines": "Companii populare",
+      "popularAirports": "Aeroporturi populare"
+    }
+  },
+  "footer": {
+    "contactUs": "Contact",
+    "email": "help@compensall.com",
+    "phone": "+351 923 391 980",
+    "privacyPolicy": "Politica de confidențialitate",
+    "termsOfService": "Termenii serviciului",
+    "cookies": "Cookie-uri",
+    "prices": "Prețuri",
+    "noWinNoFee": "No win, no fee.",
+    "socialLinkedIn": "LinkedIn",
+    "socialInstagram": "Instagram",
+    "socialFacebook": "Facebook",
+    "socialTikTok": "TikTok",
+    "newsletterTitle": "Nu rata nicio oportunitate",
+    "newsletterSubtitle": "Abonează-te la newsletter",
+    "newsletterPlaceholder": "Introdu adresa de e-mail",
+    "newsletterSubscribe": "Mă abonez",
+    "newsletterConsent": "Accept să primesc e-mailuri de marketing și am citit <privacyPolicy>Politica de confidențialitate</privacyPolicy>.",
+    "copyright": "© 2026 Compensall"
+  },
+  "home": {
+    "metadata": {
+      "title": "Zbor întârziat sau anulat? Cere până la 520 £ sau 600 €",
+      "description": "Încarcă cartea de îmbarcare și cere despăgubirea zborului cu UK261 sau Regulamentul CE 261/2004. Sigur, cu sprijin uman, No win, no fee."
+    },
+    "hero": {
+      "trustpilotAlt": "Excellent Trustpilot 4,8 din 5",
+      "title": "Zbor întârziat sau anulat?",
+      "titleLine2": "Cere până la 520 £ sau 600 €",
+      "subtitle": "UK261 și Regulamentul CE 261/2004 îți protejează drepturile. Cea mai sigură platformă de despăgubiri pentru zboruri de pe piață.",
+      "fastRiskFree": "Rapid și fără risc",
+      "noHiddenFees": "Fără costuri ascunse",
+      "talkToUs": "Vorbește cu noi",
+      "humanSupportAvailable": "Sprijin uman disponibil",
+      "highestSecurity": "Securitate maximă",
+      "dataProtected": "Datele tale sunt mereu protejate"
+    },
+    "trustBar": {
+      "noWinNoFee": "No win, no fee.",
+      "onlyIfSuccessful": "Plătești doar dacă câștigăm",
+      "gdprFirst": "RGPD pe primul loc",
+      "privacyByDesign": "Confidențialitate din proiectare",
+      "deleteYourData": "Șterge-ți datele",
+      "fullControl": "Control total",
+      "humanSupport": "Sprijin uman",
+      "realPeopleHelp": "Oameni reali, ajutor real"
+    },
+    "claimCards": {
+      "title": "Ce poți",
+      "titleAccent": "cere?",
+      "subtitle": "Te ajutăm să obții despăgubire pentru multe probleme de zbor.",
+      "flightDelay": {
+        "title": "Întârzierea zborului",
+        "description": "Dacă zborul a ajuns cu mai mult de 3 ore întârziere, poți avea dreptul la o despăgubire de până la 520 £ sau 600 €.",
+        "iconAlt": "Pictogramă întârziere zbor"
+      },
+      "flightCancellation": {
+        "title": "Anularea zborului",
+        "description": "Dacă zborul a fost anulat cu preaviz scurt, poți avea dreptul la o despăgubire de până la 520 £ sau 600 €.",
+        "iconAlt": "Anularea zborului"
+      },
+      "deniedBoarding": {
+        "title": "Refuzul la îmbarcare",
+        "description": "Dacă ți s-a refuzat îmbarcarea împotriva voinței tale, poți cere până la 520 £ sau 600 €.",
+        "iconAlt": "Refuzul la îmbarcare"
+      },
+      "missedConnection": {
+        "title": "Corespondență ratată",
+        "description": "Dacă pierzi zborul de legătură din cauza unei întârzieri, poți avea dreptul la despăgubire.",
+        "iconAlt": "Corespondență ratată"
+      },
+      "airlineStrike": {
+        "title": "Greva companiei aeriene",
+        "description": "Dacă zborul a fost afectat de o grevă a companiei, poți totuși avea dreptul la despăgubire.",
+        "iconAlt": "Greva companiei aeriene"
+      }
+    },
+    "howItWorks": {
+      "title": "Cum",
+      "titleAccent": "funcționează?",
+      "schemaName": "Cum să ceri despăgubirea unui zbor cu Compensall",
+      "subtitle": "Încarcă cartea de îmbarcare. Asistentul nostru verifică cererea. Echipa noastră se ocupă de compania aeriană.",
+      "steps": {
+        "upload": {
+          "title": "Încarcă cartea de îmbarcare",
+          "description": "Adaugă cartea de îmbarcare în câteva secunde."
+        },
+        "assistant": {
+          "title": "Asistentul verifică cazul",
+          "description": "Asistentul nostru verifică dacă ai dreptul."
+        },
+        "airline": {
+          "title": "Ne ocupăm de companie",
+          "description": "Luptăm pentru despăgubirea ta."
+        }
+      }
+    },
+    "compensation": {
+      "title": "Cât de mare este",
+      "titleAccent": "despăgubirea?",
+      "ukIntro": "La zborurile din Regatul Unit, UK261 fixează sume în lire. Valoarea depinde de distanța zborului.",
+      "ecIntro": "La zborurile europene eligibile, Regulamentul CE 261/2004 fixează sume în euro. Valoarea depinde de distanța zborului.",
+      "ukHeading": "UK261 — zboruri din Regatul Unit",
+      "ecHeading": "CE 261/2004 — zboruri europene eligibile",
+      "tierAlt": "Treaptă de despăgubire de {amount}"
+    }
+  },
+  "claim": {
+    "steps": {
+      "upload": "Încarcă",
+      "assistantCheck": "Verificarea asistentului",
+      "assistantCheckShort": "Verifică",
+      "signSubmit": "Semnează și trimite"
+    },
+    "resume": {
+      "loading": "Încărcăm cererea ta salvată…",
+      "loaded": "Am încărcat datele zborului și ale contactului. Semnează împuternicirea și trimite ca să termini.",
+      "invalid": "Acest link de reluare nu este valid. Poți începe o cerere nouă mai jos.",
+      "expired": "Acest link de reluare a expirat sau a fost deja folosit. Poți începe o cerere nouă mai jos."
+    },
+    "step1": {
+      "rightsContext": "Conform drepturilor pasagerilor din Regatul Unit și din UE (UK261 și Regulamentul CE 261/2004), poți avea dreptul la despăgubire pentru întârzieri, anulări și refuz la îmbarcare. Încarcă cartea de îmbarcare ca să verifici dacă ai dreptul — este gratuit. No win, no fee.",
+      "readingBoardingPass": "Citim cartea ta de îmbarcare…",
+      "extractingDetails": "{assistantName} extrage datele zborului tău",
+      "uploadTitle": "Încarcă cartea de îmbarcare",
+      "uploadHint": "Trage și plasează sau apasă ca să încarci (PDF, JPG, PNG)",
+      "orCheckManually": "Sau",
+      "checkManually": "verifică manual",
+      "departureAirport": "Aeroportul de plecare",
+      "arrivalAirport": "Aeroportul de sosire",
+      "swapAirports": "Inversează aeroporturile",
+      "dataProtected": "Datele tale sunt protejate. Întotdeauna.",
+      "popularAirports": "Aeroporturi populare",
+      "resultsCount": "{count, plural, =1 {# rezultat} other {# rezultate}}",
+      "otherAirportHidden": "Celălalt aeroport selectat este ascuns.",
+      "noAirportsFound": "Nu am găsit aeroporturi. Încearcă un oraș, o țară sau un cod (de ex. București, România, OTP).",
+      "preview": {
+        "title": "Previzualizarea cărții de îmbarcare",
+        "fullTitle": "Cartea de îmbarcare completă",
+        "addedJustNow": "Adăugată chiar acum • {fileSize}",
+        "open": "Previzualizare",
+        "viewFull": "Vezi cartea de îmbarcare completă",
+        "thumbnail": "Miniatura cărții de îmbarcare",
+        "heicUnsupported": "Previzualizarea HEIC nu este suportată de browser.",
+        "unavailable": "Previzualizarea nu este disponibilă pentru acest tip de fișier.",
+        "notAvailableSaved": "Previzualizarea nu este disponibilă pentru acest tip de fișier în browser. Fișierul rămâne salvat pentru cerere.",
+        "formatCannotPreview": "Acest format nu poate fi previzualizat online{heicHint}.",
+        "heicHint": " (HEIC)",
+        "downloadFile": "Descarcă fișierul",
+        "closePreview": "Închide previzualizarea"
+      },
+      "errors": {
+        "selectBothAirports": "Alege aeroporturile de plecare și de sosire din listă.",
+        "airportsMustDiffer": "Aeroporturile de plecare și de sosire trebuie să fie diferite.",
+        "extractFailed": "Nu am putut citi automat toate datele. Completează datele zborului mai jos.",
+        "somethingWentWrong": "Ceva nu a mers. Completează datele zborului mai jos.",
+        "unsupportedType": "Tip de fișier neacceptat. Încarcă o carte de îmbarcare în PDF, JPG, PNG, WebP sau HEIC.",
+        "tooLarge": "Fișierul este prea mare. Dimensiunea maximă este de 10 MB."
+      }
+    },
+    "step2": {
+      "extractedSuccess": "Mulțumim! Am extras datele zborului tău.",
+      "confirmDetails": "Confirmă că informațiile de mai jos sunt corecte.",
+      "extractPartial": "Cartea de îmbarcare este salvată, dar nu am putut citi automat toate datele.",
+      "fillInDetails": "Completează sau confirmă informațiile de mai jos.",
+      "passenger": "Pasager",
+      "flight": "Zbor",
+      "route": "Rută",
+      "date": "Dată",
+      "confirmPrompt": "Este totul corect?",
+      "confirmHint": "Asta ne ajută să evaluăm dacă ai dreptul.",
+      "deleteData": "Șterge datele",
+      "editDetails": "Editează datele",
+      "doneEditing": "Termină editarea",
+      "yesContinue": "Da, continuă",
+      "errors": {
+        "passengerRequired": "Numele pasagerului este obligatoriu.",
+        "flightRequired": "Numărul zborului este obligatoriu.",
+        "routeRequired": "Ruta este obligatorie.",
+        "dateRequired": "Data zborului este obligatorie."
+      },
+      "fields": {
+        "passenger": "Pasager",
+        "passengerPlaceholder": "Numele complet ca pe cartea de îmbarcare",
+        "flightNumber": "Numărul zborului",
+        "flightPlaceholder": "de ex. W63001",
+        "date": "Dată",
+        "departure": "Plecare",
+        "departurePlaceholder": "de ex. București (OTP)",
+        "arrival": "Sosire",
+        "arrivalPlaceholder": "de ex. Londra (LTN)"
+      }
+    },
+    "connecting": {
+      "title": "Zboruri de legătură",
+      "subtitle": "Spune-ne dacă voiajul includea o corespondență.",
+      "hadConnecting": "Ai avut un zbor de legătură?",
+      "selectPlaceholder": "Alege o opțiune",
+      "yes": "Da",
+      "no": "Nu",
+      "legLabel": "Zbor de legătură {number}",
+      "anotherConnecting": "Am mai avut un zbor de legătură",
+      "airport": "Aeroport",
+      "airportPlaceholder": "Alege aeroportul",
+      "flightNumber": "Numărul zborului",
+      "flightNumberPlaceholder": "de ex. W63001",
+      "errors": {
+        "connectingRequired": "Indică dacă ai avut un zbor de legătură.",
+        "connectingDetailsRequired": "Introdu aeroportul și numărul zborului pentru legătura 1."
+      }
+    },
+    "disruption": {
+      "title": "Detaliile incidentului",
+      "subtitle": "Povestește-ne ce s-a întâmplat ca să evaluăm dacă ai dreptul.",
+      "type": "Tipul incidentului",
+      "typePlaceholder": "Alege tipul incidentului",
+      "selectPlaceholder": "Alege o opțiune",
+      "delayDuration": "Durata întârzierii la destinația finală",
+      "delayLessThan3": "Mai puțin de 3 ore",
+      "delayMoreThan3": "Mai mult de 3 ore",
+      "cancellationNotice": "Cu câte zile înainte ai fost anunțat?",
+      "notice14OrMore": "14 zile sau mai mult",
+      "noticeLessThan14": "Mai puțin de 14 zile",
+      "ineligibleTitle": "Ne pare rău, dar nu ai dreptul la despăgubire.",
+      "ineligibleBody": "Conform Regulamentului CE 261/2004, compania nu este obligată să te despăgubească dacă zborul a întârziat sub 3 ore sau dacă ai fost anunțat de anulare cu mai mult de 14 zile înainte. Înțelegem dezamăgirea și îți mulțumim pentru înțelegere.",
+      "ineligibleContact": "Contactează-ne pentru alte incidente din ultimii 5 ani.",
+      "reason": "Motivul incidentului",
+      "types": {
+        "delay": "Întârziere",
+        "cancellation": "Anulare",
+        "deniedBoarding": "Refuz la îmbarcare"
+      },
+      "reasons": {
+        "technical": "Problemă tehnică",
+        "weather": "Vreme",
+        "strike": "Grevă",
+        "crew": "Problemă de echipaj",
+        "airport": "Aeroport / trafic aerian",
+        "other": "Altul / nu sunt sigur"
+      },
+      "errors": {
+        "typeRequired": "Alege tipul incidentului.",
+        "delayRequired": "Alege durata întârzierii.",
+        "noticeRequired": "Alege când ai fost anunțat de anulare.",
+        "reasonRequired": "Alege motivul incidentului."
+      }
+    },
+    "compensationEstimate": {
+      "label": "Despăgubire estimată",
+      "upTo": "Până la {amount}",
+      "detail": "Conform {regulation} pentru o rută de circa {distance}.",
+      "disclaimer": "Doar orientativ. Dreptul definitiv depinde de durata întârzierii, de responsabilitatea companiei și de circumstanțele extraordinare."
+    },
+    "step3": {
+      "claimReady": "Cererea ta este gata.",
+      "confirmContact": "Confirmă datele de contact și ceilalți pasageri.",
+      "uploadDocuments": "Încarcă documente de sprijin (opțional) și continuă pentru revizuire.",
+      "readAndSign": "Citește împuternicirea completă și semnează o dată ca să continui.",
+      "readAndSignPassenger": "Pasagerul {current} din {total}: {name} — citește și semnează împuternicirea.",
+      "signedReview": "Semnăturile sunt complete. Revizuiește și trimite cererea.",
+      "justNow": "Chiar acum",
+      "fullLegalName": "Numele legal complet",
+      "namePlaceholder": "Așa cum apare pe cartea de îmbarcare",
+      "emailAddress": "Adresa de e-mail",
+      "emailPlaceholder": "tu@email.com",
+      "phoneNumber": "Număr de telefon",
+      "phonePlaceholder": "0712 345 678",
+      "firstName": "Prenume",
+      "lastName": "Nume",
+      "otherPassengers": "Alți pasageri din rezervare",
+      "otherPassengersHint": "Adaugă pe oricine trebuie să semneze și el o împuternicire.",
+      "addPassenger": "Adaugă pasager",
+      "removePassenger": "Elimină",
+      "passengerNumber": "Pasagerul {number}",
+      "documentsHint": "Aceste fișiere ne ajută să gestionăm cererea mai devreme. Le poți omite pe cele pe care încă nu le ai.",
+      "docs": {
+        "passport": "Copie pașaport",
+        "passportHint": "Pagina cu fotografia din pașaport sau CI.",
+        "booking": "Confirmarea rezervării",
+        "bookingHint": "Confirmarea companiei sau biletul electronic.",
+        "expenses": "Dovezi de cheltuieli",
+        "expensesHint": "Mese, hoteluri, transferuri sau alte costuri ale incidentului.",
+        "other": "Alte documente",
+        "otherHint": "Orice alt fișier de sprijin (opțional)."
+      },
+      "additionalDocuments": "Documente suplimentare (opțional)",
+      "additionalDocumentsHint": "Încarcă CI, confirmarea rezervării, dovezi de cheltuieli sau alte fișiere.",
+      "signOnce": "Semnează o dată",
+      "signPassenger": "Semnează {current} din {total}",
+      "documentPreview": "Previzualizarea documentului",
+      "openFullPage": "Deschide pagina completă ↗",
+      "readComplete": "✓ Ai citit împuternicirea. Poți semna mai jos",
+      "scrollToUnlock": "Derulează până la finalul împuternicirii ca să deblochezi semnătura ↓",
+      "yourSignature": "Semnătura ta",
+      "clear": "Șterge",
+      "drawSignatureHint": "Desenează aici: semnătura apare pe document la «The passenger». Indică și data semnării pe document.",
+      "scrollToUnlockSigning": "Derulează până la finalul documentului ca să deblochezi semnătura.",
+      "signedBy": "Semnat de",
+      "flightDate": "Data zborului: {date}",
+      "signingDate": "Data semnării: {date}",
+      "signedAt": "Semnat pe {date}",
+      "passengersCount": "Pasageri: {count}",
+      "continueToDocuments": "Continuă la documente",
+      "continueToSigning": "Continuă la semnare",
+      "continueToReview": "Continuă la revizuire",
+      "saving": "Se salvează...",
+      "deleteData": "Șterge datele",
+      "back": "Înapoi",
+      "signing": "Se semnează…",
+      "signAndNext": "Semnează și următorul pasager",
+      "signAndReview": "Semnează și revizuiește",
+      "signAndContinue": "Semnează și continuă",
+      "reSign": "Semnează din nou",
+      "submitting": "Se trimite…",
+      "submitClaim": "Trimite cererea",
+      "claimSubmitted": "Cerere trimisă",
+      "thankYou": "Mulțumim, {name}. Am primit împuternicirea semnată și începem lucrul la cererea pentru zborul {flight}.",
+      "trackingNumber": "Numărul tău de urmărire",
+      "trackYourClaim": "Urmărește cererea",
+      "confirmationEmail": "Vom trimite confirmarea și actualizările la {email}.",
+      "powerOfAttorney": {
+        "title": "Împuternicire",
+        "description": "Autorizează Compensall să gestioneze cererea ta de despăgubire conform Regulamentului CE 261/2004."
+      },
+      "errors": {
+        "nameRequired": "Introdu numele tău legal complet.",
+        "emailInvalid": "Introdu un e-mail valid. Îl folosim pentru numărul de urmărire și actualizări.",
+        "phoneInvalid": "Introdu un număr de telefon valid ca să te putem contacta pentru cerere.",
+        "passengerNameRequired": "Introdu prenumele și numele pasagerului {number}.",
+        "passengerEmailInvalid": "Introdu un e-mail valid pentru pasagerul {number}.",
+        "passengerPhoneInvalid": "Introdu un telefon valid pentru pasagerul {number}.",
+        "scrollBeforeSign": "Derulează până la finalul documentului înainte de a semna.",
+        "signatureRequired": "Desenează semnătura ca să confirmi că ai citit și accepți acest document.",
+        "signFailed": "Nu am putut înregistra semnătura. Încearcă din nou.",
+        "signConnectionError": "Nu am putut înregistra semnătura. Verifică conexiunea și încearcă din nou.",
+        "signBeforeSubmit": "Semnează împuternicirea tuturor pasagerilor înainte de a trimite.",
+        "submitFailed": "Nu am putut trimite cererea.",
+        "sessionExpired": "Sesiunea cererii a expirat. Începe din nou."
+      }
+    },
+    "sidebar": {
+      "uploadedBoardingPass": "Carte de îmbarcare încărcată",
+      "manualFlightEntry": "Datele zborului introduse manual",
+      "manualEntryHint": "Ai introdus ruta și datele zborului manual. Confirmă că totul este corect înainte de a semna.",
+      "extractedFlightDetails": "Datele zborului extrase",
+      "confirmCorrect": "Confirmă că sunt corecte.",
+      "detailsReady": "Datele zborului tău sunt gata de revizuire."
+    }
+  },
+  "faq": {
+    "sectionTitle": "Întrebări",
+    "sectionTitleAccent": "frecvente",
+    "pageTitle": "Despăgubiri pentru zboruri",
+    "pageTitleAccent": "FAQ",
+    "pageIntro": "Tot ce trebuie să știi ca să ceri despăgubirea cu UK261 și Regulamentul CE 261/2004, serviciul nostru No win, no fee și cum îți protejăm datele.",
+    "default": [
+      {
+        "question": "Este sigur să încarc cartea de îmbarcare?",
+        "answer": "Da. Cartea de îmbarcare este criptată și stocată în siguranță. Folosim doar informațiile necesare ca să gestionăm cererea și nu le partajăm cu terți."
+      },
+      {
+        "question": "Asistentul se ocupă de tot?",
+        "answer": "Asistentul accelerează procesul, dar cererea ta este sprijinită și de oameni reali. Echipa noastră poate revizui cazul, contacta compania și gestiona cererea de la cap la coadă."
+      },
+      {
+        "question": "Câtă despăgubire pot primi?",
+        "answer": "La zborurile din Regatul Unit, UK261 prevede până la 520 £ de pasager (220 £ sub 1.500 km, 350 £ între 1.500 și 3.500 km, și 520 £ peste 3.500 km). La zborurile europene eligibile, Regulamentul CE 261/2004 prevede 250 €, 400 € sau 600 € pe aceleași trepte de distanță."
+      },
+      {
+        "question": "Ce înseamnă «no win, no fee»?",
+        "answer": "Înseamnă că nu plătești nimic dacă nu câștigăm cererea. Percepem un comision de succes doar când recuperăm despăgubirea în numele tău."
+      },
+      {
+        "question": "Ce face asistentul?",
+        "answer": "Asistentul analizează cartea de îmbarcare, verifică dreptul conform UK261 și Regulamentului CE 261/2004 și pregătește documentele necesare ca să depunem cererea."
+      },
+      {
+        "question": "Pot vorbi cu o persoană reală?",
+        "answer": "Da. Echipa noastră de sprijin uman este disponibilă pe tot parcursul procesului. Ne poți contacta pe chat, e-mail sau telefon."
+      },
+      {
+        "question": "Cât costă?",
+        "answer": "Nu există cost inițial. Compensall lucrează cu No win, no fee: percepem un comision doar dacă cererea reușește."
+      },
+      {
+        "question": "Îmi pot șterge datele?",
+        "answer": "Da. Poți cere ștergerea datelor personale oricând. Contactează echipa noastră și vom rezolva cererea în 30 de zile, conform RGPD."
+      }
+    ],
+    "uk": [
+      {
+        "question": "Ce este UK261 și cum diferă de CE 261?",
+        "answer": "După Brexit, Regatul Unit a păstrat drepturile pasagerilor prin UK261, care reproduce Regulamentul CE 261/2004 pentru zborurile care pleacă din Regatul Unit. UK261 fixează despăgubirea în lire (220 £, 350 £ sau 520 £), iar CE 261 folosește euro (250 €, 400 € sau 600 €) la plecările europene eligibile."
+      },
+      {
+        "question": "UK261 se aplică zborului meu?",
+        "answer": "UK261 se aplică de obicei zborurilor care pleacă din aeroporturi din Regatul Unit. Regulamentul CE 261/2004 se poate aplica zborurilor care pleacă din aeroporturi UE și, în unele cazuri, celor care sosesc în UE operate de o companie din UE sau din Regatul Unit. Regulamentul aplicabil depinde de rută și de companie."
+      },
+      {
+        "question": "Pot cere despăgubire pentru un zbor întârziat cu UK261?",
+        "answer": "Da. Dacă zborul a ajuns la destinația finală cu mai mult de trei ore întârziere și întârzierea nu s-a datorat unor circumstanțe extraordinare, poți avea dreptul la despăgubire conform UK261 sau Regulamentului CE 261/2004, după caz."
+      },
+      {
+        "question": "Cât timp am la dispoziție ca să cer despăgubirea în Regatul Unit?",
+        "answer": "Termenele depind de locul unde se depune cererea. În Anglia și Țara Galilor, în general ai șase ani. În România, termenul de prescripție este de obicei de trei ani. Recomandăm să începi cât mai curând, cât timp evidențele zborului și probele sunt mai ușor de obținut."
+      }
+    ]
+  },
+  "cookies": {
+    "bannerTitle": "Folosim cookie-uri",
+    "bannerDescription": "Folosim cookie-uri esențiale ca site-ul să funcționeze și, cu acordul tău, cookie-uri opționale ca să înțelegem cum este folosit Compensall. Citește <cookiePolicy>Politica de cookie-uri</cookiePolicy> și <privacyPolicy>Politica de confidențialitate</privacyPolicy>.",
+    "cookiePolicy": "Politica de cookie-uri",
+    "essentialOnly": "Doar esențiale",
+    "acceptAll": "Accept toate",
+    "pageTitle": "Politica de cookie-uri",
+    "pageDescription": "Află cum folosește Compensall cookie-uri și tehnologii similare și cum îți poți gestiona preferințele.",
+    "breadcrumb": "Cookie-uri",
+    "summary": "Cum folosim cookie-urile și cum le poți controla."
+  },
+  "privacyPolicy": {
+    "pageTitle": "Politica de confidențialitate",
+    "pageDescription": "Află cum colectează, folosește, stochează și protejează Compensall datele tale personale când folosești site-ul și serviciul de despăgubiri pentru zboruri.",
+    "breadcrumb": "Politica de confidențialitate",
+    "summary": "Cum tratăm datele tale personale pe site și în serviciul de cereri."
+  },
+  "terms": {
+    "pageTitle": "Termenii serviciului",
+    "pageDescription": "Citește Termenii serviciului Compensall, inclusiv regulile pentru depunerea unei cereri, comisioanele, răspunderile și legea aplicabilă.",
+    "breadcrumb": "Termenii serviciului",
+    "summary": "Regulile de folosire a Compensall și de depunere a unei cereri de despăgubire."
+  },
+  "noWinNoFeePage": {
+    "pageTitle": "Acordul No win, no fee",
+    "breadcrumb": "Acordul No win, no fee",
+    "summary": "Plătești doar dacă recuperăm cu succes despăgubirea zborului tău."
+  },
+  "legal": {
+    "breadcrumbPrices": "Prețuri"
+  },
+  "about": {
+    "title": "Despre noi",
+    "subtitle": "Ajutăm pasagerii să ceară despăgubirea care li se cuvine, cu asistentul nostru și sprijin uman la fiecare pas.",
+    "missionTitle": "Misiunea noastră",
+    "missionP1": "Compensall face simplă despăgubirea zborurilor. Companiile răspund adesea greu, resping cereri valide și transformă procesul într-un stres, așa că prea mulți pasageri nu primesc niciodată ce le recunoaște Regulamentul CE 261/2004.",
+    "missionP2": "Ne ocupăm de tot: formalități, negocierea cu compania și urmărirea cazului când e nevoie. Încarcă cartea de îmbarcare, confirmă datele și lasă echipa noastră să lupte pentru despăgubirea ta cu No win, no fee.",
+    "whyChooseTitle": "De ce ne aleg pasagerii",
+    "whyChoose": [
+      "No win, no fee: nu plătești nimic dacă nu reușim",
+      "Gestionare de la cap la coadă, de la eligibilitate la urmărirea cu compania",
+      "Comision de succes previzibil. Nu suntem un cabinet de avocatură",
+      "Abordare RGPD pe primul loc pentru datele tale",
+      "Până la 600 € de pasager la zborurile eligibile",
+      "Încrederea a mii de călători din Europa"
+    ],
+    "valuesTitle": "În ce credem",
+    "values": {
+      "fastRiskFree": {
+        "title": "Rapid și fără risc",
+        "description": "Verifică dacă ai dreptul în câteva minute, fără cost inițial. Percepem comision doar dacă câștigăm cererea."
+      },
+      "humanSupport": {
+        "title": "Sprijin uman",
+        "description": "Asistentul accelerează procesul, dar oameni reali revizuiesc cazul și se ocupă de companie."
+      },
+      "security": {
+        "title": "Securitate maximă",
+        "description": "Cartea de îmbarcare și datele personale sunt protejate. Păstrezi controlul la fiecare pas."
+      }
+    }
+  },
+  "knowYourRights": {
+    "heroTitle": "Cunoaște-ți drepturile",
+    "heroSubtitle": "Înțelege-ți drepturile conform UK261 și Regulamentului CE 261/2004 și cum te ajută Compensall să ceri despăgubirea cu sprijinul nostru digital.",
+    "whatHappenedTitle": "Ce s-a întâmplat cu",
+    "whatHappenedAccent": "zborul tău?",
+    "howItWorksTitle": "Cum",
+    "howItWorksAccent": "funcționează?",
+    "howItWorksSubtitle": "Încarcă cartea de îmbarcare. Asistentul nostru verifică cererea. Echipa noastră se ocupă de compania aeriană.",
+    "flightIssues": {
+      "flightCancellation": {
+        "title": "Anularea zborului",
+        "description": "Dacă zborul a fost anulat cu preaviz scurt, poți avea dreptul la o despăgubire de până la 600 €."
+      },
+      "deniedBoarding": {
+        "title": "Refuzul la îmbarcare",
+        "description": "Dacă ți s-a refuzat îmbarcarea împotriva voinței tale, poți cere până la 600 €."
+      },
+      "flightDelay": {
+        "title": "Întârzierea zborului",
+        "description": "Dacă zborul a ajuns cu mai mult de 3 ore întârziere, poți avea dreptul la despăgubire."
+      },
+      "missedConnection": {
+        "title": "Corespondență ratată",
+        "description": "Dacă o întârziere sau o anulare ți-a făcut să pierzi un zbor de legătură, poți avea dreptul la despăgubire."
+      },
+      "overbooking": {
+        "title": "Overbooking",
+        "description": "Dacă respectiva companie a făcut overbooking și nu ai putut călători cum era prevăzut, poți cere despăgubirea."
+      },
+      "airlineStrike": {
+        "title": "Greva companiei aeriene",
+        "description": "Dacă zborul a fost afectat de o grevă a companiei, poți totuși avea drepturi de despăgubire."
+      },
+      "passengerRights": {
+        "title": "Drepturile pasagerului",
+        "description": "Află ce îți poate datora compania când voiajul se întrerupe."
+      },
+      "passengersWithDisabilities": {
+        "title": "Pasageri cu dizabilități",
+        "description": "Cunoaște-ți drepturile de asistență, accesibilitate și sprijin la călătorie."
+      }
+    }
+  },
+  "prices": {
+    "title": "Prețuri și comisioane",
+    "breadcrumb": "Prețuri",
+    "summary": "Fără cost inițial. Percepem un comision de succes doar când recuperăm despăgubirea pentru tine.",
+    "noWinNoFeeIntro": "No win, no fee:",
+    "noWinNoFeeBody": "Verificarea dreptului și folosirea site-ului sunt gratuite. Dacă ne însărcinezi să cerem despăgubirea, comisionul nostru se aplică doar dacă cererea reușește, conform <noWinNoFeeAgreement>Acordului No win, no fee</noWinNoFeeAgreement>.",
+    "noWinNoFeeAgreement": "Acordul No win, no fee",
+    "successFeeTitle": "Comisionul de succes",
+    "successFeeDescription": "Când recuperăm despăgubirea în numele tău, reținem un comision de succes înainte să-ți transferăm restul. Primești cel puțin 70 % din suma recuperată, înainte de ajustări de TVA.",
+    "tableCompensationRecovered": "Despăgubire recuperată",
+    "tableSuccessFee": "Comision de succes",
+    "tierUpTo220": "Până la 220 £ / 250 €",
+    "tier221to350": "221–350 £ / 251–400 €",
+    "tier351to520": "351–520 £ / 401–600 €",
+    "fee25Vat": "30 % + TVA",
+    "uk261Title": "Sume de despăgubire (UK261)",
+    "uk261Intro": "La zborurile din Regatul Unit, despăgubirea fixă UK261 depinde de distanța zborului:",
+    "ec261Title": "Sume de despăgubire (CE 261/2004)"
+  },
+  "cta": {
+    "title": "Verificare sigură. Cu sprijin uman.",
+    "titleLine2": "No win, no fee.",
+    "subtitle": "Cererea ta este ghidată de IA și sprijinită de oameni reali.",
+    "subtitleLine2": "Rapid, sigur și simplu de la prima încărcare.",
+    "body": "Comisionul nostru obișnuit se percepe doar dacă câștigăm despăgubirea pentru tine. <brandName>Compensall</brandName> gestionează procesul de la încărcarea cărții de îmbarcare până la urmărirea cu compania, ca să ceri despăgubirea cu încredere.",
+    "fastRiskFree": "Rapid și fără risc",
+    "noHiddenFees": "Fără costuri ascunse",
+    "talkToUs": "Vorbește cu noi",
+    "humanSupportAvailable": "Sprijin uman disponibil",
+    "highestSecurity": "Securitate maximă",
+    "dataProtected": "Datele tale sunt mereu protejate"
+  },
+  "passengerRights": {
+    "rightsHeading": "Drepturile tale conform",
+    "rightsAccent": "UK261 și CE 261",
+    "rightsIntro": "Pasagerii aerieni din Regatul Unit și din UE sunt protejați când un zbor întârzie, este anulat sau se întrerupe fără vina lor.",
+    "uk261Card": {
+      "title": "UK261 — zboruri din Regatul Unit",
+      "body": "După Brexit, Regatul Unit a păstrat drepturile pasagerilor prin UK261. Se aplică zborurilor din spațiul aerian britanic și fixează despăgubiri în lire: 220 £, 350 £ sau 520 £, în funcție de distanță."
+    },
+    "ec261Card": {
+      "title": "CE 261/2004 — zboruri din UE",
+      "body": "Regulamentul CE 261/2004 continuă să protejeze pasagerii la zborurile eligibile din spațiul aerian al UE, cu despăgubiri de 250 €, 400 € sau 600 € pe aceleași trepte de distanță."
+    },
+    "rightsDetailP1": "Dacă zborul întârzie trei ore sau mai mult la sosire, este anulat cu preaviz scurt sau ți se refuză îmbarcarea împotriva voinței tale, poți avea dreptul la o despăgubire fixă. Poți avea și dreptul la asistență, rerutare și rambursare, după caz.",
+    "rightsDetailP2": "Corespondențele ratate și grevele companiei pot da și ele drept când incidentul este sub controlul operatorului. Compensall te ajută să verifici dreptul, să pregătești cererea și să urmărești despăgubirea la companie cu No win, no fee.",
+    "eligibilityHeading": "Când poți cere",
+    "eligibilityAccent": "despăgubirea?",
+    "eligibilityIntro": "Poți avea dreptul dacă se îndeplinesc toate aceste condiții în voiajul tău.",
+    "eligibility": {
+      "ukEuDeparture": {
+        "title": "Zbor din Regatul Unit sau din UE",
+        "body": "Zborul tău opera în spațiul aerian al Regatului Unit (UK261) sau al UE (CE 261/2004), ori sosește într-un aeroport din Regatul Unit sau din UE și este operat de o companie britanică sau europeană."
+      },
+      "significantDisruption": {
+        "title": "Incident relevant",
+        "body": "Ai ajuns la destinația finală cu trei ore sau mai mult întârziere, ori zborul a fost anulat sau ți s-a refuzat îmbarcarea."
+      },
+      "airlineResponsibility": {
+        "title": "Răspunderea companiei",
+        "body": "Incidentul nu s-a datorat unor circumstanțe extraordinare în afara controlului companiei, cum ar fi vremea extremă sau restricțiile de trafic aerian."
+      },
+      "validBooking": {
+        "title": "Rezervare validă",
+        "body": "Te-ai prezentat la timp la check-in și ai o rezervare validă pentru zborul afectat."
+      },
+      "withinTimeLimits": {
+        "title": "În termen",
+        "body": "Începi cererea în termenul aplicabil: în general, până la trei ani în România și până la șase ani în Anglia și Țara Galilor."
+      }
+    },
+    "ec261Note": "La zborurile europene eligibile, Regulamentul CE 261/2004 prevede 250 €, 400 € sau 600 € pe aceleași trepte de distanță.",
+    "tiers": {
+      "uk261": {
+        "220": {
+          "label": "Zboruri de până la 1.500 km",
+          "desc": "Despăgubire UK261 pentru zborurile eligibile mai scurte."
+        },
+        "350": {
+          "label": "Zboruri de la 1.500 km la 3.500 km",
+          "desc": "Despăgubire UK261 pentru zborurile de distanță medie."
+        },
+        "520": {
+          "label": "Zboruri de peste 3.500 km",
+          "desc": "Despăgubire UK261 pentru zborurile de lung curier."
+        }
+      },
+      "ec261": {
+        "250": {
+          "label": "Zboruri de până la 1.500 km",
+          "desc": "Despăgubire CE 261/2004 pentru zborurile eligibile mai scurte."
+        },
+        "400": {
+          "label": "Zboruri de la 1.500 km la 3.500 km",
+          "desc": "Despăgubire CE 261/2004 pentru zborurile de distanță medie."
+        },
+        "600": {
+          "label": "Zboruri de peste 3.500 km",
+          "desc": "Despăgubire CE 261/2004 pentru zborurile de lung curier."
+        }
+      }
+    }
+  },
+  "metadata": {
+    "site": {
+      "title": "Compensall – Zbor întârziat sau anulat? Cere până la 520 £ sau 600 €",
+      "description": "Zbor întârziat sau anulat? Cere până la 520 £ cu UK261 sau 600 € cu Regulamentul CE 261/2004. Încărcare sigură a cărții de îmbarcare, sprijin uman, No win, no fee."
+    },
+    "home": {
+      "title": "Zbor întârziat sau anulat? Cere până la 520 £ sau 600 €",
+      "description": "Încarcă cartea de îmbarcare și cere despăgubirea zborului cu UK261 sau Regulamentul CE 261/2004. Sigur, cu sprijin uman, No win, no fee."
+    },
+    "faq": {
+      "title": "Întrebări frecvente despre despăgubirea zborurilor",
+      "description": "Răspunsuri despre UK261, Regulamentul CE 261/2004, sumele de despăgubire, No win, no fee, încărcarea cărții de îmbarcare și cum gestionează Compensall cererea ta."
+    },
+    "about": {
+      "title": "Despre noi | Compensall despăgubiri pentru zboruri",
+      "description": "Compensall ajută pasagerii să ceară până la 600 € cu EU261, cu încărcare sigură a cărții de îmbarcare, verificări ale asistentului și gestionare umană a companiei, cu No win, no fee."
+    },
+    "knowYourRights": {
+      "title": "Cunoaște-ți drepturile de despăgubire pentru zbor",
+      "description": "Află când UK261 și Regulamentul CE 261/2004 îți dau dreptul la până la 520 £ sau 600 € pentru întârzieri, anulări, refuz la îmbarcare, corespondențe ratate și greve."
+    },
+    "prices": {
+      "title": "Prețuri, comisioane și No win, no fee",
+      "description": "Compensall lucrează cu No win, no fee. Consultă comisionul de succes și sumele UK261 și CE 261 care ți se pot cuveni."
+    },
+    "blog": {
+      "title": "Ghiduri de despăgubire a zborurilor și drepturi ale pasagerului",
+      "description": "Ghiduri practice ale Regulamentului CE 261/2004 despre întârzieri, anulări, refuz la îmbarcare, corespondențe ratate și cum să ceri până la 600 €."
+    },
+    "cookies": {
+      "title": "Politica de cookie-uri și preferințe",
+      "description": "Află cum folosește Compensall cookie-uri și tehnologii similare și cum îți poți gestiona preferințele."
+    },
+    "privacyPolicy": {
+      "title": "Politica de confidențialitate și date personale",
+      "description": "Află cum colectează, folosește, stochează și protejează Compensall datele tale personale când folosești site-ul și serviciul de cereri."
+    },
+    "terms": {
+      "title": "Termenii serviciului de cereri Compensall",
+      "description": "Citește Termenii serviciului Compensall, inclusiv regulile pentru depunerea unei cereri, comisioanele, răspunderile și legea aplicabilă."
+    },
+    "airlines": {
+      "title": "Ghiduri de despăgubire pentru companii aeriene și aeroporturi",
+      "description": "Găsește-ți compania sau aeroportul și verifică dacă ai dreptul la despăgubire EU261. Ghiduri Wizz Air, Ryanair, Tarom și principalele aeroporturi europene."
+    },
+    "authorityToAct": {
+      "title": "Împuternicire pentru cereri de despăgubire a zborului",
+      "description": "Împuternicire care autorizează Compensall să gestioneze cererea ta de despăgubire conform Regulamentului CE 261/2004."
+    },
+    "noWinNoFee": {
+      "title": "Acordul No win, no fee",
+      "description": "Acordul No win, no fee al Compensall. Plătești doar dacă recuperăm cu succes despăgubirea."
+    },
+    "privacyDataConsent": {
+      "title": "Confidențialitate și consimțământ pentru date",
+      "description": "Documentul Compensall de confidențialitate și consimțământ care explică cum tratăm și protejăm datele tale personale."
+    },
+    "track": {
+      "title": "Urmărește-ți cererea",
+      "description": "Consultă starea cererii tale de despăgubire Compensall cu numărul de urmărire."
+    },
+    "thankYou": {
+      "title": "Mulțumim — cerere trimisă",
+      "description": "Cererea ta de despăgubire Compensall a fost trimisă."
+    }
+  },
+  "trackPage": {
+    "title": "Urmărește-ți cererea",
+    "reference": "Referință <tracking>{trackingNumber}</tracking>",
+    "loading": "Se încarcă starea cererii…",
+    "notFound": "Nu am găsit această cerere.",
+    "invalidReference": "Formatul numărului de urmărire nu este valid.",
+    "errorGeneric": "Ceva nu a mers. Încearcă din nou.",
+    "startNewClaim": "Începe o cerere nouă",
+    "claimDetails": "Datele cererii",
+    "status": "Stare",
+    "fields": {
+      "passenger": "Pasager",
+      "flight": "Zbor",
+      "route": "Rută",
+      "date": "Dată",
+      "submitted": "Trimisă",
+      "estimate": "Despăgubire estimată"
+    },
+    "estimateUpTo": "Până la {amount}",
+    "estimateDetail": "Conform {regulation} pentru o rută de circa {distance}.",
+    "estimateDisclaimer": "Doar orientativ. Dreptul definitiv depinde de durata întârzierii, de responsabilitatea companiei și de circumstanțele extraordinare.",
+    "statuses": {
+      "received": {
+        "label": "Primită",
+        "message": "Am primit cererea ta și echipa o revizuiește. Te vom actualiza aici de îndată ce avem noutăți."
+      },
+      "needs_documents": {
+        "label": "Documente necesare",
+        "message": "Avem nevoie de câteva documente în plus ca să continuăm. Verifică e-mailul sau scrie-ne la +351 923391980. Te ajutăm cu plăcere."
+      },
+      "with_airline": {
+        "label": "La companie",
+        "message": "Cererea a fost depusă la compania aeriană. Așteptăm răspunsul și te actualizăm imediat ce știm ceva."
+      },
+      "following_up": {
+        "label": "În urmărire",
+        "message": "Compania a răspuns și facem urmărirea în numele tău. Te ținem la curent cu orice noutate."
+      },
+      "payment_processing": {
+        "label": "Plată în curs",
+        "message": "Vești bune: compania ți-a aprobat despăgubirea. Procesăm plata și te actualizăm în curând."
+      },
+      "awaiting_fee": {
+        "label": "Comisionul serviciului",
+        "message": "Felicitări, cererea a reușit! Finalizează plata comisionului nostru ca să putem închide cazul."
+      },
+      "paid": {
+        "label": "Plătită",
+        "message": "Plata ta s-a finalizat! Mulțumim pentru încredere. Dacă ai întrebări, suntem aici."
+      },
+      "closed_ntd": {
+        "label": "Închisă",
+        "message": "Din păcate nu putem continua cererea și cazul a fost închis. Dacă ai întrebări, contactează-ne."
+      },
+      "paused": {
+        "label": "În pauză",
+        "message": "Cazul este în pauză pentru că nu am primit răspuns de la tine. Contactează-ne la +351 923391980 dacă vrei să-l reactivezi."
+      },
+      "closed_declined": {
+        "label": "Închisă",
+        "message": "Din păcate compania ți-a respins cererea și nu putem continua. Cazul a fost închis: contactează-ne dacă vrei să discutăm rezultatul."
+      }
+    }
+  },
+  "airlinesPage": {
+    "title": "Aeroporturi și companii aeriene",
+    "subtitleLine1": "Găsește-ți compania sau aeroportul.",
+    "subtitleLine2": "Verifică-ți cererea în câteva minute."
+  },
+  "airlinesCatalog": {
+    "airlines": "Companii aeriene",
+    "airports": "Aeroporturi",
+    "mostPopular": "Cele mai populare",
+    "searchResults": "{count, plural, =1 {# rezultat} other {# rezultate}}",
+    "searchAirline": "Caută o companie...",
+    "searchAirport": "Caută aeroport, oraș sau țară...",
+    "seeMore": "Vezi mai multe {section}",
+    "allSection": "Toate {section}",
+    "showLess": "Vezi mai puține",
+    "noResults": "Nu există rezultate. Încearcă altă căutare.",
+    "airlineCardDescription": "Întârziere, anulare sau refuz la îmbarcare cu {name}? Verifică-ți cererea în câteva minute.",
+    "airportCardDescription": "Zbor întârziat sau anulat via {name}? Verifică-ți cererea în câteva minute."
+  },
+  "catalogDetail": {
+    "airlineTitle": "Despăgubire pentru întârziere sau anulare {name}",
+    "airportTitle": "Despăgubire de zbor de la {name}",
+    "airlineMetaTitle": "Despăgubire de zbor {name}",
+    "airportMetaTitle": "Despăgubire de zbor {name}",
+    "airlineIntroP1": "Dacă zborul tău {name} a întârziat, a fost anulat sau ți s-a refuzat îmbarcarea, poți avea dreptul la o despăgubire de până la 600 € conform Regulamentului CE 261/2004 și UK261.",
+    "airlineIntroP2": "Compensall verifică dacă ai dreptul în câteva minute. Încarcă cartea de îmbarcare sau introdu datele zborului — No win, no fee.",
+    "airportIntroP1": "Zbori de la sau spre {name}? Dacă zborul a întârziat sau a fost anulat, poți avea dreptul la o despăgubire de până la 600 € conform Regulamentului CE 261/2004 și UK261.",
+    "airportIntroP2": "Compensall te ajută să-ți verifici cererea în câteva minute. Începe cu cartea de îmbarcare sau datele zborului — No win, no fee.",
+    "sectionRights": "Drepturile tale de pasager",
+    "sectionTips": "Sfaturi pentru cerere",
+    "airlineCardDescription": "Întârziere, anulare sau refuz la îmbarcare cu {name}? Verifică-ți cererea în câteva minute.",
+    "airportCardDescription": "Zbor întârziat sau anulat via {name}? Verifică-ți cererea în câteva minute.",
+    "entityAirlineFlight": "zborul tău {name}",
+    "entityAirportFlight": "un zbor via {name}",
+    "faqDelayQuestion": "Am dreptul la despăgubire dacă {entity} a întârziat sau a fost anulat?",
+    "faqDelayAnswer": "Poți avea dreptul la despăgubire dacă zborul a ajuns cu 3 ore sau mai mult întârziere ori a fost anulat cu preaviz scurt, atât timp cât incidentul a fost sub controlul companiei (nu circumstanțe extraordinare precum vremea extremă).",
+    "faqAmountQuestion": "Câtă despăgubire pot cere?",
+    "faqAmountAnswer": "Conform Regulamentului CE 261/2004 și UK261, despăgubirea este de obicei 250 €, 400 € sau 600 € de pasager, în funcție de distanța zborului și de durata întârzierii.",
+    "faqRejectedAirlineQuestion": "Ce se întâmplă dacă {name} mi-a respins deja cererea?",
+    "faqRejectedAirportQuestion": "Ce se întâmplă dacă respectiva companie mi-a respins deja cererea?",
+    "faqRejectedAnswer": "Un refuz nu înseamnă automat că nu ai drepturi. Revizuim cazul și putem gestiona cereri valide cu No win, no fee.",
+    "faqDeadlineQuestion": "Există un termen pentru a cere despăgubirea?",
+    "faqDeadlineAnswer": "Termenele variază în funcție de țară (adesea câțiva ani; în România, de regulă trei ani). Cu cât întrebi mai devreme, cu atât putem evalua mai repede opțiunile.",
+    "faqSafeQuestion": "Este sigur să împărtășesc cartea de îmbarcare?",
+    "faqSafeAnswer": "Da. Datele tale sunt tratate în siguranță și sunt folosite doar ca să evaluăm și să gestionăm cererea.",
+    "claimHeadlineAirline": "Ești gata să ceri despăgubirea de la {name}?",
+    "claimHeadlineAirport": "Ești gata să-ți verifici cererea de la {name}?",
+    "claimSubheadline": "Folosește asistentul de carte de îmbarcare de pe pagina principală. Este rapid, sigur și no win, no fee.",
+    "breadcrumbCatalog": "Companii aeriene și aeroporturi",
+    "notFoundAirline": "Companie aeriană negăsită | Compensall",
+    "notFoundAirport": "Aeroport negăsit | Compensall"
+  },
+  "notFoundPage": {
+    "title": "Pagină negăsită",
+    "description": "Nu am găsit acea pagină. Începe o verificare de despăgubire sau consultă ghidurile noastre.",
+    "checkCompensation": "Cere despăgubirea",
+    "knowYourRights": "Cunoaște-ți drepturile",
+    "blog": "Blog"
+  },
+  "blogPage": {
+    "title": "Blog",
+    "subtitle": "Ghiduri practice despre drepturile pasagerului din Regulamentul CE 261/2004: întârzieri, anulări, refuz la îmbarcare și altele, ca să știi ce ți se poate cuveni înainte să zbori.",
+    "readArticle": "Citește articolul",
+    "backToBlog": "Înapoi la blog",
+    "englishOnlyNotice": "Acest ghid este disponibil deocamdată doar în engleză."
+  },
+  "thankYouPage": {
+    "title": "Mulțumim",
+    "body": "Am primit împuternicirea semnată și începem lucrul la cererea ta.",
+    "bodyWithFlight": "Am primit împuternicirea semnată și începem lucrul la cererea pentru zborul {flight}.",
+    "trackingNumber": "Numărul tău de urmărire",
+    "trackYourClaim": "Urmărește cererea",
+    "startNewClaim": "Începe o cerere nouă"
+  },
+  "documentPage": {
+    "home": "Acasă",
+    "claim": "Cerere",
+    "powerOfAttorney": "Împuternicire",
+    "privacyDataConsent": "Confidențialitate și consimțământ pentru date",
+    "copyright": "Copyright © Compensall 2026. Toate drepturile rezervate.",
+    "backToClaim": "Înapoi la cerere"
+  }
+}

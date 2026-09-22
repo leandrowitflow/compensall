@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/*/track/", "/*/resume/"],
+        disallow: ["/api/", "/*/track/", "/*/resume/", "/*/claim/thank-you"],
       },
       {
         userAgent: "GPTBot",
@@ -20,7 +20,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: ["OAI-SearchBot", "PerplexityBot", "Google-Extended", "ClaudeBot"],
         allow: "/",
-        disallow: ["/api/", "/*/track/", "/*/resume/"],
+        disallow: ["/api/", "/*/track/", "/*/resume/", "/*/claim/thank-you"],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

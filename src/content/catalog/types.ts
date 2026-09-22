@@ -1,4 +1,4 @@
-export type CatalogLocale = "en" | "pt" | "fr";
+export type CatalogLocale = "en" | "pt" | "fr" | "es" | "ro" | "hu" | "sq" | "de" | "nl";
 
 export type LocalizedText = Record<CatalogLocale, string>;
 

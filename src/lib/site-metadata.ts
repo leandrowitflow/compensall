@@ -39,18 +39,36 @@ export const HTML_LANG_MAP: Record<AppLocale, string> = {
   en: "en-GB",
   pt: "pt-PT",
   fr: "fr-FR",
+  es: "es-ES",
+  ro: "ro-RO",
+  hu: "hu-HU",
+  sq: "sq-AL",
+  de: "de-DE",
+  nl: "nl-NL",
 };
 
 const HREFLANG_MAP: Record<AppLocale, string> = {
   en: "en-GB",
   pt: "pt-PT",
   fr: "fr-FR",
+  es: "es-ES",
+  ro: "ro-RO",
+  hu: "hu-HU",
+  sq: "sq-AL",
+  de: "de-DE",
+  nl: "nl-NL",
 };
 
 const OG_LOCALE_MAP: Record<AppLocale, string> = {
   en: "en_GB",
   pt: "pt_PT",
   fr: "fr_FR",
+  es: "es_ES",
+  ro: "ro_RO",
+  hu: "hu_HU",
+  sq: "sq_AL",
+  de: "de_DE",
+  nl: "nl_NL",
 };
 
 const FAVICON_ICONS = [

@@ -13,12 +13,15 @@ import { estimateCompensationForFlight } from "@/lib/compensation-estimate";
 import { lookupAirlineByCarrierCode } from "@/lib/lookup-airline";
 import { formatRouteLabel, lookupAirportByIata, normalizeIata } from "@/lib/lookup-airport";
 import { toDateInputValue } from "@/lib/resolve-boarding-pass-references";
+import { isClaimResumeToken } from "@/lib/claim-draft-token";
 import {
   getOdooConfig,
   isOdooConfigured,
+  odooArchiveCrmLeads,
   odooAttachFilesToHelpdeskTicket,
   odooCreateCrmLead,
   odooCreateHelpdeskTicket,
+  odooFindActiveCrmLeadsForArchive,
   odooFindHelpdeskTicketByTrackingNumber,
   odooFindLeadBySessionId,
   odooFindOrCreatePartner,
@@ -27,6 +30,7 @@ import {
   odooUpdateCrmLead,
   odooUpdateHelpdeskTicket,
   type OdooAttachmentInput,
+  type OdooCrmLeadArchiveCandidate,
   type OdooCrmLeadSummary,
   type OdooHelpdeskTicketSummary,
 } from "@/lib/odoo-client";
@@ -48,6 +52,7 @@ export type OdooClaimLeadInput = {
   userAgent?: string | null;
   odooLeadId?: number | null;
   formSessionId?: string | null;
+  resumeToken?: string | null;
   /** PNG signature as raw base64 (no data: prefix). */
   signaturePngBase64?: string | null;
   /** Signed PoA HTML as UTF-8 base64. */
@@ -461,18 +466,96 @@ function buildTicketAttachments(input: OdooClaimLeadInput): OdooAttachmentInput[
   return attachments;
 }
 
-function buildSubmittedLeadDescription(input: OdooClaimLeadInput): string {
-  const lines = [
-    "Form status: Submitted",
-    input.formSessionId ? `Session: ${input.formSessionId}` : null,
-    `Tracking number: ${input.trackingNumber}`,
-    input.contactPhone?.trim() ? `Phone: ${input.contactPhone.trim()}` : null,
-    input.locale ? `Locale: ${input.locale}` : null,
-    input.landingPage ? `Landing page: ${input.landingPage}` : null,
-    `Track claim: ${input.siteUrl.replace(/\/$/, "")}/track/${input.trackingNumber}`,
-  ].filter(Boolean);
+export function normalizeClaimLeadEmail(value: string): string {
+  const trimmed = value.trim();
+  const angled = trimmed.match(/<([^>]+)>/);
+  return (angled?.[1] ?? trimmed).trim().toLowerCase();
+}
 
-  return lines.join("\n");
+export type ClaimLeadArchiveIdentity = {
+  email: string;
+  odooLeadId?: number | null;
+  formSessionId?: string | null;
+  resumeToken?: string | null;
+  trackingNumber?: string | null;
+};
+
+function emailsAreExactMatch(leadEmail: string | null | undefined, submitEmail: string): boolean {
+  const left = leadEmail ? normalizeClaimLeadEmail(leadEmail) : "";
+  const right = normalizeClaimLeadEmail(submitEmail);
+  return Boolean(left && right && left === right);
+}
+
+function descriptionHasExactSession(description: string | null | undefined, sessionId: string): boolean {
+  const needle = sessionId.trim();
+  if (!description || !needle) {
+    return false;
+  }
+
+  const matches = description.matchAll(/Session:\s*([A-Za-z0-9_-]+)/gi);
+  for (const match of matches) {
+    if (match[1] === needle) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function isCompensallWebsiteLead(lead: Pick<OdooCrmLeadArchiveCandidate, "description" | "name">): boolean {
+  const haystack = `${lead.description ?? ""}\n${lead.name ?? ""}`;
+  return (
+    /Form status:\s*(Incomplete|Submitted)/i.test(haystack) ||
+    /Compensall incomplete/i.test(haystack) ||
+    /^Compensall claim\s/i.test(lead.name)
+  );
+}
+
+/**
+ * Conservative CRM identity match after a successful submit.
+ * Different emails never match (john@ vs jenna@). Flight / last name are not keys.
+ */
+export function claimLeadMatchesSubmitIdentity(
+  lead: OdooCrmLeadArchiveCandidate,
+  identity: ClaimLeadArchiveIdentity,
+): boolean {
+  const identityEmail = normalizeClaimLeadEmail(identity.email);
+  if (!identityEmail) {
+    return false;
+  }
+
+  const leadEmail = lead.emailFrom ? normalizeClaimLeadEmail(lead.emailFrom) : "";
+  if (leadEmail && leadEmail !== identityEmail) {
+    return false;
+  }
+
+  if (identity.odooLeadId && lead.id === identity.odooLeadId) {
+    return true;
+  }
+
+  const sessionId = identity.formSessionId?.trim() ?? "";
+  if (sessionId && descriptionHasExactSession(lead.description, sessionId)) {
+    return true;
+  }
+
+  const resumeToken = identity.resumeToken?.trim() ?? "";
+  if (resumeToken && isClaimResumeToken(resumeToken)) {
+    const haystack = `${lead.website ?? ""}\n${lead.description ?? ""}`;
+    if (haystack.includes(resumeToken)) {
+      return true;
+    }
+  }
+
+  const trackingNumber = identity.trackingNumber?.trim() ?? "";
+  if (trackingNumber) {
+    const hasTracking =
+      lead.name.includes(trackingNumber) ||
+      (lead.description?.includes(`Tracking number: ${trackingNumber}`) ?? false);
+    if (hasTracking) {
+      return true;
+    }
+  }
+
+  return emailsAreExactMatch(lead.emailFrom, identity.email) && isCompensallWebsiteLead(lead);
 }
 
 function buildPartialLeadDescription(input: OdooPartialClaimLeadInput): string {
@@ -614,6 +697,60 @@ export async function syncPartialClaimToOdoo(
   });
 }
 
+function toArchivedLeadSummary(lead: OdooCrmLeadArchiveCandidate): OdooCrmLeadSummary | null {
+  const config = getOdooConfig();
+  if (!config) {
+    return null;
+  }
+
+  return {
+    id: lead.id,
+    name: lead.name,
+    contactName: null,
+    emailFrom: lead.emailFrom,
+    stageName: null,
+    companyId: null,
+    companyName: null,
+    tagIds: [],
+    crmUrl: `${config.url}/odoo/crm/${lead.id}`,
+  };
+}
+
+async function archiveMatchingRecoveryLeads(
+  input: OdooClaimLeadInput,
+): Promise<OdooCrmLeadSummary | null> {
+  const identity: ClaimLeadArchiveIdentity = {
+    email: input.contactEmail,
+    odooLeadId: input.odooLeadId,
+    formSessionId: input.formSessionId,
+    resumeToken: input.resumeToken,
+    trackingNumber: input.trackingNumber,
+  };
+
+  const candidates = await odooFindActiveCrmLeadsForArchive({
+    email: normalizeClaimLeadEmail(input.contactEmail),
+    leadId: input.odooLeadId,
+    formSessionId: input.formSessionId,
+    resumeToken:
+      input.resumeToken && isClaimResumeToken(input.resumeToken) ? input.resumeToken : null,
+    trackingNumber: input.trackingNumber,
+  });
+
+  const matches = candidates.filter((lead) => claimLeadMatchesSubmitIdentity(lead, identity));
+  const archivedIds = await odooArchiveCrmLeads(matches.map((lead) => lead.id));
+
+  if (archivedIds.length > 0) {
+    console.info("Odoo CRM recovery leads archived after claim submit:", {
+      archivedLeadIds: archivedIds,
+      email: normalizeClaimLeadEmail(input.contactEmail),
+      trackingNumber: input.trackingNumber,
+    });
+  }
+
+  const firstArchived = matches.find((lead) => archivedIds.includes(lead.id));
+  return firstArchived ? toArchivedLeadSummary(firstArchived) : null;
+}
+
 export async function syncClaimToOdoo(input: OdooClaimLeadInput): Promise<OdooCrmLeadSummary | null> {
   const result = await syncClaimCaseToOdoo(input);
   return result.lead;
@@ -624,47 +761,24 @@ export async function syncClaimCaseToOdoo(input: OdooClaimLeadInput): Promise<Od
     return { lead: null, ticket: null };
   }
 
-  let lead: OdooCrmLeadSummary | null = null;
   let ticket: OdooHelpdeskTicketSummary | null = null;
-
-  try {
-    const config = getOdooConfig();
-    const leadName = `Compensall claim ${input.trackingNumber} — ${input.flight.flight}`;
-    const phone = input.contactPhone?.trim() || "";
-    const trackUrl = `${input.siteUrl.replace(/\/$/, "")}/track/${input.trackingNumber}`;
-    const values: Record<string, unknown> = {
-      name: leadName,
-      contact_name: input.signedName,
-      email_from: input.contactEmail,
-      description: buildSubmittedLeadDescription(input),
-      website: trackUrl,
-      active: false,
-    };
-    if (phone) {
-      values.phone = phone;
-    }
-
-    const existingLeadId =
-      input.odooLeadId ??
-      (input.formSessionId ? await odooFindLeadBySessionId(input.formSessionId) : null);
-
-    lead = existingLeadId
-      ? await odooUpdateCrmLead(existingLeadId, values, {
-          ...leadUtmOptions(input.attribution),
-          extraTagNames: [config?.submittedTagName],
-        })
-      : await odooCreateCrmLead(values, {
-          ...leadUtmOptions(input.attribution),
-          extraTagNames: [config?.submittedTagName],
-        });
-  } catch (error) {
-    console.error("Odoo CRM lead sync failed:", error);
-  }
-
   try {
     ticket = await syncHelpdeskTicket(input);
   } catch (error) {
     console.error("Odoo Helpdesk ticket sync failed:", error);
+  }
+
+  // CRM Website is hot-lead recovery only. After Helpdesk is the case, archive
+  // matching Form Incomplete leads and do not create a Claim Submitted CRM row.
+  if (!ticket) {
+    return { lead: null, ticket: null };
+  }
+
+  let lead: OdooCrmLeadSummary | null = null;
+  try {
+    lead = await archiveMatchingRecoveryLeads(input);
+  } catch (error) {
+    console.error("Odoo CRM recovery-lead archive failed:", error);
   }
 
   return { lead, ticket };

@@ -1,0 +1,883 @@
+{
+  "common": {
+    "brandName": "Compensall",
+    "assistantName": "Asistente",
+    "assistantStepLabel": "Comprobación del asistente",
+    "assistantScanMessage": "Nuestro asistente ha leído tu tarjeta de embarque y ha extraído los datos clave.",
+    "justNow": "Ahora mismo",
+    "notApplicable": "N/D",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "language": "Idioma",
+    "selectLanguage": "Seleccionar idioma",
+    "learnMore": "Saber más",
+    "checkClaims": "Consultar reclamaciones",
+    "startYourClaim": "Empieza tu reclamación",
+    "checkCompensation": "Reclamar compensación",
+    "checkCompensationShort": "Reclamar ahora",
+    "home": "Inicio",
+    "legal": "Legal",
+    "airport": "Aeropuerto",
+    "downloadPageMarkdown": "Descargar la página en Markdown"
+  },
+  "nav": {
+    "knowYourRights": "Conoce tus derechos",
+    "knowYourRightsShort": "Tus derechos",
+    "airlines": "Aerolíneas",
+    "airlinesShort": "Aerolíneas",
+    "airlinesAndAirports": "Aerolíneas y aeropuertos",
+    "aboutUs": "Quiénes somos",
+    "blog": "Blog",
+    "faq": "Preguntas frecuentes",
+    "talkToUs": "Háblanos",
+    "talkToUsShort": "Háblanos",
+    "knowYourRightsMenu": {
+      "yourRights": "Tus derechos",
+      "overview": "Resumen",
+      "overviewDescription": "Cómo te protege el Reglamento CE 261",
+      "flightCancellation": "Cancelación de vuelo",
+      "flightDelay": "Retraso de vuelo",
+      "deniedBoarding": "Denegación de embarque",
+      "missedConnection": "Conexión perdida",
+      "overbooking": "Overbooking",
+      "airlineStrike": "Huelga de aerolínea",
+      "passengerRights": "Derechos del pasajero",
+      "passengersWithDisabilities": "Pasajeros con discapacidad"
+    },
+    "airlinesMenu": {
+      "browse": "Explorar",
+      "allAirlinesAirports": "Todas las aerolíneas y aeropuertos",
+      "allAirlinesAirportsDescription": "Catálogo completo",
+      "popularAirlines": "Aerolíneas populares",
+      "popularAirports": "Aeropuertos populares"
+    }
+  },
+  "footer": {
+    "contactUs": "Contacto",
+    "email": "help@compensall.com",
+    "phone": "+351 923 391 980",
+    "privacyPolicy": "Política de privacidad",
+    "termsOfService": "Términos del servicio",
+    "cookies": "Cookies",
+    "prices": "Precios",
+    "noWinNoFee": "No win, no fee.",
+    "socialLinkedIn": "LinkedIn",
+    "socialInstagram": "Instagram",
+    "socialFacebook": "Facebook",
+    "socialTikTok": "TikTok",
+    "newsletterTitle": "No te pierdas ninguna oportunidad",
+    "newsletterSubtitle": "Suscríbete a nuestra newsletter",
+    "newsletterPlaceholder": "Introduce tu correo electrónico",
+    "newsletterSubscribe": "Suscribirme",
+    "newsletterConsent": "Acepto recibir emails de marketing y he leído la <privacyPolicy>Política de privacidad</privacyPolicy>.",
+    "copyright": "© 2026 Compensall"
+  },
+  "home": {
+    "metadata": {
+      "title": "¿Vuelo retrasado o cancelado? Reclama hasta 520 £ o 600 €",
+      "description": "Sube tu tarjeta de embarque y reclama la compensación del vuelo con UK261 o el Reglamento CE 261/2004. Seguro, con apoyo humano, No win, no fee."
+    },
+    "hero": {
+      "trustpilotAlt": "Excellent Trustpilot 4,8 de 5",
+      "title": "¿Vuelo retrasado o cancelado?",
+      "titleLine2": "Reclama hasta 520 £ o 600 €",
+      "subtitle": "UK261 y el Reglamento CE 261/2004 protegen tus derechos. La plataforma de compensación de vuelos más segura del mercado.",
+      "fastRiskFree": "Rápido y sin riesgo",
+      "noHiddenFees": "Sin costes ocultos",
+      "talkToUs": "Háblanos",
+      "humanSupportAvailable": "Atención humana disponible",
+      "highestSecurity": "Máxima seguridad",
+      "dataProtected": "Tus datos siempre están protegidos"
+    },
+    "trustBar": {
+      "noWinNoFee": "No win, no fee.",
+      "onlyIfSuccessful": "Solo pagas si ganamos",
+      "gdprFirst": "RGPD primero",
+      "privacyByDesign": "Privacidad desde el diseño",
+      "deleteYourData": "Elimina tus datos",
+      "fullControl": "Control total",
+      "humanSupport": "Atención humana",
+      "realPeopleHelp": "Personas reales, ayuda real"
+    },
+    "claimCards": {
+      "title": "¿Qué puedes",
+      "titleAccent": "reclamar?",
+      "subtitle": "Te ayudamos a obtener compensación por muchos problemas de vuelo.",
+      "flightDelay": {
+        "title": "Retraso de vuelo",
+        "description": "Si tu vuelo llegó con más de 3 horas de retraso, puedes tener derecho a una compensación de hasta 520 £ o 600 €.",
+        "iconAlt": "Icono de retraso de vuelo"
+      },
+      "flightCancellation": {
+        "title": "Cancelación de vuelo",
+        "description": "Si tu vuelo se cancela con poco preaviso, puedes tener derecho a una compensación de hasta 520 £ o 600 €.",
+        "iconAlt": "Cancelación de vuelo"
+      },
+      "deniedBoarding": {
+        "title": "Denegación de embarque",
+        "description": "Si te denegaron el embarque en contra de tu voluntad, puedes reclamar hasta 520 £ o 600 €.",
+        "iconAlt": "Denegación de embarque"
+      },
+      "missedConnection": {
+        "title": "Conexión perdida",
+        "description": "Si pierdes el vuelo de conexión por un retraso, puedes tener derecho a compensación.",
+        "iconAlt": "Conexión perdida"
+      },
+      "airlineStrike": {
+        "title": "Huelga de aerolínea",
+        "description": "Si tu vuelo se vio afectado por una huelga de la aerolínea, aún puedes tener derecho a compensación.",
+        "iconAlt": "Huelga de aerolínea"
+      }
+    },
+    "howItWorks": {
+      "title": "¿Cómo",
+      "titleAccent": "funciona?",
+      "schemaName": "Cómo reclamar la compensación de un vuelo con Compensall",
+      "subtitle": "Sube tu tarjeta de embarque. Nuestro asistente revisa tu reclamación. Nuestro equipo se encarga de la aerolínea.",
+      "steps": {
+        "upload": {
+          "title": "Sube tu tarjeta de embarque",
+          "description": "Añade tu tarjeta de embarque en segundos."
+        },
+        "assistant": {
+          "title": "El asistente revisa tu caso",
+          "description": "Nuestro asistente comprueba si tienes derecho."
+        },
+        "airline": {
+          "title": "Nos ocupamos de la aerolínea",
+          "description": "Luchamos por tu compensación."
+        }
+      }
+    },
+    "compensation": {
+      "title": "¿A cuánto asciende la",
+      "titleAccent": "compensación?",
+      "ukIntro": "En los vuelos del Reino Unido, UK261 fija importes en libras. La cantidad depende de la distancia del vuelo.",
+      "ecIntro": "En vuelos europeos elegibles, el Reglamento CE 261/2004 fija importes en euros. La cantidad depende de la distancia del vuelo.",
+      "ukHeading": "UK261 — vuelos del Reino Unido",
+      "ecHeading": "CE 261/2004 — vuelos europeos elegibles",
+      "tierAlt": "Tramo de compensación de {amount}"
+    }
+  },
+  "claim": {
+    "steps": {
+      "upload": "Subir",
+      "assistantCheck": "Comprobación del asistente",
+      "assistantCheckShort": "Revisar",
+      "signSubmit": "Firmar y enviar"
+    },
+    "resume": {
+      "loading": "Cargando tu reclamación guardada…",
+      "loaded": "Hemos cargado los datos del vuelo y de contacto. Firma el poder de representación y envía para terminar.",
+      "invalid": "Este enlace de reanudación no es válido. Puedes empezar una reclamación nueva abajo.",
+      "expired": "Este enlace de reanudación ha caducado o ya se ha usado. Puedes empezar una reclamación nueva abajo."
+    },
+    "step1": {
+      "rightsContext": "Según la normativa de derechos de los pasajeros del Reino Unido y de la UE (UK261 y Reglamento CE 261/2004), puedes tener derecho a compensación por retrasos, cancelaciones y denegación de embarque. Sube tu tarjeta de embarque para comprobar si tienes derecho — es gratis. No win, no fee.",
+      "readingBoardingPass": "Leyendo tu tarjeta de embarque…",
+      "extractingDetails": "{assistantName} está extrayendo los datos de tu vuelo",
+      "uploadTitle": "Sube tu tarjeta de embarque",
+      "uploadHint": "Arrastra y suelta o pulsa para subir (PDF, JPG, PNG)",
+      "orCheckManually": "O",
+      "checkManually": "comprueba a mano",
+      "departureAirport": "Aeropuerto de salida",
+      "arrivalAirport": "Aeropuerto de llegada",
+      "swapAirports": "Intercambiar aeropuertos",
+      "dataProtected": "Tus datos están protegidos. Siempre.",
+      "popularAirports": "Aeropuertos populares",
+      "resultsCount": "{count, plural, =1 {# resultado} other {# resultados}}",
+      "otherAirportHidden": "El otro aeropuerto seleccionado está oculto.",
+      "noAirportsFound": "No se han encontrado aeropuertos. Prueba una ciudad, un país o un código (p. ej. Lisboa, Portugal, LHR).",
+      "preview": {
+        "title": "Vista previa de la tarjeta de embarque",
+        "fullTitle": "Vista completa de la tarjeta de embarque",
+        "addedJustNow": "Añadida ahora mismo • {fileSize}",
+        "open": "Vista previa",
+        "viewFull": "Ver la tarjeta de embarque completa",
+        "thumbnail": "Miniatura de la tarjeta de embarque",
+        "heicUnsupported": "La vista previa HEIC no es compatible con el navegador.",
+        "unavailable": "Vista previa no disponible para este tipo de archivo.",
+        "notAvailableSaved": "La vista previa no está disponible para este tipo de archivo en el navegador. El archivo sigue guardado para la reclamación.",
+        "formatCannotPreview": "Este formato no se puede previsualizar en línea{heicHint}.",
+        "heicHint": " (HEIC)",
+        "downloadFile": "Descargar archivo",
+        "closePreview": "Cerrar vista previa"
+      },
+      "errors": {
+        "selectBothAirports": "Selecciona los aeropuertos de salida y de llegada en la lista.",
+        "airportsMustDiffer": "Los aeropuertos de salida y de llegada deben ser distintos.",
+        "extractFailed": "No hemos podido leer todos los datos automáticamente. Completa los datos del vuelo abajo.",
+        "somethingWentWrong": "Algo ha fallado. Completa los datos del vuelo abajo.",
+        "unsupportedType": "Tipo de archivo no compatible. Sube una tarjeta de embarque en PDF, JPG, PNG, WebP o HEIC.",
+        "tooLarge": "El archivo es demasiado grande. El tamaño máximo es de 10 MB."
+      }
+    },
+    "step2": {
+      "extractedSuccess": "¡Gracias! He extraído los datos de tu vuelo.",
+      "confirmDetails": "Confirma que la información de abajo es correcta.",
+      "extractPartial": "Tu tarjeta de embarque está guardada, pero no hemos podido leer todos los datos automáticamente.",
+      "fillInDetails": "Completa o confirma la información de abajo.",
+      "passenger": "Pasajero",
+      "flight": "Vuelo",
+      "route": "Ruta",
+      "date": "Fecha",
+      "confirmPrompt": "¿Está todo correcto?",
+      "confirmHint": "Esto nos ayuda a valorar si tienes derecho.",
+      "deleteData": "Eliminar datos",
+      "editDetails": "Editar datos",
+      "doneEditing": "Terminar edición",
+      "yesContinue": "Sí, continuar",
+      "errors": {
+        "passengerRequired": "El nombre del pasajero es obligatorio.",
+        "flightRequired": "El número de vuelo es obligatorio.",
+        "routeRequired": "La ruta es obligatoria.",
+        "dateRequired": "La fecha del vuelo es obligatoria."
+      },
+      "fields": {
+        "passenger": "Pasajero",
+        "passengerPlaceholder": "Nombre completo como en la tarjeta de embarque",
+        "flightNumber": "Número de vuelo",
+        "flightPlaceholder": "p. ej. BA1234",
+        "date": "Fecha",
+        "departure": "Salida",
+        "departurePlaceholder": "p. ej. Londres (LHR)",
+        "arrival": "Llegada",
+        "arrivalPlaceholder": "p. ej. Roma (FCO)"
+      }
+    },
+    "connecting": {
+      "title": "Vuelos de conexión",
+      "subtitle": "Dinos si tu viaje incluía una conexión.",
+      "hadConnecting": "¿Tenías un vuelo de conexión?",
+      "selectPlaceholder": "Selecciona una opción",
+      "yes": "Sí",
+      "no": "No",
+      "legLabel": "Vuelo de conexión {number}",
+      "anotherConnecting": "Tuve otro vuelo de conexión",
+      "airport": "Aeropuerto",
+      "airportPlaceholder": "Selecciona aeropuerto",
+      "flightNumber": "Número de vuelo",
+      "flightNumberPlaceholder": "p. ej. BA1234",
+      "errors": {
+        "connectingRequired": "Indica si tenías un vuelo de conexión.",
+        "connectingDetailsRequired": "Introduce el aeropuerto y el número de vuelo de la conexión 1."
+      }
+    },
+    "disruption": {
+      "title": "Detalles de la incidencia",
+      "subtitle": "Cuéntanos qué ocurrió para valorar si tienes derecho.",
+      "type": "Tipo de incidencia",
+      "typePlaceholder": "Selecciona el tipo de incidencia",
+      "selectPlaceholder": "Selecciona una opción",
+      "delayDuration": "Duración del retraso en el destino final",
+      "delayLessThan3": "Menos de 3 horas",
+      "delayMoreThan3": "Más de 3 horas",
+      "cancellationNotice": "¿Con cuántos días de antelación te avisaron?",
+      "notice14OrMore": "14 días o más",
+      "noticeLessThan14": "Menos de 14 días",
+      "ineligibleTitle": "Lamentamos informarte de que no tienes derecho a compensación.",
+      "ineligibleBody": "Según el Reglamento europeo CE 261/2004, la aerolínea no está obligada a compensarte si tu vuelo se retrasó menos de 3 horas o si te avisaron de la cancelación con más de 14 días de antelación. Entendemos que puede ser decepcionante y te agradecemos tu comprensión.",
+      "ineligibleContact": "Contáctanos para otras incidencias de los últimos 5 años.",
+      "reason": "Motivo de la incidencia",
+      "types": {
+        "delay": "Retraso",
+        "cancellation": "Cancelación",
+        "deniedBoarding": "Denegación de embarque"
+      },
+      "reasons": {
+        "technical": "Problema técnico",
+        "weather": "Meteorología",
+        "strike": "Huelga",
+        "crew": "Problema de tripulación",
+        "airport": "Aeropuerto / tráfico aéreo",
+        "other": "Otro / no estoy seguro"
+      },
+      "errors": {
+        "typeRequired": "Selecciona el tipo de incidencia.",
+        "delayRequired": "Selecciona la duración del retraso.",
+        "noticeRequired": "Selecciona cuándo te avisaron de la cancelación.",
+        "reasonRequired": "Selecciona el motivo de la incidencia."
+      }
+    },
+    "compensationEstimate": {
+      "label": "Compensación estimada",
+      "upTo": "Hasta {amount}",
+      "detail": "Según {regulation} para una ruta de unos {distance}.",
+      "disclaimer": "Solo orientativo. El derecho definitivo depende de la duración del retraso, de la responsabilidad de la aerolínea y de las circunstancias extraordinarias."
+    },
+    "step3": {
+      "claimReady": "Tu reclamación está lista.",
+      "confirmContact": "Confirma tus datos de contacto y cualquier otro pasajero.",
+      "uploadDocuments": "Sube documentos de apoyo (opcional) y continúa para revisar.",
+      "readAndSign": "Lee el poder de representación completo y firma una vez para continuar.",
+      "readAndSignPassenger": "Pasajero {current} de {total}: {name} — lee y firma el poder de representación.",
+      "signedReview": "Firmas completadas. Revisa y envía tu reclamación.",
+      "justNow": "Ahora mismo",
+      "fullLegalName": "Nombre legal completo",
+      "namePlaceholder": "Como aparece en tu tarjeta de embarque",
+      "emailAddress": "Correo electrónico",
+      "emailPlaceholder": "tu@email.com",
+      "phoneNumber": "Número de teléfono",
+      "phonePlaceholder": "612 345 678",
+      "firstName": "Nombre",
+      "lastName": "Apellidos",
+      "otherPassengers": "Otros pasajeros de la reserva",
+      "otherPassengersHint": "Añade a cualquiera que también deba firmar un poder de representación.",
+      "addPassenger": "Añadir pasajero",
+      "removePassenger": "Quitar",
+      "passengerNumber": "Pasajero {number}",
+      "documentsHint": "Estos archivos nos ayudan a tramitar tu reclamación antes. Puedes saltarte los que aún no tengas.",
+      "docs": {
+        "passport": "Copia del pasaporte",
+        "passportHint": "Página de la foto del pasaporte o del DNI.",
+        "booking": "Confirmación de reserva",
+        "bookingHint": "Confirmación de la aerolínea o billete electrónico.",
+        "expenses": "Justificantes de gastos",
+        "expensesHint": "Comidas, hoteles, traslados u otros costes de la incidencia.",
+        "other": "Otros documentos",
+        "otherHint": "Cualquier otro archivo de apoyo (opcional)."
+      },
+      "additionalDocuments": "Documentos adicionales (opcional)",
+      "additionalDocumentsHint": "Sube el DNI, la confirmación de reserva, justificantes de gastos u otros archivos de apoyo.",
+      "signOnce": "Firmar una vez",
+      "signPassenger": "Firmar {current} de {total}",
+      "documentPreview": "Vista previa del documento",
+      "openFullPage": "Abrir página completa ↗",
+      "readComplete": "✓ Has leído el poder de representación. Puedes firmar abajo",
+      "scrollToUnlock": "Desplázate hasta el final del poder de representación para desbloquear la firma ↓",
+      "yourSignature": "Tu firma",
+      "clear": "Borrar",
+      "drawSignatureHint": "Dibuja aquí: tu firma aparece en el documento bajo «El pasajero». Indica también la fecha de firma en el documento.",
+      "scrollToUnlockSigning": "Desplázate hasta el final del documento para desbloquear la firma.",
+      "signedBy": "Firmado por",
+      "flightDate": "Fecha del vuelo: {date}",
+      "signingDate": "Fecha de firma: {date}",
+      "signedAt": "Firmado el {date}",
+      "passengersCount": "Pasajeros: {count}",
+      "continueToDocuments": "Continuar a documentos",
+      "continueToSigning": "Continuar a la firma",
+      "continueToReview": "Continuar a la revisión",
+      "saving": "Guardando...",
+      "deleteData": "Eliminar datos",
+      "back": "Atrás",
+      "signing": "Firmando…",
+      "signAndNext": "Firmar y siguiente pasajero",
+      "signAndReview": "Firmar y revisar",
+      "signAndContinue": "Firmar y continuar",
+      "reSign": "Volver a firmar",
+      "submitting": "Enviando…",
+      "submitClaim": "Enviar reclamación",
+      "claimSubmitted": "Reclamación enviada",
+      "thankYou": "Gracias, {name}. Hemos recibido tu poder de representación firmado y empezaremos a trabajar en tu reclamación del vuelo {flight}.",
+      "trackingNumber": "Tu número de seguimiento",
+      "trackYourClaim": "Seguir tu reclamación",
+      "confirmationEmail": "Enviaremos la confirmación y las actualizaciones a {email}.",
+      "powerOfAttorney": {
+        "title": "Poder de representación",
+        "description": "Autoriza a Compensall a tramitar tu reclamación de compensación según el Reglamento CE 261/2004."
+      },
+      "errors": {
+        "nameRequired": "Introduce tu nombre legal completo.",
+        "emailInvalid": "Introduce un correo electrónico válido. Lo necesitamos para enviarte el número de seguimiento y las actualizaciones.",
+        "phoneInvalid": "Introduce un número de teléfono válido para poder contactarte por tu reclamación.",
+        "passengerNameRequired": "Introduce nombre y apellidos del pasajero {number}.",
+        "passengerEmailInvalid": "Introduce un correo válido para el pasajero {number}.",
+        "passengerPhoneInvalid": "Introduce un teléfono válido para el pasajero {number}.",
+        "scrollBeforeSign": "Desplázate hasta el final del documento antes de firmar.",
+        "signatureRequired": "Dibuja tu firma para confirmar que has leído y aceptas este documento.",
+        "signFailed": "No hemos podido registrar tu firma. Inténtalo de nuevo.",
+        "signConnectionError": "No hemos podido registrar tu firma. Comprueba la conexión e inténtalo de nuevo.",
+        "signBeforeSubmit": "Firma el poder de representación de todos los pasajeros antes de enviar.",
+        "submitFailed": "No hemos podido enviar tu reclamación.",
+        "sessionExpired": "La sesión de la reclamación ha caducado. Empieza de nuevo."
+      }
+    },
+    "sidebar": {
+      "uploadedBoardingPass": "Tarjeta de embarque subida",
+      "manualFlightEntry": "Datos del vuelo introducidos a mano",
+      "manualEntryHint": "Has introducido la ruta y los datos del vuelo a mano. Confirma que todo es correcto antes de firmar.",
+      "extractedFlightDetails": "Datos del vuelo extraídos",
+      "confirmCorrect": "Confirma que son correctos.",
+      "detailsReady": "Los datos de tu vuelo están listos para revisar."
+    }
+  },
+  "faq": {
+    "sectionTitle": "Preguntas",
+    "sectionTitleAccent": "frecuentes",
+    "pageTitle": "Compensación de vuelos",
+    "pageTitleAccent": "FAQ",
+    "pageIntro": "Todo lo que necesitas saber para reclamar con UK261 y el Reglamento CE 261/2004, nuestro servicio No win, no fee y cómo protegemos tus datos.",
+    "default": [
+      {
+        "question": "¿Es seguro subir mi tarjeta de embarque?",
+        "answer": "Sí, por supuesto. Tu tarjeta de embarque se cifra y se guarda de forma segura. Solo usamos la información necesaria para tramitar tu reclamación y nunca la compartimos con terceros."
+      },
+      {
+        "question": "¿El asistente se encarga de todo?",
+        "answer": "El asistente acelera el proceso, pero tu reclamación también la apoyan personas reales. Nuestro equipo puede revisar tu caso, contactar con la aerolínea y gestionar la reclamación de principio a fin."
+      },
+      {
+        "question": "¿Cuánta compensación puedo recibir?",
+        "answer": "En vuelos del Reino Unido, UK261 prevé hasta 520 £ por pasajero (220 £ en vuelos de menos de 1.500 km, 350 £ entre 1.500 y 3.500 km, y 520 £ en más de 3.500 km). En vuelos europeos elegibles, el Reglamento CE 261/2004 prevé 250 €, 400 € o 600 € en los mismos tramos de distancia."
+      },
+      {
+        "question": "¿Qué significa «no win, no fee»?",
+        "answer": "Significa que no pagas nada si no ganamos tu reclamación. Solo cobramos una comisión de éxito cuando recuperamos la compensación en tu nombre."
+      },
+      {
+        "question": "¿Qué hace el asistente?",
+        "answer": "Nuestro asistente analiza tu tarjeta de embarque, comprueba si tienes derecho según UK261 y el Reglamento CE 261/2004 de la UE y prepara la documentación necesaria para presentar tu reclamación."
+      },
+      {
+        "question": "¿Puedo hablar con una persona real?",
+        "answer": "¡Sí! Nuestro equipo de atención humana está disponible para ayudarte durante todo el proceso. Puedes contactarnos por chat, email o teléfono."
+      },
+      {
+        "question": "¿Cuánto cuesta?",
+        "answer": "No hay coste inicial. Compensall trabaja con No win, no fee: solo cobramos una comisión si tu reclamación tiene éxito."
+      },
+      {
+        "question": "¿Puedo eliminar mis datos?",
+        "answer": "Sí. Puedes pedir la eliminación de tus datos personales en cualquier momento. Contacta con nuestro equipo y tramitaremos tu solicitud en 30 días, conforme al RGPD."
+      }
+    ],
+    "uk": [
+      {
+        "question": "¿Qué es UK261 y en qué se diferencia del CE 261?",
+        "answer": "Tras el Brexit, el Reino Unido mantuvo los derechos de los pasajeros con UK261, que replica el Reglamento CE 261/2004 para los vuelos que salen del Reino Unido. UK261 fija la compensación en libras (220 £, 350 £ o 520 £) y el CE 261 usa euros (250 €, 400 € o 600 €) en las salidas europeas elegibles."
+      },
+      {
+        "question": "¿UK261 se aplica a mi vuelo?",
+        "answer": "UK261 suele aplicarse a los vuelos que salen de aeropuertos del Reino Unido. El Reglamento CE 261/2004 puede aplicarse a los vuelos que salen de aeropuertos de la UE y, en algunos casos, a los que llegan a la UE operados por una aerolínea de la UE o del Reino Unido. El reglamento aplicable depende de tu ruta y de la aerolínea."
+      },
+      {
+        "question": "¿Puedo reclamar un vuelo retrasado con UK261?",
+        "answer": "Sí. Si tu vuelo llegó al destino final con más de tres horas de retraso y el retraso no se debió a circunstancias extraordinarias, puedes tener derecho a compensación según UK261 o el Reglamento CE 261/2004, según qué norma se aplique a tu viaje."
+      },
+      {
+        "question": "¿Cuánto tiempo tengo para reclamar una compensación de vuelo en el Reino Unido?",
+        "answer": "Los plazos dependen de dónde se tramite la reclamación. En Inglaterra y Gales, en general tienes seis años. Recomendamos empezar lo antes posible, mientras los registros del vuelo y las pruebas son más fáciles de obtener."
+      }
+    ]
+  },
+  "cookies": {
+    "bannerTitle": "Usamos cookies",
+    "bannerDescription": "Usamos cookies esenciales para que el sitio funcione y, con tu consentimiento, cookies opcionales para entender cómo se usa Compensall. Lee nuestra <cookiePolicy>Política de cookies</cookiePolicy> y la <privacyPolicy>Política de privacidad</privacyPolicy>.",
+    "cookiePolicy": "Política de cookies",
+    "essentialOnly": "Solo esenciales",
+    "acceptAll": "Aceptar todas",
+    "pageTitle": "Política de cookies",
+    "pageDescription": "Entiende cómo Compensall usa cookies y tecnologías similares, y cómo puedes gestionar tus preferencias.",
+    "breadcrumb": "Cookies",
+    "summary": "Cómo usamos las cookies y cómo puedes controlarlas."
+  },
+  "privacyPolicy": {
+    "pageTitle": "Política de privacidad",
+    "pageDescription": "Descubre cómo Compensall recoge, usa, almacena y protege tus datos personales cuando usas nuestra web y el servicio de reclamación de compensación de vuelos.",
+    "breadcrumb": "Política de privacidad",
+    "summary": "Cómo tratamos tus datos personales en la web y en el servicio de reclamación."
+  },
+  "terms": {
+    "pageTitle": "Términos del servicio",
+    "pageDescription": "Lee los Términos del servicio de Compensall, incluidas las reglas para presentar una reclamación, las comisiones, las responsabilidades y la ley aplicable.",
+    "breadcrumb": "Términos del servicio",
+    "summary": "Las reglas para usar Compensall y presentar una reclamación de compensación de vuelo."
+  },
+  "noWinNoFeePage": {
+    "pageTitle": "Acuerdo No win, no fee",
+    "breadcrumb": "Acuerdo No win, no fee",
+    "summary": "Solo pagas si recuperamos con éxito la compensación de tu vuelo."
+  },
+  "legal": {
+    "breadcrumbPrices": "Precios"
+  },
+  "about": {
+    "title": "Quiénes somos",
+    "subtitle": "Ayudamos a los pasajeros a reclamar la compensación que les corresponde, con nuestro asistente y atención humana en cada paso.",
+    "missionTitle": "Nuestra misión",
+    "missionP1": "Compensall hace sencilla la compensación de vuelos. Las aerolíneas a menudo tardan en responder, rechazan reclamaciones válidas y convierten el proceso en un estrés, así que demasiados pasajeros nunca reciben lo que les reconoce el Reglamento CE 261/2004.",
+    "missionP2": "Nos ocupamos de todo: trámites, negociación con la aerolínea y el seguimiento de tu caso cuando hace falta. Sube tu tarjeta de embarque, confirma tus datos y deja que nuestro equipo luche por tu compensación con No win, no fee.",
+    "whyChooseTitle": "Por qué nos eligen los pasajeros",
+    "whyChoose": [
+      "No win, no fee: no pagas nada si no tenemos éxito",
+      "Gestión de principio a fin, de la elegibilidad al seguimiento con la aerolínea",
+      "Comisión de éxito previsible. No somos un despacho de abogados",
+      "Enfoque RGPD primero con tus datos personales",
+      "Hasta 600 € por pasajero en vuelos elegibles",
+      "La confianza de miles de viajeros en Europa"
+    ],
+    "valuesTitle": "En qué creemos",
+    "values": {
+      "fastRiskFree": {
+        "title": "Rápido y sin riesgo",
+        "description": "Comprueba si tienes derecho en minutos, sin coste inicial. Solo cobramos si ganamos tu reclamación."
+      },
+      "humanSupport": {
+        "title": "Apoyo humano",
+        "description": "El asistente acelera el proceso, pero personas reales revisan tu caso y se encargan de la aerolínea."
+      },
+      "security": {
+        "title": "Máxima seguridad",
+        "description": "Tu tarjeta de embarque y tus datos personales están protegidos. Tú mantienes el control en cada paso."
+      }
+    }
+  },
+  "knowYourRights": {
+    "heroTitle": "Conoce tus derechos",
+    "heroSubtitle": "Entiende tus derechos según UK261 y el Reglamento CE 261/2004 y cómo Compensall te ayuda a reclamar con nuestro apoyo digital.",
+    "whatHappenedTitle": "¿Qué ocurrió en tu",
+    "whatHappenedAccent": "vuelo?",
+    "howItWorksTitle": "¿Cómo",
+    "howItWorksAccent": "funciona?",
+    "howItWorksSubtitle": "Sube tu tarjeta de embarque. Nuestro asistente revisa tu reclamación. Nuestro equipo se encarga de la aerolínea.",
+    "flightIssues": {
+      "flightCancellation": {
+        "title": "Cancelación de vuelo",
+        "description": "Si tu vuelo se cancela con poco preaviso, puedes tener derecho a una compensación de hasta 600 €."
+      },
+      "deniedBoarding": {
+        "title": "Denegación de embarque",
+        "description": "Si te denegaron el embarque en contra de tu voluntad, puedes reclamar hasta 600 €."
+      },
+      "flightDelay": {
+        "title": "Retraso de vuelo",
+        "description": "Si tu vuelo llegó con más de 3 horas de retraso, puedes tener derecho a compensación."
+      },
+      "missedConnection": {
+        "title": "Conexión perdida",
+        "description": "Si un retraso o una cancelación te hizo perder un vuelo de conexión, puedes tener derecho a compensación."
+      },
+      "overbooking": {
+        "title": "Overbooking",
+        "description": "Si la aerolínea hizo overbooking y no pudiste viajar como estaba previsto, puedes reclamar."
+      },
+      "airlineStrike": {
+        "title": "Huelga de aerolínea",
+        "description": "Si tu vuelo se vio afectado por una huelga de la aerolínea, aún puedes tener derechos de compensación."
+      },
+      "passengerRights": {
+        "title": "Derechos del pasajero",
+        "description": "Descubre qué puede deberte la aerolínea cuando tu viaje se interrumpe."
+      },
+      "passengersWithDisabilities": {
+        "title": "Pasajeros con discapacidad",
+        "description": "Conoce tus derechos de asistencia, accesibilidad y apoyo al viajar."
+      }
+    }
+  },
+  "prices": {
+    "title": "Precios y comisiones",
+    "breadcrumb": "Precios",
+    "summary": "Sin coste inicial. Solo cobramos una comisión de éxito cuando recuperamos la compensación para ti.",
+    "noWinNoFeeIntro": "No win, no fee:",
+    "noWinNoFeeBody": "Comprobar si tienes derecho y usar la web es gratis. Si nos encargas reclamar la compensación, nuestra comisión solo se aplica si tu reclamación tiene éxito, según nuestro <noWinNoFeeAgreement>Acuerdo No win, no fee</noWinNoFeeAgreement>.",
+    "noWinNoFeeAgreement": "Acuerdo No win, no fee",
+    "successFeeTitle": "Comisión de éxito",
+    "successFeeDescription": "Cuando recuperamos la compensación en tu nombre, descontamos una comisión de éxito antes de transferirte el resto. Recibes al menos el 70 % del importe recuperado, antes de ajustes de IVA.",
+    "tableCompensationRecovered": "Compensación recuperada",
+    "tableSuccessFee": "Comisión de éxito",
+    "tierUpTo220": "Hasta 220 £ / 250 €",
+    "tier221to350": "221–350 £ / 251–400 €",
+    "tier351to520": "351–520 £ / 401–600 €",
+    "fee25Vat": "30 % + IVA",
+    "uk261Title": "Importes de compensación (UK261)",
+    "uk261Intro": "En los vuelos del Reino Unido, la compensación fija de UK261 depende de la distancia del vuelo:",
+    "ec261Title": "Importes de compensación (CE 261/2004)"
+  },
+  "cta": {
+    "title": "Comprobación segura. Con apoyo humano.",
+    "titleLine2": "No win, no fee.",
+    "subtitle": "Tu reclamación la guía la IA y la respaldan personas reales.",
+    "subtitleLine2": "Rápido, seguro y sencillo desde la primera subida.",
+    "body": "Nuestra comisión habitual solo se cobra si ganamos la compensación para ti. <brandName>Compensall</brandName> gestiona el proceso desde la subida de la tarjeta de embarque hasta el seguimiento con la aerolínea, para que reclames con confianza.",
+    "fastRiskFree": "Rápido y sin riesgo",
+    "noHiddenFees": "Sin costes ocultos",
+    "talkToUs": "Háblanos",
+    "humanSupportAvailable": "Atención humana disponible",
+    "highestSecurity": "Máxima seguridad",
+    "dataProtected": "Tus datos siempre están protegidos"
+  },
+  "passengerRights": {
+    "rightsHeading": "Tus derechos según",
+    "rightsAccent": "UK261 y CE 261",
+    "rightsIntro": "Los pasajeros aéreos del Reino Unido y de la UE están protegidos cuando un vuelo se retrasa, se cancela o se interrumpe sin culpa suya.",
+    "uk261Card": {
+      "title": "UK261 — vuelos del Reino Unido",
+      "body": "Tras el Brexit, el Reino Unido mantuvo los derechos de los pasajeros con UK261. Se aplica a los vuelos en el espacio aéreo británico y fija compensaciones en libras: 220 £, 350 £ o 520 £ según la distancia."
+    },
+    "ec261Card": {
+      "title": "CE 261/2004 — vuelos de la UE",
+      "body": "El Reglamento CE 261/2004 sigue protegiendo a los pasajeros en vuelos elegibles dentro del espacio aéreo de la UE, con compensaciones de 250 €, 400 € o 600 € en los mismos tramos de distancia."
+    },
+    "rightsDetailP1": "Si tu vuelo se retrasa tres horas o más a la llegada, se cancela con poco preaviso o te deniegan el embarque en contra de tu voluntad, puedes tener derecho a una compensación fija. También puedes tener derecho a asistencia, reubicación y reembolso, según las circunstancias.",
+    "rightsDetailP2": "Las conexiones perdidas y las huelgas de aerolínea también pueden dar derecho cuando la incidencia está bajo el control de la compañía. Compensall te ayuda a comprobar si tienes derecho, preparar la reclamación y perseguir la compensación con la aerolínea con No win, no fee.",
+    "eligibilityHeading": "¿Cuándo puedes reclamar",
+    "eligibilityAccent": "compensación?",
+    "eligibilityIntro": "Puedes tener derecho si se cumplen todas estas condiciones en tu viaje.",
+    "eligibility": {
+      "ukEuDeparture": {
+        "title": "Vuelo del Reino Unido o de la UE",
+        "body": "Tu vuelo operaba en el espacio aéreo del Reino Unido (UK261) o de la UE (CE 261/2004), o llega a un aeropuerto del Reino Unido o de la UE y lo opera una aerolínea británica o europea."
+      },
+      "significantDisruption": {
+        "title": "Incidencia relevante",
+        "body": "Llegaste al destino final con tres horas o más de retraso, o tu vuelo se canceló o te denegaron el embarque."
+      },
+      "airlineResponsibility": {
+        "title": "Responsabilidad de la aerolínea",
+        "body": "La incidencia no se debió a circunstancias extraordinarias ajenas al control de la aerolínea, como meteorología extrema o restricciones de tráfico aéreo."
+      },
+      "validBooking": {
+        "title": "Reserva válida",
+        "body": "Facturaste a tiempo y tienes una reserva válida para el vuelo afectado."
+      },
+      "withinTimeLimits": {
+        "title": "Dentro de plazo",
+        "body": "Empiezas la reclamación dentro del plazo aplicable: en general, hasta seis años en Inglaterra y Gales."
+      }
+    },
+    "ec261Note": "En vuelos europeos elegibles, el Reglamento CE 261/2004 prevé 250 €, 400 € o 600 € en los mismos tramos de distancia.",
+    "tiers": {
+      "uk261": {
+        "220": {
+          "label": "Vuelos de hasta 1.500 km",
+          "desc": "Compensación UK261 para vuelos elegibles más cortos."
+        },
+        "350": {
+          "label": "Vuelos de 1.500 km a 3.500 km",
+          "desc": "Compensación UK261 para vuelos de media distancia."
+        },
+        "520": {
+          "label": "Vuelos de más de 3.500 km",
+          "desc": "Compensación UK261 para vuelos de larga distancia."
+        }
+      },
+      "ec261": {
+        "250": {
+          "label": "Vuelos de hasta 1.500 km",
+          "desc": "Compensación CE 261/2004 para vuelos elegibles más cortos."
+        },
+        "400": {
+          "label": "Vuelos de 1.500 km a 3.500 km",
+          "desc": "Compensación CE 261/2004 para vuelos de media distancia."
+        },
+        "600": {
+          "label": "Vuelos de más de 3.500 km",
+          "desc": "Compensación CE 261/2004 para vuelos de larga distancia."
+        }
+      }
+    }
+  },
+  "metadata": {
+    "site": {
+      "title": "Compensall – ¿Vuelo retrasado o cancelado? Reclama hasta 520 £ o 600 €",
+      "description": "¿Vuelo retrasado o cancelado? Reclama hasta 520 £ con UK261 o 600 € con el Reglamento CE 261/2004. Subida segura de la tarjeta de embarque, apoyo humano, No win, no fee."
+    },
+    "home": {
+      "title": "¿Vuelo retrasado o cancelado? Reclama hasta 520 £ o 600 €",
+      "description": "Sube tu tarjeta de embarque y reclama la compensación del vuelo con UK261 o el Reglamento CE 261/2004. Seguro, con apoyo humano, No win, no fee."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes sobre la compensación de vuelos",
+      "description": "Respuestas sobre UK261, el Reglamento CE 261/2004, importes de compensación, No win, no fee, subida de la tarjeta de embarque y cómo Compensall tramita tu reclamación."
+    },
+    "about": {
+      "title": "Quiénes somos | Compensall compensación de vuelos",
+      "description": "Compensall ayuda a los pasajeros a reclamar hasta 600 € con EU261, subida segura de la tarjeta de embarque, comprobaciones del asistente y gestión humana de la aerolínea, con No win, no fee."
+    },
+    "knowYourRights": {
+      "title": "Conoce tus derechos de compensación de vuelo",
+      "description": "Descubre cuándo UK261 y el Reglamento CE 261/2004 te dan derecho a hasta 520 £ o 600 € por retrasos, cancelaciones, denegación de embarque, conexiones perdidas y huelgas."
+    },
+    "prices": {
+      "title": "Precios, comisiones y No win, no fee",
+      "description": "Compensall trabaja con No win, no fee. Consulta nuestra comisión de éxito y los importes de compensación de UK261 y CE 261 que pueden corresponderte."
+    },
+    "blog": {
+      "title": "Guías de compensación de vuelos y derechos del pasajero",
+      "description": "Guías prácticas del Reglamento CE 261/2004 sobre retrasos, cancelaciones, denegación de embarque, conexiones perdidas y cómo reclamar hasta 600 €."
+    },
+    "cookies": {
+      "title": "Política de cookies y preferencias",
+      "description": "Entiende cómo Compensall usa cookies y tecnologías similares, y cómo puedes gestionar tus preferencias."
+    },
+    "privacyPolicy": {
+      "title": "Política de privacidad y datos personales",
+      "description": "Descubre cómo Compensall recoge, usa, almacena y protege tus datos personales cuando usas nuestra web y el servicio de reclamación."
+    },
+    "terms": {
+      "title": "Términos del servicio de reclamaciones Compensall",
+      "description": "Lee los Términos del servicio de Compensall, incluidas las reglas para presentar una reclamación, las comisiones, las responsabilidades y la ley aplicable."
+    },
+    "airlines": {
+      "title": "Guías de compensación de aerolíneas y aeropuertos",
+      "description": "Encuentra tu aerolínea o aeropuerto y comprueba si tienes derecho a compensación EU261. Guías de Ryanair, easyJet, British Airways y los principales aeropuertos europeos."
+    },
+    "authorityToAct": {
+      "title": "Poder de representación para reclamaciones de vuelo",
+      "description": "Poder de representación que autoriza a Compensall a tramitar tu reclamación de compensación según el Reglamento CE 261/2004."
+    },
+    "noWinNoFee": {
+      "title": "Acuerdo No win, no fee",
+      "description": "Acuerdo No win, no fee de Compensall. Solo pagas si recuperamos con éxito tu compensación."
+    },
+    "privacyDataConsent": {
+      "title": "Privacidad y consentimiento de datos",
+      "description": "Documento de privacidad y consentimiento de datos de Compensall que explica cómo tratamos y protegemos tus datos personales."
+    },
+    "track": {
+      "title": "Sigue tu reclamación",
+      "description": "Consulta el estado de tu reclamación de compensación Compensall con tu número de seguimiento."
+    },
+    "thankYou": {
+      "title": "Gracias — reclamación enviada",
+      "description": "Tu reclamación de compensación Compensall se ha enviado."
+    }
+  },
+  "trackPage": {
+    "title": "Sigue tu reclamación",
+    "reference": "Referencia <tracking>{trackingNumber}</tracking>",
+    "loading": "Cargando el estado de la reclamación…",
+    "notFound": "No hemos encontrado esta reclamación.",
+    "invalidReference": "El formato del número de seguimiento no es válido.",
+    "errorGeneric": "Algo ha fallado. Inténtalo de nuevo.",
+    "startNewClaim": "Empezar una reclamación nueva",
+    "claimDetails": "Datos de la reclamación",
+    "status": "Estado",
+    "fields": {
+      "passenger": "Pasajero",
+      "flight": "Vuelo",
+      "route": "Ruta",
+      "date": "Fecha",
+      "submitted": "Enviada",
+      "estimate": "Compensación estimada"
+    },
+    "estimateUpTo": "Hasta {amount}",
+    "estimateDetail": "Según {regulation} para una ruta de unos {distance}.",
+    "estimateDisclaimer": "Solo orientativo. El derecho definitivo depende de la duración del retraso, de la responsabilidad de la aerolínea y de las circunstancias extraordinarias.",
+    "statuses": {
+      "received": {
+        "label": "Recibida",
+        "message": "Hemos recibido tu reclamación y nuestro equipo la está revisando. Te actualizaremos aquí en cuanto haya novedades."
+      },
+      "needs_documents": {
+        "label": "Documentos necesarios",
+        "message": "Necesitamos algunos documentos más para seguir con tu reclamación. Revisa tu email o escríbenos al +351 923391980. Estaremos encantados de ayudarte."
+      },
+      "with_airline": {
+        "label": "Con la aerolínea",
+        "message": "Tu reclamación se ha presentado a la aerolínea. Estamos a la espera de su respuesta y te actualizaremos en cuanto sepamos algo."
+      },
+      "following_up": {
+        "label": "En seguimiento",
+        "message": "La aerolínea ha respondido y estamos haciendo el seguimiento en tu nombre. Te mantendremos informado de cualquier novedad."
+      },
+      "payment_processing": {
+        "label": "Pago en trámite",
+        "message": "Buenas noticias: la aerolínea ha aprobado tu compensación. Estamos tramitando el pago y te actualizaremos en breve."
+      },
+      "awaiting_fee": {
+        "label": "Comisión del servicio",
+        "message": "¡Enhorabuena, tu reclamación ha tenido éxito! Completa el pago de nuestra comisión para que podamos cerrar el caso."
+      },
+      "paid": {
+        "label": "Pagada",
+        "message": "¡Tu pago se ha completado! Gracias por confiar en nosotros. Si tienes cualquier duda, estamos aquí para ayudarte."
+      },
+      "closed_ntd": {
+        "label": "Cerrada",
+        "message": "Lamentablemente no podemos seguir con tu reclamación y el caso se ha cerrado. Si tienes preguntas, no dudes en contactarnos."
+      },
+      "paused": {
+        "label": "En pausa",
+        "message": "Tu caso está en pausa porque no hemos recibido respuesta tuya. Contáctanos en el +351 923391980 si quieres reactivarlo."
+      },
+      "closed_declined": {
+        "label": "Cerrada",
+        "message": "Lamentablemente la aerolínea ha rechazado tu reclamación y no podemos seguir adelante. El caso se ha cerrado: contáctanos si quieres hablar del resultado."
+      }
+    }
+  },
+  "airlinesPage": {
+    "title": "Aeropuertos y aerolíneas",
+    "subtitleLine1": "Encuentra tu aerolínea o aeropuerto.",
+    "subtitleLine2": "Comprueba tu reclamación en minutos."
+  },
+  "airlinesCatalog": {
+    "airlines": "Aerolíneas",
+    "airports": "Aeropuertos",
+    "mostPopular": "Más populares",
+    "searchResults": "{count, plural, =1 {# resultado} other {# resultados}}",
+    "searchAirline": "Buscar aerolínea...",
+    "searchAirport": "Buscar aeropuerto, ciudad o país...",
+    "seeMore": "Ver más {section}",
+    "allSection": "Todas las {section}",
+    "showLess": "Ver menos",
+    "noResults": "No hay resultados. Prueba otra búsqueda.",
+    "airlineCardDescription": "¿Retraso, cancelación o denegación de embarque con {name}? Comprueba tu reclamación en minutos.",
+    "airportCardDescription": "¿Vuelo retrasado o cancelado vía {name}? Comprueba tu reclamación en minutos."
+  },
+  "catalogDetail": {
+    "airlineTitle": "Compensación por retraso o cancelación de {name}",
+    "airportTitle": "Compensación de vuelo desde {name}",
+    "airlineMetaTitle": "Compensación de vuelo {name}",
+    "airportMetaTitle": "Compensación de vuelo {name}",
+    "airlineIntroP1": "Si tu vuelo de {name} se retrasó, se canceló o te denegaron el embarque, puedes tener derecho a una compensación de hasta 600 € según el Reglamento CE 261/2004 y UK261.",
+    "airlineIntroP2": "Compensall comprueba si tienes derecho en minutos. Sube tu tarjeta de embarque o introduce los datos del vuelo — No win, no fee.",
+    "airportIntroP1": "¿Vuelas desde o hacia {name}? Si tu vuelo se retrasó o se canceló, puedes tener derecho a una compensación de hasta 600 € según el Reglamento CE 261/2004 y UK261.",
+    "airportIntroP2": "Compensall te ayuda a comprobar tu reclamación en minutos. Empieza con tu tarjeta de embarque o los datos del vuelo — No win, no fee.",
+    "sectionRights": "Tus derechos como pasajero",
+    "sectionTips": "Consejos para reclamar",
+    "airlineCardDescription": "¿Retraso, cancelación o denegación de embarque con {name}? Comprueba tu reclamación en minutos.",
+    "airportCardDescription": "¿Vuelo retrasado o cancelado vía {name}? Comprueba tu reclamación en minutos.",
+    "entityAirlineFlight": "tu vuelo de {name}",
+    "entityAirportFlight": "un vuelo vía {name}",
+    "faqDelayQuestion": "¿Tengo derecho a compensación si {entity} se retrasó o se canceló?",
+    "faqDelayAnswer": "Puedes tener derecho a compensación si tu vuelo llegó con 3 horas o más de retraso o se canceló con poco preaviso, siempre que la incidencia estuviera bajo el control de la aerolínea (no circunstancias extraordinarias como meteorología extrema).",
+    "faqAmountQuestion": "¿Cuánta compensación puedo reclamar?",
+    "faqAmountAnswer": "Según el Reglamento CE 261/2004 y UK261, la compensación suele ser de 250 €, 400 € o 600 € por pasajero, según la distancia del vuelo y la duración del retraso.",
+    "faqRejectedAirlineQuestion": "¿Y si {name} ya rechazó mi reclamación?",
+    "faqRejectedAirportQuestion": "¿Y si la aerolínea ya rechazó mi reclamación?",
+    "faqRejectedAnswer": "Un rechazo no siempre significa que no tengas derechos. Revisamos tu caso y podemos tramitar reclamaciones válidas con No win, no fee.",
+    "faqDeadlineQuestion": "¿Hay un plazo para reclamar?",
+    "faqDeadlineAnswer": "Los plazos varían según el país (a menudo varios años). Cuanto antes lo consultes, antes podremos valorar tus opciones.",
+    "faqSafeQuestion": "¿Es seguro compartir mi tarjeta de embarque?",
+    "faqSafeAnswer": "Sí. Tus datos se tratan de forma segura y solo se usan para valorar y tramitar tu reclamación.",
+    "claimHeadlineAirline": "¿Listo para reclamar a {name}?",
+    "claimHeadlineAirport": "¿Listo para comprobar tu reclamación desde {name}?",
+    "claimSubheadline": "Usa el asistente de tarjeta de embarque en la página de inicio. Es rápido, seguro y no win, no fee.",
+    "breadcrumbCatalog": "Aerolíneas y aeropuertos",
+    "notFoundAirline": "Aerolínea no encontrada | Compensall",
+    "notFoundAirport": "Aeropuerto no encontrado | Compensall"
+  },
+  "notFoundPage": {
+    "title": "Página no encontrada",
+    "description": "No hemos encontrado esa página. Empieza una comprobación de compensación o consulta nuestras guías.",
+    "checkCompensation": "Reclamar compensación",
+    "knowYourRights": "Conoce tus derechos",
+    "blog": "Blog"
+  },
+  "blogPage": {
+    "title": "Blog",
+    "subtitle": "Guías prácticas sobre los derechos del pasajero del Reglamento CE 261/2004: retrasos, cancelaciones, denegación de embarque y más, para que sepas qué te puede corresponder antes de volar.",
+    "readArticle": "Leer artículo",
+    "backToBlog": "Volver al blog",
+    "englishOnlyNotice": "Esta guía solo está disponible por ahora en inglés."
+  },
+  "thankYouPage": {
+    "title": "Gracias",
+    "body": "Hemos recibido tu poder de representación firmado y empezaremos a trabajar en tu reclamación.",
+    "bodyWithFlight": "Hemos recibido tu poder de representación firmado y empezaremos a trabajar en tu reclamación del vuelo {flight}.",
+    "trackingNumber": "Tu número de seguimiento",
+    "trackYourClaim": "Seguir tu reclamación",
+    "startNewClaim": "Empezar una nueva reclamación"
+  },
+  "documentPage": {
+    "home": "Inicio",
+    "claim": "Reclamación",
+    "powerOfAttorney": "Poder de representación",
+    "privacyDataConsent": "Privacidad y consentimiento de datos",
+    "copyright": "Copyright © Compensall 2026. Todos los derechos reservados.",
+    "backToClaim": "Volver a la reclamación"
+  }
+}

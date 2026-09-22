@@ -215,7 +215,7 @@ function pickTranslation(
     return direct;
   }
 
-  const fallbacks: AppLocale[] = ["en", "pt", "fr"];
+  const fallbacks: AppLocale[] = ["en", "pt", "fr", "es", "ro", "hu", "sq", "de", "nl"];
   for (const fallback of fallbacks) {
     const candidate = record.translations[fallback];
     if (candidate?.title) {
@@ -230,6 +230,12 @@ const CMS_BLOG_CATEGORY_BY_LOCALE: Record<AppLocale, string> = {
   en: "Know your rights",
   pt: "Conheça os seus direitos",
   fr: "Connaître vos droits",
+  es: "Conoce tus derechos",
+  ro: "Cunoaște-ți drepturile",
+  hu: "Ismerd meg a jogaidat",
+  sq: "Njihi të drejtat e tua",
+  de: "Ihre Fluggastrechte",
+  nl: "Ken uw rechten",
 };
 
 export function cmsRecordToBlogPost(record: CmsBlogRecord, locale: AppLocale): BlogPost | null {
@@ -243,8 +249,16 @@ export function cmsRecordToBlogPost(record: CmsBlogRecord, locale: AppLocale): B
     locale,
   );
   const polishedContentMd =
-    locale === "pt" && record.slug === "overbooking"
+    (locale === "pt" || locale === "es" || locale === "ro") && record.slug === "overbooking"
       ? contentMd.replace(/EC 261/g, "CE 261")
+      : locale === "hu" && record.slug === "overbooking"
+        ? contentMd.replace(/EC 261/g, "EK 261")
+        : locale === "sq" && record.slug === "overbooking"
+          ? contentMd.replace(/EC 261/g, "KE 261")
+        : locale === "de" && record.slug === "overbooking"
+          ? contentMd.replace(/EC 261/g, "EG 261")
+        : locale === "nl" && record.slug === "overbooking"
+          ? contentMd.replace(/EC 261/g, "EG 261")
       : contentMd;
   const dateSource = record.published_at ?? record.updated_at;
 

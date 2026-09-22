@@ -7,6 +7,18 @@ export function defaultPhoneCountryFromLocale(locale: string | null | undefined)
       return "PT";
     case "fr":
       return "FR";
+    case "es":
+      return "ES";
+    case "ro":
+      return "RO";
+    case "hu":
+      return "HU";
+    case "sq":
+      return "AL";
+    case "de":
+      return "DE";
+    case "nl":
+      return "NL";
     case "en":
       return "GB";
     default:

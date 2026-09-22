@@ -15,7 +15,14 @@
 
 # next.js
 /.next/
+/.next-*-verify/
 /out/
+
+# local scratch (lighthouse runs, export scripts)
+/tmp/
+/lh-*.json
+/lh-*.*.json
+/lighthouse-*.json
 
 # production
 /build

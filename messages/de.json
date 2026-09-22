@@ -1,0 +1,883 @@
+{
+  "common": {
+    "brandName": "Compensall",
+    "assistantName": "Assistent",
+    "assistantStepLabel": "Prüfung durch den Assistenten",
+    "assistantScanMessage": "Unser Assistent hat Ihre Bordkarte gelesen und die wichtigsten Angaben übernommen.",
+    "justNow": "Gerade eben",
+    "notApplicable": "k. A.",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "language": "Sprache",
+    "selectLanguage": "Sprache wählen",
+    "learnMore": "Mehr erfahren",
+    "checkClaims": "Ansprüche prüfen",
+    "startYourClaim": "Antrag starten",
+    "checkCompensation": "Entschädigung prüfen",
+    "checkCompensationShort": "Prüfen",
+    "home": "Startseite",
+    "legal": "Rechtliches",
+    "airport": "Flughafen",
+    "downloadPageMarkdown": "Seite als Markdown herunterladen"
+  },
+  "nav": {
+    "knowYourRights": "Ihre Fluggastrechte",
+    "knowYourRightsShort": "Ihre Rechte",
+    "airlines": "Fluggesellschaften",
+    "airlinesShort": "Airlines",
+    "airlinesAndAirports": "Airlines und Flughäfen",
+    "aboutUs": "Über uns",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "talkToUs": "Kontakt",
+    "talkToUsShort": "Kontakt",
+    "knowYourRightsMenu": {
+      "yourRights": "Ihre Rechte",
+      "overview": "Überblick",
+      "overviewDescription": "Wie die EG 261 Sie schützt",
+      "flightCancellation": "Flugannullierung",
+      "flightDelay": "Flugverspätung",
+      "deniedBoarding": "Nichtbeförderung",
+      "missedConnection": "Verpasster Anschluss",
+      "overbooking": "Überbuchung",
+      "airlineStrike": "Streik der Airline",
+      "passengerRights": "Fluggastrechte",
+      "passengersWithDisabilities": "Fluggäste mit Behinderung"
+    },
+    "airlinesMenu": {
+      "browse": "Durchsuchen",
+      "allAirlinesAirports": "Alle Airlines und Flughäfen",
+      "allAirlinesAirportsDescription": "Gesamter Katalog",
+      "popularAirlines": "Beliebte Airlines",
+      "popularAirports": "Beliebte Flughäfen"
+    }
+  },
+  "footer": {
+    "contactUs": "Kontakt",
+    "email": "help@compensall.com",
+    "phone": "+351 923 391 980",
+    "privacyPolicy": "Datenschutz",
+    "termsOfService": "Nutzungsbedingungen",
+    "cookies": "Cookies",
+    "prices": "Preise",
+    "noWinNoFee": "No win, no fee.",
+    "socialLinkedIn": "LinkedIn",
+    "socialInstagram": "Instagram",
+    "socialFacebook": "Facebook",
+    "socialTikTok": "TikTok",
+    "newsletterTitle": "Keine Gelegenheit verpassen",
+    "newsletterSubtitle": "Newsletter abonnieren",
+    "newsletterPlaceholder": "E-Mail-Adresse eingeben",
+    "newsletterSubscribe": "Abonnieren",
+    "newsletterConsent": "Ich möchte Marketing-E-Mails erhalten und habe die <privacyPolicy>Datenschutzerklärung</privacyPolicy> gelesen.",
+    "copyright": "© 2026 Compensall"
+  },
+  "home": {
+    "metadata": {
+      "title": "Flug verspätet oder annulliert? Fordern Sie bis zu 600 €",
+      "description": "Laden Sie Ihre Bordkarte hoch und prüfen Sie Ihre Entschädigung nach UK261 oder der Verordnung (EG) Nr. 261/2004. Sicher, mit menschlicher Begleitung. No win, no fee."
+    },
+    "hero": {
+      "trustpilotAlt": "Excellent Trustpilot 4,8 von 5",
+      "title": "Flug verspätet oder annulliert?",
+      "titleLine2": "Fordern Sie bis zu 520 £ oder 600 €",
+      "subtitle": "UK261 und die Verordnung (EG) Nr. 261/2004 schützen Ihre Rechte. Die sicherste Plattform für Flugentschädigung am Markt.",
+      "fastRiskFree": "Schnell und ohne Risiko",
+      "noHiddenFees": "Keine versteckten Gebühren",
+      "talkToUs": "Kontakt",
+      "humanSupportAvailable": "Menschliche Unterstützung",
+      "highestSecurity": "Höchste Sicherheit",
+      "dataProtected": "Ihre Daten bleiben geschützt"
+    },
+    "trustBar": {
+      "noWinNoFee": "No win, no fee.",
+      "onlyIfSuccessful": "Sie zahlen nur, wenn wir gewinnen",
+      "gdprFirst": "DSGVO zuerst",
+      "privacyByDesign": "Datenschutz by Design",
+      "deleteYourData": "Daten löschen",
+      "fullControl": "Volle Kontrolle",
+      "humanSupport": "Menschliche Unterstützung",
+      "realPeopleHelp": "Echte Menschen, echte Hilfe"
+    },
+    "claimCards": {
+      "title": "Wofür können Sie",
+      "titleAccent": "entschädigt werden?",
+      "subtitle": "Wir helfen Ihnen, Entschädigung für viele Flugprobleme durchzusetzen.",
+      "flightDelay": {
+        "title": "Flugverspätung",
+        "description": "Wenn Ihr Flug mehr als 3 Stunden verspätet ankam, können Ihnen bis zu 520 £ oder 600 € zustehen.",
+        "iconAlt": "Symbol Flugverspätung"
+      },
+      "flightCancellation": {
+        "title": "Flugannullierung",
+        "description": "Wenn Ihr Flug kurzfristig annulliert wurde, können Ihnen bis zu 520 £ oder 600 € zustehen.",
+        "iconAlt": "Flugannullierung"
+      },
+      "deniedBoarding": {
+        "title": "Nichtbeförderung",
+        "description": "Wenn Ihnen die Beförderung gegen Ihren Willen verweigert wurde, können Sie bis zu 520 £ oder 600 € fordern.",
+        "iconAlt": "Nichtbeförderung"
+      },
+      "missedConnection": {
+        "title": "Verpasster Anschluss",
+        "description": "Wenn Sie wegen einer Verspätung Ihren Anschlussflug verpassen, kann Ihnen Entschädigung zustehen.",
+        "iconAlt": "Verpasster Anschluss"
+      },
+      "airlineStrike": {
+        "title": "Streik der Airline",
+        "description": "Wenn ein Streik der Airline Ihren Flug gestört hat, kann Ihnen trotzdem Entschädigung zustehen.",
+        "iconAlt": "Streik der Airline"
+      }
+    },
+    "howItWorks": {
+      "title": "So",
+      "titleAccent": "funktioniert es",
+      "schemaName": "So fordern Sie Flugentschädigung mit Compensall",
+      "subtitle": "Laden Sie Ihre Bordkarte hoch. Unser Assistent prüft Ihren Anspruch. Unser Team übernimmt die Airline.",
+      "steps": {
+        "upload": {
+          "title": "Bordkarte hochladen",
+          "description": "Fügen Sie Ihre Bordkarte in wenigen Sekunden hinzu."
+        },
+        "assistant": {
+          "title": "Der Assistent prüft Ihren Anspruch",
+          "description": "Unser Assistent prüft, ob Sie berechtigt sind."
+        },
+        "airline": {
+          "title": "Wir kümmern uns um die Airline",
+          "description": "Wir setzen Ihre Entschädigung durch."
+        }
+      }
+    },
+    "compensation": {
+      "title": "Wie hoch ist die",
+      "titleAccent": "Entschädigung?",
+      "ukIntro": "Bei Flügen aus dem Vereinigten Königreich legt UK261 feste Beträge in Pfund fest. Die Höhe hängt von der Flugstrecke ab.",
+      "ecIntro": "Bei berechtigten EU-Flügen legt die Verordnung (EG) Nr. 261/2004 feste Beträge in Euro fest. Die Höhe hängt von der Flugstrecke ab.",
+      "ukHeading": "UK261 — Flüge im Vereinigten Königreich",
+      "ecHeading": "EG 261/2004 — berechtigte EU-Flüge",
+      "tierAlt": "Entschädigungsstufe {amount}"
+    }
+  },
+  "claim": {
+    "steps": {
+      "upload": "Hochladen",
+      "assistantCheck": "Prüfung durch den Assistenten",
+      "assistantCheckShort": "Prüfung",
+      "signSubmit": "Unterschreiben und senden"
+    },
+    "resume": {
+      "loading": "Ihr gespeicherter Antrag wird geladen…",
+      "loaded": "Wir haben Ihre Flug- und Kontaktdaten geladen. Unterschreiben Sie die Vollmacht und senden Sie den Antrag ab.",
+      "invalid": "Dieser Fortsetzungslink ist ungültig. Sie können unten einen neuen Antrag starten.",
+      "expired": "Dieser Fortsetzungslink ist abgelaufen oder wurde bereits verwendet. Sie können unten einen neuen Antrag starten."
+    },
+    "step1": {
+      "rightsContext": "Nach britischem und europäischem Fluggastrecht (UK261 und Verordnung (EG) Nr. 261/2004) kann Ihnen Entschädigung bei Verspätung, Annullierung und Nichtbeförderung zustehen. Laden Sie Ihre Bordkarte hoch — die Prüfung ist kostenlos. No win, no fee.",
+      "readingBoardingPass": "Ihre Bordkarte wird gelesen…",
+      "extractingDetails": "{assistantName} liest Ihre Flugdaten aus",
+      "uploadTitle": "Bordkarte hochladen",
+      "uploadHint": "Ziehen oder klicken zum Hochladen (PDF, JPG, PNG)",
+      "orCheckManually": "Oder",
+      "checkManually": "manuell prüfen",
+      "departureAirport": "Abflugflughafen",
+      "arrivalAirport": "Ankunftsflughafen",
+      "swapAirports": "Flughäfen tauschen",
+      "dataProtected": "Ihre Daten sind geschützt. Immer.",
+      "popularAirports": "Beliebte Flughäfen",
+      "resultsCount": "{count, plural, =1 {# Ergebnis} other {# Ergebnisse}}",
+      "otherAirportHidden": "Der andere gewählte Flughafen ist ausgeblendet.",
+      "noAirportsFound": "Kein Flughafen gefunden. Versuchen Sie Stadt, Land oder Code (z. B. Lissabon, Portugal, FRA).",
+      "preview": {
+        "title": "Vorschau der Bordkarte",
+        "fullTitle": "Bordkarte in voller Größe",
+        "addedJustNow": "Gerade hinzugefügt • {fileSize}",
+        "open": "Vorschau",
+        "viewFull": "Bordkarte vollständig ansehen",
+        "thumbnail": "Miniatur der Bordkarte",
+        "heicUnsupported": "HEIC-Vorschau wird im Browser nicht unterstützt.",
+        "unavailable": "Für diesen Dateityp gibt es keine Vorschau.",
+        "notAvailableSaved": "Für diesen Dateityp gibt es im Browser keine Vorschau. Die Datei ist für den Antrag trotzdem gespeichert.",
+        "formatCannotPreview": "Dieses Format lässt sich nicht inline anzeigen{heicHint}.",
+        "heicHint": " (HEIC)",
+        "downloadFile": "Datei herunterladen",
+        "closePreview": "Vorschau schließen"
+      },
+      "errors": {
+        "selectBothAirports": "Wählen Sie Abflug- und Ankunftsflughafen aus der Liste.",
+        "airportsMustDiffer": "Abflug- und Ankunftsflughafen müssen unterschiedlich sein.",
+        "extractFailed": "Wir konnten nicht alle Angaben automatisch lesen. Bitte ergänzen Sie Ihre Flugdaten unten.",
+        "somethingWentWrong": "Etwas ist schiefgelaufen. Bitte tragen Sie Ihre Flugdaten unten ein.",
+        "unsupportedType": "Dateityp nicht unterstützt. Laden Sie eine Bordkarte als PDF, JPG, PNG, WebP oder HEIC hoch.",
+        "tooLarge": "Die Datei ist zu groß. Maximal 10 MB."
+      }
+    },
+    "step2": {
+      "extractedSuccess": "Vielen Dank. Wir haben Ihre Flugdaten ausgelesen.",
+      "confirmDetails": "Bitte bestätigen Sie, dass die Angaben unten stimmen.",
+      "extractPartial": "Ihre Bordkarte ist gespeichert, aber wir konnten nicht alle Angaben automatisch lesen.",
+      "fillInDetails": "Bitte füllen oder bestätigen Sie die Angaben unten.",
+      "passenger": "Fluggast",
+      "flight": "Flug",
+      "route": "Strecke",
+      "date": "Datum",
+      "confirmPrompt": "Stimmt alles?",
+      "confirmHint": "Das hilft uns, Ihre Berechtigung zu prüfen.",
+      "deleteData": "Daten löschen",
+      "editDetails": "Angaben ändern",
+      "doneEditing": "Änderung fertig",
+      "yesContinue": "Ja, weiter",
+      "errors": {
+        "passengerRequired": "Der Name des Fluggastes ist erforderlich.",
+        "flightRequired": "Die Flugnummer ist erforderlich.",
+        "routeRequired": "Die Strecke ist erforderlich.",
+        "dateRequired": "Das Flugdatum ist erforderlich."
+      },
+      "fields": {
+        "passenger": "Fluggast",
+        "passengerPlaceholder": "Vollständiger Name wie auf der Bordkarte",
+        "flightNumber": "Flugnummer",
+        "flightPlaceholder": "z. B. LH1234",
+        "date": "Datum",
+        "departure": "Abflug",
+        "departurePlaceholder": "z. B. Frankfurt (FRA)",
+        "arrival": "Ankunft",
+        "arrivalPlaceholder": "z. B. Rom (FCO)"
+      }
+    },
+    "connecting": {
+      "title": "Anschlussflüge",
+      "subtitle": "Sagen Sie uns, ob Ihre Reise einen Anschluss umfasste.",
+      "hadConnecting": "Hatten Sie einen Anschlussflug?",
+      "selectPlaceholder": "Option wählen",
+      "yes": "Ja",
+      "no": "Nein",
+      "legLabel": "Anschlussflug {number}",
+      "anotherConnecting": "Ich hatte einen weiteren Anschlussflug",
+      "airport": "Flughafen",
+      "airportPlaceholder": "Flughafen wählen",
+      "flightNumber": "Flugnummer",
+      "flightNumberPlaceholder": "z. B. LH1234",
+      "errors": {
+        "connectingRequired": "Sagen Sie uns, ob Sie einen Anschlussflug hatten.",
+        "connectingDetailsRequired": "Geben Sie Flughafen und Flugnummer für Anschlussflug 1 an."
+      }
+    },
+    "disruption": {
+      "title": "Angaben zur Störung",
+      "subtitle": "Beschreiben Sie, was passiert ist, damit wir die Berechtigung prüfen können.",
+      "type": "Art der Störung",
+      "typePlaceholder": "Art der Störung wählen",
+      "selectPlaceholder": "Option wählen",
+      "delayDuration": "Verspätung am Endziel",
+      "delayLessThan3": "Weniger als 3 Stunden",
+      "delayMoreThan3": "Mehr als 3 Stunden",
+      "cancellationNotice": "Wie viele Tage vor Abflug wurden Sie informiert?",
+      "notice14OrMore": "14 Tage oder mehr",
+      "noticeLessThan14": "Weniger als 14 Tage",
+      "ineligibleTitle": "Leider steht Ihnen in diesem Fall keine Entschädigung zu.",
+      "ineligibleBody": "Nach der Verordnung (EG) Nr. 261/2004 muss die Airline nicht zahlen, wenn die Verspätung unter 3 Stunden lag oder die Annullierung mehr als 14 Tage im Voraus mitgeteilt wurde. Das ist enttäuschend — vielen Dank für Ihr Verständnis.",
+      "ineligibleContact": "Kontaktieren Sie uns bei anderen Störungen der letzten 5 Jahre.",
+      "reason": "Grund der Störung",
+      "types": {
+        "delay": "Verspätung",
+        "cancellation": "Annullierung",
+        "deniedBoarding": "Nichtbeförderung"
+      },
+      "reasons": {
+        "technical": "Technisches Problem",
+        "weather": "Wetter",
+        "strike": "Streik",
+        "crew": "Besatzungsproblem",
+        "airport": "Flughafen / Flugverkehr",
+        "other": "Sonstiges / unsicher"
+      },
+      "errors": {
+        "typeRequired": "Wählen Sie die Art der Störung.",
+        "delayRequired": "Wählen Sie die Dauer der Verspätung.",
+        "noticeRequired": "Wählen Sie, wann Sie über die Annullierung informiert wurden.",
+        "reasonRequired": "Wählen Sie den Grund der Störung."
+      }
+    },
+    "compensationEstimate": {
+      "label": "Geschätzte Entschädigung",
+      "upTo": "Bis zu {amount}",
+      "detail": "Nach {regulation} für eine Strecke von etwa {distance}.",
+      "disclaimer": "Nur zur Orientierung. Die endgültige Berechtigung hängt von der Verspätung, der Verantwortung der Airline und außergewöhnlichen Umständen ab."
+    },
+    "step3": {
+      "claimReady": "Ihr Antrag ist bereit.",
+      "confirmContact": "Bestätigen Sie Ihre Kontaktdaten und weitere Fluggäste.",
+      "uploadDocuments": "Laden Sie optional Belege hoch und gehen Sie dann zur Prüfung.",
+      "readAndSign": "Lesen Sie die Vollmacht vollständig und unterschreiben Sie einmal, um fortzufahren.",
+      "readAndSignPassenger": "Fluggast {current} von {total}: {name} — Vollmacht lesen und unterschreiben.",
+      "signedReview": "Unterschriften vollständig. Prüfen und Antrag senden.",
+      "justNow": "Gerade eben",
+      "fullLegalName": "Vollständiger rechtlicher Name",
+      "namePlaceholder": "Wie auf der Bordkarte",
+      "emailAddress": "E-Mail-Adresse",
+      "emailPlaceholder": "ihrname@email.de",
+      "phoneNumber": "Telefonnummer",
+      "phonePlaceholder": "0151 2345678",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "otherPassengers": "Weitere Fluggäste der Buchung",
+      "otherPassengersHint": "Fügen Sie alle hinzu, die ebenfalls eine Vollmacht unterschreiben sollen.",
+      "addPassenger": "Fluggast hinzufügen",
+      "removePassenger": "Entfernen",
+      "passengerNumber": "Fluggast {number}",
+      "documentsHint": "Diese Dateien beschleunigen die Bearbeitung. Sie können überspringen, was Sie noch nicht haben.",
+      "docs": {
+        "passport": "Reisepasskopie",
+        "passportHint": "Lichtbildseite des Reisepasses oder Personalausweises.",
+        "booking": "Buchungsbestätigung",
+        "bookingHint": "Buchungsbestätigung oder E-Ticket der Airline.",
+        "expenses": "Belege für Auslagen",
+        "expensesHint": "Mahlzeiten, Hotels, Transfers oder andere Störungskosten.",
+        "other": "Weitere Unterlagen",
+        "otherHint": "Sonstige Belege (optional)."
+      },
+      "additionalDocuments": "Weitere Unterlagen (optional)",
+      "additionalDocumentsHint": "Laden Sie Ausweis, Buchungsbestätigung, Belege oder andere Dateien hoch.",
+      "signOnce": "Einmal unterschreiben",
+      "signPassenger": "Unterschrift {current} von {total}",
+      "documentPreview": "Dokumentvorschau",
+      "openFullPage": "Ganze Seite öffnen ↗",
+      "readComplete": "✓ Sie haben die Vollmacht gelesen. Sie können unten unterschreiben",
+      "scrollToUnlock": "Scrollen Sie ans Ende der Vollmacht, um die Unterschrift freizuschalten ↓",
+      "yourSignature": "Ihre Unterschrift",
+      "clear": "Löschen",
+      "drawSignatureHint": "Hier zeichnen — Ihre Unterschrift erscheint im Dokument unter „The passenger“. Setzen Sie dort auch das Unterschriftsdatum.",
+      "scrollToUnlockSigning": "Scrollen Sie ans Ende des Dokuments, um die Unterschrift freizuschalten.",
+      "signedBy": "Unterschrieben von",
+      "flightDate": "Flugdatum: {date}",
+      "signingDate": "Unterschriftsdatum: {date}",
+      "signedAt": "Unterschrieben am {date}",
+      "passengersCount": "Fluggäste: {count}",
+      "continueToDocuments": "Weiter zu den Unterlagen",
+      "continueToSigning": "Weiter zur Unterschrift",
+      "continueToReview": "Weiter zur Prüfung",
+      "saving": "Wird gespeichert...",
+      "deleteData": "Daten löschen",
+      "back": "Zurück",
+      "signing": "Wird unterschrieben…",
+      "signAndNext": "Unterschreiben und nächster Fluggast",
+      "signAndReview": "Unterschreiben und prüfen",
+      "signAndContinue": "Unterschreiben und weiter",
+      "reSign": "Erneut unterschreiben",
+      "submitting": "Wird gesendet…",
+      "submitClaim": "Antrag senden",
+      "claimSubmitted": "Antrag gesendet",
+      "thankYou": "Vielen Dank, {name}. Wir haben Ihre unterschriebene Vollmacht erhalten und beginnen mit Ihrem Antrag für Flug {flight}.",
+      "trackingNumber": "Ihre Vorgangsnummer",
+      "trackYourClaim": "Antrag verfolgen",
+      "confirmationEmail": "Bestätigung und Updates senden wir an {email}.",
+      "powerOfAttorney": {
+        "title": "Vollmacht",
+        "description": "Ermächtigt Compensall, Ihren Entschädigungsanspruch nach der Verordnung (EG) Nr. 261/2004 durchzusetzen."
+      },
+      "errors": {
+        "nameRequired": "Geben Sie Ihren vollständigen rechtlichen Namen ein.",
+        "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse ein. Wir brauchen sie für Vorgangsnummer und Updates.",
+        "phoneInvalid": "Geben Sie eine gültige Telefonnummer ein, damit wir Sie zum Antrag erreichen können.",
+        "passengerNameRequired": "Geben Sie Vor- und Nachname für Fluggast {number} ein.",
+        "passengerEmailInvalid": "Geben Sie eine gültige E-Mail für Fluggast {number} ein.",
+        "passengerPhoneInvalid": "Geben Sie eine gültige Telefonnummer für Fluggast {number} ein.",
+        "scrollBeforeSign": "Bitte scrollen Sie ans Ende des Dokuments, bevor Sie unterschreiben.",
+        "signatureRequired": "Zeichnen Sie Ihre Unterschrift, um zu bestätigen, dass Sie das Dokument gelesen haben und zustimmen.",
+        "signFailed": "Die Unterschrift konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
+        "signConnectionError": "Die Unterschrift konnte nicht gespeichert werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+        "signBeforeSubmit": "Bitte unterschreiben Sie die Vollmacht für jeden Fluggast, bevor Sie senden.",
+        "submitFailed": "Ihr Antrag konnte nicht gesendet werden.",
+        "sessionExpired": "Die Sitzung ist abgelaufen. Bitte beginnen Sie erneut."
+      }
+    },
+    "sidebar": {
+      "uploadedBoardingPass": "Hochgeladene Bordkarte",
+      "manualFlightEntry": "Manuelle Flugeingabe",
+      "manualEntryHint": "Sie haben Strecke und Flugdaten manuell eingegeben. Prüfen Sie alles, bevor Sie unterschreiben.",
+      "extractedFlightDetails": "Ausgelesene Flugdaten",
+      "confirmCorrect": "Bitte bestätigen Sie, dass alles stimmt.",
+      "detailsReady": "Ihre Flugdaten sind bereit zur Prüfung."
+    }
+  },
+  "faq": {
+    "sectionTitle": "Häufig gestellte",
+    "sectionTitleAccent": "Fragen",
+    "pageTitle": "Flugentschädigung",
+    "pageTitleAccent": "FAQ",
+    "pageIntro": "Alles Wichtige zu Ansprüchen nach UK261 und der Verordnung (EG) Nr. 261/2004, unserem No win, no fee Service und dem Schutz Ihrer Daten.",
+    "default": [
+      {
+        "question": "Ist es sicher, meine Bordkarte hochzuladen?",
+        "answer": "Ja. Ihre Bordkarte wird verschlüsselt und sicher gespeichert. Wir nutzen nur die Angaben, die für Ihren Antrag nötig sind, und geben sie nicht an Dritte weiter."
+      },
+      {
+        "question": "Erledigt der Assistent alles allein?",
+        "answer": "Der Assistent beschleunigt den Ablauf, aber Ihr Antrag wird auch von Menschen begleitet. Unser Team prüft den Fall, spricht mit der Airline und führt den Anspruch von Anfang bis Ende."
+      },
+      {
+        "question": "Wie viel Entschädigung kann ich erhalten?",
+        "answer": "Bei Flügen im Vereinigten Königreich sieht UK261 bis zu 520 £ pro Person vor (220 £ unter 1 500 km, 350 £ zwischen 1 500 und 3 500 km, 520 £ darüber). Bei berechtigten EU-Flügen zahlt die Verordnung (EG) Nr. 261/2004 250 €, 400 € oder 600 € in denselben Entfernungsstufen."
+      },
+      {
+        "question": "Was bedeutet „No win, no fee“?",
+        "answer": "Sie zahlen nichts, wenn wir Ihren Anspruch nicht durchsetzen. Eine Erfolgsgebühr fällt nur an, wenn wir Entschädigung für Sie einholen."
+      },
+      {
+        "question": "Was macht der Assistent?",
+        "answer": "Unser Assistent liest Ihre Bordkarte, prüft die Berechtigung nach UK261 und der Verordnung (EG) Nr. 261/2004 und bereitet die Unterlagen für den Entschädigungsantrag vor."
+      },
+      {
+        "question": "Kann ich mit einem Menschen sprechen?",
+        "answer": "Ja. Unser Support-Team begleitet Sie durch den gesamten Antrag. Sie erreichen uns per Chat, E-Mail oder Telefon."
+      },
+      {
+        "question": "Was kostet das?",
+        "answer": "Es gibt keine Vorabkosten. Compensall arbeitet nach No win, no fee: Wir berechnen eine Gebühr nur, wenn Ihr Anspruch Erfolg hat."
+      },
+      {
+        "question": "Kann ich meine Daten löschen lassen?",
+        "answer": "Ja. Sie können die Löschung Ihrer personenbezogenen Daten jederzeit verlangen. Schreiben Sie uns — wir bearbeiten die Anfrage innerhalb von 30 Tagen nach DSGVO."
+      }
+    ],
+    "uk": [
+      {
+        "question": "Was ist UK261 und worin unterscheidet es sich von der EG 261?",
+        "answer": "Nach dem Brexit hat das Vereinigte Königreich die Fluggastrechte in UK261 übernommen. UK261 spiegelt die Verordnung (EG) Nr. 261/2004 für Abflüge aus dem Vereinigten Königreich. UK261 zahlt in Pfund (220 £, 350 £ oder 520 £), die EG 261 in Euro (250 €, 400 € oder 600 €) bei berechtigten EU-Abflügen."
+      },
+      {
+        "question": "Gilt UK261 für meinen Flug?",
+        "answer": "UK261 gilt in der Regel für Abflüge von britischen Flughäfen. Die Verordnung (EG) Nr. 261/2004 kann für Abflüge von EU-Flughäfen gelten und in manchen Fällen für Ankünfte in der EU mit einem EU- oder britischen Luftfahrtunternehmen. Welche Regelung greift, hängt von Strecke und Airline ab."
+      },
+      {
+        "question": "Kann ich nach UK261 für einen verspäteten Flug Entschädigung fordern?",
+        "answer": "Ja. Wenn Sie am Endziel mehr als drei Stunden verspätet ankamen und keine außergewöhnlichen Umstände vorlagen, kann Ihnen Entschädigung nach UK261 oder der Verordnung (EG) Nr. 261/2004 zustehen — je nachdem, welche Regelung für Ihre Reise gilt."
+      },
+      {
+        "question": "Wie lange habe ich Zeit, Flugentschädigung im Vereinigten Königreich zu fordern?",
+        "answer": "Die Frist hängt vom Forum ab. In England und Wales sind es in der Regel sechs Jahre. In Deutschland verjähren solche Ansprüche meist in drei Jahren. Starten Sie möglichst früh, solange Flugdaten und Belege noch leicht zu beschaffen sind."
+      }
+    ]
+  },
+  "cookies": {
+    "bannerTitle": "Wir verwenden Cookies",
+    "bannerDescription": "Wir nutzen notwendige Cookies, damit die Seite funktioniert, und mit Ihrer Einwilligung optionale Cookies, um zu verstehen, wie Compensall genutzt wird. Lesen Sie unsere <cookiePolicy>Cookie-Richtlinie</cookiePolicy> und die <privacyPolicy>Datenschutzerklärung</privacyPolicy>.",
+    "cookiePolicy": "Cookie-Richtlinie",
+    "essentialOnly": "Nur notwendige",
+    "acceptAll": "Alle akzeptieren",
+    "pageTitle": "Cookie-Richtlinie",
+    "pageDescription": "Erfahren Sie, wie Compensall Cookies und ähnliche Technologien einsetzt und wie Sie Ihre Einstellungen steuern.",
+    "breadcrumb": "Cookies",
+    "summary": "Wie wir Cookies nutzen und wie Sie sie steuern."
+  },
+  "privacyPolicy": {
+    "pageTitle": "Datenschutzerklärung",
+    "pageDescription": "Erfahren Sie, wie Compensall personenbezogene Daten erhebt, nutzt, speichert und schützt, wenn Sie unsere Website und den Entschädigungsservice nutzen.",
+    "breadcrumb": "Datenschutz",
+    "summary": "Wie wir Ihre personenbezogenen Daten auf der Website und im Antragsservice behandeln."
+  },
+  "terms": {
+    "pageTitle": "Nutzungsbedingungen",
+    "pageDescription": "Lesen Sie die Nutzungsbedingungen von Compensall: Regeln für Anträge, Gebühren, Pflichten und anwendbares Recht.",
+    "breadcrumb": "Nutzungsbedingungen",
+    "summary": "Die Regeln für die Nutzung von Compensall und die Einreichung eines Entschädigungsantrags."
+  },
+  "noWinNoFeePage": {
+    "pageTitle": "Vereinbarung No win, no fee",
+    "breadcrumb": "Vereinbarung No win, no fee",
+    "summary": "Sie zahlen nur, wenn wir Ihre Flugentschädigung erfolgreich einholen."
+  },
+  "legal": {
+    "breadcrumbPrices": "Preise"
+  },
+  "about": {
+    "title": "Über uns",
+    "subtitle": "Wir helfen Fluggästen, die ihnen zustehende Entschädigung durchzusetzen — mit Assistent und menschlicher Begleitung in jedem Schritt.",
+    "missionTitle": "Unser Auftrag",
+    "missionP1": "Compensall macht Flugentschädigung einfach. Airlines antworten oft spät, lehnen berechtigte Ansprüche ab und machen den Weg stressig — deshalb erhalten zu viele Fluggäste nicht, was ihnen die Verordnung (EG) Nr. 261/2004 zusteht.",
+    "missionP2": "Wir übernehmen alles: Unterlagen, Verhandlung mit der Airline und die Durchsetzung, wenn es nötig wird. Laden Sie Ihre Bordkarte hoch, bestätigen Sie Ihre Angaben und lassen Sie unser Team Ihre Entschädigung nach No win, no fee durchsetzen.",
+    "whyChooseTitle": "Warum Fluggäste uns wählen",
+    "whyChoose": [
+      "No win, no fee: Sie zahlen nichts, außer wenn wir Erfolg haben",
+      "Durchgängige Betreuung von der Prüfung bis zur Nachfassung bei der Airline",
+      "Nachvollziehbare Erfolgsgebühr. Wir sind keine Anwaltskanzlei",
+      "Datenschutz nach DSGVO zuerst",
+      "Bis zu 600 € pro Person bei berechtigten Flügen",
+      "Vertrauen von Tausenden Reisenden in Europa"
+    ],
+    "valuesTitle": "Wofür wir stehen",
+    "values": {
+      "fastRiskFree": {
+        "title": "Schnell und ohne Risiko",
+        "description": "Prüfen Sie Ihre Berechtigung in Minuten, ohne Vorabkosten. Wir berechnen nur, wenn wir Ihren Anspruch gewinnen."
+      },
+      "humanSupport": {
+        "title": "Menschliche Begleitung",
+        "description": "Der Assistent beschleunigt den Ablauf, aber echte Menschen prüfen Ihren Fall und übernehmen die Airline."
+      },
+      "security": {
+        "title": "Höchste Sicherheit",
+        "description": "Bordkarte und personenbezogene Daten sind geschützt. Sie behalten in jedem Schritt die Kontrolle."
+      }
+    }
+  },
+  "knowYourRights": {
+    "heroTitle": "Ihre Fluggastrechte",
+    "heroSubtitle": "Verstehen Sie Ihre Rechte nach UK261 und der Verordnung (EG) Nr. 261/2004 — und wie Compensall Sie mit digitaler Unterstützung begleitet.",
+    "whatHappenedTitle": "Was ist auf Ihrem",
+    "whatHappenedAccent": "Flug passiert?",
+    "howItWorksTitle": "So",
+    "howItWorksAccent": "funktioniert es",
+    "howItWorksSubtitle": "Laden Sie Ihre Bordkarte hoch. Unser Assistent prüft Ihren Anspruch. Unser Team übernimmt die Airline.",
+    "flightIssues": {
+      "flightCancellation": {
+        "title": "Flugannullierung",
+        "description": "Wenn Ihr Flug kurzfristig annulliert wurde, können Ihnen bis zu 600 € zustehen."
+      },
+      "deniedBoarding": {
+        "title": "Nichtbeförderung",
+        "description": "Wenn Ihnen die Beförderung gegen Ihren Willen verweigert wurde, können Sie bis zu 600 € fordern."
+      },
+      "flightDelay": {
+        "title": "Flugverspätung",
+        "description": "Wenn Ihr Flug mehr als 3 Stunden verspätet ankam, kann Ihnen Entschädigung zustehen."
+      },
+      "missedConnection": {
+        "title": "Verpasster Anschluss",
+        "description": "Wenn eine Verspätung oder Annullierung Sie den Anschluss kosten ließ, kann Ihnen Entschädigung zustehen."
+      },
+      "overbooking": {
+        "title": "Überbuchung",
+        "description": "Wenn die Airline Ihren Flug überbucht hat und Sie nicht wie geplant reisen konnten, können Sie oft Entschädigung fordern."
+      },
+      "airlineStrike": {
+        "title": "Streik der Airline",
+        "description": "Wenn ein Streik der Airline Ihren Flug gestört hat, können Ihnen trotzdem Rechte zustehen."
+      },
+      "passengerRights": {
+        "title": "Fluggastrechte",
+        "description": "Erfahren Sie, was Airlines bei einer Störung schulden können."
+      },
+      "passengersWithDisabilities": {
+        "title": "Fluggäste mit Behinderung",
+        "description": "Ihre Rechte auf Hilfe, Barrierefreiheit und Unterstützung auf der Reise."
+      }
+    }
+  },
+  "prices": {
+    "title": "Preise und Gebühren",
+    "breadcrumb": "Preise",
+    "summary": "Keine Vorabkosten. Eine Erfolgsgebühr fällt nur an, wenn wir Entschädigung für Sie einholen.",
+    "noWinNoFeeIntro": "No win, no fee:",
+    "noWinNoFeeBody": "Die Prüfung der Berechtigung und die Nutzung der Website sind kostenlos. Wenn Sie uns mit der Durchsetzung beauftragen, gilt unsere Gebühr nur bei erfolgreichem Anspruch, wie in der <noWinNoFeeAgreement>Vereinbarung No win, no fee</noWinNoFeeAgreement> beschrieben.",
+    "noWinNoFeeAgreement": "Vereinbarung No win, no fee",
+    "successFeeTitle": "Erfolgsgebühr",
+    "successFeeDescription": "Wenn wir Entschädigung für Sie einholen, ziehen wir eine Erfolgsgebühr ab, bevor wir den Rest überweisen. Sie erhalten mindestens 70 % des eingezogenen Betrags vor MwSt.-Anpassungen.",
+    "tableCompensationRecovered": "Eingezogene Entschädigung",
+    "tableSuccessFee": "Erfolgsgebühr",
+    "tierUpTo220": "Bis 220 £ / 250 €",
+    "tier221to350": "221–350 £ / 251–400 €",
+    "tier351to520": "351–520 £ / 401–600 €",
+    "fee25Vat": "30 % + MwSt.",
+    "uk261Title": "Entschädigungsbeträge (UK261)",
+    "uk261Intro": "Bei Flügen aus dem Vereinigten Königreich hängt die feste Entschädigung nach UK261 von der Flugstrecke ab:",
+    "ec261Title": "Entschädigungsbeträge (EG 261/2004)"
+  },
+  "cta": {
+    "title": "Sichere Anspruchsprüfung. Menschlich begleitet.",
+    "titleLine2": "No win, no fee.",
+    "subtitle": "Ihr Antrag wird von KI geführt und von echten Menschen begleitet.",
+    "subtitleLine2": "Schnell, sicher und einfach vom ersten Upload an.",
+    "body": "Unsere Standardgebühr fällt nur an, wenn wir Entschädigung für Sie gewinnen. <brandName>Compensall</brandName> führt den Prozess von der Bordkarte bis zur Nachfassung bei der Airline — damit Sie sicher fordern können.",
+    "fastRiskFree": "Schnell und ohne Risiko",
+    "noHiddenFees": "Keine versteckten Gebühren",
+    "talkToUs": "Kontakt",
+    "humanSupportAvailable": "Menschliche Unterstützung",
+    "highestSecurity": "Höchste Sicherheit",
+    "dataProtected": "Ihre Daten bleiben geschützt"
+  },
+  "passengerRights": {
+    "rightsHeading": "Ihre Rechte nach",
+    "rightsAccent": "UK261 und EG 261",
+    "rightsIntro": "Fluggäste im Vereinigten Königreich und in der EU sind geschützt, wenn Flüge ohne ihr Verschulden verspätet, annulliert oder gestört werden.",
+    "uk261Card": {
+      "title": "UK261 — Flüge im Vereinigten Königreich",
+      "body": "Nach dem Brexit hat das Vereinigte Königreich die Fluggastrechte in UK261 behalten. UK261 gilt für Flüge im britischen Luftraum und setzt feste Beträge in Pfund: 220 £, 350 £ oder 520 £ je nach Entfernung."
+    },
+    "ec261Card": {
+      "title": "EG 261/2004 — EU-Flüge",
+      "body": "Die Verordnung (EG) Nr. 261/2004 schützt weiter Fluggäste auf berechtigten Flügen im EU-Luftraum, mit 250 €, 400 € oder 600 € in denselben Entfernungsstufen."
+    },
+    "rightsDetailP1": "Wenn Ihr Flug bei der Ankunft drei Stunden oder mehr verspätet ist, kurzfristig annulliert wird oder Ihnen die Beförderung gegen Ihren Willen verweigert wird, kann Ihnen eine feste Entschädigung zustehen. Je nach Lage haben Sie außerdem Rechte auf Betreuung, Ersatzbeförderung und Erstattung.",
+    "rightsDetailP2": "Verpasste Anschlüsse und Streiks der Airline können ebenfalls berechtigen, wenn die Störung im Einflussbereich der Airline lag. Compensall prüft die Berechtigung, bereitet den Antrag vor und setzt die Entschädigung nach No win, no fee durch.",
+    "eligibilityHeading": "Wann können Sie",
+    "eligibilityAccent": "Entschädigung fordern?",
+    "eligibilityIntro": "Sie können berechtigt sein, wenn für Ihre Reise alles Folgende zutrifft.",
+    "eligibility": {
+      "ukEuDeparture": {
+        "title": "Flug im Vereinigten Königreich oder in der EU",
+        "body": "Ihr Flug fand im britischen Luftraum (UK261) oder im EU-Luftraum (EG 261/2004) statt — oder kommt an einem britischen oder EU-Flughafen an und wird von einer britischen oder EU-Airline durchgeführt."
+      },
+      "significantDisruption": {
+        "title": "Erhebliche Störung",
+        "body": "Sie kamen am Endziel drei Stunden oder mehr zu spät an, oder Ihr Flug wurde annulliert, oder Ihnen wurde die Beförderung verweigert."
+      },
+      "airlineResponsibility": {
+        "title": "Verantwortung der Airline",
+        "body": "Die Störung beruhte nicht auf außergewöhnlichen Umständen außerhalb der Kontrolle der Airline, etwa schwerem Wetter oder Flugverkehrsbeschränkungen."
+      },
+      "validBooking": {
+        "title": "Gültige Buchung",
+        "body": "Sie haben rechtzeitig eingecheckt und besitzen eine gültige Buchung für den betroffenen Flug."
+      },
+      "withinTimeLimits": {
+        "title": "Innerhalb der Fristen",
+        "body": "Sie starten den Anspruch innerhalb der geltenden Frist — in Deutschland in der Regel drei Jahre, in England und Wales oft bis zu sechs Jahre."
+      }
+    },
+    "ec261Note": "Bei berechtigten EU-Flügen sieht die Verordnung (EG) Nr. 261/2004 250 €, 400 € oder 600 € in denselben Entfernungsstufen vor.",
+    "tiers": {
+      "uk261": {
+        "220": {
+          "label": "Flüge bis 1 500 km",
+          "desc": "UK261-Entschädigung für kürzere berechtigte Flüge."
+        },
+        "350": {
+          "label": "Flüge zwischen 1 500 km und 3 500 km",
+          "desc": "UK261-Entschädigung für mittlere Strecken."
+        },
+        "520": {
+          "label": "Flüge über 3 500 km",
+          "desc": "UK261-Entschädigung für Langstrecken."
+        }
+      },
+      "ec261": {
+        "250": {
+          "label": "Flüge bis 1 500 km",
+          "desc": "EG-261/2004-Entschädigung für kürzere berechtigte Flüge."
+        },
+        "400": {
+          "label": "Flüge zwischen 1 500 km und 3 500 km",
+          "desc": "EG-261/2004-Entschädigung für mittlere Strecken."
+        },
+        "600": {
+          "label": "Flüge über 3 500 km",
+          "desc": "EG-261/2004-Entschädigung für Langstrecken."
+        }
+      }
+    }
+  },
+  "metadata": {
+    "site": {
+      "title": "Compensall – Flug verspätet oder annulliert? Fordern Sie bis zu 520 £ oder 600 €",
+      "description": "Flug verspätet oder annulliert? Fordern Sie bis zu 520 £ nach UK261 oder 600 € nach der Verordnung (EG) Nr. 261/2004. Sicherer Bordkarten-Upload, menschliche Begleitung, No win, no fee."
+    },
+    "home": {
+      "title": "Flug verspätet oder annulliert? Fordern Sie bis zu 520 £ oder 600 €",
+      "description": "Laden Sie Ihre Bordkarte hoch und prüfen Sie Ihre Flugentschädigung nach UK261 oder der Verordnung (EG) Nr. 261/2004. Sicher, menschlich begleitet, No win, no fee."
+    },
+    "faq": {
+      "title": "Häufige Fragen zur Flugentschädigung",
+      "description": "Antworten zu UK261, der Verordnung (EG) Nr. 261/2004, Entschädigungsbeträgen, No win, no fee, Bordkarten-Upload und der Bearbeitung durch Compensall."
+    },
+    "about": {
+      "title": "Über Compensall und Flugentschädigung",
+      "description": "Compensall hilft Fluggästen, bis zu 600 € nach EU261 zu fordern: sicherer Bordkarten-Upload, Prüfung durch den Assistenten und menschliche Begleitung gegenüber der Airline. No win, no fee."
+    },
+    "knowYourRights": {
+      "title": "Ihre Rechte auf Flugentschädigung",
+      "description": "Wann UK261 und die Verordnung (EG) Nr. 261/2004 Ihnen bis zu 520 £ oder 600 € bei Verspätung, Annullierung, Nichtbeförderung, verpasstem Anschluss und Streik zustehen."
+    },
+    "prices": {
+      "title": "Preise, Gebühren und No win, no fee",
+      "description": "Compensall arbeitet nach No win, no fee. Sehen Sie die Erfolgsgebühr sowie die Entschädigungsbeträge nach UK261 und EG 261."
+    },
+    "blog": {
+      "title": "Ratgeber zu Flugentschädigung und Fluggastrechten",
+      "description": "Praktische Leitfäden zur Verordnung (EG) Nr. 261/2004: Verspätung, Annullierung, Nichtbeförderung, verpasster Anschluss — und wie Sie bis zu 600 € fordern."
+    },
+    "cookies": {
+      "title": "Cookie-Richtlinie und Einstellungen",
+      "description": "Erfahren Sie, wie Compensall Cookies und ähnliche Technologien einsetzt und wie Sie Ihre Einstellungen steuern."
+    },
+    "privacyPolicy": {
+      "title": "Datenschutz und personenbezogene Daten",
+      "description": "Erfahren Sie, wie Compensall personenbezogene Daten erhebt, nutzt, speichert und schützt, wenn Sie Website und Entschädigungsservice nutzen."
+    },
+    "terms": {
+      "title": "Nutzungsbedingungen für Compensall-Anträge",
+      "description": "Lesen Sie die Nutzungsbedingungen von Compensall: Regeln für Anträge, Gebühren, Pflichten und anwendbares Recht."
+    },
+    "airlines": {
+      "title": "Entschädigungsratgeber für Airlines und Flughäfen",
+      "description": "Finden Sie Ihre Airline oder Ihren Flughafen und prüfen Sie die Berechtigung nach EU261. Leitfäden zu Lufthansa, Ryanair, easyJet und großen europäischen Flughäfen."
+    },
+    "authorityToAct": {
+      "title": "Vollmacht für Flugansprüche",
+      "description": "Vollmacht, mit der Compensall Ihren Entschädigungsanspruch nach der Verordnung (EG) Nr. 261/2004 durchsetzt."
+    },
+    "noWinNoFee": {
+      "title": "Vereinbarung No win, no fee",
+      "description": "Die Vereinbarung No win, no fee von Compensall. Sie zahlen nur, wenn wir Ihre Entschädigung erfolgreich einholen."
+    },
+    "privacyDataConsent": {
+      "title": "Datenschutz und Einwilligung",
+      "description": "Das Dokument Datenschutz und Einwilligung von Compensall erklärt, wie wir Ihre personenbezogenen Daten verarbeiten und schützen."
+    },
+    "track": {
+      "title": "Antrag verfolgen",
+      "description": "Prüfen Sie den Status Ihres Compensall-Antrags mit Ihrer Vorgangsnummer."
+    },
+    "thankYou": {
+      "title": "Vielen Dank — Antrag eingereicht",
+      "description": "Ihr Compensall-Antrag auf Flugentschädigung wurde eingereicht."
+    }
+  },
+  "trackPage": {
+    "title": "Antrag verfolgen",
+    "reference": "Vorgang <tracking>{trackingNumber}</tracking>",
+    "loading": "Status wird geladen…",
+    "notFound": "Diesen Antrag haben wir nicht gefunden.",
+    "invalidReference": "Ungültiges Format der Vorgangsnummer.",
+    "errorGeneric": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    "startNewClaim": "Neuen Antrag starten",
+    "claimDetails": "Angaben zum Antrag",
+    "status": "Status",
+    "fields": {
+      "passenger": "Fluggast",
+      "flight": "Flug",
+      "route": "Strecke",
+      "date": "Datum",
+      "submitted": "Eingereicht",
+      "estimate": "Geschätzte Entschädigung"
+    },
+    "estimateUpTo": "Bis zu {amount}",
+    "estimateDetail": "Nach {regulation} für eine Strecke von etwa {distance}.",
+    "estimateDisclaimer": "Nur zur Orientierung. Die endgültige Berechtigung hängt von der Verspätung, der Verantwortung der Airline und außergewöhnlichen Umständen ab.",
+    "statuses": {
+      "received": {
+        "label": "Eingegangen",
+        "message": "Wir haben Ihren Antrag erhalten und unser Team prüft ihn. Hier aktualisieren wir, sobald es Neuigkeiten gibt."
+      },
+      "needs_documents": {
+        "label": "Unterlagen nötig",
+        "message": "Für den nächsten Schritt brauchen wir noch Unterlagen. Prüfen Sie Ihre E-Mail oder schreiben Sie uns unter +351 923391980. Wir helfen gern."
+      },
+      "with_airline": {
+        "label": "Bei der Airline",
+        "message": "Ihr Antrag liegt bei der Airline. Wir warten auf die Antwort und aktualisieren, sobald wir etwas hören."
+      },
+      "following_up": {
+        "label": "In Nachfassung",
+        "message": "Die Airline hat geantwortet, und wir fassen in Ihrem Namen nach. Über jede Entwicklung halten wir Sie auf dem Laufenden."
+      },
+      "payment_processing": {
+        "label": "Zahlung in Bearbeitung",
+        "message": "Gute Nachricht: Die Airline hat die Entschädigung zugesagt. Wir bereiten jetzt die Auszahlung vor und aktualisieren in Kürze."
+      },
+      "awaiting_fee": {
+        "label": "Servicegebühr",
+        "message": "Glückwunsch, Ihr Anspruch war erfolgreich. Bitte zahlen Sie die Servicegebühr, damit wir den Vorgang abschließen können."
+      },
+      "paid": {
+        "label": "Ausgezahlt",
+        "message": "Die Auszahlung ist erfolgt. Danke für Ihr Vertrauen. Bei Fragen sind wir da."
+      },
+      "closed_ntd": {
+        "label": "Geschlossen",
+        "message": "Leider können wir den Anspruch nicht weiterverfolgen; der Vorgang ist geschlossen. Bei Fragen schreiben Sie uns gern."
+      },
+      "paused": {
+        "label": "Pausiert",
+        "message": "Der Vorgang ist pausiert, weil wir keine Rückmeldung von Ihnen erhalten haben. Schreiben Sie +351 923391980, wenn Sie ihn fortsetzen möchten."
+      },
+      "closed_declined": {
+        "label": "Geschlossen",
+        "message": "Leider hat die Airline den Anspruch abgelehnt, und wir können ihn nicht weiterverfolgen. Der Vorgang ist geschlossen — schreiben Sie uns, wenn Sie das Ergebnis besprechen möchten."
+      }
+    }
+  },
+  "airlinesPage": {
+    "title": "Flughäfen und Airlines",
+    "subtitleLine1": "Finden Sie Ihre Airline oder Ihren Flughafen.",
+    "subtitleLine2": "Prüfen Sie Ihren Anspruch in Minuten."
+  },
+  "airlinesCatalog": {
+    "airlines": "Airlines",
+    "airports": "Flughäfen",
+    "mostPopular": "Am beliebtesten",
+    "searchResults": "{count, plural, =1 {# Ergebnis} other {# Ergebnisse}}",
+    "searchAirline": "Airline suchen...",
+    "searchAirport": "Flughafen, Stadt oder Land suchen...",
+    "seeMore": "Mehr {section} anzeigen",
+    "allSection": "Alle {section}",
+    "showLess": "Weniger anzeigen",
+    "noResults": "Keine Treffer. Versuchen Sie eine andere Suche.",
+    "airlineCardDescription": "{name} verspätet, annulliert oder Nichtbeförderung? Prüfen Sie Ihren Anspruch in Minuten.",
+    "airportCardDescription": "Verspäteter oder annullierter Flug über {name}? Prüfen Sie Ihren Anspruch in Minuten."
+  },
+  "catalogDetail": {
+    "airlineTitle": "Entschädigung bei Verspätung oder Annullierung von {name}",
+    "airportTitle": "Flugentschädigung ab {name}",
+    "airlineMetaTitle": "Flugentschädigung {name}",
+    "airportMetaTitle": "Flugentschädigung {name}",
+    "airlineIntroP1": "Wenn Ihr Flug mit {name} verspätet oder annulliert wurde oder Ihnen die Beförderung verweigert wurde, können Ihnen bis zu 600 € nach der Verordnung (EG) Nr. 261/2004 und UK261 zustehen.",
+    "airlineIntroP2": "Compensall prüft Ihre Berechtigung in Minuten. Laden Sie Ihre Bordkarte hoch oder geben Sie die Flugdaten ein — No win, no fee.",
+    "airportIntroP1": "Abflug oder Ankunft in {name}? Wenn Ihr Flug verspätet oder annulliert wurde, können Ihnen bis zu 600 € nach der Verordnung (EG) Nr. 261/2004 und UK261 zustehen.",
+    "airportIntroP2": "Compensall prüft Ihren Anspruch in Minuten. Starten Sie mit Bordkarte oder Flugdaten — No win, no fee.",
+    "sectionRights": "Ihre Fluggastrechte",
+    "sectionTips": "Tipps für den Anspruch",
+    "airlineCardDescription": "{name} verspätet, annulliert oder Nichtbeförderung? Prüfen Sie Ihren Anspruch in Minuten.",
+    "airportCardDescription": "Verspäteter oder annullierter Flug über {name}? Prüfen Sie Ihren Anspruch in Minuten.",
+    "entityAirlineFlight": "Ihr Flug mit {name}",
+    "entityAirportFlight": "ein Flug über {name}",
+    "faqDelayQuestion": "Steht mir Entschädigung zu, wenn {entity} verspätet oder annulliert wurde?",
+    "faqDelayAnswer": "Ihnen kann Entschädigung zustehen, wenn Sie 3 Stunden oder mehr verspätet ankamen oder der Flug kurzfristig annulliert wurde — sofern die Störung im Einflussbereich der Airline lag (keine außergewöhnlichen Umstände wie schweres Wetter).",
+    "faqAmountQuestion": "Wie viel Entschädigung kann ich fordern?",
+    "faqAmountAnswer": "Nach der Verordnung (EG) Nr. 261/2004 und UK261 sind es in der Regel 250 €, 400 € oder 600 € pro Person, je nach Flugstrecke und Verspätung.",
+    "faqRejectedAirlineQuestion": "Was, wenn {name} meinen Anspruch schon abgelehnt hat?",
+    "faqRejectedAirportQuestion": "Was, wenn die Airline meinen Anspruch schon abgelehnt hat?",
+    "faqRejectedAnswer": "Eine Ablehnung heißt nicht automatisch, dass Sie keine Rechte haben. Wir prüfen Ihren Fall und können berechtigte Ansprüche nach No win, no fee weiterverfolgen.",
+    "faqDeadlineQuestion": "Gibt es eine Frist für den Anspruch?",
+    "faqDeadlineAnswer": "Die Fristen unterscheiden sich je nach Forum: in Deutschland meist drei Jahre, anderswo oft zwei bis sechs Jahre. Prüfen Sie lieber früher, damit wir Ihre Optionen bewerten können.",
+    "faqSafeQuestion": "Ist es sicher, meine Bordkarte zu teilen?",
+    "faqSafeAnswer": "Ja. Ihre Daten werden sicher verarbeitet und nur genutzt, um Ihren Anspruch zu prüfen und durchzusetzen.",
+    "claimHeadlineAirline": "Bereit, gegen {name} vorzugehen?",
+    "claimHeadlineAirport": "Bereit, Ihren Anspruch ab {name} zu prüfen?",
+    "claimSubheadline": "Nutzen Sie den Bordkarten-Assistenten auf der Startseite. Schnell, sicher und No win, no fee.",
+    "breadcrumbCatalog": "Airlines und Flughäfen",
+    "notFoundAirline": "Airline nicht gefunden | Compensall",
+    "notFoundAirport": "Flughafen nicht gefunden | Compensall"
+  },
+  "notFoundPage": {
+    "title": "Seite nicht gefunden",
+    "description": "Diese Seite haben wir nicht gefunden. Starten Sie eine Entschädigungsprüfung oder lesen Sie die Leitfäden unten.",
+    "checkCompensation": "Entschädigung prüfen",
+    "knowYourRights": "Ihre Fluggastrechte",
+    "blog": "Blog"
+  },
+  "blogPage": {
+    "title": "Blog",
+    "subtitle": "Praktische Leitfäden zu Fluggastrechten nach der Verordnung (EG) Nr. 261/2004: Verspätung, Annullierung, Nichtbeförderung und mehr — damit Sie vor dem Abflug wissen, was Ihnen zustehen kann.",
+    "readArticle": "Artikel lesen",
+    "backToBlog": "Zurück zum Blog",
+    "englishOnlyNotice": "Dieser Leitfaden liegt derzeit nur auf Englisch vor."
+  },
+  "thankYouPage": {
+    "title": "Vielen Dank",
+    "body": "Wir haben Ihre unterschriebene Vollmacht erhalten und beginnen mit Ihrem Antrag.",
+    "bodyWithFlight": "Wir haben Ihre unterschriebene Vollmacht erhalten und beginnen mit Ihrem Antrag für Flug {flight}.",
+    "trackingNumber": "Ihre Vorgangsnummer",
+    "trackYourClaim": "Antrag verfolgen",
+    "startNewClaim": "Neuen Antrag starten"
+  },
+  "documentPage": {
+    "home": "Startseite",
+    "claim": "Antrag",
+    "powerOfAttorney": "Vollmacht",
+    "privacyDataConsent": "Datenschutz und Einwilligung",
+    "copyright": "Copyright © Compensall 2026. Alle Rechte vorbehalten.",
+    "backToClaim": "Zurück zum Antrag"
+  }
+}

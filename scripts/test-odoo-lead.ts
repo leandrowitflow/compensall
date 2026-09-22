@@ -59,12 +59,16 @@ async function main() {
     landingPage: "/en/#claim",
   });
 
-  if (!lead || !ticket) {
-    console.error("FAILED — CRM lead or Helpdesk ticket was not created.");
+  if (!ticket) {
+    console.error("FAILED — Helpdesk ticket was not created.");
     process.exit(1);
   }
 
-  console.log("3. CRM lead:", lead.id, lead.companyName, lead.crmUrl);
+  if (lead) {
+    console.log("3. CRM lead archived after submit:", lead.id, lead.crmUrl);
+  } else {
+    console.log("3. CRM lead: none created (Helpdesk is the submitted case; CRM stays recovery-only)");
+  }
   console.log("4. Helpdesk ticket:", ticket.id, ticket.ticketUrl);
   console.log("   brand:", ticket.brand);
   console.log("   company:", ticket.companyName);
@@ -94,10 +98,12 @@ async function main() {
     resolveOdooTagId("AA", "crm.tag"),
     resolveOdooTagId("AA", "helpdesk.tag"),
   ]);
-  if (!crmAaTagId || !lead.tagIds.includes(crmAaTagId)) failures.push("CRM missing AA tag");
+  if (lead && (!crmAaTagId || !lead.tagIds.includes(crmAaTagId))) {
+    warnings.push("Archived CRM lead has no AA tag (expected for archive-only summaries)");
+  }
   if (!helpdeskAaTagId || !ticket.tagIds.includes(helpdeskAaTagId)) failures.push("Helpdesk missing AA tag");
 
-  if (lead.companyName !== "Compensall") {
+  if (lead?.companyName && lead.companyName !== "Compensall") {
     warnings.push(`CRM company_id=${lead.companyName}`);
   }
   if (ticket.companyName !== "Compensall") {

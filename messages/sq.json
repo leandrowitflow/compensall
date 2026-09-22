@@ -1,0 +1,883 @@
+{
+  "common": {
+    "brandName": "Compensall",
+    "assistantName": "Asistent",
+    "assistantStepLabel": "Kontrolli i asistentit",
+    "assistantScanMessage": "Asistenti ynë skanoi kartën tënde të imbarkimit dhe nxori të dhënat kryesore.",
+    "justNow": "Tani",
+    "notApplicable": "N/A",
+    "openMenu": "Hap menynë",
+    "closeMenu": "Mbyll menynë",
+    "language": "Gjuha",
+    "selectLanguage": "Zgjidh gjuhën",
+    "learnMore": "Mëso më shumë",
+    "checkClaims": "Kontrollo kërkesën",
+    "startYourClaim": "Nis kërkesën",
+    "checkCompensation": "Kërko kompensim",
+    "checkCompensationShort": "Kërko tani",
+    "home": "Kryefaqja",
+    "legal": "Ligjore",
+    "airport": "Aeroport",
+    "downloadPageMarkdown": "Shkarko faqen si Markdown"
+  },
+  "nav": {
+    "knowYourRights": "Njihi të drejtat e tua",
+    "knowYourRightsShort": "Të drejtat",
+    "airlines": "Kompani ajrore",
+    "airlinesShort": "Kompani",
+    "airlinesAndAirports": "Kompani dhe aeroporte",
+    "aboutUs": "Rreth nesh",
+    "blog": "Blog",
+    "faq": "Pyetje të shpeshta",
+    "talkToUs": "Na shkruaj",
+    "talkToUsShort": "Na shkruaj",
+    "knowYourRightsMenu": {
+      "yourRights": "Të drejtat e tua",
+      "overview": "Përmbledhje",
+      "overviewDescription": "Si të mbron KE 261",
+      "flightCancellation": "Anulim fluturimi",
+      "flightDelay": "Vonesë fluturimi",
+      "deniedBoarding": "Refuzim imbarkimi",
+      "missedConnection": "Lidhje e humbur",
+      "overbooking": "Overbooking",
+      "airlineStrike": "Greva e kompanisë",
+      "passengerRights": "Të drejtat e pasagjerit",
+      "passengersWithDisabilities": "Pasagjerë me aftësi të kufizuara"
+    },
+    "airlinesMenu": {
+      "browse": "Shfleto",
+      "allAirlinesAirports": "Të gjitha kompanitë dhe aeroportet",
+      "allAirlinesAirportsDescription": "Katalogu i plotë",
+      "popularAirlines": "Kompani të njohura",
+      "popularAirports": "Aeroporte të njohura"
+    }
+  },
+  "footer": {
+    "contactUs": "Na kontakto",
+    "email": "help@compensall.com",
+    "phone": "+351 923 391 980",
+    "privacyPolicy": "Politika e privatësisë",
+    "termsOfService": "Kushtet e shërbimit",
+    "cookies": "Cookies",
+    "prices": "Çmimet",
+    "noWinNoFee": "No win, no fee.",
+    "socialLinkedIn": "LinkedIn",
+    "socialInstagram": "Instagram",
+    "socialFacebook": "Facebook",
+    "socialTikTok": "TikTok",
+    "newsletterTitle": "Mos humb asnjë mundësi",
+    "newsletterSubtitle": "Abonohu në buletinin tonë",
+    "newsletterPlaceholder": "Shkruaj adresën e emailit",
+    "newsletterSubscribe": "Abonohu",
+    "newsletterConsent": "Pranoj të marr email marketingu dhe e kam lexuar <privacyPolicy>Politikën e privatësisë</privacyPolicy>.",
+    "copyright": "© 2026 Compensall"
+  },
+  "home": {
+    "metadata": {
+      "title": "Fluturim i vonuar ose i anuluar? Kërko deri në 520 £ ose 600 €",
+      "description": "Ngarko kartën e imbarkimit dhe kërko kompensim fluturimi sipas UK261 ose Rregullores (KE) nr. 261/2004. E sigurt, me mbështetje njerëzore, No win, no fee."
+    },
+    "hero": {
+      "trustpilotAlt": "I shkëlqyer në Trustpilot: 4,8 nga 5",
+      "title": "Fluturim i vonuar ose i anuluar?",
+      "titleLine2": "Kërko deri në 520 £ ose 600 €",
+      "subtitle": "UK261 dhe Rregullorja (KE) nr. 261/2004 i mbrojnë të drejtat e tua. Platforma më e sigurt e kompensimit të fluturimeve në treg.",
+      "fastRiskFree": "E shpejtë dhe pa rrezik",
+      "noHiddenFees": "Pa tarifa të fshehura",
+      "talkToUs": "Na shkruaj",
+      "humanSupportAvailable": "Mbështetje njerëzore",
+      "highestSecurity": "Siguri maksimale",
+      "dataProtected": "Të dhënat e tua janë gjithmonë të mbrojtura"
+    },
+    "trustBar": {
+      "noWinNoFee": "No win, no fee.",
+      "onlyIfSuccessful": "Paguan vetëm nëse fitojmë",
+      "gdprFirst": "GDPR në fillim",
+      "privacyByDesign": "Privatësi e ndërtuar që në dizajn",
+      "deleteYourData": "Fshi të dhënat",
+      "fullControl": "Kontroll i plotë",
+      "humanSupport": "Mbështetje njerëzore",
+      "realPeopleHelp": "Njerëz të vërtetë, ndihmë e vërtetë"
+    },
+    "claimCards": {
+      "title": "Për çfarë",
+      "titleAccent": "mund të kërkosh?",
+      "subtitle": "Të ndihmojmë të marrësh kompensimin për një gamë të gjerë problemesh fluturimi.",
+      "flightDelay": {
+        "title": "Vonesë fluturimi",
+        "description": "Nëse fluturimi yt mbërriti më shumë se 3 orë vonë, mund të kesh të drejtë deri në 520 £ ose 600 €.",
+        "iconAlt": "Ikona e vonesës së fluturimit"
+      },
+      "flightCancellation": {
+        "title": "Anulim fluturimi",
+        "description": "Nëse fluturimi u anulua me njoftim të shkurtër, mund të kesh të drejtë deri në 520 £ ose 600 €.",
+        "iconAlt": "Anulim fluturimi"
+      },
+      "deniedBoarding": {
+        "title": "Refuzim imbarkimi",
+        "description": "Nëse të refuzuan imbarkimin kundër vullnetit tënd, mund të kërkosh deri në 520 £ ose 600 €.",
+        "iconAlt": "Refuzim imbarkimi"
+      },
+      "missedConnection": {
+        "title": "Lidhje e humbur",
+        "description": "Nëse humbe lidhjen për shkak të një vonese, mund të kesh të drejtë për kompensim.",
+        "iconAlt": "Lidhje e humbur"
+      },
+      "airlineStrike": {
+        "title": "Greva e kompanisë",
+        "description": "Nëse fluturimin ta prishi një grevë e kompanisë ajrore, prapë mund të kesh të drejtë për kompensim.",
+        "iconAlt": "Greva e kompanisë"
+      }
+    },
+    "howItWorks": {
+      "title": "Si",
+      "titleAccent": "funksionon?",
+      "schemaName": "Si të kërkosh kompensim fluturimi me Compensall",
+      "subtitle": "Ngarko kartën e imbarkimit. Asistenti kontrollon kërkesën. Ekipi ynë merret me kompaninë.",
+      "steps": {
+        "upload": {
+          "title": "Ngarko kartën e imbarkimit",
+          "description": "Shtoje kartën e imbarkimit për disa sekonda."
+        },
+        "assistant": {
+          "title": "Asistenti kontrollon kërkesën",
+          "description": "Asistenti ynë verifikon nëse ke të drejtë."
+        },
+        "airline": {
+          "title": "Ne merremi me kompaninë",
+          "description": "Luftojmë për kompensimin tënd."
+        }
+      }
+    },
+    "compensation": {
+      "title": "Sa është",
+      "titleAccent": "kompensimi?",
+      "ukIntro": "Për fluturimet nga Mbretëria e Bashkuar, UK261 cakton shuma fikse në paund. Shuma varet nga distanca e fluturimit.",
+      "ecIntro": "Për fluturimet e mbuluara të BE-së, Rregullorja (KE) nr. 261/2004 cakton shuma fikse në euro. Shuma varet nga distanca e fluturimit.",
+      "ukHeading": "UK261 — fluturime të MB",
+      "ecHeading": "KE 261/2004 — fluturime të mbuluara të BE-së",
+      "tierAlt": "Niveli i kompensimit {amount}"
+    }
+  },
+  "claim": {
+    "steps": {
+      "upload": "Ngarko",
+      "assistantCheck": "Kontrolli i asistentit",
+      "assistantCheckShort": "Kontrollo",
+      "signSubmit": "Nënshkruaj dhe dërgo"
+    },
+    "resume": {
+      "loading": "Po ngarkojmë kërkesën e ruajtur…",
+      "loaded": "I ngarkuam të dhënat e fluturimit dhe kontaktit. Nënshkruaje Prokurën dhe dërgoje për ta përfunduar.",
+      "invalid": "Ky lidhje vazhdimi nuk është i vlefshëm. Mund të nisësh një kërkesë të re më poshtë.",
+      "expired": "Ky lidhje ka skaduar ose është përdorur. Mund të nisësh një kërkesë të re më poshtë."
+    },
+    "step1": {
+      "rightsContext": "Sipas të drejtave britanike dhe evropiane të pasagjerit (UK261 dhe 261/2004/KE), mund të kesh të drejtë për kompensim për vonesa, anulime dhe refuzim imbarkimi. Ngarko kartën e imbarkimit — kontrolli është falas. No win, no fee.",
+      "readingBoardingPass": "Po lexojmë kartën e imbarkimit…",
+      "extractingDetails": "{assistantName} po nxjerr të dhënat e fluturimit",
+      "uploadTitle": "Ngarko kartën e imbarkimit",
+      "uploadHint": "Tërhiq dhe lësho, ose kliko për ta ngarkuar (PDF, JPG, PNG)",
+      "orCheckManually": "Ose",
+      "checkManually": "kontrollo me dorë",
+      "departureAirport": "Aeroporti i nisjes",
+      "arrivalAirport": "Aeroporti i mbërritjes",
+      "swapAirports": "Ndërro aeroportet",
+      "dataProtected": "Të dhënat e tua janë të mbrojtura, gjithmonë.",
+      "popularAirports": "Aeroporte të njohura",
+      "resultsCount": "{count, plural, =1 {# rezultat} other {# rezultate}}",
+      "otherAirportHidden": "Aeroporti tjetër i zgjedhur është i fshehur.",
+      "noAirportsFound": "Nuk u gjet asnjë aeroport. Provo një qytet, vend ose kod (p.sh. Vjenë, Austri, VIE).",
+      "preview": {
+        "title": "Parapamje e kartës së imbarkimit",
+        "fullTitle": "Parapamje e plotë e kartës së imbarkimit",
+        "addedJustNow": "Shtuar tani • {fileSize}",
+        "open": "Parapamje",
+        "viewFull": "Shiko kartën e plotë",
+        "thumbnail": "Miniaturë e kartës së imbarkimit",
+        "heicUnsupported": "Parapamja HEIC nuk mbështetet në shfletues.",
+        "unavailable": "Parapamja nuk është e disponueshme për këtë lloj skedari.",
+        "notAvailableSaved": "Parapamja nuk është e disponueshme për këtë lloj në shfletues. Skedari prapë u ruajt për kërkesën.",
+        "formatCannotPreview": "Ky format nuk mund të shfaqet këtu{heicHint}.",
+        "heicHint": " (HEIC)",
+        "downloadFile": "Shkarko skedarin",
+        "closePreview": "Mbyll parapamjen"
+      },
+      "errors": {
+        "selectBothAirports": "Zgjidh aeroportin e nisjes dhe të mbërritjes nga lista.",
+        "airportsMustDiffer": "Aeroporti i nisjes dhe i mbërritjes duhet të jenë të ndryshëm.",
+        "extractFailed": "Nuk i lexuam automatikisht të gjitha detajet. Plotësoji më poshtë të dhënat e fluturimit.",
+        "somethingWentWrong": "Diçka shkoi keq. Plotësoji më poshtë të dhënat e fluturimit.",
+        "unsupportedType": "Lloj skedari i pambështetur. Ngarko një kartë imbarkimi PDF, JPG, PNG, WebP ose HEIC.",
+        "tooLarge": "Skedari është shumë i madh. Maksimumi është 10 MB."
+      }
+    },
+    "step2": {
+      "extractedSuccess": "Faleminderit! I nxorëm të dhënat e fluturimit.",
+      "confirmDetails": "Konfirmo që informacioni më poshtë është i saktë.",
+      "extractPartial": "Karta e imbarkimit u ruajt, por nuk i lexuam automatikisht të gjitha detajet.",
+      "fillInDetails": "Plotëso ose konfirmo informacionin më poshtë.",
+      "passenger": "Pasagjer",
+      "flight": "Fluturim",
+      "route": "Itinerar",
+      "date": "Datë",
+      "confirmPrompt": "A është gjithçka e saktë?",
+      "confirmHint": "Kjo na ndihmon të vlerësojmë të drejtën tënde.",
+      "deleteData": "Fshi të dhënat",
+      "editDetails": "Ndrysho detajet",
+      "doneEditing": "Mbarova ndryshimin",
+      "yesContinue": "Po, vazhdo",
+      "errors": {
+        "passengerRequired": "Emri i pasagjerit është i detyrueshëm.",
+        "flightRequired": "Numri i fluturimit është i detyrueshëm.",
+        "routeRequired": "Itinerari është i detyrueshëm.",
+        "dateRequired": "Data e fluturimit është e detyrueshme."
+      },
+      "fields": {
+        "passenger": "Pasagjer",
+        "passengerPlaceholder": "Emri i plotë si në kartën e imbarkimit",
+        "flightNumber": "Numri i fluturimit",
+        "flightPlaceholder": "p.sh. W6 1234",
+        "date": "Data",
+        "departure": "Nisje",
+        "departurePlaceholder": "p.sh. Tiranë (TIA)",
+        "arrival": "Mbërritje",
+        "arrivalPlaceholder": "p.sh. Vjenë (VIE)"
+      }
+    },
+    "connecting": {
+      "title": "Fluturime lidhëse",
+      "subtitle": "Na thuaj nëse udhëtimi përfshinte një lidhje.",
+      "hadConnecting": "A pate një fluturim lidhës?",
+      "selectPlaceholder": "Zgjidh një opsion",
+      "yes": "Po",
+      "no": "Jo",
+      "legLabel": "Fluturim lidhës {number}",
+      "anotherConnecting": "Pata edhe një fluturim lidhës tjetër",
+      "airport": "Aeroport",
+      "airportPlaceholder": "Zgjidh aeroportin",
+      "flightNumber": "Numri i fluturimit",
+      "flightNumberPlaceholder": "p.sh. OS 123",
+      "errors": {
+        "connectingRequired": "Na thuaj nëse pate një fluturim lidhës.",
+        "connectingDetailsRequired": "Shkruaj aeroportin dhe numrin e fluturimit për lidhjen 1."
+      }
+    },
+    "disruption": {
+      "title": "Detajet e ndërprerjes",
+      "subtitle": "Na thuaj çfarë ndodhi, që të vlerësojmë të drejtën.",
+      "type": "Lloji i ndërprerjes",
+      "typePlaceholder": "Zgjidh llojin e ndërprerjes",
+      "selectPlaceholder": "Zgjidh një opsion",
+      "delayDuration": "Kohëzgjatja e vonesës në destinacionin përfundimtar",
+      "delayLessThan3": "Më pak se 3 orë",
+      "delayMoreThan3": "Më shumë se 3 orë",
+      "cancellationNotice": "Sa ditë para nisjes të njoftuan?",
+      "notice14OrMore": "14 ditë ose më shumë",
+      "noticeLessThan14": "Më pak se 14 ditë",
+      "ineligibleTitle": "Na vjen keq: sipas këtyre të dhënave, nuk ke të drejtë për kompensimin fiks.",
+      "ineligibleBody": "Sipas Rregullores evropiane KE 261/2004, kompania nuk është e detyruar të paguajë kompensimin fiks nëse vonesa ishte nën 3 orë, ose nëse të njoftuan për anulimin më shumë se 14 ditë përpara. E kuptojmë zhgënjimin dhe të falënderojmë për mirëkuptimin.",
+      "ineligibleContact": "Na kontakto për ndërprerje të tjera të viteve të fundit.",
+      "reason": "Arsyeja e ndërprerjes",
+      "types": {
+        "delay": "Vonesë",
+        "cancellation": "Anulim",
+        "deniedBoarding": "Refuzim imbarkimi"
+      },
+      "reasons": {
+        "technical": "Problem teknik",
+        "weather": "Mot",
+        "strike": "Grevë",
+        "crew": "Problem ekuipazhi",
+        "airport": "Aeroport / trafik ajror",
+        "other": "Tjetër / nuk e di"
+      },
+      "errors": {
+        "typeRequired": "Zgjidh llojin e ndërprerjes.",
+        "delayRequired": "Zgjidh kohëzgjatjen e vonesës.",
+        "noticeRequired": "Zgjidh kur të njoftuan për anulimin.",
+        "reasonRequired": "Zgjidh arsyen e ndërprerjes."
+      }
+    },
+    "compensationEstimate": {
+      "label": "Kompensim i vlerësuar",
+      "upTo": "Deri në {amount}",
+      "detail": "Sipas {regulation} për një itinerar rreth {distance}.",
+      "disclaimer": "Vetëm orientues. E drejta përfundimtare varet nga kohëzgjatja e vonesës, përgjegjësia e kompanisë dhe rrethanat e jashtëzakonshme."
+    },
+    "step3": {
+      "claimReady": "Kërkesa jote është gati.",
+      "confirmContact": "Konfirmo të dhënat e kontaktit dhe pasagjerët e tjerë.",
+      "uploadDocuments": "Ngarko dokumente mbështetëse (opsionale), pastaj vazhdo te shqyrtimi.",
+      "readAndSign": "Lexoje Prokurën deri në fund, pastaj nënshkruaj një herë për të vazhduar.",
+      "readAndSignPassenger": "Pasagjeri {current} nga {total}: {name} — lexo dhe nënshkruaj Prokurën.",
+      "signedReview": "Nënshkrimet u kompletuan. Shqyrtoje dhe dërgoje kërkesën.",
+      "justNow": "Tani",
+      "fullLegalName": "Emri i plotë ligjor",
+      "namePlaceholder": "Si në kartën e imbarkimit",
+      "emailAddress": "Adresa e emailit",
+      "emailPlaceholder": "ti@shembull.com",
+      "phoneNumber": "Numri i telefonit",
+      "phonePlaceholder": "069 123 4567",
+      "firstName": "Emri",
+      "lastName": "Mbiemri",
+      "otherPassengers": "Pasagjerë të tjerë në rezervim",
+      "otherPassengersHint": "Shto këdo tjetër që duhet të nënshkruajë gjithashtu një Prokurë.",
+      "addPassenger": "Shto pasagjer",
+      "removePassenger": "Hiq",
+      "passengerNumber": "Pasagjeri {number}",
+      "documentsHint": "Këto skedarë na ndihmojnë ta përpunojmë kërkesën më shpejt. Mund t’i anashkalosh ato që s’i ke ende.",
+      "docs": {
+        "passport": "Kopje e pasaportës",
+        "passportHint": "Faqja me foton e pasaportës ose e letërnjoftimit.",
+        "booking": "Konfirmimi i rezervimit",
+        "bookingHint": "Konfirmimi i kompanisë ose e-biletë.",
+        "expenses": "Fatura shpenzimesh",
+        "expensesHint": "Ushqime, hotele, transfere ose kosto të tjera të ndërprerjes.",
+        "other": "Dokumente të tjera",
+        "otherHint": "Çdo skedar tjetër mbështetës (opsionale)."
+      },
+      "additionalDocuments": "Dokumente shtesë (opsionale)",
+      "additionalDocumentsHint": "Ngarko ID, konfirmim rezervimi, fatura shpenzimesh ose skedarë të tjerë.",
+      "signOnce": "Nënshkruaj një herë",
+      "signPassenger": "Nënshkruaj {current} nga {total}",
+      "documentPreview": "Parapamje e dokumentit",
+      "openFullPage": "Hape faqen e plotë ↗",
+      "readComplete": "✓ E lexove Prokurën. Mund të nënshkruash më poshtë",
+      "scrollToUnlock": "Shko deri në fund të Prokurës për të zhbllokuar nënshkrimin ↓",
+      "yourSignature": "Nënshkrimi yt",
+      "clear": "Pastro",
+      "drawSignatureHint": "Vizatoni këtu — nënshkrimi shfaqet në dokument te «Pasagjeri». Vendos edhe datën e nënshkrimit në dokument.",
+      "scrollToUnlockSigning": "Shko deri në fund të dokumentit për të zhbllokuar nënshkrimin.",
+      "signedBy": "Nënshkruar nga",
+      "flightDate": "Data e fluturimit: {date}",
+      "signingDate": "Data e nënshkrimit: {date}",
+      "signedAt": "Nënshkruar {date}",
+      "passengersCount": "Pasagjerë: {count}",
+      "continueToDocuments": "Vazhdo te dokumentet",
+      "continueToSigning": "Vazhdo te nënshkrimi",
+      "continueToReview": "Vazhdo te shqyrtimi",
+      "saving": "Po ruajmë...",
+      "deleteData": "Fshi të dhënat",
+      "back": "Kthehu",
+      "signing": "Po nënshkruajmë…",
+      "signAndNext": "Nënshkruaj dhe pasagjeri tjetër",
+      "signAndReview": "Nënshkruaj dhe shqyrto",
+      "signAndContinue": "Nënshkruaj dhe vazhdo",
+      "reSign": "Nënshkruaj sërish",
+      "submitting": "Po dërgojmë…",
+      "submitClaim": "Dërgo kërkesën",
+      "claimSubmitted": "Kërkesa u dërgua",
+      "thankYou": "Faleminderit, {name}. E morëm Prokurën e nënshkruar dhe do të fillojmë punën për kërkesën e fluturimit {flight}.",
+      "trackingNumber": "Numri yt i ndjekjes",
+      "trackYourClaim": "Ndjek kërkesën",
+      "confirmationEmail": "Do të dërgojmë konfirmimin dhe përditësimet te {email}.",
+      "powerOfAttorney": {
+        "title": "Prokurë",
+        "description": "Autorizon Compensall të ndjekë kërkesën tënde për kompensim sipas 261/2004/KE."
+      },
+      "errors": {
+        "nameRequired": "Shkruaj emrin e plotë ligjor.",
+        "emailInvalid": "Shkruaj një email të vlefshëm. Na duhet për numrin e ndjekjes dhe lajmet e dosjes.",
+        "phoneInvalid": "Shkruaj një numër telefoni të vlefshëm që të të kontaktojmë për kërkesën.",
+        "passengerNameRequired": "Shkruaj emrin dhe mbiemrin e pasagjerit {number}.",
+        "passengerEmailInvalid": "Shkruaj një email të vlefshëm për pasagjerin {number}.",
+        "passengerPhoneInvalid": "Shkruaj një telefon të vlefshëm për pasagjerin {number}.",
+        "scrollBeforeSign": "Shko deri në fund të dokumentit para se të nënshkruash.",
+        "signatureRequired": "Vizatoni nënshkrimin për të konfirmuar se e ke lexuar dhe e pranon këtë dokument.",
+        "signFailed": "Nuk e regjistruam nënshkrimin. Provo sërish.",
+        "signConnectionError": "Nuk e regjistruam nënshkrimin. Kontrollo lidhjen dhe provo sërish.",
+        "signBeforeSubmit": "Nënshkruaje Prokurën për çdo pasagjer para se të dërgosh.",
+        "submitFailed": "Nuk e dërguam kërkesën.",
+        "sessionExpired": "Sesioni i kërkesës skadoi. Fillo sërish."
+      }
+    },
+    "sidebar": {
+      "uploadedBoardingPass": "Kartë imbarkimi e ngarkuar",
+      "manualFlightEntry": "Plotësim manual i fluturimit",
+      "manualEntryHint": "I shkrove vetë itinerarin dhe detajet. Konfirmo që gjithçka duket e saktë para nënshkrimit.",
+      "extractedFlightDetails": "Të dhëna të nxjerra të fluturimit",
+      "confirmCorrect": "Konfirmo që duken të sakta.",
+      "detailsReady": "Të dhënat e fluturimit janë gati për shqyrtim."
+    }
+  },
+  "faq": {
+    "sectionTitle": "Pyetje të",
+    "sectionTitleAccent": "shpeshta",
+    "pageTitle": "Kompensim fluturimi",
+    "pageTitleAccent": "Pyetje",
+    "pageIntro": "Gjithçka që duhet të dish për kërkesën sipas UK261 dhe 261/2004/KE, shërbimin No win, no fee dhe si i mbrojmë të dhënat.",
+    "default": [
+      {
+        "question": "A është e sigurt të ngarkoj kartën e imbarkimit?",
+        "answer": "Po, krejt. Karta e imbarkimit enkriptohet dhe ruhet në mënyrë të sigurt. Përdorim vetëm informacionin e nevojshëm për kërkesën dhe nuk e ndajmë me palë të treta."
+      },
+      {
+        "question": "A e bën gjithçka asistenti?",
+        "answer": "Asistenti e shpejton procesin, por kërkesën e mbështesin edhe njerëz të vërtetë. Ekipi ynë mund ta shqyrtojë dosjen, të kontaktojë kompaninë dhe ta ndjekë kërkesën nga fillimi në fund."
+      },
+      {
+        "question": "Sa kompensim mund të marr?",
+        "answer": "Për fluturimet e MB, UK261 jep deri në 520 £ për pasagjer (220 £ nën 1.500 km, 350 £ për 1.500–3.500 km dhe 520 £ mbi 3.500 km). Për fluturimet e mbuluara të BE-së, 261/2004/KE jep 250 €, 400 € ose 600 € në të njëjtat breza distance."
+      },
+      {
+        "question": "Çfarë do të thotë «No win, no fee»?",
+        "answer": "Do të thotë se nuk paguan asgjë nëse nuk e fitojmë kërkesën. Tarifa e suksesit merret vetëm kur rikuperojmë vërtet kompensimin në emrin tënd."
+      },
+      {
+        "question": "Çfarë bën asistenti?",
+        "answer": "Asistenti analizon kartën e imbarkimit, kontrollon të drejtën sipas UK261 dhe Rregullores (KE) nr. 261/2004, dhe përgatit dokumentacionin për ta dërguar kërkesën."
+      },
+      {
+        "question": "A mund të flas me një njeri të vërtetë?",
+        "answer": "Po. Ekipi ynë njerëzor është gati gjatë gjithë procesit. Na gjen në chat, email ose telefon."
+      },
+      {
+        "question": "Sa kushton?",
+        "answer": "Nuk ka kosto paraprake. Compensall punon No win, no fee: tarifë vetëm nëse kërkesa del me sukses."
+      },
+      {
+        "question": "A mund t’i fshij të dhënat?",
+        "answer": "Po. Mund të kërkosh fshirjen e të dhënave personale në çdo kohë. Na shkruaj dhe e përpunojmë kërkesën brenda 30 ditëve, sipas GDPR."
+      }
+    ],
+    "uk": [
+      {
+        "question": "Çfarë është UK261 dhe si ndryshon nga KE 261?",
+        "answer": "Pas Brexit, MB i mbajti të drejtat e pasagjerit me UK261, që pasqyron Rregulloren (KE) nr. 261/2004 për fluturimet nga MB. UK261 i cakton shumat në paund (220 £, 350 £ ose 520 £); KE 261 i përdor eurot (250 €, 400 € ose 600 €) për fluturimet e mbuluara të BE-së."
+      },
+      {
+        "question": "A vlen UK261 për fluturimin tim?",
+        "answer": "UK261 zakonisht vlen për nisjet nga aeroportet e MB. 261/2004/KE mund të vlejë për nisjet nga aeroportet e BE-së dhe, në disa raste, për mbërritjet në BE me kompani të BE-së ose të MB. Rregullorja varet nga itinerari dhe kompania. Shqipëria nuk është në BE: nga Tiranë je i mbuluar kur të sjell në BE një kompani evropiane, ose kur nisesh nga një aeroport i BE-së."
+      },
+      {
+        "question": "A mund të kërkoj për një fluturim të vonuar sipas UK261?",
+        "answer": "Po. Nëse mbërritën në destinacionin përfundimtar më shumë se tre orë vonë dhe vonesa nuk erdhi nga rrethana të jashtëzakonshme, mund të kesh të drejtë sipas UK261 ose 261/2004/KE, varësisht cilës rregullore i përket udhëtimi."
+      },
+      {
+        "question": "Sa kohë kam për të kërkuar kompensim?",
+        "answer": "Afatet varen nga vendi ku ndiqet kërkesa, zakonisht dy deri në gjashtë vjet në BE ose MB. Në Angli dhe Uells zakonisht gjashtë vjet. Nuk ka një ligj shqiptar kompensimi që ta zëvendësojë KE 261 — nis sa më shpejt, sa janë ende të dhënat."
+      }
+    ]
+  },
+  "cookies": {
+    "bannerTitle": "Përdorim cookies",
+    "bannerDescription": "Përdorim cookies thelbësore për ta vënë në punë faqen dhe, me pëlqimin tënd, cookies opsionale për të kuptuar si përdoret Compensall. Lexo <cookiePolicy>Politikën e Cookies</cookiePolicy> dhe <privacyPolicy>Politikën e privatësisë</privacyPolicy>.",
+    "cookiePolicy": "Politika e Cookies",
+    "essentialOnly": "Vetëm thelbësoret",
+    "acceptAll": "Pranoji të gjitha",
+    "pageTitle": "Politika e Cookies",
+    "pageDescription": "Kupto se si Compensall përdor cookies dhe teknologji të ngjashme, dhe si i menaxhon preferencat.",
+    "breadcrumb": "Cookies",
+    "summary": "Si i përdorim cookies dhe si i kontrollon."
+  },
+  "privacyPolicy": {
+    "pageTitle": "Politika e privatësisë",
+    "pageDescription": "Mëso se si Compensall i mbledh, i përdor, i ruan dhe i mbron të dhënat e tua personale në faqe dhe në shërbimin e kërkesës për kompensim.",
+    "breadcrumb": "Politika e privatësisë",
+    "summary": "Si i trajtojmë të dhënat e tua në faqe dhe në shërbimin e kërkesës."
+  },
+  "terms": {
+    "pageTitle": "Kushtet e shërbimit",
+    "pageDescription": "Lexo Kushtet e shërbimit për përdorimin e Compensall: rregullat e dërgimit të kërkesës, tarifat, përgjegjësitë dhe ligjin e zbatueshëm.",
+    "breadcrumb": "Kushtet e shërbimit",
+    "summary": "Rregullat për të përdorur Compensall dhe për të dërguar një kërkesë kompensimi."
+  },
+  "noWinNoFeePage": {
+    "pageTitle": "Marrëveshja No win, no fee",
+    "breadcrumb": "Marrëveshja No win, no fee",
+    "summary": "Paguan vetëm nëse rikuperojmë me sukses kompensimin e fluturimit."
+  },
+  "legal": {
+    "breadcrumbPrices": "Çmimet"
+  },
+  "about": {
+    "title": "Rreth nesh",
+    "subtitle": "I ndihmojmë pasagjerët të kërkojnë kompensimin që u takon, me asistentin dhe mbështetje njerëzore në çdo hap.",
+    "missionTitle": "Misioni ynë",
+    "missionP1": "Compensall e bën të thjeshtë kompensimin e fluturimit. Kompanitë shpesh vonojnë përgjigjen, hedhin poshtë kërkesa të vlefshme dhe e bëjnë procesin stresues — prandaj shumë pasagjerë nuk marrin atë që u jep Rregullorja (KE) nr. 261/2004.",
+    "missionP2": "I marrim të gjitha: dokumentet, bisedën me kompaninë dhe ndjekjen e dosjes kur duhet. Ngarko kartën e imbarkimit, konfirmo të dhënat dhe lëre ekipin të luftojë për kompensimin tënd, No win, no fee.",
+    "whyChooseTitle": "Pse na zgjedhin pasagjerët",
+    "whyChoose": [
+      "No win, no fee: nuk paguan asgjë nëse nuk fitojmë",
+      "Trajtim nga fillimi në fund, nga kontrolli i të drejtës deri te ndjekja te kompania",
+      "Tarifë suksesi e parashikueshme. Nuk jemi zyrë avokatie",
+      "Qasje GDPR-first ndaj të dhënave të tua",
+      "Deri në 600 € për pasagjer në fluturimet e mbuluara",
+      "E besuar nga mijëra udhëtarë në Evropë"
+    ],
+    "valuesTitle": "Për çfarë qëndrojmë",
+    "values": {
+      "fastRiskFree": {
+        "title": "E shpejtë dhe pa rrezik",
+        "description": "Kontrollo të drejtën për minuta, pa kosto paraprake. Tarifa vetëm nëse e fitojmë kërkesën."
+      },
+      "humanSupport": {
+        "title": "Mbështetje njerëzore",
+        "description": "Asistenti e shpejton punën, por njerëz të vërtetë e shqyrtojnë dosjen dhe merremi me kompaninë."
+      },
+      "security": {
+        "title": "Siguri maksimale",
+        "description": "Karta e imbarkimit dhe të dhënat e tua janë të mbrojtura. Ti mban kontrollin në çdo hap."
+      }
+    }
+  },
+  "knowYourRights": {
+    "heroTitle": "Njihi të drejtat e tua",
+    "heroSubtitle": "Kupto të drejtat sipas UK261 dhe 261/2004/KE dhe si të ndihmon Compensall me mbështetjen dixhitale.",
+    "whatHappenedTitle": "Çfarë ndodhi në",
+    "whatHappenedAccent": "fluturimin tënd?",
+    "howItWorksTitle": "Si",
+    "howItWorksAccent": "funksionon?",
+    "howItWorksSubtitle": "Ngarko kartën e imbarkimit. Asistenti kontrollon kërkesën. Ekipi ynë merret me kompaninë.",
+    "flightIssues": {
+      "flightCancellation": {
+        "title": "Anulim fluturimi",
+        "description": "Nëse fluturimi u anulua me njoftim të shkurtër, mund të kesh të drejtë deri në 600 €."
+      },
+      "deniedBoarding": {
+        "title": "Refuzim imbarkimi",
+        "description": "Nëse të refuzuan imbarkimin kundër vullnetit, mund të kërkosh deri në 600 €."
+      },
+      "flightDelay": {
+        "title": "Vonesë fluturimi",
+        "description": "Nëse mbërritën më shumë se 3 orë vonë, mund të kesh të drejtë për kompensim."
+      },
+      "missedConnection": {
+        "title": "Lidhje e humbur",
+        "description": "Nëse një vonesë ose anulim të bëri të humbasësh lidhjen, mund të kesh të drejtë për kompensim."
+      },
+      "overbooking": {
+        "title": "Overbooking",
+        "description": "Nëse kompania e mbishiti fluturimin dhe nuk udhëtove siç ishte planifikuar, mund të kërkosh."
+      },
+      "airlineStrike": {
+        "title": "Greva e kompanisë",
+        "description": "Nëse fluturimin ta prishi një grevë e kompanisë, prapë mund të kesh të drejta kompensimi."
+      },
+      "passengerRights": {
+        "title": "Të drejtat e pasagjerit",
+        "description": "Mëso çfarë mund të të detyrohet kompania kur udhëtimi prishet."
+      },
+      "passengersWithDisabilities": {
+        "title": "Pasagjerë me aftësi të kufizuara",
+        "description": "Kupto të drejtat për ndihmë, aksesueshmëri dhe mbështetje gjatë udhëtimit."
+      }
+    }
+  },
+  "prices": {
+    "title": "Çmimet dhe tarifat",
+    "breadcrumb": "Çmimet",
+    "summary": "Pa kosto paraprake. Tarifa e suksesit merret vetëm kur rikuperojmë kompensimin për ty.",
+    "noWinNoFeeIntro": "No win, no fee:",
+    "noWinNoFeeBody": "Kontrolli i të drejtës dhe përdorimi i faqes janë falas. Nëse na emëron të ndjekim kompensimin, tarifa jonë vlen vetëm kur kërkesa del me sukses, sipas <noWinNoFeeAgreement>Marrëveshjes No win, no fee</noWinNoFeeAgreement>.",
+    "noWinNoFeeAgreement": "Marrëveshja No win, no fee",
+    "successFeeTitle": "Tarifa e suksesit",
+    "successFeeDescription": "Kur rikuperojmë kompensimin në emrin tënd, zbresim një tarifë suksesi para se t’ia transferojmë bilancin. Ti merr të paktën 70% të shumës së rikuperuar, para rregullimeve të TVSH-së.",
+    "tableCompensationRecovered": "Kompensimi i rikuperuar",
+    "tableSuccessFee": "Tarifa e suksesit",
+    "tierUpTo220": "Deri në 220 £ / 250 €",
+    "tier221to350": "221–350 £ / 251–400 €",
+    "tier351to520": "351–520 £ / 401–600 €",
+    "fee25Vat": "30% + TVSH",
+    "uk261Title": "Shumat e kompensimit (UK261)",
+    "uk261Intro": "Për fluturimet nga MB, kompensimi fiks i UK261 varet nga distanca e fluturimit:",
+    "ec261Title": "Shumat e kompensimit (261/2004/KE)"
+  },
+  "cta": {
+    "title": "Kontroll i sigurt i kërkesës. Me njerëz.",
+    "titleLine2": "No win, no fee.",
+    "subtitle": "Kërkesën e udhëheq MI dhe e mbështesin njerëz të vërtetë.",
+    "subtitleLine2": "E shpejtë, e sigurt dhe e thjeshtë që nga ngarkimi i parë.",
+    "body": "Tarifa jonë standarde merret vetëm nëse fitojmë kompensimin për ty. <brandName>Compensall</brandName> e merr procesin nga ngarkimi i kartës së imbarkimit deri te ndjekja te kompania, që të kërkosh me besim.",
+    "fastRiskFree": "E shpejtë dhe pa rrezik",
+    "noHiddenFees": "Pa tarifa të fshehura",
+    "talkToUs": "Na shkruaj",
+    "humanSupportAvailable": "Mbështetje njerëzore",
+    "highestSecurity": "Siguri maksimale",
+    "dataProtected": "Të dhënat e tua janë gjithmonë të mbrojtura"
+  },
+  "passengerRights": {
+    "rightsHeading": "Të drejtat e tua sipas",
+    "rightsAccent": "UK261 dhe KE 261",
+    "rightsIntro": "Pasagjerët ajrorë në MB dhe BE mbrohen kur fluturimet vonohen, anulohen ose prishen pa fajin e tyre.",
+    "uk261Card": {
+      "title": "UK261 — fluturime të MB",
+      "body": "Pas Brexit, MB i mbajti të drejtat e pasagjerit me UK261. Vlen për fluturimet që nisen nga hapësira ajrore e MB dhe cakton kompensim fiks në paund: 220 £, 350 £ ose 520 £ sipas distancës."
+    },
+    "ec261Card": {
+      "title": "261/2004/KE — fluturime të BE-së",
+      "body": "Rregullorja (KE) nr. 261/2004 vazhdon t’i mbrojë pasagjerët në fluturimet e mbuluara të BE-së, me 250 €, 400 € ose 600 € në të njëjtat breza distance."
+    },
+    "rightsDetailP1": "Nëse fluturimi vonohet tre orë ose më shumë në mbërritje, anulohet me njoftim të shkurtër, ose të refuzojnë imbarkimin kundër vullnetit, mund të kesh të drejtë për kompensim fiks. Mund të kesh edhe të drejta për kujdes, ridrejtim dhe rimbursim, sipas rrethanave.",
+    "rightsDetailP2": "Lidhjet e humbura dhe grevat e kompanisë mund të kualifikohen kur ndërprerja është nën kontrollin e kompanisë. Compensall të ndihmon të kontrollosh të drejtën, të përgatitësh kërkesën dhe ta ndjekësh kompensimin No win, no fee.",
+    "eligibilityHeading": "Kur mund të kërkosh",
+    "eligibilityAccent": "kompensim?",
+    "eligibilityIntro": "Mund të kesh të drejtë nëse të gjitha këto vlejnë për udhëtimin tënd.",
+    "eligibility": {
+      "ukEuDeparture": {
+        "title": "Fluturim i MB ose i BE-së",
+        "body": "Fluturimi nisi nga hapësira e MB (UK261) ose e BE-së (261/2004/KE), ose mbërrin në një aeroport të MB/BE-së dhe e operon një kompani e MB-së ose e BE-së. Nga Shqipëria je i mbuluar kur nisesh nga BE ose kur të sjell në BE një kompani evropiane."
+      },
+      "significantDisruption": {
+        "title": "Ndërprerje e rëndësishme",
+        "body": "Mbërritën në destinacionin përfundimtar tre ose më shumë orë vonë, ose fluturimi u anulua, ose të refuzuan imbarkimin."
+      },
+      "airlineResponsibility": {
+        "title": "Përgjegjësia e kompanisë",
+        "body": "Ndërprerja nuk erdhi nga rrethana të jashtëzakonshme jashtë kontrollit të kompanisë, si mot i rëndë ose kufizime të trafikut ajror."
+      },
+      "validBooking": {
+        "title": "Rezervim i vlefshëm",
+        "body": "U check-inove në kohë dhe ke një rezervim të vlefshëm për fluturimin e prekur."
+      },
+      "withinTimeLimits": {
+        "title": "Brenda afateve",
+        "body": "E niset kërkesën brenda afatit të zbatueshëm — zakonisht dy deri në gjashtë vjet, sipas vendit të BE-së ose MB ku ndiqet dosja. Nuk ka një statut shqiptar që ta zëvendësojë KE 261."
+      }
+    },
+    "ec261Note": "Për fluturimet e mbuluara të BE-së, 261/2004/KE jep 250 €, 400 € ose 600 € në të njëjtat breza distance.",
+    "tiers": {
+      "uk261": {
+        "220": {
+          "label": "Fluturime deri në 1.500 km",
+          "desc": "Kompensim UK261 për fluturime të shkurtra të mbuluara."
+        },
+        "350": {
+          "label": "Fluturime midis 1.500 km dhe 3.500 km",
+          "desc": "Kompensim UK261 për distanca të mesme."
+        },
+        "520": {
+          "label": "Fluturime mbi 3.500 km",
+          "desc": "Kompensim UK261 për distanca të gjata."
+        }
+      },
+      "ec261": {
+        "250": {
+          "label": "Fluturime deri në 1.500 km",
+          "desc": "Kompensim 261/2004/KE për fluturime të shkurtra të mbuluara."
+        },
+        "400": {
+          "label": "Fluturime midis 1.500 km dhe 3.500 km",
+          "desc": "Kompensim 261/2004/KE për distanca të mesme."
+        },
+        "600": {
+          "label": "Fluturime mbi 3.500 km",
+          "desc": "Kompensim 261/2004/KE për distanca të gjata."
+        }
+      }
+    }
+  },
+  "metadata": {
+    "site": {
+      "title": "Compensall – Fluturim i vonuar ose i anuluar? Kërko deri në 520 £ ose 600 €",
+      "description": "Fluturim i vonuar ose i anuluar? Kërko deri në 520 £ sipas UK261 ose 600 € sipas 261/2004/KE. Ngarkim i sigurt i kartës së imbarkimit, mbështetje njerëzore, No win, no fee."
+    },
+    "home": {
+      "title": "Fluturim i vonuar ose i anuluar? Kërko deri në 520 £ ose 600 €",
+      "description": "Ngarko kartën e imbarkimit dhe kërko kompensim fluturimi sipas UK261 ose 261/2004/KE. E sigurt, me mbështetje njerëzore, No win, no fee."
+    },
+    "faq": {
+      "title": "Pyetje të shpeshta për kompensimin e fluturimit",
+      "description": "Përgjigje për UK261, 261/2004/KE, shumat e kompensimit, No win, no fee, ngarkimin e kartës së imbarkimit dhe si e trajton Compensall kërkesën."
+    },
+    "about": {
+      "title": "Rreth Compensall dhe kompensimit të fluturimit",
+      "description": "Compensall i ndihmon pasagjerët ajrorë të kërkojnë deri në 600 € sipas EU261: ngarkim i sigurt i kartës, kontroll asistent dhe ndjekje njerëzore te kompania, No win, no fee."
+    },
+    "knowYourRights": {
+      "title": "Njihi të drejtat e kompensimit të fluturimit",
+      "description": "Mëso kur UK261 dhe Rregullorja (KE) nr. 261/2004 të japin deri në 520 £ ose 600 € për vonesa, anulime, refuzim imbarkimi, lidhje të humbura dhe greva."
+    },
+    "prices": {
+      "title": "Çmimet, tarifat dhe No win, no fee",
+      "description": "Compensall punon No win, no fee. Shiko strukturën e tarifës së suksesit dhe shumat UK261 e KE 261."
+    },
+    "blog": {
+      "title": "Udhëzues kompensimi fluturimi dhe të drejta pasagjeri",
+      "description": "Udhëzues praktikë 261/2004/KE për vonesa, anulime, refuzim imbarkimi, lidhje të humbura dhe si të kërkosh deri në 600 €."
+    },
+    "cookies": {
+      "title": "Politika e cookies dhe preferencat",
+      "description": "Kupto se si Compensall përdor cookies dhe teknologji të ngjashme, dhe si i menaxhon preferencat."
+    },
+    "privacyPolicy": {
+      "title": "Politika e privatësisë dhe të dhënat personale",
+      "description": "Mëso se si Compensall i mbledh, i përdor, i ruan dhe i mbron të dhënat e tua në faqe dhe në shërbimin e kërkesës."
+    },
+    "terms": {
+      "title": "Kushtet e shërbimit të kërkesave Compensall",
+      "description": "Lexo Kushtet e shërbimit: rregullat e dërgimit të kërkesës, tarifat, përgjegjësitë dhe ligjin e zbatueshëm."
+    },
+    "airlines": {
+      "title": "Udhëzues kompensimi për kompani dhe aeroporte",
+      "description": "Gjej kompaninë ose aeroportin dhe kontrollo të drejtën sipas EU261. Udhëzues për Wizz Air, Ryanair, Vjenën dhe aeroportet e mëdha evropiane."
+    },
+    "authorityToAct": {
+      "title": "Prokurë për kërkesën e fluturimit",
+      "description": "Prokurë që autorizon Compensall të ndjekë kërkesën tënde për kompensim sipas 261/2004/KE."
+    },
+    "noWinNoFee": {
+      "title": "Marrëveshja No win, no fee",
+      "description": "Marrëveshja No win, no fee e Compensall. Paguan vetëm nëse rikuperojmë me sukses kompensimin."
+    },
+    "privacyDataConsent": {
+      "title": "Privatësia dhe pëlqimi për të dhënat",
+      "description": "Dokumenti i privatësisë dhe pëlqimit të Compensall: si i përpunojmë dhe i mbrojmë të dhënat e tua personale."
+    },
+    "track": {
+      "title": "Ndjek kërkesën",
+      "description": "Kontrollo statusin e kërkesës sate Compensall me referencën e ndjekjes."
+    },
+    "thankYou": {
+      "title": "Faleminderit — kërkesa u dërgua",
+      "description": "Kërkesa jote Compensall për kompensim fluturimi u dërgua."
+    }
+  },
+  "trackPage": {
+    "title": "Ndjek kërkesën",
+    "reference": "Referenca <tracking>{trackingNumber}</tracking>",
+    "loading": "Po ngarkojmë statusin e kërkesës…",
+    "notFound": "Nuk e gjetëm këtë kërkesë.",
+    "invalidReference": "Format i pavlefshëm i numrit të ndjekjes.",
+    "errorGeneric": "Diçka shkoi keq. Provo sërish.",
+    "startNewClaim": "Nis një kërkesë të re",
+    "claimDetails": "Detajet e kërkesës",
+    "status": "Statusi",
+    "fields": {
+      "passenger": "Pasagjer",
+      "flight": "Fluturim",
+      "route": "Itinerar",
+      "date": "Datë",
+      "submitted": "Dërguar",
+      "estimate": "Kompensim i vlerësuar"
+    },
+    "estimateUpTo": "Deri në {amount}",
+    "estimateDetail": "Sipas {regulation} për një itinerar rreth {distance}.",
+    "estimateDisclaimer": "Vetëm orientues. E drejta përfundimtare varet nga kohëzgjatja e vonesës, përgjegjësia e kompanisë dhe rrethanat e jashtëzakonshme.",
+    "statuses": {
+      "received": {
+        "label": "U mor",
+        "message": "E morëm kërkesën dhe ekipi ynë po e shqyrton. Do ta përditësojmë këtu sapo të ketë lajm."
+      },
+      "needs_documents": {
+        "label": "Duhet dokumentacion",
+        "message": "Na duhen edhe disa dokumente për të vazhduar. Shikoje emailin, ose na shkruaj në +351 923391980. Jemi gati të ndihmojmë."
+      },
+      "with_airline": {
+        "label": "Te kompania ajrore",
+        "message": "Kërkesa shkoi te kompania. Po presim përgjigjen dhe do të përditësojmë sapo të ketë lajm."
+      },
+      "following_up": {
+        "label": "Në ndjekje",
+        "message": "Kompania u përgjigj dhe po e ndjekim në emrin tënd. Do të të njoftojmë për çdo zhvillim."
+      },
+      "payment_processing": {
+        "label": "Pagesa në proces",
+        "message": "Lajm i mirë: kompania e miratoi kompensimin. Tani po e përgatisim pagesën dhe së shpejti do të përditësojmë."
+      },
+      "awaiting_fee": {
+        "label": "Tarifa e shërbimit",
+        "message": "Urime, kërkesa doli me sukses! Përfundo pagesën e tarifës së shërbimit që ta mbyllim dosjen."
+      },
+      "paid": {
+        "label": "U pagua",
+        "message": "Pagesa u krye! Faleminderit për besimin. Nëse ke pyetje, jemi këtu."
+      },
+      "closed_ntd": {
+        "label": "U mbyll",
+        "message": "Fatkeqësisht nuk mund ta çojmë më tej kërkesën; dosja u mbyll. Nëse ke pyetje, na shkruaj pa hezitim."
+      },
+      "paused": {
+        "label": "Në pauzë",
+        "message": "Dosja është në pauzë sepse nuk morëm përgjigje prej teje. Na shkruaj në +351 923391980 nëse do ta rinisësh."
+      },
+      "closed_declined": {
+        "label": "U mbyll",
+        "message": "Fatkeqësisht kompania e refuzoi kërkesën dhe nuk mund ta çojmë më tej. Dosja u mbyll — na shkruaj nëse do ta diskutojmë rezultatin."
+      }
+    }
+  },
+  "airlinesPage": {
+    "title": "Aeroporte dhe kompani ajrore",
+    "subtitleLine1": "Gjej kompaninë ose aeroportin.",
+    "subtitleLine2": "Kontrollo kërkesën për minuta."
+  },
+  "airlinesCatalog": {
+    "airlines": "Kompani ajrore",
+    "airports": "Aeroporte",
+    "mostPopular": "Më të njohurat",
+    "searchResults": "{count, plural, =1 {# rezultat} other {# rezultate}}",
+    "searchAirline": "Kërko kompani…",
+    "searchAirport": "Kërko aeroport, qytet ose vend…",
+    "seeMore": "Shiko më shumë {section}",
+    "allSection": "Të gjitha {section}",
+    "showLess": "Shfaq më pak",
+    "noResults": "Nuk u gjet asgjë. Provo një kërkim tjetër.",
+    "airlineCardDescription": "Vonesë, anulim ose refuzim imbarkimi te {name}? Kontrollo kërkesën për minuta.",
+    "airportCardDescription": "Fluturim i vonuar ose i anuluar përmes {name}? Kontrollo kërkesën për minuta."
+  },
+  "catalogDetail": {
+    "airlineTitle": "Kompensim për vonesë ose anulim te {name}",
+    "airportTitle": "Kompensim fluturimi nga {name}",
+    "airlineMetaTitle": "Kompensim fluturimi {name}",
+    "airportMetaTitle": "Kompensim fluturimi {name}",
+    "airlineIntroP1": "Nëse fluturimi yt {name} u vonua, u anulua ose të refuzuan imbarkimin, mund të kesh të drejtë deri në 600 € sipas Rregullores (KE) nr. 261/2004 dhe UK261.",
+    "airlineIntroP2": "Compensall e kontrollon të drejtën për minuta. Ngarko kartën e imbarkimit ose jep të dhënat e fluturimit — No win, no fee.",
+    "airportIntroP1": "Fluturon nga ose drejt {name}? Nëse fluturimi u vonua ose u anulua, mund të kesh të drejtë deri në 600 € sipas 261/2004/KE dhe UK261.",
+    "airportIntroP2": "Compensall të ndihmon ta kontrollosh kërkesën për minuta. Fillo me kartën e imbarkimit ose të dhënat e fluturimit — No win, no fee.",
+    "sectionRights": "Të drejtat e tua si pasagjer",
+    "sectionTips": "Këshilla për kërkesën",
+    "airlineCardDescription": "Vonesë, anulim ose refuzim imbarkimi te {name}? Kontrollo kërkesën për minuta.",
+    "airportCardDescription": "Fluturim i vonuar ose i anuluar përmes {name}? Kontrollo kërkesën për minuta.",
+    "entityAirlineFlight": "fluturimi yt {name}",
+    "entityAirportFlight": "një fluturim përmes {name}",
+    "faqDelayQuestion": "A kam të drejtë për kompensim nëse {entity} u vonua ose u anulua?",
+    "faqDelayAnswer": "Mund të kesh të drejtë nëse mbërritën 3+ orë vonë ose u anulua me njoftim të shkurtër, për sa kohë ndërprerja ishte nën kontrollin e kompanisë (jo rrethana të jashtëzakonshme si mot i rëndë).",
+    "faqAmountQuestion": "Sa kompensim mund të kërkoj?",
+    "faqAmountAnswer": "Sipas 261/2004/KE dhe UK261, kompensimi është zakonisht 250 €, 400 € ose 600 € për pasagjer, sipas distancës dhe kohëzgjatjes së vonesës.",
+    "faqRejectedAirlineQuestion": "Po nëse {name} e hodhi poshtë kërkesën time?",
+    "faqRejectedAirportQuestion": "Po nëse kompania e hodhi poshtë kërkesën time?",
+    "faqRejectedAnswer": "Një refuzim nuk do të thotë automatikisht se s’ke të drejtë. E shqyrtojmë dosjen dhe kërkesat e vlefshme i ndjekim No win, no fee.",
+    "faqDeadlineQuestion": "A ka afat për të kërkuar?",
+    "faqDeadlineAnswer": "Afatet ndryshojnë sipas vendit (shpesh disa vjet në BE ose MB). Kontrollo sa më shpejt, që të vlerësojmë opsionet. Shqipëria nuk ka një ligj kompensimi që ta zëvendësojë KE 261.",
+    "faqSafeQuestion": "A është e sigurt të ndaj kartën e imbarkimit?",
+    "faqSafeAnswer": "Po. Të dhënat trajtohen në mënyrë të sigurt dhe përdoren vetëm për të vlerësuar dhe ndjekur kërkesën.",
+    "claimHeadlineAirline": "Gati të kërkosh ndaj {name}?",
+    "claimHeadlineAirport": "Gati ta kontrollosh kërkesën nga {name}?",
+    "claimSubheadline": "Përdor asistentin e kartës së imbarkimit në kryefaqe. Është i shpejtë, i sigurt dhe No win, no fee.",
+    "breadcrumbCatalog": "Kompani dhe aeroporte",
+    "notFoundAirline": "Kompania nuk u gjet | Compensall",
+    "notFoundAirport": "Aeroporti nuk u gjet | Compensall"
+  },
+  "notFoundPage": {
+    "title": "Faqja nuk u gjet",
+    "description": "Nuk e gjetëm këtë faqe. Nis një kontroll kompensimi ose shfleto udhëzuesit më poshtë.",
+    "checkCompensation": "Kërko kompensim",
+    "knowYourRights": "Njihi të drejtat e tua",
+    "blog": "Blog"
+  },
+  "blogPage": {
+    "title": "Blog",
+    "subtitle": "Udhëzues praktikë për të drejtat e pasagjerit sipas 261/2004/KE: vonesa, anulime, refuzim imbarkimi e më shumë — që të dish çfarë të takon para se të ngjitesh.",
+    "readArticle": "Lexo artikullin",
+    "backToBlog": "Kthehu te blogu",
+    "englishOnlyNotice": "Ky udhëzues është aktualisht vetëm në anglisht."
+  },
+  "thankYouPage": {
+    "title": "Faleminderit",
+    "body": "E morëm Prokurën e nënshkruar dhe do të fillojmë punën për kërkesën tënde.",
+    "bodyWithFlight": "E morëm Prokurën e nënshkruar dhe do të fillojmë punën për kërkesën e fluturimit {flight}.",
+    "trackingNumber": "Numri yt i ndjekjes",
+    "trackYourClaim": "Ndjek kërkesën",
+    "startNewClaim": "Nis një kërkesë të re"
+  },
+  "documentPage": {
+    "home": "Kryefaqja",
+    "claim": "Kërkesë",
+    "powerOfAttorney": "Prokurë",
+    "privacyDataConsent": "Privatësia dhe pëlqimi për të dhënat",
+    "copyright": "Copyright © Compensall 2026. Të gjitha të drejtat e rezervuara.",
+    "backToClaim": "Kthehu te kërkesa"
+  }
+}

@@ -7,18 +7,30 @@ import {
 } from "@/lib/cms-blog-store";
 import type { BlogPost } from "./types";
 import { blogPostsEn } from "./posts.en";
+import { blogPostsEs } from "./posts.es";
 import { blogPostsFr } from "./posts.fr";
 import { blogPostsPt } from "./posts.pt";
+import { blogPostsHu } from "./posts.hu";
+import { blogPostsRo } from "./posts.ro";
+import { blogPostsDe } from "./posts.de";
+import { blogPostsNl } from "./posts.nl";
+import { blogPostsSq } from "./posts.sq";
 
 const blogPostsByLocale: Record<AppLocale, BlogPost[]> = {
   en: blogPostsEn,
   pt: blogPostsPt,
   fr: blogPostsFr,
+  es: blogPostsEs,
+  ro: blogPostsRo,
+  hu: blogPostsHu,
+  sq: blogPostsSq,
+  de: blogPostsDe,
+  nl: blogPostsNl,
 };
 
 const getCachedCmsRecords = unstable_cache(
   async () => listCmsBlogRecords(),
-  ["cms-blog-posts-list", "copy-qa-2026-09"],
+  ["cms-blog-posts-list", "copy-qa-2026-09-nl"],
   { tags: [CMS_BLOG_TAG] },
 );
 

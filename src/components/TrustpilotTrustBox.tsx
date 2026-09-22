@@ -24,6 +24,18 @@ function localeToTrustpilot(locale: string): string {
       return "pt-PT";
     case "fr":
       return "fr-FR";
+    case "es":
+      return "es-ES";
+    case "ro":
+      return "ro-RO";
+    case "hu":
+      return "hu-HU";
+    case "sq":
+      return "en-GB";
+    case "de":
+      return "de-DE";
+    case "nl":
+      return "nl-NL";
     case "en":
     default:
       return "en-GB";

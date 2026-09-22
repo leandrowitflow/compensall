@@ -1,11 +1,14 @@
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-metadata";
+import { routing } from "@/i18n/routing";
+import { HTML_LANG_MAP, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-metadata";
 import {
   LEGAL_ENTITY_EMAIL,
   LEGAL_ENTITY_NAME,
   LEGAL_ENTITY_NIF,
 } from "@/lib/passenger-rights";
 
-export function buildOrganizationSchema() {
+const SITE_IN_LANGUAGE = routing.locales.map((locale) => HTML_LANG_MAP[locale]);
+
+export function buildOrganizationSchema(description = SITE_DESCRIPTION) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -14,7 +17,7 @@ export function buildOrganizationSchema() {
     taxID: LEGAL_ENTITY_NIF,
     url: SITE_URL,
     logo: `${SITE_URL}/assets/logo.png`,
-    description: SITE_DESCRIPTION,
+    description,
     email: LEGAL_ENTITY_EMAIL,
     address: {
       "@type": "PostalAddress",
@@ -32,14 +35,14 @@ export function buildOrganizationSchema() {
   };
 }
 
-export function buildWebSiteSchema() {
+export function buildWebSiteSchema(description = SITE_DESCRIPTION) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
-    description: SITE_DESCRIPTION,
-    inLanguage: ["en-GB", "pt-PT", "fr-FR"],
+    description,
+    inLanguage: SITE_IN_LANGUAGE,
   };
 }
 
@@ -121,13 +124,13 @@ export function buildHowToSchema(
   };
 }
 
-export function buildProfessionalServiceSchema() {
+export function buildProfessionalServiceSchema(description = SITE_DESCRIPTION) {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: SITE_NAME,
     url: SITE_URL,
-    description: SITE_DESCRIPTION,
+    description,
     areaServed: "European Union",
     serviceType: "Flight compensation claims under EU regulation EC 261/2004",
   };

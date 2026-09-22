@@ -16,6 +16,7 @@ export type GtmClaimLocation =
   | "docs"
   | "docs_breadcrumb"
   | "track"
+  | "thank_you"
   | "not_found";
 
 /** Props for CTAs that open the claim form (`/#claim`). */

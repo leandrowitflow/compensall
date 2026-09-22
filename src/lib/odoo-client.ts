@@ -509,10 +509,145 @@ export async function odooFindLeadBySessionId(sessionId: string): Promise<number
     "crm.lead",
     "search",
     [[["description", "ilike", `Session: ${sessionId}`]]],
-    { limit: 1, order: "id desc" },
+    { limit: 1, order: "id desc", context: { active_test: false } },
   );
 
   return matches[0] ?? null;
+}
+
+export type OdooCrmLeadArchiveCandidate = {
+  id: number;
+  name: string;
+  emailFrom: string | null;
+  description: string | null;
+  website: string | null;
+};
+
+function optionalOdooText(value: string | false | null | undefined): string | null {
+  return typeof value === "string" && value.trim() ? value : null;
+}
+
+/** AND of active=true with an OR of identity leaves. Empty leaves → no search. */
+export function buildActiveCrmLeadArchiveDomain(input: {
+  email?: string | null;
+  leadId?: number | null;
+  formSessionId?: string | null;
+  resumeToken?: string | null;
+  trackingNumber?: string | null;
+}): unknown[] | null {
+  const leaves: Array<[string, string, string | number]> = [];
+
+  if (typeof input.leadId === "number" && Number.isInteger(input.leadId) && input.leadId > 0) {
+    leaves.push(["id", "=", input.leadId]);
+  }
+
+  const email = input.email?.trim();
+  if (email) {
+    leaves.push(["email_from", "=ilike", email]);
+  }
+
+  const sessionId = input.formSessionId?.trim();
+  if (sessionId) {
+    leaves.push(["description", "ilike", `Session: ${sessionId}`]);
+  }
+
+  const resumeToken = input.resumeToken?.trim();
+  if (resumeToken) {
+    leaves.push(["website", "ilike", resumeToken]);
+  }
+
+  const trackingNumber = input.trackingNumber?.trim();
+  if (trackingNumber) {
+    leaves.push(["name", "ilike", trackingNumber]);
+    leaves.push(["description", "ilike", `Tracking number: ${trackingNumber}`]);
+  }
+
+  if (leaves.length === 0) {
+    return null;
+  }
+
+  const domain: unknown[] = [["active", "=", true]];
+  if (leaves.length === 1) {
+    domain.push(leaves[0]);
+    return domain;
+  }
+
+  for (let index = 0; index < leaves.length - 1; index += 1) {
+    domain.push("|");
+  }
+  for (const leaf of leaves) {
+    domain.push(leaf);
+  }
+  return domain;
+}
+
+export async function odooFindActiveCrmLeadsForArchive(input: {
+  email?: string | null;
+  leadId?: number | null;
+  formSessionId?: string | null;
+  resumeToken?: string | null;
+  trackingNumber?: string | null;
+}): Promise<OdooCrmLeadArchiveCandidate[]> {
+  const config = getOdooConfig();
+  const domain = buildActiveCrmLeadArchiveDomain(input);
+  if (!config || !domain) {
+    return [];
+  }
+
+  const uid = await authenticate(config);
+  const rows = await executeKw<
+    Array<{
+      id: number;
+      name: string;
+      email_from: string | false;
+      description: string | false;
+      website: string | false;
+    }>
+  >(
+    config,
+    uid,
+    "crm.lead",
+    "search_read",
+    [domain],
+    {
+      fields: ["id", "name", "email_from", "description", "website"],
+      limit: 40,
+      order: "id desc",
+    },
+  );
+
+  return rows.map((row) => ({
+    id: row.id,
+    name: row.name,
+    emailFrom: optionalOdooText(row.email_from),
+    description: optionalOdooText(row.description),
+    website: optionalOdooText(row.website),
+  }));
+}
+
+/** Archive CRM leads (active=false). Does not unlink / hard-delete. */
+export async function odooArchiveCrmLeads(leadIds: number[]): Promise<number[]> {
+  const uniqueIds = [...new Set(leadIds.filter((id) => Number.isInteger(id) && id > 0))];
+  if (uniqueIds.length === 0) {
+    return [];
+  }
+
+  const config = getOdooConfig();
+  if (!config) {
+    throw new Error("Odoo is not configured.");
+  }
+
+  const uid = await authenticate(config);
+  const companyId = await resolveAccessibleCompanyId(config, uid);
+  await executeKw<boolean>(
+    config,
+    uid,
+    "crm.lead",
+    "write",
+    [uniqueIds, { active: false }],
+    await companyKwargs(config, uid, companyId),
+  );
+  return uniqueIds;
 }
 
 export async function resolveOdooTagId(

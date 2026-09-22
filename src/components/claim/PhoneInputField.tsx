@@ -4,7 +4,10 @@ import { useLocale } from "next-intl";
 import { useMemo } from "react";
 import PhoneInput, { type Country, type Labels } from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
+import deLabels from "react-phone-number-input/locale/de";
 import enLabels from "react-phone-number-input/locale/en";
+import nlLabels from "react-phone-number-input/locale/nl";
+import esLabels from "react-phone-number-input/locale/es";
 import frLabels from "react-phone-number-input/locale/fr";
 import ptLabels from "react-phone-number-input/locale/pt";
 import { defaultPhoneCountryFromLocale } from "@/lib/phone";
@@ -27,6 +30,18 @@ function labelsForLocale(locale: string): Labels {
       return ptLabels;
     case "fr":
       return frLabels;
+    case "es":
+      return esLabels;
+    case "ro":
+      return enLabels;
+    case "hu":
+      return enLabels;
+    case "sq":
+      return enLabels;
+    case "de":
+      return deLabels;
+    case "nl":
+      return nlLabels;
     case "en":
       return enLabels;
     default:

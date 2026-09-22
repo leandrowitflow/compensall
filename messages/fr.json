@@ -152,7 +152,7 @@
     "compensation": {
       "title": "Combien est",
       "titleAccent": "l'indemnisation?",
-      "ukIntro": "Pour les départs du Royaume-Uni, le UK261 fixe des montants en livres sterling. Le montant dépend de la distance du vol.",
+      "ukIntro": "Pour les vols du Royaume-Uni, le UK261 fixe des montants en livres sterling. Le montant dépend de la distance du vol.",
       "ecIntro": "Pour les vols de l'UE éligibles, le CE 261/2004 fixe des montants en euros. Le montant dépend de la distance du vol.",
       "ukHeading": "UK261 — vols au Royaume-Uni",
       "ecHeading": "CE 261/2004 — vols de l'UE éligibles",
@@ -418,7 +418,7 @@
       },
       {
         "question": "Quel montant d'indemnisation puis-je recevoir?",
-        "answer": "Pour les vols de l'UE éligibles, le CE 261/2004 prévoit jusqu'à €600 par passager (€250 jusqu'à 1 500 km, €400 pour 1 500–3 500 km et €600 au-delà). Le UK261 s'applique aux départs du Royaume-Uni avec des montants équivalents en livres."
+        "answer": "Pour les vols de l'UE éligibles, le CE 261/2004 prévoit jusqu'à €600 par passager (€250 jusqu'à 1 500 km, €400 pour 1 500–3 500 km et €600 au-delà). Le UK261 s'applique aux vols du Royaume-Uni avec des montants équivalents en livres."
       },
       {
         "question": "Que signifie No win, no fee?",
@@ -444,7 +444,7 @@
     "uk": [
       {
         "question": "Qu'est-ce que le UK261 et en quoi diffère-t-il du CE 261?",
-        "answer": "Après le Brexit, le Royaume-Uni a conservé les droits des passagers via le UK261, qui reprend le règlement européen CE 261/2004 pour les vols au départ du Royaume-Uni. Le CE 261 utilise des euros (€250, €400 ou €600) pour les départs de l'UE éligibles ; le UK261 s'applique aux départs du Royaume-Uni."
+        "answer": "Après le Brexit, le Royaume-Uni a conservé les droits des passagers via le UK261, qui reprend le règlement européen CE 261/2004 pour les vols du Royaume-Uni. Le CE 261 utilise des euros (€250, €400 ou €600) pour les vols de l'UE éligibles ; le UK261 s'applique aux vols du Royaume-Uni."
       },
       {
         "question": "Le UK261 s'applique-t-il à mon vol?",
@@ -581,7 +581,7 @@
     "tier351to520": "€401–€600",
     "fee25Vat": "30 % + TVA",
     "uk261Title": "Montants d'indemnisation (UK261)",
-    "uk261Intro": "Pour les départs du Royaume-Uni, l'indemnisation fixe au titre du UK261 dépend de la distance du vol:",
+    "uk261Intro": "Pour les vols du Royaume-Uni, l'indemnisation fixe au titre du UK261 dépend de la distance du vol:",
     "ec261Title": "Montants d'indemnisation (CE 261/2004)"
   },
   "cta": {
@@ -728,6 +728,10 @@
     "track": {
       "title": "Suivre votre réclamation",
       "description": "Consultez l'état de votre réclamation d'indemnisation de vol Compensall à l'aide de votre référence de suivi."
+    },
+    "thankYou": {
+      "title": "Merci — réclamation envoyée",
+      "description": "Votre réclamation d'indemnisation de vol Compensall a été envoyée."
     }
   },
   "trackPage": {
@@ -859,5 +863,21 @@
     "readArticle": "Lire l'article",
     "backToBlog": "Retour au blog",
     "englishOnlyNotice": "Ce guide est actuellement disponible uniquement en anglais."
+  },
+  "thankYouPage": {
+    "title": "Merci",
+    "body": "Nous avons reçu votre procuration signée et allons commencer à traiter votre réclamation.",
+    "bodyWithFlight": "Nous avons reçu votre procuration signée et allons commencer à traiter votre réclamation pour le vol {flight}.",
+    "trackingNumber": "Votre numéro de suivi",
+    "trackYourClaim": "Suivre votre réclamation",
+    "startNewClaim": "Commencer une nouvelle réclamation"
+  },
+  "documentPage": {
+    "home": "Accueil",
+    "claim": "Dossier",
+    "powerOfAttorney": "Procuration",
+    "privacyDataConsent": "Confidentialité et consentement",
+    "copyright": "Copyright © Compensall 2026. Tous droits réservés.",
+    "backToClaim": "Retour au dossier"
   }
 }

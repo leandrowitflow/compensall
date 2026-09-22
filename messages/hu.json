@@ -1,0 +1,883 @@
+{
+  "common": {
+    "brandName": "Compensall",
+    "assistantName": "Asszisztens",
+    "assistantStepLabel": "Asszisztens-ellenőrzés",
+    "assistantScanMessage": "Az asszisztens beolvasta a beszállókártyádat, és kinyerte a lényeges adatokat.",
+    "justNow": "Épp most",
+    "notApplicable": "N/A",
+    "openMenu": "Menü megnyitása",
+    "closeMenu": "Menü bezárása",
+    "language": "Nyelv",
+    "selectLanguage": "Nyelv kiválasztása",
+    "learnMore": "Tudj meg többet",
+    "checkClaims": "Kárigények ellenőrzése",
+    "startYourClaim": "Indítsd el a kárigényed",
+    "checkCompensation": "Kártérítés igénylése",
+    "checkCompensationShort": "Igényeld most",
+    "home": "Kezdőlap",
+    "legal": "Jogi információk",
+    "airport": "Repülőtér",
+    "downloadPageMarkdown": "Oldal letöltése Markdownban"
+  },
+  "nav": {
+    "knowYourRights": "Ismerd meg a jogaidat",
+    "knowYourRightsShort": "Jogaid",
+    "airlines": "Légitársaságok",
+    "airlinesShort": "Légitársaságok",
+    "airlinesAndAirports": "Légitársaságok és repülőterek",
+    "aboutUs": "Rólunk",
+    "blog": "Blog",
+    "faq": "GYIK",
+    "talkToUs": "Írj nekünk",
+    "talkToUsShort": "Írj nekünk",
+    "knowYourRightsMenu": {
+      "yourRights": "Jogaid",
+      "overview": "Áttekintés",
+      "overviewDescription": "Hogyan véd az EK 261",
+      "flightCancellation": "Járattörlés",
+      "flightDelay": "Járatkésés",
+      "deniedBoarding": "Beszállás megtagadása",
+      "missedConnection": "Elmulasztott csatlakozás",
+      "overbooking": "Overbooking",
+      "airlineStrike": "Légitársasági sztrájk",
+      "passengerRights": "Utasjogok",
+      "passengersWithDisabilities": "Fogyatékossággal élő utasok"
+    },
+    "airlinesMenu": {
+      "browse": "Böngészés",
+      "allAirlinesAirports": "Minden légitársaság és repülőtér",
+      "allAirlinesAirportsDescription": "Teljes katalógus",
+      "popularAirlines": "Népszerű légitársaságok",
+      "popularAirports": "Népszerű repülőterek"
+    }
+  },
+  "footer": {
+    "contactUs": "Kapcsolat",
+    "email": "help@compensall.com",
+    "phone": "+351 923 391 980",
+    "privacyPolicy": "Adatvédelmi irányelvek",
+    "termsOfService": "Általános szerződési feltételek",
+    "cookies": "Sütik",
+    "prices": "Árak",
+    "noWinNoFee": "No win, no fee.",
+    "socialLinkedIn": "LinkedIn",
+    "socialInstagram": "Instagram",
+    "socialFacebook": "Facebook",
+    "socialTikTok": "TikTok",
+    "newsletterTitle": "Ne maradj le egy lehetőségről sem",
+    "newsletterSubtitle": "Iratkozz fel a hírlevelünkre",
+    "newsletterPlaceholder": "Add meg az e-mail-címed",
+    "newsletterSubscribe": "Feliratkozás",
+    "newsletterConsent": "Hozzájárulok a marketinglevelek fogadásához, és elolvastam az <privacyPolicy>Adatvédelmi irányelveket</privacyPolicy>.",
+    "copyright": "© 2026 Compensall"
+  },
+  "home": {
+    "metadata": {
+      "title": "Késő vagy törölt járat? Igényelj akár 520 £ vagy 600 € kártérítést",
+      "description": "Töltsd fel a beszállókártyádat, és igényelj járatkártérítést a UK261 vagy a 261/2004/EK rendelet alapján. Biztonságos, emberi támogatással, No win, no fee."
+    },
+    "hero": {
+      "trustpilotAlt": "Kiváló Trustpilot: 4,8 az 5-ből",
+      "title": "Késő vagy törölt járat?",
+      "titleLine2": "Igényelj akár 520 £ vagy 600 € kártérítést",
+      "subtitle": "A UK261 és a 261/2004/EK rendelet védi a jogaidat. A piac legbiztonságosabb járatkártérítési platformja.",
+      "fastRiskFree": "Gyors és kockázatmentes",
+      "noHiddenFees": "Nincsenek rejtett díjak",
+      "talkToUs": "Írj nekünk",
+      "humanSupportAvailable": "Emberi ügyfélszolgálat",
+      "highestSecurity": "Maximális biztonság",
+      "dataProtected": "Az adataid mindig védettek"
+    },
+    "trustBar": {
+      "noWinNoFee": "No win, no fee.",
+      "onlyIfSuccessful": "Csak akkor fizetsz, ha nyerünk",
+      "gdprFirst": "GDPR-első",
+      "privacyByDesign": "Beépített adatvédelem",
+      "deleteYourData": "Töröld az adataidat",
+      "fullControl": "Teljes kontroll",
+      "humanSupport": "Emberi támogatás",
+      "realPeopleHelp": "Valódi emberek, valódi segítség"
+    },
+    "claimCards": {
+      "title": "Mire",
+      "titleAccent": "igényelhetsz?",
+      "subtitle": "Számos járatprobléma esetén segítünk megszerezni a kártérítést.",
+      "flightDelay": {
+        "title": "Járatkésés",
+        "description": "Ha a járatod több mint 3 órát késett, akár 520 £ vagy 600 € kártérítésre is jogosult lehetsz.",
+        "iconAlt": "Járatkésés ikon"
+      },
+      "flightCancellation": {
+        "title": "Járattörlés",
+        "description": "Ha a járatodat rövid határidővel törölték, akár 520 £ vagy 600 € kártérítésre is jogosult lehetsz.",
+        "iconAlt": "Járattörlés"
+      },
+      "deniedBoarding": {
+        "title": "Beszállás megtagadása",
+        "description": "Ha akarata ellenére nem engedtek felszállni, akár 520 £ vagy 600 €-t is igényelhetsz.",
+        "iconAlt": "Beszállás megtagadása"
+      },
+      "missedConnection": {
+        "title": "Elmulasztott csatlakozás",
+        "description": "Ha egy késés miatt lemaradtál a csatlakozó járatról, kártérítésre lehetsz jogosult.",
+        "iconAlt": "Elmulasztott csatlakozás"
+      },
+      "airlineStrike": {
+        "title": "Légitársasági sztrájk",
+        "description": "Ha a járatodat légitársasági sztrájk zavarta meg, akkor is járhat kártérítés.",
+        "iconAlt": "Légitársasági sztrájk"
+      }
+    },
+    "howItWorks": {
+      "title": "Hogyan",
+      "titleAccent": "működik?",
+      "schemaName": "Hogyan igényelj járatkártérítést a Compensallal",
+      "subtitle": "Töltsd fel a beszállókártyádat. Az asszisztens ellenőrzi a kárigényed. A csapatunk intézi a légitársaságot.",
+      "steps": {
+        "upload": {
+          "title": "Töltsd fel a beszállókártyádat",
+          "description": "Másodpercek alatt hozzáadhatod a beszállókártyádat."
+        },
+        "assistant": {
+          "title": "Az asszisztens ellenőrzi a kárigényed",
+          "description": "Az asszisztens megvizsgálja, jogosult vagy-e."
+        },
+        "airline": {
+          "title": "Mi intézzük a légitársaságot",
+          "description": "Megküzdünk a kártérítésedért."
+        }
+      }
+    },
+    "compensation": {
+      "title": "Mennyi a",
+      "titleAccent": "kártérítés?",
+      "ukIntro": "Az Egyesült Királyság járatainál a UK261 fix fontösszegeket állapít meg. Az összeg a távolságtól függ.",
+      "ecIntro": "A jogosult uniós járatoknál a 261/2004/EK rendelet fix euroösszegeket állapít meg. Az összeg a távolságtól függ.",
+      "ukHeading": "UK261 — brit járatok",
+      "ecHeading": "261/2004/EK — jogosult uniós járatok",
+      "tierAlt": "{amount} kártérítési sáv"
+    }
+  },
+  "claim": {
+    "steps": {
+      "upload": "Feltöltés",
+      "assistantCheck": "Asszisztens-ellenőrzés",
+      "assistantCheckShort": "Ellenőrzés",
+      "signSubmit": "Aláírás és beküldés"
+    },
+    "resume": {
+      "loading": "Mentett kárigényed betöltése…",
+      "loaded": "Betöltöttük a járat- és kapcsolattartási adataidat. Írd alá a meghatalmazást, és küldd be a lezáráshoz.",
+      "invalid": "Ez a folytatólink érvénytelen. Alább új kárigényt indíthatsz.",
+      "expired": "Ez a folytatólink lejárt, vagy már felhasználták. Alább új kárigényt indíthatsz."
+    },
+    "step1": {
+      "rightsContext": "A brit és uniós utasjogi szabályok (UK261 és 261/2004/EK) alapján késés, törlés és beszállásmegtagadás esetén kártérítésre lehetsz jogosult. Töltsd fel a beszállókártyádat — az ellenőrzés ingyenes. No win, no fee.",
+      "readingBoardingPass": "Beszállókártyád olvasása…",
+      "extractingDetails": "{assistantName} kinyeri a járatadataidat",
+      "uploadTitle": "Töltsd fel a beszállókártyádat",
+      "uploadHint": "Húzd ide, vagy kattints a feltöltéshez (PDF, JPG, PNG)",
+      "orCheckManually": "Vagy",
+      "checkManually": "ellenőrizd kézzel",
+      "departureAirport": "Indulási repülőtér",
+      "arrivalAirport": "Érkezési repülőtér",
+      "swapAirports": "Repülőterek felcserélése",
+      "dataProtected": "Az adataid védettek. Mindig.",
+      "popularAirports": "Népszerű repülőterek",
+      "resultsCount": "{count, plural, =1 {# találat} other {# találat}}",
+      "otherAirportHidden": "A másik kiválasztott repülőtér rejtve van.",
+      "noAirportsFound": "Nincs találat. Próbálj várost, országot vagy kódot (pl. Budapest, Magyarország, BUD).",
+      "preview": {
+        "title": "Beszállókártya előnézet",
+        "fullTitle": "Beszállókártya teljes előnézet",
+        "addedJustNow": "Épp most hozzáadva • {fileSize}",
+        "open": "Előnézet",
+        "viewFull": "Teljes beszállókártya megtekintése",
+        "thumbnail": "Beszállókártya bélyegkép",
+        "heicUnsupported": "A HEIC előnézetet a böngésző nem támogatja.",
+        "unavailable": "Ehhez a fájltípushoz nincs előnézet.",
+        "notAvailableSaved": "Ehhez a fájltípushoz a böngészőben nincs előnézet. A fájlod attól még el van mentve a kárigényhez.",
+        "formatCannotPreview": "Ez a formátum nem jeleníthető meg beágyazva{heicHint}.",
+        "heicHint": " (HEIC)",
+        "downloadFile": "Fájl letöltése",
+        "closePreview": "Előnézet bezárása"
+      },
+      "errors": {
+        "selectBothAirports": "Válaszd ki a listából az indulási és az érkezési repülőteret is.",
+        "airportsMustDiffer": "Az indulási és az érkezési repülőtér nem lehet ugyanaz.",
+        "extractFailed": "Nem tudtunk minden adatot automatikusan kiolvasni. Töltsd ki alább a járatadataidat.",
+        "somethingWentWrong": "Valami hiba történt. Töltsd ki alább a járatadataidat.",
+        "unsupportedType": "Nem támogatott fájltípus. Tölts fel PDF, JPG, PNG, WebP vagy HEIC beszállókártyát.",
+        "tooLarge": "A fájl túl nagy. A maximális méret 10 MB."
+      }
+    },
+    "step2": {
+      "extractedSuccess": "Köszönjük! Kinyertem a járatadataidat.",
+      "confirmDetails": "Erősítsd meg, hogy az alábbi adatok helyesek.",
+      "extractPartial": "A beszállókártyád el van mentve, de nem tudtunk minden adatot automatikusan kiolvasni.",
+      "fillInDetails": "Töltsd ki vagy erősítsd meg az alábbi adatokat.",
+      "passenger": "Utas",
+      "flight": "Járat",
+      "route": "Útvonal",
+      "date": "Dátum",
+      "confirmPrompt": "Minden helyes?",
+      "confirmHint": "Így tudjuk felmérni, jogosult vagy-e.",
+      "deleteData": "Adatok törlése",
+      "editDetails": "Adatok szerkesztése",
+      "doneEditing": "Szerkesztés kész",
+      "yesContinue": "Igen, tovább",
+      "errors": {
+        "passengerRequired": "Az utas neve kötelező.",
+        "flightRequired": "A járatszám kötelező.",
+        "routeRequired": "Az útvonal kötelező.",
+        "dateRequired": "A járat dátuma kötelező."
+      },
+      "fields": {
+        "passenger": "Utas",
+        "passengerPlaceholder": "Teljes név a beszállókártyán szereplő formában",
+        "flightNumber": "Járatszám",
+        "flightPlaceholder": "pl. W61234",
+        "date": "Dátum",
+        "departure": "Indulás",
+        "departurePlaceholder": "pl. Budapest (BUD)",
+        "arrival": "Érkezés",
+        "arrivalPlaceholder": "pl. London (LTN)"
+      }
+    },
+    "connecting": {
+      "title": "Csatlakozó járatok",
+      "subtitle": "Mondd el, volt-e csatlakozás az utadon.",
+      "hadConnecting": "Volt csatlakozó járatod?",
+      "selectPlaceholder": "Válassz egy lehetőséget",
+      "yes": "Igen",
+      "no": "Nem",
+      "legLabel": "{number}. csatlakozó járat",
+      "anotherConnecting": "Volt még egy csatlakozó járatom",
+      "airport": "Repülőtér",
+      "airportPlaceholder": "Válassz repülőteret",
+      "flightNumber": "Járatszám",
+      "flightNumberPlaceholder": "pl. W61234",
+      "errors": {
+        "connectingRequired": "Mondd el, volt-e csatlakozó járatod.",
+        "connectingDetailsRequired": "Add meg az 1. csatlakozó járat repülőterét és járatszámát."
+      }
+    },
+    "disruption": {
+      "title": "A fennakadás részletei",
+      "subtitle": "Mondd el, mi történt, hogy felmérhessük a jogosultságot.",
+      "type": "A fennakadás típusa",
+      "typePlaceholder": "Válaszd ki a fennakadás típusát",
+      "selectPlaceholder": "Válassz egy lehetőséget",
+      "delayDuration": "Késés a végső célállomáson",
+      "delayLessThan3": "Kevesebb mint 3 óra",
+      "delayMoreThan3": "Több mint 3 óra",
+      "cancellationNotice": "Hány nappal az indulás előtt szóltak?",
+      "notice14OrMore": "14 nap vagy több",
+      "noticeLessThan14": "Kevesebb mint 14 nap",
+      "ineligibleTitle": "Sajnáljuk, ebben az esetben nem jár kártérítés.",
+      "ineligibleBody": "A 261/2004/EK európai rendelet szerint a légitársaság nem köteles kártérítést fizetni, ha a járat kevesebb mint 3 órát késett, vagy ha a törlésről több mint 14 nappal előre értesítettek. Megértjük, hogy ez csalódás lehet, és köszönjük a türelmedet.",
+      "ineligibleContact": "Más fennakadásokkal az elmúlt 5 évből keress minket.",
+      "reason": "A fennakadás oka",
+      "types": {
+        "delay": "Késés",
+        "cancellation": "Törlés",
+        "deniedBoarding": "Beszállás megtagadása"
+      },
+      "reasons": {
+        "technical": "Műszaki probléma",
+        "weather": "Időjárás",
+        "strike": "Sztrájk",
+        "crew": "Személyzeti probléma",
+        "airport": "Repülőtér / légiforgalom",
+        "other": "Egyéb / nem tudom"
+      },
+      "errors": {
+        "typeRequired": "Válaszd ki a fennakadás típusát.",
+        "delayRequired": "Válaszd ki a késés időtartamát.",
+        "noticeRequired": "Válaszd ki, mikor értesültek a törlésről.",
+        "reasonRequired": "Válaszd ki a fennakadás okát."
+      }
+    },
+    "compensationEstimate": {
+      "label": "Becsült kártérítés",
+      "upTo": "Akár {amount}",
+      "detail": "A {regulation} alapján, kb. {distance} útvonalra.",
+      "disclaimer": "Csak tájékoztató. A végső jogosultság a késés hosszától, a légitársaság felelősségétől és a rendkívüli körülményektől függ."
+    },
+    "step3": {
+      "claimReady": "A kárigényed készen áll.",
+      "confirmContact": "Erősítsd meg a kapcsolattartási adataidat és a további utasokat.",
+      "uploadDocuments": "Tölts fel alátámasztó iratokat (nem kötelező), majd lépj tovább az áttekintéshez.",
+      "readAndSign": "Olvasd el teljesen a meghatalmazást, majd írd alá egyszer a folytatáshoz.",
+      "readAndSignPassenger": "{current}. utas / {total}: {name} — olvasd el és írd alá a meghatalmazást.",
+      "signedReview": "Az aláírások kész. Ellenőrizd, és küldd be a kárigényed.",
+      "justNow": "Épp most",
+      "fullLegalName": "Teljes hivatalos név",
+      "namePlaceholder": "Ahogy a beszállókártyádon szerepel",
+      "emailAddress": "E-mail-cím",
+      "emailPlaceholder": "te@pelda.hu",
+      "phoneNumber": "Telefonszám",
+      "phonePlaceholder": "06 20 123 4567",
+      "firstName": "Keresztnév",
+      "lastName": "Vezetéknév",
+      "otherPassengers": "További utasok a foglaláson",
+      "otherPassengersHint": "Add hozzá azt, akinek szintén alá kell írnia egy meghatalmazást.",
+      "addPassenger": "Utas hozzáadása",
+      "removePassenger": "Eltávolítás",
+      "passengerNumber": "{number}. utas",
+      "documentsHint": "Ezek a fájlok gyorsítják az ügyintézést. Amit még nincs meg, azt kihagyhatod.",
+      "docs": {
+        "passport": "Útlevélmásolat",
+        "passportHint": "Az útlevél vagy a személyi igazolvány fényképes oldala.",
+        "booking": "Foglalási visszaigazolás",
+        "bookingHint": "Légitársasági foglalási visszaigazolás vagy e-jegy.",
+        "expenses": "Költségnyugta",
+        "expensesHint": "Étkezés, szálloda, transzfer vagy egyéb fennakadási költség.",
+        "other": "Egyéb iratok",
+        "otherHint": "Bármely más alátámasztó fájl (nem kötelező)."
+      },
+      "additionalDocuments": "További iratok (nem kötelező)",
+      "additionalDocumentsHint": "Tölts fel igazolványt, foglalási visszaigazolást, költségnyugtát vagy más alátámasztó fájlt.",
+      "signOnce": "Aláírás egyszer",
+      "signPassenger": "Aláírás: {current} / {total}",
+      "documentPreview": "Dokumentum előnézet",
+      "openFullPage": "Teljes oldal megnyitása ↗",
+      "readComplete": "✓ Elolvastad a meghatalmazást. Alább aláírhatod",
+      "scrollToUnlock": "Görgess a meghatalmazás végéig, hogy feloldódjon az aláírás ↓",
+      "yourSignature": "Az aláírásod",
+      "clear": "Törlés",
+      "drawSignatureHint": "Rajzold ide — az aláírásod a dokumentumon „The passenger” alatt jelenik meg. Add meg az aláírás dátumát is a dokumentumon.",
+      "scrollToUnlockSigning": "Görgess a dokumentum végéig, hogy feloldódjon az aláírás.",
+      "signedBy": "Aláírta",
+      "flightDate": "Járat dátuma: {date}",
+      "signingDate": "Aláírás dátuma: {date}",
+      "signedAt": "Aláírva: {date}",
+      "passengersCount": "Utasok: {count}",
+      "continueToDocuments": "Tovább az iratokhoz",
+      "continueToSigning": "Tovább az aláíráshoz",
+      "continueToReview": "Tovább az áttekintéshez",
+      "saving": "Mentés...",
+      "deleteData": "Adatok törlése",
+      "back": "Vissza",
+      "signing": "Aláírás…",
+      "signAndNext": "Aláírás és következő utas",
+      "signAndReview": "Aláírás és áttekintés",
+      "signAndContinue": "Aláírás és tovább",
+      "reSign": "Újraaláírás",
+      "submitting": "Beküldés…",
+      "submitClaim": "Kárigény beküldése",
+      "claimSubmitted": "Kárigény beküldve",
+      "thankYou": "Köszönjük, {name}. Megkaptuk az aláírt meghatalmazást, és elkezdjük a {flight} járatra vonatkozó kárigényedet.",
+      "trackingNumber": "A nyomon követési számod",
+      "trackYourClaim": "Kövesd a kárigényed",
+      "confirmationEmail": "A visszaigazolást és a frissítéseket a {email} címre küldjük.",
+      "powerOfAttorney": {
+        "title": "Meghatalmazás",
+        "description": "Felhatalmazza a Compensallt, hogy a 261/2004/EK szerinti kártérítési igényedet érvényesítse."
+      },
+      "errors": {
+        "nameRequired": "Add meg a teljes hivatalos neved.",
+        "emailInvalid": "Adj meg érvényes e-mail-címet. Erre küldjük a nyomon követési számot és az ügyfrissítéseket.",
+        "phoneInvalid": "Adj meg érvényes telefonszámot, hogy el tudjunk érni a kárigényeddel kapcsolatban.",
+        "passengerNameRequired": "Add meg a {number}. utas kereszt- és vezetéknevét.",
+        "passengerEmailInvalid": "Adj meg érvényes e-mailt a {number}. utashoz.",
+        "passengerPhoneInvalid": "Adj meg érvényes telefonszámot a {number}. utashoz.",
+        "scrollBeforeSign": "Aláírás előtt görgess a dokumentum végéig.",
+        "signatureRequired": "Rajzold le az aláírásodat, ezzel igazolod, hogy elolvastad és elfogadod a dokumentumot.",
+        "signFailed": "Nem tudtuk rögzíteni az aláírásodat. Próbáld újra.",
+        "signConnectionError": "Nem tudtuk rögzíteni az aláírásodat. Ellenőrizd a kapcsolatot, és próbáld újra.",
+        "signBeforeSubmit": "Beküldés előtt minden utasnak írja alá a meghatalmazást.",
+        "submitFailed": "A kárigényt nem sikerült beküldeni.",
+        "sessionExpired": "A kárigény-munkamenet lejárt. Kezdd elölről."
+      }
+    },
+    "sidebar": {
+      "uploadedBoardingPass": "Feltöltött beszállókártya",
+      "manualFlightEntry": "Kézi járatmegadás",
+      "manualEntryHint": "Az útvonalat és a járatadatokat kézzel adtad meg. Aláírás előtt ellenőrizd, hogy minden stimmel.",
+      "extractedFlightDetails": "Kinyert járatadatok",
+      "confirmCorrect": "Erősítsd meg, hogy helyesek.",
+      "detailsReady": "A járatadataid készen állnak az áttekintésre."
+    }
+  },
+  "faq": {
+    "sectionTitle": "Gyakori",
+    "sectionTitleAccent": "kérdések",
+    "pageTitle": "Járatkártérítés",
+    "pageTitleAccent": "GYIK",
+    "pageIntro": "Minden, amit a UK261 és a 261/2004/EK szerinti igénylésről, a No win, no fee szolgáltatásunkról és az adatvédelemről tudnod kell.",
+    "default": [
+      {
+        "question": "Biztonságos feltölteni a beszállókártyámat?",
+        "answer": "Igen, teljesen. A beszállókártyádat titkosítva, biztonságosan tároljuk. Csak a kárigényhez szükséges adatokat használjuk, és soha nem adjuk tovább harmadik félnek."
+      },
+      {
+        "question": "Az asszisztens mindent elintéz?",
+        "answer": "Az asszisztens felgyorsítja a folyamatot, de a kárigényedet valódi emberek is támogatják. A csapatunk átnézheti az ügyet, kapcsolatba lép a légitársasággal, és az elejétől a végéig kezeli a kárigényt."
+      },
+      {
+        "question": "Mennyi kártérítést kaphatok?",
+        "answer": "A brit járatoknál a UK261 utasonként akár 520 £-ot biztosít (220 £ 1500 km alatt, 350 £ 1500–3500 km között, 520 £ 3500 km felett). A jogosult uniós járatoknál a 261/2004/EK rendelet ugyanilyen távolságsávokban 250 €, 400 € vagy 600 € kártérítést ír elő."
+      },
+      {
+        "question": "Mit jelent a „no win, no fee”?",
+        "answer": "Azt, hogy semmit sem fizetsz, ha nem nyerjük meg a kárigényed. Sikerdíjat csak akkor számítunk fel, ha sikeresen megszerezzük a kártérítést."
+      },
+      {
+        "question": "Mit csinál az asszisztens?",
+        "answer": "Az asszisztens elemzi a beszállókártyádat, ellenőrzi a jogosultságot a UK261 és a 261/2004/EK rendelet alapján, és előkészíti a kártérítési igény benyújtásához szükséges iratokat."
+      },
+      {
+        "question": "Beszélhetek valódi emberrel?",
+        "answer": "Igen! Az emberi ügyfélszolgálatunk a kárigény teljes ideje alatt elérhető. Chatben, e-mailben vagy telefonon is kereshetsz minket."
+      },
+      {
+        "question": "Mennyibe kerül?",
+        "answer": "Nincs előzetes költség. A Compensall No win, no fee alapon dolgozik: díjat csak akkor számítunk fel, ha a kárigényed sikeres."
+      },
+      {
+        "question": "Törölhetem az adataimat?",
+        "answer": "Igen. Bármikor kérheted a személyes adataid törlését. Írj az ügyfélszolgálatnak, és a GDPR szerint 30 napon belül elintézzük."
+      }
+    ],
+    "uk": [
+      {
+        "question": "Mi a UK261, és miben különbözik az EK 261-től?",
+        "answer": "A Brexit után az Egyesült Királyság a UK261-gyel tartotta fenn az utasjogokat, amely a 261/2004/EK rendeletet tükrözi az Egyesült Királyság járataira. A UK261 fontban állapítja meg a kártérítést (220 £, 350 £ vagy 520 £), míg az EK 261 euróban (250 €, 400 € vagy 600 €) a jogosult uniós járatokra."
+      },
+      {
+        "question": "Rám vonatkozik a UK261?",
+        "answer": "A UK261 általában az Egyesült Királyság repülőtereiről induló járatokra vonatkozik. A 261/2004/EK rendelet az uniós repülőterekről induló járatokra, és bizonyos esetekben az uniós vagy brit légitársaságokkal az EU-ba érkező járatokra is. Az alkalmazandó rendelet az útvonaltól és a légitársaságtól függ."
+      },
+      {
+        "question": "Késő járatra is igényelhetek a UK261 alapján?",
+        "answer": "Igen. Ha a járatod a végső célállomásra több mint három órát késett, és a késést nem rendkívüli körülmény okozta, a UK261 vagy a 261/2004/EK rendelet szerint kártérítésre lehetsz jogosult — attól függően, melyik rendelet vonatkozik az utadra."
+      },
+      {
+        "question": "Mennyi időm van járatkártérítést igényelni az Egyesült Királyságban?",
+        "answer": "A határidő attól függ, hol érvényesíted az igényt. Angliában és Walesben általában hat év áll rendelkezésre. Magyarországon a Polgári Törvénykönyv szerint általában öt év. Érdemes minél hamarabb elkezdeni, amíg a járatadatok és a bizonyítékok könnyebben megszerezhetők."
+      }
+    ]
+  },
+  "cookies": {
+    "bannerTitle": "Sütiket használunk",
+    "bannerDescription": "A működéshez szükséges sütiket mindig használjuk, a hozzájárulásoddal pedig opcionális sütiket is, hogy megértsük, hogyan használják a Compensallt. Olvasd el a <cookiePolicy>Sütiirányelveket</cookiePolicy> és az <privacyPolicy>Adatvédelmi irányelveket</privacyPolicy>.",
+    "cookiePolicy": "Sütiirányelvek",
+    "essentialOnly": "Csak a szükségesek",
+    "acceptAll": "Összes elfogadása",
+    "pageTitle": "Sütiirányelvek",
+    "pageDescription": "Tudd meg, hogyan használja a Compensall a sütiket és hasonló technológiákat, és hogyan kezelheted a beállításaidat.",
+    "breadcrumb": "Sütik",
+    "summary": "Hogyan használjuk a sütiket, és hogyan szabályozhatod őket."
+  },
+  "privacyPolicy": {
+    "pageTitle": "Adatvédelmi irányelvek",
+    "pageDescription": "Tudd meg, hogyan gyűjti, használja, tárolja és védi a Compensall a személyes adataidat a weboldalon és a járatkártérítési szolgáltatásban.",
+    "breadcrumb": "Adatvédelmi irányelvek",
+    "summary": "Hogyan kezeljük a személyes adataidat a weboldalon és a kárigény-szolgáltatásban."
+  },
+  "terms": {
+    "pageTitle": "Általános szerződési feltételek",
+    "pageDescription": "Olvasd el a Compensall használatának feltételeit: a kárigény benyújtásának szabályait, a díjakat, a felelősséget és az irányadó jogot.",
+    "breadcrumb": "Általános szerződési feltételek",
+    "summary": "A Compensall használatának és a járatkártérítési kárigény benyújtásának szabályai."
+  },
+  "noWinNoFeePage": {
+    "pageTitle": "No win, no fee megállapodás",
+    "breadcrumb": "No win, no fee megállapodás",
+    "summary": "Csak akkor fizetsz, ha sikeresen megszerezzük a járatkártérítést."
+  },
+  "legal": {
+    "breadcrumbPrices": "Árak"
+  },
+  "about": {
+    "title": "Rólunk",
+    "subtitle": "Segítünk az utasoknak megszerezni a járó kártérítést: asszisztenssel és emberi támogatással, végig.",
+    "missionTitle": "A küldetésünk",
+    "missionP1": "A Compensall egyszerűvé teszi a járatkártérítést. A légitársaságok gyakran késleltetik a választ, elutasítják a jogos igényeket, és megterhelővé teszik a folyamatot — ezért túl sok utas soha nem kapja meg azt, amire a 261/2004/EK rendelet feljogosítja.",
+    "missionP2": "Mindent elintézünk: az iratokat, a légitársasággal folytatott tárgyalást, és szükség esetén az ügy érvényesítését. Töltsd fel a beszállókártyádat, erősítsd meg az adatokat, és a csapatunk No win, no fee alapon küzd a kártérítésedért.",
+    "whyChooseTitle": "Miért minket választanak az utasok",
+    "whyChoose": [
+      "No win, no fee: semmit sem fizetsz, ha nem járunk sikerrel",
+      "Végigvisszük: a jogosultság-ellenőrzéstől a légitársasági utánkövetésig",
+      "Előre látható sikerdíj. Nem ügyvédi iroda vagyunk",
+      "GDPR-első megközelítés a személyes adataidhoz",
+      "Akár 600 € utasonként a jogosult járatokon",
+      "Több ezer európai utazó bízik bennünk"
+    ],
+    "valuesTitle": "Ami mellett kiállunk",
+    "values": {
+      "fastRiskFree": {
+        "title": "Gyors és kockázatmentes",
+        "description": "Perc alatt ellenőrizheted a jogosultságot, előzetes költség nélkül. Díjat csak akkor számítunk fel, ha megnyerjük a kárigényed."
+      },
+      "humanSupport": {
+        "title": "Emberi háttértámogatás",
+        "description": "Az asszisztens felgyorsítja a folyamatot, de valódi emberek nézik át az ügyed, és ők intézik a légitársaságot."
+      },
+      "security": {
+        "title": "Maximális biztonság",
+        "description": "A beszállókártyád és a személyes adataid védettek. Minden lépésnél te maradsz irányításban."
+      }
+    }
+  },
+  "knowYourRights": {
+    "heroTitle": "Ismerd meg a jogaidat",
+    "heroSubtitle": "Értsd meg a UK261 és a 261/2004/EK szerinti jogaidat, és hogyan segít a Compensall a digitális támogatással.",
+    "whatHappenedTitle": "Mi történt a",
+    "whatHappenedAccent": "járatodon?",
+    "howItWorksTitle": "Hogyan",
+    "howItWorksAccent": "működik?",
+    "howItWorksSubtitle": "Töltsd fel a beszállókártyádat. Az asszisztens ellenőrzi a kárigényed. A csapatunk intézi a légitársaságot.",
+    "flightIssues": {
+      "flightCancellation": {
+        "title": "Járattörlés",
+        "description": "Ha a járatodat rövid határidővel törölték, akár 600 € kártérítésre is jogosult lehetsz."
+      },
+      "deniedBoarding": {
+        "title": "Beszállás megtagadása",
+        "description": "Ha akarata ellenére nem engedtek felszállni, akár 600 €-t is igényelhetsz."
+      },
+      "flightDelay": {
+        "title": "Járatkésés",
+        "description": "Ha a járatod több mint 3 órát késett, kártérítésre lehetsz jogosult."
+      },
+      "missedConnection": {
+        "title": "Elmulasztott csatlakozás",
+        "description": "Ha késés vagy törlés miatt lemaradtál a csatlakozó járatról, kártérítésre lehetsz jogosult."
+      },
+      "overbooking": {
+        "title": "Overbooking",
+        "description": "Ha a légitársaság túlkönyvelte a járatot, és nem utazhattál a terveid szerint, igényelhetsz."
+      },
+      "airlineStrike": {
+        "title": "Légitársasági sztrájk",
+        "description": "Ha a járatodat légitársasági sztrájk zavarta meg, akkor is lehetnek kártérítési jogaid."
+      },
+      "passengerRights": {
+        "title": "Utasjogok",
+        "description": "Tudd meg, mit tartozhat neked a légitársaság, ha az utad meghiúsul."
+      },
+      "passengersWithDisabilities": {
+        "title": "Fogyatékossággal élő utasok",
+        "description": "Ismerd meg a segítséghez, az akadálymentességhez és a támogatáshoz fűződő jogaidat utazáskor."
+      }
+    }
+  },
+  "prices": {
+    "title": "Árak és díjak",
+    "breadcrumb": "Árak",
+    "summary": "Nincs előzetes költség. Sikerdíjat csak akkor számítunk fel, ha megszerezzük a kártérítést.",
+    "noWinNoFeeIntro": "No win, no fee:",
+    "noWinNoFeeBody": "A jogosultság ellenőrzése és a weboldal használata ingyenes. Ha megbízol minket a kártérítés érvényesítésével, a díjunk csak akkor jár, ha a kárigényed sikeres — a <noWinNoFeeAgreement>No win, no fee megállapodás</noWinNoFeeAgreement> szerint.",
+    "noWinNoFeeAgreement": "No win, no fee megállapodás",
+    "successFeeTitle": "Sikerdíj",
+    "successFeeDescription": "Ha a nevedben megszerezzük a kártérítést, a sikerdíjat levonjuk, mielőtt az egyenleget átutaljuk. Az áfa-korrekciók előtt a megtérült összeg legalább 70%-át kapod meg.",
+    "tableCompensationRecovered": "Megszerzett kártérítés",
+    "tableSuccessFee": "Sikerdíj",
+    "tierUpTo220": "220 £ / 250 €-ig",
+    "tier221to350": "221–350 £ / 251–400 €",
+    "tier351to520": "351–520 £ / 401–600 €",
+    "fee25Vat": "30% + áfa",
+    "uk261Title": "Kártérítési összegek (UK261)",
+    "uk261Intro": "Az Egyesült Királyság járatainál a UK261 szerinti fix kártérítés a távolságtól függ:",
+    "ec261Title": "Kártérítési összegek (261/2004/EK)"
+  },
+  "cta": {
+    "title": "Biztonságos kárigény-ellenőrzés. Emberi háttérrel.",
+    "titleLine2": "No win, no fee.",
+    "subtitle": "A kárigényedet mesterséges intelligencia vezeti, és valódi emberek támogatják.",
+    "subtitleLine2": "Gyors, biztonságos és egyszerű már az első feltöltéstől.",
+    "body": "A szokásos díjat csak akkor számítjuk fel, ha megnyerjük a kártérítést. A <brandName>Compensall</brandName> a beszállókártya feltöltésétől a légitársasági utánkövetésig viszi a folyamatot, hogy magabiztosan igényelhess.",
+    "fastRiskFree": "Gyors és kockázatmentes",
+    "noHiddenFees": "Nincsenek rejtett díjak",
+    "talkToUs": "Írj nekünk",
+    "humanSupportAvailable": "Emberi ügyfélszolgálat",
+    "highestSecurity": "Maximális biztonság",
+    "dataProtected": "Az adataid mindig védettek"
+  },
+  "passengerRights": {
+    "rightsHeading": "Jogaid a",
+    "rightsAccent": "UK261 és az EK 261 szerint",
+    "rightsIntro": "Az Egyesült Királyságban és az EU-ban a légi utasokat védelem illeti, ha a járat önhibájukon kívül késik, törlődik vagy meghiúsul.",
+    "uk261Card": {
+      "title": "UK261 — brit járatok",
+      "body": "A Brexit után az Egyesült Királyság a UK261-gyel tartotta fenn az utasjogokat. A brit légtérben közlekedő járatokra vonatkozik, és fix fontkártérítést állapít meg: 220 £, 350 £ vagy 520 £ a távolságtól függően."
+    },
+    "ec261Card": {
+      "title": "261/2004/EK — uniós járatok",
+      "body": "A 261/2004/EK rendelet továbbra is védi az uniós légtérben közlekedő jogosult járatok utasait: ugyanilyen távolságsávokban 250 €, 400 € vagy 600 € a kártérítés."
+    },
+    "rightsDetailP1": "Ha a járatod érkezéskor legalább három órát késik, rövid határidővel törlik, vagy akarata ellenére megtagadják a beszállást, fix kártérítésre lehetsz jogosult. A körülményektől függően ellátásra, átirányításra és visszatérítésre is jogod lehet.",
+    "rightsDetailP2": "Az elmulasztott csatlakozás és a légitársasági sztrájk is jogosíthat, ha a fennakadás a légitársaság ellenőrzésén belül történt. A Compensall segít ellenőrizni a jogosultságot, előkészíteni a kárigényt, és No win, no fee alapon érvényesíteni a kártérítést.",
+    "eligibilityHeading": "Mikor igényelhetsz",
+    "eligibilityAccent": "kártérítést?",
+    "eligibilityIntro": "Jogosult lehetsz, ha az alábbiak mindegyike igaz az utadra.",
+    "eligibility": {
+      "ukEuDeparture": {
+        "title": "Brit vagy uniós járat",
+        "body": "A járatod brit légtérben (UK261) vagy uniós légtérben (261/2004/EK) közlekedett, vagy brit vagy uniós légitársaság üzemeltetésében brit vagy uniós repülőtérre érkezett."
+      },
+      "significantDisruption": {
+        "title": "Jelentős fennakadás",
+        "body": "A végső célállomásra legalább három órát késtél, vagy a járatot törölték, vagy megtagadták a beszállást."
+      },
+      "airlineResponsibility": {
+        "title": "A légitársaság felelőssége",
+        "body": "A fennakadást nem a légitársaságon kívül álló rendkívüli körülmény okozta, például súlyos időjárás vagy légiforgalmi korlátozás."
+      },
+      "validBooking": {
+        "title": "Érvényes foglalás",
+        "body": "Időben becsekkoltál, és érvényes foglalásod van az érintett járatra."
+      },
+      "withinTimeLimits": {
+        "title": "Határidőn belül",
+        "body": "A kárigényt az alkalmazandó határidőn belül indítod — Magyarországon általában öt éven belül (Ptk.), Angliában és Walesben általában hat éven belül."
+      }
+    },
+    "ec261Note": "A jogosult uniós járatoknál a 261/2004/EK rendelet ugyanilyen távolságsávokban 250 €, 400 € vagy 600 € kártérítést ír elő.",
+    "tiers": {
+      "uk261": {
+        "220": {
+          "label": "Legfeljebb 1500 km-es járatok",
+          "desc": "UK261 szerinti kártérítés rövidebb jogosult járatokra."
+        },
+        "350": {
+          "label": "1500 és 3500 km közötti járatok",
+          "desc": "UK261 szerinti kártérítés közepes távolságú járatokra."
+        },
+        "520": {
+          "label": "3500 km feletti járatok",
+          "desc": "UK261 szerinti kártérítés hosszú távú járatokra."
+        }
+      },
+      "ec261": {
+        "250": {
+          "label": "Legfeljebb 1500 km-es járatok",
+          "desc": "261/2004/EK szerinti kártérítés rövidebb jogosult járatokra."
+        },
+        "400": {
+          "label": "1500 és 3500 km közötti járatok",
+          "desc": "261/2004/EK szerinti kártérítés közepes távolságú járatokra."
+        },
+        "600": {
+          "label": "3500 km feletti járatok",
+          "desc": "261/2004/EK szerinti kártérítés hosszú távú járatokra."
+        }
+      }
+    }
+  },
+  "metadata": {
+    "site": {
+      "title": "Compensall – Késő vagy törölt járat? Igényelj akár 520 £ vagy 600 € kártérítést",
+      "description": "Késő vagy törölt járat? Igényelj akár 520 £-ot a UK261, vagy 600 €-t a 261/2004/EK rendelet alapján. Biztonságos beszállókártya-feltöltés, emberi támogatás, No win, no fee."
+    },
+    "home": {
+      "title": "Késő vagy törölt járat? Igényelj akár 520 £ vagy 600 € kártérítést",
+      "description": "Töltsd fel a beszállókártyádat, és igényelj járatkártérítést a UK261 vagy a 261/2004/EK rendelet alapján. Biztonságos, emberi támogatással, No win, no fee."
+    },
+    "faq": {
+      "title": "Gyakori kérdések a járatkártérítésről",
+      "description": "Válaszok a UK261-ről, a 261/2004/EK rendeletről, a kártérítési összegekről, a No win, no fee-ről, a beszállókártya feltöltéséről és arról, hogyan kezeli a Compensall a kárigényed."
+    },
+    "about": {
+      "title": "A Compensall járatkártérítésről",
+      "description": "A Compensall segít a légi utasoknak akár 600 €-t igényelni az EU261 alapján: biztonságos beszállókártya-feltöltéssel, asszisztens-ellenőrzéssel és emberi légitársasági ügyintézéssel, No win, no fee alapon."
+    },
+    "knowYourRights": {
+      "title": "Ismerd meg a járatkártérítési jogaidat",
+      "description": "Tudd meg, mikor jár akár 520 £ vagy 600 € a UK261 és a 261/2004/EK rendelet alapján késés, törlés, beszállásmegtagadás, elmulasztott csatlakozás és légitársasági sztrájk esetén."
+    },
+    "prices": {
+      "title": "Árak, díjak és No win, no fee",
+      "description": "A Compensall No win, no fee alapon dolgozik. Nézd meg a sikerdíj-struktúrát, valamint a UK261 és az EK 261 szerinti összegeket."
+    },
+    "blog": {
+      "title": "Járatkártérítési útmutatók és utasjogok",
+      "description": "Gyakorlati 261/2004/EK útmutatók késésről, törlésről, beszállásmegtagadásról, elmulasztott csatlakozásról, és hogyan igényelhetsz akár 600 €-t."
+    },
+    "cookies": {
+      "title": "Sütiirányelvek és beállítások",
+      "description": "Tudd meg, hogyan használja a Compensall a sütiket és hasonló technológiákat, és hogyan kezelheted a beállításaidat."
+    },
+    "privacyPolicy": {
+      "title": "Adatvédelmi irányelvek és személyes adatok",
+      "description": "Tudd meg, hogyan gyűjti, használja, tárolja és védi a Compensall a személyes adataidat a weboldalon és a járatkártérítési szolgáltatásban."
+    },
+    "terms": {
+      "title": "A Compensall kárigények általános szerződési feltételei",
+      "description": "Olvasd el a Compensall használatának feltételeit: a kárigény benyújtásának szabályait, a díjakat, a felelősséget és az irányadó jogot."
+    },
+    "airlines": {
+      "title": "Légitársasági és repülőtéri kártérítési útmutatók",
+      "description": "Keresd meg a légitársaságodat vagy a repülőteredet, és ellenőrizd az EU261 szerinti jogosultságot. Útmutatók a Wizz Airhez, a Ryanairhez, Budapesthez és a nagyobb európai repülőterekhez."
+    },
+    "authorityToAct": {
+      "title": "Meghatalmazás járatkárigényhez",
+      "description": "Meghatalmazás, amely felhatalmazza a Compensallt, hogy a 261/2004/EK szerinti járatkártérítési igényedet érvényesítse."
+    },
+    "noWinNoFee": {
+      "title": "No win, no fee megállapodás",
+      "description": "A Compensall No win, no fee megállapodása. Csak akkor fizetsz, ha sikeresen megszerezzük a kártérítést."
+    },
+    "privacyDataConsent": {
+      "title": "Adatvédelem és adatkezelési hozzájárulás",
+      "description": "A Compensall adatvédelmi és adatkezelési hozzájárulása: hogyan kezeljük és védjük a személyes adataidat."
+    },
+    "track": {
+      "title": "Kövesd a kárigényed",
+      "description": "Ellenőrizd a Compensall járatkártérítési kárigényed állapotát a nyomon követési hivatkozással."
+    },
+    "thankYou": {
+      "title": "Köszönjük — kárigény elküldve",
+      "description": "A Compensall járatkártérítési kárigényed elküldésre került."
+    }
+  },
+  "trackPage": {
+    "title": "Kövesd a kárigényed",
+    "reference": "Hivatkozás: <tracking>{trackingNumber}</tracking>",
+    "loading": "Kárigény állapotának betöltése…",
+    "notFound": "Ezt a kárigényt nem találtuk.",
+    "invalidReference": "Érvénytelen nyomon követési szám.",
+    "errorGeneric": "Valami hiba történt. Próbáld újra.",
+    "startNewClaim": "Új kárigény indítása",
+    "claimDetails": "A kárigény adatai",
+    "status": "Állapot",
+    "fields": {
+      "passenger": "Utas",
+      "flight": "Járat",
+      "route": "Útvonal",
+      "date": "Dátum",
+      "submitted": "Beküldve",
+      "estimate": "Becsült kártérítés"
+    },
+    "estimateUpTo": "Akár {amount}",
+    "estimateDetail": "A {regulation} alapján, kb. {distance} útvonalra.",
+    "estimateDisclaimer": "Csak tájékoztató. A végső jogosultság a késés hosszától, a légitársaság felelősségétől és a rendkívüli körülményektől függ.",
+    "statuses": {
+      "received": {
+        "label": "Beérkezett",
+        "message": "Megkaptuk a kárigényed, a csapatunk átnézi. Itt frissítjük, amint van hír."
+      },
+      "needs_documents": {
+        "label": "Iratok kellenek",
+        "message": "Még néhány iratra van szükségünk a folytatáshoz. Nézd meg az e-mailed, vagy írj nekünk a +351 923391980-as számon. Szívesen segítünk!"
+      },
+      "with_airline": {
+        "label": "A légitársaságnál",
+        "message": "A kárigényed elment a légitársasághoz. Várjuk a válaszukat, és amint van hír, frissítjük."
+      },
+      "following_up": {
+        "label": "Utánkövetés",
+        "message": "A légitársaság válaszolt, és a nevedben utánkövetjük. Minden fejleményről tájékoztatunk."
+      },
+      "payment_processing": {
+        "label": "Kifizetés folyamatban",
+        "message": "Jó hír: a légitársaság jóváhagyta a kártérítést! Most a kifizetést intézzük, és hamarosan frissítjük."
+      },
+      "awaiting_fee": {
+        "label": "Szolgáltatási díj",
+        "message": "Gratulálunk, a kárigényed sikeres volt! Teljesítsd a szolgáltatási díj kifizetését, hogy lezárhassuk az ügyet."
+      },
+      "paid": {
+        "label": "Kifizetve",
+        "message": "A kifizetésed megtörtént! Köszönjük a bizalmat. Ha kérdésed van, mindig itt vagyunk."
+      },
+      "closed_ntd": {
+        "label": "Lezárva",
+        "message": "Sajnos nem tudjuk tovább vinni a kárigényed, az ügyet lezártuk. Ha kérdésed van, nyugodtan keress minket."
+      },
+      "paused": {
+        "label": "Szünetel",
+        "message": "Az ügyed szünetel, mert nem kaptunk tőled választ. Írj a +351 923391980-as számra, ha újra szeretnéd indítani."
+      },
+      "closed_declined": {
+        "label": "Lezárva",
+        "message": "Sajnos a légitársaság elutasította a kárigényed, és nem tudjuk tovább vinni. Az ügyet lezártuk — keress minket, ha meg szeretnéd beszélni az eredményt."
+      }
+    }
+  },
+  "airlinesPage": {
+    "title": "Repülőterek és légitársaságok",
+    "subtitleLine1": "Keresd meg a légitársaságodat vagy a repülőteredet.",
+    "subtitleLine2": "Perc alatt ellenőrizheted a kárigényed."
+  },
+  "airlinesCatalog": {
+    "airlines": "Légitársaságok",
+    "airports": "Repülőterek",
+    "mostPopular": "Legnépszerűbb",
+    "searchResults": "{count, plural, =1 {# találat} other {# találat}}",
+    "searchAirline": "Légitársaság keresése...",
+    "searchAirport": "Repülőtér, város vagy ország keresése...",
+    "seeMore": "Több {section}",
+    "allSection": "Összes {section}",
+    "showLess": "Kevesebb",
+    "noResults": "Nincs találat. Próbálj másik keresést.",
+    "airlineCardDescription": "{name} késés, törlés vagy beszállásmegtagadás? Perc alatt ellenőrizheted a kárigényed.",
+    "airportCardDescription": "Késő vagy törölt járat {name} érintésével? Perc alatt ellenőrizheted a kárigényed."
+  },
+  "catalogDetail": {
+    "airlineTitle": "{name} járatkésés vagy törlés — kártérítés",
+    "airportTitle": "Járatkártérítés {name} érintésével",
+    "airlineMetaTitle": "{name} járatkártérítés",
+    "airportMetaTitle": "{name} járatkártérítés",
+    "airlineIntroP1": "Ha a {name} járatod késett, törölték, vagy megtagadták a beszállást, a 261/2004/EK rendelet és a UK261 alapján akár 600 € kártérítésre is jogosult lehetsz.",
+    "airlineIntroP2": "A Compensall perc alatt ellenőrzi a jogosultságod. Töltsd fel a beszállókártyádat, vagy add meg a járatadataidat — No win, no fee.",
+    "airportIntroP1": "{name} felől vagy felé utazol? Ha a járatod késett vagy törölték, a 261/2004/EK rendelet és a UK261 alapján akár 600 € kártérítésre is jogosult lehetsz.",
+    "airportIntroP2": "A Compensall perc alatt segít ellenőrizni a kárigényed. Kezdd a beszállókártyával vagy a járatadatokkal — No win, no fee.",
+    "sectionRights": "Az utasjogaid",
+    "sectionTips": "Tippek az igényléshez",
+    "airlineCardDescription": "{name} késés, törlés vagy beszállásmegtagadás? Perc alatt ellenőrizheted a kárigényed.",
+    "airportCardDescription": "Késő vagy törölt járat {name} érintésével? Perc alatt ellenőrizheted a kárigényed.",
+    "entityAirlineFlight": "a {name} járatod",
+    "entityAirportFlight": "egy {name} érintésével közlekedő járat",
+    "faqDelayQuestion": "Jár kártérítés, ha {entity} késett vagy törölték?",
+    "faqDelayAnswer": "Kártérítésre lehetsz jogosult, ha a járatod 3+ órát késett, vagy rövid határidővel törölték — feltéve, hogy a fennakadás a légitársaság ellenőrzésén belül volt (nem rendkívüli körülmény, például súlyos időjárás).",
+    "faqAmountQuestion": "Mennyi kártérítést igényelhetek?",
+    "faqAmountAnswer": "A 261/2004/EK rendelet és a UK261 szerint a kártérítés általában 250 €, 400 € vagy 600 € utasonként, a távolságtól és a késés hosszától függően.",
+    "faqRejectedAirlineQuestion": "Mi van, ha a {name} már elutasította a kárigényemet?",
+    "faqRejectedAirportQuestion": "Mi van, ha a légitársaság már elutasította a kárigényemet?",
+    "faqRejectedAnswer": "Az elutasítás nem jelenti automatikusan, hogy nincs jogod. Átnézzük az ügyed, és a jogos kárigényeket No win, no fee alapon visszük tovább.",
+    "faqDeadlineQuestion": "Van határidő az igénylésre?",
+    "faqDeadlineAnswer": "A határidő országonként eltér. Magyarországon általában öt év (Ptk.). Érdemes minél hamarabb ellenőrizni, hogy felmérhessük a lehetőségeidet.",
+    "faqSafeQuestion": "Biztonságos megosztani a beszállókártyámat?",
+    "faqSafeAnswer": "Igen. Az adataidat biztonságosan kezeljük, és csak a kárigényed felmérésére és érvényesítésére használjuk.",
+    "claimHeadlineAirline": "Készen állsz kárigényt indítani a {name} ellen?",
+    "claimHeadlineAirport": "Készen állsz ellenőrizni a {name} érintésével indított kárigényed?",
+    "claimSubheadline": "Használd a kezdőlapon a beszállókártya-asszisztenst. Gyors, biztonságos, és no win, no fee.",
+    "breadcrumbCatalog": "Légitársaságok és repülőterek",
+    "notFoundAirline": "Légitársaság nem található | Compensall",
+    "notFoundAirport": "Repülőtér nem található | Compensall"
+  },
+  "notFoundPage": {
+    "title": "Az oldal nem található",
+    "description": "Ezt az oldalt nem találtuk. Indíts kártérítés-ellenőrzést, vagy böngéssz az útmutatók között.",
+    "checkCompensation": "Kártérítés igénylése",
+    "knowYourRights": "Ismerd meg a jogaidat",
+    "blog": "Blog"
+  },
+  "blogPage": {
+    "title": "Blog",
+    "subtitle": "Gyakorlati útmutatók a 261/2004/EK szerinti utasjogokról: késés, törlés, beszállásmegtagadás és még sok más — hogy tudd, mi járhat, mielőtt felszállsz.",
+    "readArticle": "Cikk elolvasása",
+    "backToBlog": "Vissza a bloghoz",
+    "englishOnlyNotice": "Ez az útmutató jelenleg csak angolul érhető el."
+  },
+  "thankYouPage": {
+    "title": "Köszönjük",
+    "body": "Megkaptuk az aláírt meghatalmazást, és elkezdjük a kárigényedet.",
+    "bodyWithFlight": "Megkaptuk az aláírt meghatalmazást, és elkezdjük a {flight} járatra vonatkozó kárigényedet.",
+    "trackingNumber": "Nyomon követési számod",
+    "trackYourClaim": "Kövesd a kárigényed",
+    "startNewClaim": "Új kárigény indítása"
+  },
+  "documentPage": {
+    "home": "Kezdőlap",
+    "claim": "Kárigény",
+    "powerOfAttorney": "Meghatalmazás",
+    "privacyDataConsent": "Adatvédelem és adatkezelési hozzájárulás",
+    "copyright": "Copyright © Compensall 2026. Minden jog fenntartva.",
+    "backToClaim": "Vissza a kárigényhez"
+  }
+}

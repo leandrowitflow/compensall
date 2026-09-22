@@ -375,6 +375,7 @@ export async function POST(request: Request) {
           flight,
           signingDate: primarySignature?.signedAt || flight.date,
           signatureBase64OrDataUrl: signaturePngBase64,
+          locale,
         }).content
       : null;
 
@@ -392,6 +393,7 @@ export async function POST(request: Request) {
               flight,
               signingDate: signature?.signedAt || flight.date,
               signatureBase64OrDataUrl: passengerSignature,
+              locale,
             }).content
           : null,
       };
@@ -412,6 +414,7 @@ export async function POST(request: Request) {
       userAgent,
       odooLeadId: Number.isFinite(odooLeadId) ? odooLeadId : null,
       formSessionId,
+      resumeToken,
       signaturePngBase64,
       signedPoaHtmlBase64,
       boardingPass:

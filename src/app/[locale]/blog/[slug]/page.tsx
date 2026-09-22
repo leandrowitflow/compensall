@@ -57,6 +57,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const t = await getTranslations("blogPage");
   const tNav = await getTranslations("nav");
+  const tCommon = await getTranslations("common");
   const tHero = await getTranslations("home.hero");
   const blogPath = `/blog/${post.slug}`;
   const publishedIso = parseBlogDisplayDate(post.date);
@@ -69,7 +70,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     datePublished: publishedIso,
   });
   const breadcrumbSchema = buildBreadcrumbSchema([
-    { name: "Home", path: localizedPath("/", appLocale) },
+    { name: tCommon("home"), path: localizedPath("/", appLocale) },
     { name: tNav("blog"), path: localizedPath("/blog", appLocale) },
     { name: post.title, path: localizedPath(blogPath, appLocale) },
   ]);

@@ -52,12 +52,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const tMeta = await getTranslations("metadata.site");
+  const siteDescription = tMeta("description");
 
   return (
     <html lang={HTML_LANG_MAP[locale as AppLocale]} className={openSans.variable} suppressHydrationWarning>
       <body className={openSans.className} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
-          <JsonLd data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
+          <JsonLd data={[buildOrganizationSchema(siteDescription), buildWebSiteSchema(siteDescription)]} />
           <div className="site-viewport min-w-0 overflow-x-clip">
             <AttributionCapture />
             <GoogleTagManager />

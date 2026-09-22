@@ -152,7 +152,7 @@
     "compensation": {
       "title": "How much is the",
       "titleAccent": "compensation?",
-      "ukIntro": "For UK departures, UK261 sets fixed amounts in pounds. The amount depends on your flight distance.",
+      "ukIntro": "For UK flights, UK261 sets fixed amounts in pounds. The amount depends on your flight distance.",
       "ecIntro": "For eligible EU flights, EC 261/2004 sets fixed amounts in euros. The amount depends on your flight distance.",
       "ukHeading": "UK261 — UK flights",
       "ecHeading": "EC 261/2004 — eligible EU flights",
@@ -581,7 +581,7 @@
     "tier351to520": "£351–£520 / €401–€600",
     "fee25Vat": "30% + VAT",
     "uk261Title": "Compensation amounts (UK261)",
-    "uk261Intro": "For UK departures, fixed compensation under UK261 depends on flight distance:",
+    "uk261Intro": "For UK flights, fixed compensation under UK261 depends on flight distance:",
     "ec261Title": "Compensation amounts (EC 261/2004)"
   },
   "cta": {
@@ -728,6 +728,10 @@
     "track": {
       "title": "Track your claim",
       "description": "Check the status of your Compensall flight compensation claim using your tracking reference."
+    },
+    "thankYou": {
+      "title": "Thank you — claim submitted",
+      "description": "Your Compensall flight compensation claim has been submitted."
     }
   },
   "trackPage": {
@@ -859,5 +863,21 @@
     "readArticle": "Read article",
     "backToBlog": "Back to blog",
     "englishOnlyNotice": "This guide is currently available in English only."
+  },
+  "thankYouPage": {
+    "title": "Thank you",
+    "body": "We've received your signed Power of Attorney and will start working on your claim.",
+    "bodyWithFlight": "We've received your signed Power of Attorney and will start working on your claim for flight {flight}.",
+    "trackingNumber": "Your tracking number",
+    "trackYourClaim": "Track your claim",
+    "startNewClaim": "Start a new claim"
+  },
+  "documentPage": {
+    "home": "Home",
+    "claim": "Claim",
+    "powerOfAttorney": "Power of Attorney",
+    "privacyDataConsent": "Privacy & Data Consent",
+    "copyright": "Copyright © Compensall 2026. All rights reserved.",
+    "backToClaim": "Back to claim"
   }
 }

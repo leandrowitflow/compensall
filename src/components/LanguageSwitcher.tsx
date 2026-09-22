@@ -9,6 +9,12 @@ const LOCALE_SHORT: Record<AppLocale, string> = {
   en: "EN",
   pt: "PT",
   fr: "FR",
+  es: "ES",
+  ro: "RO",
+  hu: "HU",
+  sq: "SQ",
+  de: "DE",
+  nl: "NL",
 };
 
 function GlobeIcon() {

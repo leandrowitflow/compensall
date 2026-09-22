@@ -4,7 +4,7 @@ Labels em inglês (`messages/en.json`). UI i18n: `en` / `pt` / `fr`.
 
 **Destino dos CTAs de claim:** `/#claim` (com prefixo de locale, ex. `/en/#claim`) — scroll para o formulário hero (`id="claim"`).
 
-**Conversão paga (Meta / Google Ads):** disparar só no evento `claim_submitted` (dataLayer), depois do submit com tracking number. Não usar a última página do form, revisão, nem `claim_step3_continue_to_review`.
+**Conversão paga (Meta / Google Ads):** URL único `/{locale}/claim/thank-you` (ex. `/en/claim/thank-you`, `/pt/claim/thank-you`). Disparar só no evento `claim_submitted` (dataLayer) nesta página, depois do submit com tracking number. Query: `ref` (tracking), `mode` (`upload`|`manual`), `flight`. Não usar a última página do form, revisão, nem `claim_step3_continue_to_review`.
 
 Helper no código: `src/lib/gtm.ts` (`gtmId`, `gtmClaimCta`).
 
@@ -23,7 +23,7 @@ Todos os botões/links que levam a `/#claim` (Talk to us, Check compensation, Ba
 
 ```html
 data-gtm="cta_claim"
-data-gtm-location="header"   <!-- ou header_mobile | banner | about | catalog_detail | docs | docs_breadcrumb | track | not_found -->
+data-gtm-location="header"   <!-- ou header_mobile | banner | about | catalog_detail | docs | docs_breadcrumb | track | thank_you | not_found -->
 ```
 
 No GTM: trigger em `data-gtm` equals `cta_claim`; variável/dimensão a partir de `data-gtm-location`.
@@ -48,6 +48,7 @@ data-gtm="nav_about"
 | `docs` | Docs · Back to claim | Back to claim |
 | `docs_breadcrumb` | Docs · breadcrumb Claim | Claim |
 | `track` | Track claim · error state | Start a new claim |
+| `thank_you` | Thank-you page · new claim | Start a new claim |
 | `not_found` | 404 | Check compensation |
 
 ---
@@ -99,8 +100,8 @@ data-gtm="nav_about"
 | 3 docs | Back / Continue to review | `claim_step3_documents_back`, `claim_step3_continue_to_review` |
 | 3 review | Back / Submit claim | `claim_step3_review_back`, `claim_step3_submit_claim` |
 | 3 | Delete data | `claim_step3_delete_data` |
-| Success | Claim submitted (conversion) | `claim_submitted` (dataLayer + `data-gtm`) |
-| Success | Track your claim | `claim_success_track_claim` |
+| Thank-you `/{locale}/claim/thank-you` | Claim submitted (conversion) | `claim_submitted` (dataLayer + `data-gtm`) |
+| Thank-you | Track your claim | `claim_success_track_claim` |
 
 ---
 
@@ -133,4 +134,4 @@ data-gtm="nav_about"
    - name: `cta_click`  
    - params: `gtm_id` = `{{data-gtm}}`, `gtm_location` = `{{data-gtm-location}}`
 4. Funil claim: filtrar `data-gtm` que começa por `claim_step`.
-5. **Conversões Meta / Google Ads:** trigger Custom Event `claim_submitted`. O site envia `claim_tracking_number`, `claim_locale`, `claim_entry_mode`, `claim_flight_number`. Desligar tags que disparam na apresentação da última página do form.
+5. **Conversões Meta / Google Ads:** página `/{locale}/claim/thank-you` + trigger Custom Event `claim_submitted`. O site envia `claim_tracking_number`, `claim_locale`, `claim_entry_mode`, `claim_flight_number` uma vez nesta URL. Desligar tags que disparam na apresentação da última página do form.

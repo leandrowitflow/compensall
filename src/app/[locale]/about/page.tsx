@@ -33,11 +33,12 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const t = await getTranslations("about");
   const tCommon = await getTranslations("common");
   const tHero = await getTranslations("home.hero");
+  const tMeta = await getTranslations("metadata.about");
   const whyChooseItems = t.raw("whyChoose") as string[];
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <JsonLd data={buildProfessionalServiceSchema()} />
+      <JsonLd data={buildProfessionalServiceSchema(tMeta("description"))} />
       <Header />
 
       <PageHero title={t("title")} subtitle={t("subtitle")} trustpilotAlt={tHero("trustpilotAlt")} />

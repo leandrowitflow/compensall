@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
 import { FIELD_INPUT } from "@/components/claim/claim-ui";
 import {
+  formatPoaDate,
+  getPoaCopy,
   POA_CONTACT_EMAIL,
   POA_CONTACT_PHONE,
   POA_CONTACT_PHONE_DISPLAY,
   POA_FOOTER_LINE,
-  POWER_OF_ATTORNEY_BODY,
 } from "@/lib/poa-content";
 
 export {
@@ -16,6 +17,7 @@ export {
 } from "@/lib/poa-content";
 
 type PowerOfAttorneyDocumentProps = {
+  locale?: string | null;
   name?: string;
   flight?: string;
   routeFrom?: string;
@@ -41,46 +43,47 @@ function FieldLine({ label, value }: { label: string; value?: string }) {
   );
 }
 
-function formatSigningDateDisplay(date: string): string {
-  if (!date) return "";
-  if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-    return new Date(`${date}T12:00:00`).toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  }
-  return date;
-}
-
-function PoaVerificationBlock() {
+function PoaVerificationBlock({
+  qrAlt,
+  euFlagAlt,
+  europeanUnion,
+  structuralFundsLine1,
+  structuralFundsLine2,
+}: {
+  qrAlt: string;
+  euFlagAlt: string;
+  europeanUnion: string;
+  structuralFundsLine1: string;
+  structuralFundsLine2: string;
+}) {
   return (
     <div className="flex flex-col items-center text-center w-[140px] shrink-0">
       <img
         src="/assets/documents/poa-qr.png"
-        alt="QR code linking to the European Union official website"
+        alt={qrAlt}
         width={112}
         height={112}
         className="w-24 h-24 sm:w-28 sm:h-28 object-contain"
       />
       <img
         src="/assets/documents/eu-flag.svg"
-        alt="Flag of Europe"
+        alt={euFlagAlt}
         width={80}
         height={54}
         className="w-20 h-auto mt-3"
       />
-      <p className="font-bold text-[11px] text-[#1f3664] mt-2 leading-tight">European Union</p>
+      <p className="font-bold text-[11px] text-[#1f3664] mt-2 leading-tight">{europeanUnion}</p>
       <p className="text-[9px] text-[#1f3664]/80 leading-snug mt-0.5">
-        European Structural
+        {structuralFundsLine1}
         <br />
-        and Investment Funds
+        {structuralFundsLine2}
       </p>
     </div>
   );
 }
 
 export default function PowerOfAttorneyDocument({
+  locale = "en",
   name,
   flight,
   routeFrom,
@@ -94,6 +97,8 @@ export default function PowerOfAttorneyDocument({
   interactiveSigning = false,
   flightDateInput,
 }: PowerOfAttorneyDocumentProps) {
+  const copy = getPoaCopy(locale);
+
   return (
     <article className="bg-white text-[#1f3664]">
       <header className="border-b border-[#c5c5c5] pb-4 mb-6">
@@ -102,21 +107,21 @@ export default function PowerOfAttorneyDocument({
         </div>
       </header>
 
-      <h1 className="text-center font-bold text-2xl md:text-[28px] text-black mb-6">Power of Attorney</h1>
+      <h1 className="text-center font-bold text-2xl md:text-[28px] text-black mb-6">{copy.title}</h1>
 
-      <p className="text-sm md:text-[15px] leading-relaxed text-justify mb-8">{POWER_OF_ATTORNEY_BODY}</p>
+      <p className="text-sm md:text-[15px] leading-relaxed text-justify mb-8">{copy.body}</p>
 
       <div className="space-y-4 mb-8">
-        <FieldLine label="Name:" value={name} />
+        <FieldLine label={copy.name} value={name} />
 
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-[#1f3664]">
-          <span className="font-semibold whitespace-nowrap">Flight(s):</span>
+          <span className="font-semibold whitespace-nowrap">{copy.flights}</span>
           <span className="font-medium">{flight?.trim() || "\u00a0"}</span>
-          <span className="font-semibold">from</span>
+          <span className="font-semibold">{copy.from}</span>
           <span className="flex-1 min-w-[80px] border-b border-[#1f3664]/40 pb-0.5 font-medium">
             {routeFrom?.trim() || "\u00a0"}
           </span>
-          <span className="font-semibold">to</span>
+          <span className="font-semibold">{copy.to}</span>
           <span className="flex-1 min-w-[80px] border-b border-[#1f3664]/40 pb-0.5 font-medium">
             {routeTo?.trim() || "\u00a0"}
           </span>
@@ -124,28 +129,28 @@ export default function PowerOfAttorneyDocument({
 
         {flightDateInput ? (
           <div>
-            <span className="font-semibold text-sm">Flight(s) Date:</span>
+            <span className="font-semibold text-sm">{copy.flightsDate}</span>
             <div className="mt-1">{flightDateInput}</div>
           </div>
         ) : (
-          <FieldLine label="Flight(s) Date:" value={flightDate} />
+          <FieldLine label={copy.flightsDate} value={flightDate} />
         )}
       </div>
 
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
         <div className="space-y-6 flex-1 min-w-0">
           <div className="text-sm text-[#1f3664]">
-            <span className="font-semibold">The passenger:</span>
+            <span className="font-semibold">{copy.thePassenger}</span>
             <div className="mt-2 min-h-[72px] border-b border-[#1f3664]/40 flex items-end pb-1">
               {signatureImageUrl ? (
                 <img
                   src={signatureImageUrl}
-                  alt="Passenger signature"
+                  alt={copy.passengerSignatureAlt}
                   className="max-h-[68px] max-w-full object-contain object-left"
                 />
               ) : (
                 <span className="text-[#1f3664]/35 text-xs italic">
-                  {interactiveSigning ? "Your signature will appear here as you draw below" : "\u00a0"}
+                  {interactiveSigning ? copy.signaturePlaceholder : "\u00a0"}
                 </span>
               )}
             </div>
@@ -154,7 +159,7 @@ export default function PowerOfAttorneyDocument({
           {interactiveSigning && onSigningDateChange ? (
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[#1f3664]">
               <label htmlFor="poa-signing-date" className="font-semibold whitespace-nowrap">
-                Date:
+                {copy.date}
               </label>
               <input
                 id="poa-signing-date"
@@ -165,11 +170,19 @@ export default function PowerOfAttorneyDocument({
               />
             </div>
           ) : (
-            <FieldLine label="Date:" value={formatSigningDateDisplay(signingDate)} />
+            <FieldLine label={copy.date} value={formatPoaDate(signingDate, locale)} />
           )}
         </div>
 
-        {showVerificationBlock && <PoaVerificationBlock />}
+        {showVerificationBlock && (
+          <PoaVerificationBlock
+            qrAlt={copy.qrAlt}
+            euFlagAlt={copy.euFlagAlt}
+            europeanUnion={copy.europeanUnion}
+            structuralFundsLine1={copy.structuralFundsLine1}
+            structuralFundsLine2={copy.structuralFundsLine2}
+          />
+        )}
       </div>
 
       {showContactFooter && (

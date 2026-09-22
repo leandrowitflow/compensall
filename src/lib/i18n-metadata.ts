@@ -16,7 +16,8 @@ export type LocalizedMetadataKey =
   | "airlines"
   | "authorityToAct"
   | "noWinNoFee"
-  | "privacyDataConsent";
+  | "privacyDataConsent"
+  | "thankYou";
 
 type BuildLocalizedPageMetadataOptions = {
   noIndex?: boolean;

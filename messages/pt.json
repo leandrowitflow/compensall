@@ -152,7 +152,7 @@
     "compensation": {
       "title": "Quanto pode",
       "titleAccent": "receber?",
-      "ukIntro": "Para partidas do Reino Unido, o UK261 define montantes fixos em libras. O valor depende da distância do voo.",
+      "ukIntro": "Para voos do Reino Unido, o UK261 define montantes fixos em libras. O valor depende da distância do voo.",
       "ecIntro": "Para voos da UE elegíveis, o EC 261/2004 define montantes fixos em euros. O valor depende da distância do voo.",
       "ukHeading": "UK261 — voos do Reino Unido",
       "ecHeading": "EC 261/2004 — voos da UE elegíveis",
@@ -418,7 +418,7 @@
       },
       {
         "question": "Quanto de compensação posso receber?",
-        "answer": "Para voos da UE elegíveis, o EC 261/2004 prevê até 600€ por passageiro (250€ para voos até 1 500 km, 400€ para 1 500–3 500 km e 600€ acima de 3 500 km). O UK261 aplica-se a partidas do Reino Unido com montantes equivalentes em libras."
+        "answer": "Para voos da UE elegíveis, o EC 261/2004 prevê até 600€ por passageiro (250€ para voos até 1 500 km, 400€ para 1 500–3 500 km e 600€ acima de 3 500 km). O UK261 aplica-se a voos do Reino Unido com montantes equivalentes em libras."
       },
       {
         "question": "O que significa No win, no fee?",
@@ -444,7 +444,7 @@
     "uk": [
       {
         "question": "O que é o UK261 e em que difere do EC 261?",
-        "answer": "Após o Brexit, o Reino Unido manteve os direitos dos passageiros através do UK261, que espelha o Regulamento da UE EC 261/2004 para voos com partida do Reino Unido. O EC 261 utiliza euros (250€, 400€ ou 600€) para partidas da UE elegíveis; o UK261 aplica-se a partidas do Reino Unido."
+        "answer": "Após o Brexit, o Reino Unido manteve os direitos dos passageiros através do UK261, que espelha o Regulamento da UE EC 261/2004 para voos do Reino Unido. O EC 261 utiliza euros (250€, 400€ ou 600€) para voos da UE elegíveis; o UK261 aplica-se a voos do Reino Unido."
       },
       {
         "question": "O UK261 aplica-se ao meu voo?",
@@ -581,7 +581,7 @@
     "tier351to520": "401€–600€",
     "fee25Vat": "30% + IVA",
     "uk261Title": "Montantes de compensação (UK261)",
-    "uk261Intro": "Para partidas do Reino Unido, a compensação fixa ao abrigo do UK261 depende da distância do voo:",
+    "uk261Intro": "Para voos do Reino Unido, a compensação fixa ao abrigo do UK261 depende da distância do voo:",
     "ec261Title": "Montantes de compensação (EC 261/2004)"
   },
   "cta": {
@@ -728,6 +728,10 @@
     "track": {
       "title": "Acompanhar o seu pedido",
       "description": "Consulte o estado do seu pedido de compensação de voo Compensall utilizando a sua referência de acompanhamento."
+    },
+    "thankYou": {
+      "title": "Obrigado — pedido enviado",
+      "description": "O seu pedido de compensação de voo Compensall foi enviado."
     }
   },
   "trackPage": {
@@ -859,5 +863,21 @@
     "readArticle": "Ler artigo",
     "backToBlog": "Voltar ao blog",
     "englishOnlyNotice": "Este guia está atualmente disponível apenas em inglês."
+  },
+  "thankYouPage": {
+    "title": "Obrigado",
+    "body": "Recebemos a sua Procuração assinada e vamos começar a trabalhar no seu pedido.",
+    "bodyWithFlight": "Recebemos a sua Procuração assinada e vamos começar a trabalhar no seu pedido para o voo {flight}.",
+    "trackingNumber": "O seu número de acompanhamento",
+    "trackYourClaim": "Acompanhar o pedido",
+    "startNewClaim": "Começar um novo pedido"
+  },
+  "documentPage": {
+    "home": "Início",
+    "claim": "Pedido",
+    "powerOfAttorney": "Procuração",
+    "privacyDataConsent": "Privacidade e consentimento de dados",
+    "copyright": "Copyright © Compensall 2026. Todos os direitos reservados.",
+    "backToClaim": "Voltar ao pedido"
   }
 }

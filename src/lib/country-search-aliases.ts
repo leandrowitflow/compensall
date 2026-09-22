@@ -10,9 +10,12 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   "u.k": ["GB"],
   britain: ["GB"],
   "great britain": ["GB"],
+  "verenigd koninkrijk": ["GB"],
+  engeland: ["GB"],
+  schotland: ["GB"],
+  wales: ["GB"],
   england: ["GB"],
   scotland: ["GB"],
-  wales: ["GB"],
   "northern ireland": ["GB"],
   inglaterra: ["GB"],
   escocia: ["GB"],
@@ -45,23 +48,27 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   espana: ["ES"],
   espanha: ["ES"],
   espagne: ["ES"],
+  spanje: ["ES"],
 
   // France
   france: ["FR"],
   franca: ["FR"],
   francia: ["FR"],
   frankreich: ["FR"],
+  frankrijk: ["FR"],
 
   // Germany
   germany: ["DE"],
   alemanha: ["DE"],
   allemagne: ["DE"],
   deutschland: ["DE"],
+  duitsland: ["DE"],
 
   // Italy
   italy: ["IT"],
   italia: ["IT"],
   italie: ["IT"],
+  "italië": ["IT"],
 
   // Netherlands
   netherlands: ["NL"],
@@ -69,27 +76,34 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   holanda: ["NL"],
   "pays-bas": ["NL"],
   "pays bas": ["NL"],
+  nederland: ["NL"],
+  nederlands: ["NL"],
+  niederlande: ["NL"],
 
   // Belgium
   belgium: ["BE"],
   belgica: ["BE"],
   belgique: ["BE"],
+  belgie: ["BE"],
 
   // Ireland
   ireland: ["IE"],
   irlanda: ["IE"],
   irlande: ["IE"],
   eire: ["IE"],
+  ierland: ["IE"],
 
   // Switzerland
   switzerland: ["CH"],
   suica: ["CH"],
   suisse: ["CH"],
   schweiz: ["CH"],
+  zwitserland: ["CH"],
 
   // Austria
   austria: ["AT"],
   autriche: ["AT"],
+  oostenrijk: ["AT"],
 
   // Greece
   greece: ["GR"],
@@ -189,6 +203,10 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   croatia: ["HR"],
   croacia: ["HR"],
   croatie: ["HR"],
+  albania: ["AL"],
+  shqiperi: ["AL"],
+  shqiperia: ["AL"],
+  shqipëria: ["AL"],
 };
 
 function normalizeAlias(value: string): string {

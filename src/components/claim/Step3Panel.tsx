@@ -11,11 +11,13 @@ import {
   type ClaimPassenger,
   type ClaimStatus,
 } from "@/lib/claim-types";
-import { ACTION_BTN, ASSISTANT_NAME, FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
+import { ACTION_BTN, FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
 import PhoneInputField from "@/components/claim/PhoneInputField";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
+import { useRouter } from "@/i18n/routing";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
-import { gtmId, trackClaimSubmitted } from "@/lib/gtm";
+import { gtmId } from "@/lib/gtm";
+import { formatPoaDate } from "@/lib/poa-content";
 import { isBlankOrValidClaimPhone, isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
 const DRAFT_HEARTBEAT_MS = 60_000;
@@ -88,18 +90,6 @@ function hasInk(dataUrl: string): boolean {
   return Math.floor((base64.length * 3) / 4) > MIN_SIGNATURE_BYTES;
 }
 
-function formatFlightDateForDisplay(date: string): string {
-  if (!date) return "";
-  if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-    return new Date(`${date}T12:00:00`).toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  }
-  return date;
-}
-
 function FileUploadField({
   id,
   label,
@@ -141,6 +131,8 @@ export default function Step3Panel({
   onSubmit,
 }: Step3PanelProps) {
   const t = useTranslations("claim.step3");
+  const tCommon = useTranslations("common");
+  const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
 
@@ -496,11 +488,13 @@ export default function Step3Panel({
         formSessionId: sessionId,
       });
       setTrackingNumber(result.trackingNumber);
-      trackClaimSubmitted({
-        trackingNumber: result.trackingNumber,
-        locale,
-        entryMode,
-        flightNumber: flight.flight,
+      router.replace({
+        pathname: "/claim/thank-you",
+        query: {
+          ref: result.trackingNumber,
+          mode: entryMode,
+          ...(flight.flight.trim() ? { flight: flight.flight.trim() } : {}),
+        },
       });
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : t("errors.submitFailed"));
@@ -511,10 +505,7 @@ export default function Step3Panel({
 
   if (trackingNumber) {
     return (
-      <div
-        className="border border-[#d5e0f9] rounded-[21px] p-6 sm:p-8 flex flex-col items-center text-center bg-white min-h-[320px] justify-center"
-        {...gtmId("claim_submitted")}
-      >
+      <div className="border border-[#d5e0f9] rounded-[21px] p-6 sm:p-8 flex flex-col items-center text-center bg-white min-h-[320px] justify-center">
         <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-14 h-14 mb-4 object-contain" />
         <h3 className="font-bold text-[#1f3664] text-xl mb-2">{t("claimSubmitted")}</h3>
         <p className="text-[#1f3664] text-sm sm:text-base max-w-md leading-relaxed mb-4">
@@ -544,7 +535,7 @@ export default function Step3Panel({
         <img src="/assets/claim/claim-ai-icon.svg" alt="" className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 object-contain" />
         <div>
           <div className="flex items-center gap-3 flex-wrap">
-            <p className="font-bold text-[#2669f3] text-base sm:text-lg">{ASSISTANT_NAME}</p>
+            <p className="font-bold text-[#2669f3] text-base sm:text-lg">{tCommon("assistantName")}</p>
             <span className="text-[#7b8094] text-sm">{t("justNow")}</span>
           </div>
           <p className="text-[#1f3664] text-sm sm:text-base mt-2 leading-relaxed">
@@ -748,8 +739,8 @@ export default function Step3Panel({
             <p className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-1">
               {t("signPassenger", { current: signingPassengerIndex + 1, total: allPassengers.length })}
             </p>
-            <h4 className="font-bold text-lg leading-tight">{currentDoc.title}</h4>
-            <p className="text-white/80 text-sm mt-1">{currentDoc.description}</p>
+            <h4 className="font-bold text-lg leading-tight">{t("powerOfAttorney.title")}</h4>
+            <p className="text-white/80 text-sm mt-1">{t("powerOfAttorney.description")}</p>
           </div>
 
           <div className="bg-white border border-[#d5e0f9] rounded-xl overflow-hidden shadow-sm">
@@ -766,11 +757,12 @@ export default function Step3Panel({
             </div>
             <div ref={documentViewerRef} className="max-h-64 sm:max-h-96 overflow-y-auto p-4">
               <PowerOfAttorneyDocument
+                locale={locale}
                 name={activePassengerName}
                 flight={flight.flight}
                 routeFrom={flight.routeFrom}
                 routeTo={flight.routeTo}
-                flightDate={formatFlightDateForDisplay(flight.date)}
+                flightDate={formatPoaDate(flight.date, locale)}
                 signingDate={signingDate}
                 onSigningDateChange={setSigningDate}
                 signatureImageUrl={signaturePreview}

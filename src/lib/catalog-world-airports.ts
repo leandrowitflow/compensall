@@ -50,6 +50,7 @@ const COUNTRY_LOCALES: Record<string, string[]> = {
   CZ: ["cs", "cs-CZ"],
   HU: ["hu", "hu-HU"],
   RO: ["ro", "ro-RO"],
+  AL: ["sq", "sq-AL"],
   BR: ["pt", "pt-BR"],
   US: ["en"],
 };

@@ -9,6 +9,7 @@ const NEXT_POLYFILL_STUB = "./src/lib/next-polyfill-modern.js";
 const NEXT_POLYFILL_STUB_ABS = path.join(process.cwd(), "src/lib/next-polyfill-modern.js");
 
 const nextConfig: NextConfig = {
+  ...(process.env.NEXT_DIST_DIR ? { distDir: process.env.NEXT_DIST_DIR } : {}),
   images: {
     formats: ["image/avif", "image/webp"],
     imageSizes: [96, 128, 161, 256, 384],

@@ -161,7 +161,7 @@ export function buildLlmsTxt(): string {
   return [
     "# Compensall",
     "",
-    "> Compensall helps air passengers claim compensation of up to €600 per person under EU regulation EC 261/2004 for delayed, cancelled, and disrupted flights. Localized site versions: English (en-GB), Portuguese (pt-PT), and French (fr-FR) at /en/, /pt/, and /fr/.",
+    "> Compensall helps air passengers claim compensation of up to €600 per person under EU regulation EC 261/2004 for delayed, cancelled, and disrupted flights. Localized site versions: English (en-GB), Portuguese (pt-PT), French (fr-FR), Spanish (es-ES), Romanian (ro-RO), Hungarian (hu-HU), Albanian (sq-AL), German (de-DE), and Dutch (nl-NL) at /en/, /pt/, /fr/, /es/, /ro/, /hu/, /sq/, /de/, and /nl/.",
     "",
     sections,
     "",

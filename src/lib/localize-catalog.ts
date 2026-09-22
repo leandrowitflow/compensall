@@ -14,6 +14,12 @@ const LOCALE_HOME_COUNTRIES: Record<string, string[]> = {
   en: ["GB", "IE"],
   pt: ["PT"],
   fr: ["FR", "BE", "CH", "LU"],
+  es: ["ES"],
+  ro: ["RO"],
+  hu: ["HU"],
+  sq: ["AL"],
+  de: ["DE", "AT", "CH"],
+  nl: ["NL", "BE"],
 };
 
 function popularRank(id: string, kind: "airlines" | "airports"): number {

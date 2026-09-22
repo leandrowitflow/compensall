@@ -1,0 +1,883 @@
+{
+  "common": {
+    "brandName": "Compensall",
+    "assistantName": "Assistent",
+    "assistantStepLabel": "Controle door de assistent",
+    "assistantScanMessage": "Onze assistent heeft uw instapkaart gelezen en de belangrijkste gegevens overgenomen.",
+    "justNow": "Zojuist",
+    "notApplicable": "n.v.t.",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "language": "Taal",
+    "selectLanguage": "Taal kiezen",
+    "learnMore": "Meer informatie",
+    "checkClaims": "Claims controleren",
+    "startYourClaim": "Start uw claim",
+    "checkCompensation": "Compensatie controleren",
+    "checkCompensationShort": "Controleren",
+    "home": "Home",
+    "legal": "Juridisch",
+    "airport": "Luchthaven",
+    "downloadPageMarkdown": "Pagina als Markdown downloaden"
+  },
+  "nav": {
+    "knowYourRights": "Ken uw rechten",
+    "knowYourRightsShort": "Uw rechten",
+    "airlines": "Luchtvaartmaatschappijen",
+    "airlinesShort": "Airlines",
+    "airlinesAndAirports": "Airlines en luchthavens",
+    "aboutUs": "Over ons",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "talkToUs": "Contact",
+    "talkToUsShort": "Contact",
+    "knowYourRightsMenu": {
+      "yourRights": "Uw rechten",
+      "overview": "Overzicht",
+      "overviewDescription": "Hoe de EG 261 u beschermt",
+      "flightCancellation": "Vluchtannulering",
+      "flightDelay": "Vluchtvertraging",
+      "deniedBoarding": "Instapweigering",
+      "missedConnection": "Gemiste aansluiting",
+      "overbooking": "Overboeking",
+      "airlineStrike": "Staking van de airline",
+      "passengerRights": "Passagiersrechten",
+      "passengersWithDisabilities": "Passagiers met een beperking"
+    },
+    "airlinesMenu": {
+      "browse": "Bladeren",
+      "allAirlinesAirports": "Alle airlines en luchthavens",
+      "allAirlinesAirportsDescription": "Volledige catalogus",
+      "popularAirlines": "Populaire airlines",
+      "popularAirports": "Populaire luchthavens"
+    }
+  },
+  "footer": {
+    "contactUs": "Contact",
+    "email": "help@compensall.com",
+    "phone": "+351 923 391 980",
+    "privacyPolicy": "Privacy",
+    "termsOfService": "Algemene voorwaarden",
+    "cookies": "Cookies",
+    "prices": "Prijzen",
+    "noWinNoFee": "No win, no fee.",
+    "socialLinkedIn": "LinkedIn",
+    "socialInstagram": "Instagram",
+    "socialFacebook": "Facebook",
+    "socialTikTok": "TikTok",
+    "newsletterTitle": "Mis geen kans",
+    "newsletterSubtitle": "Aanmelden voor de nieuwsbrief",
+    "newsletterPlaceholder": "E-mailadres invoeren",
+    "newsletterSubscribe": "Aanmelden",
+    "newsletterConsent": "Ik wil marketingmails ontvangen en heb de <privacyPolicy>privacyverklaring</privacyPolicy> gelezen.",
+    "copyright": "© 2026 Compensall"
+  },
+  "home": {
+    "metadata": {
+      "title": "Vlucht vertraagd of geannuleerd? Eis tot 600 €",
+      "description": "Upload uw instapkaart en controleer uw compensatie volgens UK261 of Verordening (EG) nr. 261/2004. Veilig, met menselijke begeleiding. No win, no fee."
+    },
+    "hero": {
+      "trustpilotAlt": "Excellent Trustpilot 4,8 van 5",
+      "title": "Vlucht vertraagd of geannuleerd?",
+      "titleLine2": "Eis tot 520 £ of 600 €",
+      "subtitle": "UK261 en Verordening (EG) nr. 261/2004 beschermen uw rechten. Het veiligste platform voor vluchtcompensatie op de markt.",
+      "fastRiskFree": "Snel en zonder risico",
+      "noHiddenFees": "Geen verborgen kosten",
+      "talkToUs": "Contact",
+      "humanSupportAvailable": "Menselijke ondersteuning",
+      "highestSecurity": "Hoogste beveiliging",
+      "dataProtected": "Uw gegevens blijven beschermd"
+    },
+    "trustBar": {
+      "noWinNoFee": "No win, no fee.",
+      "onlyIfSuccessful": "U betaalt alleen als wij winnen",
+      "gdprFirst": "AVG eerst",
+      "privacyByDesign": "Privacy by design",
+      "deleteYourData": "Gegevens wissen",
+      "fullControl": "Volledige controle",
+      "humanSupport": "Menselijke ondersteuning",
+      "realPeopleHelp": "Echte mensen, echte hulp"
+    },
+    "claimCards": {
+      "title": "Waarvoor kunt u",
+      "titleAccent": "compensatie krijgen?",
+      "subtitle": "Wij helpen u compensatie af te dwingen bij veel vluchtproblemen.",
+      "flightDelay": {
+        "title": "Vluchtvertraging",
+        "description": "Als uw vlucht meer dan 3 uur te laat aankwam, kunt u recht hebben op tot 520 £ of 600 €.",
+        "iconAlt": "Icoon vluchtvertraging"
+      },
+      "flightCancellation": {
+        "title": "Vluchtannulering",
+        "description": "Als uw vlucht op korte termijn is geannuleerd, kunt u recht hebben op tot 520 £ of 600 €.",
+        "iconAlt": "Vluchtannulering"
+      },
+      "deniedBoarding": {
+        "title": "Instapweigering",
+        "description": "Als u tegen uw wil de instap is geweigerd, kunt u tot 520 £ of 600 € eisen.",
+        "iconAlt": "Instapweigering"
+      },
+      "missedConnection": {
+        "title": "Gemiste aansluiting",
+        "description": "Als u door een vertraging uw aansluitende vlucht mist, kunt u recht hebben op compensatie.",
+        "iconAlt": "Gemiste aansluiting"
+      },
+      "airlineStrike": {
+        "title": "Staking van de airline",
+        "description": "Als een staking van de airline uw vlucht heeft verstoord, kunt u toch recht hebben op compensatie.",
+        "iconAlt": "Staking van de airline"
+      }
+    },
+    "howItWorks": {
+      "title": "Zo",
+      "titleAccent": "werkt het",
+      "schemaName": "Zo eist u vluchtcompensatie met Compensall",
+      "subtitle": "Upload uw instapkaart. Onze assistent controleert uw claim. Ons team neemt de airline over.",
+      "steps": {
+        "upload": {
+          "title": "Instapkaart uploaden",
+          "description": "Voeg uw instapkaart in enkele seconden toe."
+        },
+        "assistant": {
+          "title": "De assistent controleert uw claim",
+          "description": "Onze assistent toetst of u recht hebt."
+        },
+        "airline": {
+          "title": "Wij regelen het met de airline",
+          "description": "Wij drijven uw compensatie af."
+        }
+      }
+    },
+    "compensation": {
+      "title": "Hoe hoog is de",
+      "titleAccent": "compensatie?",
+      "ukIntro": "Bij vluchten uit het Verenigd Koninkrijk legt UK261 vaste bedragen in ponden vast. De hoogte hangt af van de vliegafstand.",
+      "ecIntro": "Bij in aanmerking komende EU-vluchten legt Verordening (EG) nr. 261/2004 vaste bedragen in euro vast. De hoogte hangt af van de vliegafstand.",
+      "ukHeading": "UK261 — vluchten in het Verenigd Koninkrijk",
+      "ecHeading": "EG 261/2004 — in aanmerking komende EU-vluchten",
+      "tierAlt": "Compensatietrap {amount}"
+    }
+  },
+  "claim": {
+    "steps": {
+      "upload": "Uploaden",
+      "assistantCheck": "Controle door de assistent",
+      "assistantCheckShort": "Controle",
+      "signSubmit": "Ondertekenen en indienen"
+    },
+    "resume": {
+      "loading": "Uw opgeslagen claim wordt geladen…",
+      "loaded": "Wij hebben uw vlucht- en contactgegevens geladen. Onderteken de volmacht en dien de claim in.",
+      "invalid": "Deze hervattingslink is ongeldig. U kunt hieronder een nieuwe claim starten.",
+      "expired": "Deze hervattingslink is verlopen of al gebruikt. U kunt hieronder een nieuwe claim starten."
+    },
+    "step1": {
+      "rightsContext": "Volgens Brits en Europees passagiersrecht (UK261 en Verordening (EG) nr. 261/2004) kunt u recht hebben op compensatie bij vertraging, annulering en instapweigering. Upload uw instapkaart — de controle is gratis. No win, no fee.",
+      "readingBoardingPass": "Uw instapkaart wordt gelezen…",
+      "extractingDetails": "{assistantName} leest uw vluchtgegevens uit",
+      "uploadTitle": "Instapkaart uploaden",
+      "uploadHint": "Sleep of klik om te uploaden (PDF, JPG, PNG)",
+      "orCheckManually": "Of",
+      "checkManually": "handmatig controleren",
+      "departureAirport": "Vertrekluchthaven",
+      "arrivalAirport": "Aankomstluchthaven",
+      "swapAirports": "Luchthavens wisselen",
+      "dataProtected": "Uw gegevens zijn beschermd. Altijd.",
+      "popularAirports": "Populaire luchthavens",
+      "resultsCount": "{count, plural, =1 {# resultaat} other {# resultaten}}",
+      "otherAirportHidden": "De andere gekozen luchthaven is verborgen.",
+      "noAirportsFound": "Geen luchthaven gevonden. Probeer stad, land of code (bijv. Amsterdam, Nederland, AMS).",
+      "preview": {
+        "title": "Voorbeeld van de instapkaart",
+        "fullTitle": "Instapkaart op ware grootte",
+        "addedJustNow": "Zojuist toegevoegd • {fileSize}",
+        "open": "Voorbeeld",
+        "viewFull": "Instapkaart volledig bekijken",
+        "thumbnail": "Miniatuur van de instapkaart",
+        "heicUnsupported": "HEIC-voorbeeld wordt in de browser niet ondersteund.",
+        "unavailable": "Voor dit bestandstype is geen voorbeeld beschikbaar.",
+        "notAvailableSaved": "Voor dit bestandstype is in de browser geen voorbeeld. Het bestand is wel opgeslagen voor de claim.",
+        "formatCannotPreview": "Dit formaat kan niet inline worden getoond{heicHint}.",
+        "heicHint": " (HEIC)",
+        "downloadFile": "Bestand downloaden",
+        "closePreview": "Voorbeeld sluiten"
+      },
+      "errors": {
+        "selectBothAirports": "Kies vertrek- en aankomstluchthaven uit de lijst.",
+        "airportsMustDiffer": "Vertrek- en aankomstluchthaven moeten verschillen.",
+        "extractFailed": "Wij konden niet alle gegevens automatisch lezen. Vul uw vluchtgegevens hieronder aan.",
+        "somethingWentWrong": "Er is iets misgegaan. Vul uw vluchtgegevens hieronder in.",
+        "unsupportedType": "Bestandstype niet ondersteund. Upload een instapkaart als PDF, JPG, PNG, WebP of HEIC.",
+        "tooLarge": "Het bestand is te groot. Maximaal 10 MB."
+      }
+    },
+    "step2": {
+      "extractedSuccess": "Dank u. Wij hebben uw vluchtgegevens uitgelezen.",
+      "confirmDetails": "Bevestig dat de gegevens hieronder kloppen.",
+      "extractPartial": "Uw instapkaart is opgeslagen, maar wij konden niet alle gegevens automatisch lezen.",
+      "fillInDetails": "Vul of bevestig de gegevens hieronder.",
+      "passenger": "Passagier",
+      "flight": "Vlucht",
+      "route": "Traject",
+      "date": "Datum",
+      "confirmPrompt": "Klopt alles?",
+      "confirmHint": "Dit helpt ons uw recht te toetsen.",
+      "deleteData": "Gegevens wissen",
+      "editDetails": "Gegevens wijzigen",
+      "doneEditing": "Wijziging klaar",
+      "yesContinue": "Ja, verder",
+      "errors": {
+        "passengerRequired": "De naam van de passagier is verplicht.",
+        "flightRequired": "Het vluchtnummer is verplicht.",
+        "routeRequired": "Het traject is verplicht.",
+        "dateRequired": "De vluchtdatum is verplicht."
+      },
+      "fields": {
+        "passenger": "Passagier",
+        "passengerPlaceholder": "Volledige naam zoals op de instapkaart",
+        "flightNumber": "Vluchtnummer",
+        "flightPlaceholder": "bijv. KL1234",
+        "date": "Datum",
+        "departure": "Vertrek",
+        "departurePlaceholder": "bijv. Amsterdam (AMS)",
+        "arrival": "Aankomst",
+        "arrivalPlaceholder": "bijv. Rome (FCO)"
+      }
+    },
+    "connecting": {
+      "title": "Aansluitende vluchten",
+      "subtitle": "Geef aan of uw reis een aansluiting omvatte.",
+      "hadConnecting": "Had u een aansluitende vlucht?",
+      "selectPlaceholder": "Kies een optie",
+      "yes": "Ja",
+      "no": "Nee",
+      "legLabel": "Aansluitende vlucht {number}",
+      "anotherConnecting": "Ik had nog een aansluitende vlucht",
+      "airport": "Luchthaven",
+      "airportPlaceholder": "Luchthaven kiezen",
+      "flightNumber": "Vluchtnummer",
+      "flightNumberPlaceholder": "bijv. KL1234",
+      "errors": {
+        "connectingRequired": "Geef aan of u een aansluitende vlucht had.",
+        "connectingDetailsRequired": "Vul luchthaven en vluchtnummer in voor aansluitende vlucht 1."
+      }
+    },
+    "disruption": {
+      "title": "Gegevens over de verstoring",
+      "subtitle": "Beschrijf wat er is gebeurd, zodat wij het recht kunnen toetsen.",
+      "type": "Soort verstoring",
+      "typePlaceholder": "Soort verstoring kiezen",
+      "selectPlaceholder": "Kies een optie",
+      "delayDuration": "Vertraging op de eindbestemming",
+      "delayLessThan3": "Minder dan 3 uur",
+      "delayMoreThan3": "Meer dan 3 uur",
+      "cancellationNotice": "Hoeveel dagen voor vertrek bent u geïnformeerd?",
+      "notice14OrMore": "14 dagen of meer",
+      "noticeLessThan14": "Minder dan 14 dagen",
+      "ineligibleTitle": "Helaas hebt u in dit geval geen recht op compensatie.",
+      "ineligibleBody": "Volgens Verordening (EG) nr. 261/2004 hoeft de airline niet te betalen als de vertraging onder de 3 uur lag of de annulering meer dan 14 dagen van tevoren is meegedeeld. Dat is teleurstellend — dank u voor uw begrip.",
+      "ineligibleContact": "Neem contact met ons op bij andere verstoringen van de afgelopen 5 jaar.",
+      "reason": "Reden van de verstoring",
+      "types": {
+        "delay": "Vertraging",
+        "cancellation": "Annulering",
+        "deniedBoarding": "Instapweigering"
+      },
+      "reasons": {
+        "technical": "Technisch probleem",
+        "weather": "Weer",
+        "strike": "Staking",
+        "crew": "Probleem met de bemanning",
+        "airport": "Luchthaven / luchtverkeer",
+        "other": "Overig / onzeker"
+      },
+      "errors": {
+        "typeRequired": "Kies het soort verstoring.",
+        "delayRequired": "Kies de duur van de vertraging.",
+        "noticeRequired": "Kies wanneer u over de annulering bent geïnformeerd.",
+        "reasonRequired": "Kies de reden van de verstoring."
+      }
+    },
+    "compensationEstimate": {
+      "label": "Geschatte compensatie",
+      "upTo": "Tot {amount}",
+      "detail": "Volgens {regulation} voor een traject van ongeveer {distance}.",
+      "disclaimer": "Alleen ter oriëntatie. Het definitieve recht hangt af van de vertraging, de verantwoordelijkheid van de airline en buitengewone omstandigheden."
+    },
+    "step3": {
+      "claimReady": "Uw claim is gereed.",
+      "confirmContact": "Bevestig uw contactgegevens en overige passagiers.",
+      "uploadDocuments": "Upload optioneel bewijsstukken en ga daarna naar de controle.",
+      "readAndSign": "Lees de volmacht volledig en onderteken één keer om verder te gaan.",
+      "readAndSignPassenger": "Passagier {current} van {total}: {name} — volmacht lezen en ondertekenen.",
+      "signedReview": "Handtekeningen compleet. Controleer en dien de claim in.",
+      "justNow": "Zojuist",
+      "fullLegalName": "Volledige wettelijke naam",
+      "namePlaceholder": "Zoals op de instapkaart",
+      "emailAddress": "E-mailadres",
+      "emailPlaceholder": "uwnaam@email.nl",
+      "phoneNumber": "Telefoonnummer",
+      "phonePlaceholder": "06 12345678",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "otherPassengers": "Overige passagiers van de boeking",
+      "otherPassengersHint": "Voeg iedereen toe die ook een volmacht moet ondertekenen.",
+      "addPassenger": "Passagier toevoegen",
+      "removePassenger": "Verwijderen",
+      "passengerNumber": "Passagier {number}",
+      "documentsHint": "Deze bestanden versnellen de behandeling. U kunt overslaan wat u nog niet hebt.",
+      "docs": {
+        "passport": "Kopie van het paspoort",
+        "passportHint": "Fotopagina van het paspoort of de identiteitskaart.",
+        "booking": "Boekingsbevestiging",
+        "bookingHint": "Boekingsbevestiging of e-ticket van de airline.",
+        "expenses": "Bewijzen van extra kosten",
+        "expensesHint": "Maaltijden, hotels, transfers of andere verstoringkosten.",
+        "other": "Overige stukken",
+        "otherHint": "Andere bewijsstukken (optioneel)."
+      },
+      "additionalDocuments": "Overige stukken (optioneel)",
+      "additionalDocumentsHint": "Upload identiteitsbewijs, boekingsbevestiging, bonnen of andere bestanden.",
+      "signOnce": "Eén keer ondertekenen",
+      "signPassenger": "Handtekening {current} van {total}",
+      "documentPreview": "Documentvoorbeeld",
+      "openFullPage": "Volledige pagina openen ↗",
+      "readComplete": "✓ U hebt de volmacht gelezen. U kunt hieronder ondertekenen",
+      "scrollToUnlock": "Scroll naar het einde van de volmacht om de handtekening vrij te geven ↓",
+      "yourSignature": "Uw handtekening",
+      "clear": "Wissen",
+      "drawSignatureHint": "Teken hier — uw handtekening verschijnt in het document onder “The passenger”. Zet daar ook de ondertekeningsdatum.",
+      "scrollToUnlockSigning": "Scroll naar het einde van het document om de handtekening vrij te geven.",
+      "signedBy": "Ondertekend door",
+      "flightDate": "Vluchtdatum: {date}",
+      "signingDate": "Ondertekeningsdatum: {date}",
+      "signedAt": "Ondertekend op {date}",
+      "passengersCount": "Passagiers: {count}",
+      "continueToDocuments": "Verder naar de stukken",
+      "continueToSigning": "Verder naar de handtekening",
+      "continueToReview": "Verder naar de controle",
+      "saving": "Wordt opgeslagen...",
+      "deleteData": "Gegevens wissen",
+      "back": "Terug",
+      "signing": "Wordt ondertekend…",
+      "signAndNext": "Ondertekenen en volgende passagier",
+      "signAndReview": "Ondertekenen en controleren",
+      "signAndContinue": "Ondertekenen en verder",
+      "reSign": "Opnieuw ondertekenen",
+      "submitting": "Wordt ingediend…",
+      "submitClaim": "Claim indienen",
+      "claimSubmitted": "Claim ingediend",
+      "thankYou": "Dank u, {name}. Wij hebben uw ondertekende volmacht ontvangen en starten uw claim voor vlucht {flight}.",
+      "trackingNumber": "Uw referentienummer",
+      "trackYourClaim": "Claim volgen",
+      "confirmationEmail": "Bevestiging en updates sturen wij naar {email}.",
+      "powerOfAttorney": {
+        "title": "Volmacht",
+        "description": "Machtigt Compensall om uw compensatieclaim volgens Verordening (EG) nr. 261/2004 af te dwingen."
+      },
+      "errors": {
+        "nameRequired": "Vul uw volledige wettelijke naam in.",
+        "emailInvalid": "Vul een geldig e-mailadres in. Wij hebben het nodig voor referentienummer en updates.",
+        "phoneInvalid": "Vul een geldig telefoonnummer in, zodat wij u over de claim kunnen bereiken.",
+        "passengerNameRequired": "Vul voor- en achternaam in voor passagier {number}.",
+        "passengerEmailInvalid": "Vul een geldig e-mailadres in voor passagier {number}.",
+        "passengerPhoneInvalid": "Vul een geldig telefoonnummer in voor passagier {number}.",
+        "scrollBeforeSign": "Scroll naar het einde van het document voordat u ondertekent.",
+        "signatureRequired": "Teken uw handtekening om te bevestigen dat u het document hebt gelezen en akkoord gaat.",
+        "signFailed": "De handtekening kon niet worden opgeslagen. Probeer het opnieuw.",
+        "signConnectionError": "De handtekening kon niet worden opgeslagen. Controleer uw verbinding en probeer het opnieuw.",
+        "signBeforeSubmit": "Onderteken de volmacht voor elke passagier voordat u indient.",
+        "submitFailed": "Uw claim kon niet worden ingediend.",
+        "sessionExpired": "De sessie is verlopen. Begin opnieuw."
+      }
+    },
+    "sidebar": {
+      "uploadedBoardingPass": "Geüploade instapkaart",
+      "manualFlightEntry": "Handmatige vluchtinvoer",
+      "manualEntryHint": "U hebt traject en vluchtgegevens handmatig ingevoerd. Controleer alles voordat u ondertekent.",
+      "extractedFlightDetails": "Uitgelezen vluchtgegevens",
+      "confirmCorrect": "Bevestig dat alles klopt.",
+      "detailsReady": "Uw vluchtgegevens zijn klaar voor controle."
+    }
+  },
+  "faq": {
+    "sectionTitle": "Veelgestelde",
+    "sectionTitleAccent": "vragen",
+    "pageTitle": "Vluchtcompensatie",
+    "pageTitleAccent": "FAQ",
+    "pageIntro": "Alles wat u moet weten over claims volgens UK261 en Verordening (EG) nr. 261/2004, onze No win, no fee-dienst en de bescherming van uw gegevens.",
+    "default": [
+      {
+        "question": "Is het veilig om mijn instapkaart te uploaden?",
+        "answer": "Ja. Uw instapkaart wordt versleuteld en veilig opgeslagen. Wij gebruiken alleen de gegevens die voor uw claim nodig zijn en geven ze niet door aan derden."
+      },
+      {
+        "question": "Doet de assistent alles alleen?",
+        "answer": "De assistent versnelt het proces, maar uw claim wordt ook door mensen begeleid. Ons team toetst de zaak, overlegt met de airline en voert de claim van begin tot eind."
+      },
+      {
+        "question": "Hoeveel compensatie kan ik krijgen?",
+        "answer": "Bij vluchten in het Verenigd Koninkrijk voorziet UK261 tot 520 £ per persoon (220 £ onder 1 500 km, 350 £ tussen 1 500 en 3 500 km, 520 £ daarboven). Bij in aanmerking komende EU-vluchten betaalt Verordening (EG) nr. 261/2004 250 €, 400 € of 600 € in dezelfde afstandstrappen."
+      },
+      {
+        "question": "Wat betekent „No win, no fee“?",
+        "answer": "U betaalt niets als wij uw claim niet afdwingen. Een succesfee geldt alleen als wij compensatie voor u innen."
+      },
+      {
+        "question": "Wat doet de assistent?",
+        "answer": "Onze assistent leest uw instapkaart, toetst het recht volgens UK261 en Verordening (EG) nr. 261/2004 en bereidt de stukken voor de compensatieclaim voor."
+      },
+      {
+        "question": "Kan ik met een mens spreken?",
+        "answer": "Ja. Ons supportteam begeleidt u door de hele claim. U bereikt ons via chat, e-mail of telefoon."
+      },
+      {
+        "question": "Wat kost dit?",
+        "answer": "Er zijn geen voorafkosten. Compensall werkt volgens No win, no fee: wij rekenen een fee alleen als uw claim slaagt."
+      },
+      {
+        "question": "Kan ik mijn gegevens laten wissen?",
+        "answer": "Ja. U kunt altijd verzoeken om wis van uw persoonsgegevens. Schrijf ons — wij behandelen het verzoek binnen 30 dagen volgens de AVG."
+      }
+    ],
+    "uk": [
+      {
+        "question": "Wat is UK261 en waarin verschilt het van de EG 261?",
+        "answer": "Na de Brexit heeft het Verenigd Koninkrijk de passagiersrechten overgenomen in UK261. UK261 spiegelt Verordening (EG) nr. 261/2004 voor vluchten uit het Verenigd Koninkrijk. UK261 betaalt in ponden (220 £, 350 £ of 520 £), de EG 261 in euro (250 €, 400 € of 600 €) bij in aanmerking komende EU-vluchten."
+      },
+      {
+        "question": "Geldt UK261 voor mijn vlucht?",
+        "answer": "UK261 geldt doorgaans voor vertrekken van Britse luchthavens. Verordening (EG) nr. 261/2004 kan gelden voor vertrekken van EU-luchthavens en in sommige gevallen voor aankomsten in de EU met een EU- of Britse luchtvaartmaatschappij. Welke regel geldt, hangt af van traject en airline."
+      },
+      {
+        "question": "Kan ik volgens UK261 compensatie eisen voor een vertraagde vlucht?",
+        "answer": "Ja. Als u op de eindbestemming meer dan drie uur te laat aankwam en er geen buitengewone omstandigheden waren, kunt u recht hebben op compensatie volgens UK261 of Verordening (EG) nr. 261/2004 — afhankelijk van welke regel voor uw reis geldt."
+      },
+      {
+        "question": "Hoe lang heb ik de tijd om vluchtcompensatie te eisen?",
+        "answer": "De termijn hangt af van het forum. In Nederland is dat doorgaans twee jaar. In Engeland en Wales zijn het meestal zes jaar. Start zo vroeg mogelijk, zolang vluchtgegevens en bewijsstukken nog makkelijk te achterhalen zijn. Bij klachten over de luchtvaart in Nederland kunt u terecht bij de Inspectie Leefomgeving en Transport (ILT)."
+      }
+    ]
+  },
+  "cookies": {
+    "bannerTitle": "Wij gebruiken cookies",
+    "bannerDescription": "Wij gebruiken noodzakelijke cookies zodat de site werkt, en met uw toestemming optionele cookies om te begrijpen hoe Compensall wordt gebruikt. Lees ons <cookiePolicy>cookiebeleid</cookiePolicy> en de <privacyPolicy>privacyverklaring</privacyPolicy>.",
+    "cookiePolicy": "Cookiebeleid",
+    "essentialOnly": "Alleen noodzakelijke",
+    "acceptAll": "Alles accepteren",
+    "pageTitle": "Cookiebeleid",
+    "pageDescription": "Lees hoe Compensall cookies en vergelijkbare technologieën inzet en hoe u uw instellingen beheert.",
+    "breadcrumb": "Cookies",
+    "summary": "Hoe wij cookies gebruiken en hoe u ze beheert."
+  },
+  "privacyPolicy": {
+    "pageTitle": "Privacyverklaring",
+    "pageDescription": "Lees hoe Compensall persoonsgegevens verzamelt, gebruikt, bewaart en beschermt wanneer u onze website en compensatiedienst gebruikt.",
+    "breadcrumb": "Privacy",
+    "summary": "Hoe wij uw persoonsgegevens behandelen op de website en in de claimdienst."
+  },
+  "terms": {
+    "pageTitle": "Algemene voorwaarden",
+    "pageDescription": "Lees de algemene voorwaarden van Compensall: regels voor claims, fees, verplichtingen en toepasselijk recht.",
+    "breadcrumb": "Algemene voorwaarden",
+    "summary": "De regels voor het gebruik van Compensall en het indienen van een compensatieclaim."
+  },
+  "noWinNoFeePage": {
+    "pageTitle": "Overeenkomst No win, no fee",
+    "breadcrumb": "Overeenkomst No win, no fee",
+    "summary": "U betaalt alleen als wij uw vluchtcompensatie succesvol innen."
+  },
+  "legal": {
+    "breadcrumbPrices": "Prijzen"
+  },
+  "about": {
+    "title": "Over ons",
+    "subtitle": "Wij helpen passagiers de compensatie af te dwingen waarop zij recht hebben — met assistent en menselijke begeleiding in elke stap.",
+    "missionTitle": "Onze opdracht",
+    "missionP1": "Compensall maakt vluchtcompensatie eenvoudig. Airlines antwoorden vaak laat, wijzen terechte claims af en maken de weg stressvol — daarom krijgen te veel passagiers niet wat hen volgens Verordening (EG) nr. 261/2004 toekomt.",
+    "missionP2": "Wij nemen alles over: stukken, onderhandeling met de airline en de afdwinging als dat nodig wordt. Upload uw instapkaart, bevestig uw gegevens en laat ons team uw compensatie volgens No win, no fee afdwingen.",
+    "whyChooseTitle": "Waarom passagiers voor ons kiezen",
+    "whyChoose": [
+      "No win, no fee: u betaalt niets, behalve als wij slagen",
+      "Doorlopende begeleiding van de toetsing tot de nazorg bij de airline",
+      "Navolgbare succesfee. Wij zijn geen advocatenkantoor",
+      "Privacy volgens de AVG eerst",
+      "Tot 600 € per persoon bij in aanmerking komende vluchten",
+      "Vertrouwen van duizenden reizigers in Europa"
+    ],
+    "valuesTitle": "Waar wij voor staan",
+    "values": {
+      "fastRiskFree": {
+        "title": "Snel en zonder risico",
+        "description": "Toets uw recht in minuten, zonder voorafkosten. Wij rekenen alleen als wij uw claim winnen."
+      },
+      "humanSupport": {
+        "title": "Menselijke begeleiding",
+        "description": "De assistent versnelt het proces, maar echte mensen toetsen uw zaak en nemen de airline over."
+      },
+      "security": {
+        "title": "Hoogste beveiliging",
+        "description": "Instapkaart en persoonsgegevens zijn beschermd. U houdt in elke stap de controle."
+      }
+    }
+  },
+  "knowYourRights": {
+    "heroTitle": "Ken uw rechten",
+    "heroSubtitle": "Begrijp uw rechten volgens UK261 en Verordening (EG) nr. 261/2004 — en hoe Compensall u met digitale ondersteuning begeleidt.",
+    "whatHappenedTitle": "Wat is er met uw",
+    "whatHappenedAccent": "vlucht gebeurd?",
+    "howItWorksTitle": "Zo",
+    "howItWorksAccent": "werkt het",
+    "howItWorksSubtitle": "Upload uw instapkaart. Onze assistent controleert uw claim. Ons team neemt de airline over.",
+    "flightIssues": {
+      "flightCancellation": {
+        "title": "Vluchtannulering",
+        "description": "Als uw vlucht op korte termijn is geannuleerd, kunt u recht hebben op tot 600 €."
+      },
+      "deniedBoarding": {
+        "title": "Instapweigering",
+        "description": "Als u tegen uw wil de instap is geweigerd, kunt u tot 600 € eisen."
+      },
+      "flightDelay": {
+        "title": "Vluchtvertraging",
+        "description": "Als uw vlucht meer dan 3 uur te laat aankwam, kunt u recht hebben op compensatie."
+      },
+      "missedConnection": {
+        "title": "Gemiste aansluiting",
+        "description": "Als een vertraging of annulering u de aansluiting kostte, kunt u recht hebben op compensatie."
+      },
+      "overbooking": {
+        "title": "Overboeking",
+        "description": "Als de airline uw vlucht heeft overboekt en u niet zoals gepland kon reizen, kunt u vaak compensatie eisen."
+      },
+      "airlineStrike": {
+        "title": "Staking van de airline",
+        "description": "Als een staking van de airline uw vlucht heeft verstoord, kunt u toch rechten hebben."
+      },
+      "passengerRights": {
+        "title": "Passagiersrechten",
+        "description": "Lees wat airlines bij een verstoring kunnen verschuldigd zijn."
+      },
+      "passengersWithDisabilities": {
+        "title": "Passagiers met een beperking",
+        "description": "Uw rechten op hulp, toegankelijkheid en ondersteuning tijdens de reis."
+      }
+    }
+  },
+  "prices": {
+    "title": "Prijzen en fees",
+    "breadcrumb": "Prijzen",
+    "summary": "Geen voorafkosten. Een succesfee geldt alleen als wij compensatie voor u innen.",
+    "noWinNoFeeIntro": "No win, no fee:",
+    "noWinNoFeeBody": "De toetsing van het recht en het gebruik van de website zijn gratis. Als u ons met de afdwinging belast, geldt onze fee alleen bij een geslaagde claim, zoals beschreven in de <noWinNoFeeAgreement>overeenkomst No win, no fee</noWinNoFeeAgreement>.",
+    "noWinNoFeeAgreement": "Overeenkomst No win, no fee",
+    "successFeeTitle": "Succesfee",
+    "successFeeDescription": "Als wij compensatie voor u innen, trekken wij een succesfee af voordat wij het restant overmaken. U ontvangt minstens 70 % van het geïnde bedrag vóór btw-aanpassingen.",
+    "tableCompensationRecovered": "Geïnde compensatie",
+    "tableSuccessFee": "Succesfee",
+    "tierUpTo220": "Tot 220 £ / 250 €",
+    "tier221to350": "221–350 £ / 251–400 €",
+    "tier351to520": "351–520 £ / 401–600 €",
+    "fee25Vat": "30 % + btw",
+    "uk261Title": "Compensatiebedragen (UK261)",
+    "uk261Intro": "Bij vluchten uit het Verenigd Koninkrijk hangt de vaste compensatie volgens UK261 af van de vliegafstand:",
+    "ec261Title": "Compensatiebedragen (EG 261/2004)"
+  },
+  "cta": {
+    "title": "Veilige claimtoetsing. Menselijk begeleid.",
+    "titleLine2": "No win, no fee.",
+    "subtitle": "Uw claim wordt door AI geleid en door echte mensen begeleid.",
+    "subtitleLine2": "Snel, veilig en eenvoudig vanaf de eerste upload.",
+    "body": "Onze standaardfee geldt alleen als wij compensatie voor u winnen. <brandName>Compensall</brandName> voert het proces van instapkaart tot nazorg bij de airline — zodat u veilig kunt eisen.",
+    "fastRiskFree": "Snel en zonder risico",
+    "noHiddenFees": "Geen verborgen kosten",
+    "talkToUs": "Contact",
+    "humanSupportAvailable": "Menselijke ondersteuning",
+    "highestSecurity": "Hoogste beveiliging",
+    "dataProtected": "Uw gegevens blijven beschermd"
+  },
+  "passengerRights": {
+    "rightsHeading": "Uw rechten volgens",
+    "rightsAccent": "UK261 en EG 261",
+    "rightsIntro": "Passagiers in het Verenigd Koninkrijk en de EU zijn beschermd als vluchten zonder hun schuld vertraagd, geannuleerd of verstoord worden.",
+    "uk261Card": {
+      "title": "UK261 — vluchten in het Verenigd Koninkrijk",
+      "body": "Na de Brexit heeft het Verenigd Koninkrijk de passagiersrechten behouden in UK261. UK261 geldt voor vluchten in het Britse luchtruim en zet vaste bedragen in ponden: 220 £, 350 £ of 520 £ naar gelang de afstand."
+    },
+    "ec261Card": {
+      "title": "EG 261/2004 — EU-vluchten",
+      "body": "Verordening (EG) nr. 261/2004 beschermt verder passagiers op in aanmerking komende vluchten in het EU-luchtruim, met 250 €, 400 € of 600 € in dezelfde afstandstrappen."
+    },
+    "rightsDetailP1": "Als uw vlucht bij aankomst drie uur of meer te laat is, op korte termijn wordt geannuleerd of u tegen uw wil de instap wordt geweigerd, kunt u recht hebben op een vaste compensatie. Afhankelijk van de situatie hebt u ook rechten op bijstand, vervangend vervoer en terugbetaling.",
+    "rightsDetailP2": "Gemiste aansluitingen en stakingen van de airline kunnen eveneens recht geven, als de verstoring binnen de invloedssfeer van de airline lag. Compensall toetst het recht, bereidt de claim voor en dwingt de compensatie af volgens No win, no fee.",
+    "eligibilityHeading": "Wanneer kunt u",
+    "eligibilityAccent": "compensatie eisen?",
+    "eligibilityIntro": "U kunt recht hebben als voor uw reis het volgende allemaal geldt.",
+    "eligibility": {
+      "ukEuDeparture": {
+        "title": "Vlucht in het Verenigd Koninkrijk of de EU",
+        "body": "Uw vlucht vond plaats in het Britse luchtruim (UK261) of in het EU-luchtruim (EG 261/2004) — of komt aan op een Britse of EU-luchthaven en wordt uitgevoerd door een Britse of EU-airline."
+      },
+      "significantDisruption": {
+        "title": "Aanzienlijke verstoring",
+        "body": "U kwam op de eindbestemming drie uur of meer te laat aan, of uw vlucht is geannuleerd, of u is de instap geweigerd."
+      },
+      "airlineResponsibility": {
+        "title": "Verantwoordelijkheid van de airline",
+        "body": "De verstoring berustte niet op buitengewone omstandigheden buiten de controle van de airline, zoals zwaar weer of beperkingen van het luchtverkeer."
+      },
+      "validBooking": {
+        "title": "Geldige boeking",
+        "body": "U hebt tijdig ingecheckt en hebt een geldige boeking voor de getroffen vlucht."
+      },
+      "withinTimeLimits": {
+        "title": "Binnen de termijnen",
+        "body": "U start de claim binnen de geldende termijn — in Nederland doorgaans twee jaar, in Engeland en Wales vaak tot zes jaar."
+      }
+    },
+    "ec261Note": "Bij in aanmerking komende EU-vluchten voorziet Verordening (EG) nr. 261/2004 250 €, 400 € of 600 € in dezelfde afstandstrappen.",
+    "tiers": {
+      "uk261": {
+        "220": {
+          "label": "Vluchten tot 1 500 km",
+          "desc": "UK261-compensatie voor kortere in aanmerking komende vluchten."
+        },
+        "350": {
+          "label": "Vluchten tussen 1 500 km en 3 500 km",
+          "desc": "UK261-compensatie voor middellange trajecten."
+        },
+        "520": {
+          "label": "Vluchten boven 3 500 km",
+          "desc": "UK261-compensatie voor langeafstandsvluchten."
+        }
+      },
+      "ec261": {
+        "250": {
+          "label": "Vluchten tot 1 500 km",
+          "desc": "EG-261/2004-compensatie voor kortere in aanmerking komende vluchten."
+        },
+        "400": {
+          "label": "Vluchten tussen 1 500 km en 3 500 km",
+          "desc": "EG-261/2004-compensatie voor middellange trajecten."
+        },
+        "600": {
+          "label": "Vluchten boven 3 500 km",
+          "desc": "EG-261/2004-compensatie voor langeafstandsvluchten."
+        }
+      }
+    }
+  },
+  "metadata": {
+    "site": {
+      "title": "Compensall – Vlucht vertraagd of geannuleerd? Eis tot 520 £ of 600 €",
+      "description": "Vlucht vertraagd of geannuleerd? Eis tot 520 £ volgens UK261 of 600 € volgens Verordening (EG) nr. 261/2004. Veilige upload van de instapkaart, menselijke begeleiding, No win, no fee."
+    },
+    "home": {
+      "title": "Vlucht vertraagd of geannuleerd? Eis tot 520 £ of 600 €",
+      "description": "Upload uw instapkaart en controleer uw vluchtcompensatie volgens UK261 of Verordening (EG) nr. 261/2004. Veilig, menselijk begeleid, No win, no fee."
+    },
+    "faq": {
+      "title": "Veelgestelde vragen over vluchtcompensatie",
+      "description": "Antwoorden over UK261, Verordening (EG) nr. 261/2004, compensatiebedragen, No win, no fee, upload van de instapkaart en de behandeling door Compensall."
+    },
+    "about": {
+      "title": "Over Compensall en vluchtcompensatie",
+      "description": "Compensall helpt passagiers tot 600 € volgens EU261 te eisen: veilige upload van de instapkaart, toetsing door de assistent en menselijke begeleiding tegenover de airline. No win, no fee."
+    },
+    "knowYourRights": {
+      "title": "Uw rechten op vluchtcompensatie",
+      "description": "Wanneer UK261 en Verordening (EG) nr. 261/2004 u tot 520 £ of 600 € geven bij vertraging, annulering, instapweigering, gemiste aansluiting en staking."
+    },
+    "prices": {
+      "title": "Prijzen, fees en No win, no fee",
+      "description": "Compensall werkt volgens No win, no fee. Bekijk de succesfee en de compensatiebedragen volgens UK261 en EG 261."
+    },
+    "blog": {
+      "title": "Gidsen over vluchtcompensatie en passagiersrechten",
+      "description": "Praktische gidsen over Verordening (EG) nr. 261/2004: vertraging, annulering, instapweigering, gemiste aansluiting — en hoe u tot 600 € eist."
+    },
+    "cookies": {
+      "title": "Cookiebeleid en instellingen",
+      "description": "Lees hoe Compensall cookies en vergelijkbare technologieën inzet en hoe u uw instellingen beheert."
+    },
+    "privacyPolicy": {
+      "title": "Privacy en persoonsgegevens",
+      "description": "Lees hoe Compensall persoonsgegevens verzamelt, gebruikt, bewaart en beschermt wanneer u website en compensatiedienst gebruikt."
+    },
+    "terms": {
+      "title": "Algemene voorwaarden voor Compensall-claims",
+      "description": "Lees de algemene voorwaarden van Compensall: regels voor claims, fees, verplichtingen en toepasselijk recht."
+    },
+    "airlines": {
+      "title": "Compensatiegidsen voor airlines en luchthavens",
+      "description": "Vind uw airline of luchthaven en toets het recht volgens EU261. Gidsen over KLM, Ryanair, easyJet en grote Europese luchthavens."
+    },
+    "authorityToAct": {
+      "title": "Volmacht voor vluchtclaims",
+      "description": "Volmacht waarmee Compensall uw compensatieclaim volgens Verordening (EG) nr. 261/2004 afdwingt."
+    },
+    "noWinNoFee": {
+      "title": "Overeenkomst No win, no fee",
+      "description": "De overeenkomst No win, no fee van Compensall. U betaalt alleen als wij uw compensatie succesvol innen."
+    },
+    "privacyDataConsent": {
+      "title": "Privacy en toestemming",
+      "description": "Het document Privacy en toestemming van Compensall legt uit hoe wij uw persoonsgegevens verwerken en beschermen."
+    },
+    "track": {
+      "title": "Claim volgen",
+      "description": "Controleer de status van uw Compensall-claim met uw referentienummer."
+    },
+    "thankYou": {
+      "title": "Dank u — claim ingediend",
+      "description": "Uw Compensall-claim voor vluchtcompensatie is ingediend."
+    }
+  },
+  "trackPage": {
+    "title": "Claim volgen",
+    "reference": "Dossier <tracking>{trackingNumber}</tracking>",
+    "loading": "Status wordt geladen…",
+    "notFound": "Deze claim hebben wij niet gevonden.",
+    "invalidReference": "Ongeldig formaat van het referentienummer.",
+    "errorGeneric": "Er is iets misgegaan. Probeer het opnieuw.",
+    "startNewClaim": "Nieuwe claim starten",
+    "claimDetails": "Gegevens van de claim",
+    "status": "Status",
+    "fields": {
+      "passenger": "Passagier",
+      "flight": "Vlucht",
+      "route": "Traject",
+      "date": "Datum",
+      "submitted": "Ingediend",
+      "estimate": "Geschatte compensatie"
+    },
+    "estimateUpTo": "Tot {amount}",
+    "estimateDetail": "Volgens {regulation} voor een traject van ongeveer {distance}.",
+    "estimateDisclaimer": "Alleen ter oriëntatie. Het definitieve recht hangt af van de vertraging, de verantwoordelijkheid van de airline en buitengewone omstandigheden.",
+    "statuses": {
+      "received": {
+        "label": "Ontvangen",
+        "message": "Wij hebben uw claim ontvangen en ons team toetst deze. Hier werken wij bij als er nieuws is."
+      },
+      "needs_documents": {
+        "label": "Stukken nodig",
+        "message": "Voor de volgende stap hebben wij nog stukken nodig. Controleer uw e-mail of schrijf ons op +351 923391980. Wij helpen u graag."
+      },
+      "with_airline": {
+        "label": "Bij de airline",
+        "message": "Uw claim ligt bij de airline. Wij wachten op het antwoord en werken bij zodra wij iets horen."
+      },
+      "following_up": {
+        "label": "In opvolging",
+        "message": "De airline heeft geantwoord en wij volgen namens u op. Over elke ontwikkeling houden wij u op de hoogte."
+      },
+      "payment_processing": {
+        "label": "Betaling in behandeling",
+        "message": "Goed nieuws: de airline heeft de compensatie toegezegd. Wij bereiden nu de uitbetaling voor en werken binnenkort bij."
+      },
+      "awaiting_fee": {
+        "label": "Servicefee",
+        "message": "Gefeliciteerd, uw claim is geslaagd. Betaal de servicefee, zodat wij het dossier kunnen afronden."
+      },
+      "paid": {
+        "label": "Uitbetaald",
+        "message": "De uitbetaling is gedaan. Dank u voor uw vertrouwen. Bij vragen zijn wij er."
+      },
+      "closed_ntd": {
+        "label": "Gesloten",
+        "message": "Helaas kunnen wij de claim niet verder vervolgen; het dossier is gesloten. Bij vragen schrijft u ons gerust."
+      },
+      "paused": {
+        "label": "Gepauzeerd",
+        "message": "Het dossier is gepauzeerd omdat wij geen reactie van u hebben ontvangen. Schrijf +351 923391980 als u het wilt hervatten."
+      },
+      "closed_declined": {
+        "label": "Gesloten",
+        "message": "Helaas heeft de airline de claim afgewezen en kunnen wij deze niet verder vervolgen. Het dossier is gesloten — schrijf ons als u de uitkomst wilt bespreken."
+      }
+    }
+  },
+  "airlinesPage": {
+    "title": "Luchthavens en airlines",
+    "subtitleLine1": "Vind uw airline of luchthaven.",
+    "subtitleLine2": "Toets uw claim in minuten."
+  },
+  "airlinesCatalog": {
+    "airlines": "Airlines",
+    "airports": "Luchthavens",
+    "mostPopular": "Meest populair",
+    "searchResults": "{count, plural, =1 {# resultaat} other {# resultaten}}",
+    "searchAirline": "Airline zoeken...",
+    "searchAirport": "Luchthaven, stad of land zoeken...",
+    "seeMore": "Meer {section} tonen",
+    "allSection": "Alle {section}",
+    "showLess": "Minder tonen",
+    "noResults": "Geen treffers. Probeer een andere zoekopdracht.",
+    "airlineCardDescription": "{name} vertraagd, geannuleerd of instapweigering? Toets uw claim in minuten.",
+    "airportCardDescription": "Vertraagde of geannuleerde vlucht via {name}? Toets uw claim in minuten."
+  },
+  "catalogDetail": {
+    "airlineTitle": "Compensatie bij vertraging of annulering van {name}",
+    "airportTitle": "Vluchtcompensatie vanaf {name}",
+    "airlineMetaTitle": "Vluchtcompensatie {name}",
+    "airportMetaTitle": "Vluchtcompensatie {name}",
+    "airlineIntroP1": "Als uw vlucht met {name} is vertraagd of geannuleerd of u de instap is geweigerd, kunt u recht hebben op tot 600 € volgens Verordening (EG) nr. 261/2004 en UK261.",
+    "airlineIntroP2": "Compensall toetst uw recht in minuten. Upload uw instapkaart of vul de vluchtgegevens in — No win, no fee.",
+    "airportIntroP1": "Vertrek of aankomst in {name}? Als uw vlucht is vertraagd of geannuleerd, kunt u recht hebben op tot 600 € volgens Verordening (EG) nr. 261/2004 en UK261.",
+    "airportIntroP2": "Compensall toetst uw claim in minuten. Start met instapkaart of vluchtgegevens — No win, no fee.",
+    "sectionRights": "Uw passagiersrechten",
+    "sectionTips": "Tips voor de claim",
+    "airlineCardDescription": "{name} vertraagd, geannuleerd of instapweigering? Toets uw claim in minuten.",
+    "airportCardDescription": "Vertraagde of geannuleerde vlucht via {name}? Toets uw claim in minuten.",
+    "entityAirlineFlight": "uw vlucht met {name}",
+    "entityAirportFlight": "een vlucht via {name}",
+    "faqDelayQuestion": "Heb ik recht op compensatie als {entity} is vertraagd of geannuleerd?",
+    "faqDelayAnswer": "U kunt recht hebben op compensatie als u 3 uur of meer te laat aankwam of de vlucht op korte termijn is geannuleerd — mits de verstoring binnen de invloedssfeer van de airline lag (geen buitengewone omstandigheden zoals zwaar weer).",
+    "faqAmountQuestion": "Hoeveel compensatie kan ik eisen?",
+    "faqAmountAnswer": "Volgens Verordening (EG) nr. 261/2004 en UK261 is dat doorgaans 250 €, 400 € of 600 € per persoon, afhankelijk van vliegafstand en vertraging.",
+    "faqRejectedAirlineQuestion": "Wat als {name} mijn claim al heeft afgewezen?",
+    "faqRejectedAirportQuestion": "Wat als de airline mijn claim al heeft afgewezen?",
+    "faqRejectedAnswer": "Een afwijzing betekent niet automatisch dat u geen rechten hebt. Wij toetsen uw zaak en kunnen terechte claims volgens No win, no fee verder vervolgen.",
+    "faqDeadlineQuestion": "Is er een termijn voor de claim?",
+    "faqDeadlineAnswer": "De termijnen verschillen per forum: in Nederland meestal twee jaar, elders vaak twee tot zes jaar. Toets liever eerder, zodat wij uw opties kunnen beoordelen.",
+    "faqSafeQuestion": "Is het veilig om mijn instapkaart te delen?",
+    "faqSafeAnswer": "Ja. Uw gegevens worden veilig verwerkt en alleen gebruikt om uw claim te toetsen en af te dwingen.",
+    "claimHeadlineAirline": "Klaar om tegen {name} op te treden?",
+    "claimHeadlineAirport": "Klaar om uw claim vanaf {name} te toetsen?",
+    "claimSubheadline": "Gebruik de instapkaartassistent op de homepage. Snel, veilig en No win, no fee.",
+    "breadcrumbCatalog": "Airlines en luchthavens",
+    "notFoundAirline": "Airline niet gevonden | Compensall",
+    "notFoundAirport": "Luchthaven niet gevonden | Compensall"
+  },
+  "notFoundPage": {
+    "title": "Pagina niet gevonden",
+    "description": "Deze pagina hebben wij niet gevonden. Start een compensatietoets of lees de gidsen hieronder.",
+    "checkCompensation": "Compensatie controleren",
+    "knowYourRights": "Ken uw rechten",
+    "blog": "Blog"
+  },
+  "blogPage": {
+    "title": "Blog",
+    "subtitle": "Praktische gidsen over passagiersrechten volgens Verordening (EG) nr. 261/2004: vertraging, annulering, instapweigering en meer — zodat u voor vertrek weet waarop u recht kunt hebben.",
+    "readArticle": "Artikel lezen",
+    "backToBlog": "Terug naar het blog",
+    "englishOnlyNotice": "Deze gids is momenteel alleen in het Engels beschikbaar."
+  },
+  "thankYouPage": {
+    "title": "Dank u",
+    "body": "Wij hebben uw ondertekende volmacht ontvangen en starten uw claim.",
+    "bodyWithFlight": "Wij hebben uw ondertekende volmacht ontvangen en starten uw claim voor vlucht {flight}.",
+    "trackingNumber": "Uw referentienummer",
+    "trackYourClaim": "Claim volgen",
+    "startNewClaim": "Nieuwe claim starten"
+  },
+  "documentPage": {
+    "home": "Home",
+    "claim": "Claim",
+    "powerOfAttorney": "Volmacht",
+    "privacyDataConsent": "Privacy en toestemming",
+    "copyright": "Copyright © Compensall 2026. Alle rechten voorbehouden.",
+    "backToClaim": "Terug naar de claim"
+  }
+}

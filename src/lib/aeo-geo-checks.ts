@@ -355,7 +355,16 @@ export function runLlmsTxtChecks(
     {
       id: "llms-localized",
       label: "llms.txt documents localized locales",
-      pass: content.includes("/en/") && content.includes("/pt/") && content.includes("/fr/"),
+      pass:
+        content.includes("/en/") &&
+        content.includes("/pt/") &&
+        content.includes("/fr/") &&
+        content.includes("/es/") &&
+        content.includes("/ro/") &&
+        content.includes("/hu/") &&
+        content.includes("/sq/") &&
+        content.includes("/de/") &&
+        content.includes("/nl/"),
     },
   ];
 
@@ -404,6 +413,11 @@ export function runRobotsTxtChecks(content: string): CheckResult[] {
       id: "robots-block-track",
       label: "robots.txt disallows track pages",
       pass: content.includes("Disallow: /*/track/"),
+    },
+    {
+      id: "robots-block-thank-you",
+      label: "robots.txt disallows claim thank-you pages",
+      pass: content.includes("Disallow: /*/claim/thank-you"),
     },
   ];
 
@@ -455,7 +469,16 @@ export function runSitemapChecks(
     {
       id: "sitemap-locales",
       label: "sitemap.xml includes all locales",
-      pass: xml.includes("/en/") && xml.includes("/pt/") && xml.includes("/fr/"),
+      pass:
+        xml.includes("/en/") &&
+        xml.includes("/pt/") &&
+        xml.includes("/fr/") &&
+        xml.includes("/es/") &&
+        xml.includes("/ro/") &&
+        xml.includes("/hu/") &&
+        xml.includes("/sq/") &&
+        xml.includes("/de/") &&
+        xml.includes("/nl/"),
     },
   ];
 
