@@ -432,9 +432,27 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
 function buildTicketAttachments(input: OdooClaimLeadInput): OdooAttachmentInput[] {
   const attachments: OdooAttachmentInput[] = [];
 
-  // Passport / booking / expenses / other / signature / PoA are written to Studio
-  // DOCUMENTS fields on the ticket. Keep only boarding pass (and extra-pax files
-  // without dedicated Studio slots) on the chatter paperclip.
+  // Passport / booking / expenses / other stay on Studio DOCUMENTS fields only.
+  // The primary signature and signed POA are stored there too, and also attached
+  // here: the Witflow Power of Attorney button reads ticket attachments
+  // (signature-CMP-*.png or signed POA HTML), not the Studio fields.
+  const signature = input.signaturePngBase64?.trim();
+  if (signature) {
+    attachments.push({
+      name: `signature-${input.trackingNumber}.png`,
+      mimetype: "image/png",
+      datas: signature,
+    });
+  }
+  const signedPoa = input.signedPoaHtmlBase64?.trim();
+  if (signedPoa) {
+    attachments.push({
+      name: `Power-of-Attorney-${input.trackingNumber}.html`,
+      mimetype: "text/html",
+      datas: signedPoa,
+    });
+  }
+
   if (input.boardingPass?.base64) {
     const original = input.boardingPass.fileName.trim() || "boarding-pass";
     const hasExtension = /\.[a-z0-9]+$/i.test(original);

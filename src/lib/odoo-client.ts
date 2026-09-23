@@ -830,9 +830,29 @@ export async function odooAttachFilesToHelpdeskTicket(
 
   const uid = await authenticate(config);
   const ids: number[] = [];
+  const pending = files.filter((file) => file.datas.trim() && file.name.trim());
+  if (pending.length === 0) {
+    return [];
+  }
 
-  for (const file of files) {
-    if (!file.datas.trim()) continue;
+  const existing = await executeKw<Array<{ name: string }>>(
+    config,
+    uid,
+    "ir.attachment",
+    "search_read",
+    [
+      [
+        ["res_model", "=", "helpdesk.ticket"],
+        ["res_id", "=", ticketId],
+        ["name", "in", pending.map((file) => file.name)],
+      ],
+    ],
+    { fields: ["name"] },
+  );
+  const existingNames = new Set(existing.map((row) => row.name));
+
+  for (const file of pending) {
+    if (existingNames.has(file.name)) continue;
     const attachmentId = await executeKw<number>(config, uid, "ir.attachment", "create", [
       {
         name: file.name,
