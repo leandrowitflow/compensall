@@ -13,6 +13,8 @@ import { verifyCmsWebhookAuth } from "@/lib/cms-webhook/verify-auth";
 
 const WEBHOOK_SECRET = process.env.CMS_WEBHOOK_SECRET;
 
+export const maxDuration = 180;
+
 function revalidateBlogPaths(slug: string): void {
   revalidateTag(CMS_BLOG_TAG, "max");
 
@@ -61,7 +63,15 @@ export async function POST(req: NextRequest) {
     if (isDeleteEvent(event)) {
       await deleteCmsBlogPost(slug);
     } else if (isUpsertEvent(event)) {
-      await upsertCmsBlogPost(payload);
+      const result = await upsertCmsBlogPost(payload);
+      revalidateBlogPaths(slug);
+      return NextResponse.json({
+        ok: true,
+        event,
+        slug,
+        translatedLocales: result.translatedLocales,
+        failedLocales: result.failedLocales,
+      });
     } else {
       return NextResponse.json({ error: `Unsupported event: ${event}` }, { status: 400 });
     }

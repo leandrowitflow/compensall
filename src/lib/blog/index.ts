@@ -30,7 +30,7 @@ const blogPostsByLocale: Record<AppLocale, BlogPost[]> = {
 
 const getCachedCmsRecords = unstable_cache(
   async () => listCmsBlogRecords(),
-  ["cms-blog-posts-list", "copy-qa-2026-09-nl"],
+  ["cms-blog-posts-list", "copy-qa-2026-09-es-blog"],
   { tags: [CMS_BLOG_TAG] },
 );
 

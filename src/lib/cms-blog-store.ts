@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { AppLocale } from "@/i18n/routing";
 import { normalizeMarkdownInternalLinks } from "@/lib/blog/normalize-internal-href";
+import { fillMissingBlogTranslations } from "@/lib/blog/translate-cms-post";
 import { estimateReadTime, markdownToBlocks } from "@/lib/blog/markdown-to-blocks";
 import type { BlogPost } from "@/lib/blog/types";
 import { formatBlogDisplayDate } from "@/lib/blog-date";
@@ -158,6 +159,61 @@ async function deleteSupabase(slug: string): Promise<void> {
   }
 }
 
+function isUsableCmsTranslation(translation: CmsWebhookTranslation | undefined): boolean {
+  return Boolean(translation?.title?.trim() && translation?.content_md?.trim());
+}
+
+function mergeCmsTranslations(
+  existing: Record<string, CmsWebhookTranslation> | undefined,
+  incoming: Record<string, CmsWebhookTranslation>,
+): Record<string, CmsWebhookTranslation> {
+  const merged: Record<string, CmsWebhookTranslation> = { ...(existing ?? {}) };
+  for (const [locale, translation] of Object.entries(incoming)) {
+    if (!translation) continue;
+    const previous = merged[locale];
+    if (isUsableCmsTranslation(translation)) {
+      merged[locale] = { ...previous, ...translation };
+    } else if (!previous) {
+      merged[locale] = translation;
+    }
+  }
+  return merged;
+}
+
+async function getLocalRecord(slug: string): Promise<CmsBlogRecord | null> {
+  const index = await readLocalIndex();
+  return index.posts[slug] ?? null;
+}
+
+async function getSupabaseRecord(slug: string): Promise<CmsBlogRecord | null> {
+  const response = await fetch(
+    `${supabaseRestUrl("cms_blog_posts")}?slug=eq.${encodeURIComponent(slug)}&select=*`,
+    {
+      headers: supabaseHeaders(),
+      cache: "no-store",
+    },
+  );
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  if (!response.ok) {
+    const body = await response.text().catch(() => "");
+    throw new Error(`Supabase read failed (${response.status}): ${body.slice(0, 200)}`);
+  }
+
+  const rows = (await response.json()) as CmsBlogRecord[];
+  return rows[0] ?? null;
+}
+
+async function getCmsBlogRecord(slug: string): Promise<CmsBlogRecord | null> {
+  if (hasSupabaseConfig()) {
+    return getSupabaseRecord(slug);
+  }
+  return getLocalRecord(slug);
+}
+
 async function listSupabase(): Promise<CmsBlogRecord[]> {
   const response = await fetch(
     `${supabaseRestUrl("cms_blog_posts")}?status=eq.published&select=*&order=updated_at.desc`,
@@ -179,16 +235,61 @@ async function listSupabase(): Promise<CmsBlogRecord[]> {
   return (await response.json()) as CmsBlogRecord[];
 }
 
-export async function upsertCmsBlogPost(payload: CmsWebhookPayload): Promise<CmsBlogRecord> {
-  const record = payloadToRecord(payload);
+export type CmsBlogUpsertResult = {
+  record: CmsBlogRecord;
+  translatedLocales: AppLocale[];
+  failedLocales: AppLocale[];
+};
 
-  if (hasSupabaseConfig()) {
-    await upsertSupabase(record);
-  } else {
-    await upsertLocal(record);
-  }
+export async function upsertCmsBlogPost(payload: CmsWebhookPayload): Promise<CmsBlogUpsertResult> {
+  const incoming = payloadToRecord(payload);
+  const existing = await getCmsBlogRecord(incoming.slug);
+  const translations = mergeCmsTranslations(existing?.translations, incoming.translations);
+  const cmsLocales = new Set(
+    Object.entries(incoming.translations)
+      .filter(([, translation]) => isUsableCmsTranslation(translation))
+      .map(([locale]) => locale),
+  );
+  const record: CmsBlogRecord = {
+    ...incoming,
+    cover_image_url: incoming.cover_image_url ?? existing?.cover_image_url ?? null,
+    translations,
+  };
 
-  return record;
+  const persist = async (next: CmsBlogRecord): Promise<void> => {
+    if (hasSupabaseConfig()) {
+      await upsertSupabase(next);
+    } else {
+      await upsertLocal(next);
+    }
+  };
+
+  await persist(record);
+  let writeQueue = Promise.resolve();
+  const filled = await fillMissingBlogTranslations({
+    slug: incoming.slug,
+    translations,
+    previous: existing?.translations ?? null,
+    cmsLocales,
+    onProgress: (nextTranslations) => {
+      const run = writeQueue.then(async () => {
+        record.translations = nextTranslations;
+        await persist(record);
+      });
+      writeQueue = run.then(
+        () => undefined,
+        () => undefined,
+      );
+      return run;
+    },
+  });
+  record.translations = filled.translations;
+
+  return {
+    record,
+    translatedLocales: filled.translatedLocales,
+    failedLocales: filled.failedLocales,
+  };
 }
 
 export async function deleteCmsBlogPost(slug: string): Promise<void> {
