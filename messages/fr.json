@@ -389,6 +389,7 @@
         "signConnectionError": "Impossible d'enregistrer votre signature. Vérifiez votre connexion et réessayez.",
         "signBeforeSubmit": "Veuillez faire signer la procuration par chaque passager avant de soumettre.",
         "submitFailed": "Impossible de soumettre votre réclamation.",
+        "duplicateClaim": "Nous avons déjà une réclamation avec ce nom, cet e-mail, ce numéro de vol et cette date. Inutile de la renvoyer.",
         "sessionExpired": "La session de réclamation a expiré. Veuillez recommencer."
       }
     },

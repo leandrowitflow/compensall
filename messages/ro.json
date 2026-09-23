@@ -389,6 +389,7 @@
         "signConnectionError": "Nu am putut înregistra semnătura. Verifică conexiunea și încearcă din nou.",
         "signBeforeSubmit": "Semnează împuternicirea tuturor pasagerilor înainte de a trimite.",
         "submitFailed": "Nu am putut trimite cererea.",
+        "duplicateClaim": "Avem deja o cerere cu acest nume, email, număr de zbor și dată. Nu mai trebuie trimisă încă o dată.",
         "sessionExpired": "Sesiunea cererii a expirat. Începe din nou."
       }
     },

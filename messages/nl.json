@@ -389,6 +389,7 @@
         "signConnectionError": "De handtekening kon niet worden opgeslagen. Controleer uw verbinding en probeer het opnieuw.",
         "signBeforeSubmit": "Onderteken de volmacht voor elke passagier voordat u indient.",
         "submitFailed": "Uw claim kon niet worden ingediend.",
+        "duplicateClaim": "We hebben al een claim met deze naam, dit e-mailadres, dit vluchtnummer en deze datum. U hoeft die niet opnieuw te versturen.",
         "sessionExpired": "De sessie is verlopen. Begin opnieuw."
       }
     },

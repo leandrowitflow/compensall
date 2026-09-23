@@ -385,6 +385,9 @@ export default function HeroClaimForm() {
     };
 
     if (!response.ok || !data.trackingNumber || !data.status) {
+      if (data.error === "duplicate_claim") {
+        throw new Error(tStep3("errors.duplicateClaim"));
+      }
       throw new Error(data.error ?? tStep3("errors.submitFailed"));
     }
 

@@ -389,6 +389,7 @@
         "signConnectionError": "Could not record your signature. Check your connection and try again.",
         "signBeforeSubmit": "Please sign the Power of Attorney for every passenger before submitting.",
         "submitFailed": "Could not submit your claim.",
+        "duplicateClaim": "We already have a claim with this name, email, flight number and date. You don't need to submit it again.",
         "sessionExpired": "Claim session expired. Please start again."
       }
     },

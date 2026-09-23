@@ -389,6 +389,7 @@
         "signConnectionError": "No hemos podido registrar tu firma. Comprueba la conexión e inténtalo de nuevo.",
         "signBeforeSubmit": "Firma el poder de representación de todos los pasajeros antes de enviar.",
         "submitFailed": "No hemos podido enviar tu reclamación.",
+        "duplicateClaim": "Ya tenemos una reclamación con este nombre, email, número de vuelo y fecha. No hace falta enviarla otra vez.",
         "sessionExpired": "La sesión de la reclamación ha caducado. Empieza de nuevo."
       }
     },

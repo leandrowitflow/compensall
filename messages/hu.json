@@ -389,6 +389,7 @@
         "signConnectionError": "Nem tudtuk rögzíteni az aláírásodat. Ellenőrizd a kapcsolatot, és próbáld újra.",
         "signBeforeSubmit": "Beküldés előtt minden utasnak írja alá a meghatalmazást.",
         "submitFailed": "A kárigényt nem sikerült beküldeni.",
+        "duplicateClaim": "Már van kárigényünk ezzel a névvel, e-mail-címmel, járatszámmal és dátummal. Nem kell újra beküldeni.",
         "sessionExpired": "A kárigény-munkamenet lejárt. Kezdd elölről."
       }
     },

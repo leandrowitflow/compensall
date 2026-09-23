@@ -222,6 +222,39 @@ export async function saveClaim(record: ClaimRecord): Promise<void> {
   console.warn("Claim storage not configured — tracking lookup will not persist.");
 }
 
+export async function findClaimsByContactEmail(email: string): Promise<ClaimRecord[]> {
+  const normalized = email.trim().toLowerCase();
+  if (!normalized) {
+    return [];
+  }
+
+  if (hasSupabaseConfig()) {
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+    const response = await fetch(
+      `${supabaseRestUrl("claims")}?contact_email=ilike.${encodeURIComponent(normalized)}&select=*&limit=40`,
+      {
+        headers: {
+          apikey: key,
+          Authorization: `Bearer ${key}`,
+        },
+      },
+    );
+    if (!response.ok) {
+      const body = await response.text().catch(() => "");
+      throw new Error(`Claim email lookup failed (${response.status}): ${body.slice(0, 200)}`);
+    }
+    const rows = (await response.json()) as ClaimsRow[];
+    return rows.map(rowToClaim);
+  }
+
+  if (process.env.NODE_ENV === "development") {
+    const claims = await listClaimsLocally();
+    return claims.filter((claim) => claim.contactEmail.trim().toLowerCase() === normalized);
+  }
+
+  return [];
+}
+
 export async function getClaim(trackingNumber: string): Promise<ClaimRecord | null> {
   const normalized = normalizeTrackingNumber(trackingNumber);
 

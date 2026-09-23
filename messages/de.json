@@ -389,6 +389,7 @@
         "signConnectionError": "Die Unterschrift konnte nicht gespeichert werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
         "signBeforeSubmit": "Bitte unterschreiben Sie die Vollmacht für jeden Fluggast, bevor Sie senden.",
         "submitFailed": "Ihr Antrag konnte nicht gesendet werden.",
+        "duplicateClaim": "Wir haben bereits einen Antrag mit diesem Namen, dieser E-Mail, dieser Flugnummer und diesem Datum. Sie müssen ihn nicht erneut senden.",
         "sessionExpired": "Die Sitzung ist abgelaufen. Bitte beginnen Sie erneut."
       }
     },

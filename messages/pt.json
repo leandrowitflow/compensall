@@ -389,6 +389,7 @@
         "signConnectionError": "Não foi possível registar a sua assinatura. Verifique a sua ligação e tente novamente.",
         "signBeforeSubmit": "Assine a Procuração de todos os passageiros antes de submeter.",
         "submitFailed": "Não foi possível submeter o seu pedido.",
+        "duplicateClaim": "Já temos um pedido com este nome, email, número de voo e data. Não é preciso submeter outra vez.",
         "sessionExpired": "A sessão do pedido expirou. Comece de novo."
       }
     },

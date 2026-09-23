@@ -389,6 +389,7 @@
         "signConnectionError": "Nuk e regjistruam nënshkrimin. Kontrollo lidhjen dhe provo sërish.",
         "signBeforeSubmit": "Nënshkruaje Prokurën për çdo pasagjer para se të dërgosh.",
         "submitFailed": "Nuk e dërguam kërkesën.",
+        "duplicateClaim": "E kemi tashmë një kërkesë me këtë emër, email, numër fluturimi dhe datë. Nuk ka nevojë ta dërgosh përsëri.",
         "sessionExpired": "Sesioni i kërkesës skadoi. Fillo sërish."
       }
     },

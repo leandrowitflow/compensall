@@ -714,6 +714,89 @@ export async function odooCreateCrmLead(
   return readCrmLead(config, uid, leadId);
 }
 
+export type OdooHelpdeskDuplicateCandidate = {
+  id: number;
+  name: string;
+  partnerName: string | null;
+  passengerName: string | null;
+  email: string | null;
+  flightNumber: string | null;
+};
+
+/** Compensall tickets with this email and flight date. Caller matches name and flight number. */
+export async function odooSearchHelpdeskTicketsByEmailAndDate(
+  email: string,
+  flightDate: string,
+): Promise<OdooHelpdeskDuplicateCandidate[]> {
+  const config = getOdooConfig();
+  const normalizedEmail = email.trim();
+  const normalizedDate = flightDate.trim();
+  if (!config || !normalizedEmail || !normalizedDate) {
+    return [];
+  }
+
+  const uid = await authenticate(config);
+  const rows = await executeKw<
+    Array<{
+      id: number;
+      name: string;
+      partner_name: string | false;
+      partner_email: string | false;
+      x_studio_first_name: string | false;
+      x_studio_last_name: string | false;
+      x_studio_email: string | false;
+      x_studio_flight_number: string | false;
+    }>
+  >(
+    config,
+    uid,
+    "helpdesk.ticket",
+    "search_read",
+    [
+      [
+        ["brand", "=", config.brandName],
+        ["x_studio_flight_date", "=", normalizedDate],
+        "|",
+        ["x_studio_email", "=ilike", normalizedEmail],
+        ["partner_email", "=ilike", normalizedEmail],
+      ],
+    ],
+    {
+      fields: [
+        "id",
+        "name",
+        "partner_name",
+        "partner_email",
+        "x_studio_first_name",
+        "x_studio_last_name",
+        "x_studio_email",
+        "x_studio_flight_number",
+      ],
+      limit: 20,
+      order: "id desc",
+    },
+  );
+
+  return rows.map((row) => {
+    const firstName = typeof row.x_studio_first_name === "string" ? row.x_studio_first_name.trim() : "";
+    const lastName = typeof row.x_studio_last_name === "string" ? row.x_studio_last_name.trim() : "";
+    const passengerName = [firstName, lastName].filter(Boolean).join(" ");
+    const emailValue =
+      (typeof row.x_studio_email === "string" && row.x_studio_email.trim()) ||
+      (typeof row.partner_email === "string" && row.partner_email.trim()) ||
+      null;
+
+    return {
+      id: row.id,
+      name: row.name,
+      partnerName: typeof row.partner_name === "string" ? row.partner_name : null,
+      passengerName: passengerName || null,
+      email: emailValue,
+      flightNumber: typeof row.x_studio_flight_number === "string" ? row.x_studio_flight_number : null,
+    };
+  });
+}
+
 export async function odooFindHelpdeskTicketByTrackingNumber(
   trackingNumber: string,
 ): Promise<number | null> {

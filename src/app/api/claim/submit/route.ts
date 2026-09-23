@@ -2,6 +2,7 @@ import { z } from "zod";
 import { inferMimeType, isAllowedBoardingPassMime } from "@/lib/boarding-pass-file";
 import { consumeSignatureToken, getSignatureToken } from "@/lib/claim-signature-tokens";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
+import { DUPLICATE_CLAIM_ERROR, findDuplicateClaim } from "@/lib/claim-duplicate";
 import { saveClaim, updateClaimFields } from "@/lib/claim-store";
 import { generateTrackingNumber } from "@/lib/claim-tracking";
 import { buildSignedPowerOfAttorneyAttachment } from "@/lib/build-signed-poa-html";
@@ -289,6 +290,16 @@ export async function POST(request: Request) {
 
     const locale = getRequestLocale(request, formData);
     const flight = withCompensationEstimate(normalizeFlightData(flightResult.data), locale);
+    const duplicate = await findDuplicateClaim({
+      name: signedNameRaw.trim(),
+      email: contactEmail,
+      flightNumber: flight.flight,
+      flightDate: flight.date,
+    });
+    if (duplicate) {
+      return Response.json({ error: DUPLICATE_CLAIM_ERROR }, { status: 409 });
+    }
+
     const verification = await verifyBoardingPassClaim(
       flight,
       boardingPassBuffer,
