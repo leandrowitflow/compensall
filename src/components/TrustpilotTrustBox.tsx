@@ -1,8 +1,9 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
+import { isInAppBrowser } from "@/lib/in-app-browser";
 import {
   getTrustpilotBusinessUnitId,
   getTrustpilotReviewUrl,
@@ -59,17 +60,43 @@ export default function TrustpilotTrustBox({
 }: TrustpilotTrustBoxProps) {
   const locale = useLocale();
   const ref = useRef<HTMLDivElement>(null);
+  const [browserReady, setBrowserReady] = useState(false);
+  const [skipIframe, setSkipIframe] = useState(false);
   const businessUnitId = getTrustpilotBusinessUnitId();
   const templateId = getTrustpilotTemplateId();
   const reviewUrl = getTrustpilotReviewUrl();
 
   useEffect(() => {
-    if (!businessUnitId || !templateId || !ref.current) return;
+    setSkipIframe(isInAppBrowser(navigator.userAgent));
+    setBrowserReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (skipIframe || !businessUnitId || !templateId || !ref.current) return;
     window.Trustpilot?.loadFromElement(ref.current, true);
-  }, [locale, businessUnitId, templateId]);
+  }, [locale, businessUnitId, templateId, skipIframe]);
 
   if (!businessUnitId || !templateId) {
     return null;
+  }
+
+  if (!browserReady) {
+    return <div className={`w-full ${className}`.trim()} style={{ minHeight: height }} aria-hidden />;
+  }
+
+  if (skipIframe) {
+    return (
+      <div className={`flex justify-center w-full ${className}`.trim()} style={{ minHeight: height }}>
+        <a
+          href={reviewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white/90 text-sm font-semibold underline underline-offset-2"
+        >
+          Trustpilot
+        </a>
+      </div>
+    );
   }
 
   return (

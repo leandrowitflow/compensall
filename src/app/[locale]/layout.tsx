@@ -6,6 +6,7 @@ import AttributionCapture from "@/components/AttributionCapture";
 import DeferredAnchorScroll from "@/components/DeferredAnchorScroll";
 import DeferredCookieBanner from "@/components/DeferredCookieBanner";
 import GoogleTagManager from "@/components/GoogleTagManager";
+import WebViewGuard from "@/components/WebViewGuard";
 import JsonLd from "@/components/seo/JsonLd";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/structured-data";
@@ -57,10 +58,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <html lang={HTML_LANG_MAP[locale as AppLocale]} className={openSans.variable} suppressHydrationWarning>
+      <head>
+        <link rel="stylesheet" href="/claim-critical.css" />
+      </head>
       <body className={openSans.className} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <JsonLd data={[buildOrganizationSchema(siteDescription), buildWebSiteSchema(siteDescription)]} />
           <div className="site-viewport min-w-0 overflow-x-clip">
+            <WebViewGuard />
             <AttributionCapture />
             <GoogleTagManager />
             <DeferredAnchorScroll />

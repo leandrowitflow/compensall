@@ -84,26 +84,9 @@ export default function Step1Upload({
 
   useEffect(() => {
     if (loadAirportSelect) return;
-
-    const activate = () => setLoadAirportSelect(true);
-    const win = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-
-    if (typeof win.requestIdleCallback === "function") {
-      const idleId = win.requestIdleCallback(activate, { timeout: 3500 });
-      return () => win.cancelIdleCallback?.(idleId);
-    }
-
-    const timeoutId = window.setTimeout(activate, 2500);
+    const timeoutId = window.setTimeout(() => setLoadAirportSelect(true), 400);
     return () => window.clearTimeout(timeoutId);
   }, [loadAirportSelect]);
-
-  const openFilePicker = () => {
-    if (isExtracting || processingRef.current) return;
-    inputRef.current?.click();
-  };
 
   const handleFile = async (file: File | null) => {
     if (!file || isExtracting || processingRef.current) return;
@@ -126,7 +109,7 @@ export default function Step1Upload({
     }
   };
 
-  const onDrop = async (event: DragEvent<HTMLButtonElement>) => {
+  const onDrop = async (event: DragEvent<HTMLLabelElement>) => {
     event.preventDefault();
     setIsDragging(false);
     await handleFile(event.dataTransfer.files[0] ?? null);
@@ -189,23 +172,11 @@ export default function Step1Upload({
         {tStep1("rightsContext")}
       </p>
 
-      <input
-        ref={inputRef}
-        type="file"
-        className="hidden"
-        accept={BOARDING_PASS_ACCEPT}
-        onChange={(e) => void handleFile(e.target.files?.[0] ?? null)}
-      />
-
-      <button
-        type="button"
+      <label
         aria-busy={isExtracting}
-        disabled={isExtracting}
-        className={`w-full border-[3.5px] border-dashed rounded-xl py-8 sm:py-10 flex flex-col items-center justify-center text-center transition-colors bg-transparent ${
+        className={`relative block w-full border-[3.5px] border-dashed rounded-xl py-8 sm:py-10 flex flex-col items-center justify-center text-center transition-colors bg-transparent ${
           isDragging ? "border-[#2669f3] bg-[#f1f5fe]/50" : "border-[#d5e0f9] hover:border-[#2669f3]/60"
-        } ${isExtracting ? "opacity-70" : ""}`}
-        onClick={openFilePicker}
-        {...gtmId("claim_step1_upload_boarding_pass")}
+        } ${isExtracting ? "opacity-70 pointer-events-none" : ""}`}
         onDragOver={(e) => {
           e.preventDefault();
           setIsDragging(true);
@@ -213,6 +184,15 @@ export default function Step1Upload({
         onDragLeave={() => setIsDragging(false)}
         onDrop={onDrop}
       >
+        <input
+          ref={inputRef}
+          type="file"
+          accept={BOARDING_PASS_ACCEPT}
+          disabled={isExtracting}
+          className="claim-native-file absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
+          onChange={(e) => void handleFile(e.target.files?.[0] ?? null)}
+          {...gtmId("claim_step1_upload_boarding_pass")}
+        />
         {isExtracting ? (
           <>
             <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 rounded-full border-4 border-[#d5e0f9] border-t-[#2669f3] animate-spin" aria-hidden />
@@ -228,7 +208,7 @@ export default function Step1Upload({
             <p className="text-muted text-xs sm:text-sm">{tStep1("uploadHint")}</p>
           </>
         )}
-      </button>
+      </label>
 
       {(uploadError || extractError) && (
         <p className="mt-3 text-sm text-[#e82828] text-center" role="alert">

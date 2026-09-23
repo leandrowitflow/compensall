@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type PointerEvent, type TouchEvent } from "react";
 import { CLAIM_RESUME_EMAIL_IDLE_MS } from "@/lib/claim-draft-token";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
 import {
@@ -134,7 +134,7 @@ export default function Step3Panel({
   const tCommon = useTranslations("common");
   const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isDrawing, setIsDrawing] = useState(false);
+  const isDrawingRef = useRef(false);
 
   const [phase, setPhase] = useState<WizardPhase>(
     resumePrefill?.contactEmail ? "sign" : "contact",
@@ -258,19 +258,23 @@ export default function Step3Panel({
     setSignaturePreview(null);
   }, [phase, signingPassengerIndex]);
 
-  const getCanvasPoint = (event: PointerEvent<HTMLCanvasElement>) => {
+  useEffect(() => {
+    document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
+  }, [phase]);
+
+  const getCanvasPoint = (clientX: number, clientY: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return null;
     const rect = canvas.getBoundingClientRect();
     return {
-      x: ((event.clientX - rect.left) / rect.width) * canvas.width,
-      y: ((event.clientY - rect.top) / rect.height) * canvas.height,
+      x: ((clientX - rect.left) / rect.width) * canvas.width,
+      y: ((clientY - rect.top) / rect.height) * canvas.height,
     };
   };
 
-  const startDrawing = (event: PointerEvent<HTMLCanvasElement>) => {
+  const beginStroke = (clientX: number, clientY: number) => {
     const canvas = canvasRef.current;
-    const point = getCanvasPoint(event);
+    const point = getCanvasPoint(clientX, clientY);
     if (!canvas || !point) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -279,14 +283,13 @@ export default function Step3Panel({
     ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(point.x, point.y);
-    setIsDrawing(true);
-    canvas.setPointerCapture(event.pointerId);
+    isDrawingRef.current = true;
   };
 
-  const draw = (event: PointerEvent<HTMLCanvasElement>) => {
-    if (!isDrawing) return;
+  const continueStroke = (clientX: number, clientY: number) => {
+    if (!isDrawingRef.current) return;
     const canvas = canvasRef.current;
-    const point = getCanvasPoint(event);
+    const point = getCanvasPoint(clientX, clientY);
     if (!canvas || !point) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -295,11 +298,46 @@ export default function Step3Panel({
     refreshSignaturePreview();
   };
 
-  const stopDrawing = (event: PointerEvent<HTMLCanvasElement>) => {
-    if (!isDrawing) return;
-    canvasRef.current?.releasePointerCapture(event.pointerId);
-    setIsDrawing(false);
+  const endStroke = () => {
+    if (!isDrawingRef.current) return;
+    isDrawingRef.current = false;
     refreshSignaturePreview();
+  };
+
+  const startDrawing = (event: PointerEvent<HTMLCanvasElement>) => {
+    beginStroke(event.clientX, event.clientY);
+    try {
+      canvasRef.current?.setPointerCapture(event.pointerId);
+    } catch {
+      // Facebook / Instagram WebViews throw "java exception" on pointer capture.
+    }
+  };
+
+  const draw = (event: PointerEvent<HTMLCanvasElement>) => {
+    continueStroke(event.clientX, event.clientY);
+  };
+
+  const stopDrawing = (event: PointerEvent<HTMLCanvasElement>) => {
+    try {
+      canvasRef.current?.releasePointerCapture(event.pointerId);
+    } catch {
+      // Same WebView bridge — ignore.
+    }
+    endStroke();
+  };
+
+  const startTouchDrawing = (event: TouchEvent<HTMLCanvasElement>) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    event.preventDefault();
+    beginStroke(touch.clientX, touch.clientY);
+  };
+
+  const moveTouchDrawing = (event: TouchEvent<HTMLCanvasElement>) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    event.preventDefault();
+    continueStroke(touch.clientX, touch.clientY);
   };
 
   const clearSignature = () => {
@@ -793,6 +831,11 @@ export default function Step3Panel({
               onPointerMove={draw}
               onPointerUp={stopDrawing}
               onPointerLeave={stopDrawing}
+              onPointerCancel={stopDrawing}
+              onTouchStart={startTouchDrawing}
+              onTouchMove={moveTouchDrawing}
+              onTouchEnd={endStroke}
+              onTouchCancel={endStroke}
             />
             <p className="text-[#7b8094] text-xs mt-2">{t("drawSignatureHint")}</p>
           </div>

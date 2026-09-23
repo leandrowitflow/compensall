@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/routing";
 import { COOKIE_CONSENT_CHANGED_EVENT } from "@/lib/analytics";
 import {
@@ -14,10 +14,42 @@ import { gtmId } from "@/lib/gtm";
 export default function CookieBanner() {
   const t = useTranslations("cookies");
   const [visible, setVisible] = useState(false);
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setVisible(readCookieConsent() === null);
   }, []);
+
+  useEffect(() => {
+    if (!visible) {
+      document.body.classList.remove("has-cookie-banner");
+      document.documentElement.style.removeProperty("--cookie-banner-offset");
+      return;
+    }
+
+    const banner = bannerRef.current;
+    const applyOffset = () => {
+      const height = banner?.offsetHeight ?? 0;
+      document.documentElement.style.setProperty("--cookie-banner-offset", `${height + 16}px`);
+      document.body.classList.add("has-cookie-banner");
+    };
+
+    applyOffset();
+    if (!banner || typeof ResizeObserver === "undefined") {
+      return () => {
+        document.body.classList.remove("has-cookie-banner");
+        document.documentElement.style.removeProperty("--cookie-banner-offset");
+      };
+    }
+
+    const observer = new ResizeObserver(applyOffset);
+    observer.observe(banner);
+    return () => {
+      observer.disconnect();
+      document.body.classList.remove("has-cookie-banner");
+      document.documentElement.style.removeProperty("--cookie-banner-offset");
+    };
+  }, [visible]);
 
   const saveChoice = (choice: CookieConsentChoice) => {
     writeCookieConsent(choice);
@@ -36,7 +68,10 @@ export default function CookieBanner() {
       aria-describedby="cookie-banner-description"
       className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 md:px-8 pointer-events-none"
     >
-      <div className="pointer-events-auto mx-auto max-w-[960px] xl:max-w-[1100px] rounded-2xl border border-[#d5e0f9] bg-white p-4 sm:p-5 shadow-[0_12px_40px_rgba(31,54,100,0.12)]">
+      <div
+        ref={bannerRef}
+        className="pointer-events-auto mx-auto max-w-[960px] xl:max-w-[1100px] rounded-2xl border border-[#d5e0f9] bg-white p-4 sm:p-5 shadow-[0_12px_40px_rgba(31,54,100,0.12)]"
+      >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0">
             <p id="cookie-banner-title" className="font-bold text-[#1f3664] text-sm sm:text-base mb-1">

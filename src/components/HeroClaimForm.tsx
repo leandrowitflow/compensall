@@ -1,10 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
+import ClaimSidebar from "@/components/claim/ClaimSidebar";
 import Step1Upload from "@/components/claim/Step1Upload";
-import type { ClaimResumePrefill, ClaimSubmitPayload } from "@/components/claim/Step3Panel";
+import Step2Panel from "@/components/claim/Step2Panel";
+import Step3Panel, { type ClaimResumePrefill, type ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { readClaimResumeTokenFromLocation } from "@/lib/claim-draft-token";
@@ -17,16 +18,6 @@ import {
   type ClaimStatus,
   type ClaimUploadMeta,
 } from "@/lib/claim-types";
-
-const ClaimSidebar = dynamic(() => import("@/components/claim/ClaimSidebar"), {
-  loading: () => <div className="min-h-[200px] rounded-[21px] border border-[#d5e0f9] bg-[#f8faff] animate-pulse" />,
-});
-const Step2Panel = dynamic(() => import("@/components/claim/Step2Panel"), {
-  loading: () => <div className="min-h-[320px] rounded-[21px] border border-[#d5e0f9] bg-[#f8faff] animate-pulse" />,
-});
-const Step3Panel = dynamic(() => import("@/components/claim/Step3Panel"), {
-  loading: () => <div className="min-h-[320px] rounded-[21px] border border-[#d5e0f9] bg-[#f8faff] animate-pulse" />,
-});
 
 type ClaimStep = 1 | 2 | 3;
 
@@ -50,7 +41,7 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
   ] as const;
 
   return (
-    <div className="flex items-center gap-2 flex-wrap justify-end">
+    <div className="claim-stepper-steps">
       {steps.map((s, i) => {
         const isComplete = s.num < step;
         const isActive = s.num === step;
@@ -251,6 +242,7 @@ export default function HeroClaimForm() {
       setBoardingPassFile(file);
       setUpload(buildUploadMeta(file));
       setStep(2);
+      document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
     };
 
     try {
@@ -309,6 +301,7 @@ export default function HeroClaimForm() {
     setExtractError(null);
     setIsEditing(true);
     setStep(2);
+    document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
   };
 
   const handleContinueToStep3 = () => {
@@ -333,6 +326,7 @@ export default function HeroClaimForm() {
     setStep2Error(null);
     setIsEditing(false);
     setStep(3);
+    document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
   };
 
   const handleClaimSubmit = async (payload: ClaimSubmitPayload) => {
@@ -404,13 +398,15 @@ export default function HeroClaimForm() {
 
   return (
     <div
-      className={`bg-[#fefefe] mx-auto text-left overflow-hidden transition-all ${
+      data-clarity-unmask="true"
+      data-expanded={isExpanded ? "true" : "false"}
+      className={`claim-form-shell bg-[#fefefe] mx-auto text-left overflow-x-clip ${
         isExpanded
           ? "rounded-[24px] xl:rounded-[38px] shadow-[0_1px_1px_1px_rgba(0,0,0,0.05)] max-w-full lg:max-w-[960px] xl:max-w-[1550px] w-full"
           : "rounded-[24px] xl:rounded-[32px] max-w-full lg:max-w-[960px] xl:max-w-[1100px] w-full"
       }`}
     >
-      <div className="flex items-center justify-between gap-3 sm:gap-4 px-6 sm:px-10 xl:px-14 pt-6 sm:pt-7 xl:pt-8 pb-3 sm:pb-4 flex-wrap">
+      <div className="claim-stepper sticky top-16 xl:top-[90px] z-20 flex items-center justify-between gap-3 sm:gap-4 px-6 sm:px-10 xl:px-14 pt-6 sm:pt-7 xl:pt-8 pb-3 sm:pb-4 bg-[#fefefe]">
         <AssistantPill label={tCommon("assistantName")} />
         <ClaimStepIndicator step={step} />
       </div>
