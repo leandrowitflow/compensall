@@ -1,4 +1,5 @@
 import { hasAnalyticsConsent } from "@/lib/cookie-consent";
+import type { EnhancedConversionUserData } from "@/lib/enhanced-conversion";
 
 /** Fixed GTM click identifiers (`data-gtm` / `data-gtm-location`). See `docs/button-mapping.md`. */
 
@@ -38,6 +39,7 @@ export function trackClaimSubmitted(payload: {
   locale: string;
   entryMode: "upload" | "manual";
   flightNumber?: string;
+  userData?: EnhancedConversionUserData | null;
 }): void {
   if (typeof window === "undefined" || !hasAnalyticsConsent()) {
     return;
@@ -51,5 +53,6 @@ export function trackClaimSubmitted(payload: {
     claim_locale: payload.locale,
     claim_entry_mode: payload.entryMode,
     claim_flight_number: payload.flightNumber ?? "",
+    ...(payload.userData ? { user_data: payload.userData } : {}),
   });
 }

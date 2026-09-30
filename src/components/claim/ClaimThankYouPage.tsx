@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { takeEnhancedConversionUserData } from "@/lib/enhanced-conversion";
 import { gtmClaimCta, gtmId, trackClaimSubmitted } from "@/lib/gtm";
 
 type ClaimThankYouPageProps = {
@@ -25,6 +26,7 @@ export default function ClaimThankYouPage({
       return;
     }
 
+    const userData = takeEnhancedConversionUserData(trackingNumber);
     const storageKey = `compensall_claim_submitted:${trackingNumber}`;
     try {
       if (sessionStorage.getItem(storageKey)) {
@@ -41,6 +43,7 @@ export default function ClaimThankYouPage({
       locale,
       entryMode,
       flightNumber,
+      userData,
     });
   }, [entryMode, flightNumber, locale, trackingNumber]);
 

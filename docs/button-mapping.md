@@ -4,7 +4,7 @@ Labels em inglês (`messages/en.json`). UI i18n: `en` / `pt` / `fr`.
 
 **Destino dos CTAs de claim:** `/#claim` (com prefixo de locale, ex. `/en/#claim`) — scroll para o formulário hero (`id="claim"`).
 
-**Conversão paga (Meta / Google Ads):** URL único `/{locale}/claim/thank-you` (ex. `/en/claim/thank-you`, `/pt/claim/thank-you`). Disparar só no evento `claim_submitted` (dataLayer) nesta página, depois do submit com tracking number. Query: `ref` (tracking), `mode` (`upload`|`manual`), `flight`. Não usar a última página do form, revisão, nem `claim_step3_continue_to_review`.
+**Conversão paga (Meta / Google Ads):** URL único `/{locale}/claim/thank-you` (ex. `/en/claim/thank-you`, `/pt/claim/thank-you`). Disparar só no evento `claim_submitted` (dataLayer) nesta página, depois do submit com tracking number. Query: `ref` (tracking), `mode` (`upload`|`manual`), `flight`. Não usar a última página do form, revisão, nem `claim_step3_continue_to_review`. Conversões otimizadas: no mesmo evento, `user_data.email`, `user_data.phone_number` (se houver telefone), `user_data.address.first_name`, `user_data.address.last_name`. Só depois de “Aceitar todos” nos cookies. O nome e o email não vão no URL.
 
 Helper no código: `src/lib/gtm.ts` (`gtmId`, `gtmClaimCta`).
 
@@ -134,4 +134,4 @@ data-gtm="nav_about"
    - name: `cta_click`  
    - params: `gtm_id` = `{{data-gtm}}`, `gtm_location` = `{{data-gtm-location}}`
 4. Funil claim: filtrar `data-gtm` que começa por `claim_step`.
-5. **Conversões Meta / Google Ads:** página `/{locale}/claim/thank-you` + trigger Custom Event `claim_submitted`. O site envia `claim_tracking_number`, `claim_locale`, `claim_entry_mode`, `claim_flight_number` uma vez nesta URL. Desligar tags que disparam na apresentação da última página do form.
+5. **Conversões Meta / Google Ads:** página `/{locale}/claim/thank-you` + trigger Custom Event `claim_submitted`. O site envia `claim_tracking_number`, `claim_locale`, `claim_entry_mode`, `claim_flight_number` uma vez nesta URL. Para conversões otimizadas, mapear os dados do utilizador do mesmo evento: `user_data.email`, `user_data.phone_number`, `user_data.address.first_name`, `user_data.address.last_name`. Desligar tags que disparam na apresentação da última página do form.

@@ -16,6 +16,7 @@ import PhoneInputField from "@/components/claim/PhoneInputField";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
 import { useRouter } from "@/i18n/routing";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
+import { storeEnhancedConversionUserData } from "@/lib/enhanced-conversion";
 import { gtmId } from "@/lib/gtm";
 import { formatPoaDate } from "@/lib/poa-content";
 import { isBlankOrValidClaimPhone, isValidClaimPhone, toE164Phone } from "@/lib/phone";
@@ -526,6 +527,11 @@ export default function Step3Panel({
         formSessionId: sessionId,
       });
       setTrackingNumber(result.trackingNumber);
+      storeEnhancedConversionUserData(result.trackingNumber, {
+        name: signedName.trim(),
+        email: contactEmail.trim(),
+        phone: normalizedPhone,
+      });
       router.replace({
         pathname: "/claim/thank-you",
         query: {

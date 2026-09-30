@@ -6,7 +6,7 @@ Labels below are English (`messages/en.json`). UI is i18n: `en` / `pt` / `fr`.
 
 **Primary conversion destination:** `/#claim` (locale-prefixed, e.g. `/en/#claim`) — scrolls to the homepage hero form (`id="claim"`).
 
-**Paid conversion URL:** `/{locale}/claim/thank-you` (e.g. `/en/claim/thank-you`, `/pt/claim/thank-you`). Fire `claim_submitted` only on this page after a tracking number exists. Query: `ref`, `mode`, `flight`.
+**Paid conversion URL:** `/{locale}/claim/thank-you` (e.g. `/en/claim/thank-you`, `/pt/claim/thank-you`). Fire `claim_submitted` only on this page after a tracking number exists. Query: `ref`, `mode`, `flight`. Enhanced conversions read `user_data` on that same event (not the URL): `user_data.email`, `user_data.phone_number` when a phone was given, `user_data.address.first_name`, `user_data.address.last_name`. Sent only after cookie consent “Accept all”. The Google tag hashes the values.
 
 ---
 
@@ -134,4 +134,4 @@ data-gtm="nav_about"
    - name: `cta_click`
    - params: `gtm_id` = `{{data-gtm}}`, `gtm_location` = `{{data-gtm-location}}`
 4. **Claim funnel:** filter where `data-gtm` starts with `claim_step`.
-5. **Paid conversions (Meta / Google Ads):** unique URL `/{locale}/claim/thank-you` plus Custom Event `claim_submitted`. The site sends `claim_tracking_number`, `claim_locale`, `claim_entry_mode`, `claim_flight_number` once on that page. Turn off tags that fire on the last form step.
+5. **Paid conversions (Meta / Google Ads):** unique URL `/{locale}/claim/thank-you` plus Custom Event `claim_submitted`. The site sends `claim_tracking_number`, `claim_locale`, `claim_entry_mode`, `claim_flight_number` once on that page. For Google Ads enhanced conversions, map User-provided data from the same event: `user_data.email`, `user_data.phone_number`, `user_data.address.first_name`, `user_data.address.last_name`. Turn off tags that fire on the last form step.
