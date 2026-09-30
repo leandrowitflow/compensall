@@ -1,6 +1,11 @@
+import { hasAnalyticsConsent } from "@/lib/cookie-consent";
 import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
 const STORAGE_PREFIX = "compensall_ec:";
+const FORM_ID = "compensall-enhanced-conversion";
+
+/** Survives a strict-mode remount after sessionStorage has already been read. */
+let activeUserData: { trackingNumber: string; userData: EnhancedConversionUserData } | null = null;
 
 /** Fields the Google Ads enhanced-conversion tag reads from the `claim_submitted` event. */
 export type EnhancedConversionUserData = {
@@ -99,16 +104,80 @@ export function storeEnhancedConversionUserData(
   } catch {
     // sessionStorage can be blocked; the conversion still fires without user data
   }
+
+  activeUserData = { trackingNumber: trackingNumber.trim(), userData };
+  mountEnhancedConversionFields(userData);
+}
+
+function field(id: string, name: string, type: string, autoComplete: string, value: string): HTMLInputElement {
+  const input = document.createElement("input");
+  input.id = id;
+  input.name = name;
+  input.type = type;
+  input.autocomplete = autoComplete;
+  input.value = value;
+  input.readOnly = true;
+  input.tabIndex = -1;
+  return input;
+}
+
+/** Off-screen fields the Google tag can read on the thank-you page. Not shown in the page copy. */
+export function mountEnhancedConversionFields(userData: EnhancedConversionUserData | null): void {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  document.getElementById(FORM_ID)?.remove();
+  if (!userData || !hasAnalyticsConsent()) {
+    return;
+  }
+
+  const form = document.createElement("form");
+  form.id = FORM_ID;
+  form.setAttribute("aria-hidden", "true");
+  form.autocomplete = "on";
+  form.noValidate = true;
+  form.style.cssText =
+    "position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;";
+  form.addEventListener("submit", (event) => event.preventDefault());
+  form.append(field("compensall-email", "email", "email", "email", userData.email));
+  if (userData.address?.first_name) {
+    form.append(field("compensall-first-name", "first_name", "text", "given-name", userData.address.first_name));
+  }
+  if (userData.address?.last_name) {
+    form.append(field("compensall-last-name", "last_name", "text", "family-name", userData.address.last_name));
+  }
+  if (userData.phone_number) {
+    form.append(field("compensall-phone", "phone", "tel", "tel", userData.phone_number));
+  }
+  document.body.append(form);
+}
+
+export function removeEnhancedConversionFields(): void {
+  if (typeof document === "undefined") {
+    return;
+  }
+  document.getElementById(FORM_ID)?.remove();
 }
 
 export function takeEnhancedConversionUserData(
   trackingNumber: string,
 ): EnhancedConversionUserData | null {
-  if (typeof window === "undefined" || !trackingNumber.trim()) {
+  const normalizedTrackingNumber = trackingNumber.trim();
+  if (typeof window === "undefined" || !normalizedTrackingNumber) {
     return null;
   }
 
-  const key = `${STORAGE_PREFIX}${trackingNumber.trim()}`;
+  if (activeUserData?.trackingNumber === normalizedTrackingNumber) {
+    try {
+      sessionStorage.removeItem(`${STORAGE_PREFIX}${normalizedTrackingNumber}`);
+    } catch {
+      // sessionStorage can be blocked
+    }
+    return activeUserData.userData;
+  }
+
+  const key = `${STORAGE_PREFIX}${normalizedTrackingNumber}`;
   try {
     const raw = sessionStorage.getItem(key);
     sessionStorage.removeItem(key);
@@ -131,11 +200,13 @@ export function takeEnhancedConversionUserData(
     }
 
     const phoneNumber = parsed.phone_number?.trim() ?? "";
-    return {
+    const userData: EnhancedConversionUserData = {
       email: parsed.email.trim().toLowerCase(),
       ...(phoneNumber.startsWith("+") ? { phone_number: phoneNumber } : {}),
       ...(Object.keys(address).length > 0 ? { address } : {}),
     };
+    activeUserData = { trackingNumber: normalizedTrackingNumber, userData };
+    return userData;
   } catch {
     return null;
   }

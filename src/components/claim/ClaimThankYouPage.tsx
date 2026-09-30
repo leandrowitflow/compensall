@@ -1,9 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { takeEnhancedConversionUserData } from "@/lib/enhanced-conversion";
+import {
+  mountEnhancedConversionFields,
+  removeEnhancedConversionFields,
+  takeEnhancedConversionUserData,
+} from "@/lib/enhanced-conversion";
 import { gtmClaimCta, gtmId, trackClaimSubmitted } from "@/lib/gtm";
 
 type ClaimThankYouPageProps = {
@@ -21,16 +25,18 @@ export default function ClaimThankYouPage({
   const locale = useLocale();
   const firedRef = useRef(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!trackingNumber || firedRef.current) {
       return;
     }
 
     const userData = takeEnhancedConversionUserData(trackingNumber);
+    mountEnhancedConversionFields(userData);
+
     const storageKey = `compensall_claim_submitted:${trackingNumber}`;
     try {
       if (sessionStorage.getItem(storageKey)) {
-        return;
+        return () => removeEnhancedConversionFields();
       }
       sessionStorage.setItem(storageKey, "1");
     } catch {
@@ -45,6 +51,8 @@ export default function ClaimThankYouPage({
       flightNumber,
       userData,
     });
+
+    return () => removeEnhancedConversionFields();
   }, [entryMode, flightNumber, locale, trackingNumber]);
 
   return (
