@@ -114,7 +114,7 @@ function field(id: string, name: string, type: string, autoComplete: string, val
   input.id = id;
   input.name = name;
   input.type = type;
-  input.autocomplete = autoComplete;
+  input.setAttribute("autocomplete", autoComplete);
   input.value = value;
   input.readOnly = true;
   input.tabIndex = -1;
