@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/routing";
 import { COOKIE_CONSENT_CHANGED_EVENT } from "@/lib/analytics";
 import {
+  COOKIE_BANNER_PENDING_CLASS,
   readCookieConsent,
   writeCookieConsent,
   type CookieConsentChoice,
@@ -14,6 +15,7 @@ import { gtmId } from "@/lib/gtm";
 export default function CookieBanner() {
   const t = useTranslations("cookies");
   const [visible, setVisible] = useState(false);
+  const [saving, setSaving] = useState(false);
   const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,14 +25,24 @@ export default function CookieBanner() {
   useEffect(() => {
     if (!visible) {
       document.body.classList.remove("has-cookie-banner");
-      document.documentElement.style.removeProperty("--cookie-banner-offset");
+      if (readCookieConsent() !== null) {
+        document.documentElement.classList.remove(COOKIE_BANNER_PENDING_CLASS);
+        document.documentElement.style.removeProperty("--cookie-banner-offset");
+      }
       return;
     }
 
     const banner = bannerRef.current;
     const applyOffset = () => {
       const height = banner?.offsetHeight ?? 0;
-      document.documentElement.style.setProperty("--cookie-banner-offset", `${height + 16}px`);
+      const reserved =
+        Number.parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue("--cookie-banner-offset"),
+        ) || 0;
+      document.documentElement.style.setProperty(
+        "--cookie-banner-offset",
+        `${Math.max(height + 16, reserved)}px`,
+      );
       document.body.classList.add("has-cookie-banner");
     };
 
@@ -38,7 +50,10 @@ export default function CookieBanner() {
     if (!banner || typeof ResizeObserver === "undefined") {
       return () => {
         document.body.classList.remove("has-cookie-banner");
-        document.documentElement.style.removeProperty("--cookie-banner-offset");
+        if (readCookieConsent() !== null) {
+          document.documentElement.classList.remove(COOKIE_BANNER_PENDING_CLASS);
+          document.documentElement.style.removeProperty("--cookie-banner-offset");
+        }
       };
     }
 
@@ -47,14 +62,24 @@ export default function CookieBanner() {
     return () => {
       observer.disconnect();
       document.body.classList.remove("has-cookie-banner");
-      document.documentElement.style.removeProperty("--cookie-banner-offset");
+      if (readCookieConsent() !== null) {
+        document.documentElement.classList.remove(COOKIE_BANNER_PENDING_CLASS);
+        document.documentElement.style.removeProperty("--cookie-banner-offset");
+      }
     };
   }, [visible]);
 
   const saveChoice = (choice: CookieConsentChoice) => {
+    if (saving) return;
+    setSaving(true);
     writeCookieConsent(choice);
-    window.dispatchEvent(new Event(COOKIE_CONSENT_CHANGED_EVENT));
+    document.documentElement.classList.remove(COOKIE_BANNER_PENDING_CLASS);
     setVisible(false);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        window.dispatchEvent(new Event(COOKIE_CONSENT_CHANGED_EVENT));
+      });
+    });
   };
 
   if (!visible) {
@@ -105,7 +130,8 @@ export default function CookieBanner() {
             <button
               type="button"
               onClick={() => saveChoice("essential")}
-              className="border-2 border-[#d5e0f9] text-[#1f3664] font-semibold px-5 py-2.5 rounded-full text-sm hover:border-[#2669f3] transition-colors"
+              disabled={saving}
+              className="border-2 border-[#d5e0f9] text-[#1f3664] font-semibold px-5 py-2.5 rounded-full text-sm hover:border-[#2669f3] transition-colors disabled:opacity-60"
               {...gtmId("cookie_essential_only")}
             >
               {t("essentialOnly")}
@@ -113,7 +139,8 @@ export default function CookieBanner() {
             <button
               type="button"
               onClick={() => saveChoice("all")}
-              className="bg-[#2669f3] text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-[#1a55d4] transition-colors"
+              disabled={saving}
+              className="bg-[#2669f3] text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-[#1a55d4] transition-colors disabled:opacity-60"
               {...gtmId("cookie_accept_all")}
             >
               {t("acceptAll")}

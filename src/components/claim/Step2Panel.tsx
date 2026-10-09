@@ -14,6 +14,7 @@ import { gtmId } from "@/lib/gtm";
 type Step2PanelProps = {
   flight: ClaimFlightData;
   isEditing: boolean;
+  isAdvancing?: boolean;
   validationError: string | null;
   extractWarning: string | null;
   onFlightChange: (flight: ClaimFlightData) => void;
@@ -25,6 +26,7 @@ type Step2PanelProps = {
 export default function Step2Panel({
   flight,
   isEditing,
+  isAdvancing = false,
   validationError,
   extractWarning,
   onFlightChange,
@@ -135,7 +137,7 @@ export default function Step2Panel({
         <button
           type="button"
           onClick={onContinue}
-          disabled={ineligible}
+          disabled={ineligible || isAdvancing}
           className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed ${ACTION_BTN}`}
           {...gtmId("claim_step2_yes_continue")}
         >

@@ -1,4 +1,6 @@
 export const COOKIE_CONSENT_STORAGE_KEY = "compensall-cookie-consent";
+/** Set on `<html>` before first paint so reserved banner space does not shift the page. */
+export const COOKIE_BANNER_PENDING_CLASS = "needs-cookie-banner";
 
 export type CookieConsentChoice = "essential" | "all";
 

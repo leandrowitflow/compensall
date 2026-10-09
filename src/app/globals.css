@@ -16,11 +16,15 @@
   --color-blue-pale: #f0f5ff;
   --color-muted: #5a6d8f;
   --font-sans: var(--font-open-sans), "Open Sans", sans-serif;
+  /* Open Sans is loaded at 400/700 only — avoid a 600 swap that shifts text. */
+  --font-weight-semibold: 700;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  /* Android / Meta WebViews still apply a ~300ms double-tap delay without this. */
+  touch-action: manipulation;
 }
 
 body {
@@ -45,8 +49,31 @@ body {
   overflow-x: clip;
 }
 
+html.needs-cookie-banner {
+  --cookie-banner-offset: 232px;
+}
+
+@media (min-width: 640px) {
+  html.needs-cookie-banner {
+    --cookie-banner-offset: 168px;
+  }
+}
+
+@media (min-width: 1024px) {
+  html.needs-cookie-banner {
+    --cookie-banner-offset: 140px;
+  }
+}
+
+html.needs-cookie-banner body,
 body.has-cookie-banner {
   padding-bottom: var(--cookie-banner-offset, 0px);
+}
+
+button:not(:disabled):active,
+[type="button"]:not(:disabled):active,
+[type="submit"]:not(:disabled):active {
+  filter: brightness(0.92);
 }
 
 

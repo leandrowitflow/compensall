@@ -11,6 +11,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/structured-data";
 import { openSans } from "@/lib/site-fonts-next";
+import { COOKIE_BANNER_PENDING_CLASS, COOKIE_CONSENT_STORAGE_KEY } from "@/lib/cookie-consent";
 import { getSiteMetadata, HTML_LANG_MAP } from "@/lib/site-metadata";
 import "../globals.css";
 
@@ -60,6 +61,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html lang={HTML_LANG_MAP[locale as AppLocale]} className={openSans.variable} suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href="/claim-critical.css" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(!localStorage.getItem(${JSON.stringify(COOKIE_CONSENT_STORAGE_KEY)}))document.documentElement.classList.add(${JSON.stringify(COOKIE_BANNER_PENDING_CLASS)})}catch(e){}`,
+          }}
+        />
       </head>
       <body className={openSans.className} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>

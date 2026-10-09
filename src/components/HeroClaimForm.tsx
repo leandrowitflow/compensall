@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useEffect, useState } from "react";
+import { startTransition, useCallback, useEffect, useRef, useState } from "react";
 import ClaimSidebar from "@/components/claim/ClaimSidebar";
 import Step1Upload from "@/components/claim/Step1Upload";
 import Step2Panel from "@/components/claim/Step2Panel";
@@ -150,6 +150,8 @@ export default function HeroClaimForm() {
   const [isEditing, setIsEditing] = useState(false);
   const [step2Error, setStep2Error] = useState<string | null>(null);
   const [boardingPassFile, setBoardingPassFile] = useState<File | null>(null);
+  const [isAdvancing, setIsAdvancing] = useState(false);
+  const advancingRef = useRef(false);
 
   const resetClaim = useCallback(() => {
     if (upload?.previewUrl) {
@@ -294,14 +296,21 @@ export default function HeroClaimForm() {
   };
 
   const handleManualSubmit = (manualFlight: ClaimFlightData) => {
-    setEntryMode("manual");
-    setBoardingPassFile(null);
-    setUpload(null);
-    setFlight(manualFlight);
-    setExtractError(null);
-    setIsEditing(true);
-    setStep(2);
-    document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
+    if (advancingRef.current) return;
+    advancingRef.current = true;
+    setIsAdvancing(true);
+    startTransition(() => {
+      setEntryMode("manual");
+      setBoardingPassFile(null);
+      setUpload(null);
+      setFlight(manualFlight);
+      setExtractError(null);
+      setIsEditing(true);
+      setStep(2);
+      setIsAdvancing(false);
+      advancingRef.current = false;
+      document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
+    });
   };
 
   const handleContinueToStep3 = () => {
@@ -323,10 +332,17 @@ export default function HeroClaimForm() {
       setIsEditing(true);
       return;
     }
-    setStep2Error(null);
-    setIsEditing(false);
-    setStep(3);
-    document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
+    if (advancingRef.current) return;
+    advancingRef.current = true;
+    setIsAdvancing(true);
+    startTransition(() => {
+      setStep2Error(null);
+      setIsEditing(false);
+      setStep(3);
+      setIsAdvancing(false);
+      advancingRef.current = false;
+      document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
+    });
   };
 
   const handleClaimSubmit = async (payload: ClaimSubmitPayload) => {
@@ -421,6 +437,7 @@ export default function HeroClaimForm() {
       {step === 1 && !isResuming && (
         <Step1Upload
           isExtracting={isExtracting}
+          isAdvancing={isAdvancing}
           extractError={extractError}
           onExtract={handleExtract}
           onManualSubmit={handleManualSubmit}
@@ -435,6 +452,7 @@ export default function HeroClaimForm() {
               <Step2Panel
                 flight={flight}
                 isEditing={isEditing}
+                isAdvancing={isAdvancing}
                 validationError={step2Error}
                 extractWarning={extractError}
                 onFlightChange={setFlight}

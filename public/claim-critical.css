@@ -32,6 +32,12 @@
 #claim .claim-primary-btn,
 #claim button[data-gtm^="claim_step"] {
   min-height: 44px;
+  touch-action: manipulation;
+}
+
+#claim button:not(:disabled):active,
+#claim [type="button"]:not(:disabled):active {
+  filter: brightness(0.92);
 }
 
 #claim input[type="file"].claim-native-file {
@@ -43,6 +49,11 @@
   cursor: pointer;
 }
 
+html.needs-cookie-banner {
+  --cookie-banner-offset: 232px;
+}
+
+html.needs-cookie-banner body,
 body.has-cookie-banner {
   padding-bottom: var(--cookie-banner-offset, 0px);
 }

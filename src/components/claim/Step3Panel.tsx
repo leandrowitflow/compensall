@@ -18,6 +18,7 @@ import { useRouter } from "@/i18n/routing";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { storeEnhancedConversionUserData } from "@/lib/enhanced-conversion";
 import { gtmId } from "@/lib/gtm";
+import { afterNextPaint } from "@/lib/after-next-paint";
 import { formatPoaDate } from "@/lib/poa-content";
 import { isBlankOrValidClaimPhone, isValidClaimPhone, toE164Phone } from "@/lib/phone";
 
@@ -398,6 +399,7 @@ export default function Step3Panel({
     setContactPhone(normalizedPhone);
 
     setIsSyncingLead(true);
+    await afterNextPaint();
     try {
       const response = await fetch("/api/claim/odoo-partial-lead", {
         method: "POST",

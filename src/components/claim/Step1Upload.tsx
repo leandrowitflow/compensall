@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState, type DragEvent } from "react";
+import { startTransition, useEffect, useRef, useState, type DragEvent } from "react";
 import { validateBoardingPassFile, BOARDING_PASS_ACCEPT } from "@/lib/boarding-pass-file";
 import {
   normalizeFlightData,
@@ -11,7 +11,11 @@ import {
 import { formatAirportRouteLabel, type AirportOption } from "@/lib/airport-option";
 import { gtmId } from "@/lib/gtm";
 
-const AirportSelect = dynamic(() => import("@/components/claim/AirportSelect"), {
+function loadAirportSelectChunk() {
+  return import("@/components/claim/AirportSelect");
+}
+
+const AirportSelect = dynamic(loadAirportSelectChunk, {
   ssr: false,
   loading: () => (
     <div className="relative flex-1 min-w-0 self-stretch">
@@ -53,6 +57,7 @@ function AirportSelectPlaceholder({
 
 type Step1UploadProps = {
   isExtracting: boolean;
+  isAdvancing?: boolean;
   extractError: string | null;
   onExtract: (file: File) => Promise<void>;
   onManualSubmit: (flight: ClaimFlightData) => void;
@@ -60,6 +65,7 @@ type Step1UploadProps = {
 
 export default function Step1Upload({
   isExtracting,
+  isAdvancing = false,
   extractError,
   onExtract,
   onManualSubmit,
@@ -79,12 +85,20 @@ export default function Step1Upload({
 
   const activateAirportSelect = (id?: string) => {
     if (id) setAutoOpenAirportId(id);
-    setLoadAirportSelect(true);
+    startTransition(() => setLoadAirportSelect(true));
   };
 
   useEffect(() => {
     if (loadAirportSelect) return;
-    const timeoutId = window.setTimeout(() => setLoadAirportSelect(true), 400);
+    const start = () => {
+      void loadAirportSelectChunk();
+      setLoadAirportSelect(true);
+    };
+    if (typeof window.requestIdleCallback === "function") {
+      const idleId = window.requestIdleCallback(start, { timeout: 700 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+    const timeoutId = window.setTimeout(start, 1);
     return () => window.clearTimeout(timeoutId);
   }, [loadAirportSelect]);
 
@@ -144,7 +158,7 @@ export default function Step1Upload({
   };
 
   const submitManual = () => {
-    if (isExtracting) return;
+    if (isExtracting || isAdvancing) return;
 
     setManualError(null);
 
@@ -277,7 +291,7 @@ export default function Step1Upload({
         <button
           type="button"
           onClick={submitManual}
-          disabled={isExtracting}
+          disabled={isExtracting || isAdvancing}
           className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-sm sm:text-base xl:text-[19px] leading-tight px-4 sm:px-6 xl:px-8 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center text-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px] disabled:cursor-not-allowed disabled:bg-[#2669f3]/70 disabled:hover:bg-[#2669f3]/70"
           {...gtmId("claim_step1_check_compensation")}
         >
