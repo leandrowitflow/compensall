@@ -988,7 +988,29 @@ export async function odooFindCurrencyIdByCode(code: string): Promise<number | n
   }
 }
 
-/** Find or create a customer partner so tickets are not linked to Aireclaim/Compensall company. */
+type PartnerCompanyRef = [number, string] | false;
+
+function samePersonName(left: string, right: string): boolean {
+  const normalize = (value: string) => value.trim().toLowerCase().replace(/\s+/g, " ");
+  const wanted = normalize(left);
+  return wanted !== "" && wanted === normalize(right);
+}
+
+/** Partner usable on a ticket of this company. Another company's contact is not. */
+export function pickPartnerForTicket(
+  partners: Array<{ id: number; name: string; company_id: PartnerCompanyRef }>,
+  companyId: number | undefined,
+  signedName: string,
+): number | null {
+  const usable = partners.filter((partner) => {
+    const partnerCompanyId = Array.isArray(partner.company_id) ? partner.company_id[0] : null;
+    if (!companyId) return true;
+    return partnerCompanyId === companyId || partnerCompanyId == null;
+  });
+  return usable.find((partner) => samePersonName(partner.name, signedName))?.id ?? null;
+}
+
+/** Find or create the passenger on the Compensall company. Never reuse another company's contact. */
 export async function odooFindOrCreatePartner(input: {
   name: string;
   email: string;
@@ -1008,31 +1030,31 @@ export async function odooFindOrCreatePartner(input: {
     throw new Error("Partner email is required.");
   }
 
-  const existing = await executeKw<Array<{ id: number }>>(
+  const companyId = await resolveAccessibleCompanyId(config, uid);
+  const existing = await executeKw<
+    Array<{ id: number; name: string; company_id: PartnerCompanyRef }>
+  >(
     config,
     uid,
     "res.partner",
     "search_read",
     [[["email", "=ilike", email]]],
-    { fields: ["id"], limit: 1 },
+    { fields: ["id", "name", "company_id"], limit: 20, order: "id asc" },
   );
 
-  if (existing[0]?.id) {
-    const updates: Record<string, unknown> = {};
-    if (name) updates.name = name;
-    if (phone) updates.phone = phone;
-    if (Object.keys(updates).length > 0) {
+  const partnerId = pickPartnerForTicket(existing, companyId, name);
+  if (partnerId) {
+    if (phone) {
       try {
-        await executeKw<boolean>(config, uid, "res.partner", "write", [[existing[0].id], updates]);
+        await executeKw<boolean>(config, uid, "res.partner", "write", [[partnerId], { phone }]);
       } catch (error) {
         // Partners linked to portal/internal users can reject writes without Access Rights.
         console.error("Odoo partner update skipped:", error);
       }
     }
-    return existing[0].id;
+    return partnerId;
   }
 
-  const companyId = await resolveAccessibleCompanyId(config, uid);
   const values: Record<string, unknown> = {
     name,
     email,
@@ -1041,5 +1063,12 @@ export async function odooFindOrCreatePartner(input: {
   if (phone) values.phone = phone;
   if (companyId) values.company_id = companyId;
 
-  return executeKw<number>(config, uid, "res.partner", "create", [values]);
+  return executeKw<number>(
+    config,
+    uid,
+    "res.partner",
+    "create",
+    [values],
+    await companyKwargs(config, uid, companyId),
+  );
 }
