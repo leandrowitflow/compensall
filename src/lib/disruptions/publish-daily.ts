@@ -207,17 +207,42 @@ async function researchDisruption(titles: string[], now: Date): Promise<string> 
 
 async function structureDisruption(notes: string, now: Date): Promise<DisruptionDraftInput> {
   const google = createGoogleProvider();
-  const { output } = await generateText({
-    model: google(DIGEST_MODEL),
-    output: Output.object({ schema: disruptionDraftSchema }),
-    maxOutputTokens: 1800,
-    temperature: 0,
-    prompt: buildStructurePrompt(notes, now),
-  });
-  if (!output) {
-    throw new Error("Empty disruption draft.");
+  const run = (modelId: string) =>
+    generateText({
+      model: google(modelId),
+      output: Output.object({ schema: disruptionDraftSchema }),
+      maxOutputTokens: 4000,
+      temperature: 0,
+      // Gemini 3.x otherwise spends the output budget on thinking and returns nothing.
+      providerOptions: {
+        google: {
+          thinkingConfig: {
+            thinkingBudget: 0,
+          },
+        },
+      },
+      prompt: buildStructurePrompt(notes, now),
+    });
+
+  try {
+    const { output } = await run(DIGEST_MODEL);
+    if (!output) {
+      throw new Error("Empty disruption draft.");
+    }
+    return output;
+  } catch (error) {
+    if (
+      DIGEST_MODEL !== DIGEST_MODEL_FALLBACK &&
+      (isUnavailableGeminiModelError(error) || isEmptyOutputError(error))
+    ) {
+      const { output } = await run(DIGEST_MODEL_FALLBACK);
+      if (!output) {
+        throw new Error("Empty disruption draft.");
+      }
+      return output;
+    }
+    throw error;
   }
-  return output;
 }
 
 function buildPayload(
@@ -260,6 +285,11 @@ function createGoogleProvider() {
     throw new Error("GEMINI_API_KEY is not configured.");
   }
   return createGoogleGenerativeAI({ apiKey });
+}
+
+function isEmptyOutputError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error);
+  return message.toLowerCase().includes("no output generated");
 }
 
 function errorMessage(error: unknown): string {
