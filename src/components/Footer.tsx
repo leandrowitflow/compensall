@@ -36,6 +36,7 @@ const FOOTER_NAV_GTM: Record<string, string> = {
   "/airlines": "footer_nav_airlines",
   "/about": "footer_nav_about",
   "/blog": "footer_nav_blog",
+  "/disruptions": "footer_nav_disruptions",
   "/faq": "footer_nav_faq",
 };
 
@@ -129,6 +130,7 @@ export default function Footer() {
     { label: tNav("airlines"), shortLabel: tNav("airlinesShort"), href: "/airlines" },
     { label: tNav("aboutUs"), shortLabel: tNav("aboutUs"), href: "/about" },
     { label: tNav("blog"), shortLabel: tNav("blog"), href: "/blog" },
+    { label: tNav("disruptions"), shortLabel: tNav("disruptionsShort"), href: "/disruptions" },
     { label: tNav("faq"), shortLabel: tNav("faq"), href: "/faq" },
   ];
 
@@ -188,7 +190,7 @@ export default function Footer() {
             />
           </div>
 
-          <nav className="lg:row-start-1 lg:col-start-2 flex flex-wrap items-center justify-center gap-4 xl:gap-6 2xl:gap-10 min-h-[32px] xl:min-h-[39px]">
+          <nav className="lg:row-start-1 lg:col-start-2 flex flex-wrap items-center justify-center gap-2 xl:gap-3 2xl:gap-6 min-h-[32px] xl:min-h-[39px]">
             {primaryNavLinks.map((link) => (
               <Link
                 key={link.href}

@@ -7,6 +7,8 @@ import { estimateReadTime, markdownToBlocks } from "@/lib/blog/markdown-to-block
 import type { BlogPost } from "@/lib/blog/types";
 import { formatBlogDisplayDate } from "@/lib/blog-date";
 import type { CmsWebhookPayload, CmsWebhookTranslation } from "@/lib/cms-webhook/types";
+import { disruptionCategory } from "@/lib/disruptions/category";
+import { isDisruptionSlug } from "@/lib/disruptions/guards";
 import { polishPublicCopy } from "@/lib/public-copy";
 import { supabaseRestUrl } from "@/lib/supabase-rest";
 
@@ -365,7 +367,9 @@ export function cmsRecordToBlogPost(record: CmsBlogRecord, locale: AppLocale): B
 
   return {
     slug: record.slug,
-    category: CMS_BLOG_CATEGORY_BY_LOCALE[locale],
+    category: isDisruptionSlug(record.slug)
+      ? disruptionCategory(locale)
+      : CMS_BLOG_CATEGORY_BY_LOCALE[locale],
     date: formatBlogDisplayDate(dateSource),
     readTime: estimateReadTime(polishedContentMd),
     title: polishPublicCopy(translation.title ?? "", locale),

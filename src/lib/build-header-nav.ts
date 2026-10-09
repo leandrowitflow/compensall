@@ -118,6 +118,7 @@ export function buildHeaderNav(
     { label: tNav("airlines"), href: "/airlines", gtm: "nav_airlines" },
     { label: tNav("aboutUs"), href: "/about", gtm: "nav_about" },
     { label: tNav("blog"), href: "/blog", gtm: "nav_blog" },
+    { label: tNav("disruptions"), href: "/disruptions", gtm: "nav_disruptions" },
     { label: tNav("faq"), href: "/faq", gtm: "nav_faq" },
   ];
 

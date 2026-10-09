@@ -28,6 +28,8 @@
     "airlinesAndAirports": "Kompani dhe aeroporte",
     "aboutUs": "Rreth nesh",
     "blog": "Blog",
+    "disruptions": "Ndërprerje fluturimesh",
+    "disruptionsShort": "Ndërprerje",
     "faq": "Pyetje të shpeshta",
     "talkToUs": "Na shkruaj",
     "talkToUsShort": "Na shkruaj",
@@ -523,6 +525,65 @@
       }
     }
   },
+  "authorPage": {
+    "name": "Francisca Albuquerque",
+    "role": "Themeluese e Compensall",
+    "greeting": "Përshëndetje, unë jam Francisca.",
+    "lead": "Kam kaluar pothuajse dhjetë vjet duke bërë që kompanitë ajrore të paguajnë pasagjerë që do të preferonin të mos i paguanin.",
+    "intro": "Para se të krijoja Compensall, kalova afër një dekade duke punuar për një gjë të vetme: kërkesa për të drejtat e pasagjerëve ajrorë në BE. Kam parë mijëra fluturime të vonuara, të anuluara dhe të mbi-rezervuara, nga ana e pasagjerit. Kam parë edhe saktësisht si përgjigjen kompanitë kur dikush kërkon atë që ligji thotë se i takon.",
+    "decadeTitle": "Një dekadë nga ana e pasagjerit",
+    "decadeBody": "Rregullorja (KE) nr. 261/2004 është ligj që nga viti 2005. U jep pasagjerëve deri në 600 € për vonesa të gjata, anulime dhe refuzim imbarkimi. Shumica e njerëzve ende nuk kërkojnë. Ata që kërkojnë shpesh ndeshin heshtje, përgjigje të ngadalta ose një refuzim standard që fajëson motin ose kontrollin e trafikut ajror.",
+    "quote": "Një letër refuzimi rrallë është fundi i një kërkese. Shumë shpesh është një provë nëse pasagjeri do të kthejë përgjigje.",
+    "decadeAfter": "Me vitet mësova cilat kompani paguajnë shpejt, cilat e zgjasin, dhe cilat arsye refuzimi qëndrojnë pasi i kontrollon faktet. Më e rëndësishmja: sipas ligjit të BE-së, kompania ajrore duhet të provojë një rrethanë të jashtëzakonshme, jo pasagjeri.",
+    "whyTitle": "Pse e ndërtova Compensall",
+    "whyP1": "Pas pothuajse dhjetë vjetësh në këtë sektor, desha të ndërtoja një kompani kërkesash ashtu si do të doja të funksiononte nëse do të më anulohej fluturimi im. Kjo do të thoshte të filloja nga zero me gjithçka që kisha mësuar.",
+    "whyP2": "Gjëja e parë që mësova është e pakëndshme për një kompani kërkesash ta pranojë: shumë njerëz që na kontaktojnë nuk e kanë në të vërtetë të drejtën e kompensimit. Preferoj të ta them këtë sinqerisht, për minuta, sesa të marr çështjen tënde dhe të të lë të presësh me muaj. Compensall kontrollon së pari nëse ke të drejtë.",
+    "checksTitle": "Si e kontrollojmë çështjen tënde",
+    "checksIntro": "Nuk e marrim shpjegimin e kompanisë si të mirëqenë. Për çdo kërkesë kontrollojmë:",
+    "checks": [
+      {
+        "title": "Të dhënat e fluturimit",
+        "body": "Orën reale të mbërritjes, ajo që vlen sipas ligjit të BE-së, jo nisjen."
+      },
+      {
+        "title": "Regjistrimet e motit",
+        "body": "Raportet zyrtare METAR të aeroporteve të përfshira, për të parë nëse «moti i keq» e ndaloi vërtet fluturimin."
+      },
+      {
+        "title": "Shkakun e ndërprerjes",
+        "body": "Nëse ishte vërtet jashtë kontrollit të kompanisë, apo një çështje teknike, ekuipazhi ose planifikimi që është përgjegjësi e saj."
+      },
+      {
+        "title": "Distancën deri te destinacioni yt përfundimtar",
+        "body": "Kjo vendos nëse të takojnë 250 €, 400 € apo 600 €."
+      }
+    ],
+    "checksClose": "Ndërtova sistemin tonë të shqyrtimit të ndihmuar nga IA që këto kontrolle të bëhen në mënyrë të qëndrueshme. Një person i shqyrton ende çdo vendim që ka rëndësi.",
+    "principlesTitle": "Për çfarë qëndroj",
+    "principles": [
+      {
+        "title": "Së pari ndershmëria",
+        "body": "Nëse çështja jote nuk është e fortë, ta themi. Të marrim një kërkesë që nuk mund ta fitojmë të humb kohën tënde dhe tonën."
+      },
+      {
+        "title": "Prova, jo supozime",
+        "body": "Barra e provës është e kompanisë. Sigurohemi që ta përmbushë vërtet."
+      },
+      {
+        "title": "Transparencë",
+        "body": "No win, no fee. Do ta dish gjithmonë ku qëndron kërkesa jote."
+      }
+    ],
+    "scopeTitle": "Çfarë është Compensall, dhe çfarë nuk është",
+    "scopeBody": "Compensall është një kompani e menaxhimit të kërkesave. Nuk jemi një zyrë avokatie. Kur një kompani refuzon të paguajë një kërkesë të vlefshme, e ngremë në kanalet e duhura: organe të zgjidhjes alternative të mosmarrëveshjeve, autoritete kombëtare të zbatimit dhe, kur duhet, partnerë ligjorë të pavarur.",
+    "cta": "Nëse fluturimi yt u vonua, u anulua ose u mbi-rezervua në vitet e fundit, mund të të takojnë deri në 600 €.",
+    "ctaButton": "Le ta zbulojmë",
+    "writtenBy": "Shkruar nga",
+    "shortBio": "Themeluese e Compensall. Pothuajse dhjetë vjet duke bërë që pasagjerët të paguhen sipas Rregullores (KE) nr. 261/2004.",
+    "readStory": "Lexo historinë e Franciscës",
+    "meetTitle": "Njihu me Franciscën",
+    "meetBody": "Francisca Albuquerque e themeloi Compensall pas pothuajse dhjetë vjetësh pune për të drejtat e pasagjerëve ajrorë në BE, nga ana e pasagjerit."
+  },
   "knowYourRights": {
     "heroTitle": "Njihi të drejtat e tua",
     "heroSubtitle": "Kupto të drejtat sipas UK261 dhe 261/2004/KE dhe si të ndihmon Compensall me mbështetjen dixhitale.",
@@ -686,6 +747,10 @@
       "title": "Rreth Compensall dhe kompensimit të fluturimit",
       "description": "Compensall i ndihmon pasagjerët ajrorë të kërkojnë deri në 600 € sipas EU261: ngarkim i sigurt i kartës, kontroll asistent dhe ndjekje njerëzore te kompania, No win, no fee."
     },
+    "author": {
+      "title": "Francisca Albuquerque, themeluese e Compensall",
+      "description": "Francisca Albuquerque kaloi pothuajse dhjetë vjet me të drejtat e pasagjerëve në BE para se të themelonte Compensall. Këtu shpjegon si kontrollohet një kërkesë."
+    },
     "knowYourRights": {
       "title": "Njihi të drejtat e kompensimit të fluturimit",
       "description": "Mëso kur UK261 dhe Rregullorja (KE) nr. 261/2004 të japin deri në 520 £ ose 600 € për vonesa, anulime, refuzim imbarkimi, lidhje të humbura dhe greva."
@@ -697,6 +762,10 @@
     "blog": {
       "title": "Udhëzues kompensimi fluturimi dhe të drejta pasagjeri",
       "description": "Udhëzues praktikë 261/2004/KE për vonesa, anulime, refuzim imbarkimi, lidhje të humbura dhe si të kërkosh deri në 600 €."
+    },
+    "disruptions": {
+      "title": "Ndërprerje aktuale të fluturimeve",
+      "description": "Mbyllje aeroportesh, greva dhe anulime masive që prekin fluturimet në Mbretërinë e Bashkuar dhe BE, dhe çfarë mund të presin pasagjerët."
     },
     "cookies": {
       "title": "Politika e cookies dhe preferencat",
@@ -864,6 +933,13 @@
     "readArticle": "Lexo artikullin",
     "backToBlog": "Kthehu te blogu",
     "englishOnlyNotice": "Ky udhëzues është aktualisht vetëm në anglisht."
+  },
+  "disruptionsPage": {
+    "title": "Ndërprerje fluturimesh",
+    "subtitle": "Mbyllje aeroportesh, greva dhe anulime masive që prekin fluturimet në Mbretërinë e Bashkuar dhe BE.",
+    "readArticle": "Lexo përditësimin",
+    "backToList": "Kthehu te ndërprerjet",
+    "empty": "Nuk ka ndërprerje të listuara për momentin. Kthehu pas përditësimit të ardhshëm ditor."
   },
   "thankYouPage": {
     "title": "Faleminderit",

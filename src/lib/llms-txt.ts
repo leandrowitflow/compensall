@@ -40,9 +40,21 @@ const LLMS_SECTIONS: LlmsSection[] = [
         description: "How the platform works, our no win no fee model, and human-backed claim support.",
       },
       {
+        title: "Francisca Albuquerque, founder",
+        path: "/about/francisca",
+        description:
+          "The founder of Compensall, and how she checks a flight compensation claim after almost ten years on EU passenger rights.",
+      },
+      {
         title: "Blog",
         path: "/blog",
         description: "Articles on flight delays, cancellations, denied boarding, and compensation rights.",
+      },
+      {
+        title: "Flight disruptions",
+        path: "/disruptions",
+        description:
+          "Current airport closures, strikes, and widespread cancellations affecting UK and EU flights.",
       },
     ],
   },

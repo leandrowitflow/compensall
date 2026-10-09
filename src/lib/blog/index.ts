@@ -5,6 +5,7 @@ import {
   cmsRecordToBlogPost,
   listCmsBlogRecords,
 } from "@/lib/cms-blog-store";
+import { isDisruptionSlug } from "@/lib/disruptions/guards";
 import type { BlogPost } from "./types";
 import { blogPostsEn } from "./posts.en";
 import { blogPostsEs } from "./posts.es";
@@ -44,10 +45,28 @@ export async function getBlogPosts(locale: AppLocale): Promise<BlogPost[]> {
   const staticPosts = blogPostsByLocale[locale] ?? blogPostsEn;
   const records = await getCachedCmsRecords();
   const cmsPosts = records
+    .filter((record) => !isDisruptionSlug(record.slug))
     .map((record) => cmsRecordToBlogPost(record, locale))
     .filter((post): post is BlogPost => post !== null);
 
   return mergePosts(staticPosts, cmsPosts);
+}
+
+export async function getDisruptionPosts(locale: AppLocale): Promise<BlogPost[]> {
+  const records = await getCachedCmsRecords();
+  return records
+    .filter((record) => isDisruptionSlug(record.slug))
+    .map((record) => cmsRecordToBlogPost(record, locale))
+    .filter((post): post is BlogPost => post !== null);
+}
+
+export async function getDisruptionPost(
+  slug: string,
+  locale: AppLocale,
+): Promise<BlogPost | undefined> {
+  if (!isDisruptionSlug(slug)) return undefined;
+  const posts = await getDisruptionPosts(locale);
+  return posts.find((post) => post.slug === slug);
 }
 
 export async function getBlogPost(

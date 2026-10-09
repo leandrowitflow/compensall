@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CTABanner from "@/components/CTABanner";
 import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
+import { FounderTeaser } from "@/components/BlogAuthor";
 import type { AppLocale } from "@/i18n/routing";
 import { gtmClaimCta } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
@@ -74,7 +75,9 @@ export default async function AboutPage({ params }: AboutPageProps) {
             </div>
           </div>
 
-          <h2 className="font-bold text-2xl lg:text-[28px] xl:text-[36px] text-[#1f3664] text-center mb-8 xl:mb-10 leading-[1.2]">
+          <FounderTeaser />
+
+          <h2 className="font-bold text-2xl lg:text-[28px] xl:text-[36px] text-[#1f3664] text-center mb-8 xl:mb-10 mt-12 xl:mt-16 leading-[1.2]">
             {t("valuesTitle")}
           </h2>
 

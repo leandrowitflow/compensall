@@ -28,6 +28,8 @@
     "airlinesAndAirports": "Companhias aéreas e aeroportos",
     "aboutUs": "Sobre nós",
     "blog": "Blog",
+    "disruptions": "Perturbações de voos",
+    "disruptionsShort": "Perturbações",
     "faq": "FAQ",
     "talkToUs": "Fale connosco",
     "talkToUsShort": "Contacto",
@@ -523,6 +525,65 @@
       }
     }
   },
+  "authorPage": {
+    "name": "Francisca Albuquerque",
+    "role": "Fundadora da Compensall",
+    "greeting": "Olá, sou a Francisca.",
+    "lead": "Passei quase dez anos a conseguir que as companhias aéreas pagassem a passageiros que elas preferiam não pagar.",
+    "intro": "Antes de criar a Compensall, passei perto de uma década a trabalhar numa só coisa: pedidos ao abrigo dos direitos dos passageiros aéreos na UE. Vi milhares de voos atrasados, cancelados e com overbooking, do lado do passageiro. Vi também, ao pormenor, como as companhias respondem quando alguém pede o que a lei diz que lhe é devido.",
+    "decadeTitle": "Uma década do lado do passageiro",
+    "decadeBody": "O regulamento da UE EC 261/2004 é lei desde 2005. Confere aos passageiros direito a até 600€ por atrasos longos, cancelamentos e recusa de embarque. A maioria das pessoas continua a não reclamar. Quem reclama encontra muitas vezes silêncio, respostas lentas ou uma recusa padrão que culpa o mau tempo ou o controlo de tráfego aéreo.",
+    "quote": "Uma carta de recusa raramente é o fim de um pedido. Muitas vezes é um teste para ver se o passageiro insiste.",
+    "decadeAfter": "Com os anos aprendi quais companhias pagam depressa, quais arrastam o processo e que motivos de recusa se aguentam quando se verificam os factos. O mais importante: ao abrigo da lei da UE, cabe à companhia aérea provar uma circunstância extraordinária, não ao passageiro.",
+    "whyTitle": "Porque criei a Compensall",
+    "whyP1": "Depois de quase dez anos neste setor, quis construir uma empresa de reclamações como eu gostaria que funcionasse se o meu próprio voo tivesse sido cancelado. Isso significou começar do zero com tudo o que tinha aprendido.",
+    "whyP2": "A primeira coisa que aprendi é desconfortável para uma empresa de reclamações admitir: muitas pessoas que nos contactam não têm, na verdade, direito a compensação. Prefiro dizer-lhe isso com honestidade, em minutos, do que aceitar o seu caso e deixá-lo à espera durante meses. A Compensall verifica a elegibilidade antes de qualquer outra coisa.",
+    "checksTitle": "Como verificamos o seu caso",
+    "checksIntro": "Não aceitamos a explicação da companhia aérea sem a confirmar. Em cada pedido, verificamos:",
+    "checks": [
+      {
+        "title": "Dados do voo",
+        "body": "A hora real de chegada, que é o que conta ao abrigo da lei da UE, e não a partida."
+      },
+      {
+        "title": "Registos meteorológicos",
+        "body": "Relatórios METAR oficiais dos aeroportos envolvidos, para ver se o «mau tempo» impediu mesmo o voo."
+      },
+      {
+        "title": "A causa da perturbação",
+        "body": "Se esteve mesmo fora do controlo da companhia, ou se foi uma questão técnica, de tripulação ou de programação pela qual a companhia é responsável."
+      },
+      {
+        "title": "A distância até ao destino final",
+        "body": "É isto que define se tem direito a 250€, 400€ ou 600€."
+      }
+    ],
+    "checksClose": "Criei o nosso próprio sistema de análise assistido por IA para fazer estas verificações de forma consistente. Uma pessoa continua a rever cada decisão que importa.",
+    "principlesTitle": "Aquilo em que acredito",
+    "principles": [
+      {
+        "title": "Honestidade em primeiro lugar",
+        "body": "Se o seu caso não for sólido, dizemos-lhe. Aceitar um pedido que não podemos ganhar faz perder o seu tempo e o nosso."
+      },
+      {
+        "title": "Provas, não suposições",
+        "body": "A companhia aérea tem o ónus da prova. Garantimos que o cumpre de facto."
+      },
+      {
+        "title": "Transparência",
+        "body": "No win, no fee. Saberá sempre em que ponto está o seu pedido."
+      }
+    ],
+    "scopeTitle": "O que a Compensall é, e o que não é",
+    "scopeBody": "A Compensall é uma empresa de gestão de reclamações. Não somos um escritório de advogados. Quando uma companhia se recusa a pagar um pedido válido, escalamos pelos canais adequados: organismos de resolução alternativa de litígios, autoridades nacionais de fiscalização e, quando é necessário, parceiros jurídicos independentes.",
+    "cta": "Se o seu voo foi atrasado, cancelado ou teve overbooking nos últimos anos, pode ter direito a até 600€.",
+    "ctaButton": "Vamos descobrir",
+    "writtenBy": "Escrito por",
+    "shortBio": "Fundadora da Compensall. Quase dez anos a conseguir que os passageiros sejam pagos ao abrigo do EC 261/2004.",
+    "readStory": "Ler a história da Francisca",
+    "meetTitle": "Conheça a Francisca",
+    "meetBody": "A Francisca Albuquerque fundou a Compensall depois de quase dez anos a trabalhar nos direitos dos passageiros aéreos na UE, do lado do passageiro."
+  },
   "knowYourRights": {
     "heroTitle": "Conheça os seus direitos",
     "heroSubtitle": "Compreenda os seus direitos ao abrigo do UK261 e do EC 261/2004 e como a Compensall o ajuda a reclamar com o nosso apoio digital.",
@@ -686,6 +747,10 @@
       "title": "Sobre a Compensall e a compensação de voo",
       "description": "A Compensall ajuda os passageiros aéreos a reclamar até 600€ ao abrigo do EU261 com carregamento seguro do cartão de embarque, verificações assistidas e tratamento junto da companhia aérea com apoio humano, com a regra No win, no fee."
     },
+    "author": {
+      "title": "Francisca Albuquerque, fundadora da Compensall",
+      "description": "A Francisca Albuquerque passou quase dez anos nos direitos dos passageiros da UE antes de fundar a Compensall. Explica aqui como um pedido é verificado."
+    },
     "knowYourRights": {
       "title": "Conheça os seus direitos de compensação de voo",
       "description": "Saiba quando o UK261 e o Regulamento da UE EC 261/2004 lhe conferem até 600€ por atrasos, cancelamentos, embarque recusado, ligações perdidas e greves de companhias aéreas."
@@ -697,6 +762,10 @@
     "blog": {
       "title": "Guias de compensação de voo e direitos dos passageiros",
       "description": "Guias práticos sobre o EC 261/2004: atrasos, cancelamentos, embarque recusado, ligações perdidas e como reclamar até 600€."
+    },
+    "disruptions": {
+      "title": "Perturbações de voos atuais",
+      "description": "Encerramentos de aeroportos, greves e cancelamentos em massa que afetam voos no Reino Unido e na UE, e o que os passageiros podem esperar."
     },
     "cookies": {
       "title": "Política de cookies e preferências",
@@ -864,6 +933,13 @@
     "readArticle": "Ler artigo",
     "backToBlog": "Voltar ao blog",
     "englishOnlyNotice": "Este guia está atualmente disponível apenas em inglês."
+  },
+  "disruptionsPage": {
+    "title": "Perturbações de voos",
+    "subtitle": "Encerramentos de aeroportos, greves e cancelamentos em massa que afetam voos no Reino Unido e na UE.",
+    "readArticle": "Ler atualização",
+    "backToList": "Voltar às perturbações",
+    "empty": "Não há perturbações listadas neste momento. Volte a verificar após a próxima atualização diária."
   },
   "thankYouPage": {
     "title": "Obrigado",

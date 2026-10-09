@@ -28,6 +28,8 @@
     "airlinesAndAirports": "Airlines & airports",
     "aboutUs": "About us",
     "blog": "Blog",
+    "disruptions": "Flight disruptions",
+    "disruptionsShort": "Disruptions",
     "faq": "FAQ",
     "talkToUs": "Talk to us",
     "talkToUsShort": "Talk to us",
@@ -523,6 +525,65 @@
       }
     }
   },
+  "authorPage": {
+    "name": "Francisca Albuquerque",
+    "role": "Founder of Compensall",
+    "greeting": "Hi, I'm Francisca.",
+    "lead": "I've spent almost ten years getting passengers paid by airlines that would rather not pay.",
+    "intro": "Before starting Compensall, I spent close to a decade working on one thing: EU air passenger rights claims. I've seen thousands of delayed, cancelled and overbooked flights from the passenger's side of the table. I've also seen exactly how airlines respond when someone asks for what the law says they're owed.",
+    "decadeTitle": "A decade on the passenger's side",
+    "decadeBody": "Regulation EC 261/2004 has been law since 2005. It entitles passengers to up to €600 for long delays, cancellations and denied boarding. Most people still never claim. The ones who do are often met with silence, slow replies, or a standard rejection blaming the weather or air traffic control.",
+    "quote": "A rejection letter is rarely the end of a claim. Very often it's a test of whether the passenger will push back.",
+    "decadeAfter": "Over the years I learned which airlines pay quickly, which ones stall, and which rejection reasons hold up once you check the facts. Most importantly, I learned that under EU law it's the airline that has to prove an extraordinary circumstance, not the passenger.",
+    "whyTitle": "Why I built Compensall",
+    "whyP1": "After almost ten years in this industry, I wanted to build a claims company the way I would have wanted one to work if my own flight had been cancelled. That meant starting from scratch with everything I'd learned.",
+    "whyP2": "The first thing I learned is uncomfortable for a claims company to admit: many people who contact us aren't actually owed compensation. I would rather tell you that honestly, in minutes, than take your case and keep you waiting for months. Compensall checks your eligibility before anything else.",
+    "checksTitle": "How we check your case",
+    "checksIntro": "We don't take an airline's explanation at face value. For every claim, we check:",
+    "checks": [
+      {
+        "title": "Flight data",
+        "body": "The actual arrival time, which is what counts under EU law, not departure."
+      },
+      {
+        "title": "Weather records",
+        "body": "Official METAR reports from the airports involved, to see whether \"bad weather\" really stopped the flight."
+      },
+      {
+        "title": "The cause of the disruption",
+        "body": "Whether it was truly beyond the airline's control, or a technical, crew or scheduling issue that counts as the airline's responsibility."
+      },
+      {
+        "title": "The distance to your final destination",
+        "body": "This sets whether you're owed €250, €400 or €600."
+      }
+    ],
+    "checksClose": "I built our own AI-assisted review system to do these checks consistently. A person still reviews every decision that matters.",
+    "principlesTitle": "What I stand for",
+    "principles": [
+      {
+        "title": "Honesty first",
+        "body": "If your case isn't strong, we'll tell you. Taking a claim we can't win wastes your time and ours."
+      },
+      {
+        "title": "Evidence over assumptions",
+        "body": "Airlines have the burden of proof. We make sure they actually meet it."
+      },
+      {
+        "title": "Transparency",
+        "body": "No win, no fee. You'll always know where your claim stands."
+      }
+    ],
+    "scopeTitle": "What Compensall is, and isn't",
+    "scopeBody": "Compensall is a claims management company. We are not a law firm. When an airline refuses to pay a valid claim, we escalate through the appropriate channels: alternative dispute resolution bodies, national enforcement authorities and, where needed, independent legal partners.",
+    "cta": "If your flight was delayed, cancelled or overbooked in the last years, you may be owed up to €600.",
+    "ctaButton": "Let's find out",
+    "writtenBy": "Written by",
+    "shortBio": "Founder of Compensall. Almost ten years getting passengers paid under EC 261/2004.",
+    "readStory": "Read Francisca's story",
+    "meetTitle": "Meet Francisca",
+    "meetBody": "Francisca Albuquerque founded Compensall after almost ten years working on EU air passenger rights, from the passenger's side of the table."
+  },
   "knowYourRights": {
     "heroTitle": "Know your rights",
     "heroSubtitle": "Understand your rights under UK261 and EC 261/2004 and how Compensall helps you claim with our digital support.",
@@ -686,6 +747,10 @@
       "title": "About Compensall flight compensation",
       "description": "Compensall helps air passengers claim up to €600 under EU261 with secure boarding pass upload, assistant-led checks, and human-backed airline handling on a No win, no fee basis."
     },
+    "author": {
+      "title": "Francisca Albuquerque, founder of Compensall",
+      "description": "Francisca Albuquerque spent almost ten years on EU air passenger rights before founding Compensall. She explains how a claim is checked."
+    },
     "knowYourRights": {
       "title": "Know your flight compensation rights",
       "description": "Learn when UK261 and EU Regulation EC 261/2004 entitle you to up to £520 or €600 for delays, cancellations, denied boarding, missed connections, and airline strikes."
@@ -697,6 +762,10 @@
     "blog": {
       "title": "Flight compensation guides and passenger rights",
       "description": "Practical EC 261/2004 guides on delays, cancellations, denied boarding, missed connections, and how to claim up to €600."
+    },
+    "disruptions": {
+      "title": "Current flight disruptions",
+      "description": "Recent airport closures, strikes, and mass cancellations affecting UK and EU flights, and what passengers can expect."
     },
     "cookies": {
       "title": "Cookie policy and preferences",
@@ -864,6 +933,13 @@
     "readArticle": "Read article",
     "backToBlog": "Back to blog",
     "englishOnlyNotice": "This guide is currently available in English only."
+  },
+  "disruptionsPage": {
+    "title": "Flight disruptions",
+    "subtitle": "Current airport closures, strikes, and widespread cancellations affecting UK and EU flights.",
+    "readArticle": "Read update",
+    "backToList": "Back to disruptions",
+    "empty": "No current disruptions are listed. Check back after the next daily update."
   },
   "thankYouPage": {
     "title": "Thank you",

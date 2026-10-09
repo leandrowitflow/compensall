@@ -28,6 +28,8 @@
     "airlinesAndAirports": "Compagnies aériennes et aéroports",
     "aboutUs": "À propos",
     "blog": "Blog",
+    "disruptions": "Perturbations de vols",
+    "disruptionsShort": "Perturbations",
     "faq": "FAQ",
     "talkToUs": "Nous contacter",
     "talkToUsShort": "Contact",
@@ -523,6 +525,65 @@
       }
     }
   },
+  "authorPage": {
+    "name": "Francisca Albuquerque",
+    "role": "Fondatrice de Compensall",
+    "greeting": "Bonjour, je suis Francisca.",
+    "lead": "J'ai passé près de dix ans à faire payer des passagers par des compagnies aériennes qui préféraient ne pas payer.",
+    "intro": "Avant de créer Compensall, j'ai passé près d'une décennie à ne faire qu'une chose: les réclamations au titre des droits des passagers aériens dans l'UE. J'ai vu des milliers de vols retardés, annulés et en surréservation, du côté du passager. J'ai aussi vu précisément comment les compagnies répondent quand quelqu'un demande ce que la loi dit qu'on lui doit.",
+    "decadeTitle": "Une décennie du côté du passager",
+    "decadeBody": "Le règlement européen CE 261/2004 est en vigueur depuis 2005. Il donne aux passagers droit à jusqu'à 600 € pour les longs retards, les annulations et le refus d'embarquement. La plupart des gens ne réclament toujours pas. Ceux qui le font se heurtent souvent au silence, à des réponses lentes ou à un refus type qui incrimine la météo ou le contrôle aérien.",
+    "quote": "Une lettre de refus est rarement la fin d'une réclamation. Très souvent, c'est un test pour voir si le passager va insister.",
+    "decadeAfter": "Au fil des années, j'ai appris quelles compagnies paient vite, lesquelles font traîner, et quels motifs de refus tiennent une fois les faits vérifiés. Surtout, j'ai appris qu'en droit de l'UE c'est à la compagnie de prouver une circonstance extraordinaire, pas au passager.",
+    "whyTitle": "Pourquoi j'ai créé Compensall",
+    "whyP1": "Après près de dix ans dans ce secteur, je voulais bâtir une société de réclamations comme j'aurais voulu qu'elle fonctionne si mon propre vol avait été annulé. Cela voulait dire repartir de zéro avec tout ce que j'avais appris.",
+    "whyP2": "La première chose que j'ai apprise est inconfortable à admettre pour une société de réclamations: beaucoup de personnes qui nous contactent n'ont en réalité pas droit à une indemnisation. Je préfère vous le dire honnêtement, en quelques minutes, plutôt que de prendre votre dossier et de vous faire attendre des mois. Compensall vérifie votre éligibilité avant toute autre chose.",
+    "checksTitle": "Comment nous vérifions votre dossier",
+    "checksIntro": "Nous ne prenons pas l'explication de la compagnie pour argent comptant. Pour chaque réclamation, nous vérifions:",
+    "checks": [
+      {
+        "title": "Données du vol",
+        "body": "L'heure d'arrivée réelle, celle qui compte en droit de l'UE, et non le départ."
+      },
+      {
+        "title": "Relevés météo",
+        "body": "Les rapports METAR officiels des aéroports concernés, pour voir si le « mauvais temps » a vraiment empêché le vol."
+      },
+      {
+        "title": "La cause de la perturbation",
+        "body": "Si elle échappait vraiment à la compagnie, ou s'il s'agissait d'un problème technique, d'équipage ou de planification qui relève de sa responsabilité."
+      },
+      {
+        "title": "La distance jusqu'à votre destination finale",
+        "body": "C'est elle qui fixe si vous avez droit à 250 €, 400 € ou 600 €."
+      }
+    ],
+    "checksClose": "J'ai construit notre propre système d'examen assisté par IA pour faire ces vérifications de façon constante. Une personne revoit encore chaque décision qui compte.",
+    "principlesTitle": "Ce que je défends",
+    "principles": [
+      {
+        "title": "L'honnêteté d'abord",
+        "body": "Si votre dossier n'est pas solide, nous vous le dirons. Prendre une réclamation que nous ne pouvons pas gagner vous fait perdre du temps, et nous aussi."
+      },
+      {
+        "title": "Les preuves plutôt que les suppositions",
+        "body": "La compagnie a la charge de la preuve. Nous veillons à ce qu'elle la remplisse vraiment."
+      },
+      {
+        "title": "La transparence",
+        "body": "No win, no fee. Vous saurez toujours où en est votre réclamation."
+      }
+    ],
+    "scopeTitle": "Ce que Compensall est, et ce qu'elle n'est pas",
+    "scopeBody": "Compensall est une société de gestion de réclamations. Nous ne sommes pas un cabinet d'avocats. Quand une compagnie refuse de payer une réclamation valide, nous passons par les voies adaptées: organismes de règlement extrajudiciaire des litiges, autorités nationales de contrôle et, si nécessaire, des partenaires juridiques indépendants.",
+    "cta": "Si votre vol a été retardé, annulé ou en surréservation ces dernières années, vous avez peut-être droit à jusqu'à 600 €.",
+    "ctaButton": "Voyons cela",
+    "writtenBy": "Écrit par",
+    "shortBio": "Fondatrice de Compensall. Près de dix ans à faire payer les passagers au titre du CE 261/2004.",
+    "readStory": "Lire le parcours de Francisca",
+    "meetTitle": "Rencontrer Francisca",
+    "meetBody": "Francisca Albuquerque a fondé Compensall après près de dix ans sur les droits des passagers aériens dans l'UE, du côté du passager."
+  },
   "knowYourRights": {
     "heroTitle": "Connaître vos droits",
     "heroSubtitle": "Comprenez vos droits au titre du UK261 et du CE 261/2004 et comment Compensall vous aide à réclamer grâce à notre accompagnement numérique.",
@@ -686,6 +747,10 @@
       "title": "À propos de Compensall et de l'indemnisation",
       "description": "Compensall aide les passagers aériens à réclamer jusqu'à €600 au titre de l'EU261 grâce à un téléchargement sécurisé de la carte d'embarquement, des vérifications assistées et une prise en charge auprès de la compagnie aérienne avec accompagnement humain, selon la règle No win, no fee."
     },
+    "author": {
+      "title": "Francisca Albuquerque, fondatrice de Compensall",
+      "description": "Francisca Albuquerque a passé près de dix ans sur les droits des passagers de l'UE avant de fonder Compensall. Elle explique ici comment un dossier est vérifié."
+    },
     "knowYourRights": {
       "title": "Connaître vos droits à l'indemnisation de vol",
       "description": "Découvrez quand le UK261 et le règlement européen CE 261/2004 vous donnent droit à jusqu'à €600 pour les retards, annulations, refus d'embarquement, correspondances manquées et grèves de compagnies aériennes."
@@ -697,6 +762,10 @@
     "blog": {
       "title": "Guides d'indemnisation de vol et droits des passagers",
       "description": "Guides pratiques sur le CE 261/2004: retards, annulations, refus d'embarquement, correspondances manquées et comment réclamer jusqu'à €600."
+    },
+    "disruptions": {
+      "title": "Perturbations de vols en cours",
+      "description": "Fermetures d'aéroports, grèves et annulations massives qui touchent les vols au Royaume-Uni et dans l'UE, et ce que les passagers peuvent attendre."
     },
     "cookies": {
       "title": "Politique de cookies et préférences",
@@ -864,6 +933,13 @@
     "readArticle": "Lire l'article",
     "backToBlog": "Retour au blog",
     "englishOnlyNotice": "Ce guide est actuellement disponible uniquement en anglais."
+  },
+  "disruptionsPage": {
+    "title": "Perturbations de vols",
+    "subtitle": "Fermetures d'aéroports, grèves et annulations massives qui touchent les vols au Royaume-Uni et dans l'UE.",
+    "readArticle": "Lire l'actualité",
+    "backToList": "Retour aux perturbations",
+    "empty": "Aucune perturbation n'est listée pour le moment. Revenez après la prochaine mise à jour quotidienne."
   },
   "thankYouPage": {
     "title": "Merci",

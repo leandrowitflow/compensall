@@ -28,6 +28,8 @@
     "airlinesAndAirports": "Airlines en luchthavens",
     "aboutUs": "Over ons",
     "blog": "Blog",
+    "disruptions": "Vluchtverstoringen",
+    "disruptionsShort": "Verstoringen",
     "faq": "FAQ",
     "talkToUs": "Contact",
     "talkToUsShort": "Contact",
@@ -523,6 +525,65 @@
       }
     }
   },
+  "authorPage": {
+    "name": "Francisca Albuquerque",
+    "role": "Oprichtster van Compensall",
+    "greeting": "Hallo, ik ben Francisca.",
+    "lead": "Ik heb bijna tien jaar luchtvaartmaatschappijen zover gekregen om passagiers te betalen die ze liever niet zouden betalen.",
+    "intro": "Voordat ik Compensall begon, heb ik bijna een decennium aan één ding gewerkt: claims over de rechten van luchtvaartpassagiers in de EU. Ik heb duizenden vertraagde, geannuleerde en overboekte vluchten vanaf de kant van de passagier gezien. Ik heb ook precies gezien hoe airlines reageren als iemand vraagt wat de wet zegt dat hem toekomt.",
+    "decadeTitle": "Een decennium aan de kant van de passagier",
+    "decadeBody": "Verordening (EG) nr. 261/2004 is sinds 2005 wet. Ze geeft passagiers recht op tot 600 € bij lange vertragingen, annuleringen en instapweigering. De meeste mensen claimen nog steeds niet. Wie dat wel doet, krijgt vaak stilte, trage antwoorden of een standaardafwijzing die het weer of de luchtverkeersleiding de schuld geeft.",
+    "quote": "Een afwijzingsbrief is zelden het einde van een claim. Heel vaak is het een test of de passagier doorzet.",
+    "decadeAfter": "In de loop der jaren leerde ik welke airlines snel betalen, welke traineren, en welke afwijzingsgronden overeind blijven als je de feiten nakijkt. Het belangrijkste: onder EU-recht moet de airline een buitengewone omstandigheid bewijzen, niet de passagier.",
+    "whyTitle": "Waarom ik Compensall heb gebouwd",
+    "whyP1": "Na bijna tien jaar in deze sector wilde ik een claimbedrijf bouwen zoals ik had gewild dat het werkte als mijn eigen vlucht was geannuleerd. Dat betekende opnieuw beginnen met alles wat ik had geleerd.",
+    "whyP2": "Het eerste wat ik leerde, is ongemakkelijk voor een claimbedrijf om toe te geven: veel mensen die ons benaderen, hebben eigenlijk geen recht op compensatie. Ik zeg u dat liever eerlijk, in een paar minuten, dan dat ik uw zaak aanneem en u maanden laat wachten. Compensall controleert eerst of u in aanmerking komt.",
+    "checksTitle": "Hoe we uw zaak controleren",
+    "checksIntro": "We nemen de uitleg van de airline niet klakkeloos over. Bij elke claim controleren we:",
+    "checks": [
+      {
+        "title": "Vluchtgegevens",
+        "body": "De werkelijke aankomsttijd. Die telt onder EU-recht, niet het vertrek."
+      },
+      {
+        "title": "Weergegevens",
+        "body": "Officiële METAR-rapporten van de betrokken luchthavens, om te zien of „slecht weer” de vlucht echt tegenhield."
+      },
+      {
+        "title": "De oorzaak van de verstoring",
+        "body": "Of die echt buiten de controle van de airline viel, of een technisch, bemannings- of planningsprobleem was dat haar verantwoordelijkheid is."
+      },
+      {
+        "title": "De afstand tot uw eindbestemming",
+        "body": "Die bepaalt of u 250 €, 400 € of 600 € krijgt."
+      }
+    ],
+    "checksClose": "Ik heb ons eigen, door AI ondersteunde controlesysteem gebouwd zodat deze checks consequent gebeuren. Een mens beoordeelt nog steeds elke beslissing die ertoe doet.",
+    "principlesTitle": "Waar ik voor sta",
+    "principles": [
+      {
+        "title": "Eerst eerlijkheid",
+        "body": "Als uw zaak niet sterk is, zeggen we dat. Een claim aannemen die we niet kunnen winnen, kost uw tijd en de onze."
+      },
+      {
+        "title": "Bewijs boven aannames",
+        "body": "De bewijslast ligt bij de airline. Wij zorgen dat ze die ook echt waarmaken."
+      },
+      {
+        "title": "Transparantie",
+        "body": "No win, no fee. U weet altijd waar uw claim staat."
+      }
+    ],
+    "scopeTitle": "Wat Compensall is, en wat niet",
+    "scopeBody": "Compensall is een bedrijf voor claimbeheer. We zijn geen advocatenkantoor. Als een airline een geldige claim niet betaalt, leggen we die voor via de juiste kanalen: instanties voor alternatieve geschillenbeslechting, nationale handhavingsautoriteiten en, waar nodig, onafhankelijke juridische partners.",
+    "cta": "Als uw vlucht de afgelopen jaren vertraagd, geannuleerd of overboekt was, heeft u mogelijk recht op tot 600 €.",
+    "ctaButton": "Laten we het uitzoeken",
+    "writtenBy": "Geschreven door",
+    "shortBio": "Oprichtster van Compensall. Bijna tien jaar passagiers laten uitbetalen onder Verordening (EG) nr. 261/2004.",
+    "readStory": "Lees het verhaal van Francisca",
+    "meetTitle": "Maak kennis met Francisca",
+    "meetBody": "Francisca Albuquerque richtte Compensall op na bijna tien jaar werk aan de rechten van luchtvaartpassagiers in de EU, vanaf de kant van de passagier."
+  },
   "knowYourRights": {
     "heroTitle": "Ken uw rechten",
     "heroSubtitle": "Begrijp uw rechten volgens UK261 en Verordening (EG) nr. 261/2004 — en hoe Compensall u met digitale ondersteuning begeleidt.",
@@ -686,6 +747,10 @@
       "title": "Over Compensall en vluchtcompensatie",
       "description": "Compensall helpt passagiers tot 600 € volgens EU261 te eisen: veilige upload van de instapkaart, toetsing door de assistent en menselijke begeleiding tegenover de airline. No win, no fee."
     },
+    "author": {
+      "title": "Francisca Albuquerque, oprichtster van Compensall",
+      "description": "Francisca Albuquerque werkte bijna tien jaar aan passagiersrechten in de EU voordat ze Compensall oprichtte. Hier legt ze uit hoe een claim wordt gecontroleerd."
+    },
     "knowYourRights": {
       "title": "Uw rechten op vluchtcompensatie",
       "description": "Wanneer UK261 en Verordening (EG) nr. 261/2004 u tot 520 £ of 600 € geven bij vertraging, annulering, instapweigering, gemiste aansluiting en staking."
@@ -697,6 +762,10 @@
     "blog": {
       "title": "Gidsen over vluchtcompensatie en passagiersrechten",
       "description": "Praktische gidsen over Verordening (EG) nr. 261/2004: vertraging, annulering, instapweigering, gemiste aansluiting — en hoe u tot 600 € eist."
+    },
+    "disruptions": {
+      "title": "Actuele vluchtverstoringen",
+      "description": "Luchthavensluitingen, stakingen en massale annuleringen die vluchten in het Verenigd Koninkrijk en de EU raken, en wat passagiers kunnen verwachten."
     },
     "cookies": {
       "title": "Cookiebeleid en instellingen",
@@ -864,6 +933,13 @@
     "readArticle": "Artikel lezen",
     "backToBlog": "Terug naar het blog",
     "englishOnlyNotice": "Deze gids is momenteel alleen in het Engels beschikbaar."
+  },
+  "disruptionsPage": {
+    "title": "Vluchtverstoringen",
+    "subtitle": "Luchthavensluitingen, stakingen en massale annuleringen die vluchten in het Verenigd Koninkrijk en de EU raken.",
+    "readArticle": "Update lezen",
+    "backToList": "Terug naar verstoringen",
+    "empty": "Er staan momenteel geen verstoringen vermeld. Kom terug na de volgende dagelijkse update."
   },
   "thankYouPage": {
     "title": "Dank u",

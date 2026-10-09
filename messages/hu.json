@@ -28,6 +28,8 @@
     "airlinesAndAirports": "Légitársaságok és repülőterek",
     "aboutUs": "Rólunk",
     "blog": "Blog",
+    "disruptions": "Járatzavarok",
+    "disruptionsShort": "Járatzavarok",
     "faq": "GYIK",
     "talkToUs": "Írj nekünk",
     "talkToUsShort": "Írj nekünk",
@@ -523,6 +525,65 @@
       }
     }
   },
+  "authorPage": {
+    "name": "Francisca Albuquerque",
+    "role": "A Compensall alapítója",
+    "greeting": "Szia, Francisca vagyok.",
+    "lead": "Majdnem tíz évet töltöttem azzal, hogy a légitársaságok kifizessék azokat az utasokat, akiket inkább nem fizetnének ki.",
+    "intro": "A Compensall előtt közel egy évtizeden át egyetlen dologgal foglalkoztam: uniós légi utasjogi igényekkel. Több ezer késő, törölt és túlfoglalt járatot láttam az utas oldaláról. Azt is pontosan láttam, hogyan válaszolnak a légitársaságok, amikor valaki azt kéri, ami a törvény szerint jár neki.",
+    "decadeTitle": "Egy évtized az utas oldalán",
+    "decadeBody": "A 261/2004/EK rendelet 2005 óta jogszabály. Hosszú késés, törlés és beszállásmegtagadás esetén akár 600 €-t ismer el az utasnak. A legtöbben még mindig nem igényelnek. Aki igen, gyakran csenddel, lassú válasszal vagy egy sablonos elutasítással találkozik, amely az időjárásra vagy a légiforgalmi irányításra hivatkozik.",
+    "quote": "Egy elutasító levél ritkán a vége egy igénynek. Nagyon gyakran azt teszteli, hogy az utas visszakérdez-e.",
+    "decadeAfter": "Az évek során megtanultam, melyik légitársaság fizet gyorsan, melyik húzza az időt, és melyik elutasítási indok állja meg a helyét, ha megnézzük a tényeket. A legfontosabb: az uniós jog szerint a légitársaságnak kell bizonyítania a rendkívüli körülményt, nem az utasnak.",
+    "whyTitle": "Miért hoztam létre a Compensallt",
+    "whyP1": "Majdnem tíz év után olyan kárigény-kezelő céget akartam építeni, amilyet magam is szerettem volna, ha a saját járatomat törlik. Ez azt jelentette, hogy nulláról indulok, mindazzal, amit megtanultam.",
+    "whyP2": "Az első dolog, amit megtanultam, kényelmetlen egy ilyen cégnek beismerni: sokan, akik megkeresnek minket, valójában nem jogosultak kártérítésre. Inkább megmondom ezt őszintén, percek alatt, mint hogy elvállaljam az ügyet, és hónapokig várakoztassalak. A Compensall először a jogosultságot ellenőrzi.",
+    "checksTitle": "Hogyan ellenőrizzük az ügyedet",
+    "checksIntro": "Nem fogadjuk el a légitársaság magyarázatát ellenőrzés nélkül. Minden igénynél megnézzük:",
+    "checks": [
+      {
+        "title": "Járatadatok",
+        "body": "A tényleges érkezési időt. Ez számít az uniós jog szerint, nem az indulás."
+      },
+      {
+        "title": "Időjárási adatok",
+        "body": "A hivatalos METAR-jelentéseket az érintett repülőterekről, hogy kiderüljön, a „rossz idő” valóban megállította-e a járatot."
+      },
+      {
+        "title": "A zavar oka",
+        "body": "Tényleg a légitársaság ellenőrzésén kívül esett-e, vagy műszaki, személyzeti vagy menetrendi kérdés, ami az ő felelőssége."
+      },
+      {
+        "title": "A távolság a végső úti célig",
+        "body": "Ez dönti el, hogy 250 €, 400 € vagy 600 € jár-e."
+      }
+    ],
+    "checksClose": "Saját, mesterséges intelligenciával segített ellenőrző rendszert építettem, hogy ezek a vizsgálatok következetesek legyenek. A fontos döntéseket továbbra is ember nézi át.",
+    "principlesTitle": "Ami mellett kiállok",
+    "principles": [
+      {
+        "title": "Először az őszinteség",
+        "body": "Ha az ügyed nem erős, megmondjuk. Olyan igényt elvállalni, amit nem tudunk megnyerni, a te idődet és a miénket is pazarolja."
+      },
+      {
+        "title": "Bizonyíték, nem feltételezés",
+        "body": "A bizonyítás a légitársaságot terheli. Gondoskodunk róla, hogy ezt tényleg teljesítse."
+      },
+      {
+        "title": "Átláthatóság",
+        "body": "No win, no fee. Mindig tudni fogod, hol tart az igényed."
+      }
+    ],
+    "scopeTitle": "Mi a Compensall, és mi nem",
+    "scopeBody": "A Compensall kárigény-kezelő cég. Nem ügyvédi iroda. Ha egy légitársaság megtagadja egy jogos igény kifizetését, a megfelelő csatornákon visszük tovább: alternatív vitarendezési szervekhez, nemzeti végrehajtó hatóságokhoz, és ahol kell, független jogi partnerekhez.",
+    "cta": "Ha a járatod az elmúlt években késett, törölték vagy túlfoglalták, akár 600 € is járhat.",
+    "ctaButton": "Nézzük meg",
+    "writtenBy": "Írta",
+    "shortBio": "A Compensall alapítója. Majdnem tíz év, hogy az utasok megkapják a pénzüket a 261/2004/EK rendelet alapján.",
+    "readStory": "Francisca története",
+    "meetTitle": "Ismerd meg Franciscát",
+    "meetBody": "Francisca Albuquerque közel tíz év uniós légi utasjogi munka után alapította a Compensallt, az utas oldaláról."
+  },
   "knowYourRights": {
     "heroTitle": "Ismerd meg a jogaidat",
     "heroSubtitle": "Értsd meg a UK261 és a 261/2004/EK szerinti jogaidat, és hogyan segít a Compensall a digitális támogatással.",
@@ -686,6 +747,10 @@
       "title": "A Compensall járatkártérítésről",
       "description": "A Compensall segít a légi utasoknak akár 600 €-t igényelni az EU261 alapján: biztonságos beszállókártya-feltöltéssel, asszisztens-ellenőrzéssel és emberi légitársasági ügyintézéssel, No win, no fee alapon."
     },
+    "author": {
+      "title": "Francisca Albuquerque, a Compensall alapítója",
+      "description": "Francisca Albuquerque közel tíz évet töltött az uniós utasjogokkal, mielőtt megalapította a Compensallt. Itt elmondja, hogyan ellenőrzünk egy igényt."
+    },
     "knowYourRights": {
       "title": "Ismerd meg a járatkártérítési jogaidat",
       "description": "Tudd meg, mikor jár akár 520 £ vagy 600 € a UK261 és a 261/2004/EK rendelet alapján késés, törlés, beszállásmegtagadás, elmulasztott csatlakozás és légitársasági sztrájk esetén."
@@ -697,6 +762,10 @@
     "blog": {
       "title": "Járatkártérítési útmutatók és utasjogok",
       "description": "Gyakorlati 261/2004/EK útmutatók késésről, törlésről, beszállásmegtagadásról, elmulasztott csatlakozásról, és hogyan igényelhetsz akár 600 €-t."
+    },
+    "disruptions": {
+      "title": "Aktuális járatzavarok",
+      "description": "Repülőtér-lezárások, sztrájkok és tömeges járattörlések az Egyesült Királyságban és az EU-ban, és mire számíthatnak az utasok."
     },
     "cookies": {
       "title": "Sütiirányelvek és beállítások",
@@ -864,6 +933,13 @@
     "readArticle": "Cikk elolvasása",
     "backToBlog": "Vissza a bloghoz",
     "englishOnlyNotice": "Ez az útmutató jelenleg csak angolul érhető el."
+  },
+  "disruptionsPage": {
+    "title": "Járatzavarok",
+    "subtitle": "Repülőtér-lezárások, sztrájkok és tömeges járattörlések az Egyesült Királyságban és az EU-ban.",
+    "readArticle": "Frissítés megnyitása",
+    "backToList": "Vissza a járatzavarokhoz",
+    "empty": "Jelenleg nincs felsorolt járatzavar. Nézz vissza a következő napi frissítés után."
   },
   "thankYouPage": {
     "title": "Köszönjük",

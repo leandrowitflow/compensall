@@ -68,6 +68,11 @@ export function buildArticleSchema(input: {
   image: string;
   datePublished: string;
   dateModified?: string;
+  author?: {
+    name: string;
+    jobTitle: string;
+    path: string;
+  };
 }) {
   return {
     "@context": "https://schema.org",
@@ -77,11 +82,18 @@ export function buildArticleSchema(input: {
     image: `${SITE_URL}${input.image}`,
     datePublished: input.datePublished,
     dateModified: input.dateModified ?? input.datePublished,
-    author: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
+    author: input.author
+      ? {
+          "@type": "Person",
+          name: input.author.name,
+          jobTitle: input.author.jobTitle,
+          url: `${SITE_URL}${input.author.path}`,
+        }
+      : {
+          "@type": "Organization",
+          name: SITE_NAME,
+          url: SITE_URL,
+        },
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,
@@ -91,6 +103,25 @@ export function buildArticleSchema(input: {
       },
     },
     mainEntityOfPage: `${SITE_URL}${input.path}`,
+  };
+}
+
+export function buildFounderSchema(input: { jobTitle: string; description: string; path: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name: "Francisca Albuquerque",
+      jobTitle: input.jobTitle,
+      description: input.description,
+      url: `${SITE_URL}${input.path}`,
+      worksFor: {
+        "@type": "Organization",
+        name: SITE_NAME,
+        url: SITE_URL,
+      },
+    },
   };
 }
 

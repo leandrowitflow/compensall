@@ -28,6 +28,8 @@
     "airlinesAndAirports": "Companii aeriene și aeroporturi",
     "aboutUs": "Despre noi",
     "blog": "Blog",
+    "disruptions": "Perturbări de zbor",
+    "disruptionsShort": "Perturbări",
     "faq": "Întrebări frecvente",
     "talkToUs": "Vorbește cu noi",
     "talkToUsShort": "Contact",
@@ -523,6 +525,65 @@
       }
     }
   },
+  "authorPage": {
+    "name": "Francisca Albuquerque",
+    "role": "Fondatoare Compensall",
+    "greeting": "Bună, sunt Francisca.",
+    "lead": "Am petrecut aproape zece ani făcând companiile aeriene să plătească pasageri pe care ar fi preferat să nu-i plătească.",
+    "intro": "Înainte să înființez Compensall, am lucrat aproape un deceniu la un singur lucru: cereri privind drepturile pasagerilor aerieni în UE. Am văzut mii de zboruri întârziate, anulate și cu suprarezervare, din partea pasagerului. Am văzut și, exact, cum răspund companiile când cineva cere ceea ce legea spune că i se cuvine.",
+    "decadeTitle": "Un deceniu de partea pasagerului",
+    "decadeBody": "Regulamentul CE 261/2004 este lege din 2005. Le dă pasagerilor dreptul la până la 600 € pentru întârzieri lungi, anulări și refuz la îmbarcare. Cei mai mulți oameni tot nu cer. Cei care cer dau adesea de tăcere, răspunsuri lente sau un refuz standard care dă vina pe vreme sau pe controlul traficului aerian.",
+    "quote": "O scrisoare de refuz este rareori sfârșitul unei cereri. Foarte des este un test dacă pasagerul insistă.",
+    "decadeAfter": "De-a lungul anilor am învățat care companii plătesc repede, care tărăgănează și ce motive de refuz rezistă după ce verifici faptele. Cel mai important: în dreptul UE, compania aeriană trebuie să dovedească o circumstanță extraordinară, nu pasagerul.",
+    "whyTitle": "De ce am creat Compensall",
+    "whyP1": "După aproape zece ani în acest domeniu, am vrut să construiesc o firmă de cereri așa cum mi-aș fi dorit să funcționeze dacă mi s-ar fi anulat propriul zbor. Asta a însemnat să o iau de la zero cu tot ce învățasem.",
+    "whyP2": "Primul lucru pe care l-am învățat este incomod de recunoscut pentru o firmă de cereri: mulți oameni care ne contactează nu au, de fapt, dreptul la despăgubire. Prefer să-ți spun asta cinstit, în câteva minute, decât să-ți iau cazul și să te țin luni de zile în așteptare. Compensall îți verifică eligibilitatea înainte de orice altceva.",
+    "checksTitle": "Cum îți verificăm cazul",
+    "checksIntro": "Nu luăm explicația companiei ca atare. La fiecare cerere verificăm:",
+    "checks": [
+      {
+        "title": "Datele zborului",
+        "body": "Ora reală de sosire, care contează în dreptul UE, nu plecarea."
+      },
+      {
+        "title": "Înregistrările meteo",
+        "body": "Rapoartele METAR oficiale ale aeroporturilor implicate, ca să vedem dacă „vremea rea” a oprit într-adevăr zborul."
+      },
+      {
+        "title": "Cauza perturbării",
+        "body": "Dacă a fost cu adevărat în afara controlului companiei, sau o problemă tehnică, de echipaj ori de program care este responsabilitatea ei."
+      },
+      {
+        "title": "Distanța până la destinația finală",
+        "body": "Ea stabilește dacă ți se cuvin 250 €, 400 € sau 600 €."
+      }
+    ],
+    "checksClose": "Am construit propriul nostru sistem de analiză asistat de IA ca să facem aceste verificări în mod constant. O persoană revizuiește în continuare fiecare decizie care contează.",
+    "principlesTitle": "Pentru ce stau",
+    "principles": [
+      {
+        "title": "Cinstea înainte de toate",
+        "body": "Dacă cazul tău nu este solid, îți spunem. Să luăm o cerere pe care nu o putem câștiga îți pierde timpul, și pe al nostru."
+      },
+      {
+        "title": "Dovezi, nu presupuneri",
+        "body": "Compania are sarcina probei. Ne asigurăm că o îndeplinește cu adevărat."
+      },
+      {
+        "title": "Transparență",
+        "body": "No win, no fee. Vei ști mereu unde se află cererea ta."
+      }
+    ],
+    "scopeTitle": "Ce este Compensall și ce nu este",
+    "scopeBody": "Compensall este o firmă de gestionare a cererilor. Nu suntem o casă de avocatură. Când o companie refuză să plătească o cerere validă, o ducem mai departe pe căile potrivite: organisme de soluționare alternativă a litigiilor, autorități naționale de control și, unde este nevoie, parteneri juridici independenți.",
+    "cta": "Dacă zborul tău a fost întârziat, anulat sau suprarezervat în ultimii ani, e posibil să ți se cuvină până la 600 €.",
+    "ctaButton": "Hai să aflăm",
+    "writtenBy": "Scris de",
+    "shortBio": "Fondatoare Compensall. Aproape zece ani în care pasagerii au fost plătiți în temeiul CE 261/2004.",
+    "readStory": "Citește povestea Franciscăi",
+    "meetTitle": "Fă cunoștință cu Francisca",
+    "meetBody": "Francisca Albuquerque a fondat Compensall după aproape zece ani de lucru la drepturile pasagerilor aerieni în UE, de partea pasagerului."
+  },
   "knowYourRights": {
     "heroTitle": "Cunoaște-ți drepturile",
     "heroSubtitle": "Înțelege-ți drepturile conform UK261 și Regulamentului CE 261/2004 și cum te ajută Compensall să ceri despăgubirea cu sprijinul nostru digital.",
@@ -686,6 +747,10 @@
       "title": "Despre noi | Compensall despăgubiri pentru zboruri",
       "description": "Compensall ajută pasagerii să ceară până la 600 € cu EU261, cu încărcare sigură a cărții de îmbarcare, verificări ale asistentului și gestionare umană a companiei, cu No win, no fee."
     },
+    "author": {
+      "title": "Francisca Albuquerque, fondatoare Compensall",
+      "description": "Francisca Albuquerque a petrecut aproape zece ani cu drepturile pasagerilor din UE înainte să fondeze Compensall. Aici explică cum se verifică o cerere."
+    },
     "knowYourRights": {
       "title": "Cunoaște-ți drepturile de despăgubire pentru zbor",
       "description": "Află când UK261 și Regulamentul CE 261/2004 îți dau dreptul la până la 520 £ sau 600 € pentru întârzieri, anulări, refuz la îmbarcare, corespondențe ratate și greve."
@@ -697,6 +762,10 @@
     "blog": {
       "title": "Ghiduri de despăgubire a zborurilor și drepturi ale pasagerului",
       "description": "Ghiduri practice ale Regulamentului CE 261/2004 despre întârzieri, anulări, refuz la îmbarcare, corespondențe ratate și cum să ceri până la 600 €."
+    },
+    "disruptions": {
+      "title": "Perturbări de zbor actuale",
+      "description": "Închideri de aeroporturi, greve și anulări în masă care afectează zborurile în Regatul Unit și UE, și la ce se pot aștepta pasagerii."
     },
     "cookies": {
       "title": "Politica de cookie-uri și preferințe",
@@ -864,6 +933,13 @@
     "readArticle": "Citește articolul",
     "backToBlog": "Înapoi la blog",
     "englishOnlyNotice": "Acest ghid este disponibil deocamdată doar în engleză."
+  },
+  "disruptionsPage": {
+    "title": "Perturbări de zbor",
+    "subtitle": "Închideri de aeroporturi, greve și anulări în masă care afectează zborurile în Regatul Unit și UE.",
+    "readArticle": "Citește actualizarea",
+    "backToList": "Înapoi la perturbări",
+    "empty": "Nu sunt listate perturbări în acest moment. Revino după următoarea actualizare zilnică."
   },
   "thankYouPage": {
     "title": "Mulțumim",

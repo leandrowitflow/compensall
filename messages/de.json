@@ -28,6 +28,8 @@
     "airlinesAndAirports": "Airlines und Flughäfen",
     "aboutUs": "Über uns",
     "blog": "Blog",
+    "disruptions": "Flugstörungen",
+    "disruptionsShort": "Störungen",
     "faq": "FAQ",
     "talkToUs": "Kontakt",
     "talkToUsShort": "Kontakt",
@@ -523,6 +525,65 @@
       }
     }
   },
+  "authorPage": {
+    "name": "Francisca Albuquerque",
+    "role": "Gründerin von Compensall",
+    "greeting": "Hallo, ich bin Francisca.",
+    "lead": "Ich habe fast zehn Jahre damit verbracht, Fluggesellschaften dazu zu bringen, Fluggäste zu bezahlen, die sie lieber nicht bezahlen würden.",
+    "intro": "Bevor ich Compensall gründete, habe ich fast ein Jahrzehnt an einer Sache gearbeitet: Ansprüche aus den Fluggastrechten in der EU. Ich habe Tausende verspätete, annullierte und überbuchte Flüge von der Seite des Fluggastes gesehen. Ich habe auch genau gesehen, wie Airlines antworten, wenn jemand das verlangt, was ihm das Gesetz zuspricht.",
+    "decadeTitle": "Ein Jahrzehnt auf der Seite des Fluggastes",
+    "decadeBody": "Die Verordnung (EG) Nr. 261/2004 gilt seit 2005. Sie gibt Fluggästen bis zu 600 € bei langen Verspätungen, Annullierungen und Nichtbeförderung. Die meisten Menschen fordern trotzdem nie. Wer es tut, trifft oft auf Schweigen, langsame Antworten oder eine Standardablehnung, die das Wetter oder die Flugsicherung verantwortlich macht.",
+    "quote": "Ein Ablehnungsschreiben ist selten das Ende eines Anspruchs. Sehr oft prüft es, ob der Fluggast nachhakt.",
+    "decadeAfter": "Über die Jahre habe ich gelernt, welche Airlines schnell zahlen, welche verzögern und welche Ablehnungsgründe einer Prüfung der Fakten standhalten. Vor allem habe ich gelernt: Nach EU-Recht muss die Airline einen außergewöhnlichen Umstand beweisen, nicht der Fluggast.",
+    "whyTitle": "Warum ich Compensall aufgebaut habe",
+    "whyP1": "Nach fast zehn Jahren in dieser Branche wollte ich ein Anspruchsunternehmen so bauen, wie ich es mir gewünscht hätte, wenn mein eigener Flug annulliert worden wäre. Das hieß, mit allem, was ich gelernt hatte, von vorn anzufangen.",
+    "whyP2": "Das Erste, was ich gelernt habe, ist für ein solches Unternehmen unbequem zuzugeben: Viele Menschen, die uns kontaktieren, haben tatsächlich keinen Anspruch auf Entschädigung. Lieber sage ich Ihnen das ehrlich, in wenigen Minuten, als Ihren Fall anzunehmen und Sie monatelang warten zu lassen. Compensall prüft zuerst, ob ein Anspruch besteht.",
+    "checksTitle": "Wie wir Ihren Fall prüfen",
+    "checksIntro": "Wir nehmen die Erklärung der Airline nicht ungeprüft hin. Bei jedem Anspruch prüfen wir:",
+    "checks": [
+      {
+        "title": "Flugdaten",
+        "body": "Die tatsächliche Ankunftszeit. Sie zählt nach EU-Recht, nicht der Abflug."
+      },
+      {
+        "title": "Wetterdaten",
+        "body": "Amtliche METAR-Meldungen der beteiligten Flughäfen, um zu sehen, ob „schlechtes Wetter“ den Flug wirklich verhindert hat."
+      },
+      {
+        "title": "Die Ursache der Störung",
+        "body": "Ob sie wirklich außerhalb der Kontrolle der Airline lag oder ein technisches, personelles oder planerisches Problem war, das in ihrer Verantwortung liegt."
+      },
+      {
+        "title": "Die Entfernung zu Ihrem Endziel",
+        "body": "Davon hängt ab, ob Ihnen 250 €, 400 € oder 600 € zustehen."
+      }
+    ],
+    "checksClose": "Ich habe unser eigenes, KI-gestütztes Prüfsystem gebaut, damit diese Kontrollen gleichmäßig laufen. Ein Mensch prüft weiterhin jede Entscheidung, auf die es ankommt.",
+    "principlesTitle": "Wofür ich stehe",
+    "principles": [
+      {
+        "title": "Zuerst Ehrlichkeit",
+        "body": "Wenn Ihr Fall nicht tragfähig ist, sagen wir Ihnen das. Einen Anspruch anzunehmen, den wir nicht gewinnen können, kostet Ihre Zeit und unsere."
+      },
+      {
+        "title": "Belege statt Annahmen",
+        "body": "Die Airline trägt die Beweislast. Wir achten darauf, dass sie sie auch erfüllt."
+      },
+      {
+        "title": "Transparenz",
+        "body": "No win, no fee. Sie wissen immer, wo Ihr Anspruch steht."
+      }
+    ],
+    "scopeTitle": "Was Compensall ist und was nicht",
+    "scopeBody": "Compensall ist ein Unternehmen für die Bearbeitung von Ansprüchen. Wir sind keine Anwaltskanzlei. Wenn eine Airline einen berechtigten Anspruch nicht zahlt, gehen wir die passenden Wege: Stellen für alternative Streitbeilegung, nationale Durchsetzungsbehörden und, wo nötig, unabhängige Rechtspartner.",
+    "cta": "Wenn Ihr Flug in den letzten Jahren verspätet, annulliert oder überbucht war, stehen Ihnen möglicherweise bis zu 600 € zu.",
+    "ctaButton": "Finden wir es heraus",
+    "writtenBy": "Geschrieben von",
+    "shortBio": "Gründerin von Compensall. Fast zehn Jahre, in denen Fluggäste nach der Verordnung (EG) Nr. 261/2004 ausgezahlt wurden.",
+    "readStory": "Franciscas Geschichte lesen",
+    "meetTitle": "Lernen Sie Francisca kennen",
+    "meetBody": "Francisca Albuquerque hat Compensall gegründet, nachdem sie fast zehn Jahre die Fluggastrechte in der EU von der Seite des Fluggastes bearbeitet hat."
+  },
   "knowYourRights": {
     "heroTitle": "Ihre Fluggastrechte",
     "heroSubtitle": "Verstehen Sie Ihre Rechte nach UK261 und der Verordnung (EG) Nr. 261/2004 — und wie Compensall Sie mit digitaler Unterstützung begleitet.",
@@ -686,6 +747,10 @@
       "title": "Über Compensall und Flugentschädigung",
       "description": "Compensall hilft Fluggästen, bis zu 600 € nach EU261 zu fordern: sicherer Bordkarten-Upload, Prüfung durch den Assistenten und menschliche Begleitung gegenüber der Airline. No win, no fee."
     },
+    "author": {
+      "title": "Francisca Albuquerque, Gründerin von Compensall",
+      "description": "Francisca Albuquerque hat fast zehn Jahre zu Fluggastrechten in der EU gearbeitet, bevor sie Compensall gründete. Hier erklärt sie, wie ein Anspruch geprüft wird."
+    },
     "knowYourRights": {
       "title": "Ihre Rechte auf Flugentschädigung",
       "description": "Wann UK261 und die Verordnung (EG) Nr. 261/2004 Ihnen bis zu 520 £ oder 600 € bei Verspätung, Annullierung, Nichtbeförderung, verpasstem Anschluss und Streik zustehen."
@@ -697,6 +762,10 @@
     "blog": {
       "title": "Ratgeber zu Flugentschädigung und Fluggastrechten",
       "description": "Praktische Leitfäden zur Verordnung (EG) Nr. 261/2004: Verspätung, Annullierung, Nichtbeförderung, verpasster Anschluss — und wie Sie bis zu 600 € fordern."
+    },
+    "disruptions": {
+      "title": "Aktuelle Flugstörungen",
+      "description": "Flughafen-Schließungen, Streiks und massenhafte Annullierungen, die Flüge im Vereinigten Königreich und in der EU betreffen, und was Fluggäste erwarten können."
     },
     "cookies": {
       "title": "Cookie-Richtlinie und Einstellungen",
@@ -864,6 +933,13 @@
     "readArticle": "Artikel lesen",
     "backToBlog": "Zurück zum Blog",
     "englishOnlyNotice": "Dieser Leitfaden liegt derzeit nur auf Englisch vor."
+  },
+  "disruptionsPage": {
+    "title": "Flugstörungen",
+    "subtitle": "Aktuelle Flughafen-Schließungen, Streiks und massenhafte Annullierungen, die Flüge im Vereinigten Königreich und in der EU betreffen.",
+    "readArticle": "Update lesen",
+    "backToList": "Zurück zu den Flugstörungen",
+    "empty": "Derzeit sind keine Flugstörungen aufgeführt. Schauen Sie nach dem nächsten täglichen Update wieder vorbei."
   },
   "thankYouPage": {
     "title": "Vielen Dank",

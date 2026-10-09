@@ -28,6 +28,8 @@
     "airlinesAndAirports": "Aerolíneas y aeropuertos",
     "aboutUs": "Quiénes somos",
     "blog": "Blog",
+    "disruptions": "Alteraciones de vuelos",
+    "disruptionsShort": "Alteraciones",
     "faq": "Preguntas frecuentes",
     "talkToUs": "Háblanos",
     "talkToUsShort": "Háblanos",
@@ -523,6 +525,65 @@
       }
     }
   },
+  "authorPage": {
+    "name": "Francisca Albuquerque",
+    "role": "Fundadora de Compensall",
+    "greeting": "Hola, soy Francisca.",
+    "lead": "He pasado casi diez años consiguiendo que las aerolíneas paguen a pasajeros a los que preferirían no pagar.",
+    "intro": "Antes de crear Compensall, pasé cerca de una década trabajando en una sola cosa: reclamaciones de derechos de los pasajeros aéreos en la UE. He visto miles de vuelos retrasados, cancelados y con overbooking, desde el lado del pasajero. También he visto con precisión cómo responden las aerolíneas cuando alguien pide lo que la ley dice que le corresponde.",
+    "decadeTitle": "Una década del lado del pasajero",
+    "decadeBody": "El Reglamento CE 261/2004 es ley desde 2005. Reconoce a los pasajeros hasta 600 € por retrasos largos, cancelaciones y denegación de embarque. La mayoría de la gente sigue sin reclamar. Quien lo hace se encuentra a menudo con silencio, respuestas lentas o un rechazo tipo que culpa al tiempo o al control del tráfico aéreo.",
+    "quote": "Una carta de rechazo rara vez es el final de una reclamación. Muy a menudo es una prueba de si el pasajero va a insistir.",
+    "decadeAfter": "Con los años aprendí qué aerolíneas pagan rápido, cuáles dilatan y qué motivos de rechazo se sostienen cuando se comprueban los hechos. Lo más importante: según el derecho de la UE, es la aerolínea quien tiene que probar una circunstancia extraordinaria, no el pasajero.",
+    "whyTitle": "Por qué creé Compensall",
+    "whyP1": "Después de casi diez años en este sector, quise construir una empresa de reclamaciones como me habría gustado que funcionara si hubieran cancelado mi propio vuelo. Eso significó empezar de cero con todo lo que había aprendido.",
+    "whyP2": "Lo primero que aprendí es incómodo de admitir para una empresa de reclamaciones: muchas personas que nos contactan no tienen, en realidad, derecho a compensación. Prefiero decírtelo con honestidad, en minutos, antes que aceptar tu caso y tenerte meses esperando. Compensall comprueba tu elegibilidad antes que nada.",
+    "checksTitle": "Cómo comprobamos tu caso",
+    "checksIntro": "No nos quedamos con la explicación de la aerolínea sin verificarla. En cada reclamación comprobamos:",
+    "checks": [
+      {
+        "title": "Datos del vuelo",
+        "body": "La hora real de llegada, que es lo que cuenta según el derecho de la UE, y no la salida."
+      },
+      {
+        "title": "Registros meteorológicos",
+        "body": "Informes METAR oficiales de los aeropuertos implicados, para ver si el «mal tiempo» detuvo de verdad el vuelo."
+      },
+      {
+        "title": "La causa de la alteración",
+        "body": "Si quedó de verdad fuera del control de la aerolínea, o si fue un problema técnico, de tripulación o de programación que es responsabilidad suya."
+      },
+      {
+        "title": "La distancia hasta tu destino final",
+        "body": "Esto fija si te corresponden 250 €, 400 € o 600 €."
+      }
+    ],
+    "checksClose": "Construí nuestro propio sistema de revisión asistido por IA para hacer estas comprobaciones de forma constante. Una persona sigue revisando cada decisión que importa.",
+    "principlesTitle": "En qué creo",
+    "principles": [
+      {
+        "title": "Honestidad primero",
+        "body": "Si tu caso no es sólido, te lo diremos. Aceptar una reclamación que no podemos ganar te hace perder el tiempo, y a nosotros también."
+      },
+      {
+        "title": "Pruebas, no suposiciones",
+        "body": "La aerolínea tiene la carga de la prueba. Nos aseguramos de que la cumpla de verdad."
+      },
+      {
+        "title": "Transparencia",
+        "body": "No win, no fee. Siempre sabrás en qué punto está tu reclamación."
+      }
+    ],
+    "scopeTitle": "Qué es Compensall, y qué no es",
+    "scopeBody": "Compensall es una empresa de gestión de reclamaciones. No somos un despacho de abogados. Cuando una aerolínea se niega a pagar una reclamación válida, la escalamos por los cauces adecuados: organismos de resolución alternativa de litigios, autoridades nacionales de control y, cuando hace falta, socios jurídicos independientes.",
+    "cta": "Si tu vuelo se retrasó, se canceló o tuvo overbooking en los últimos años, puede que te correspondan hasta 600 €.",
+    "ctaButton": "Vamos a comprobarlo",
+    "writtenBy": "Escrito por",
+    "shortBio": "Fundadora de Compensall. Casi diez años consiguiendo que paguen a los pasajeros según el CE 261/2004.",
+    "readStory": "Leer la historia de Francisca",
+    "meetTitle": "Conoce a Francisca",
+    "meetBody": "Francisca Albuquerque fundó Compensall después de casi diez años trabajando en los derechos de los pasajeros aéreos en la UE, del lado del pasajero."
+  },
   "knowYourRights": {
     "heroTitle": "Conoce tus derechos",
     "heroSubtitle": "Entiende tus derechos según UK261 y el Reglamento CE 261/2004 y cómo Compensall te ayuda a reclamar con nuestro apoyo digital.",
@@ -686,6 +747,10 @@
       "title": "Quiénes somos | Compensall compensación de vuelos",
       "description": "Compensall ayuda a los pasajeros a reclamar hasta 600 € con EU261, subida segura de la tarjeta de embarque, comprobaciones del asistente y gestión humana de la aerolínea, con No win, no fee."
     },
+    "author": {
+      "title": "Francisca Albuquerque, fundadora de Compensall",
+      "description": "Francisca Albuquerque pasó casi diez años en los derechos de los pasajeros de la UE antes de fundar Compensall. Aquí explica cómo se comprueba una reclamación."
+    },
     "knowYourRights": {
       "title": "Conoce tus derechos de compensación de vuelo",
       "description": "Descubre cuándo UK261 y el Reglamento CE 261/2004 te dan derecho a hasta 520 £ o 600 € por retrasos, cancelaciones, denegación de embarque, conexiones perdidas y huelgas."
@@ -697,6 +762,10 @@
     "blog": {
       "title": "Guías de compensación de vuelos y derechos del pasajero",
       "description": "Guías prácticas del Reglamento CE 261/2004 sobre retrasos, cancelaciones, denegación de embarque, conexiones perdidas y cómo reclamar hasta 600 €."
+    },
+    "disruptions": {
+      "title": "Alteraciones de vuelos actuales",
+      "description": "Cierres de aeropuertos, huelgas y cancelaciones masivas que afectan a vuelos en el Reino Unido y la UE, y qué pueden esperar los pasajeros."
     },
     "cookies": {
       "title": "Política de cookies y preferencias",
@@ -864,6 +933,13 @@
     "readArticle": "Leer artículo",
     "backToBlog": "Volver al blog",
     "englishOnlyNotice": "Esta guía solo está disponible por ahora en inglés."
+  },
+  "disruptionsPage": {
+    "title": "Alteraciones de vuelos",
+    "subtitle": "Cierres de aeropuertos, huelgas y cancelaciones masivas que afectan a vuelos en el Reino Unido y la UE.",
+    "readArticle": "Leer actualización",
+    "backToList": "Volver a las alteraciones",
+    "empty": "No hay alteraciones listadas en este momento. Vuelve a comprobarlo tras la próxima actualización diaria."
   },
   "thankYouPage": {
     "title": "Gracias",

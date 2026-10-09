@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getBlogPosts } from "@/lib/blog";
+import { getBlogPosts, getDisruptionPosts } from "@/lib/blog";
 import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { localizedPath, SITE_URL } from "@/lib/site-metadata";
@@ -7,6 +7,7 @@ import { localizedPath, SITE_URL } from "@/lib/site-metadata";
 const STATIC_ROUTES = [
   "",
   "/about",
+  "/about/francisca",
   "/blog",
   "/know-your-rights",
   "/airlines",
@@ -40,6 +41,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
         changeFrequency: "monthly",
         priority: 0.7,
+      });
+    }
+
+    entries.push({
+      url: `${SITE_URL}${localizedPath("/disruptions", locale as AppLocale)}`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.8,
+    });
+
+    for (const post of await getDisruptionPosts(locale as AppLocale)) {
+      entries.push({
+        url: `${SITE_URL}${localizedPath(`/disruptions/${post.slug}`, locale as AppLocale)}`,
+        lastModified: now,
+        changeFrequency: "daily",
+        priority: 0.6,
       });
     }
 
