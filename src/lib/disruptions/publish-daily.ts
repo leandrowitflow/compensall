@@ -190,6 +190,13 @@ async function researchDisruption(titles: string[], now: Date): Promise<string> 
       stopWhen: isStepCount(3),
       maxOutputTokens: 1200,
       temperature: 0.2,
+      providerOptions: {
+        google: {
+          thinkingConfig: {
+            thinkingBudget: 0,
+          },
+        },
+      },
       prompt: buildResearchPrompt(titles, now),
     });
 
