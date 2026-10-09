@@ -35,14 +35,9 @@ export default function CookieBanner() {
     const banner = bannerRef.current;
     const applyOffset = () => {
       const height = banner?.offsetHeight ?? 0;
-      const reserved =
-        Number.parseFloat(
-          getComputedStyle(document.documentElement).getPropertyValue("--cookie-banner-offset"),
-        ) || 0;
-      document.documentElement.style.setProperty(
-        "--cookie-banner-offset",
-        `${Math.max(height + 16, reserved)}px`,
-      );
+      if (height > 0) {
+        document.documentElement.style.setProperty("--cookie-banner-offset", `${height}px`);
+      }
       document.body.classList.add("has-cookie-banner");
     };
 
@@ -88,15 +83,13 @@ export default function CookieBanner() {
 
   return (
     <div
+      ref={bannerRef}
       role="dialog"
       aria-labelledby="cookie-banner-title"
       aria-describedby="cookie-banner-description"
       className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 md:px-8 pointer-events-none"
     >
-      <div
-        ref={bannerRef}
-        className="pointer-events-auto mx-auto max-w-[960px] xl:max-w-[1100px] rounded-2xl border border-[#d5e0f9] bg-white p-4 sm:p-5 shadow-[0_12px_40px_rgba(31,54,100,0.12)]"
-      >
+      <div className="pointer-events-auto mx-auto max-w-[960px] xl:max-w-[1100px] rounded-2xl border border-[#d5e0f9] bg-white p-4 sm:p-5 shadow-[0_12px_40px_rgba(31,54,100,0.12)]">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0">
             <p id="cookie-banner-title" className="font-bold text-[#1f3664] text-sm sm:text-base mb-1">

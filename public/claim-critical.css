@@ -49,11 +49,7 @@
   cursor: pointer;
 }
 
-html.needs-cookie-banner {
-  --cookie-banner-offset: 232px;
-}
-
-html.needs-cookie-banner body,
-body.has-cookie-banner {
+html.needs-cookie-banner footer,
+body.has-cookie-banner footer {
   padding-bottom: var(--cookie-banner-offset, 0px);
 }

@@ -65,8 +65,9 @@ html.needs-cookie-banner {
   }
 }
 
-html.needs-cookie-banner body,
-body.has-cookie-banner {
+/* The banner is fixed, so the reserved space belongs to the footer, not a white strip under it. */
+html.needs-cookie-banner footer,
+body.has-cookie-banner footer {
   padding-bottom: var(--cookie-banner-offset, 0px);
 }
 
