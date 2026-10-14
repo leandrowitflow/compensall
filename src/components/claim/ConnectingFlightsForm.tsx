@@ -5,7 +5,9 @@ import { useTranslations } from "next-intl";
 import type { ClaimFlightData, ConnectingFlightLeg } from "@/lib/claim-types";
 import { formatAirportRouteLabel, type AirportOption } from "@/lib/airport-option";
 import { lookupAirportByIata, normalizeIata } from "@/lib/lookup-airport";
-import { FIELD_INPUT, FIELD_LABEL, FIELD_SELECT } from "@/components/claim/claim-ui";
+import { FieldIssue } from "@/components/claim/FieldIssue";
+import { FIELD_INPUT, FIELD_LABEL, FIELD_SELECT, fieldControlClass } from "@/components/claim/claim-ui";
+import type { Step2Issue } from "@/lib/claim-form-issues";
 
 const AirportSelect = dynamic(() => import("@/components/claim/AirportSelect"), {
   ssr: false,
@@ -14,6 +16,7 @@ const AirportSelect = dynamic(() => import("@/components/claim/AirportSelect"), 
 type ConnectingFlightsFormProps = {
   flight: ClaimFlightData;
   onChange: (flight: ClaimFlightData) => void;
+  issue?: Step2Issue | null;
 };
 
 const EMPTY_LEG: ConnectingFlightLeg = { airport: "", flightNumber: "" };
@@ -23,7 +26,7 @@ function airportFromRoute(route: string): AirportOption | null {
   return iata ? lookupAirportByIata(iata) : null;
 }
 
-export default function ConnectingFlightsForm({ flight, onChange }: ConnectingFlightsFormProps) {
+export default function ConnectingFlightsForm({ flight, onChange, issue = null }: ConnectingFlightsFormProps) {
   const t = useTranslations("claim.connecting");
 
   const legs = flight.connectingFlights?.length
@@ -74,6 +77,12 @@ export default function ConnectingFlightsForm({ flight, onChange }: ConnectingFl
               })
             }
           />
+          {index === 0 && (
+            <FieldIssue
+              id="connecting-airport-0-error"
+              message={issue?.field === "connectingAirport" ? issue.message : null}
+            />
+          )}
         </div>
         <div>
           <label className={FIELD_LABEL} htmlFor={`connecting-flight-${index}`}>
@@ -81,11 +90,16 @@ export default function ConnectingFlightsForm({ flight, onChange }: ConnectingFl
           </label>
           <input
             id={`connecting-flight-${index}`}
-            className={FIELD_INPUT}
+            className={fieldControlClass(FIELD_INPUT, index === 0 && issue?.field === "connectingFlight")}
             value={leg.flightNumber}
             onChange={(event) => updateLeg(index, { flightNumber: event.target.value })}
             placeholder={t("flightNumberPlaceholder")}
+            aria-invalid={(index === 0 && issue?.field === "connectingFlight") || undefined}
+            aria-describedby={
+              index === 0 && issue?.field === "connectingFlight" ? "connecting-flight-0-error" : undefined
+            }
           />
+          {index === 0 && <FieldIssue id="connecting-flight-0-error" message={issue?.field === "connectingFlight" ? issue.message : null} />}
         </div>
       </div>
     );
@@ -104,7 +118,9 @@ export default function ConnectingFlightsForm({ flight, onChange }: ConnectingFl
         </label>
         <select
           id="had-connecting-flight"
-          className={FIELD_SELECT}
+          className={fieldControlClass(FIELD_SELECT, issue?.field === "connecting")}
+          aria-invalid={issue?.field === "connecting" || undefined}
+          aria-describedby={issue?.field === "connecting" ? "had-connecting-flight-error" : undefined}
           value={
             flight.hadConnectingFlight === true
               ? "yes"
@@ -138,6 +154,7 @@ export default function ConnectingFlightsForm({ flight, onChange }: ConnectingFl
           <option value="yes">{t("yes")}</option>
           <option value="no">{t("no")}</option>
         </select>
+        <FieldIssue id="had-connecting-flight-error" message={issue?.field === "connecting" ? issue.message : null} />
       </div>
 
       {flight.hadConnectingFlight === true && (

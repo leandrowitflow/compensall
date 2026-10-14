@@ -211,7 +211,7 @@
         "extractFailed": "Não foi possível ler todos os detalhes automaticamente. Preencha os dados do seu voo abaixo.",
         "somethingWentWrong": "Algo correu mal. Preencha os dados do seu voo abaixo.",
         "unsupportedType": "Tipo de ficheiro não suportado. Carregue um cartão de embarque em PDF, JPG, PNG, WebP ou HEIC.",
-        "tooLarge": "Ficheiro demasiado grande. O tamanho máximo é 10 MB."
+        "tooLarge": "Este ficheiro é demasiado grande para enviar. Use uma foto ou um PDF até 4 MB."
       }
     },
     "step2": {
@@ -233,7 +233,9 @@
         "passengerRequired": "O nome do passageiro é obrigatório.",
         "flightRequired": "O número do voo é obrigatório.",
         "routeRequired": "A rota é obrigatória.",
-        "dateRequired": "A data do voo é obrigatória."
+        "dateRequired": "A data do voo é obrigatória.",
+        "departureRequired": "Indique o aeroporto de partida.",
+        "arrivalRequired": "Indique o aeroporto de chegada."
       },
       "fields": {
         "passenger": "Passageiro",
@@ -391,6 +393,9 @@
         "signConnectionError": "Não foi possível registar a sua assinatura. Verifique a sua ligação e tente novamente.",
         "signBeforeSubmit": "Assine a Procuração de todos os passageiros antes de submeter.",
         "submitFailed": "Não foi possível submeter o seu pedido.",
+        "fileTooLarge": "{name} é demasiado grande ({size}). Substitua por uma foto ou um PDF até 4 MB.",
+        "unsupportedFile": "{name} não é um ficheiro aceite. Use um PDF, JPG ou PNG.",
+        "payloadTooLarge": "Estes ficheiros juntos são demasiado grandes para enviar ({size}). Retire ou substitua os maiores para o total ficar abaixo de 4 MB: {names}.",
         "duplicateClaim": "Já temos um pedido com este nome, email, número de voo e data. Não é preciso submeter outra vez.",
         "sessionExpired": "A sessão do pedido expirou. Comece de novo."
       }
@@ -814,6 +819,7 @@
     "startNewClaim": "Iniciar um novo pedido",
     "claimDetails": "Detalhes do pedido",
     "status": "Estado",
+    "statusGuide": "Estes são os passos possíveis de um pedido. Só o passo assinalado é o estado atual.",
     "fields": {
       "passenger": "Passageiro",
       "flight": "Voo",
@@ -828,30 +834,37 @@
     "statuses": {
       "received": {
         "label": "Recebido",
+        "summary": "A nossa equipa analisa o pedido.",
         "message": "Recebemos o seu pedido e a nossa equipa está a analisá-lo. Atualizaremos aqui assim que houver novidades."
       },
       "needs_documents": {
         "label": "Falta documentação",
+        "summary": "Só se faltar alguma coisa. Pedimos por email — nesta página não há nada para enviar.",
         "message": "Para avançarmos, precisamos de mais documentos. Veja o seu email ou contacte-nos no +351 923 391 980 — estamos disponíveis para ajudar."
       },
       "with_airline": {
         "label": "Enviado à companhia aérea",
+        "summary": "O pedido está na companhia, à espera da resposta.",
         "message": "Já submetemos o seu pedido à companhia aérea e estamos a aguardar resposta. Atualizamos aqui assim que houver novidades."
       },
       "following_up": {
         "label": "A acompanhar a resposta",
+        "summary": "Acompanhamos a companhia depois de responder.",
         "message": "A companhia aérea já respondeu e estamos a tratar do seguimento por si. Mantemo-lo informado."
       },
       "payment_processing": {
         "label": "A processar o pagamento",
+        "summary": "A companhia aprovou a compensação e o pagamento está a ser tratado.",
         "message": "Boas notícias — a companhia aprovou a compensação. Estamos a processar o pagamento e atualizamos em breve."
       },
       "awaiting_fee": {
         "label": "Pagamento da taxa",
+        "summary": "A nossa taxa só é devida depois de o pedido ter sucesso.",
         "message": "Parabéns, o seu pedido foi bem-sucedido! Conclua o pagamento da nossa taxa de serviço para podermos encerrar o caso."
       },
       "paid": {
         "label": "Pago",
+        "summary": "A compensação já foi paga.",
         "message": "O seu pagamento foi concluído! Obrigado pela confiança. Se tiver questões, estamos sempre disponíveis."
       },
       "closed_ntd": {

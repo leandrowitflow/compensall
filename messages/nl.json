@@ -211,7 +211,7 @@
         "extractFailed": "Wij konden niet alle gegevens automatisch lezen. Vul uw vluchtgegevens hieronder aan.",
         "somethingWentWrong": "Er is iets misgegaan. Vul uw vluchtgegevens hieronder in.",
         "unsupportedType": "Bestandstype niet ondersteund. Upload een instapkaart als PDF, JPG, PNG, WebP of HEIC.",
-        "tooLarge": "Het bestand is te groot. Maximaal 10 MB."
+        "tooLarge": "Dit bestand is te groot om te versturen. Gebruik een foto of een pdf onder 4 MB."
       }
     },
     "step2": {
@@ -233,7 +233,9 @@
         "passengerRequired": "De naam van de passagier is verplicht.",
         "flightRequired": "Het vluchtnummer is verplicht.",
         "routeRequired": "Het traject is verplicht.",
-        "dateRequired": "De vluchtdatum is verplicht."
+        "dateRequired": "De vluchtdatum is verplicht.",
+        "departureRequired": "Vul de vertrekluchthaven in.",
+        "arrivalRequired": "Vul de aankomstluchthaven in."
       },
       "fields": {
         "passenger": "Passagier",
@@ -391,6 +393,9 @@
         "signConnectionError": "De handtekening kon niet worden opgeslagen. Controleer uw verbinding en probeer het opnieuw.",
         "signBeforeSubmit": "Onderteken de volmacht voor elke passagier voordat u indient.",
         "submitFailed": "Uw claim kon niet worden ingediend.",
+        "fileTooLarge": "{name} is te groot ({size}). Vervang het door een foto of pdf onder 4 MB.",
+        "unsupportedFile": "{name} is geen ondersteund bestand. Gebruik een pdf, JPG of PNG.",
+        "payloadTooLarge": "Deze bestanden zijn samen te groot om te versturen ({size}). Verwijder of vervang de grootste zodat het totaal onder 4 MB blijft: {names}.",
         "duplicateClaim": "We hebben al een claim met deze naam, dit e-mailadres, dit vluchtnummer en deze datum. U hoeft die niet opnieuw te versturen.",
         "sessionExpired": "De sessie is verlopen. Begin opnieuw."
       }
@@ -814,6 +819,7 @@
     "startNewClaim": "Nieuwe claim starten",
     "claimDetails": "Gegevens van de claim",
     "status": "Status",
+    "statusGuide": "Dit zijn de mogelijke stappen van een claim. Alleen de gemarkeerde stap is de huidige stand.",
     "fields": {
       "passenger": "Passagier",
       "flight": "Vlucht",
@@ -828,30 +834,37 @@
     "statuses": {
       "received": {
         "label": "Ontvangen",
+        "summary": "Ons team beoordeelt de claim.",
         "message": "Wij hebben uw claim ontvangen en ons team toetst deze. Hier werken wij bij als er nieuws is."
       },
       "needs_documents": {
         "label": "Stukken nodig",
+        "summary": "Alleen als er iets ontbreekt. We vragen het per e-mail — op deze pagina valt niets te versturen.",
         "message": "Voor de volgende stap hebben wij nog stukken nodig. Controleer uw e-mail of schrijf ons op +351 923391980. Wij helpen u graag."
       },
       "with_airline": {
         "label": "Bij de airline",
+        "summary": "De claim ligt bij de airline, we wachten op antwoord.",
         "message": "Uw claim ligt bij de airline. Wij wachten op het antwoord en werken bij zodra wij iets horen."
       },
       "following_up": {
         "label": "In opvolging",
+        "summary": "We volgen de airline op nadat ze heeft geantwoord.",
         "message": "De airline heeft geantwoord en wij volgen namens u op. Over elke ontwikkeling houden wij u op de hoogte."
       },
       "payment_processing": {
         "label": "Betaling in behandeling",
+        "summary": "De airline heeft de compensatie toegezegd en de uitbetaling wordt geregeld.",
         "message": "Goed nieuws: de airline heeft de compensatie toegezegd. Wij bereiden nu de uitbetaling voor en werken binnenkort bij."
       },
       "awaiting_fee": {
         "label": "Servicefee",
+        "summary": "Onze fee is pas verschuldigd na een geslaagde claim.",
         "message": "Gefeliciteerd, uw claim is geslaagd. Betaal de servicefee, zodat wij het dossier kunnen afronden."
       },
       "paid": {
         "label": "Uitbetaald",
+        "summary": "De compensatie is uitbetaald.",
         "message": "De uitbetaling is gedaan. Dank u voor uw vertrouwen. Bij vragen zijn wij er."
       },
       "closed_ntd": {

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { inferMimeType, isAllowedBoardingPassMime } from "@/lib/boarding-pass-file";
+import { inferMimeType, isAllowedBoardingPassMime, MAX_BOARDING_PASS_SIZE } from "@/lib/boarding-pass-file";
 import { consumeSignatureToken, getSignatureToken } from "@/lib/claim-signature-tokens";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
 import { DUPLICATE_CLAIM_ERROR, findDuplicateClaim } from "@/lib/claim-duplicate";
@@ -20,7 +20,7 @@ import { dataUrlToBase64, getClientIp, hasSignatureInk, hashSignature } from "@/
 import { isValidClaimPhone, toE164Phone } from "@/lib/phone";
 import { verifyBoardingPassClaim } from "@/lib/verify-boarding-pass";
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024;
+const MAX_FILE_SIZE = MAX_BOARDING_PASS_SIZE;
 
 const REQUIRED_DOCUMENT_IDS = CLAIM_DOCUMENTS.map((doc) => doc.id);
 
@@ -101,11 +101,11 @@ async function readOptionalUpload(
 ): Promise<{ fileName: string; mimeType: string; base64: string } | null> {
   if (!(entry instanceof File) || entry.size <= 0) return null;
   if (entry.size > MAX_FILE_SIZE) {
-    throw new Error("One of the uploaded documents is too large.");
+    throw new Error("file_too_large");
   }
   const mimeType = inferMimeType(entry.name, entry.type);
   if (!isAllowedBoardingPassMime(mimeType)) {
-    throw new Error("Unsupported document type.");
+    throw new Error("unsupported_type");
   }
   const buffer = Buffer.from(await entry.arrayBuffer());
   return {
@@ -252,10 +252,10 @@ export async function POST(request: Request) {
     if (file instanceof File && file.size > 0) {
       const mimeType = inferMimeType(file.name, file.type);
       if (!isAllowedBoardingPassMime(mimeType)) {
-        return Response.json({ error: "Unsupported boarding pass file type." }, { status: 400 });
+        return Response.json({ error: "unsupported_type" }, { status: 400 });
       }
       if (file.size > MAX_FILE_SIZE) {
-        return Response.json({ error: "Boarding pass file is too large." }, { status: 400 });
+        return Response.json({ error: "file_too_large" }, { status: 400 });
       }
       boardingPassBuffer = Buffer.from(await file.arrayBuffer());
       boardingPassMime = mimeType;

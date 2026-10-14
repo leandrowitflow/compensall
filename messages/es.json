@@ -211,7 +211,7 @@
         "extractFailed": "No hemos podido leer todos los datos automáticamente. Completa los datos del vuelo abajo.",
         "somethingWentWrong": "Algo ha fallado. Completa los datos del vuelo abajo.",
         "unsupportedType": "Tipo de archivo no compatible. Sube una tarjeta de embarque en PDF, JPG, PNG, WebP o HEIC.",
-        "tooLarge": "El archivo es demasiado grande. El tamaño máximo es de 10 MB."
+        "tooLarge": "Este archivo es demasiado grande para enviarlo. Use una foto o un PDF de menos de 4 MB."
       }
     },
     "step2": {
@@ -233,7 +233,9 @@
         "passengerRequired": "El nombre del pasajero es obligatorio.",
         "flightRequired": "El número de vuelo es obligatorio.",
         "routeRequired": "La ruta es obligatoria.",
-        "dateRequired": "La fecha del vuelo es obligatoria."
+        "dateRequired": "La fecha del vuelo es obligatoria.",
+        "departureRequired": "Indique el aeropuerto de salida.",
+        "arrivalRequired": "Indique el aeropuerto de llegada."
       },
       "fields": {
         "passenger": "Pasajero",
@@ -391,6 +393,9 @@
         "signConnectionError": "No hemos podido registrar tu firma. Comprueba la conexión e inténtalo de nuevo.",
         "signBeforeSubmit": "Firma el poder de representación de todos los pasajeros antes de enviar.",
         "submitFailed": "No hemos podido enviar tu reclamación.",
+        "fileTooLarge": "{name} es demasiado grande ({size}). Sustitúyalo por una foto o un PDF de menos de 4 MB.",
+        "unsupportedFile": "{name} no es un archivo admitido. Use un PDF, JPG o PNG.",
+        "payloadTooLarge": "Estos archivos juntos son demasiado grandes para enviarlos ({size}). Quite o sustituya los más pesados para no pasar de 4 MB: {names}.",
         "duplicateClaim": "Ya tenemos una reclamación con este nombre, email, número de vuelo y fecha. No hace falta enviarla otra vez.",
         "sessionExpired": "La sesión de la reclamación ha caducado. Empieza de nuevo."
       }
@@ -814,6 +819,7 @@
     "startNewClaim": "Empezar una reclamación nueva",
     "claimDetails": "Datos de la reclamación",
     "status": "Estado",
+    "statusGuide": "Estas son las fases por las que puede pasar una reclamación. Solo el paso resaltado es el estado actual.",
     "fields": {
       "passenger": "Pasajero",
       "flight": "Vuelo",
@@ -828,30 +834,37 @@
     "statuses": {
       "received": {
         "label": "Recibida",
+        "summary": "Nuestro equipo revisa la reclamación.",
         "message": "Hemos recibido tu reclamación y nuestro equipo la está revisando. Te actualizaremos aquí en cuanto haya novedades."
       },
       "needs_documents": {
         "label": "Documentos necesarios",
+        "summary": "Solo si falta algo. Lo pedimos por email: en esta página no hay nada que enviar.",
         "message": "Necesitamos algunos documentos más para seguir con tu reclamación. Revisa tu email o escríbenos al +351 923391980. Estaremos encantados de ayudarte."
       },
       "with_airline": {
         "label": "Con la aerolínea",
+        "summary": "La reclamación está en la aerolínea, a la espera de respuesta.",
         "message": "Tu reclamación se ha presentado a la aerolínea. Estamos a la espera de su respuesta y te actualizaremos en cuanto sepamos algo."
       },
       "following_up": {
         "label": "En seguimiento",
+        "summary": "Hacemos seguimiento a la aerolínea después de que responda.",
         "message": "La aerolínea ha respondido y estamos haciendo el seguimiento en tu nombre. Te mantendremos informado de cualquier novedad."
       },
       "payment_processing": {
         "label": "Pago en trámite",
+        "summary": "La aerolínea aprobó la compensación y el pago se está tramitando.",
         "message": "Buenas noticias: la aerolínea ha aprobado tu compensación. Estamos tramitando el pago y te actualizaremos en breve."
       },
       "awaiting_fee": {
         "label": "Comisión del servicio",
+        "summary": "Nuestra comisión solo se debe cuando la reclamación tiene éxito.",
         "message": "¡Enhorabuena, tu reclamación ha tenido éxito! Completa el pago de nuestra comisión para que podamos cerrar el caso."
       },
       "paid": {
         "label": "Pagada",
+        "summary": "La compensación ya se ha pagado.",
         "message": "¡Tu pago se ha completado! Gracias por confiar en nosotros. Si tienes cualquier duda, estamos aquí para ayudarte."
       },
       "closed_ntd": {

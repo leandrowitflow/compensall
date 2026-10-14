@@ -9,6 +9,13 @@ import Step3Panel, { type ClaimResumePrefill, type ClaimSubmitPayload } from "@/
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { readClaimResumeTokenFromLocation } from "@/lib/claim-draft-token";
+import { type Step2Issue } from "@/lib/claim-form-issues";
+import {
+  ClaimSubmitError,
+  classifyClaimFailure,
+  oversizedClaimFiles,
+  readJsonSafe,
+} from "@/lib/claim-upload-limits";
 import {
   EMPTY_FLIGHT,
   normalizeFlightData,
@@ -86,7 +93,8 @@ function validateStep2(
   messages: {
     passengerRequired: string;
     flightRequired: string;
-    routeRequired: string;
+    departureRequired: string;
+    arrivalRequired: string;
     dateRequired: string;
     typeRequired: string;
     connectingRequired: string;
@@ -96,34 +104,38 @@ function validateStep2(
     reasonRequired: string;
     ineligible: string;
   },
-): string | null {
-  if (!flight.passenger.trim()) return messages.passengerRequired;
-  if (!flight.flight.trim()) return messages.flightRequired;
-  if (!flight.routeFrom.trim() || !flight.routeTo.trim()) return messages.routeRequired;
-  if (!flight.date.trim()) return messages.dateRequired;
+): Step2Issue | null {
+  if (!flight.passenger.trim()) return { field: "passenger", message: messages.passengerRequired };
+  if (!flight.flight.trim()) return { field: "flight", message: messages.flightRequired };
+  if (!flight.routeFrom.trim()) return { field: "routeFrom", message: messages.departureRequired };
+  if (!flight.routeTo.trim()) return { field: "routeTo", message: messages.arrivalRequired };
+  if (!flight.date.trim()) return { field: "date", message: messages.dateRequired };
 
   if (flight.hadConnectingFlight === null || flight.hadConnectingFlight === undefined) {
-    return messages.connectingRequired;
+    return { field: "connecting", message: messages.connectingRequired };
   }
   if (flight.hadConnectingFlight === true) {
     const first = flight.connectingFlights?.[0];
-    if (!first?.airport.trim() || !first.flightNumber.trim()) {
-      return messages.connectingDetailsRequired;
+    if (!first?.airport.trim()) {
+      return { field: "connectingAirport", message: messages.connectingDetailsRequired };
+    }
+    if (!first.flightNumber.trim()) {
+      return { field: "connectingFlight", message: messages.connectingDetailsRequired };
     }
   }
 
-  if (flight.status === "Unknown") return messages.typeRequired;
-  if (flight.status === "Delayed" && !flight.delayDuration) return messages.delayRequired;
+  if (flight.status === "Unknown") return { field: "disruptionType", message: messages.typeRequired };
+  if (flight.status === "Delayed" && !flight.delayDuration) return { field: "delay", message: messages.delayRequired };
   if (flight.status === "Cancelled" && !flight.cancellationNotice) {
-    return messages.noticeRequired;
+    return { field: "notice", message: messages.noticeRequired };
   }
   if (
     (flight.status === "Delayed" && flight.delayDuration === "less_than_3") ||
     (flight.status === "Cancelled" && flight.cancellationNotice === "14 days or more")
   ) {
-    return messages.ineligible;
+    return { field: "ineligible", message: messages.ineligible };
   }
-  if (!flight.disruptionReason) return messages.reasonRequired;
+  if (!flight.disruptionReason) return { field: "reason", message: messages.reasonRequired };
   return null;
 }
 
@@ -148,7 +160,7 @@ export default function HeroClaimForm() {
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractError, setExtractError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [step2Error, setStep2Error] = useState<string | null>(null);
+  const [step2Error, setStep2Error] = useState<Step2Issue | null>(null);
   const [boardingPassFile, setBoardingPassFile] = useState<File | null>(null);
   const [isAdvancing, setIsAdvancing] = useState(false);
   const advancingRef = useRef(false);
@@ -256,26 +268,31 @@ export default function HeroClaimForm() {
         body: formData,
       });
 
-      const data = (await response.json()) as {
-        flight?: ClaimFlightData;
-        warning?: string | null;
-        error?: string;
-      };
+      const { ok, status, data, raw } = await readJsonSafe(response);
+      const flightData = data.flight as ClaimFlightData | undefined;
+      const warning = typeof data.warning === "string" ? data.warning : null;
+      const apiError = typeof data.error === "string" ? data.error : undefined;
 
-      if (!response.ok) {
+      if (!ok) {
+        const code = classifyClaimFailure(status, raw, apiError);
+        if (code === "file_too_large" || code === "payload_too_large") {
+          setExtractError(tStep1("errors.tooLarge"));
+          return;
+        }
+        if (code === "unsupported_type") {
+          setExtractError(tStep1("errors.unsupportedType"));
+          return;
+        }
         advanceWithFile();
         setFlight(EMPTY_FLIGHT);
         setIsEditing(true);
-        setExtractError(
-          data.error ??
-            tStep1("errors.extractFailed"),
-        );
+        setExtractError(tStep1("errors.extractFailed"));
         return;
       }
 
       advanceWithFile();
       try {
-        setFlight(normalizeFlightData(data.flight));
+        setFlight(normalizeFlightData(flightData));
       } catch (normalizeError) {
         console.error("[HeroClaimForm] normalizeFlightData failed:", normalizeError);
         setFlight(EMPTY_FLIGHT);
@@ -283,9 +300,14 @@ export default function HeroClaimForm() {
         setExtractError(tStep1("errors.extractFailed"));
         return;
       }
-      setIsEditing(Boolean(data.warning));
-      setExtractError(data.warning ?? null);
-    } catch {
+      setIsEditing(Boolean(warning));
+      setExtractError(warning);
+    } catch (error) {
+      const technical = error instanceof Error ? error.message : "";
+      if (/unexpected token|not valid json|request entity too large/i.test(technical)) {
+        setExtractError(tStep1("errors.tooLarge"));
+        return;
+      }
       advanceWithFile();
       setFlight(EMPTY_FLIGHT);
       setIsEditing(true);
@@ -317,7 +339,8 @@ export default function HeroClaimForm() {
     const error = validateStep2(flight, {
       passengerRequired: tStep2("errors.passengerRequired"),
       flightRequired: tStep2("errors.flightRequired"),
-      routeRequired: tStep2("errors.routeRequired"),
+      departureRequired: tStep2("errors.departureRequired"),
+      arrivalRequired: tStep2("errors.arrivalRequired"),
       dateRequired: tStep2("errors.dateRequired"),
       typeRequired: tDisruption("errors.typeRequired"),
       connectingRequired: tConnecting("errors.connectingRequired"),
@@ -329,7 +352,15 @@ export default function HeroClaimForm() {
     });
     if (error) {
       setStep2Error(error);
-      setIsEditing(true);
+      if (
+        error.field === "passenger" ||
+        error.field === "flight" ||
+        error.field === "routeFrom" ||
+        error.field === "routeTo" ||
+        error.field === "date"
+      ) {
+        setIsEditing(true);
+      }
       return;
     }
     if (advancingRef.current) return;
@@ -385,8 +416,32 @@ export default function HeroClaimForm() {
     for (const file of payload.claimDocuments.otherDocuments ?? []) {
       formData.append("otherDocuments", file);
     }
-    for (const file of payload.additionalDocuments ?? []) {
-      formData.append("additionalDocuments", file);
+
+    const uploadFiles = [
+      boardingPassFile ? { name: boardingPassFile.name, size: boardingPassFile.size } : null,
+      payload.claimDocuments.passportCopy
+        ? { name: payload.claimDocuments.passportCopy.name, size: payload.claimDocuments.passportCopy.size }
+        : null,
+      payload.claimDocuments.bookingConfirmation
+        ? {
+            name: payload.claimDocuments.bookingConfirmation.name,
+            size: payload.claimDocuments.bookingConfirmation.size,
+          }
+        : null,
+      payload.claimDocuments.expensesReceipts
+        ? {
+            name: payload.claimDocuments.expensesReceipts.name,
+            size: payload.claimDocuments.expensesReceipts.size,
+          }
+        : null,
+      ...(payload.claimDocuments.otherDocuments ?? []).map((file) => ({ name: file.name, size: file.size })),
+    ].filter((file): file is { name: string; size: number } => Boolean(file));
+    const oversized = oversizedClaimFiles(uploadFiles);
+    if (oversized.length > 0) {
+      throw new ClaimSubmitError(
+        "payload_too_large",
+        oversized.map((file) => file.name),
+      );
     }
 
     const response = await fetch("/api/claim/submit", {
@@ -394,22 +449,22 @@ export default function HeroClaimForm() {
       body: formData,
     });
 
-    const data = (await response.json()) as {
-      trackingNumber?: string;
-      status?: ClaimStatus;
-      error?: string;
-    };
+    const { ok, status, data, raw } = await readJsonSafe(response);
+    const trackingNumber = typeof data.trackingNumber === "string" ? data.trackingNumber : undefined;
+    const claimStatus = data.status as ClaimStatus | undefined;
+    const apiError = typeof data.error === "string" ? data.error : undefined;
 
-    if (!response.ok || !data.trackingNumber || !data.status) {
-      if (data.error === "duplicate_claim") {
-        throw new Error(tStep3("errors.duplicateClaim"));
-      }
-      throw new Error(data.error ?? tStep3("errors.submitFailed"));
+    if (!ok || !trackingNumber || !claimStatus) {
+      const code = classifyClaimFailure(status, raw, apiError);
+      throw new ClaimSubmitError(
+        code,
+        uploadFiles.map((file) => file.name),
+      );
     }
 
     return {
-      trackingNumber: data.trackingNumber,
-      status: data.status,
+      trackingNumber,
+      status: claimStatus,
     };
   };
 
@@ -455,7 +510,10 @@ export default function HeroClaimForm() {
                 isAdvancing={isAdvancing}
                 validationError={step2Error}
                 extractWarning={extractError}
-                onFlightChange={setFlight}
+                onFlightChange={(next) => {
+                  setFlight(next);
+                  setStep2Error(null);
+                }}
                 onToggleEdit={() => {
                   setIsEditing((editing) => !editing);
                   setStep2Error(null);
@@ -469,6 +527,11 @@ export default function HeroClaimForm() {
                 entryMode={entryMode}
                 locale={locale}
                 resumePrefill={resumePrefill}
+                attachedUpload={
+                  boardingPassFile
+                    ? { name: boardingPassFile.name, size: boardingPassFile.size }
+                    : null
+                }
                 onDelete={resetClaim}
                 onSubmit={handleClaimSubmit}
               />

@@ -9,11 +9,14 @@ import type {
   FlightStatus,
 } from "@/lib/claim-types";
 import { isIneligibleForCompensation } from "@/lib/claim-types";
-import { FIELD_LABEL, FIELD_SELECT } from "@/components/claim/claim-ui";
+import { FieldIssue } from "@/components/claim/FieldIssue";
+import { FIELD_LABEL, FIELD_SELECT, fieldControlClass } from "@/components/claim/claim-ui";
+import type { Step2Issue } from "@/lib/claim-form-issues";
 
 type DisruptionDetailsFormProps = {
   flight: ClaimFlightData;
   onChange: (flight: ClaimFlightData) => void;
+  issue?: Step2Issue | null;
 };
 
 const STATUS_OPTIONS: Array<{ value: Exclude<FlightStatus, "Unknown">; labelKey: "delay" | "cancellation" | "deniedBoarding" }> = [
@@ -22,7 +25,7 @@ const STATUS_OPTIONS: Array<{ value: Exclude<FlightStatus, "Unknown">; labelKey:
   { value: "Denied boarding", labelKey: "deniedBoarding" },
 ];
 
-export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDetailsFormProps) {
+export default function DisruptionDetailsForm({ flight, onChange, issue = null }: DisruptionDetailsFormProps) {
   const t = useTranslations("claim.disruption");
 
   const update = (patch: Partial<ClaimFlightData>) => {
@@ -67,7 +70,9 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
         </label>
         <select
           id="disruption-type"
-          className={FIELD_SELECT}
+          className={fieldControlClass(FIELD_SELECT, issue?.field === "disruptionType")}
+          aria-invalid={issue?.field === "disruptionType" || undefined}
+          aria-describedby={issue?.field === "disruptionType" ? "disruption-type-error" : undefined}
           value={flight.status === "Unknown" ? "" : flight.status}
           onChange={(event) => {
             const value = event.target.value as FlightStatus | "";
@@ -81,6 +86,7 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
             </option>
           ))}
         </select>
+        <FieldIssue id="disruption-type-error" message={issue?.field === "disruptionType" ? issue.message : null} />
       </div>
 
       {flight.status === "Delayed" && (
@@ -90,7 +96,9 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
           </label>
           <select
             id="delay-duration"
-            className={FIELD_SELECT}
+            className={fieldControlClass(FIELD_SELECT, issue?.field === "delay")}
+            aria-invalid={issue?.field === "delay" || undefined}
+            aria-describedby={issue?.field === "delay" ? "delay-duration-error" : undefined}
             value={flight.delayDuration || ""}
             onChange={(event) => {
               const delayDuration = event.target.value as DelayDurationOption;
@@ -104,6 +112,7 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
             <option value="less_than_3">{t("delayLessThan3")}</option>
             <option value="more_than_3">{t("delayMoreThan3")}</option>
           </select>
+          <FieldIssue id="delay-duration-error" message={issue?.field === "delay" ? issue.message : null} />
         </div>
       )}
 
@@ -114,7 +123,9 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
           </label>
           <select
             id="cancellation-notice"
-            className={FIELD_SELECT}
+            className={fieldControlClass(FIELD_SELECT, issue?.field === "notice")}
+            aria-invalid={issue?.field === "notice" || undefined}
+            aria-describedby={issue?.field === "notice" ? "cancellation-notice-error" : undefined}
             value={flight.cancellationNotice || ""}
             onChange={(event) => {
               update({
@@ -126,6 +137,7 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
             <option value="14 days or more">{t("notice14OrMore")}</option>
             <option value="Less than 14 days">{t("noticeLessThan14")}</option>
           </select>
+          <FieldIssue id="cancellation-notice-error" message={issue?.field === "notice" ? issue.message : null} />
         </div>
       )}
 
@@ -147,7 +159,9 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
           </label>
           <select
             id="disruption-reason"
-            className={FIELD_SELECT}
+            className={fieldControlClass(FIELD_SELECT, issue?.field === "reason")}
+            aria-invalid={issue?.field === "reason" || undefined}
+            aria-describedby={issue?.field === "reason" ? "disruption-reason-error" : undefined}
             value={flight.disruptionReason || ""}
             onChange={(event) => {
               update({
@@ -163,6 +177,7 @@ export default function DisruptionDetailsForm({ flight, onChange }: DisruptionDe
             <option value="airport">{t("reasons.airport")}</option>
             <option value="other">{t("reasons.other")}</option>
           </select>
+          <FieldIssue id="disruption-reason-error" message={issue?.field === "reason" ? issue.message : null} />
         </div>
       )}
     </div>

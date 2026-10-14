@@ -1,21 +1,24 @@
 "use client";
 
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
 import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
 import ConnectingFlightsForm from "@/components/claim/ConnectingFlightsForm";
 import DisruptionDetailsForm from "@/components/claim/DisruptionDetailsForm";
 import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
+import { focusClaimField } from "@/components/claim/FieldIssue";
 import { InfoBoardRow } from "@/components/claim/ClaimSidebar";
 import { ACTION_BTN } from "@/components/claim/claim-ui";
 import { isIneligibleForCompensation } from "@/lib/claim-types";
+import { STEP2_FIELD_ELEMENT, type Step2Issue } from "@/lib/claim-form-issues";
 import { gtmId } from "@/lib/gtm";
 
 type Step2PanelProps = {
   flight: ClaimFlightData;
   isEditing: boolean;
   isAdvancing?: boolean;
-  validationError: string | null;
+  validationError: Step2Issue | null;
   extractWarning: string | null;
   onFlightChange: (flight: ClaimFlightData) => void;
   onToggleEdit: () => void;
@@ -37,6 +40,12 @@ export default function Step2Panel({
   const tStep2 = useTranslations("claim.step2");
   const tCommon = useTranslations("common");
   const ineligible = isIneligibleForCompensation(flight);
+  const fieldIssue = validationError && validationError.field !== "ineligible" ? validationError : null;
+
+  useEffect(() => {
+    if (!fieldIssue || fieldIssue.field === "ineligible") return;
+    focusClaimField(STEP2_FIELD_ELEMENT[fieldIssue.field]);
+  }, [fieldIssue]);
 
   return (
     <div className="border border-[#d5e0f9] rounded-[21px] p-4 sm:p-5 xl:p-6 flex flex-col h-full bg-white">
@@ -73,7 +82,7 @@ export default function Step2Panel({
 
       {isEditing ? (
         <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-4 mb-4">
-          <FlightDetailsForm flight={flight} onChange={onFlightChange} idPrefix="edit" />
+          <FlightDetailsForm flight={flight} onChange={onFlightChange} idPrefix="edit" issue={fieldIssue} />
         </div>
       ) : (
         <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-2 mb-4">
@@ -96,11 +105,11 @@ export default function Step2Panel({
       />
 
       <div className="mb-4">
-        <ConnectingFlightsForm flight={flight} onChange={onFlightChange} />
+        <ConnectingFlightsForm flight={flight} onChange={onFlightChange} issue={fieldIssue} />
       </div>
 
       <div className="mb-4">
-        <DisruptionDetailsForm flight={flight} onChange={onFlightChange} />
+        <DisruptionDetailsForm flight={flight} onChange={onFlightChange} issue={fieldIssue} />
       </div>
 
       <div className="bg-[#f0f3fe] rounded-[13px] px-4 py-4 mb-4 max-w-sm">
@@ -110,12 +119,6 @@ export default function Step2Panel({
           {tStep2("confirmHint")}
         </p>
       </div>
-
-      {validationError && (
-        <p className="text-sm text-[#e82828] mb-4" role="alert">
-          {validationError}
-        </p>
-      )}
 
       <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mt-auto pt-2">
         <button

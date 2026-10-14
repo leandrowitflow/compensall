@@ -11,11 +11,21 @@ import {
   type ClaimPassenger,
   type ClaimStatus,
 } from "@/lib/claim-types";
-import { ACTION_BTN, FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
+import { FieldIssue, focusClaimField } from "@/components/claim/FieldIssue";
+import { ACTION_BTN, FIELD_INPUT, FIELD_LABEL, fieldControlClass } from "@/components/claim/claim-ui";
 import PhoneInputField from "@/components/claim/PhoneInputField";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
 import { useRouter } from "@/i18n/routing";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
+import { type ContactIssue } from "@/lib/claim-form-issues";
+import { formatFileSize } from "@/lib/claim-types";
+import {
+  isClaimSubmitError,
+  oversizedClaimFiles,
+  type ClaimSubmitError,
+} from "@/lib/claim-upload-limits";
+import { prepareClaimFile } from "@/lib/prepare-claim-file";
+import { validateBoardingPassFile } from "@/lib/boarding-pass-file";
 import { storeEnhancedConversionUserData } from "@/lib/enhanced-conversion";
 import { gtmId } from "@/lib/gtm";
 import { afterNextPaint } from "@/lib/after-next-paint";
@@ -72,6 +82,7 @@ type Step3PanelProps = {
   entryMode: "upload" | "manual";
   locale: string;
   resumePrefill?: ClaimResumePrefill | null;
+  attachedUpload?: { name: string; size: number } | null;
   onDelete: () => void;
   onSubmit: (payload: ClaimSubmitPayload) => Promise<{ trackingNumber: string; status: ClaimStatus }>;
 };
@@ -97,16 +108,24 @@ function FileUploadField({
   label,
   hint,
   file,
+  error,
+  marked = false,
   onChange,
 }: {
   id: string;
   label: string;
   hint: string;
   file: File | null;
+  error?: string | null;
+  marked?: boolean;
   onChange: (file: File | null) => void;
 }) {
+  const invalid = Boolean(error) || marked;
   return (
-    <div className="bg-white border border-[#d5e0f9] rounded-xl p-4 space-y-2">
+    <div
+      id={`${id}-field`}
+      className={`scroll-mt-28 bg-white border rounded-xl p-4 space-y-2 ${invalid ? "border-[#e82828]" : "border-[#d5e0f9]"}`}
+    >
       <label className={FIELD_LABEL} htmlFor={id}>
         {label}
       </label>
@@ -116,10 +135,17 @@ function FileUploadField({
         type="file"
         accept="image/*,.pdf,application/pdf"
         className="block w-full text-sm text-[#1f3664] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2669f3] file:px-3 file:py-2 file:text-sm file:font-bold file:text-white"
-        onChange={(event) => onChange(event.target.files?.[0] ?? null)}
+        aria-invalid={Boolean(error) || undefined}
+        aria-describedby={error ? `${id}-error` : undefined}
+        onChange={(event) => {
+          const selected = event.target.files?.[0] ?? null;
+          event.target.value = "";
+          onChange(selected);
+        }}
         {...gtmId(`claim_step3_upload_${id.replace(/-/g, "_")}`)}
       />
       {file && <p className="text-[#7b8094] text-xs">{file.name}</p>}
+      <FieldIssue id={`${id}-error`} message={error} />
     </div>
   );
 }
@@ -129,6 +155,7 @@ export default function Step3Panel({
   entryMode,
   locale,
   resumePrefill,
+  attachedUpload = null,
   onDelete,
   onSubmit,
 }: Step3PanelProps) {
@@ -144,7 +171,7 @@ export default function Step3Panel({
   const [signedName, setSignedName] = useState(resumePrefill?.signedName.trim() || flight.passenger);
   const [contactEmail, setContactEmail] = useState(resumePrefill?.contactEmail ?? "");
   const [contactPhone, setContactPhone] = useState(resumePrefill?.contactPhone ?? "");
-  const [contactError, setContactError] = useState<string | null>(null);
+  const [contactIssue, setContactIssue] = useState<ContactIssue | null>(null);
   const [additionalPassengers, setAdditionalPassengers] = useState<ClaimPassenger[]>(
     resumePrefill?.additionalPassengers ?? [],
   );
@@ -153,6 +180,8 @@ export default function Step3Panel({
   const [bookingConfirmation, setBookingConfirmation] = useState<File | null>(null);
   const [expensesReceipts, setExpensesReceipts] = useState<File | null>(null);
   const [otherDocuments, setOtherDocuments] = useState<File[]>([]);
+  const [docErrors, setDocErrors] = useState<Partial<Record<"passport" | "booking" | "expenses" | "other", string>>>({});
+  const [forcedPayload, setForcedPayload] = useState(false);
 
   const [sessionId] = useState(resumePrefill?.formSessionId || createSessionId);
   const [odooLeadId, setOdooLeadId] = useState<number | null>(resumePrefill?.odooLeadId ?? null);
@@ -169,6 +198,48 @@ export default function Step3Panel({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [trackingNumber, setTrackingNumber] = useState<string | null>(null);
   const [isSyncingLead, setIsSyncingLead] = useState(false);
+
+  const uploadName = attachedUpload?.name ?? "";
+  const uploadSize = attachedUpload?.size ?? 0;
+
+  const selectedFiles = useMemo(() => {
+    const files: { name: string; size: number }[] = [];
+    if (uploadSize > 0) files.push({ name: uploadName, size: uploadSize });
+    if (passportCopy) files.push({ name: passportCopy.name, size: passportCopy.size });
+    if (bookingConfirmation) files.push({ name: bookingConfirmation.name, size: bookingConfirmation.size });
+    if (expensesReceipts) files.push({ name: expensesReceipts.name, size: expensesReceipts.size });
+    for (const file of otherDocuments) files.push({ name: file.name, size: file.size });
+    return files;
+  }, [uploadName, uploadSize, passportCopy, bookingConfirmation, expensesReceipts, otherDocuments]);
+
+  const payloadNotice = useMemo(() => {
+    const oversized = oversizedClaimFiles(selectedFiles);
+    if (oversized.length === 0 && !forcedPayload) return null;
+    const named = oversized.length > 0 ? oversized : selectedFiles;
+    const names = named.map((file) => file.name).filter(Boolean);
+    const total = selectedFiles.reduce((sum, file) => sum + file.size, 0);
+    return {
+      names,
+      message: t("errors.payloadTooLarge", {
+        size: formatFileSize(total),
+        names: names.join(", "),
+      }),
+    };
+  }, [forcedPayload, selectedFiles, t]);
+
+  useEffect(() => {
+    setForcedPayload(false);
+  }, [passportCopy, bookingConfirmation, expensesReceipts, otherDocuments, uploadName, uploadSize]);
+
+  useEffect(() => {
+    if (!payloadNotice || phase !== "documents") return;
+    focusClaimField("claim-documents-error");
+  }, [payloadNotice?.message, phase]);
+
+  useEffect(() => {
+    if (!contactIssue || phase !== "contact") return;
+    focusClaimField(contactIssue.field);
+  }, [contactIssue, phase]);
 
   const currentDoc = CLAIM_DOCUMENTS[0]!;
   const allPassengers = useMemo(() => {
@@ -366,31 +437,42 @@ export default function Step3Panel({
   };
 
   const handleContinueFromContact = async () => {
-    setContactError(null);
+    const fail = (issue: ContactIssue) => {
+      setContactIssue(issue);
+    };
     if (!signedName.trim()) {
-      setContactError(t("errors.nameRequired"));
+      fail({ field: "signed-name", message: t("errors.nameRequired") });
       return;
     }
     if (!contactEmail.trim() || !EMAIL_PATTERN.test(contactEmail.trim())) {
-      setContactError(t("errors.emailInvalid"));
+      fail({ field: "contact-email", message: t("errors.emailInvalid") });
       return;
     }
     if (!isBlankOrValidClaimPhone(contactPhone)) {
-      setContactError(t("errors.phoneInvalid"));
+      fail({ field: "contact-phone", message: t("errors.phoneInvalid") });
       return;
     }
 
     for (const [index, passenger] of additionalPassengers.entries()) {
       if (!passenger.firstName.trim() || !passenger.lastName.trim()) {
-        setContactError(t("errors.passengerNameRequired", { number: index + 2 }));
+        fail({
+          field: `passenger-${index}-first`,
+          message: t("errors.passengerNameRequired", { number: index + 2 }),
+        });
         return;
       }
       if (passenger.email.trim() && !EMAIL_PATTERN.test(passenger.email.trim())) {
-        setContactError(t("errors.passengerEmailInvalid", { number: index + 2 }));
+        fail({
+          field: `passenger-${index}-email`,
+          message: t("errors.passengerEmailInvalid", { number: index + 2 }),
+        });
         return;
       }
       if (passenger.phone.trim() && !isValidClaimPhone(passenger.phone.trim())) {
-        setContactError(t("errors.passengerPhoneInvalid", { number: index + 2 }));
+        fail({
+          field: `passenger-${index}-phone`,
+          message: t("errors.passengerPhoneInvalid", { number: index + 2 }),
+        });
         return;
       }
     }
@@ -455,9 +537,16 @@ export default function Step3Panel({
         }),
       });
 
-      const data = (await response.json()) as { token?: string; signatureHash?: string; error?: string };
+      const raw = await response.text();
+      let data: { token?: string; signatureHash?: string } = {};
+      try {
+        data = raw ? (JSON.parse(raw) as { token?: string; signatureHash?: string }) : {};
+      } catch {
+        setSignError(t("errors.signConnectionError"));
+        return;
+      }
       if (!response.ok || !data.token || !data.signatureHash) {
-        setSignError(data.error ?? t("errors.signFailed"));
+        setSignError(t("errors.signFailed"));
         return;
       }
 
@@ -490,7 +579,113 @@ export default function Step3Panel({
     }
   };
 
+  const showSubmitFailure = (error: ClaimSubmitError) => {
+    setSubmitError(null);
+    switch (error.code) {
+      case "payload_too_large":
+      case "file_too_large":
+        setForcedPayload(true);
+        setPhase("documents");
+        return;
+      case "unsupported_type":
+        setPhase("documents");
+        setDocErrors((current) => ({
+          ...current,
+          other: t("errors.unsupportedFile", { name: error.names[0] || t("docs.other") }),
+        }));
+        return;
+      case "duplicate_claim":
+        setSubmitError(t("errors.duplicateClaim"));
+        return;
+      case "name_required":
+        setPhase("contact");
+        setContactIssue({ field: "signed-name", message: t("errors.nameRequired") });
+        return;
+      case "email_invalid":
+        setPhase("contact");
+        setContactIssue({ field: "contact-email", message: t("errors.emailInvalid") });
+        return;
+      case "phone_invalid":
+        setPhase("contact");
+        setContactIssue({ field: "contact-phone", message: t("errors.phoneInvalid") });
+        return;
+      case "signature_invalid":
+        setPhase("sign");
+        setSignError(t("errors.signFailed"));
+        return;
+      case "submit_failed":
+        setSubmitError(t("errors.submitFailed"));
+        return;
+      default: {
+        const unreachable: never = error.code;
+        setSubmitError(t("errors.submitFailed"));
+        return unreachable;
+      }
+    }
+  };
+
+  const acceptDocument = async (
+    field: "passport" | "booking" | "expenses",
+    fieldId: string,
+    file: File | null,
+    setFile: (next: File | null) => void,
+  ) => {
+    if (!file) {
+      setFile(null);
+      setDocErrors((current) => ({ ...current, [field]: undefined }));
+      return;
+    }
+    const prepared = await prepareClaimFile(file);
+    const issue = validateBoardingPassFile(prepared);
+    if (issue === "unsupportedType") {
+      setFile(null);
+      setDocErrors((current) => ({
+        ...current,
+        [field]: t("errors.unsupportedFile", { name: file.name }),
+      }));
+      focusClaimField(fieldId);
+      return;
+    }
+    if (issue === "tooLarge") {
+      setFile(null);
+      setDocErrors((current) => ({
+        ...current,
+        [field]: t("errors.fileTooLarge", { name: file.name, size: formatFileSize(file.size) }),
+      }));
+      focusClaimField(fieldId);
+      return;
+    }
+    setFile(prepared);
+    setDocErrors((current) => ({ ...current, [field]: undefined }));
+  };
+
+  const acceptOtherDocuments = async (files: File[]) => {
+    const prepared: File[] = [];
+    const problems: string[] = [];
+    for (const file of files.slice(0, 6)) {
+      const next = await prepareClaimFile(file);
+      const issue = validateBoardingPassFile(next);
+      if (issue === "unsupportedType") {
+        problems.push(t("errors.unsupportedFile", { name: file.name }));
+        continue;
+      }
+      if (issue === "tooLarge") {
+        problems.push(t("errors.fileTooLarge", { name: file.name, size: formatFileSize(file.size) }));
+        continue;
+      }
+      prepared.push(next);
+    }
+    setOtherDocuments(prepared);
+    setDocErrors((current) => ({ ...current, other: problems.join(" ") || undefined }));
+    if (problems.length > 0) focusClaimField("other-documents-field");
+  };
+
   const handleSubmit = async () => {
+    if (payloadNotice || docErrors.passport || docErrors.booking || docErrors.expenses || docErrors.other) {
+      setPhase("documents");
+      setSubmitError(null);
+      return;
+    }
     setSubmitError(null);
     const documentSignatures = allPassengers
       .map((_, index) => docSignatures[`${POA_DOCUMENT_ID}:${index}`])
@@ -543,7 +738,11 @@ export default function Step3Panel({
         },
       });
     } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : t("errors.submitFailed"));
+      if (isClaimSubmitError(error)) {
+        showSubmitFailure(error);
+        return;
+      }
+      setSubmitError(t("errors.submitFailed"));
     } finally {
       setIsSubmitting(false);
     }
@@ -612,11 +811,17 @@ export default function Step3Panel({
             </label>
             <input
               id="signed-name"
-              className={FIELD_INPUT}
+              className={fieldControlClass(FIELD_INPUT, contactIssue?.field === "signed-name")}
               value={signedName}
-              onChange={(e) => setSignedName(e.target.value)}
+              onChange={(e) => {
+                setSignedName(e.target.value);
+                if (contactIssue?.field === "signed-name") setContactIssue(null);
+              }}
               placeholder={t("namePlaceholder")}
+              aria-invalid={contactIssue?.field === "signed-name" || undefined}
+              aria-describedby={contactIssue?.field === "signed-name" ? "signed-name-error" : undefined}
             />
+            <FieldIssue id="signed-name-error" message={contactIssue?.field === "signed-name" ? contactIssue.message : null} />
           </div>
           <div>
             <label className={FIELD_LABEL} htmlFor="contact-email">
@@ -626,12 +831,18 @@ export default function Step3Panel({
               id="contact-email"
               type="email"
               required
-              className={FIELD_INPUT}
+              className={fieldControlClass(FIELD_INPUT, contactIssue?.field === "contact-email")}
               value={contactEmail}
-              onChange={(e) => setContactEmail(e.target.value)}
+              onChange={(e) => {
+                setContactEmail(e.target.value);
+                if (contactIssue?.field === "contact-email") setContactIssue(null);
+              }}
               placeholder={t("emailPlaceholder")}
               autoComplete="email"
+              aria-invalid={contactIssue?.field === "contact-email" || undefined}
+              aria-describedby={contactIssue?.field === "contact-email" ? "contact-email-error" : undefined}
             />
+            <FieldIssue id="contact-email-error" message={contactIssue?.field === "contact-email" ? contactIssue.message : null} />
           </div>
           <div>
             <label className={FIELD_LABEL} htmlFor="contact-phone">
@@ -640,10 +851,15 @@ export default function Step3Panel({
             <PhoneInputField
               id="contact-phone"
               value={contactPhone}
-              onChange={setContactPhone}
+              invalid={contactIssue?.field === "contact-phone"}
+              onChange={(phone) => {
+                setContactPhone(phone);
+                if (contactIssue?.field === "contact-phone") setContactIssue(null);
+              }}
               placeholder={t("phonePlaceholder")}
               autoComplete="tel"
             />
+            <FieldIssue id="contact-phone-error" message={contactIssue?.field === "contact-phone" ? contactIssue.message : null} />
           </div>
 
           <div className="border-t border-[#d5e0f9] pt-4 space-y-4">
@@ -683,78 +899,121 @@ export default function Step3Panel({
                   </button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div>
+                  <div className="scroll-mt-28">
                     <label className={FIELD_LABEL}>{t("firstName")}</label>
                     <input
-                      className={FIELD_INPUT}
+                      id={`passenger-${index}-first`}
+                      className={fieldControlClass(FIELD_INPUT, contactIssue?.field === `passenger-${index}-first`)}
                       value={passenger.firstName}
-                      onChange={(e) => updateAdditionalPassenger(index, { firstName: e.target.value })}
+                      aria-invalid={contactIssue?.field === `passenger-${index}-first` || undefined}
+                      onChange={(e) => {
+                        updateAdditionalPassenger(index, { firstName: e.target.value });
+                        if (contactIssue?.field === `passenger-${index}-first`) setContactIssue(null);
+                      }}
+                    />
+                    <FieldIssue
+                      id={`passenger-${index}-first-error`}
+                      message={contactIssue?.field === `passenger-${index}-first` ? contactIssue.message : null}
                     />
                   </div>
                   <div>
                     <label className={FIELD_LABEL}>{t("lastName")}</label>
                     <input
-                      className={FIELD_INPUT}
+                      id={`passenger-${index}-last`}
+                      className={fieldControlClass(FIELD_INPUT, contactIssue?.field === `passenger-${index}-first`)}
                       value={passenger.lastName}
-                      onChange={(e) => updateAdditionalPassenger(index, { lastName: e.target.value })}
+                      onChange={(e) => {
+                        updateAdditionalPassenger(index, { lastName: e.target.value });
+                        if (contactIssue?.field === `passenger-${index}-first`) setContactIssue(null);
+                      }}
                     />
                   </div>
-                  <div>
+                  <div className="scroll-mt-28">
                     <label className={FIELD_LABEL}>{t("emailAddress")}</label>
                     <input
+                      id={`passenger-${index}-email`}
                       type="email"
-                      className={FIELD_INPUT}
+                      className={fieldControlClass(FIELD_INPUT, contactIssue?.field === `passenger-${index}-email`)}
                       value={passenger.email}
-                      onChange={(e) => updateAdditionalPassenger(index, { email: e.target.value })}
+                      aria-invalid={contactIssue?.field === `passenger-${index}-email` || undefined}
+                      onChange={(e) => {
+                        updateAdditionalPassenger(index, { email: e.target.value });
+                        if (contactIssue?.field === `passenger-${index}-email`) setContactIssue(null);
+                      }}
+                    />
+                    <FieldIssue
+                      id={`passenger-${index}-email-error`}
+                      message={contactIssue?.field === `passenger-${index}-email` ? contactIssue.message : null}
                     />
                   </div>
-                  <div>
+                  <div className="scroll-mt-28">
                     <label className={FIELD_LABEL}>{t("phoneNumber")}</label>
                     <PhoneInputField
+                      id={`passenger-${index}-phone`}
                       value={passenger.phone}
-                      onChange={(phone) => updateAdditionalPassenger(index, { phone })}
+                      invalid={contactIssue?.field === `passenger-${index}-phone`}
+                      onChange={(phone) => {
+                        updateAdditionalPassenger(index, { phone });
+                        if (contactIssue?.field === `passenger-${index}-phone`) setContactIssue(null);
+                      }}
                       placeholder={t("phonePlaceholder")}
                       aria-label={t("phoneNumber")}
+                    />
+                    <FieldIssue
+                      id={`passenger-${index}-phone-error`}
+                      message={contactIssue?.field === `passenger-${index}-phone` ? contactIssue.message : null}
                     />
                   </div>
                 </div>
               </div>
             ))}
           </div>
-
-          {contactError && (
-            <p className="text-sm text-[#e82828]" role="alert">
-              {contactError}
-            </p>
-          )}
         </div>
       )}
 
       {phase === "documents" && (
         <div className="flex-1 border border-[#d5e0f9] rounded-[14px] bg-[#fafbff] p-4 sm:p-5 mb-4 space-y-3 overflow-y-auto">
           <p className="text-[#7b8094] text-xs sm:text-sm leading-relaxed">{t("documentsHint")}</p>
+          {payloadNotice && (
+            <p id="claim-documents-error" role="alert" className="text-sm leading-snug text-[#e82828]">
+              {payloadNotice.message}
+            </p>
+          )}
           <FileUploadField
             id="passport-copy"
             label={t("docs.passport")}
             hint={t("docs.passportHint")}
             file={passportCopy}
-            onChange={setPassportCopy}
+            error={docErrors.passport}
+            marked={Boolean(payloadNotice?.names.includes(passportCopy?.name ?? ""))}
+            onChange={(file) => void acceptDocument("passport", "passport-copy-field", file, setPassportCopy)}
           />
           <FileUploadField
             id="booking-confirmation"
             label={t("docs.booking")}
             hint={t("docs.bookingHint")}
             file={bookingConfirmation}
-            onChange={setBookingConfirmation}
+            error={docErrors.booking}
+            marked={Boolean(payloadNotice?.names.includes(bookingConfirmation?.name ?? ""))}
+            onChange={(file) => void acceptDocument("booking", "booking-confirmation-field", file, setBookingConfirmation)}
           />
           <FileUploadField
             id="expenses-receipts"
             label={t("docs.expenses")}
             hint={t("docs.expensesHint")}
             file={expensesReceipts}
-            onChange={setExpensesReceipts}
+            error={docErrors.expenses}
+            marked={Boolean(payloadNotice?.names.includes(expensesReceipts?.name ?? ""))}
+            onChange={(file) => void acceptDocument("expenses", "expenses-receipts-field", file, setExpensesReceipts)}
           />
-          <div className="bg-white border border-[#d5e0f9] rounded-xl p-4 space-y-2">
+          <div
+            id="other-documents-field"
+            className={`scroll-mt-28 bg-white border rounded-xl p-4 space-y-2 ${
+              docErrors.other || otherDocuments.some((file) => payloadNotice?.names.includes(file.name))
+                ? "border-[#e82828]"
+                : "border-[#d5e0f9]"
+            }`}
+          >
             <label className={FIELD_LABEL} htmlFor="other-documents">
               {t("docs.other")}
             </label>
@@ -765,7 +1024,11 @@ export default function Step3Panel({
               multiple
               accept="image/*,.pdf,application/pdf"
               className="block w-full text-sm text-[#1f3664] file:mr-3 file:rounded-lg file:border-0 file:bg-[#2669f3] file:px-3 file:py-2 file:text-sm file:font-bold file:text-white"
-              onChange={(event) => setOtherDocuments(Array.from(event.target.files ?? []).slice(0, 6))}
+              onChange={(event) => {
+                const files = Array.from(event.target.files ?? []).slice(0, 6);
+                event.target.value = "";
+                void acceptOtherDocuments(files);
+              }}
               {...gtmId("claim_step3_upload_other_documents")}
             />
             {otherDocuments.length > 0 && (
@@ -775,6 +1038,7 @@ export default function Step3Panel({
                 ))}
               </ul>
             )}
+            <FieldIssue id="other-documents-error" message={docErrors.other} />
           </div>
         </div>
       )}
@@ -955,7 +1219,29 @@ export default function Step3Panel({
             </button>
             <button
               type="button"
-              onClick={() => setPhase("review")}
+              onClick={() => {
+                if (payloadNotice) {
+                  focusClaimField("claim-documents-error");
+                  return;
+                }
+                if (docErrors.passport) {
+                  focusClaimField("passport-copy-field");
+                  return;
+                }
+                if (docErrors.booking) {
+                  focusClaimField("booking-confirmation-field");
+                  return;
+                }
+                if (docErrors.expenses) {
+                  focusClaimField("expenses-receipts-field");
+                  return;
+                }
+                if (docErrors.other) {
+                  focusClaimField("other-documents-field");
+                  return;
+                }
+                setPhase("review");
+              }}
               className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto ${ACTION_BTN}`}
               {...gtmId("claim_step3_continue_to_review")}
             >

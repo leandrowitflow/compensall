@@ -211,7 +211,7 @@
         "extractFailed": "Wir konnten nicht alle Angaben automatisch lesen. Bitte ergänzen Sie Ihre Flugdaten unten.",
         "somethingWentWrong": "Etwas ist schiefgelaufen. Bitte tragen Sie Ihre Flugdaten unten ein.",
         "unsupportedType": "Dateityp nicht unterstützt. Laden Sie eine Bordkarte als PDF, JPG, PNG, WebP oder HEIC hoch.",
-        "tooLarge": "Die Datei ist zu groß. Maximal 10 MB."
+        "tooLarge": "Diese Datei ist zu groß zum Senden. Verwenden Sie ein Foto oder ein PDF unter 4 MB."
       }
     },
     "step2": {
@@ -233,7 +233,9 @@
         "passengerRequired": "Der Name des Fluggastes ist erforderlich.",
         "flightRequired": "Die Flugnummer ist erforderlich.",
         "routeRequired": "Die Strecke ist erforderlich.",
-        "dateRequired": "Das Flugdatum ist erforderlich."
+        "dateRequired": "Das Flugdatum ist erforderlich.",
+        "departureRequired": "Geben Sie den Abflughafen an.",
+        "arrivalRequired": "Geben Sie den Ankunftsflughafen an."
       },
       "fields": {
         "passenger": "Fluggast",
@@ -391,6 +393,9 @@
         "signConnectionError": "Die Unterschrift konnte nicht gespeichert werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
         "signBeforeSubmit": "Bitte unterschreiben Sie die Vollmacht für jeden Fluggast, bevor Sie senden.",
         "submitFailed": "Ihr Antrag konnte nicht gesendet werden.",
+        "fileTooLarge": "{name} ist zu groß ({size}). Ersetzen Sie die Datei durch ein Foto oder PDF unter 4 MB.",
+        "unsupportedFile": "{name} hat ein nicht unterstütztes Format. Verwenden Sie ein PDF, JPG oder PNG.",
+        "payloadTooLarge": "Diese Dateien sind zusammen zu groß ({size}). Entfernen oder ersetzen Sie die größten, damit alles unter 4 MB bleibt: {names}.",
         "duplicateClaim": "Wir haben bereits einen Antrag mit diesem Namen, dieser E-Mail, dieser Flugnummer und diesem Datum. Sie müssen ihn nicht erneut senden.",
         "sessionExpired": "Die Sitzung ist abgelaufen. Bitte beginnen Sie erneut."
       }
@@ -814,6 +819,7 @@
     "startNewClaim": "Neuen Antrag starten",
     "claimDetails": "Angaben zum Antrag",
     "status": "Status",
+    "statusGuide": "Das sind die möglichen Schritte eines Antrags. Nur der markierte Schritt ist der aktuelle Stand.",
     "fields": {
       "passenger": "Fluggast",
       "flight": "Flug",
@@ -828,30 +834,37 @@
     "statuses": {
       "received": {
         "label": "Eingegangen",
+        "summary": "Unser Team prüft den Antrag.",
         "message": "Wir haben Ihren Antrag erhalten und unser Team prüft ihn. Hier aktualisieren wir, sobald es Neuigkeiten gibt."
       },
       "needs_documents": {
         "label": "Unterlagen nötig",
+        "summary": "Nur wenn etwas fehlt. Wir fragen per E-Mail — auf dieser Seite gibt es nichts hochzuladen.",
         "message": "Für den nächsten Schritt brauchen wir noch Unterlagen. Prüfen Sie Ihre E-Mail oder schreiben Sie uns unter +351 923391980. Wir helfen gern."
       },
       "with_airline": {
         "label": "Bei der Airline",
+        "summary": "Der Antrag liegt bei der Airline, wir warten auf die Antwort.",
         "message": "Ihr Antrag liegt bei der Airline. Wir warten auf die Antwort und aktualisieren, sobald wir etwas hören."
       },
       "following_up": {
         "label": "In Nachfassung",
+        "summary": "Wir haken bei der Airline nach, sobald sie geantwortet hat.",
         "message": "Die Airline hat geantwortet, und wir fassen in Ihrem Namen nach. Über jede Entwicklung halten wir Sie auf dem Laufenden."
       },
       "payment_processing": {
         "label": "Zahlung in Bearbeitung",
+        "summary": "Die Airline hat die Entschädigung zugesagt, die Auszahlung wird vorbereitet.",
         "message": "Gute Nachricht: Die Airline hat die Entschädigung zugesagt. Wir bereiten jetzt die Auszahlung vor und aktualisieren in Kürze."
       },
       "awaiting_fee": {
         "label": "Servicegebühr",
+        "summary": "Unsere Gebühr wird erst nach einem erfolgreichen Antrag fällig.",
         "message": "Glückwunsch, Ihr Anspruch war erfolgreich. Bitte zahlen Sie die Servicegebühr, damit wir den Vorgang abschließen können."
       },
       "paid": {
         "label": "Ausgezahlt",
+        "summary": "Die Entschädigung wurde ausgezahlt.",
         "message": "Die Auszahlung ist erfolgt. Danke für Ihr Vertrauen. Bei Fragen sind wir da."
       },
       "closed_ntd": {

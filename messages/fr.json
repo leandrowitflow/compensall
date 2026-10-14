@@ -211,7 +211,7 @@
         "extractFailed": "Nous n'avons pas pu lire tous les détails automatiquement. Veuillez renseigner les informations de votre vol ci-dessous.",
         "somethingWentWrong": "Une erreur s'est produite. Veuillez renseigner les informations de votre vol ci-dessous.",
         "unsupportedType": "Type de fichier non pris en charge. Téléchargez une carte d'embarquement PDF, JPG, PNG, WebP ou HEIC.",
-        "tooLarge": "Fichier trop volumineux. La taille maximale est de 10 Mo."
+        "tooLarge": "Ce fichier est trop volumineux pour être envoyé. Utilisez une photo ou un PDF de moins de 4 Mo."
       }
     },
     "step2": {
@@ -233,7 +233,9 @@
         "passengerRequired": "Le nom du passager est obligatoire.",
         "flightRequired": "Le numéro de vol est obligatoire.",
         "routeRequired": "L'itinéraire est obligatoire.",
-        "dateRequired": "La date du vol est obligatoire."
+        "dateRequired": "La date du vol est obligatoire.",
+        "departureRequired": "Indiquez l’aéroport de départ.",
+        "arrivalRequired": "Indiquez l’aéroport d’arrivée."
       },
       "fields": {
         "passenger": "Passager",
@@ -391,6 +393,9 @@
         "signConnectionError": "Impossible d'enregistrer votre signature. Vérifiez votre connexion et réessayez.",
         "signBeforeSubmit": "Veuillez faire signer la procuration par chaque passager avant de soumettre.",
         "submitFailed": "Impossible de soumettre votre réclamation.",
+        "fileTooLarge": "{name} est trop volumineux ({size}). Remplacez-le par une photo ou un PDF de moins de 4 Mo.",
+        "unsupportedFile": "{name} n’est pas un format accepté. Utilisez un PDF, JPG ou PNG.",
+        "payloadTooLarge": "Ces fichiers sont trop volumineux ensemble ({size}). Retirez ou remplacez les plus lourds pour rester sous 4 Mo : {names}.",
         "duplicateClaim": "Nous avons déjà une réclamation avec ce nom, cet e-mail, ce numéro de vol et cette date. Inutile de la renvoyer.",
         "sessionExpired": "La session de réclamation a expiré. Veuillez recommencer."
       }
@@ -814,6 +819,7 @@
     "startNewClaim": "Démarrer une nouvelle réclamation",
     "claimDetails": "Détails de la réclamation",
     "status": "Statut",
+    "statusGuide": "Voici les étapes possibles d'une réclamation. Seule l'étape en surbrillance correspond à la vôtre.",
     "fields": {
       "passenger": "Passager",
       "flight": "Vol",
@@ -828,30 +834,37 @@
     "statuses": {
       "received": {
         "label": "Reçu",
+        "summary": "Notre équipe examine la réclamation.",
         "message": "Nous avons reçu votre réclamation et notre équipe l'examine. Nous vous mettrons à jour ici dès qu'il y aura des nouvelles."
       },
       "needs_documents": {
         "label": "Documents nécessaires",
+        "summary": "Uniquement s'il manque quelque chose. Nous le demandons par e-mail — rien à envoyer depuis cette page.",
         "message": "Nous avons besoin de quelques documents supplémentaires pour faire avancer votre dossier. Vérifiez votre e-mail ou contactez-nous au +351 923391980. Nous sommes là pour vous aider!"
       },
       "with_airline": {
         "label": "Chez la compagnie",
+        "summary": "La réclamation est chez la compagnie, en attente de réponse.",
         "message": "Votre réclamation a été soumise à la compagnie aérienne. Nous attendons leur réponse et vous informerons dès que possible."
       },
       "following_up": {
         "label": "Suivi en cours",
+        "summary": "Nous relançons la compagnie après sa réponse.",
         "message": "La compagnie a répondu et nous assurons le suivi pour vous. Nous vous tiendrons informé de toute évolution."
       },
       "payment_processing": {
         "label": "Paiement en cours",
+        "summary": "La compagnie a accepté l'indemnisation et le paiement est en cours.",
         "message": "Bonne nouvelle — la compagnie a approuvé votre indemnisation! Nous traitons maintenant le paiement et vous tiendrons informé sous peu."
       },
       "awaiting_fee": {
         "label": "Frais de service",
+        "summary": "Nos frais ne sont dus qu'après une réclamation réussie.",
         "message": "Félicitations, votre réclamation a abouti! Veuillez régler nos frais de service afin que nous puissions clôturer votre dossier."
       },
       "paid": {
         "label": "Payé",
+        "summary": "L'indemnisation a été versée.",
         "message": "Votre paiement a été effectué! Merci de votre confiance. Pour toute question, nous restons à votre disposition."
       },
       "closed_ntd": {

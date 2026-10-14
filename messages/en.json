@@ -211,7 +211,7 @@
         "extractFailed": "We couldn't read every detail automatically. Please fill in your flight details below.",
         "somethingWentWrong": "Something went wrong. Please fill in your flight details below.",
         "unsupportedType": "Unsupported file type. Upload a PDF, JPG, PNG, WebP, or HEIC boarding pass.",
-        "tooLarge": "File is too large. Maximum size is 10 MB."
+        "tooLarge": "This file is too large to send. Use a photo or a PDF under 4 MB."
       }
     },
     "step2": {
@@ -233,7 +233,9 @@
         "passengerRequired": "Passenger name is required.",
         "flightRequired": "Flight number is required.",
         "routeRequired": "Route is required.",
-        "dateRequired": "Flight date is required."
+        "dateRequired": "Flight date is required.",
+        "departureRequired": "Enter the departure airport.",
+        "arrivalRequired": "Enter the arrival airport."
       },
       "fields": {
         "passenger": "Passenger",
@@ -391,6 +393,9 @@
         "signConnectionError": "Could not record your signature. Check your connection and try again.",
         "signBeforeSubmit": "Please sign the Power of Attorney for every passenger before submitting.",
         "submitFailed": "Could not submit your claim.",
+        "fileTooLarge": "{name} is too large ({size}). Replace it with a photo or PDF under 4 MB.",
+        "unsupportedFile": "{name} isn’t a supported file. Use a PDF, JPG, or PNG.",
+        "payloadTooLarge": "These files together are too large to send ({size}). Remove or replace the largest ones so the total stays under 4 MB: {names}.",
         "duplicateClaim": "We already have a claim with this name, email, flight number and date. You don't need to submit it again.",
         "sessionExpired": "Claim session expired. Please start again."
       }
@@ -814,6 +819,7 @@
     "startNewClaim": "Start a new claim",
     "claimDetails": "Claim details",
     "status": "Status",
+    "statusGuide": "These are the stages a claim can go through. Only the highlighted step is where yours is now.",
     "fields": {
       "passenger": "Passenger",
       "flight": "Flight",
@@ -828,30 +834,37 @@
     "statuses": {
       "received": {
         "label": "Received",
+        "summary": "Our team reviews the claim.",
         "message": "We've received your claim and our team is reviewing it. We'll update you here as soon as there's news."
       },
       "needs_documents": {
         "label": "Documents needed",
+        "summary": "Only if something is missing. We ask by email — there is nothing to send from this page.",
         "message": "We need a few more documents to move your claim forward. Please check your email for details, or message us on +351 923391980. We're happy to help!"
       },
       "with_airline": {
         "label": "With the airline",
+        "summary": "The claim is with the airline while we wait for their answer.",
         "message": "Your claim has been submitted to the airline. We're waiting for their response and will update you as soon as we hear back."
       },
       "following_up": {
         "label": "Following up",
+        "summary": "We chase the airline after they reply.",
         "message": "The airline has responded, and we're following up on your behalf. We'll keep you informed of any developments."
       },
       "payment_processing": {
         "label": "Payment processing",
+        "summary": "The airline approved the compensation and payment is being arranged.",
         "message": "Great news — the airline has approved your compensation! We're now processing your payment and will update you shortly."
       },
       "awaiting_fee": {
         "label": "Service fee",
+        "summary": "Our fee is due only after the claim succeeds.",
         "message": "Congratulations, your claim was successful! Please complete payment of our service fee so we can close your case."
       },
       "paid": {
         "label": "Paid",
+        "summary": "The compensation has been paid.",
         "message": "Your payment has been completed! Thank you for trusting us with your claim. If you have any questions, we're always here to help."
       },
       "closed_ntd": {

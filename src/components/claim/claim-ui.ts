@@ -13,3 +13,11 @@ export const FIELD_SELECT =
   "w-full border border-[#d5e0f9] rounded-[10px] h-11 px-3 text-sm text-[#1f3664] outline-none focus:border-[#2669f3] bg-white";
 
 export const FIELD_LABEL = "block text-[#7b8094] text-xs sm:text-sm mb-1";
+
+export function fieldControlClass(base: string, invalid: boolean): string {
+  if (!invalid) return base;
+  return base
+    .replace("border-[#d5e0f9]", "border-[#e82828]")
+    .replace("focus:border-[#2669f3]", "focus:border-[#e82828]")
+    .replace("focus-within:border-[#2669f3]", "focus-within:border-[#e82828]");
+}

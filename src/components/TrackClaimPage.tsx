@@ -44,33 +44,60 @@ function StatusTimeline({ currentStatus }: { currentStatus: ClaimStatus }) {
   }
 
   return (
-    <ol className="space-y-5">
-      {CLAIM_STATUS_ORDER.map((step, index) => {
-        const isComplete = index <= currentIndex;
-        const isCurrent = index === currentIndex;
-        return (
-          <li key={step} className="flex items-start gap-3.5">
-            <div
-              className={`mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold ${
-                isComplete ? "bg-[#2669f3] text-white" : "border-2 border-[#d5e0f9] text-[#7b8094]"
-              }`}
-            >
-              {index + 1}
-            </div>
-            <div className="min-w-0 pt-0.5">
-              <p className={`font-bold leading-snug ${isCurrent ? "text-[#2669f3]" : "text-[#1f3664]"}`}>
-                {t(`statuses.${step}.label`)}
-              </p>
-              {isCurrent && (
-                <p className="text-[#7b8094] text-sm mt-1.5 leading-relaxed">
-                  {t(`statuses.${step}.message`)}
+    <div>
+      <p className="text-[#5a6d8f] text-sm leading-relaxed mb-6">{t("statusGuide")}</p>
+      <ol>
+        {CLAIM_STATUS_ORDER.map((step, index) => {
+          const isPast = index < currentIndex;
+          const isCurrent = index === currentIndex;
+          const isLast = index === CLAIM_STATUS_ORDER.length - 1;
+          return (
+            <li key={step} className="flex gap-3.5">
+              <div className="flex w-7 flex-shrink-0 flex-col items-center" aria-hidden="true">
+                <div
+                  className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold ${
+                    isCurrent || isPast
+                      ? "bg-[#2669f3] text-white"
+                      : "border-2 border-[#d5e0f9] bg-white text-[#7b8094]"
+                  }`}
+                >
+                  {isPast ? (
+                    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" aria-hidden="true">
+                      <path
+                        d="M3.5 8.2 6.4 11l6.1-6.2"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  ) : (
+                    index + 1
+                  )}
+                </div>
+                {!isLast && (
+                  <div
+                    className={`my-1 w-0.5 flex-1 min-h-3 ${isPast ? "bg-[#2669f3]" : "bg-[#d5e0f9]"}`}
+                  />
+                )}
+              </div>
+              <div className={`min-w-0 pt-0.5 ${isLast ? "" : "pb-5"}`}>
+                <p className={`font-bold leading-snug ${isCurrent ? "text-[#2669f3]" : "text-[#1f3664]"}`}>
+                  {t(`statuses.${step}.label`)}
                 </p>
-              )}
-            </div>
-          </li>
-        );
-      })}
-    </ol>
+                <p
+                  className={`mt-1 leading-relaxed ${
+                    isCurrent ? "text-sm text-[#5a6d8f]" : "text-[13px] text-[#8b93a7]"
+                  }`}
+                >
+                  {isCurrent ? t(`statuses.${step}.message`) : t(`statuses.${step}.summary`)}
+                </p>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
   );
 }
 

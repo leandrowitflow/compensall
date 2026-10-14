@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { startTransition, useEffect, useRef, useState, type DragEvent } from "react";
 import { validateBoardingPassFile, BOARDING_PASS_ACCEPT } from "@/lib/boarding-pass-file";
+import { prepareClaimFile } from "@/lib/prepare-claim-file";
 import {
   normalizeFlightData,
   type ClaimFlightData,
@@ -105,7 +106,8 @@ export default function Step1Upload({
   const handleFile = async (file: File | null) => {
     if (!file || isExtracting || processingRef.current) return;
 
-    const validationError = validateBoardingPassFile(file);
+    const prepared = await prepareClaimFile(file);
+    const validationError = validateBoardingPassFile(prepared);
     if (validationError) {
       setUploadError(tStep1(`errors.${validationError}`));
       return;
@@ -114,7 +116,7 @@ export default function Step1Upload({
     setUploadError(null);
     processingRef.current = true;
     try {
-      await onExtract(file);
+      await onExtract(prepared);
     } finally {
       processingRef.current = false;
       if (inputRef.current) {

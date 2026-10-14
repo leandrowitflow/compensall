@@ -211,7 +211,7 @@
         "extractFailed": "Nu am putut citi automat toate datele. Completează datele zborului mai jos.",
         "somethingWentWrong": "Ceva nu a mers. Completează datele zborului mai jos.",
         "unsupportedType": "Tip de fișier neacceptat. Încarcă o carte de îmbarcare în PDF, JPG, PNG, WebP sau HEIC.",
-        "tooLarge": "Fișierul este prea mare. Dimensiunea maximă este de 10 MB."
+        "tooLarge": "Fișierul este prea mare pentru a fi trimis. Folosiți o fotografie sau un PDF de sub 4 MB."
       }
     },
     "step2": {
@@ -233,7 +233,9 @@
         "passengerRequired": "Numele pasagerului este obligatoriu.",
         "flightRequired": "Numărul zborului este obligatoriu.",
         "routeRequired": "Ruta este obligatorie.",
-        "dateRequired": "Data zborului este obligatorie."
+        "dateRequired": "Data zborului este obligatorie.",
+        "departureRequired": "Introduceți aeroportul de plecare.",
+        "arrivalRequired": "Introduceți aeroportul de sosire."
       },
       "fields": {
         "passenger": "Pasager",
@@ -391,6 +393,9 @@
         "signConnectionError": "Nu am putut înregistra semnătura. Verifică conexiunea și încearcă din nou.",
         "signBeforeSubmit": "Semnează împuternicirea tuturor pasagerilor înainte de a trimite.",
         "submitFailed": "Nu am putut trimite cererea.",
+        "fileTooLarge": "{name} este prea mare ({size}). Înlocuiți-l cu o fotografie sau un PDF de sub 4 MB.",
+        "unsupportedFile": "{name} nu este un fișier acceptat. Folosiți un PDF, JPG sau PNG.",
+        "payloadTooLarge": "Aceste fișiere împreună sunt prea mari ({size}). Eliminați sau înlocuiți pe cele mai mari, astfel încât totalul să rămână sub 4 MB: {names}.",
         "duplicateClaim": "Avem deja o cerere cu acest nume, email, număr de zbor și dată. Nu mai trebuie trimisă încă o dată.",
         "sessionExpired": "Sesiunea cererii a expirat. Începe din nou."
       }
@@ -814,6 +819,7 @@
     "startNewClaim": "Începe o cerere nouă",
     "claimDetails": "Datele cererii",
     "status": "Stare",
+    "statusGuide": "Aceștia sunt pașii posibili ai unei cereri. Doar pasul evidențiat este starea actuală.",
     "fields": {
       "passenger": "Pasager",
       "flight": "Zbor",
@@ -828,30 +834,37 @@
     "statuses": {
       "received": {
         "label": "Primită",
+        "summary": "Echipa noastră analizează cererea.",
         "message": "Am primit cererea ta și echipa o revizuiește. Te vom actualiza aici de îndată ce avem noutăți."
       },
       "needs_documents": {
         "label": "Documente necesare",
+        "summary": "Doar dacă lipsește ceva. Cerem pe email — pe această pagină nu este nimic de trimis.",
         "message": "Avem nevoie de câteva documente în plus ca să continuăm. Verifică e-mailul sau scrie-ne la +351 923391980. Te ajutăm cu plăcere."
       },
       "with_airline": {
         "label": "La companie",
+        "summary": "Cererea este la companie, așteptăm răspunsul.",
         "message": "Cererea a fost depusă la compania aeriană. Așteptăm răspunsul și te actualizăm imediat ce știm ceva."
       },
       "following_up": {
         "label": "În urmărire",
+        "summary": "Urmărim compania după ce răspunde.",
         "message": "Compania a răspuns și facem urmărirea în numele tău. Te ținem la curent cu orice noutate."
       },
       "payment_processing": {
         "label": "Plată în curs",
+        "summary": "Compania a aprobat despăgubirea și plata se pregătește.",
         "message": "Vești bune: compania ți-a aprobat despăgubirea. Procesăm plata și te actualizăm în curând."
       },
       "awaiting_fee": {
         "label": "Comisionul serviciului",
+        "summary": "Comisionul nostru se datorează doar după o cerere reușită.",
         "message": "Felicitări, cererea a reușit! Finalizează plata comisionului nostru ca să putem închide cazul."
       },
       "paid": {
         "label": "Plătită",
+        "summary": "Despăgubirea a fost plătită.",
         "message": "Plata ta s-a finalizat! Mulțumim pentru încredere. Dacă ai întrebări, suntem aici."
       },
       "closed_ntd": {

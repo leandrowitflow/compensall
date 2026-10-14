@@ -40,7 +40,7 @@ export const BOARDING_PASS_MIME_TYPES = new Set([
 export const BOARDING_PASS_ACCEPT =
   ".pdf,.jpg,.jpeg,.png,.webp,.heic,.heif,application/pdf,image/jpeg,image/png,image/webp,image/heic,image/heif";
 
-export const MAX_BOARDING_PASS_SIZE = 10 * 1024 * 1024;
+export const MAX_BOARDING_PASS_SIZE = 4 * 1024 * 1024;
 
 export function validateBoardingPassFile(file: File): "unsupportedType" | "tooLarge" | null {
   const mimeType = inferMimeType(file.name, file.type);

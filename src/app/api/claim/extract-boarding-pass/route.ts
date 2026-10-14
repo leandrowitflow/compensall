@@ -19,13 +19,13 @@ export async function POST(request: Request) {
 
     if (!isAllowedBoardingPassMime(mimeType)) {
       return Response.json(
-        { error: "Unsupported file type. Upload a PDF, JPG, PNG, or HEIC boarding pass." },
+        { error: "unsupported_type" },
         { status: 400 },
       );
     }
 
     if (file.size > MAX_FILE_SIZE) {
-      return Response.json({ error: "File is too large. Maximum size is 10 MB." }, { status: 400 });
+      return Response.json({ error: "file_too_large" }, { status: 400 });
     }
 
     if (!isGeminiConfigured()) {

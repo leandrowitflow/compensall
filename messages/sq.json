@@ -211,7 +211,7 @@
         "extractFailed": "Nuk i lexuam automatikisht të gjitha detajet. Plotësoji më poshtë të dhënat e fluturimit.",
         "somethingWentWrong": "Diçka shkoi keq. Plotësoji më poshtë të dhënat e fluturimit.",
         "unsupportedType": "Lloj skedari i pambështetur. Ngarko një kartë imbarkimi PDF, JPG, PNG, WebP ose HEIC.",
-        "tooLarge": "Skedari është shumë i madh. Maksimumi është 10 MB."
+        "tooLarge": "Skedari është shumë i madh për t’u dërguar. Përdorni një foto ose PDF nën 4 MB."
       }
     },
     "step2": {
@@ -233,7 +233,9 @@
         "passengerRequired": "Emri i pasagjerit është i detyrueshëm.",
         "flightRequired": "Numri i fluturimit është i detyrueshëm.",
         "routeRequired": "Itinerari është i detyrueshëm.",
-        "dateRequired": "Data e fluturimit është e detyrueshme."
+        "dateRequired": "Data e fluturimit është e detyrueshme.",
+        "departureRequired": "Shkruani aeroportin e nisjes.",
+        "arrivalRequired": "Shkruani aeroportin e mbërritjes."
       },
       "fields": {
         "passenger": "Pasagjer",
@@ -391,6 +393,9 @@
         "signConnectionError": "Nuk e regjistruam nënshkrimin. Kontrollo lidhjen dhe provo sërish.",
         "signBeforeSubmit": "Nënshkruaje Prokurën për çdo pasagjer para se të dërgosh.",
         "submitFailed": "Nuk e dërguam kërkesën.",
+        "fileTooLarge": "{name} është shumë i madh ({size}). Zëvendësojeni me një foto ose PDF nën 4 MB.",
+        "unsupportedFile": "{name} nuk është një skedar i lejuar. Përdorni PDF, JPG ose PNG.",
+        "payloadTooLarge": "Këta skedarë së bashku janë shumë të mëdhenj ({size}). Hiqni ose zëvendësoni më të mëdhenjtë që totali të mbetet nën 4 MB: {names}.",
         "duplicateClaim": "E kemi tashmë një kërkesë me këtë emër, email, numër fluturimi dhe datë. Nuk ka nevojë ta dërgosh përsëri.",
         "sessionExpired": "Sesioni i kërkesës skadoi. Fillo sërish."
       }
@@ -814,6 +819,7 @@
     "startNewClaim": "Nis një kërkesë të re",
     "claimDetails": "Detajet e kërkesës",
     "status": "Statusi",
+    "statusGuide": "Këta janë hapat e mundshëm të një kërkese. Vetëm hapi i theksuar është gjendja aktuale.",
     "fields": {
       "passenger": "Pasagjer",
       "flight": "Fluturim",
@@ -828,30 +834,37 @@
     "statuses": {
       "received": {
         "label": "U mor",
+        "summary": "Ekipi ynë po e shqyrton kërkesën.",
         "message": "E morëm kërkesën dhe ekipi ynë po e shqyrton. Do ta përditësojmë këtu sapo të ketë lajm."
       },
       "needs_documents": {
         "label": "Duhet dokumentacion",
+        "summary": "Vetëm nëse mungon diçka. E kërkojmë me email — në këtë faqe s'ka asgjë për të dërguar.",
         "message": "Na duhen edhe disa dokumente për të vazhduar. Shikoje emailin, ose na shkruaj në +351 923391980. Jemi gati të ndihmojmë."
       },
       "with_airline": {
         "label": "Te kompania ajrore",
+        "summary": "Kërkesa është te kompania, në pritje të përgjigjes.",
         "message": "Kërkesa shkoi te kompania. Po presim përgjigjen dhe do të përditësojmë sapo të ketë lajm."
       },
       "following_up": {
         "label": "Në ndjekje",
+        "summary": "E ndjekim kompaninë pasi të përgjigjet.",
         "message": "Kompania u përgjigj dhe po e ndjekim në emrin tënd. Do të të njoftojmë për çdo zhvillim."
       },
       "payment_processing": {
         "label": "Pagesa në proces",
+        "summary": "Kompania e miratoi kompensimin dhe pagesa po përgatitet.",
         "message": "Lajm i mirë: kompania e miratoi kompensimin. Tani po e përgatisim pagesën dhe së shpejti do të përditësojmë."
       },
       "awaiting_fee": {
         "label": "Tarifa e shërbimit",
+        "summary": "Tarifa jonë paguhet vetëm pas një kërkese të suksesshme.",
         "message": "Urime, kërkesa doli me sukses! Përfundo pagesën e tarifës së shërbimit që ta mbyllim dosjen."
       },
       "paid": {
         "label": "U pagua",
+        "summary": "Kompensimi është paguar.",
         "message": "Pagesa u krye! Faleminderit për besimin. Nëse ke pyetje, jemi këtu."
       },
       "closed_ntd": {

@@ -211,7 +211,7 @@
         "extractFailed": "Nem tudtunk minden adatot automatikusan kiolvasni. Töltsd ki alább a járatadataidat.",
         "somethingWentWrong": "Valami hiba történt. Töltsd ki alább a járatadataidat.",
         "unsupportedType": "Nem támogatott fájltípus. Tölts fel PDF, JPG, PNG, WebP vagy HEIC beszállókártyát.",
-        "tooLarge": "A fájl túl nagy. A maximális méret 10 MB."
+        "tooLarge": "A fájl túl nagy a küldéshez. Használjon 4 MB-nál kisebb fotót vagy PDF-et."
       }
     },
     "step2": {
@@ -233,7 +233,9 @@
         "passengerRequired": "Az utas neve kötelező.",
         "flightRequired": "A járatszám kötelező.",
         "routeRequired": "Az útvonal kötelező.",
-        "dateRequired": "A járat dátuma kötelező."
+        "dateRequired": "A járat dátuma kötelező.",
+        "departureRequired": "Adja meg az indulási repülőteret.",
+        "arrivalRequired": "Adja meg az érkezési repülőteret."
       },
       "fields": {
         "passenger": "Utas",
@@ -391,6 +393,9 @@
         "signConnectionError": "Nem tudtuk rögzíteni az aláírásodat. Ellenőrizd a kapcsolatot, és próbáld újra.",
         "signBeforeSubmit": "Beküldés előtt minden utasnak írja alá a meghatalmazást.",
         "submitFailed": "A kárigényt nem sikerült beküldeni.",
+        "fileTooLarge": "A(z) {name} túl nagy ({size}). Cserélje egy 4 MB alatti fotóra vagy PDF-re.",
+        "unsupportedFile": "A(z) {name} nem támogatott fájl. Használjon PDF-et, JPG-t vagy PNG-t.",
+        "payloadTooLarge": "Ezek a fájlok együtt túl nagyok ({size}). Vegye ki vagy cserélje a legnagyobbakat, hogy az összméret 4 MB alatt maradjon: {names}.",
         "duplicateClaim": "Már van kárigényünk ezzel a névvel, e-mail-címmel, járatszámmal és dátummal. Nem kell újra beküldeni.",
         "sessionExpired": "A kárigény-munkamenet lejárt. Kezdd elölről."
       }
@@ -814,6 +819,7 @@
     "startNewClaim": "Új kárigény indítása",
     "claimDetails": "A kárigény adatai",
     "status": "Állapot",
+    "statusGuide": "Ezek egy kárigény lehetséges lépései. Csak a kiemelt lépés a jelenlegi állapot.",
     "fields": {
       "passenger": "Utas",
       "flight": "Járat",
@@ -828,30 +834,37 @@
     "statuses": {
       "received": {
         "label": "Beérkezett",
+        "summary": "A csapatunk átnézi a kárigényt.",
         "message": "Megkaptuk a kárigényed, a csapatunk átnézi. Itt frissítjük, amint van hír."
       },
       "needs_documents": {
         "label": "Iratok kellenek",
+        "summary": "Csak ha hiányzik valami. E-mailben kérjük — ezen az oldalon nincs mit feltölteni.",
         "message": "Még néhány iratra van szükségünk a folytatáshoz. Nézd meg az e-mailed, vagy írj nekünk a +351 923391980-as számon. Szívesen segítünk!"
       },
       "with_airline": {
         "label": "A légitársaságnál",
+        "summary": "A kárigény a légitársaságnál van, a válaszra várunk.",
         "message": "A kárigényed elment a légitársasághoz. Várjuk a válaszukat, és amint van hír, frissítjük."
       },
       "following_up": {
         "label": "Utánkövetés",
+        "summary": "A válasz után utánkövetjük a légitársaságot.",
         "message": "A légitársaság válaszolt, és a nevedben utánkövetjük. Minden fejleményről tájékoztatunk."
       },
       "payment_processing": {
         "label": "Kifizetés folyamatban",
+        "summary": "A légitársaság jóváhagyta a kártérítést, a kifizetés folyamatban van.",
         "message": "Jó hír: a légitársaság jóváhagyta a kártérítést! Most a kifizetést intézzük, és hamarosan frissítjük."
       },
       "awaiting_fee": {
         "label": "Szolgáltatási díj",
+        "summary": "A díjunk csak sikeres kárigény után esedékes.",
         "message": "Gratulálunk, a kárigényed sikeres volt! Teljesítsd a szolgáltatási díj kifizetését, hogy lezárhassuk az ügyet."
       },
       "paid": {
         "label": "Kifizetve",
+        "summary": "A kártérítés ki lett fizetve.",
         "message": "A kifizetésed megtörtént! Köszönjük a bizalmat. Ha kérdésed van, mindig itt vagyunk."
       },
       "closed_ntd": {

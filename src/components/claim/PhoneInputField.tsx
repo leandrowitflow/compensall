@@ -10,6 +10,7 @@ import nlLabels from "react-phone-number-input/locale/nl";
 import esLabels from "react-phone-number-input/locale/es";
 import frLabels from "react-phone-number-input/locale/fr";
 import ptLabels from "react-phone-number-input/locale/pt";
+import { fieldControlClass } from "@/components/claim/claim-ui";
 import { defaultPhoneCountryFromLocale } from "@/lib/phone";
 
 import "react-phone-number-input/style.css";
@@ -21,6 +22,7 @@ type PhoneInputFieldProps = {
   placeholder?: string;
   required?: boolean;
   autoComplete?: string;
+  invalid?: boolean;
   "aria-label"?: string;
 };
 
@@ -56,6 +58,7 @@ export default function PhoneInputField({
   placeholder,
   required,
   autoComplete = "tel",
+  invalid = false,
   "aria-label": ariaLabel,
 }: PhoneInputFieldProps) {
   const locale = useLocale();
@@ -83,7 +86,10 @@ export default function PhoneInputField({
         className:
           "flex-1 min-w-0 h-11 px-3 text-sm text-[#1f3664] outline-none bg-transparent placeholder:text-[#7b8094]",
       }}
-      className="PhoneInputClaim flex w-full items-stretch border border-[#d5e0f9] rounded-[10px] bg-white overflow-hidden focus-within:border-[#2669f3]"
+      className={fieldControlClass(
+        "PhoneInputClaim flex w-full items-stretch border border-[#d5e0f9] rounded-[10px] bg-white overflow-hidden focus-within:border-[#2669f3]",
+        invalid,
+      )}
     />
   );
 }
