@@ -138,9 +138,14 @@ export default function AirportSelect({
 
   const openPicker = () => {
     if (disabled) return;
+    setQuery(value?.iata ?? "");
     setOpen(true);
-    setQuery("");
-    requestAnimationFrame(() => inputRef.current?.focus());
+    requestAnimationFrame(() => {
+      const input = inputRef.current;
+      if (!input) return;
+      input.focus();
+      input.select();
+    });
   };
 
   const selectAirport = (airport: AirportOption) => {
@@ -239,7 +244,7 @@ export default function AirportSelect({
   const isField = variant === "field";
   const triggerClass = isField
     ? "w-full h-11 px-4 flex items-center text-left border border-[#d5e0f9] rounded-[10px] bg-white hover:border-[#2669f3] transition-colors disabled:cursor-not-allowed disabled:opacity-60"
-    : "w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent";
+    : "w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 active:bg-[#e7eeff] transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent";
   const triggerTextClass = isField
     ? "text-[#1f3664] text-sm truncate"
     : "text-[#1f3664] text-base sm:text-lg truncate";

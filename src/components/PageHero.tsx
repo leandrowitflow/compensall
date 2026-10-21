@@ -10,12 +10,15 @@ type PageHeroProps = {
   /** @deprecated Unused — kept optional for call-site compatibility. */
   trustpilotAlt?: string;
   priority?: boolean;
+  /** Track pages are for passengers. The markdown download is an internal tool. */
+  showMarkdownDownload?: boolean;
 };
 
 export default function PageHero({
   title,
   subtitle,
   priority = false,
+  showMarkdownDownload = true,
 }: PageHeroProps) {
   const showTrustpilot = isTrustpilotTrustBoxConfigured();
 
@@ -36,7 +39,7 @@ export default function PageHero({
 
             <h1 className="font-bold text-4xl md:text-5xl lg:text-[34px] xl:text-[57px] text-white leading-[1.2] mb-4 max-w-[1010px] mx-auto">
               {title}
-              <MarkdownDownloadButton tone="onDark" />
+              {showMarkdownDownload && <MarkdownDownloadButton tone="onDark" />}
             </h1>
             <div className="text-white font-bold text-base lg:text-[17px] xl:text-[19px] leading-relaxed max-w-[720px] mx-auto">
               {subtitle}

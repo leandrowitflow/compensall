@@ -34,9 +34,9 @@ type PowerOfAttorneyDocumentProps = {
 
 function FieldLine({ label, value }: { label: string; value?: string }) {
   return (
-    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-[#1f3664]">
+    <div className="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-2 text-sm text-[#1f3664]">
       <span className="font-semibold whitespace-nowrap">{label}</span>
-      <span className="flex-1 min-w-[120px] border-b border-[#1f3664]/40 pb-0.5 font-medium">
+      <span className="min-h-[1.35rem] border-b border-[#1f3664]/40 pb-0.5 font-medium break-words">
         {value?.trim() || "\u00a0"}
       </span>
     </div>
@@ -113,18 +113,10 @@ export default function PowerOfAttorneyDocument({
 
       <div className="space-y-4 mb-8">
         <FieldLine label={copy.name} value={name} />
-
-        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm text-[#1f3664]">
-          <span className="font-semibold whitespace-nowrap">{copy.flights}</span>
-          <span className="font-medium">{flight?.trim() || "\u00a0"}</span>
-          <span className="font-semibold">{copy.from}</span>
-          <span className="flex-1 min-w-[80px] border-b border-[#1f3664]/40 pb-0.5 font-medium">
-            {routeFrom?.trim() || "\u00a0"}
-          </span>
-          <span className="font-semibold">{copy.to}</span>
-          <span className="flex-1 min-w-[80px] border-b border-[#1f3664]/40 pb-0.5 font-medium">
-            {routeTo?.trim() || "\u00a0"}
-          </span>
+        <FieldLine label={copy.flights} value={flight} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <FieldLine label={copy.from} value={routeFrom} />
+          <FieldLine label={copy.to} value={routeTo} />
         </div>
 
         {flightDateInput ? (

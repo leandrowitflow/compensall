@@ -15,7 +15,7 @@ import { FieldIssue, focusClaimField } from "@/components/claim/FieldIssue";
 import { ACTION_BTN, FIELD_INPUT, FIELD_LABEL, fieldControlClass } from "@/components/claim/claim-ui";
 import PhoneInputField from "@/components/claim/PhoneInputField";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
-import { useRouter } from "@/i18n/routing";
+import { Link as LocaleLink, useRouter } from "@/i18n/routing";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { type ContactIssue } from "@/lib/claim-form-issues";
 import { formatFileSize } from "@/lib/claim-types";
@@ -256,8 +256,33 @@ export default function Step3Panel({
   const activePassenger = allPassengers[signingPassengerIndex] ?? allPassengers[0]!;
   const activePassengerName =
     signingPassengerIndex === 0
-      ? signedName.trim()
+      ? signedName.trim() || flight.passenger.trim()
       : `${activePassenger.firstName} ${activePassenger.lastName}`.trim();
+
+  const poaFullPageHref = useMemo(() => {
+    const params = new URLSearchParams();
+    const fields: Array<[string, string]> = [
+      ["name", activePassengerName],
+      ["flight", flight.flight.trim()],
+      ["from", flight.routeFrom.trim()],
+      ["to", flight.routeTo.trim()],
+      ["flightDate", flight.date.trim()],
+      ["signed", signingDate],
+    ];
+    for (const [key, value] of fields) {
+      if (value) params.set(key, value);
+    }
+    const query = params.toString();
+    return query ? `${currentDoc.href}?${query}` : currentDoc.href;
+  }, [
+    activePassengerName,
+    currentDoc.href,
+    flight.date,
+    flight.flight,
+    flight.routeFrom,
+    flight.routeTo,
+    signingDate,
+  ]);
 
   useEffect(() => {
     docSignaturesRef.current = docSignatures;
@@ -1056,14 +1081,14 @@ export default function Step3Panel({
           <div className="bg-white border border-[#d5e0f9] rounded-xl overflow-hidden shadow-sm">
             <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-[#d5e0f9] bg-[#fafbff]">
               <p className="text-[#7b8094] text-xs font-bold uppercase tracking-wide">{t("documentPreview")}</p>
-              <Link
-                href={currentDoc.href}
+              <LocaleLink
+                href={poaFullPageHref}
                 target="_blank"
                 className="text-[#2669f3] font-bold text-xs whitespace-nowrap hover:underline"
                 {...gtmId("claim_step3_open_poa")}
               >
                 {t("openFullPage")}
-              </Link>
+              </LocaleLink>
             </div>
             <div ref={documentViewerRef} className="max-h-64 sm:max-h-96 overflow-y-auto p-4">
               <PowerOfAttorneyDocument

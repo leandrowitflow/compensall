@@ -265,7 +265,7 @@ export default function Step1Upload({
             type="button"
             onClick={swapAirports}
             disabled={isExtracting}
-            className="flex-shrink-0 self-center sm:self-stretch min-h-11 min-w-11 px-4 sm:px-0 sm:min-w-12 flex items-center justify-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
+            className="flex-shrink-0 self-center sm:self-stretch min-h-11 min-w-11 px-4 sm:px-0 sm:min-w-12 flex items-center justify-center rounded-full hover:bg-[#f8faff] active:bg-[#e7eeff] transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
             aria-label={tStep1("swapAirports")}
             {...gtmId("claim_step1_swap_airports")}
           >

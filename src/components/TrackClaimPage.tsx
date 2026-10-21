@@ -158,6 +158,7 @@ export default function TrackClaimPage({ trackingNumber }: { trackingNumber: str
     <main className="pb-16 md:pb-24">
       <PageHero
         title={t("title")}
+        showMarkdownDownload={false}
         trustpilotAlt={tHero("trustpilotAlt")}
         subtitle={t.rich("reference", {
           trackingNumber,
