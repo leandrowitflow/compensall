@@ -1,11 +1,27 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 import { startTransition, useCallback, useEffect, useRef, useState } from "react";
 import ClaimSidebar from "@/components/claim/ClaimSidebar";
 import Step1Upload from "@/components/claim/Step1Upload";
-import Step2Panel from "@/components/claim/Step2Panel";
-import Step3Panel, { type ClaimResumePrefill, type ClaimSubmitPayload } from "@/components/claim/Step3Panel";
+import type { ClaimResumePrefill, ClaimSubmitPayload } from "@/components/claim/Step3Panel";
+
+function loadStep2Panel() {
+  return import("@/components/claim/Step2Panel");
+}
+
+function loadStep3Panel() {
+  return import("@/components/claim/Step3Panel");
+}
+
+const Step2Panel = dynamic(loadStep2Panel, {
+  loading: () => <div className="min-h-[28rem]" aria-hidden />,
+});
+
+const Step3Panel = dynamic(loadStep3Panel, {
+  loading: () => <div className="min-h-[28rem]" aria-hidden />,
+});
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { readClaimResumeTokenFromLocation } from "@/lib/claim-draft-token";
@@ -92,7 +108,7 @@ function ClaimStepIndicator({
 function AssistantPill({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-2 bg-[#f1f5fe] rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-      <img src="/assets/icons/stars.svg" alt="" aria-hidden="true" width={24} height={24} className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
+      <img src="/assets/icons/stars.svg" alt="" aria-hidden="true" width={24} height={24} decoding="async" fetchPriority="low" className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
       <span className="text-blue-accessible font-bold text-sm sm:text-base">{label}</span>
     </div>
   );
@@ -202,6 +218,7 @@ export default function HeroClaimForm() {
       return;
     }
 
+    void loadStep3Panel();
     let cancelled = false;
     setIsResuming(true);
     setResumeNotice(tResume("loading"));
@@ -261,6 +278,7 @@ export default function HeroClaimForm() {
   }, [tResume]);
 
   const handleExtract = async (file: File) => {
+    void loadStep2Panel();
     setExtractError(null);
     setIsExtracting(true);
 
@@ -331,6 +349,7 @@ export default function HeroClaimForm() {
   };
 
   const handleManualSubmit = (manualFlight: ClaimFlightData) => {
+    void loadStep2Panel();
     if (advancingRef.current) return;
     advancingRef.current = true;
     setIsAdvancing(true);
@@ -379,6 +398,7 @@ export default function HeroClaimForm() {
     if (advancingRef.current) return;
     advancingRef.current = true;
     setIsAdvancing(true);
+    void loadStep3Panel();
     startTransition(() => {
       setStep2Error(null);
       setIsEditing(false);

@@ -1,4 +1,5 @@
-/* Stable, non-hashed CSS so Clarity recordings and in-app WebViews still see the form if a Next chunk fails. */
+/** Inlined in the document head so the form and hero paint without an extra stylesheet request. */
+export const claimCriticalCss = `/* Stable, non-hashed CSS so Clarity recordings and in-app WebViews still see the form if a Next chunk fails. */
 #claim .claim-form-shell {
   background: #fefefe;
   margin-inline: auto;
@@ -53,3 +54,31 @@ html.needs-cookie-banner footer,
 body.has-cookie-banner footer {
   padding-bottom: var(--cookie-banner-offset, 0px);
 }
+
+/* Paint the hero before Tailwind arrives, so the white title is not sitting on white. */
+.hero-lcp {
+  position: relative;
+  overflow: hidden;
+  background-color: #1d53cd;
+}
+
+.hero-lcp-media,
+.hero-lcp-media img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.hero-lcp-media {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-lcp-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+`;

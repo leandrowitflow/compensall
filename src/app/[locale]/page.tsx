@@ -152,8 +152,14 @@ export default async function HomePage({ params }: HomePageProps) {
 
       <section className="px-4 md:px-8 lg:px-8 xl:px-12 pt-0 pb-0">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
-          <div className="relative rounded-[28px] xl:rounded-[38px] overflow-clip">
-            <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]">
+          <div
+            className="hero-lcp relative rounded-[28px] xl:rounded-[38px] overflow-clip"
+            style={{ position: "relative", overflow: "hidden", backgroundColor: "#1d53cd" }}
+          >
+            <div
+              className="hero-lcp-media absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]"
+              style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, overflow: "hidden", pointerEvents: "none" }}
+            >
               <HeroBackgroundImage variant="home" priority />
             </div>
 

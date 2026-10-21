@@ -38,18 +38,28 @@ export default function HeroBackgroundImage({
   const frameStyle = HERO_BG_VARIANTS[variant];
 
   return (
-    <div aria-hidden className="absolute max-w-none" style={frameStyle}>
+    <div aria-hidden className="absolute max-w-none" style={{ position: "absolute", ...frameStyle }}>
       <picture>
         <source media="(max-width: 767px)" srcSet={HERO_BG_SRC_MOBILE} type="image/webp" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={HERO_BG_SRC}
           alt=""
-          width={1920}
-          height={1080}
+          width={1600}
+          height={1393}
           decoding={priority ? "sync" : "async"}
           fetchPriority={priority ? "high" : "auto"}
           className="absolute inset-0 h-full w-full object-cover"
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
         />
       </picture>
     </div>

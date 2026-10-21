@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
-import { startTransition, useEffect, useRef, useState, type DragEvent } from "react";
+import { startTransition, useRef, useState, type DragEvent } from "react";
 import { validateBoardingPassFile, BOARDING_PASS_ACCEPT } from "@/lib/boarding-pass-file";
 import { prepareClaimFile } from "@/lib/prepare-claim-file";
 import {
@@ -80,28 +80,15 @@ export default function Step1Upload({
   const [manualError, setManualError] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  /** Defer world-airports JS until idle or first airport interaction (keeps LCP clear). */
+  /** World-airports stays out of the first load. Fetch it when an airport field is used. */
   const [loadAirportSelect, setLoadAirportSelect] = useState(false);
   const [autoOpenAirportId, setAutoOpenAirportId] = useState<string | null>(null);
 
   const activateAirportSelect = (id?: string) => {
     if (id) setAutoOpenAirportId(id);
+    void loadAirportSelectChunk();
     startTransition(() => setLoadAirportSelect(true));
   };
-
-  useEffect(() => {
-    if (loadAirportSelect) return;
-    const start = () => {
-      void loadAirportSelectChunk();
-      setLoadAirportSelect(true);
-    };
-    if (typeof window.requestIdleCallback === "function") {
-      const idleId = window.requestIdleCallback(start, { timeout: 700 });
-      return () => window.cancelIdleCallback(idleId);
-    }
-    const timeoutId = window.setTimeout(start, 1);
-    return () => window.clearTimeout(timeoutId);
-  }, [loadAirportSelect]);
 
   const handleFile = async (file: File | null) => {
     if (!file || isExtracting || processingRef.current) return;
@@ -219,7 +206,7 @@ export default function Step1Upload({
           </>
         ) : (
           <>
-            <img src="/assets/icons/cloud-upload.svg" alt="" aria-hidden="true" width={75} height={75} className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4 object-contain" />
+            <img src="/assets/icons/cloud-upload.svg" alt="" aria-hidden="true" width={75} height={75} decoding="async" fetchPriority="low" className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4 object-contain" />
             <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">{tStep1("uploadTitle")}</p>
             <p className="text-muted text-xs sm:text-sm">{tStep1("uploadHint")}</p>
           </>
@@ -269,7 +256,7 @@ export default function Step1Upload({
             aria-label={tStep1("swapAirports")}
             {...gtmId("claim_step1_swap_airports")}
           >
-            <img src="/assets/icons/arrow-right-left.svg" alt="" aria-hidden="true" width={23} height={23} className="w-[23px] h-[23px] object-contain" />
+            <img src="/assets/icons/arrow-right-left.svg" alt="" aria-hidden="true" width={23} height={23} decoding="async" fetchPriority="low" className="w-[23px] h-[23px] object-contain" />
           </button>
           {loadAirportSelect ? (
             <AirportSelect
@@ -309,7 +296,7 @@ export default function Step1Upload({
       )}
 
       <div className="flex items-center justify-center gap-2 mt-6 sm:mt-8 xl:mt-10">
-        <img src="/assets/icons/shield-lock.svg" alt="" aria-hidden="true" width={24} height={24} className="w-6 h-6 opacity-50 object-contain" />
+        <img src="/assets/icons/shield-lock.svg" alt="" aria-hidden="true" width={24} height={24} decoding="async" fetchPriority="low" className="w-6 h-6 opacity-50 object-contain" />
         <p className="text-muted font-bold text-sm">{tStep1("dataProtected")}</p>
       </div>
     </div>
