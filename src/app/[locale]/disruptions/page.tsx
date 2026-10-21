@@ -6,7 +6,7 @@ import PageHero from "@/components/PageHero";
 import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
 import { getDisruptionPosts } from "@/lib/blog";
-import { gtmId } from "@/lib/gtm";
+import { gtmClaimCta, gtmId } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 
 type DisruptionsPageProps = {
@@ -45,18 +45,26 @@ export default async function DisruptionsPage({ params }: DisruptionsPageProps) 
                   key={post.slug}
                   className="bg-white border-2 border-[#d5e0f9] rounded-[20px] overflow-hidden flex flex-col min-h-[280px] xl:min-h-[312px]"
                 >
-                  <div className="aspect-[16/9] overflow-hidden border-b-2 border-[#d5e0f9]">
-                    <img src={post.image} alt={post.imageAlt} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="p-6 xl:p-8 flex flex-col flex-1">
-                    <div className="flex items-center justify-between gap-3 mb-2 text-sm">
-                      <span className="text-[#2669f3] font-bold">{post.category}</span>
-                      <time className="text-[#7b8094]">{post.date}</time>
+                  <Link
+                    href="/#claim"
+                    className="flex flex-col flex-1 min-h-0 no-underline text-inherit"
+                    {...gtmClaimCta("disruptions")}
+                  >
+                    <div className="aspect-[16/9] overflow-hidden border-b-2 border-[#d5e0f9]">
+                      <img src={post.image} alt={post.imageAlt} className="w-full h-full object-cover" />
                     </div>
-                    <h2 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] leading-snug mb-3">
-                      {post.title}
-                    </h2>
-                    <p className="text-[#1f3664] text-sm xl:text-[15px] leading-[1.7] flex-1">{post.excerpt}</p>
+                    <div className="px-6 xl:px-8 pt-6 xl:pt-8 flex flex-col flex-1">
+                      <div className="flex items-center justify-between gap-3 mb-2 text-sm">
+                        <span className="text-[#2669f3] font-bold">{post.category}</span>
+                        <time className="text-[#7b8094]">{post.date}</time>
+                      </div>
+                      <h2 className="font-bold text-[#1f3664] text-[17px] xl:text-[18px] leading-snug mb-3">
+                        {post.title}
+                      </h2>
+                      <p className="text-[#1f3664] text-sm xl:text-[15px] leading-[1.7] flex-1">{post.excerpt}</p>
+                    </div>
+                  </Link>
+                  <div className="px-6 xl:px-8 pb-6 xl:pb-8">
                     <Link
                       href={`/disruptions/${post.slug}`}
                       className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] mt-5 hover:opacity-80 transition-opacity"
