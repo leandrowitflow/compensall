@@ -166,7 +166,8 @@
       "upload": "Subir",
       "assistantCheck": "Comprobación del asistente",
       "assistantCheckShort": "Revisar",
-      "signSubmit": "Firmar y enviar"
+      "signSubmit": "Firmar y enviar",
+      "finishThisStep": "Completa este paso antes de continuar."
     },
     "resume": {
       "loading": "Cargando tu reclamación guardada…",

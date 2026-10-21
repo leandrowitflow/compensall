@@ -91,9 +91,11 @@ export default async function KnowYourRightsPage({ params }: KnowYourRightsPageP
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 xl:gap-6">
             {FLIGHT_ISSUE_DEFS.map((issue) => (
-              <div
+              <Link
                 key={issue.slug}
-                className="bg-white border-2 border-[#d5e0f9] rounded-[20px] p-6 xl:p-8 flex flex-col min-h-[280px] xl:min-h-[312px]"
+                href={`/blog/${issue.slug}`}
+                className="bg-white border-2 border-[#d5e0f9] rounded-[20px] p-6 xl:p-8 flex flex-col min-h-[280px] xl:min-h-[312px] no-underline"
+                {...gtmId(`kyr_learn_more_${issue.slug}`)}
               >
                 <div className="h-16 xl:h-[87px] mb-5 flex items-start">
                   <img
@@ -108,11 +110,7 @@ export default async function KnowYourRightsPage({ params }: KnowYourRightsPageP
                 <p className="text-[#1f3664] text-sm xl:text-[15px] leading-[1.7] flex-1">
                   {t(`flightIssues.${issue.key}.description`)}
                 </p>
-                <Link
-                  href={`/blog/${issue.slug}`}
-                  className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] mt-5 hover:opacity-80 transition-opacity"
-                  {...gtmId(`kyr_learn_more_${issue.slug}`)}
-                >
+                <span className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-[17px] xl:text-[18px] mt-5">
                   {tCommon("learnMore")}
                   <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
                     <path
@@ -123,8 +121,8 @@ export default async function KnowYourRightsPage({ params }: KnowYourRightsPageP
                       strokeLinejoin="round"
                     />
                   </svg>
-                </Link>
-              </div>
+                </span>
+              </Link>
             ))}
           </div>
         </div>

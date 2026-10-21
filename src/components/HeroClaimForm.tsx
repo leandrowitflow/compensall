@@ -38,14 +38,19 @@ function StepSeparators() {
   );
 }
 
-function ClaimStepIndicator({ step }: { step: ClaimStep }) {
+function ClaimStepIndicator({
+  step,
+  onSelect,
+}: {
+  step: ClaimStep;
+  onSelect: (target: ClaimStep) => void;
+}) {
   const t = useTranslations("claim.steps");
-  const tCommon = useTranslations("common");
   const steps = [
-    { num: 1, label: t("upload"), shortLabel: t("upload") },
-    { num: 2, label: t("assistantCheck"), shortLabel: t("assistantCheckShort") },
-    { num: 3, label: t("signSubmit"), shortLabel: t("signSubmit") },
-  ] as const;
+    { num: 1 as const, label: t("upload"), shortLabel: t("upload") },
+    { num: 2 as const, label: t("assistantCheck"), shortLabel: t("assistantCheckShort") },
+    { num: 3 as const, label: t("signSubmit"), shortLabel: t("signSubmit") },
+  ];
 
   return (
     <div className="claim-stepper-steps">
@@ -55,7 +60,12 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
         return (
           <div key={s.num} className="flex items-center gap-2">
             {i > 0 && <StepSeparators />}
-            <div className="flex items-center gap-2">
+            <button
+              type="button"
+              className="flex items-center gap-2 border-0 bg-transparent p-0 text-left"
+              aria-current={isActive ? "step" : undefined}
+              onClick={() => onSelect(s.num)}
+            >
               <div
                 className={`w-[30px] h-[30px] sm:w-[34px] sm:h-[34px] rounded-full flex items-center justify-center flex-shrink-0 text-sm sm:text-base font-bold leading-none ${
                   isComplete || isActive
@@ -64,14 +74,14 @@ function ClaimStepIndicator({ step }: { step: ClaimStep }) {
                 }`}
               >
                 {isComplete && s.num === 1 && step > 1 ? (
-                  <img src="/assets/claim/claim-checkmark.svg" alt={tCommon("assistantStepLabel")} aria-hidden="true" width={16} height={16} className="w-4 h-4 object-contain" />
+                  <img src="/assets/claim/claim-checkmark.svg" alt="" aria-hidden="true" width={16} height={16} className="w-4 h-4 object-contain" />
                 ) : (
                   s.num
                 )}
               </div>
               <span className="text-[#1f3664] font-bold text-sm hidden md:inline 2xl:hidden">{s.shortLabel}</span>
               <span className="text-[#1f3664] font-bold text-sm hidden 2xl:inline">{s.label}</span>
-            </div>
+            </button>
           </div>
         );
       })}
@@ -148,6 +158,7 @@ export default function HeroClaimForm() {
   const tConnecting = useTranslations("claim.connecting");
   const tStep3 = useTranslations("claim.step3");
   const tResume = useTranslations("claim.resume");
+  const tSteps = useTranslations("claim.steps");
 
   const [step, setStep] = useState<ClaimStep>(1);
   const [entryMode, setEntryMode] = useState<ClaimEntryMode | null>(null);
@@ -163,6 +174,7 @@ export default function HeroClaimForm() {
   const [step2Error, setStep2Error] = useState<Step2Issue | null>(null);
   const [boardingPassFile, setBoardingPassFile] = useState<File | null>(null);
   const [isAdvancing, setIsAdvancing] = useState(false);
+  const [stepHint, setStepHint] = useState<string | null>(null);
   const advancingRef = useRef(false);
 
   const resetClaim = useCallback(() => {
@@ -177,6 +189,7 @@ export default function HeroClaimForm() {
     setExtractError(null);
     setIsEditing(false);
     setStep2Error(null);
+    setStepHint(null);
     setBoardingPassFile(null);
     setResumeToken(null);
     setResumePrefill(null);
@@ -376,6 +389,23 @@ export default function HeroClaimForm() {
     });
   };
 
+  useEffect(() => {
+    setStepHint(null);
+  }, [step]);
+
+  const handleStepSelect = (target: ClaimStep) => {
+    if (isResuming || isAdvancing || target === step) return;
+    if (target < step) {
+      setStep(target);
+      return;
+    }
+    if (step === 2) {
+      handleContinueToStep3();
+      return;
+    }
+    setStepHint(tSteps("finishThisStep"));
+  };
+
   const handleClaimSubmit = async (payload: ClaimSubmitPayload) => {
     if (!entryMode) {
       throw new Error(tStep3("errors.sessionExpired"));
@@ -482,8 +512,14 @@ export default function HeroClaimForm() {
     >
       <div className="claim-stepper sticky top-16 xl:top-[90px] z-20 flex items-center justify-between gap-3 sm:gap-4 px-6 sm:px-10 xl:px-14 pt-6 sm:pt-7 xl:pt-8 pb-3 sm:pb-4 bg-[#fefefe]">
         <AssistantPill label={tCommon("assistantName")} />
-        <ClaimStepIndicator step={step} />
+        <ClaimStepIndicator step={step} onSelect={handleStepSelect} />
       </div>
+
+      {stepHint && (
+        <p className="px-6 sm:px-10 xl:px-14 pb-3 text-sm text-[#1f3664] text-left" role="status">
+          {stepHint}
+        </p>
+      )}
 
       {resumeNotice && (
         <p className="px-6 sm:px-10 xl:px-14 pb-3 text-sm text-[#1f3664] text-left">{resumeNotice}</p>

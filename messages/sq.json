@@ -166,7 +166,8 @@
       "upload": "Ngarko",
       "assistantCheck": "Kontrolli i asistentit",
       "assistantCheckShort": "Kontrollo",
-      "signSubmit": "Nënshkruaj dhe dërgo"
+      "signSubmit": "Nënshkruaj dhe dërgo",
+      "finishThisStep": "Përfundo këtë hap para se të vazhdosh."
     },
     "resume": {
       "loading": "Po ngarkojmë kërkesën e ruajtur…",

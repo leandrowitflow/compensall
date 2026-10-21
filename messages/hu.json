@@ -166,7 +166,8 @@
       "upload": "Feltöltés",
       "assistantCheck": "Asszisztens-ellenőrzés",
       "assistantCheckShort": "Ellenőrzés",
-      "signSubmit": "Aláírás és beküldés"
+      "signSubmit": "Aláírás és beküldés",
+      "finishThisStep": "Fejezd be ezt a lépést, mielőtt továbblépsz."
     },
     "resume": {
       "loading": "Mentett kárigényed betöltése…",

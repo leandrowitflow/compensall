@@ -166,7 +166,8 @@
       "upload": "Uploaden",
       "assistantCheck": "Controle door de assistent",
       "assistantCheckShort": "Controle",
-      "signSubmit": "Ondertekenen en indienen"
+      "signSubmit": "Ondertekenen en indienen",
+      "finishThisStep": "Rond deze stap af voordat u verdergaat."
     },
     "resume": {
       "loading": "Uw opgeslagen claim wordt geladen…",

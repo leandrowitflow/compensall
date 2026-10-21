@@ -166,7 +166,8 @@
       "upload": "Télécharger",
       "assistantCheck": "Vérification par l'assistant",
       "assistantCheckShort": "Vérification",
-      "signSubmit": "Signer et soumettre"
+      "signSubmit": "Signer et soumettre",
+      "finishThisStep": "Terminez cette étape avant de continuer."
     },
     "resume": {
       "loading": "Chargement de votre dossier enregistré…",

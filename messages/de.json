@@ -166,7 +166,8 @@
       "upload": "Hochladen",
       "assistantCheck": "Prüfung durch den Assistenten",
       "assistantCheckShort": "Prüfung",
-      "signSubmit": "Unterschreiben und senden"
+      "signSubmit": "Unterschreiben und senden",
+      "finishThisStep": "Schließen Sie diesen Schritt ab, bevor Sie weitergehen."
     },
     "resume": {
       "loading": "Ihr gespeicherter Antrag wird geladen…",

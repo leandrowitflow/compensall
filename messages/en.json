@@ -166,7 +166,8 @@
       "upload": "Upload",
       "assistantCheck": "Assistant check",
       "assistantCheckShort": "Check",
-      "signSubmit": "Sign & submit"
+      "signSubmit": "Sign & submit",
+      "finishThisStep": "Finish this step before moving on."
     },
     "resume": {
       "loading": "Loading your saved claim…",

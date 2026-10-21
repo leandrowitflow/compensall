@@ -5,7 +5,7 @@ import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
 import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
 import { Link } from "@/i18n/routing";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
-import { gtmClaimCta } from "@/lib/gtm";
+import { gtmClaimCta, gtmId } from "@/lib/gtm";
 
 type CatalogClaimSectionProps = {
   headline: string;
@@ -66,13 +66,17 @@ export default function CatalogClaimSection({
                   <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{tHome("noHiddenFees")}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
+              <a
+                href="tel:+351923391980"
+                className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto text-inherit no-underline"
+                {...gtmId("catalog_talk_to_us")}
+              >
                 <img src="/assets/icons/headset.svg" alt="" aria-hidden="true" loading="lazy" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left min-w-0">
                   <p className="text-white font-bold text-base xl:text-[17px] leading-snug">{tHome("talkToUs")}</p>
                   <p className="text-white/60 text-sm xl:text-[15px] leading-relaxed">{tHome("humanSupportAvailable")}</p>
                 </div>
-              </div>
+              </a>
               <div className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
                 <img src="/assets/icons/secured.svg" alt="" aria-hidden="true" loading="lazy" className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0" />
                 <div className="text-left min-w-0">

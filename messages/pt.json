@@ -166,7 +166,8 @@
       "upload": "Carregar",
       "assistantCheck": "Verificação do assistente",
       "assistantCheckShort": "Verificação",
-      "signSubmit": "Assinar e submeter"
+      "signSubmit": "Assinar e submeter",
+      "finishThisStep": "Conclua este passo antes de avançar."
     },
     "resume": {
       "loading": "A carregar o seu pedido guardado…",

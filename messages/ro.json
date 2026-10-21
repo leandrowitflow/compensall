@@ -166,7 +166,8 @@
       "upload": "Încarcă",
       "assistantCheck": "Verificarea asistentului",
       "assistantCheckShort": "Verifică",
-      "signSubmit": "Semnează și trimite"
+      "signSubmit": "Semnează și trimite",
+      "finishThisStep": "Termină acest pas înainte de a continua."
     },
     "resume": {
       "loading": "Încărcăm cererea ta salvată…",

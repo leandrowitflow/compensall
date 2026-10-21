@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
-import { gtmClaimCta } from "@/lib/gtm";
+import { gtmClaimCta, gtmId } from "@/lib/gtm";
 import { BRAND_NAME } from "@/lib/passenger-rights";
 
 const CTA_FEATURE_KEYS = ["fastRiskFree", "talkToUs", "highestSecurity"] as const;
@@ -59,21 +59,36 @@ export default async function CTABanner() {
           </Link>
 
           <div className="flex w-full shrink-0 flex-col items-start text-left gap-8 lg:flex-row lg:items-center lg:justify-center lg:gap-8 xl:max-w-[1280px] xl:gap-10 2xl:gap-12 2xl:mt-2 xl:px-6 2xl:px-14">
-            {CTA_FEATURE_KEYS.map((key, index) => (
-              <div key={key} className="flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto">
-                <img
-                  src={CTA_ICONS[index]}
-                  alt=""
-                  aria-hidden="true"
-                  loading="lazy"
-                  className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0"
-                />
-                <div className="text-left min-w-0">
-                  <p className="text-white font-bold text-base xl:text-[19px] xl:leading-[27px] leading-snug">{t(key)}</p>
-                  <p className="text-white/60 text-sm xl:text-[16px] xl:leading-[28px] leading-relaxed">{t(CTA_SUBTITLE_KEYS[index])}</p>
+            {CTA_FEATURE_KEYS.map((key, index) => {
+              const row = (
+                <>
+                  <img
+                    src={CTA_ICONS[index]}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className="w-12 h-12 xl:w-[46px] xl:h-[46px] object-contain flex-shrink-0"
+                  />
+                  <div className="text-left min-w-0">
+                    <p className="text-white font-bold text-base xl:text-[19px] xl:leading-[27px] leading-snug">{t(key)}</p>
+                    <p className="text-white/60 text-sm xl:text-[16px] xl:leading-[28px] leading-relaxed">{t(CTA_SUBTITLE_KEYS[index])}</p>
+                  </div>
+                </>
+              );
+              const rowClass = "flex items-center gap-4 justify-start min-w-0 w-full lg:w-auto text-inherit no-underline";
+              if (key === "talkToUs") {
+                return (
+                  <a key={key} href="tel:+351923391980" className={rowClass} {...gtmId("banner_talk_to_us")}>
+                    {row}
+                  </a>
+                );
+              }
+              return (
+                <div key={key} className={rowClass}>
+                  {row}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
