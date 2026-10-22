@@ -19,7 +19,7 @@ export type GtmClaimLocation =
   | "track"
   | "thank_you"
   | "not_found"
-  | "disruptions";
+  | "home_compensation";
 
 /** Props for CTAs that open the claim form (`/#claim`). */
 export function gtmClaimCta(location: GtmClaimLocation) {

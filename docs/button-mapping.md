@@ -50,7 +50,7 @@ data-gtm="nav_about"
 | `track` | Track claim · error state | Start a new claim |
 | `thank_you` | Thank-you page · new claim | Start a new claim |
 | `not_found` | 404 | Check compensation |
-| `disruptions` | Cartão em Flight disruptions | Título do cartão |
+| `home_compensation` | Homepage · cartão de valor | £220 / €250 |
 
 ---
 

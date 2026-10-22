@@ -12,13 +12,21 @@ import HowItWorksSteps from "@/components/HowItWorksSteps";
 import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
 import { FAQSection, Footer } from "@/components/home/HomeDeferredSections";
 import JsonLd from "@/components/seo/JsonLd";
-import type { AppLocale } from "@/i18n/routing";
+import { Link, type AppLocale } from "@/i18n/routing";
 import { getLocalizedFaqs } from "@/lib/i18n-faqs";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 import { localizeEuroAmountLabel } from "@/lib/public-copy";
 import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 import { buildFaqPageSchema, buildHowToSchema } from "@/lib/structured-data";
-import { gtmId } from "@/lib/gtm";
+import { gtmClaimCta, gtmId } from "@/lib/gtm";
+
+const HOME_CLAIM_CARD_SLUGS = {
+  flightDelay: "flight-delay",
+  flightCancellation: "flight-cancellation",
+  deniedBoarding: "denied-boarding",
+  missedConnection: "missed-connection",
+  airlineStrike: "airline-strike",
+} as const;
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -43,7 +51,11 @@ function CompensationTierCard({
   tierAlt: string;
 }) {
   return (
-    <div className="relative bg-white/28 border-2 border-[#d5e0f9] rounded-2xl overflow-hidden text-center pt-6 pb-8 px-6">
+    <Link
+      href="/#claim"
+      className="relative block bg-white/28 border-2 border-[#d5e0f9] rounded-2xl overflow-hidden text-center pt-6 pb-8 px-6 no-underline"
+      {...gtmClaimCta("home_compensation")}
+    >
       {image && (
         // eslint-disable-next-line @next/next/no-img-element -- pre-optimized WebP; avoid /_next/image competing with LCP
         <img
@@ -62,7 +74,7 @@ function CompensationTierCard({
       </p>
       <p className="text-[#1f3664] font-bold text-base xl:text-lg mb-1">{label}</p>
       <p className="text-muted text-sm">{desc}</p>
-    </div>
+    </Link>
   );
 }
 
@@ -268,7 +280,11 @@ export default async function HomePage({ params }: HomePageProps) {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[729fr_374fr_374fr] gap-6 lg:gap-7 xl:gap-9">
-            <div className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] bg-[#f5f8ff] min-h-[300px] lg:min-h-[340px] xl:min-h-[520px] flex flex-col items-start">
+            <Link
+              href={`/blog/${HOME_CLAIM_CARD_SLUGS.flightDelay}`}
+              className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] bg-[#f5f8ff] min-h-[300px] lg:min-h-[340px] xl:min-h-[520px] flex flex-col items-start no-underline text-inherit"
+              {...gtmId("home_claim_card_flight_delay")}
+            >
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* eslint-disable-next-line @next/next/no-img-element -- tiny WebP; skip image optimizer on critical path */}
                 <img
@@ -298,7 +314,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {(
               [
@@ -308,7 +324,12 @@ export default async function HomePage({ params }: HomePageProps) {
                 ["airlineStrike", "/assets/icons/airline-strike-home.png", CLAIM_BENTO_ICON_FRAMES.airlineStrike],
               ] as const
             ).map(([cardKey, iconSrc, frame]) => (
-              <div key={cardKey} className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px]">
+              <Link
+                key={cardKey}
+                href={`/blog/${HOME_CLAIM_CARD_SLUGS[cardKey]}`}
+                className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px] no-underline text-inherit"
+                {...gtmId(`home_claim_card_${HOME_CLAIM_CARD_SLUGS[cardKey].replace(/-/g, "_")}`)}
+              >
                 <ClaimBentoIcon src={iconSrc} alt={t(`claimCards.${cardKey}.iconAlt`)} {...frame} />
                 <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">
                   {t(`claimCards.${cardKey}.title`)}
@@ -316,7 +337,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
                   {t(`claimCards.${cardKey}.description`)}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
