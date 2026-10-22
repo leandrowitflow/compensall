@@ -166,11 +166,11 @@ export default async function HomePage({ params }: HomePageProps) {
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
           <div
             className="hero-lcp relative rounded-[28px] xl:rounded-[38px] overflow-clip"
-            style={{ position: "relative", overflow: "hidden", backgroundColor: "#1d53cd" }}
+            style={{ position: "relative", overflow: "hidden", backgroundColor: "#1d53cd", isolation: "isolate" }}
           >
             <div
               className="hero-lcp-media absolute inset-0 overflow-hidden pointer-events-none rounded-[28px] xl:rounded-[38px]"
-              style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, overflow: "hidden", pointerEvents: "none" }}
+              style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 0, overflow: "hidden", pointerEvents: "none" }}
             >
               <HeroBackgroundImage variant="home" priority />
             </div>
@@ -178,6 +178,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <div
               id="claim"
               className="relative max-w-full mx-auto px-4 sm:px-6 pt-8 lg:pt-8 xl:pt-12 pb-6 lg:pb-8 xl:pb-10 text-center scroll-mt-16 xl:scroll-mt-[90px]"
+              style={{ position: "relative", zIndex: 1 }}
             >
               {showTrustpilot && (
                 <div className="flex justify-center mb-5 min-h-[28px]">

@@ -55,30 +55,44 @@ body.has-cookie-banner footer {
   padding-bottom: var(--cookie-banner-offset, 0px);
 }
 
-/* Paint the hero before Tailwind arrives, so the white title is not sitting on white. */
+/* Paint the hero before Tailwind arrives, so the white title is not sitting on white.
+   The photo is a separate layer. Clarity replays often miss the hashed stylesheet, and
+   then an absolute image paints over static content. Keep the form above that layer. */
 .hero-lcp {
   position: relative;
   overflow: hidden;
   background-color: #1d53cd;
+  isolation: isolate;
 }
 
-.hero-lcp-media,
+.hero-lcp-media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .hero-lcp-media img {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-}
-
-.hero-lcp-media {
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.hero-lcp-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.hero-lcp #claim {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-lcp #claim h1 {
+  color: #fff;
 }
 `;
