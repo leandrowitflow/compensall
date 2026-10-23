@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import { startTransition, useCallback, useEffect, useRef, useState } from "react";
+import { startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import ClaimSidebar from "@/components/claim/ClaimSidebar";
 import Step1Upload from "@/components/claim/Step1Upload";
 import type { ClaimResumePrefill, ClaimSubmitPayload } from "@/components/claim/Step3Panel";
@@ -25,6 +25,14 @@ const Step3Panel = dynamic(loadStep3Panel, {
 import { buildUploadMeta } from "@/lib/boarding-pass-file";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { readClaimResumeTokenFromLocation } from "@/lib/claim-draft-token";
+import {
+  CLAIM_CONTINUE_PENDING_CLASS,
+  clearClaimReturn,
+  releaseClaimContinueHandoff,
+  stripClaimContinueQuery,
+  takeClaimContinue,
+  type ClaimReturnSnapshot,
+} from "@/lib/claim-return";
 import { type Step2Issue } from "@/lib/claim-form-issues";
 import {
   ClaimSubmitError,
@@ -165,6 +173,21 @@ function validateStep2(
   return null;
 }
 
+function prefillFromClaimReturn(snapshot: ClaimReturnSnapshot): ClaimResumePrefill {
+  return {
+    formSessionId: snapshot.formSessionId,
+    odooLeadId: snapshot.odooLeadId,
+    signedName: snapshot.signedName,
+    contactEmail: snapshot.contactEmail,
+    contactPhone: snapshot.contactPhone,
+    additionalPassengers: snapshot.additionalPassengers,
+    signingPassengerIndex: snapshot.signingPassengerIndex,
+    signingDate: snapshot.signingDate,
+    signaturePreview: snapshot.signaturePreview,
+    documentSignatures: snapshot.documentSignatures,
+  };
+}
+
 export default function HeroClaimForm() {
   const locale = useLocale();
   const tCommon = useTranslations("common");
@@ -194,6 +217,7 @@ export default function HeroClaimForm() {
   const advancingRef = useRef(false);
 
   const resetClaim = useCallback(() => {
+    clearClaimReturn();
     if (upload?.previewUrl) {
       URL.revokeObjectURL(upload.previewUrl);
     }
@@ -276,6 +300,23 @@ export default function HeroClaimForm() {
       cancelled = true;
     };
   }, [tResume]);
+
+  useLayoutEffect(() => {
+    const snapshot = readClaimResumeTokenFromLocation() ? null : takeClaimContinue();
+    stripClaimContinueQuery();
+    document.documentElement.classList.remove(CLAIM_CONTINUE_PENDING_CLASS);
+    if (!snapshot) return;
+
+    setFlight(normalizeFlightData(snapshot.flight));
+    setEntryMode(snapshot.entryMode);
+    setResumePrefill(prefillFromClaimReturn(snapshot));
+    setIsEditing(false);
+    setStep(3);
+    void loadStep3Panel();
+    document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
+    const handoffTimer = window.setTimeout(releaseClaimContinueHandoff, 0);
+    return () => window.clearTimeout(handoffTimer);
+  }, []);
 
   const handleExtract = async (file: File) => {
     void loadStep2Panel();
@@ -512,6 +553,7 @@ export default function HeroClaimForm() {
       );
     }
 
+    clearClaimReturn();
     return {
       trackingNumber,
       status: claimStatus,

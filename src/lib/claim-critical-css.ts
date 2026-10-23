@@ -95,4 +95,9 @@ body.has-cookie-banner footer {
 .hero-lcp #claim h1 {
   color: #fff;
 }
+
+/* Returning from the full power of attorney: keep step 1 hidden until the signature step is restored. */
+html.claim-continue #claim .claim-form-shell {
+  visibility: hidden;
+}
 `;

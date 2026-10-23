@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo, useRef, useState, type PointerEvent, type TouchEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type MouseEvent, type PointerEvent, type TouchEvent } from "react";
 import { CLAIM_RESUME_EMAIL_IDLE_MS } from "@/lib/claim-draft-token";
 import { CLAIM_DOCUMENTS } from "@/lib/claim-documents";
 import {
@@ -15,7 +15,8 @@ import { FieldIssue, focusClaimField } from "@/components/claim/FieldIssue";
 import { ACTION_BTN, FIELD_INPUT, FIELD_LABEL, fieldControlClass } from "@/components/claim/claim-ui";
 import PhoneInputField from "@/components/claim/PhoneInputField";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
-import { Link as LocaleLink, useRouter } from "@/i18n/routing";
+import { useRouter } from "@/i18n/routing";
+import { claimDocumentUrl, markClaimReloadRestore, saveClaimReturn, type ClaimReturnSignature } from "@/lib/claim-return";
 import { readClaimAttribution } from "@/lib/claim-attribution-client";
 import { type ContactIssue } from "@/lib/claim-form-issues";
 import { formatFileSize } from "@/lib/claim-types";
@@ -75,7 +76,21 @@ export type ClaimResumePrefill = {
   contactEmail: string;
   contactPhone: string;
   additionalPassengers: ClaimPassenger[];
+  signingPassengerIndex?: number;
+  signingDate?: string;
+  signaturePreview?: string | null;
+  documentSignatures?: ClaimReturnSignature[];
 };
+
+function signatureRecord(
+  signatures: ClaimReturnSignature[] | undefined,
+): Record<string, ClaimDocumentSignaturePayload> {
+  const record: Record<string, ClaimDocumentSignaturePayload> = {};
+  for (const signature of signatures ?? []) {
+    record[`${signature.documentId}:${signature.passengerIndex}`] = signature;
+  }
+  return record;
+}
 
 type Step3PanelProps = {
   flight: ClaimFlightData;
@@ -164,6 +179,7 @@ export default function Step3Panel({
   const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isDrawingRef = useRef(false);
+  const openingFullPageRef = useRef(false);
 
   const [phase, setPhase] = useState<WizardPhase>(
     resumePrefill?.contactEmail ? "sign" : "contact",
@@ -185,11 +201,19 @@ export default function Step3Panel({
 
   const [sessionId] = useState(resumePrefill?.formSessionId || createSessionId);
   const [odooLeadId, setOdooLeadId] = useState<number | null>(resumePrefill?.odooLeadId ?? null);
-  const [docSignatures, setDocSignatures] = useState<Record<string, ClaimDocumentSignaturePayload>>({});
-  const docSignaturesRef = useRef<Record<string, ClaimDocumentSignaturePayload>>({});
-  const [signingPassengerIndex, setSigningPassengerIndex] = useState(0);
-  const [signingDate, setSigningDate] = useState(() => new Date().toISOString().slice(0, 10));
-  const [signaturePreview, setSignaturePreview] = useState<string | null>(null);
+  const restoredSignatures = signatureRecord(resumePrefill?.documentSignatures);
+  const [docSignatures, setDocSignatures] = useState(restoredSignatures);
+  const docSignaturesRef = useRef(restoredSignatures);
+  const [signingPassengerIndex, setSigningPassengerIndex] = useState(
+    () => resumePrefill?.signingPassengerIndex ?? 0,
+  );
+  const [signingDate, setSigningDate] = useState(
+    () => resumePrefill?.signingDate || new Date().toISOString().slice(0, 10),
+  );
+  const [signaturePreview, setSignaturePreview] = useState<string | null>(
+    () => resumePrefill?.signaturePreview ?? null,
+  );
+  const keepRestoredSignature = useRef(Boolean(resumePrefill?.signaturePreview));
   const [signError, setSignError] = useState<string | null>(null);
   const [isSigning, setIsSigning] = useState(false);
   const documentViewerRef = useRef<HTMLDivElement>(null);
@@ -283,6 +307,36 @@ export default function Step3Panel({
     flight.routeTo,
     signingDate,
   ]);
+  const fullPageUrl = claimDocumentUrl(locale, poaFullPageHref);
+
+  const rememberClaimForFullPage = () => {
+    saveClaimReturn({
+      entryMode,
+      flight,
+      formSessionId: sessionId,
+      odooLeadId,
+      signedName,
+      contactEmail,
+      contactPhone,
+      additionalPassengers,
+      signingPassengerIndex,
+      signingDate,
+      signaturePreview,
+      documentSignatures: Object.values(docSignaturesRef.current),
+    });
+    markClaimReloadRestore();
+  };
+
+  const openFullPoa = (event: MouseEvent<HTMLAnchorElement>) => {
+    rememberClaimForFullPage();
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    event.preventDefault();
+    const opened = window.open(fullPageUrl, "_blank");
+    if (!opened) {
+      openingFullPageRef.current = true;
+      window.location.assign(fullPageUrl);
+    }
+  };
 
   useEffect(() => {
     docSignaturesRef.current = docSignatures;
@@ -298,6 +352,7 @@ export default function Step3Panel({
     let idleEmailSent = false;
 
     const postResumeEmail = () => {
+      if (openingFullPageRef.current) return;
       void fetch("/api/claim/send-resume-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -353,8 +408,31 @@ export default function Step3Panel({
     const element = documentViewerRef.current;
     if (!element || phase !== "sign") return;
     element.scrollTop = 0;
+    if (keepRestoredSignature.current) {
+      keepRestoredSignature.current = false;
+      return;
+    }
     setSignaturePreview(null);
   }, [phase, signingPassengerIndex]);
+
+  useEffect(() => {
+    const preview = resumePrefill?.signaturePreview;
+    if (!preview || phase !== "sign") return;
+    const image = new Image();
+    let cancelled = false;
+    image.onload = () => {
+      if (cancelled) return;
+      const canvas = canvasRef.current;
+      const context = canvas?.getContext("2d");
+      if (!canvas || !context) return;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    };
+    image.src = preview;
+    return () => {
+      cancelled = true;
+    };
+  }, [phase, resumePrefill?.signaturePreview]);
 
   useEffect(() => {
     document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -1081,14 +1159,16 @@ export default function Step3Panel({
           <div className="bg-white border border-[#d5e0f9] rounded-xl overflow-hidden shadow-sm">
             <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-[#d5e0f9] bg-[#fafbff]">
               <p className="text-[#7b8094] text-xs font-bold uppercase tracking-wide">{t("documentPreview")}</p>
-              <LocaleLink
-                href={poaFullPageHref}
+              <a
+                href={fullPageUrl}
                 target="_blank"
+                rel="opener"
                 className="text-[#2669f3] font-bold text-xs whitespace-nowrap hover:underline"
+                onClick={openFullPoa}
                 {...gtmId("claim_step3_open_poa")}
               >
                 {t("openFullPage")}
-              </LocaleLink>
+              </a>
             </div>
             <div ref={documentViewerRef} className="max-h-64 sm:max-h-96 overflow-y-auto p-4">
               <PowerOfAttorneyDocument

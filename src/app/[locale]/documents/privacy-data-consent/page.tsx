@@ -3,10 +3,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DocumentPageHeader from "@/components/legal/DocumentPageHeader";
+import BackToClaimLink from "@/components/claim/BackToClaimLink";
 import { PrivacyDataConsentContent } from "@/components/claim/legal-document-content";
 import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
-import { gtmClaimCta } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
 
 type PrivacyDataConsentPageProps = {
@@ -35,9 +35,9 @@ export default async function PrivacyDataConsentPage({ params }: PrivacyDataCons
             {t("home")}
           </Link>
           <span>/</span>
-          <Link href="/#claim" className="hover:text-[#2669f3] transition-colors" {...gtmClaimCta("docs_breadcrumb")}>
+          <BackToClaimLink location="docs_breadcrumb" className="hover:text-[#2669f3] transition-colors">
             {t("claim")}
-          </Link>
+          </BackToClaimLink>
           <span>/</span>
           <span className="text-[#1f3664] font-medium">{t("privacyDataConsent")}</span>
         </nav>
@@ -50,13 +50,12 @@ export default async function PrivacyDataConsentPage({ params }: PrivacyDataCons
 
             <div className="mt-8 pt-6 border-t border-[#d5e0f9] flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
               <p className="text-xs text-[#1f3664]/50">{t("copyright")}</p>
-              <Link
-                href="/#claim"
+              <BackToClaimLink
+                location="docs"
                 className="bg-[#2669f3] text-white font-semibold px-6 py-2.5 rounded-full text-sm hover:bg-[#1a55d4] transition-colors whitespace-nowrap"
-                {...gtmClaimCta("docs")}
               >
                 {t("backToClaim")}
-              </Link>
+              </BackToClaimLink>
             </div>
           </div>
         </div>
