@@ -20,25 +20,27 @@ export default function HomeFloatingClaimCta() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("has-floating-claim", visible);
+    return () => document.documentElement.classList.remove("has-floating-claim");
+  }, [visible]);
+
   if (!visible) return null;
 
   return (
-    <>
-      <div aria-hidden className="h-20" />
-      <div
-        className="fixed inset-x-0 z-40 flex justify-center px-4 pointer-events-none"
-        style={{
-          bottom: "calc(var(--cookie-banner-offset, 0px) + env(safe-area-inset-bottom, 0px) + 12px)",
-        }}
+    <div
+      className="fixed inset-x-0 z-40 flex justify-center px-4 pointer-events-none"
+      style={{
+        bottom: "calc(var(--cookie-banner-offset, 0px) + env(safe-area-inset-bottom, 0px) + 12px)",
+      }}
+    >
+      <Link
+        href="/#claim"
+        className="pointer-events-auto inline-flex h-12 w-full max-w-md items-center justify-center rounded-full bg-[#2669f3] px-6 text-base font-bold text-white shadow-[0_10px_30px_rgba(38,105,243,0.35)] hover:bg-[#1a55d4]"
+        {...gtmClaimCta("home_floating")}
       >
-        <Link
-          href="/#claim"
-          className="pointer-events-auto inline-flex h-12 w-full max-w-md items-center justify-center rounded-full bg-[#2669f3] px-6 text-base font-bold text-white shadow-[0_10px_30px_rgba(38,105,243,0.35)] hover:bg-[#1a55d4]"
-          {...gtmClaimCta("home_floating")}
-        >
-          {t("checkCompensationShort")}
-        </Link>
-      </div>
-    </>
+        {t("checkCompensationShort")}
+      </Link>
+    </div>
   );
 }

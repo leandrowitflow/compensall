@@ -65,10 +65,19 @@ html.needs-cookie-banner {
   }
 }
 
-/* The banner is fixed, so the reserved space belongs to the footer, not a white strip under it. */
+/* Fixed bars reserve space inside the footer so the page does not end on a white strip. */
 html.needs-cookie-banner footer,
 body.has-cookie-banner footer {
   padding-bottom: var(--cookie-banner-offset, 0px);
+}
+
+html.has-floating-claim footer {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5rem);
+}
+
+html.needs-cookie-banner.has-floating-claim footer,
+html.has-floating-claim body.has-cookie-banner footer {
+  padding-bottom: calc(var(--cookie-banner-offset, 0px) + env(safe-area-inset-bottom, 0px) + 5rem);
 }
 
 button:not(:disabled):active,
