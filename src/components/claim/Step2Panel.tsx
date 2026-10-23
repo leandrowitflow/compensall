@@ -3,10 +3,10 @@
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
-import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
 import ConnectingFlightsForm from "@/components/claim/ConnectingFlightsForm";
 import DisruptionDetailsForm from "@/components/claim/DisruptionDetailsForm";
 import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
+import Step2Airports from "@/components/claim/Step2Airports";
 import { focusClaimField } from "@/components/claim/FieldIssue";
 import { InfoBoardRow } from "@/components/claim/ClaimSidebar";
 import { ACTION_BTN } from "@/components/claim/claim-ui";
@@ -49,30 +49,7 @@ export default function Step2Panel({
 
   return (
     <div className="border border-[#d5e0f9] rounded-[21px] p-4 sm:p-5 xl:p-6 flex flex-col h-full bg-white">
-      <div className="flex items-start gap-3 mb-4">
-        <img src="/assets/claim/claim-ai-icon.svg" alt="" className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 object-contain" />
-        <div>
-          <div className="flex items-center gap-3 flex-wrap">
-            <p className="font-bold text-[#2669f3] text-base sm:text-lg">{tCommon("assistantName")}</p>
-            <span className="text-[#7b8094] text-sm">{tCommon("justNow")}</span>
-          </div>
-          <p className="text-[#1f3664] text-sm sm:text-base mt-2 leading-relaxed">
-            {extractWarning ? (
-              <>
-                {tStep2("extractPartial")}
-                <br />
-                {tStep2("fillInDetails")}
-              </>
-            ) : (
-              <>
-                {tStep2("extractedSuccess")}
-                <br />
-                {tStep2("confirmDetails")}
-              </>
-            )}
-          </p>
-        </div>
-      </div>
+      <Step2Airports flight={flight} onFlightChange={onFlightChange} />
 
       {extractWarning && (
         <p className="text-sm text-[#fa6d19] bg-[#fff7f0] border border-[#ffd9b8] rounded-[12px] px-4 py-3 mb-4" role="status">
@@ -82,7 +59,7 @@ export default function Step2Panel({
 
       {isEditing ? (
         <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-4 mb-4">
-          <FlightDetailsForm flight={flight} onChange={onFlightChange} idPrefix="edit" issue={fieldIssue} />
+          <FlightDetailsForm flight={flight} onChange={onFlightChange} idPrefix="edit" issue={fieldIssue} hideRoute />
         </div>
       ) : (
         <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-2 mb-4">
@@ -96,13 +73,6 @@ export default function Step2Panel({
           <InfoBoardRow icon="/assets/claim/claim-calendar.svg" label={tStep2("date")} value={flight.date || tCommon("notApplicable")} />
         </div>
       )}
-
-      <CompensationEstimateBanner
-        routeFrom={flight.routeFrom}
-        routeTo={flight.routeTo}
-        estimate={flight.compensationEstimate}
-        className="mb-4"
-      />
 
       <div className="mb-4">
         <ConnectingFlightsForm flight={flight} onChange={onFlightChange} issue={fieldIssue} />

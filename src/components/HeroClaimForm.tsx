@@ -389,7 +389,7 @@ export default function HeroClaimForm() {
     }
   };
 
-  const handleManualSubmit = (manualFlight: ClaimFlightData) => {
+  const handleDisruptionChoice = (status: "Delayed" | "Cancelled") => {
     void loadStep2Panel();
     if (advancingRef.current) return;
     advancingRef.current = true;
@@ -398,7 +398,12 @@ export default function HeroClaimForm() {
       setEntryMode("manual");
       setBoardingPassFile(null);
       setUpload(null);
-      setFlight(manualFlight);
+      setFlight(
+        normalizeFlightData({
+          status,
+          delay: status === "Cancelled" ? "more_than_3" : "",
+        }),
+      );
       setExtractError(null);
       setIsEditing(true);
       setStep(2);
@@ -593,14 +598,16 @@ export default function HeroClaimForm() {
           isAdvancing={isAdvancing}
           extractError={extractError}
           onExtract={handleExtract}
-          onManualSubmit={handleManualSubmit}
+          onChooseDisruption={handleDisruptionChoice}
         />
       )}
 
       {step > 1 && entryMode && (
         <div className="px-4 pb-4 xl:px-6 xl:pb-6">
-          <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,489px)_1fr] gap-4 xl:gap-6">
-            <ClaimSidebar entryMode={entryMode} upload={upload} flight={flight} />
+          <div className={`grid grid-cols-1 gap-4 xl:gap-6 ${entryMode === "upload" ? "xl:grid-cols-[minmax(0,489px)_1fr]" : ""}`}>
+            {entryMode === "upload" && (
+              <ClaimSidebar entryMode={entryMode} upload={upload} flight={flight} />
+            )}
             {step === 2 ? (
               <Step2Panel
                 flight={flight}

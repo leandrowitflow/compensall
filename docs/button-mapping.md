@@ -90,8 +90,9 @@ data-gtm="nav_about"
 | Step | Label (EN) | `data-gtm` |
 |---|---|---|
 | 1 | Upload boarding pass | `claim_step1_upload_boarding_pass` |
-| 1 | Check compensation | `claim_step1_check_compensation` |
-| 1 | Swap airports | `claim_step1_swap_airports` |
+| 1 | Delayed flight | `claim_step1_delayed` |
+| 1 | Cancelled flight | `claim_step1_cancelled` |
+| 2 | Swap airports | `claim_step2_swap_airports` |
 | 2 | Delete data | `claim_step2_delete_data` |
 | 2 | Edit details | `claim_step2_edit_details` |
 | 2 | Yes, continue | `claim_step2_yes_continue` |

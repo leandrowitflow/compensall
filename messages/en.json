@@ -185,10 +185,12 @@
       "readingBoardingPass": "Reading your boarding pass…",
       "extractingDetails": "{assistantName} is extracting your flight details",
       "uploadTitle": "Upload your boarding pass",
-      "uploadOptional": "Optional. You can start with your route instead.",
+      "uploadOptional": "Optional.",
       "uploadHint": "Drag & drop or click to upload (PDF, JPG, PNG)",
       "orCheckManually": "No boarding pass?",
-      "checkManually": "Enter your route.",
+      "checkManually": "Was the flight delayed or cancelled?",
+      "delayedFlight": "Delayed flight",
+      "cancelledFlight": "Cancelled flight",
       "departureAirport": "Departure airport",
       "arrivalAirport": "Arrival airport",
       "swapAirports": "Swap airports",
@@ -222,6 +224,7 @@
       }
     },
     "step2": {
+      "routeTitle": "Airports",
       "extractedSuccess": "Thanks! I've extracted your flight details.",
       "confirmDetails": "Please confirm the information below is correct.",
       "extractPartial": "Your boarding pass is saved, but we couldn't read every detail automatically.",

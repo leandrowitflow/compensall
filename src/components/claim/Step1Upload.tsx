@@ -1,67 +1,19 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
-import { startTransition, useRef, useState, type DragEvent } from "react";
+import { useRef, useState, type DragEvent } from "react";
 import { validateBoardingPassFile, BOARDING_PASS_ACCEPT } from "@/lib/boarding-pass-file";
 import { prepareClaimFile } from "@/lib/prepare-claim-file";
-import {
-  normalizeFlightData,
-  type ClaimFlightData,
-} from "@/lib/claim-types";
-import { formatAirportRouteLabel, type AirportOption } from "@/lib/airport-option";
 import { gtmId } from "@/lib/gtm";
 
-function loadAirportSelectChunk() {
-  return import("@/components/claim/AirportSelect");
-}
-
-const AirportSelect = dynamic(loadAirportSelectChunk, {
-  ssr: false,
-  loading: () => (
-    <div className="relative flex-1 min-w-0 self-stretch">
-      <div className="w-full h-full min-h-[73px]" aria-hidden />
-    </div>
-  ),
-});
-
-function AirportSelectPlaceholder({
-  id,
-  placeholder,
-  disabled,
-  onActivate,
-}: {
-  id: string;
-  placeholder: string;
-  disabled?: boolean;
-  onActivate: () => void;
-}) {
-  return (
-    <div className={`relative flex-1 min-w-0 self-stretch ${disabled ? "opacity-60" : ""}`}>
-      <span className="sr-only" id={`${id}-label`}>
-        {placeholder}
-      </span>
-      <button
-        type="button"
-        id={id}
-        aria-labelledby={`${id}-label`}
-        onClick={onActivate}
-        onFocus={onActivate}
-        disabled={disabled}
-        className="w-full h-full min-h-[73px] px-4 sm:px-6 flex items-center justify-center text-center hover:bg-[#f8faff]/50 transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
-      >
-        <span className="text-[#1f3664] text-base sm:text-lg">{placeholder}</span>
-      </button>
-    </div>
-  );
-}
+type DisruptionChoice = "Delayed" | "Cancelled";
 
 type Step1UploadProps = {
   isExtracting: boolean;
   isAdvancing?: boolean;
   extractError: string | null;
   onExtract: (file: File) => Promise<void>;
-  onManualSubmit: (flight: ClaimFlightData) => void;
+  onChooseDisruption: (status: DisruptionChoice) => void;
 };
 
 export default function Step1Upload({
@@ -69,26 +21,14 @@ export default function Step1Upload({
   isAdvancing = false,
   extractError,
   onExtract,
-  onManualSubmit,
+  onChooseDisruption,
 }: Step1UploadProps) {
   const tStep1 = useTranslations("claim.step1");
   const tCommon = useTranslations("common");
   const inputRef = useRef<HTMLInputElement>(null);
   const processingRef = useRef(false);
-  const [departure, setDeparture] = useState<AirportOption | null>(null);
-  const [arrival, setArrival] = useState<AirportOption | null>(null);
-  const [manualError, setManualError] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  /** World-airports stays out of the first load. Fetch it when an airport field is used. */
-  const [loadAirportSelect, setLoadAirportSelect] = useState(false);
-  const [autoOpenAirportId, setAutoOpenAirportId] = useState<string | null>(null);
-
-  const activateAirportSelect = (id?: string) => {
-    if (id) setAutoOpenAirportId(id);
-    void loadAirportSelectChunk();
-    startTransition(() => setLoadAirportSelect(true));
-  };
 
   const handleFile = async (file: File | null) => {
     if (!file || isExtracting || processingRef.current) return;
@@ -106,9 +46,7 @@ export default function Step1Upload({
       await onExtract(prepared);
     } finally {
       processingRef.current = false;
-      if (inputRef.current) {
-        inputRef.current.value = "";
-      }
+      if (inputRef.current) inputRef.current.value = "";
     }
   };
 
@@ -118,56 +56,10 @@ export default function Step1Upload({
     await handleFile(event.dataTransfer.files[0] ?? null);
   };
 
-  const swapAirports = () => {
-    if (isExtracting) return;
-
-    setDeparture(arrival);
-    setArrival(departure);
-    setManualError(null);
-  };
-
-  const handleDepartureChange = (airport: AirportOption | null) => {
-    if (isExtracting) return;
-
-    setDeparture(airport);
-    if (airport && arrival?.id === airport.id) {
-      setArrival(null);
-    }
-    setManualError(null);
-  };
-
-  const handleArrivalChange = (airport: AirportOption | null) => {
-    if (isExtracting) return;
-
-    setArrival(airport);
-    if (airport && departure?.id === airport.id) {
-      setDeparture(null);
-    }
-    setManualError(null);
-  };
-
-  const submitManual = () => {
-    if (isExtracting || isAdvancing) return;
-
-    setManualError(null);
-
-    if (!departure || !arrival) {
-      setManualError(tStep1("errors.selectBothAirports"));
-      return;
-    }
-
-    if (departure.id === arrival.id) {
-      setManualError(tStep1("errors.airportsMustDiffer"));
-      return;
-    }
-
-    onManualSubmit(
-      normalizeFlightData({
-        routeFrom: formatAirportRouteLabel(departure),
-        routeTo: formatAirportRouteLabel(arrival),
-      }),
-    );
-  };
+  const choices: Array<{ status: DisruptionChoice; label: string; gtm: string }> = [
+    { status: "Delayed", label: tStep1("delayedFlight"), gtm: "claim_step1_delayed" },
+    { status: "Cancelled", label: tStep1("cancelledFlight"), gtm: "claim_step1_cancelled" },
+  ];
 
   return (
     <div className="px-6 sm:px-10 xl:px-14 pt-4 sm:pt-5 xl:pt-6 pb-6 sm:pb-8 xl:pb-10">
@@ -180,8 +72,8 @@ export default function Step1Upload({
         className={`relative block w-full border-[3.5px] border-dashed rounded-xl py-8 sm:py-10 flex flex-col items-center justify-center text-center transition-colors bg-transparent ${
           isDragging ? "border-[#2669f3] bg-[#f1f5fe]/50" : "border-[#d5e0f9] hover:border-[#2669f3]/60"
         } ${isExtracting ? "opacity-70 pointer-events-none" : ""}`}
-        onDragOver={(e) => {
-          e.preventDefault();
+        onDragOver={(event) => {
+          event.preventDefault();
           setIsDragging(true);
         }}
         onDragLeave={() => setIsDragging(false)}
@@ -193,7 +85,7 @@ export default function Step1Upload({
           accept={BOARDING_PASS_ACCEPT}
           disabled={isExtracting}
           className="claim-native-file absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
-          onChange={(e) => void handleFile(e.target.files?.[0] ?? null)}
+          onChange={(event) => void handleFile(event.target.files?.[0] ?? null)}
           {...gtmId("claim_step1_upload_boarding_pass")}
         />
         {isExtracting ? (
@@ -224,77 +116,20 @@ export default function Step1Upload({
         <strong className="font-bold">{tStep1("orCheckManually")}</strong> {tStep1("checkManually")}
       </p>
 
-      <div
-        aria-busy={isExtracting}
-        className={`flex flex-col lg:flex-row lg:items-stretch border-2 border-[#d5e0f9] rounded-[13px] bg-white min-h-[87px] min-w-0 transition-opacity ${
-          isExtracting ? "opacity-50 pointer-events-none" : ""
-        }`}
-      >
-        <div className="flex flex-col md:flex-row flex-1 min-w-0 items-stretch">
-          {loadAirportSelect ? (
-            <AirportSelect
-              id="manual-departure"
-              placeholder={tStep1("departureAirport")}
-              value={departure}
-              onChange={handleDepartureChange}
-              excludeAirportId={arrival?.id}
-              disabled={isExtracting}
-              autoOpen={autoOpenAirportId === "manual-departure"}
-            />
-          ) : (
-            <AirportSelectPlaceholder
-              id="manual-departure"
-              placeholder={tStep1("departureAirport")}
-              disabled={isExtracting}
-              onActivate={() => activateAirportSelect("manual-departure")}
-            />
-          )}
+      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto ${isExtracting ? "opacity-50 pointer-events-none" : ""}`}>
+        {choices.map((choice) => (
           <button
+            key={choice.status}
             type="button"
-            onClick={swapAirports}
-            disabled={isExtracting}
-            className="flex-shrink-0 self-center sm:self-stretch min-h-11 min-w-11 px-4 sm:px-0 sm:min-w-12 flex items-center justify-center rounded-full hover:bg-[#f8faff] active:bg-[#e7eeff] transition-colors disabled:cursor-not-allowed disabled:hover:bg-transparent"
-            aria-label={tStep1("swapAirports")}
-            {...gtmId("claim_step1_swap_airports")}
+            disabled={isExtracting || isAdvancing}
+            onClick={() => onChooseDisruption(choice.status)}
+            className="min-h-14 rounded-2xl border-2 border-[#d5e0f9] bg-white px-5 py-4 text-base sm:text-lg font-bold text-[#1f3664] hover:border-[#2669f3] hover:bg-[#f5f8ff] disabled:cursor-not-allowed disabled:opacity-60"
+            {...gtmId(choice.gtm)}
           >
-            <img src="/assets/icons/arrow-right-left.svg" alt="" aria-hidden="true" width={23} height={23} decoding="async" fetchPriority="low" className="w-[23px] h-[23px] object-contain" />
+            {choice.label}
           </button>
-          {loadAirportSelect ? (
-            <AirportSelect
-              id="manual-arrival"
-              placeholder={tStep1("arrivalAirport")}
-              value={arrival}
-              onChange={handleArrivalChange}
-              excludeAirportId={departure?.id}
-              disabled={isExtracting}
-              autoOpen={autoOpenAirportId === "manual-arrival"}
-            />
-          ) : (
-            <AirportSelectPlaceholder
-              id="manual-arrival"
-              placeholder={tStep1("arrivalAirport")}
-              disabled={isExtracting}
-              onActivate={() => activateAirportSelect("manual-arrival")}
-            />
-          )}
-        </div>
-        <button
-          type="button"
-          onClick={submitManual}
-          disabled={isExtracting || isAdvancing}
-          className="w-full lg:w-auto flex-shrink-0 bg-[#2669f3] text-white font-bold text-sm sm:text-base xl:text-[19px] leading-tight px-4 sm:px-6 xl:px-8 py-4 lg:py-0 lg:min-h-[73px] lg:my-[7px] lg:mr-[7px] lg:ml-2 flex items-center justify-center text-center hover:bg-[#1a55d4] transition-colors rounded-[11px] lg:rounded-[10.557px] disabled:cursor-not-allowed disabled:bg-[#2669f3]/70 disabled:hover:bg-[#2669f3]/70"
-          {...gtmId("claim_step1_check_compensation")}
-        >
-          <span className="xl:hidden">{tCommon("checkCompensationShort")}</span>
-          <span className="hidden xl:inline">{tCommon("checkCompensation")}</span>
-        </button>
+        ))}
       </div>
-
-      {manualError && (
-        <p className="mt-3 text-sm text-[#e82828] text-center" role="alert">
-          {manualError}
-        </p>
-      )}
 
       <div className="flex items-center justify-center gap-2 mt-6 sm:mt-8 xl:mt-10">
         <img src="/assets/icons/shield-lock.svg" alt="" aria-hidden="true" width={24} height={24} decoding="async" fetchPriority="low" className="w-6 h-6 opacity-50 object-contain" />

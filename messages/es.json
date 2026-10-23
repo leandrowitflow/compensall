@@ -185,10 +185,12 @@
       "readingBoardingPass": "Leyendo tu tarjeta de embarque…",
       "extractingDetails": "{assistantName} está extrayendo los datos de tu vuelo",
       "uploadTitle": "Sube tu tarjeta de embarque",
-      "uploadOptional": "Opcional. Puedes empezar por la ruta.",
+      "uploadOptional": "Opcional.",
       "uploadHint": "Arrastra y suelta o pulsa para subir (PDF, JPG, PNG)",
       "orCheckManually": "¿Sin tarjeta de embarque?",
-      "checkManually": "Indica la ruta.",
+      "checkManually": "¿El vuelo se retrasó o se canceló?",
+      "delayedFlight": "Vuelo retrasado",
+      "cancelledFlight": "Vuelo cancelado",
       "departureAirport": "Aeropuerto de salida",
       "arrivalAirport": "Aeropuerto de llegada",
       "swapAirports": "Intercambiar aeropuertos",
@@ -222,6 +224,7 @@
       }
     },
     "step2": {
+      "routeTitle": "Aeropuertos",
       "extractedSuccess": "¡Gracias! He extraído los datos de tu vuelo.",
       "confirmDetails": "Confirma que la información de abajo es correcta.",
       "extractPartial": "Tu tarjeta de embarque está guardada, pero no hemos podido leer todos los datos automáticamente.",

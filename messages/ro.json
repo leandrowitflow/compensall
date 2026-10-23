@@ -185,10 +185,12 @@
       "readingBoardingPass": "Citim cartea ta de îmbarcare…",
       "extractingDetails": "{assistantName} extrage datele zborului tău",
       "uploadTitle": "Încarcă cartea de îmbarcare",
-      "uploadOptional": "Opțional. Poți începe cu ruta.",
+      "uploadOptional": "Opțional.",
       "uploadHint": "Trage și plasează sau apasă ca să încarci (PDF, JPG, PNG)",
       "orCheckManually": "Fără carte de îmbarcare?",
-      "checkManually": "Indică ruta.",
+      "checkManually": "Zborul a întârziat sau a fost anulat?",
+      "delayedFlight": "Zbor întârziat",
+      "cancelledFlight": "Zbor anulat",
       "departureAirport": "Aeroportul de plecare",
       "arrivalAirport": "Aeroportul de sosire",
       "swapAirports": "Inversează aeroporturile",
@@ -222,6 +224,7 @@
       }
     },
     "step2": {
+      "routeTitle": "Aeroporturi",
       "extractedSuccess": "Mulțumim! Am extras datele zborului tău.",
       "confirmDetails": "Confirmă că informațiile de mai jos sunt corecte.",
       "extractPartial": "Cartea de îmbarcare este salvată, dar nu am putut citi automat toate datele.",

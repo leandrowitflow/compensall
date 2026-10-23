@@ -185,10 +185,12 @@
       "readingBoardingPass": "Beszállókártyád olvasása…",
       "extractingDetails": "{assistantName} kinyeri a járatadataidat",
       "uploadTitle": "Töltsd fel a beszállókártyádat",
-      "uploadOptional": "Nem kötelező. Kezdheted az útvonallal is.",
+      "uploadOptional": "Nem kötelező.",
       "uploadHint": "Húzd ide, vagy kattints a feltöltéshez (PDF, JPG, PNG)",
       "orCheckManually": "Nincs beszállókártyád?",
-      "checkManually": "Add meg az útvonalat.",
+      "checkManually": "A járat késett vagy törölték?",
+      "delayedFlight": "Késő járat",
+      "cancelledFlight": "Törölt járat",
       "departureAirport": "Indulási repülőtér",
       "arrivalAirport": "Érkezési repülőtér",
       "swapAirports": "Repülőterek felcserélése",
@@ -222,6 +224,7 @@
       }
     },
     "step2": {
+      "routeTitle": "Repülőterek",
       "extractedSuccess": "Köszönjük! Kinyertem a járatadataidat.",
       "confirmDetails": "Erősítsd meg, hogy az alábbi adatok helyesek.",
       "extractPartial": "A beszállókártyád el van mentve, de nem tudtunk minden adatot automatikusan kiolvasni.",

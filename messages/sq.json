@@ -185,10 +185,12 @@
       "readingBoardingPass": "Po lexojmë kartën e imbarkimit…",
       "extractingDetails": "{assistantName} po nxjerr të dhënat e fluturimit",
       "uploadTitle": "Ngarko kartën e imbarkimit",
-      "uploadOptional": "Opsionale. Mund të fillosh me itinerarin.",
+      "uploadOptional": "Opsionale.",
       "uploadHint": "Tërhiq dhe lësho, ose kliko për ta ngarkuar (PDF, JPG, PNG)",
       "orCheckManually": "Pa kartë imbarkimi?",
-      "checkManually": "Shkruaj itinerarin.",
+      "checkManually": "Fluturimi u vonua apo u anulua?",
+      "delayedFlight": "Fluturim i vonuar",
+      "cancelledFlight": "Fluturim i anuluar",
       "departureAirport": "Aeroporti i nisjes",
       "arrivalAirport": "Aeroporti i mbërritjes",
       "swapAirports": "Ndërro aeroportet",
@@ -222,6 +224,7 @@
       }
     },
     "step2": {
+      "routeTitle": "Aeroportet",
       "extractedSuccess": "Faleminderit! I nxorëm të dhënat e fluturimit.",
       "confirmDetails": "Konfirmo që informacioni më poshtë është i saktë.",
       "extractPartial": "Karta e imbarkimit u ruajt, por nuk i lexuam automatikisht të gjitha detajet.",

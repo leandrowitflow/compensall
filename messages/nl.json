@@ -185,10 +185,12 @@
       "readingBoardingPass": "Uw instapkaart wordt gelezen…",
       "extractingDetails": "{assistantName} leest uw vluchtgegevens uit",
       "uploadTitle": "Instapkaart uploaden",
-      "uploadOptional": "Optioneel. U kunt met de route beginnen.",
+      "uploadOptional": "Optioneel.",
       "uploadHint": "Sleep of klik om te uploaden (PDF, JPG, PNG)",
       "orCheckManually": "Geen instapkaart?",
-      "checkManually": "Vul de route in.",
+      "checkManually": "Was de vlucht vertraagd of geannuleerd?",
+      "delayedFlight": "Vertraagde vlucht",
+      "cancelledFlight": "Geannuleerde vlucht",
       "departureAirport": "Vertrekluchthaven",
       "arrivalAirport": "Aankomstluchthaven",
       "swapAirports": "Luchthavens wisselen",
@@ -222,6 +224,7 @@
       }
     },
     "step2": {
+      "routeTitle": "Luchthavens",
       "extractedSuccess": "Dank u. Wij hebben uw vluchtgegevens uitgelezen.",
       "confirmDetails": "Bevestig dat de gegevens hieronder kloppen.",
       "extractPartial": "Uw instapkaart is opgeslagen, maar wij konden niet alle gegevens automatisch lezen.",

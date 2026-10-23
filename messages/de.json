@@ -185,10 +185,12 @@
       "readingBoardingPass": "Ihre Bordkarte wird gelesen…",
       "extractingDetails": "{assistantName} liest Ihre Flugdaten aus",
       "uploadTitle": "Bordkarte hochladen",
-      "uploadOptional": "Optional. Sie können mit der Strecke beginnen.",
+      "uploadOptional": "Optional.",
       "uploadHint": "Ziehen oder klicken zum Hochladen (PDF, JPG, PNG)",
       "orCheckManually": "Keine Bordkarte?",
-      "checkManually": "Strecke eingeben.",
+      "checkManually": "War der Flug verspätet oder annulliert?",
+      "delayedFlight": "Verspäteter Flug",
+      "cancelledFlight": "Annullierter Flug",
       "departureAirport": "Abflugflughafen",
       "arrivalAirport": "Ankunftsflughafen",
       "swapAirports": "Flughäfen tauschen",
@@ -222,6 +224,7 @@
       }
     },
     "step2": {
+      "routeTitle": "Flughäfen",
       "extractedSuccess": "Vielen Dank. Wir haben Ihre Flugdaten ausgelesen.",
       "confirmDetails": "Bitte bestätigen Sie, dass die Angaben unten stimmen.",
       "extractPartial": "Ihre Bordkarte ist gespeichert, aber wir konnten nicht alle Angaben automatisch lesen.",

@@ -185,10 +185,12 @@
       "readingBoardingPass": "Lecture de votre carte d'embarquement…",
       "extractingDetails": "{assistantName} extrait les détails de votre vol",
       "uploadTitle": "Téléchargez votre carte d'embarquement",
-      "uploadOptional": "Facultatif. Vous pouvez commencer par l'itinéraire.",
+      "uploadOptional": "Facultatif.",
       "uploadHint": "Glissez-déposez ou cliquez pour télécharger (PDF, JPG, PNG)",
       "orCheckManually": "Pas de carte d'embarquement ?",
-      "checkManually": "Indiquez l'itinéraire.",
+      "checkManually": "Le vol a-t-il été retardé ou annulé ?",
+      "delayedFlight": "Vol retardé",
+      "cancelledFlight": "Vol annulé",
       "departureAirport": "Aéroport de départ",
       "arrivalAirport": "Aéroport d'arrivée",
       "swapAirports": "Inverser les aéroports",
@@ -222,6 +224,7 @@
       }
     },
     "step2": {
+      "routeTitle": "Aéroports",
       "extractedSuccess": "Merci! J'ai extrait les détails de votre vol.",
       "confirmDetails": "Veuillez confirmer que les informations ci-dessous sont correctes.",
       "extractPartial": "Votre carte d'embarquement est enregistrée, mais nous n'avons pas pu lire tous les détails automatiquement.",

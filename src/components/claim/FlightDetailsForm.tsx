@@ -15,6 +15,7 @@ type FlightDetailsFormProps = {
   onChange: (flight: ClaimFlightData) => void;
   idPrefix?: string;
   issue?: Step2Issue | null;
+  hideRoute?: boolean;
 };
 
 export default function FlightDetailsForm({
@@ -22,6 +23,7 @@ export default function FlightDetailsForm({
   onChange,
   idPrefix = "flight",
   issue = null,
+  hideRoute = false,
 }: FlightDetailsFormProps) {
   const t = useTranslations("claim.step2.fields");
   const update = (patch: Partial<ClaimFlightData>) => onChange({ ...flight, ...patch });
@@ -94,36 +96,40 @@ export default function FlightDetailsForm({
         />
         <FieldIssue id={`${idPrefix}-date-error`} message={messageFor("date")} />
       </div>
-      <div className="scroll-mt-28">
-        <label className={FIELD_LABEL} htmlFor={`${idPrefix}-from`}>
-          {t("departure")}
-        </label>
-        <input
-          id={`${idPrefix}-from`}
-          className={fieldControlClass(FIELD_INPUT, issue?.field === "routeFrom")}
-          value={flight.routeFrom}
-          onChange={(e) => update({ routeFrom: e.target.value })}
-          placeholder={t("departurePlaceholder")}
-          aria-invalid={issue?.field === "routeFrom" || undefined}
-          aria-describedby={issue?.field === "routeFrom" ? `${idPrefix}-from-error` : undefined}
-        />
-        <FieldIssue id={`${idPrefix}-from-error`} message={messageFor("routeFrom")} />
-      </div>
-      <div className="scroll-mt-28">
-        <label className={FIELD_LABEL} htmlFor={`${idPrefix}-to`}>
-          {t("arrival")}
-        </label>
-        <input
-          id={`${idPrefix}-to`}
-          className={fieldControlClass(FIELD_INPUT, issue?.field === "routeTo")}
-          value={flight.routeTo}
-          onChange={(e) => update({ routeTo: e.target.value })}
-          placeholder={t("arrivalPlaceholder")}
-          aria-invalid={issue?.field === "routeTo" || undefined}
-          aria-describedby={issue?.field === "routeTo" ? `${idPrefix}-to-error` : undefined}
-        />
-        <FieldIssue id={`${idPrefix}-to-error`} message={messageFor("routeTo")} />
-      </div>
+      {!hideRoute && (
+        <>
+          <div className="scroll-mt-28">
+            <label className={FIELD_LABEL} htmlFor={`${idPrefix}-from`}>
+              {t("departure")}
+            </label>
+            <input
+              id={`${idPrefix}-from`}
+              className={fieldControlClass(FIELD_INPUT, issue?.field === "routeFrom")}
+              value={flight.routeFrom}
+              onChange={(e) => update({ routeFrom: e.target.value })}
+              placeholder={t("departurePlaceholder")}
+              aria-invalid={issue?.field === "routeFrom" || undefined}
+              aria-describedby={issue?.field === "routeFrom" ? `${idPrefix}-from-error` : undefined}
+            />
+            <FieldIssue id={`${idPrefix}-from-error`} message={messageFor("routeFrom")} />
+          </div>
+          <div className="scroll-mt-28">
+            <label className={FIELD_LABEL} htmlFor={`${idPrefix}-to`}>
+              {t("arrival")}
+            </label>
+            <input
+              id={`${idPrefix}-to`}
+              className={fieldControlClass(FIELD_INPUT, issue?.field === "routeTo")}
+              value={flight.routeTo}
+              onChange={(e) => update({ routeTo: e.target.value })}
+              placeholder={t("arrivalPlaceholder")}
+              aria-invalid={issue?.field === "routeTo" || undefined}
+              aria-describedby={issue?.field === "routeTo" ? `${idPrefix}-to-error` : undefined}
+            />
+            <FieldIssue id={`${idPrefix}-to-error`} message={messageFor("routeTo")} />
+          </div>
+        </>
+      )}
     </div>
   );
 }
