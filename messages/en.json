@@ -107,27 +107,27 @@
       "subtitle": "We help you get compensation for a wide range of flight problems.",
       "flightDelay": {
         "title": "Flight delay",
-        "description": "If your flight arrived more than 3 hours late, you may be entitled to compensation of up to £520 or €600.",
+        "description": "More than 3 hours late. Up to £520 or €600.",
         "iconAlt": "Flight delay icon"
       },
       "flightCancellation": {
         "title": "Flight cancellation",
-        "description": "If your flight is cancelled with short notice, you may be entitled to compensation of up to £520 or €600.",
+        "description": "Cancelled at short notice. Up to £520 or €600.",
         "iconAlt": "Flight cancellation"
       },
       "deniedBoarding": {
         "title": "Denied boarding",
-        "description": "If you were refused boarding against your will, you could claim up to £520 or €600.",
+        "description": "Refused boarding against your will. Up to £520 or €600.",
         "iconAlt": "Denied boarding"
       },
       "missedConnection": {
         "title": "Missed connection",
-        "description": "If you miss your connecting flight due to a delay, you may be entitled to compensation.",
+        "description": "A delay made you miss your connection.",
         "iconAlt": "Missed connection"
       },
       "airlineStrike": {
         "title": "Airline strike",
-        "description": "If your flight was disrupted by an airline strike, you may still be entitled to compensation.",
+        "description": "Disrupted by an airline strike.",
         "iconAlt": "Airline strike"
       }
     },
@@ -158,7 +158,12 @@
       "ecIntro": "For eligible EU flights, EC 261/2004 sets fixed amounts in euros. The amount depends on your flight distance.",
       "ukHeading": "UK261 — UK flights",
       "ecHeading": "EC 261/2004 — eligible EU flights",
-      "tierAlt": "{amount} compensation tier"
+      "tierAlt": "{amount} compensation tier",
+      "tableIntro": "The amount depends on the flight distance.",
+      "tableDistance": "Flight distance",
+      "tableUk": "UK",
+      "tableEu": "EU",
+      "tableAmount": "Compensation"
     }
   },
   "claim": {
@@ -176,13 +181,14 @@
       "expired": "This resume link has expired or was already used. You can start a new claim below."
     },
     "step1": {
-      "rightsContext": "Under UK and EU passenger rights law (UK261 and EC 261/2004), you may be entitled to compensation for delays, cancellations, and denied boarding. Upload your boarding pass to check eligibility — free. No win, no fee.",
+      "rightsContext": "A delay, cancellation, or denied boarding may qualify. No win, no fee.",
       "readingBoardingPass": "Reading your boarding pass…",
       "extractingDetails": "{assistantName} is extracting your flight details",
       "uploadTitle": "Upload your boarding pass",
+      "uploadOptional": "Optional. You can start with your route instead.",
       "uploadHint": "Drag & drop or click to upload (PDF, JPG, PNG)",
-      "orCheckManually": "Or",
-      "checkManually": "check manually",
+      "orCheckManually": "No boarding pass?",
+      "checkManually": "Enter your route.",
       "departureAirport": "Departure airport",
       "arrivalAirport": "Arrival airport",
       "swapAirports": "Swap airports",
@@ -313,7 +319,7 @@
     "step3": {
       "claimReady": "Your claim is ready.",
       "confirmContact": "Confirm your contact details and any additional passengers.",
-      "uploadDocuments": "Upload supporting documents (optional), then continue to review.",
+      "uploadDocuments": "The Power of Attorney is signed. Add any documents you have, or submit the claim.",
       "readAndSign": "Read the Power of Attorney fully, then sign once to continue.",
       "readAndSignPassenger": "Passenger {current} of {total}: {name} — read and sign the Power of Attorney.",
       "signedReview": "Signatures complete. Review and submit your claim.",
@@ -671,11 +677,11 @@
     "rightsIntro": "Air passengers in the UK and EU are protected when flights are delayed, cancelled, or disrupted through no fault of their own.",
     "uk261Card": {
       "title": "UK261 — UK flights",
-      "body": "After Brexit, the UK retained passenger rights through UK261. It applies to flights operating within UK airspace and sets fixed compensation in pounds: £220, £350, or £520 depending on distance."
+      "body": "UK flights. £220, £350 or £520, depending on distance."
     },
     "ec261Card": {
       "title": "EC 261/2004 — EU flights",
-      "body": "EU Regulation EC 261/2004 continues to protect passengers on eligible flights operating within EU airspace, with compensation of €250, €400, or €600 on the same distance bands."
+      "body": "EU flights. €250, €400 or €600, depending on distance."
     },
     "rightsDetailP1": "If your flight is delayed by three hours or more at arrival, cancelled with short notice, or you are denied boarding against your will, you may be entitled to fixed compensation. You may also have rights to care, rerouting, and refunds depending on the circumstances.",
     "rightsDetailP2": "Missed connections and airline strikes can also qualify when the disruption is within the airline's control. Compensall helps you check eligibility, prepare your claim, and pursue compensation with the airline on a No win, no fee basis.",

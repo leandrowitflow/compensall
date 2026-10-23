@@ -208,6 +208,7 @@ export default function Step1Upload({
           <>
             <img src="/assets/icons/cloud-upload.svg" alt="" aria-hidden="true" width={75} height={75} decoding="async" fetchPriority="low" className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[75px] xl:h-[75px] mb-4 object-contain" />
             <p className="font-bold text-[#1f3664] text-base sm:text-lg mb-1">{tStep1("uploadTitle")}</p>
+            <p className="text-[#1f3664] text-sm font-semibold mb-1">{tStep1("uploadOptional")}</p>
             <p className="text-muted text-xs sm:text-sm">{tStep1("uploadHint")}</p>
           </>
         )}

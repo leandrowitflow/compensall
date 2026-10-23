@@ -102,7 +102,7 @@ type Step3PanelProps = {
   onSubmit: (payload: ClaimSubmitPayload) => Promise<{ trackingNumber: string; status: ClaimStatus }>;
 };
 
-type WizardPhase = "contact" | "documents" | "sign" | "review";
+type WizardPhase = "contact" | "documents" | "sign";
 
 function createSessionId(): string {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
@@ -901,7 +901,6 @@ export default function Step3Panel({
                 total: allPassengers.length,
               })}
             {phase === "documents" && t("uploadDocuments")}
-            {phase === "review" && t("signedReview")}
           </p>
         </div>
       </div>
@@ -1076,6 +1075,21 @@ export default function Step3Panel({
 
       {phase === "documents" && (
         <div className="flex-1 border border-[#d5e0f9] rounded-[14px] bg-[#fafbff] p-4 sm:p-5 mb-4 space-y-3 overflow-y-auto">
+          {allPassengers.map((_, index) => {
+            const signature = docSignatures[`${POA_DOCUMENT_ID}:${index}`];
+            if (!signature) return null;
+            return (
+              <div key={signature.token} className="bg-white border border-[#d5e0f9] rounded-xl p-4 flex items-center gap-3">
+                <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-6 h-6 flex-shrink-0 object-contain" />
+                <div>
+                  <p className="font-bold text-[#1f3664] text-sm">{signature.passengerName}</p>
+                  <p className="text-[#7b8094] text-xs mt-0.5">
+                    {t("signedAt", { date: new Date(signature.signedAt).toLocaleString() })}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
           <p className="text-[#7b8094] text-xs sm:text-sm leading-relaxed">{t("documentsHint")}</p>
           {payloadNotice && (
             <p id="claim-documents-error" role="alert" className="text-sm leading-snug text-[#e82828]">
@@ -1225,26 +1239,6 @@ export default function Step3Panel({
         </div>
       )}
 
-      {phase === "review" && (
-        <div className="flex-1 border border-[#d5e0f9] rounded-[14px] bg-[#fafbff] p-4 sm:p-5 mb-4 space-y-3 overflow-y-auto">
-          {allPassengers.map((_, index) => {
-            const signature = docSignatures[`${POA_DOCUMENT_ID}:${index}`];
-            if (!signature) return null;
-            return (
-              <div key={signature.token} className="bg-white border border-[#d5e0f9] rounded-xl p-4 flex items-center gap-3">
-                <img src="/assets/claim/claim-checkmark.svg" alt="" className="w-6 h-6 flex-shrink-0 object-contain" />
-                <div>
-                  <p className="font-bold text-[#1f3664] text-sm">{signature.passengerName}</p>
-                  <p className="text-[#7b8094] text-xs mt-0.5">
-                    {t("signedAt", { date: new Date(signature.signedAt).toLocaleString() })}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-
       {submitError && (
         <p className="text-sm text-[#e82828] mb-4" role="alert">
           {submitError}
@@ -1317,7 +1311,8 @@ export default function Step3Panel({
                 setSigningPassengerIndex(Math.max(0, allPassengers.length - 1));
                 setPhase("sign");
               }}
-              className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 ${ACTION_BTN}`}
+              disabled={isSubmitting}
+              className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 disabled:opacity-50 ${ACTION_BTN}`}
               {...gtmId("claim_step3_documents_back")}
             >
               {t("back")}
@@ -1345,30 +1340,8 @@ export default function Step3Panel({
                   focusClaimField("other-documents-field");
                   return;
                 }
-                setPhase("review");
+                void handleSubmit();
               }}
-              className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto ${ACTION_BTN}`}
-              {...gtmId("claim_step3_continue_to_review")}
-            >
-              {t("continueToReview")}
-            </button>
-          </>
-        )}
-
-        {phase === "review" && (
-          <>
-            <button
-              type="button"
-              onClick={() => setPhase("documents")}
-              disabled={isSubmitting}
-              className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 disabled:opacity-50 ${ACTION_BTN}`}
-              {...gtmId("claim_step3_review_back")}
-            >
-              {t("back")}
-            </button>
-            <button
-              type="button"
-              onClick={() => void handleSubmit()}
               disabled={isSubmitting}
               className={`bg-[#2669f3] text-white hover:bg-[#1a55d4] sm:ml-auto disabled:opacity-50 ${ACTION_BTN}`}
               {...gtmId("claim_step3_submit_claim")}

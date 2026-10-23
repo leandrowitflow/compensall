@@ -107,27 +107,27 @@
       "subtitle": "Wij helpen u compensatie af te dwingen bij veel vluchtproblemen.",
       "flightDelay": {
         "title": "Vluchtvertraging",
-        "description": "Als uw vlucht meer dan 3 uur te laat aankwam, kunt u recht hebben op tot 520 £ of 600 €.",
+        "description": "Meer dan 3 uur te laat. Tot 600 €.",
         "iconAlt": "Icoon vluchtvertraging"
       },
       "flightCancellation": {
         "title": "Vluchtannulering",
-        "description": "Als uw vlucht op korte termijn is geannuleerd, kunt u recht hebben op tot 520 £ of 600 €.",
+        "description": "Op korte termijn geannuleerd. Tot 600 €.",
         "iconAlt": "Vluchtannulering"
       },
       "deniedBoarding": {
         "title": "Instapweigering",
-        "description": "Als u tegen uw wil de instap is geweigerd, kunt u tot 520 £ of 600 € eisen.",
+        "description": "Instap tegen uw wil geweigerd. Tot 600 €.",
         "iconAlt": "Instapweigering"
       },
       "missedConnection": {
         "title": "Gemiste aansluiting",
-        "description": "Als u door een vertraging uw aansluitende vlucht mist, kunt u recht hebben op compensatie.",
+        "description": "Aansluiting gemist door een vertraging.",
         "iconAlt": "Gemiste aansluiting"
       },
       "airlineStrike": {
         "title": "Staking van de airline",
-        "description": "Als een staking van de airline uw vlucht heeft verstoord, kunt u toch recht hebben op compensatie.",
+        "description": "Verstoord door een staking van de airline.",
         "iconAlt": "Staking van de airline"
       }
     },
@@ -158,7 +158,12 @@
       "ecIntro": "Bij in aanmerking komende EU-vluchten legt Verordening (EG) nr. 261/2004 vaste bedragen in euro vast. De hoogte hangt af van de vliegafstand.",
       "ukHeading": "UK261 — vluchten in het Verenigd Koninkrijk",
       "ecHeading": "EG 261/2004 — in aanmerking komende EU-vluchten",
-      "tierAlt": "Compensatietrap {amount}"
+      "tierAlt": "Compensatietrap {amount}",
+      "tableIntro": "Het bedrag hangt af van de vluchtafstand.",
+      "tableDistance": "Vluchtafstand",
+      "tableUk": "Verenigd Koninkrijk",
+      "tableEu": "EU",
+      "tableAmount": "Compensatie"
     }
   },
   "claim": {
@@ -176,13 +181,14 @@
       "expired": "Deze hervattingslink is verlopen of al gebruikt. U kunt hieronder een nieuwe claim starten."
     },
     "step1": {
-      "rightsContext": "Volgens Brits en Europees passagiersrecht (UK261 en Verordening (EG) nr. 261/2004) kunt u recht hebben op compensatie bij vertraging, annulering en instapweigering. Upload uw instapkaart — de controle is gratis. No win, no fee.",
+      "rightsContext": "Vertraging, annulering of instapweigering kan recht geven op compensatie. No win, no fee.",
       "readingBoardingPass": "Uw instapkaart wordt gelezen…",
       "extractingDetails": "{assistantName} leest uw vluchtgegevens uit",
       "uploadTitle": "Instapkaart uploaden",
+      "uploadOptional": "Optioneel. U kunt met de route beginnen.",
       "uploadHint": "Sleep of klik om te uploaden (PDF, JPG, PNG)",
-      "orCheckManually": "Of",
-      "checkManually": "handmatig controleren",
+      "orCheckManually": "Geen instapkaart?",
+      "checkManually": "Vul de route in.",
       "departureAirport": "Vertrekluchthaven",
       "arrivalAirport": "Aankomstluchthaven",
       "swapAirports": "Luchthavens wisselen",
@@ -313,7 +319,7 @@
     "step3": {
       "claimReady": "Uw claim is gereed.",
       "confirmContact": "Bevestig uw contactgegevens en overige passagiers.",
-      "uploadDocuments": "Upload optioneel bewijsstukken en ga daarna naar de controle.",
+      "uploadDocuments": "De volmacht is getekend. Voeg documenten toe als u die hebt, of verstuur de claim.",
       "readAndSign": "Lees de volmacht volledig en onderteken één keer om verder te gaan.",
       "readAndSignPassenger": "Passagier {current} van {total}: {name} — volmacht lezen en ondertekenen.",
       "signedReview": "Handtekeningen compleet. Controleer en dien de claim in.",
@@ -671,11 +677,11 @@
     "rightsIntro": "Passagiers in het Verenigd Koninkrijk en de EU zijn beschermd als vluchten zonder hun schuld vertraagd, geannuleerd of verstoord worden.",
     "uk261Card": {
       "title": "UK261 — vluchten in het Verenigd Koninkrijk",
-      "body": "Na de Brexit heeft het Verenigd Koninkrijk de passagiersrechten behouden in UK261. UK261 geldt voor vluchten in het Britse luchtruim en zet vaste bedragen in ponden: 220 £, 350 £ of 520 £ naar gelang de afstand."
+      "body": "Vluchten in het Verenigd Koninkrijk. Vaste compensatie naar afstand."
     },
     "ec261Card": {
       "title": "EG 261/2004 — EU-vluchten",
-      "body": "Verordening (EG) nr. 261/2004 beschermt verder passagiers op in aanmerking komende vluchten in het EU-luchtruim, met 250 €, 400 € of 600 € in dezelfde afstandstrappen."
+      "body": "EU-vluchten. 250 €, 400 € of 600 €, naar afstand."
     },
     "rightsDetailP1": "Als uw vlucht bij aankomst drie uur of meer te laat is, op korte termijn wordt geannuleerd of u tegen uw wil de instap wordt geweigerd, kunt u recht hebben op een vaste compensatie. Afhankelijk van de situatie hebt u ook rechten op bijstand, vervangend vervoer en terugbetaling.",
     "rightsDetailP2": "Gemiste aansluitingen en stakingen van de airline kunnen eveneens recht geven, als de verstoring binnen de invloedssfeer van de airline lag. Compensall toetst het recht, bereidt de claim voor en dwingt de compensatie af volgens No win, no fee.",

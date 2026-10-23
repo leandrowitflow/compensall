@@ -107,27 +107,27 @@
       "subtitle": "Te ajutăm să obții despăgubire pentru multe probleme de zbor.",
       "flightDelay": {
         "title": "Întârzierea zborului",
-        "description": "Dacă zborul a ajuns cu mai mult de 3 ore întârziere, poți avea dreptul la o despăgubire de până la 520 £ sau 600 €.",
+        "description": "Peste 3 ore întârziere. Până la 600 €.",
         "iconAlt": "Pictogramă întârziere zbor"
       },
       "flightCancellation": {
         "title": "Anularea zborului",
-        "description": "Dacă zborul a fost anulat cu preaviz scurt, poți avea dreptul la o despăgubire de până la 520 £ sau 600 €.",
+        "description": "Anulat cu preaviz scurt. Până la 600 €.",
         "iconAlt": "Anularea zborului"
       },
       "deniedBoarding": {
         "title": "Refuzul la îmbarcare",
-        "description": "Dacă ți s-a refuzat îmbarcarea împotriva voinței tale, poți cere până la 520 £ sau 600 €.",
+        "description": "Îmbarcare refuzată împotriva voinței tale. Până la 600 €.",
         "iconAlt": "Refuzul la îmbarcare"
       },
       "missedConnection": {
         "title": "Corespondență ratată",
-        "description": "Dacă pierzi zborul de legătură din cauza unei întârzieri, poți avea dreptul la despăgubire.",
+        "description": "Ai pierdut legătura din cauza unei întârzieri.",
         "iconAlt": "Corespondență ratată"
       },
       "airlineStrike": {
         "title": "Greva companiei aeriene",
-        "description": "Dacă zborul a fost afectat de o grevă a companiei, poți totuși avea dreptul la despăgubire.",
+        "description": "Zbor afectat de o grevă a companiei.",
         "iconAlt": "Greva companiei aeriene"
       }
     },
@@ -158,7 +158,12 @@
       "ecIntro": "La zborurile europene eligibile, Regulamentul CE 261/2004 fixează sume în euro. Valoarea depinde de distanța zborului.",
       "ukHeading": "UK261 — zboruri din Regatul Unit",
       "ecHeading": "CE 261/2004 — zboruri europene eligibile",
-      "tierAlt": "Treaptă de despăgubire de {amount}"
+      "tierAlt": "Treaptă de despăgubire de {amount}",
+      "tableIntro": "Suma depinde de distanța zborului.",
+      "tableDistance": "Distanța zborului",
+      "tableUk": "Regatul Unit",
+      "tableEu": "UE",
+      "tableAmount": "Despăgubire"
     }
   },
   "claim": {
@@ -176,13 +181,14 @@
       "expired": "Acest link de reluare a expirat sau a fost deja folosit. Poți începe o cerere nouă mai jos."
     },
     "step1": {
-      "rightsContext": "Conform drepturilor pasagerilor din Regatul Unit și din UE (UK261 și Regulamentul CE 261/2004), poți avea dreptul la despăgubire pentru întârzieri, anulări și refuz la îmbarcare. Încarcă cartea de îmbarcare ca să verifici dacă ai dreptul — este gratuit. No win, no fee.",
+      "rightsContext": "O întârziere, o anulare sau un refuz la îmbarcare poate da drept la despăgubire. No win, no fee.",
       "readingBoardingPass": "Citim cartea ta de îmbarcare…",
       "extractingDetails": "{assistantName} extrage datele zborului tău",
       "uploadTitle": "Încarcă cartea de îmbarcare",
+      "uploadOptional": "Opțional. Poți începe cu ruta.",
       "uploadHint": "Trage și plasează sau apasă ca să încarci (PDF, JPG, PNG)",
-      "orCheckManually": "Sau",
-      "checkManually": "verifică manual",
+      "orCheckManually": "Fără carte de îmbarcare?",
+      "checkManually": "Indică ruta.",
       "departureAirport": "Aeroportul de plecare",
       "arrivalAirport": "Aeroportul de sosire",
       "swapAirports": "Inversează aeroporturile",
@@ -313,7 +319,7 @@
     "step3": {
       "claimReady": "Cererea ta este gata.",
       "confirmContact": "Confirmă datele de contact și ceilalți pasageri.",
-      "uploadDocuments": "Încarcă documente de sprijin (opțional) și continuă pentru revizuire.",
+      "uploadDocuments": "Procura este semnată. Adaugă documentele pe care le ai, sau trimite cererea.",
       "readAndSign": "Citește împuternicirea completă și semnează o dată ca să continui.",
       "readAndSignPassenger": "Pasagerul {current} din {total}: {name} — citește și semnează împuternicirea.",
       "signedReview": "Semnăturile sunt complete. Revizuiește și trimite cererea.",
@@ -671,11 +677,11 @@
     "rightsIntro": "Pasagerii aerieni din Regatul Unit și din UE sunt protejați când un zbor întârzie, este anulat sau se întrerupe fără vina lor.",
     "uk261Card": {
       "title": "UK261 — zboruri din Regatul Unit",
-      "body": "După Brexit, Regatul Unit a păstrat drepturile pasagerilor prin UK261. Se aplică zborurilor din spațiul aerian britanic și fixează despăgubiri în lire: 220 £, 350 £ sau 520 £, în funcție de distanță."
+      "body": "Zboruri din Regatul Unit. Despăgubire fixă după distanță."
     },
     "ec261Card": {
       "title": "CE 261/2004 — zboruri din UE",
-      "body": "Regulamentul CE 261/2004 continuă să protejeze pasagerii la zborurile eligibile din spațiul aerian al UE, cu despăgubiri de 250 €, 400 € sau 600 € pe aceleași trepte de distanță."
+      "body": "Zboruri din UE. 250 €, 400 € sau 600 €, după distanță."
     },
     "rightsDetailP1": "Dacă zborul întârzie trei ore sau mai mult la sosire, este anulat cu preaviz scurt sau ți se refuză îmbarcarea împotriva voinței tale, poți avea dreptul la o despăgubire fixă. Poți avea și dreptul la asistență, rerutare și rambursare, după caz.",
     "rightsDetailP2": "Corespondențele ratate și grevele companiei pot da și ele drept când incidentul este sub controlul operatorului. Compensall te ajută să verifici dreptul, să pregătești cererea și să urmărești despăgubirea la companie cu No win, no fee.",

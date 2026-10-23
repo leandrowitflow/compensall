@@ -107,27 +107,27 @@
       "subtitle": "Nous vous aidons à obtenir une indemnisation pour un large éventail de problèmes de vol.",
       "flightDelay": {
         "title": "Retard de vol",
-        "description": "Si votre vol est arrivé avec plus de 3 heures de retard, vous pouvez avoir droit à une indemnisation allant jusqu'à €600.",
+        "description": "Plus de 3 heures de retard. Jusqu'à €600.",
         "iconAlt": "Icône retard de vol"
       },
       "flightCancellation": {
         "title": "Annulation de vol",
-        "description": "Si votre vol a été annulé avec un court préavis, vous pouvez avoir droit à une indemnisation allant jusqu'à €600.",
+        "description": "Annulé avec un court préavis. Jusqu'à €600.",
         "iconAlt": "Annulation de vol"
       },
       "deniedBoarding": {
         "title": "Refus d'embarquement",
-        "description": "Si l'embarquement vous a été refusé contre votre volonté, vous pouvez réclamer jusqu'à €600.",
+        "description": "Embarquement refusé contre votre volonté. Jusqu'à €600.",
         "iconAlt": "Refus d'embarquement"
       },
       "missedConnection": {
         "title": "Correspondance manquée",
-        "description": "Si vous avez manqué votre vol de correspondance en raison d'un retard, vous pouvez avoir droit à une indemnisation.",
+        "description": "Correspondance manquée à cause d'un retard.",
         "iconAlt": "Correspondance manquée"
       },
       "airlineStrike": {
         "title": "Grève de la compagnie aérienne",
-        "description": "Si votre vol a été perturbé par une grève de la compagnie aérienne, vous pouvez tout de même avoir droit à une indemnisation.",
+        "description": "Perturbé par une grève de la compagnie.",
         "iconAlt": "Grève de la compagnie aérienne"
       }
     },
@@ -158,7 +158,12 @@
       "ecIntro": "Pour les vols de l'UE éligibles, le CE 261/2004 fixe des montants en euros. Le montant dépend de la distance du vol.",
       "ukHeading": "UK261 — vols au Royaume-Uni",
       "ecHeading": "CE 261/2004 — vols de l'UE éligibles",
-      "tierAlt": "Palier d'indemnisation de {amount}"
+      "tierAlt": "Palier d'indemnisation de {amount}",
+      "tableIntro": "Le montant dépend de la distance du vol.",
+      "tableDistance": "Distance du vol",
+      "tableUk": "Royaume-Uni",
+      "tableEu": "UE",
+      "tableAmount": "Indemnisation"
     }
   },
   "claim": {
@@ -176,13 +181,14 @@
       "expired": "Ce lien a expiré ou a déjà été utilisé. Vous pouvez commencer une nouvelle réclamation ci-dessous."
     },
     "step1": {
-      "rightsContext": "En vertu de la législation britannique et européenne sur les droits des passagers (UK261 et CE 261/2004), vous pouvez avoir droit à une indemnisation pour les retards, annulations et refus d'embarquement. Téléchargez votre carte d'embarquement pour vérifier votre éligibilité — c'est gratuit. No win, no fee.",
+      "rightsContext": "Un retard, une annulation ou un refus d'embarquement peut ouvrir droit à indemnisation. No win, no fee.",
       "readingBoardingPass": "Lecture de votre carte d'embarquement…",
       "extractingDetails": "{assistantName} extrait les détails de votre vol",
       "uploadTitle": "Téléchargez votre carte d'embarquement",
+      "uploadOptional": "Facultatif. Vous pouvez commencer par l'itinéraire.",
       "uploadHint": "Glissez-déposez ou cliquez pour télécharger (PDF, JPG, PNG)",
-      "orCheckManually": "Ou",
-      "checkManually": "vérifiez manuellement",
+      "orCheckManually": "Pas de carte d'embarquement ?",
+      "checkManually": "Indiquez l'itinéraire.",
       "departureAirport": "Aéroport de départ",
       "arrivalAirport": "Aéroport d'arrivée",
       "swapAirports": "Inverser les aéroports",
@@ -313,7 +319,7 @@
     "step3": {
       "claimReady": "Votre réclamation est prête.",
       "confirmContact": "Confirmez vos coordonnées et les éventuels passagers supplémentaires.",
-      "uploadDocuments": "Téléchargez des documents justificatifs (facultatif), puis continuez vers la vérification.",
+      "uploadDocuments": "La procuration est signée. Ajoutez les documents que vous avez, ou envoyez la demande.",
       "readAndSign": "Lisez intégralement la procuration, puis signez une fois pour continuer.",
       "readAndSignPassenger": "Passager {current} sur {total}: {name} — lisez et signez la procuration.",
       "signedReview": "Signatures terminées. Vérifiez et soumettez votre réclamation.",
@@ -671,11 +677,11 @@
     "rightsIntro": "Les passagers aériens au Royaume-Uni et dans l'UE sont protégés lorsque les vols sont retardés, annulés ou perturbés sans qu'ils en soient responsables.",
     "uk261Card": {
       "title": "UK261 — vols du Royaume-Uni",
-      "body": "Après le Brexit, le Royaume-Uni a conservé les droits des passagers via le UK261. Il s'applique aux vols opérant dans l'espace aérien du Royaume-Uni et fixe une indemnisation selon la distance du vol."
+      "body": "Vols du Royaume-Uni. Indemnisation fixe selon la distance."
     },
     "ec261Card": {
       "title": "CE 261/2004 — vols de l'UE",
-      "body": "Le règlement européen CE 261/2004 continue de protéger les passagers sur les vols éligibles opérant dans l'espace aérien de l'UE, avec une indemnisation de 250€, 400€ ou 600€ selon les mêmes tranches de distance."
+      "body": "Vols de l'UE. €250, €400 ou €600, selon la distance."
     },
     "rightsDetailP1": "Si votre vol a un retard de trois heures ou plus à l'arrivée, est annulé avec un court préavis ou si l'embarquement vous est refusé contre votre volonté, vous pouvez avoir droit à une indemnisation fixe. Vous pouvez également avoir droit à une assistance, un réacheminement et des remboursements selon les circonstances.",
     "rightsDetailP2": "Les correspondances manquées et les grèves de compagnies aériennes peuvent également être éligibles lorsque la perturbation relève du contrôle de la compagnie aérienne. Compensall vous aide à vérifier l'éligibilité, préparer votre réclamation et obtenir une indemnisation auprès de la compagnie aérienne selon la règle No win, no fee.",

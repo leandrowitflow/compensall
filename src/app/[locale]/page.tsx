@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import CTABanner from "@/components/CTABanner";
 import HomeClaimFormSection from "@/components/HomeClaimFormSection";
+import HomeFloatingClaimCta from "@/components/HomeFloatingClaimCta";
 import HomePassengerRightsSection from "@/components/HomePassengerRightsSection";
 import HowItWorksSteps from "@/components/HowItWorksSteps";
 import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
@@ -37,47 +38,6 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
   return buildLocalizedPageMetadata(locale as AppLocale, "/", "home");
 }
 
-function CompensationTierCard({
-  amount,
-  image,
-  label,
-  desc,
-  tierAlt,
-}: {
-  amount: string;
-  image?: string;
-  label: string;
-  desc: string;
-  tierAlt: string;
-}) {
-  return (
-    <Link
-      href="/#claim"
-      className="relative block bg-white/28 border-2 border-[#d5e0f9] rounded-2xl overflow-hidden text-center pt-6 pb-8 px-6 no-underline"
-      {...gtmClaimCta("home_compensation")}
-    >
-      {image && (
-        // eslint-disable-next-line @next/next/no-img-element -- pre-optimized WebP; avoid /_next/image competing with LCP
-        <img
-          src={image}
-          alt={tierAlt}
-          width={208}
-          height={208}
-          loading="lazy"
-          decoding="async"
-          fetchPriority="low"
-          className="w-28 h-28 lg:w-28 lg:h-28 xl:w-52 xl:h-52 mx-auto object-contain mb-2"
-        />
-      )}
-      <p className="font-bold text-[#2669f3] mb-2 text-4xl lg:text-[36px] xl:text-[80px] leading-none">
-        {amount}
-      </p>
-      <p className="text-[#1f3664] font-bold text-base xl:text-lg mb-1">{label}</p>
-      <p className="text-muted text-sm">{desc}</p>
-    </Link>
-  );
-}
-
 function tierTranslationKey(amount: string): string {
   return amount.replace(/[£€]/g, "");
 }
@@ -98,26 +58,12 @@ export default async function HomePage({ params }: HomePageProps) {
   const showTrustpilot = isTrustpilotTrustBoxConfigured();
 
   const showUkTiers = locale === "en";
-
-  const ukTiers = showUkTiers
-    ? UK261_TIERS.map((tier) => {
-        const key = tierTranslationKey(tier.amount);
-        return {
-          ...tier,
-          amount: localizeEuroAmountLabel(tier.amount, locale),
-          label: tTiers(`tiers.uk261.${key}.label`),
-          desc: tTiers(`tiers.uk261.${key}.desc`),
-        };
-      })
-    : [];
-
-  const ecTiers = EC261_TIERS.map((tier) => {
+  const compensationRows = EC261_TIERS.map((tier, index) => {
     const key = tierTranslationKey(tier.amount);
     return {
-      ...tier,
-      amount: localizeEuroAmountLabel(tier.amount, locale),
-      label: tTiers(`tiers.ec261.${key}.label`),
-      desc: tTiers(`tiers.ec261.${key}.desc`),
+      distance: tTiers(`tiers.ec261.${key}.label`),
+      euro: localizeEuroAmountLabel(tier.amount, locale),
+      pound: UK261_TIERS[index]?.amount ?? "",
     };
   });
 
@@ -328,7 +274,7 @@ export default async function HomePage({ params }: HomePageProps) {
               <Link
                 key={cardKey}
                 href={`/blog/${HOME_CLAIM_CARD_SLUGS[cardKey]}`}
-                className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-9 flex flex-col items-start min-h-[200px] lg:min-h-[220px] xl:min-h-[288px] no-underline text-inherit"
+                className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-8 flex flex-col items-start no-underline text-inherit"
                 {...gtmId(`home_claim_card_${HOME_CLAIM_CARD_SLUGS[cardKey].replace(/-/g, "_")}`)}
               >
                 <ClaimBentoIcon src={iconSrc} alt={t(`claimCards.${cardKey}.iconAlt`)} {...frame} />
@@ -359,43 +305,45 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       <section className="pt-8 lg:pt-8 xl:pt-[89px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
-        <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto text-center">
+        <div className="max-w-[720px] mx-auto text-center">
           <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
             {t("compensation.title")}{" "}
             <span className="text-[#005ffe]">{t("compensation.titleAccent")}</span>
           </h2>
-          {showUkTiers ? (
-            <>
-              <p className="text-[#1f3664] text-base mb-6 lg:mb-6 xl:mb-4 max-w-[968px] mx-auto">
-                {t("compensation.ukIntro")}
-              </p>
-
-              <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-6">{t("compensation.ukHeading")}</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 xl:mb-14">
-                {ukTiers.map((tier) => (
-                  <CompensationTierCard
-                    key={tier.amount}
-                    {...tier}
-                    tierAlt={t("compensation.tierAlt", { amount: tier.amount })}
-                  />
-                ))}
-              </div>
-            </>
-          ) : (
-            <p className="text-[#1f3664] text-base mb-6 lg:mb-6 xl:mb-4 max-w-[968px] mx-auto">
-              {t("compensation.ecIntro")}
-            </p>
-          )}
-
-          <h3 className="font-bold text-[#1f3664] text-lg xl:text-xl mb-2">{t("compensation.ecHeading")}</h3>
-          <p className="text-muted text-sm mb-6 max-w-[768px] mx-auto">{tTiers("ec261Note")}</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {ecTiers.map((tier) => (
-              <CompensationTierCard
-                key={tier.amount}
-                {...tier}
-                tierAlt={t("compensation.tierAlt", { amount: tier.amount })}
-              />
+          <p className="text-[#1f3664] text-base mb-6 max-w-[640px] mx-auto">
+            {t("compensation.tableIntro")}
+          </p>
+          <div className="overflow-hidden rounded-2xl border-2 border-[#d5e0f9] text-left">
+            <div
+              className={`grid items-center gap-3 bg-[#f4f7ff] px-4 py-3 text-xs font-bold uppercase tracking-wide text-[#7b8094] ${
+                showUkTiers ? "grid-cols-[minmax(0,1.6fr)_auto_auto]" : "grid-cols-[minmax(0,1.6fr)_auto]"
+              }`}
+            >
+              <span>{t("compensation.tableDistance")}</span>
+              {showUkTiers ? <span className="text-right">{t("compensation.tableUk")}</span> : null}
+              <span className="text-right">
+                {showUkTiers ? t("compensation.tableEu") : t("compensation.tableAmount")}
+              </span>
+            </div>
+            {compensationRows.map((row) => (
+              <Link
+                key={row.distance}
+                href="/#claim"
+                className={`grid items-center gap-3 border-t border-[#d5e0f9] bg-white px-4 py-4 text-[#1f3664] no-underline hover:bg-[#f8faff] ${
+                  showUkTiers ? "grid-cols-[minmax(0,1.6fr)_auto_auto]" : "grid-cols-[minmax(0,1.6fr)_auto]"
+                }`}
+                {...gtmClaimCta("home_compensation")}
+              >
+                <span className="font-semibold text-sm sm:text-base">{row.distance}</span>
+                {showUkTiers ? (
+                  <span className="text-right font-bold text-[#2669f3] text-base sm:text-lg whitespace-nowrap">
+                    {row.pound}
+                  </span>
+                ) : null}
+                <span className="text-right font-bold text-[#2669f3] text-base sm:text-lg whitespace-nowrap">
+                  {row.euro}
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -410,6 +358,7 @@ export default async function HomePage({ params }: HomePageProps) {
         <FAQSection />
       </div>
       <Footer />
+      <HomeFloatingClaimCta />
     </div>
   );
 }

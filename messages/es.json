@@ -107,27 +107,27 @@
       "subtitle": "Te ayudamos a obtener compensación por muchos problemas de vuelo.",
       "flightDelay": {
         "title": "Retraso de vuelo",
-        "description": "Si tu vuelo llegó con más de 3 horas de retraso, puedes tener derecho a una compensación de hasta 520 £ o 600 €.",
+        "description": "Más de 3 horas de retraso. Hasta 600 €.",
         "iconAlt": "Icono de retraso de vuelo"
       },
       "flightCancellation": {
         "title": "Cancelación de vuelo",
-        "description": "Si tu vuelo se cancela con poco preaviso, puedes tener derecho a una compensación de hasta 520 £ o 600 €.",
+        "description": "Cancelado con poco preaviso. Hasta 600 €.",
         "iconAlt": "Cancelación de vuelo"
       },
       "deniedBoarding": {
         "title": "Denegación de embarque",
-        "description": "Si te denegaron el embarque en contra de tu voluntad, puedes reclamar hasta 520 £ o 600 €.",
+        "description": "Embarque denegado contra tu voluntad. Hasta 600 €.",
         "iconAlt": "Denegación de embarque"
       },
       "missedConnection": {
         "title": "Conexión perdida",
-        "description": "Si pierdes el vuelo de conexión por un retraso, puedes tener derecho a compensación.",
+        "description": "Perdiste la conexión por un retraso.",
         "iconAlt": "Conexión perdida"
       },
       "airlineStrike": {
         "title": "Huelga de aerolínea",
-        "description": "Si tu vuelo se vio afectado por una huelga de la aerolínea, aún puedes tener derecho a compensación.",
+        "description": "Afectado por una huelga de la aerolínea.",
         "iconAlt": "Huelga de aerolínea"
       }
     },
@@ -158,7 +158,12 @@
       "ecIntro": "En vuelos europeos elegibles, el Reglamento CE 261/2004 fija importes en euros. La cantidad depende de la distancia del vuelo.",
       "ukHeading": "UK261 — vuelos del Reino Unido",
       "ecHeading": "CE 261/2004 — vuelos europeos elegibles",
-      "tierAlt": "Tramo de compensación de {amount}"
+      "tierAlt": "Tramo de compensación de {amount}",
+      "tableIntro": "El importe depende de la distancia del vuelo.",
+      "tableDistance": "Distancia del vuelo",
+      "tableUk": "Reino Unido",
+      "tableEu": "UE",
+      "tableAmount": "Compensación"
     }
   },
   "claim": {
@@ -176,13 +181,14 @@
       "expired": "Este enlace de reanudación ha caducado o ya se ha usado. Puedes empezar una reclamación nueva abajo."
     },
     "step1": {
-      "rightsContext": "Según la normativa de derechos de los pasajeros del Reino Unido y de la UE (UK261 y Reglamento CE 261/2004), puedes tener derecho a compensación por retrasos, cancelaciones y denegación de embarque. Sube tu tarjeta de embarque para comprobar si tienes derecho — es gratis. No win, no fee.",
+      "rightsContext": "Un retraso, una cancelación o una denegación de embarque puede dar derecho a compensación. No win, no fee.",
       "readingBoardingPass": "Leyendo tu tarjeta de embarque…",
       "extractingDetails": "{assistantName} está extrayendo los datos de tu vuelo",
       "uploadTitle": "Sube tu tarjeta de embarque",
+      "uploadOptional": "Opcional. Puedes empezar por la ruta.",
       "uploadHint": "Arrastra y suelta o pulsa para subir (PDF, JPG, PNG)",
-      "orCheckManually": "O",
-      "checkManually": "comprueba a mano",
+      "orCheckManually": "¿Sin tarjeta de embarque?",
+      "checkManually": "Indica la ruta.",
       "departureAirport": "Aeropuerto de salida",
       "arrivalAirport": "Aeropuerto de llegada",
       "swapAirports": "Intercambiar aeropuertos",
@@ -313,7 +319,7 @@
     "step3": {
       "claimReady": "Tu reclamación está lista.",
       "confirmContact": "Confirma tus datos de contacto y cualquier otro pasajero.",
-      "uploadDocuments": "Sube documentos de apoyo (opcional) y continúa para revisar.",
+      "uploadDocuments": "El poder está firmado. Añade los documentos que tengas, o envía la reclamación.",
       "readAndSign": "Lee el poder de representación completo y firma una vez para continuar.",
       "readAndSignPassenger": "Pasajero {current} de {total}: {name} — lee y firma el poder de representación.",
       "signedReview": "Firmas completadas. Revisa y envía tu reclamación.",
@@ -671,11 +677,11 @@
     "rightsIntro": "Los pasajeros aéreos del Reino Unido y de la UE están protegidos cuando un vuelo se retrasa, se cancela o se interrumpe sin culpa suya.",
     "uk261Card": {
       "title": "UK261 — vuelos del Reino Unido",
-      "body": "Tras el Brexit, el Reino Unido mantuvo los derechos de los pasajeros con UK261. Se aplica a los vuelos en el espacio aéreo británico y fija compensaciones en libras: 220 £, 350 £ o 520 £ según la distancia."
+      "body": "Vuelos del Reino Unido. Compensación fija según la distancia."
     },
     "ec261Card": {
       "title": "CE 261/2004 — vuelos de la UE",
-      "body": "El Reglamento CE 261/2004 sigue protegiendo a los pasajeros en vuelos elegibles dentro del espacio aéreo de la UE, con compensaciones de 250 €, 400 € o 600 € en los mismos tramos de distancia."
+      "body": "Vuelos de la UE. 250 €, 400 € o 600 €, según la distancia."
     },
     "rightsDetailP1": "Si tu vuelo se retrasa tres horas o más a la llegada, se cancela con poco preaviso o te deniegan el embarque en contra de tu voluntad, puedes tener derecho a una compensación fija. También puedes tener derecho a asistencia, reubicación y reembolso, según las circunstancias.",
     "rightsDetailP2": "Las conexiones perdidas y las huelgas de aerolínea también pueden dar derecho cuando la incidencia está bajo el control de la compañía. Compensall te ayuda a comprobar si tienes derecho, preparar la reclamación y perseguir la compensación con la aerolínea con No win, no fee.",

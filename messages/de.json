@@ -107,27 +107,27 @@
       "subtitle": "Wir helfen Ihnen, Entschädigung für viele Flugprobleme durchzusetzen.",
       "flightDelay": {
         "title": "Flugverspätung",
-        "description": "Wenn Ihr Flug mehr als 3 Stunden verspätet ankam, können Ihnen bis zu 520 £ oder 600 € zustehen.",
+        "description": "Mehr als 3 Stunden verspätet. Bis zu 600 €.",
         "iconAlt": "Symbol Flugverspätung"
       },
       "flightCancellation": {
         "title": "Flugannullierung",
-        "description": "Wenn Ihr Flug kurzfristig annulliert wurde, können Ihnen bis zu 520 £ oder 600 € zustehen.",
+        "description": "Kurzfristig annulliert. Bis zu 600 €.",
         "iconAlt": "Flugannullierung"
       },
       "deniedBoarding": {
         "title": "Nichtbeförderung",
-        "description": "Wenn Ihnen die Beförderung gegen Ihren Willen verweigert wurde, können Sie bis zu 520 £ oder 600 € fordern.",
+        "description": "Beförderung gegen Ihren Willen verweigert. Bis zu 600 €.",
         "iconAlt": "Nichtbeförderung"
       },
       "missedConnection": {
         "title": "Verpasster Anschluss",
-        "description": "Wenn Sie wegen einer Verspätung Ihren Anschlussflug verpassen, kann Ihnen Entschädigung zustehen.",
+        "description": "Anschluss wegen einer Verspätung verpasst.",
         "iconAlt": "Verpasster Anschluss"
       },
       "airlineStrike": {
         "title": "Streik der Airline",
-        "description": "Wenn ein Streik der Airline Ihren Flug gestört hat, kann Ihnen trotzdem Entschädigung zustehen.",
+        "description": "Gestört durch einen Streik der Airline.",
         "iconAlt": "Streik der Airline"
       }
     },
@@ -158,7 +158,12 @@
       "ecIntro": "Bei berechtigten EU-Flügen legt die Verordnung (EG) Nr. 261/2004 feste Beträge in Euro fest. Die Höhe hängt von der Flugstrecke ab.",
       "ukHeading": "UK261 — Flüge im Vereinigten Königreich",
       "ecHeading": "EG 261/2004 — berechtigte EU-Flüge",
-      "tierAlt": "Entschädigungsstufe {amount}"
+      "tierAlt": "Entschädigungsstufe {amount}",
+      "tableIntro": "Der Betrag hängt von der Flugstrecke ab.",
+      "tableDistance": "Flugstrecke",
+      "tableUk": "Vereinigtes Königreich",
+      "tableEu": "EU",
+      "tableAmount": "Entschädigung"
     }
   },
   "claim": {
@@ -176,13 +181,14 @@
       "expired": "Dieser Fortsetzungslink ist abgelaufen oder wurde bereits verwendet. Sie können unten einen neuen Antrag starten."
     },
     "step1": {
-      "rightsContext": "Nach britischem und europäischem Fluggastrecht (UK261 und Verordnung (EG) Nr. 261/2004) kann Ihnen Entschädigung bei Verspätung, Annullierung und Nichtbeförderung zustehen. Laden Sie Ihre Bordkarte hoch — die Prüfung ist kostenlos. No win, no fee.",
+      "rightsContext": "Verspätung, Annullierung oder Nichtbeförderung kann Entschädigung bedeuten. No win, no fee.",
       "readingBoardingPass": "Ihre Bordkarte wird gelesen…",
       "extractingDetails": "{assistantName} liest Ihre Flugdaten aus",
       "uploadTitle": "Bordkarte hochladen",
+      "uploadOptional": "Optional. Sie können mit der Strecke beginnen.",
       "uploadHint": "Ziehen oder klicken zum Hochladen (PDF, JPG, PNG)",
-      "orCheckManually": "Oder",
-      "checkManually": "manuell prüfen",
+      "orCheckManually": "Keine Bordkarte?",
+      "checkManually": "Strecke eingeben.",
       "departureAirport": "Abflugflughafen",
       "arrivalAirport": "Ankunftsflughafen",
       "swapAirports": "Flughäfen tauschen",
@@ -313,7 +319,7 @@
     "step3": {
       "claimReady": "Ihr Antrag ist bereit.",
       "confirmContact": "Bestätigen Sie Ihre Kontaktdaten und weitere Fluggäste.",
-      "uploadDocuments": "Laden Sie optional Belege hoch und gehen Sie dann zur Prüfung.",
+      "uploadDocuments": "Die Vollmacht ist unterschrieben. Fügen Sie vorhandene Dokumente hinzu oder senden Sie den Antrag.",
       "readAndSign": "Lesen Sie die Vollmacht vollständig und unterschreiben Sie einmal, um fortzufahren.",
       "readAndSignPassenger": "Fluggast {current} von {total}: {name} — Vollmacht lesen und unterschreiben.",
       "signedReview": "Unterschriften vollständig. Prüfen und Antrag senden.",
@@ -671,11 +677,11 @@
     "rightsIntro": "Fluggäste im Vereinigten Königreich und in der EU sind geschützt, wenn Flüge ohne ihr Verschulden verspätet, annulliert oder gestört werden.",
     "uk261Card": {
       "title": "UK261 — Flüge im Vereinigten Königreich",
-      "body": "Nach dem Brexit hat das Vereinigte Königreich die Fluggastrechte in UK261 behalten. UK261 gilt für Flüge im britischen Luftraum und setzt feste Beträge in Pfund: 220 £, 350 £ oder 520 £ je nach Entfernung."
+      "body": "Flüge im Vereinigten Königreich. Feste Entschädigung nach Entfernung."
     },
     "ec261Card": {
       "title": "EG 261/2004 — EU-Flüge",
-      "body": "Die Verordnung (EG) Nr. 261/2004 schützt weiter Fluggäste auf berechtigten Flügen im EU-Luftraum, mit 250 €, 400 € oder 600 € in denselben Entfernungsstufen."
+      "body": "EU-Flüge. 250 €, 400 € oder 600 €, je nach Entfernung."
     },
     "rightsDetailP1": "Wenn Ihr Flug bei der Ankunft drei Stunden oder mehr verspätet ist, kurzfristig annulliert wird oder Ihnen die Beförderung gegen Ihren Willen verweigert wird, kann Ihnen eine feste Entschädigung zustehen. Je nach Lage haben Sie außerdem Rechte auf Betreuung, Ersatzbeförderung und Erstattung.",
     "rightsDetailP2": "Verpasste Anschlüsse und Streiks der Airline können ebenfalls berechtigen, wenn die Störung im Einflussbereich der Airline lag. Compensall prüft die Berechtigung, bereitet den Antrag vor und setzt die Entschädigung nach No win, no fee durch.",

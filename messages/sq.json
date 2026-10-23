@@ -107,27 +107,27 @@
       "subtitle": "Të ndihmojmë të marrësh kompensimin për një gamë të gjerë problemesh fluturimi.",
       "flightDelay": {
         "title": "Vonesë fluturimi",
-        "description": "Nëse fluturimi yt mbërriti më shumë se 3 orë vonë, mund të kesh të drejtë deri në 520 £ ose 600 €.",
+        "description": "Më shumë se 3 orë vonesë. Deri në 600 €.",
         "iconAlt": "Ikona e vonesës së fluturimit"
       },
       "flightCancellation": {
         "title": "Anulim fluturimi",
-        "description": "Nëse fluturimi u anulua me njoftim të shkurtër, mund të kesh të drejtë deri në 520 £ ose 600 €.",
+        "description": "Anuluar me njoftim të shkurtër. Deri në 600 €.",
         "iconAlt": "Anulim fluturimi"
       },
       "deniedBoarding": {
         "title": "Refuzim imbarkimi",
-        "description": "Nëse të refuzuan imbarkimin kundër vullnetit tënd, mund të kërkosh deri në 520 £ ose 600 €.",
+        "description": "Imbarkim i refuzuar kundër vullnetit. Deri në 600 €.",
         "iconAlt": "Refuzim imbarkimi"
       },
       "missedConnection": {
         "title": "Lidhje e humbur",
-        "description": "Nëse humbe lidhjen për shkak të një vonese, mund të kesh të drejtë për kompensim.",
+        "description": "Lidhje e humbur për shkak të një vonese.",
         "iconAlt": "Lidhje e humbur"
       },
       "airlineStrike": {
         "title": "Greva e kompanisë",
-        "description": "Nëse fluturimin ta prishi një grevë e kompanisë ajrore, prapë mund të kesh të drejtë për kompensim.",
+        "description": "Fluturim i prishur nga një grevë e kompanisë.",
         "iconAlt": "Greva e kompanisë"
       }
     },
@@ -158,7 +158,12 @@
       "ecIntro": "Për fluturimet e mbuluara të BE-së, Rregullorja (KE) nr. 261/2004 cakton shuma fikse në euro. Shuma varet nga distanca e fluturimit.",
       "ukHeading": "UK261 — fluturime të MB",
       "ecHeading": "KE 261/2004 — fluturime të mbuluara të BE-së",
-      "tierAlt": "Niveli i kompensimit {amount}"
+      "tierAlt": "Niveli i kompensimit {amount}",
+      "tableIntro": "Shuma varet nga distanca e fluturimit.",
+      "tableDistance": "Distanca e fluturimit",
+      "tableUk": "Mbretëria e Bashkuar",
+      "tableEu": "BE",
+      "tableAmount": "Kompensimi"
     }
   },
   "claim": {
@@ -176,13 +181,14 @@
       "expired": "Ky lidhje ka skaduar ose është përdorur. Mund të nisësh një kërkesë të re më poshtë."
     },
     "step1": {
-      "rightsContext": "Sipas të drejtave britanike dhe evropiane të pasagjerit (UK261 dhe 261/2004/KE), mund të kesh të drejtë për kompensim për vonesa, anulime dhe refuzim imbarkimi. Ngarko kartën e imbarkimit — kontrolli është falas. No win, no fee.",
+      "rightsContext": "Një vonesë, një anulim ose një refuzim imbarkimi mund të japë të drejtë kompensimi. No win, no fee.",
       "readingBoardingPass": "Po lexojmë kartën e imbarkimit…",
       "extractingDetails": "{assistantName} po nxjerr të dhënat e fluturimit",
       "uploadTitle": "Ngarko kartën e imbarkimit",
+      "uploadOptional": "Opsionale. Mund të fillosh me itinerarin.",
       "uploadHint": "Tërhiq dhe lësho, ose kliko për ta ngarkuar (PDF, JPG, PNG)",
-      "orCheckManually": "Ose",
-      "checkManually": "kontrollo me dorë",
+      "orCheckManually": "Pa kartë imbarkimi?",
+      "checkManually": "Shkruaj itinerarin.",
       "departureAirport": "Aeroporti i nisjes",
       "arrivalAirport": "Aeroporti i mbërritjes",
       "swapAirports": "Ndërro aeroportet",
@@ -313,7 +319,7 @@
     "step3": {
       "claimReady": "Kërkesa jote është gati.",
       "confirmContact": "Konfirmo të dhënat e kontaktit dhe pasagjerët e tjerë.",
-      "uploadDocuments": "Ngarko dokumente mbështetëse (opsionale), pastaj vazhdo te shqyrtimi.",
+      "uploadDocuments": "Prokura është nënshkruar. Shto dokumentet që ke, ose dërgo kërkesën.",
       "readAndSign": "Lexoje Prokurën deri në fund, pastaj nënshkruaj një herë për të vazhduar.",
       "readAndSignPassenger": "Pasagjeri {current} nga {total}: {name} — lexo dhe nënshkruaj Prokurën.",
       "signedReview": "Nënshkrimet u kompletuan. Shqyrtoje dhe dërgoje kërkesën.",
@@ -671,11 +677,11 @@
     "rightsIntro": "Pasagjerët ajrorë në MB dhe BE mbrohen kur fluturimet vonohen, anulohen ose prishen pa fajin e tyre.",
     "uk261Card": {
       "title": "UK261 — fluturime të MB",
-      "body": "Pas Brexit, MB i mbajti të drejtat e pasagjerit me UK261. Vlen për fluturimet që nisen nga hapësira ajrore e MB dhe cakton kompensim fiks në paund: 220 £, 350 £ ose 520 £ sipas distancës."
+      "body": "Fluturime të MB-së. Kompensim fiks sipas distancës."
     },
     "ec261Card": {
       "title": "261/2004/KE — fluturime të BE-së",
-      "body": "Rregullorja (KE) nr. 261/2004 vazhdon t’i mbrojë pasagjerët në fluturimet e mbuluara të BE-së, me 250 €, 400 € ose 600 € në të njëjtat breza distance."
+      "body": "Fluturime të BE-së. 250 €, 400 € ose 600 €, sipas distancës."
     },
     "rightsDetailP1": "Nëse fluturimi vonohet tre orë ose më shumë në mbërritje, anulohet me njoftim të shkurtër, ose të refuzojnë imbarkimin kundër vullnetit, mund të kesh të drejtë për kompensim fiks. Mund të kesh edhe të drejta për kujdes, ridrejtim dhe rimbursim, sipas rrethanave.",
     "rightsDetailP2": "Lidhjet e humbura dhe grevat e kompanisë mund të kualifikohen kur ndërprerja është nën kontrollin e kompanisë. Compensall të ndihmon të kontrollosh të drejtën, të përgatitësh kërkesën dhe ta ndjekësh kompensimin No win, no fee.",

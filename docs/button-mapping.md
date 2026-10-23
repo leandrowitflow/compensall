@@ -4,7 +4,7 @@ Labels em inglês (`messages/en.json`). UI i18n: `en` / `pt` / `fr`.
 
 **Destino dos CTAs de claim:** `/#claim` (com prefixo de locale, ex. `/en/#claim`) — scroll para o formulário hero (`id="claim"`).
 
-**Conversão paga (Meta / Google Ads):** URL único `/{locale}/claim/thank-you` (ex. `/en/claim/thank-you`, `/pt/claim/thank-you`). Disparar só no evento `claim_submitted` (dataLayer) nesta página, depois do submit com tracking number. Query: `ref` (tracking), `mode` (`upload`|`manual`), `flight`. Não usar a última página do form, revisão, nem `claim_step3_continue_to_review`. O nome e o email não vão no URL nem no texto visível. Depois de “Aceitar todos”, a página de agradecimento tem campos para a tag: `#compensall-email`, `#compensall-first-name`, `#compensall-last-name` e `#compensall-phone` (se houver telefone).
+**Conversão paga (Meta / Google Ads):** URL único `/{locale}/claim/thank-you` (ex. `/en/claim/thank-you`, `/pt/claim/thank-you`). Disparar só no evento `claim_submitted` (dataLayer) nesta página, depois do submit com tracking number. Query: `ref` (tracking), `mode` (`upload`|`manual`), `flight`. Não usar a última página do form nem `claim_step3_submit_claim`. O nome e o email não vão no URL nem no texto visível. Depois de “Aceitar todos”, a página de agradecimento tem campos para a tag: `#compensall-email`, `#compensall-first-name`, `#compensall-last-name` e `#compensall-phone` (se houver telefone).
 
 Helper no código: `src/lib/gtm.ts` (`gtmId`, `gtmClaimCta`).
 
@@ -50,7 +50,8 @@ data-gtm="nav_about"
 | `track` | Track claim · error state | Start a new claim |
 | `thank_you` | Thank-you page · new claim | Start a new claim |
 | `not_found` | 404 | Check compensation |
-| `home_compensation` | Homepage · cartão de valor | £220 / €250 |
+| `home_compensation` | Homepage · linha do quadro de compensação | £220 / €250 |
+| `home_floating` | Homepage · botão fixo | Claim now |
 
 ---
 
@@ -98,8 +99,7 @@ data-gtm="nav_about"
 | 3 contact | Continue to signing | `claim_step3_continue_to_signing` |
 | 3 sign | Open full page / Clear / Back / Sign | `claim_step3_open_poa`, `claim_step3_clear_signature`, `claim_step3_sign_back`, `claim_step3_sign_continue` |
 | 3 docs | File uploads | `claim_step3_upload_passport_copy`, `claim_step3_upload_booking_confirmation`, `claim_step3_upload_expenses_receipts`, `claim_step3_upload_other_documents` |
-| 3 docs | Back / Continue to review | `claim_step3_documents_back`, `claim_step3_continue_to_review` |
-| 3 review | Back / Submit claim | `claim_step3_review_back`, `claim_step3_submit_claim` |
+| 3 docs | Back / Submit claim | `claim_step3_documents_back`, `claim_step3_submit_claim` |
 | 3 | Delete data | `claim_step3_delete_data` |
 | Thank-you `/{locale}/claim/thank-you` | Claim submitted (conversion) | `claim_submitted` (dataLayer + `data-gtm`) |
 | Thank-you | Track your claim | `claim_success_track_claim` |

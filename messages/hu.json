@@ -107,27 +107,27 @@
       "subtitle": "Számos járatprobléma esetén segítünk megszerezni a kártérítést.",
       "flightDelay": {
         "title": "Járatkésés",
-        "description": "Ha a járatod több mint 3 órát késett, akár 520 £ vagy 600 € kártérítésre is jogosult lehetsz.",
+        "description": "Több mint 3 óra késés. Akár 600 €.",
         "iconAlt": "Járatkésés ikon"
       },
       "flightCancellation": {
         "title": "Járattörlés",
-        "description": "Ha a járatodat rövid határidővel törölték, akár 520 £ vagy 600 € kártérítésre is jogosult lehetsz.",
+        "description": "Rövid határidővel törölve. Akár 600 €.",
         "iconAlt": "Járattörlés"
       },
       "deniedBoarding": {
         "title": "Beszállás megtagadása",
-        "description": "Ha akarata ellenére nem engedtek felszállni, akár 520 £ vagy 600 €-t is igényelhetsz.",
+        "description": "Beszállás megtagadva az akarata ellenére. Akár 600 €.",
         "iconAlt": "Beszállás megtagadása"
       },
       "missedConnection": {
         "title": "Elmulasztott csatlakozás",
-        "description": "Ha egy késés miatt lemaradtál a csatlakozó járatról, kártérítésre lehetsz jogosult.",
+        "description": "Lekésed a csatlakozást egy késés miatt.",
         "iconAlt": "Elmulasztott csatlakozás"
       },
       "airlineStrike": {
         "title": "Légitársasági sztrájk",
-        "description": "Ha a járatodat légitársasági sztrájk zavarta meg, akkor is járhat kártérítés.",
+        "description": "Légitársasági sztrájk zavarta meg a járatot.",
         "iconAlt": "Légitársasági sztrájk"
       }
     },
@@ -158,7 +158,12 @@
       "ecIntro": "A jogosult uniós járatoknál a 261/2004/EK rendelet fix euroösszegeket állapít meg. Az összeg a távolságtól függ.",
       "ukHeading": "UK261 — brit járatok",
       "ecHeading": "261/2004/EK — jogosult uniós járatok",
-      "tierAlt": "{amount} kártérítési sáv"
+      "tierAlt": "{amount} kártérítési sáv",
+      "tableIntro": "Az összeg a járat távolságától függ.",
+      "tableDistance": "A járat távolsága",
+      "tableUk": "Egyesült Királyság",
+      "tableEu": "EU",
+      "tableAmount": "Kártérítés"
     }
   },
   "claim": {
@@ -176,13 +181,14 @@
       "expired": "Ez a folytatólink lejárt, vagy már felhasználták. Alább új kárigényt indíthatsz."
     },
     "step1": {
-      "rightsContext": "A brit és uniós utasjogi szabályok (UK261 és 261/2004/EK) alapján késés, törlés és beszállásmegtagadás esetén kártérítésre lehetsz jogosult. Töltsd fel a beszállókártyádat — az ellenőrzés ingyenes. No win, no fee.",
+      "rightsContext": "A késés, a törlés vagy a beszállás megtagadása kártérítésre jogosíthat. No win, no fee.",
       "readingBoardingPass": "Beszállókártyád olvasása…",
       "extractingDetails": "{assistantName} kinyeri a járatadataidat",
       "uploadTitle": "Töltsd fel a beszállókártyádat",
+      "uploadOptional": "Nem kötelező. Kezdheted az útvonallal is.",
       "uploadHint": "Húzd ide, vagy kattints a feltöltéshez (PDF, JPG, PNG)",
-      "orCheckManually": "Vagy",
-      "checkManually": "ellenőrizd kézzel",
+      "orCheckManually": "Nincs beszállókártyád?",
+      "checkManually": "Add meg az útvonalat.",
       "departureAirport": "Indulási repülőtér",
       "arrivalAirport": "Érkezési repülőtér",
       "swapAirports": "Repülőterek felcserélése",
@@ -313,7 +319,7 @@
     "step3": {
       "claimReady": "A kárigényed készen áll.",
       "confirmContact": "Erősítsd meg a kapcsolattartási adataidat és a további utasokat.",
-      "uploadDocuments": "Tölts fel alátámasztó iratokat (nem kötelező), majd lépj tovább az áttekintéshez.",
+      "uploadDocuments": "A meghatalmazás alá van írva. Csatold a dokumentumokat, ha vannak, vagy küldd el az igényt.",
       "readAndSign": "Olvasd el teljesen a meghatalmazást, majd írd alá egyszer a folytatáshoz.",
       "readAndSignPassenger": "{current}. utas / {total}: {name} — olvasd el és írd alá a meghatalmazást.",
       "signedReview": "Az aláírások kész. Ellenőrizd, és küldd be a kárigényed.",
@@ -671,11 +677,11 @@
     "rightsIntro": "Az Egyesült Királyságban és az EU-ban a légi utasokat védelem illeti, ha a járat önhibájukon kívül késik, törlődik vagy meghiúsul.",
     "uk261Card": {
       "title": "UK261 — brit járatok",
-      "body": "A Brexit után az Egyesült Királyság a UK261-gyel tartotta fenn az utasjogokat. A brit légtérben közlekedő járatokra vonatkozik, és fix fontkártérítést állapít meg: 220 £, 350 £ vagy 520 £ a távolságtól függően."
+      "body": "Brit járatok. Fix kártérítés a távolság szerint."
     },
     "ec261Card": {
       "title": "261/2004/EK — uniós járatok",
-      "body": "A 261/2004/EK rendelet továbbra is védi az uniós légtérben közlekedő jogosult járatok utasait: ugyanilyen távolságsávokban 250 €, 400 € vagy 600 € a kártérítés."
+      "body": "Uniós járatok. 250 €, 400 € vagy 600 €, a távolság szerint."
     },
     "rightsDetailP1": "Ha a járatod érkezéskor legalább három órát késik, rövid határidővel törlik, vagy akarata ellenére megtagadják a beszállást, fix kártérítésre lehetsz jogosult. A körülményektől függően ellátásra, átirányításra és visszatérítésre is jogod lehet.",
     "rightsDetailP2": "Az elmulasztott csatlakozás és a légitársasági sztrájk is jogosíthat, ha a fennakadás a légitársaság ellenőrzésén belül történt. A Compensall segít ellenőrizni a jogosultságot, előkészíteni a kárigényt, és No win, no fee alapon érvényesíteni a kártérítést.",
