@@ -221,7 +221,9 @@
         "somethingWentWrong": "Etwas ist schiefgelaufen. Bitte tragen Sie Ihre Flugdaten unten ein.",
         "unsupportedType": "Dateityp nicht unterstützt. Laden Sie eine Bordkarte als PDF, JPG, PNG, WebP oder HEIC hoch.",
         "tooLarge": "Diese Datei ist zu groß zum Senden. Verwenden Sie ein Foto oder ein PDF unter 4 MB."
-      }
+      },
+      "deniedBoarding": "Nichtbeförderung",
+      "deniedBoardingOther": "(oder andere Fälle)"
     },
     "step2": {
       "routeTitle": "Flughäfen",
@@ -257,7 +259,10 @@
         "departurePlaceholder": "z. B. Frankfurt (FRA)",
         "arrival": "Ankunft",
         "arrivalPlaceholder": "z. B. Rom (FCO)"
-      }
+      },
+      "reassuranceCourt": "Gerichtliche Schritte",
+      "reassuranceFast": "Schnell und ohne Risiko",
+      "reassuranceFee": "No win, no fee"
     },
     "connecting": {
       "title": "Anschlussflüge",
@@ -275,7 +280,10 @@
       "errors": {
         "connectingRequired": "Sagen Sie uns, ob Sie einen Anschlussflug hatten.",
         "connectingDetailsRequired": "Geben Sie Flughafen und Flugnummer für Anschlussflug 1 an."
-      }
+      },
+      "addFlight": "Anschlussflug hinzufügen",
+      "removeFlight": "Entfernen",
+      "flightNumberHint": "Geben Sie den Anschlussflughafen und die Flugnummer an."
     },
     "disruption": {
       "title": "Angaben zur Störung",

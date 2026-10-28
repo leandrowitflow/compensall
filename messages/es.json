@@ -221,7 +221,9 @@
         "somethingWentWrong": "Algo ha fallado. Completa los datos del vuelo abajo.",
         "unsupportedType": "Tipo de archivo no compatible. Sube una tarjeta de embarque en PDF, JPG, PNG, WebP o HEIC.",
         "tooLarge": "Este archivo es demasiado grande para enviarlo. Use una foto o un PDF de menos de 4 MB."
-      }
+      },
+      "deniedBoarding": "Embarque denegado",
+      "deniedBoardingOther": "(u otras opciones)"
     },
     "step2": {
       "routeTitle": "Aeropuertos",
@@ -257,7 +259,10 @@
         "departurePlaceholder": "p. ej. Londres (LHR)",
         "arrival": "Llegada",
         "arrivalPlaceholder": "p. ej. Roma (FCO)"
-      }
+      },
+      "reassuranceCourt": "Acción judicial",
+      "reassuranceFast": "Rápido y sin riesgo",
+      "reassuranceFee": "No win, no fee"
     },
     "connecting": {
       "title": "Vuelos de conexión",
@@ -275,7 +280,10 @@
       "errors": {
         "connectingRequired": "Indica si tenías un vuelo de conexión.",
         "connectingDetailsRequired": "Introduce el aeropuerto y el número de vuelo de la conexión 1."
-      }
+      },
+      "addFlight": "Añadir vuelo de conexión",
+      "removeFlight": "Quitar",
+      "flightNumberHint": "Indica el aeropuerto de conexión y el número de ese vuelo."
     },
     "disruption": {
       "title": "Detalles de la incidencia",

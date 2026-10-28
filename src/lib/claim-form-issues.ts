@@ -25,7 +25,7 @@ export const STEP2_FIELD_ELEMENT: Record<Exclude<Step2Field, "ineligible">, stri
   routeTo: "route-arrival",
   date: "edit-date",
   connecting: "had-connecting-flight",
-  connectingAirport: "connecting-airport-0",
+  connectingAirport: "route-connection",
   connectingFlight: "connecting-flight-0",
   disruptionType: "disruption-type",
   delay: "delay-duration",

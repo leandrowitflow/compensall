@@ -3,9 +3,9 @@
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { startTransition, useState } from "react";
-import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
+import { FIELD_INPUT, FIELD_LABEL } from "@/components/claim/claim-ui";
 import { findAirportById, formatAirportRouteLabel, type AirportOption } from "@/lib/airport-search";
-import type { ClaimFlightData } from "@/lib/claim-types";
+import type { ClaimFlightData, ConnectingFlightLeg } from "@/lib/claim-types";
 import { normalizeIata } from "@/lib/iata";
 import { gtmId } from "@/lib/gtm";
 
@@ -61,15 +61,21 @@ type Step2AirportsProps = {
   onFlightChange: (flight: ClaimFlightData) => void;
 };
 
+const EMPTY_LEG: ConnectingFlightLeg = { airport: "", flightNumber: "" };
+
 export default function Step2Airports({ flight, onFlightChange }: Step2AirportsProps) {
   const tStep1 = useTranslations("claim.step1");
   const tStep2 = useTranslations("claim.step2");
+  const tConnecting = useTranslations("claim.connecting");
   const [manualError, setManualError] = useState<string | null>(null);
   const [loadAirportSelect, setLoadAirportSelect] = useState(false);
   const [autoOpenAirportId, setAutoOpenAirportId] = useState<string | null>(null);
 
   const departure = airportFromRoute(flight.routeFrom);
   const arrival = airportFromRoute(flight.routeTo);
+  const connection = flight.connectingFlights?.[0] ?? EMPTY_LEG;
+  const hasConnection = flight.hadConnectingFlight === true;
+  const connectionAirport = airportFromRoute(connection.airport);
 
   const activateAirportSelect = (id: string) => {
     setAutoOpenAirportId(id);
@@ -77,95 +83,165 @@ export default function Step2Airports({ flight, onFlightChange }: Step2AirportsP
     startTransition(() => setLoadAirportSelect(true));
   };
 
-  const applyAirports = (nextDeparture: AirportOption | null, nextArrival: AirportOption | null) => {
+  const applyRoute = (
+    nextDeparture: AirportOption | null,
+    nextArrival: AirportOption | null,
+    nextConnection: ConnectingFlightLeg | null,
+  ) => {
     onFlightChange({
       ...flight,
       routeFrom: nextDeparture ? formatAirportRouteLabel(nextDeparture) : "",
       routeTo: nextArrival ? formatAirportRouteLabel(nextArrival) : "",
+      hadConnectingFlight: Boolean(nextConnection),
+      connectingFlights: nextConnection ? [nextConnection] : [],
     });
   };
 
   const handleDepartureChange = (airport: AirportOption | null) => {
     if (airport && arrival?.id === airport.id) {
       setManualError(tStep1("errors.airportsMustDiffer"));
-      applyAirports(airport, null);
+      applyRoute(airport, null, hasConnection ? connection : null);
       return;
     }
     setManualError(null);
-    applyAirports(airport, arrival);
+    applyRoute(airport, arrival, hasConnection ? connection : null);
   };
 
   const handleArrivalChange = (airport: AirportOption | null) => {
     if (airport && departure?.id === airport.id) {
       setManualError(tStep1("errors.airportsMustDiffer"));
-      applyAirports(departure, null);
+      applyRoute(departure, null, hasConnection ? connection : null);
       return;
     }
     setManualError(null);
-    applyAirports(departure, airport);
+    applyRoute(departure, airport, hasConnection ? connection : null);
   };
+
+  const airportField = (
+    id: "route-departure" | "route-arrival" | "route-connection",
+    placeholder: string,
+    value: AirportOption | null,
+    excludeAirportId: string | undefined,
+    onChange: (airport: AirportOption | null) => void,
+  ) =>
+    loadAirportSelect ? (
+      <AirportSelect
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        excludeAirportId={excludeAirportId}
+        autoOpen={autoOpenAirportId === id}
+        variant={id === "route-connection" ? "field" : undefined}
+      />
+    ) : (
+      <AirportSelectPlaceholder
+        id={id}
+        placeholder={value ? formatAirportRouteLabel(value) : placeholder}
+        onActivate={() => activateAirportSelect(id)}
+      />
+    );
 
   return (
     <div className="mb-4">
       <p className="font-bold text-[#1f3664] text-sm sm:text-base">{tStep2("routeTitle")}</p>
-      <div className="mt-3 flex flex-col md:flex-row md:items-stretch border-2 border-[#d5e0f9] rounded-[13px] bg-white min-h-[87px] min-w-0">
-        {loadAirportSelect ? (
-          <AirportSelect
-            id="route-departure"
-            placeholder={tStep1("departureAirport")}
-            value={departure}
-            onChange={handleDepartureChange}
-            excludeAirportId={arrival?.id}
-            autoOpen={autoOpenAirportId === "route-departure"}
-          />
+      <div className="mt-3 flex flex-col gap-3">
+        <div className="flex items-stretch border-2 border-[#d5e0f9] rounded-[13px] bg-white min-h-[73px] min-w-0">
+          {airportField("route-departure", tStep1("departureAirport"), departure, arrival?.id, handleDepartureChange)}
+          <button
+            type="button"
+            onClick={() => {
+              setManualError(null);
+              applyRoute(arrival, departure, hasConnection ? connection : null);
+            }}
+            className="flex-shrink-0 self-center min-h-11 min-w-11 mr-2 flex items-center justify-center rounded-full hover:bg-[#f8faff] active:bg-[#e7eeff] transition-colors"
+            aria-label={tStep1("swapAirports")}
+            {...gtmId("claim_step2_swap_airports")}
+          >
+            <img src="/assets/icons/arrow-right-left.svg" alt="" aria-hidden="true" width={23} height={23} decoding="async" className="w-[23px] h-[23px] object-contain" />
+          </button>
+        </div>
+
+        {hasConnection ? (
+          <div className="border-2 border-dashed border-[#d5e0f9] rounded-[13px] bg-[#f8faff] p-3 sm:p-4">
+            <div className="flex items-center justify-between gap-3 mb-3">
+              <p className="font-bold text-[#1f3664] text-sm">{tConnecting("legLabel", { number: 1 })}</p>
+              <button
+                type="button"
+                className="text-sm font-semibold text-[#7b8094] hover:text-[#1f3664]"
+                onClick={() => applyRoute(departure, arrival, null)}
+                {...gtmId("claim_step2_remove_connection")}
+              >
+                {tConnecting("removeFlight")}
+              </button>
+            </div>
+            <p className="text-xs sm:text-sm text-[#7b8094] mb-3">{tConnecting("flightNumberHint")}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <p className={FIELD_LABEL}>{tConnecting("airport")}</p>
+                {airportField(
+                  "route-connection",
+                  tConnecting("airportPlaceholder"),
+                  connectionAirport,
+                  undefined,
+                  (airport) => {
+                    applyRoute(departure, arrival, {
+                      ...connection,
+                      airport: airport ? formatAirportRouteLabel(airport) : "",
+                    });
+                  },
+                )}
+              </div>
+              <div>
+                <label className={FIELD_LABEL} htmlFor="connecting-flight-0">
+                  {tConnecting("flightNumber")}
+                </label>
+                <input
+                  id="connecting-flight-0"
+                  className={FIELD_INPUT}
+                  value={connection.flightNumber}
+                  placeholder={tConnecting("flightNumberPlaceholder")}
+                  onChange={(event) =>
+                    applyRoute(departure, arrival, {
+                      ...connection,
+                      flightNumber: event.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+          </div>
         ) : (
-          <AirportSelectPlaceholder
-            id="route-departure"
-            placeholder={departure ? formatAirportRouteLabel(departure) : tStep1("departureAirport")}
-            onActivate={() => activateAirportSelect("route-departure")}
-          />
+          <button
+            type="button"
+            className="min-h-12 rounded-[13px] border-2 border-dashed border-[#2669f3] bg-white px-4 text-sm sm:text-base font-bold text-[#2669f3] hover:bg-[#f5f8ff]"
+            onClick={() => {
+              void loadAirportSelectChunk();
+              startTransition(() => setLoadAirportSelect(true));
+              applyRoute(departure, arrival, EMPTY_LEG);
+            }}
+            {...gtmId("claim_step2_add_connection")}
+          >
+            {tConnecting("addFlight")}
+          </button>
         )}
-        <button
-          type="button"
-          onClick={() => {
-            setManualError(null);
-            applyAirports(arrival, departure);
-          }}
-          className="flex-shrink-0 self-center md:self-stretch min-h-11 min-w-11 px-4 md:px-0 md:min-w-12 flex items-center justify-center rounded-full hover:bg-[#f8faff] active:bg-[#e7eeff] transition-colors"
-          aria-label={tStep1("swapAirports")}
-          {...gtmId("claim_step2_swap_airports")}
-        >
-          <img src="/assets/icons/arrow-right-left.svg" alt="" aria-hidden="true" width={23} height={23} decoding="async" className="w-[23px] h-[23px] object-contain" />
-        </button>
-        {loadAirportSelect ? (
-          <AirportSelect
-            id="route-arrival"
-            placeholder={tStep1("arrivalAirport")}
-            value={arrival}
-            onChange={handleArrivalChange}
-            excludeAirportId={departure?.id}
-            autoOpen={autoOpenAirportId === "route-arrival"}
-          />
-        ) : (
-          <AirportSelectPlaceholder
-            id="route-arrival"
-            placeholder={arrival ? formatAirportRouteLabel(arrival) : tStep1("arrivalAirport")}
-            onActivate={() => activateAirportSelect("route-arrival")}
-          />
-        )}
+
+        <div className="border-2 border-[#d5e0f9] rounded-[13px] bg-white min-h-[73px] min-w-0">
+          {airportField("route-arrival", tStep1("arrivalAirport"), arrival, departure?.id, handleArrivalChange)}
+        </div>
       </div>
       {manualError && (
         <p className="mt-3 text-sm text-[#e82828]" role="alert">
           {manualError}
         </p>
       )}
-      <CompensationEstimateBanner
-        routeFrom={flight.routeFrom}
-        routeTo={flight.routeTo}
-        estimate={flight.compensationEstimate}
-        prominent
-        className="mt-4"
-      />
+      {departure && arrival ? (
+        <div className="mt-4 rounded-[13px] border border-[#d5e0f9] bg-white px-4 py-3 text-center">
+          <p className="font-bold text-[#1f3664] text-base sm:text-lg">
+            {formatAirportRouteLabel(departure)} — {formatAirportRouteLabel(arrival)}
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -221,7 +221,9 @@
         "somethingWentWrong": "Ceva nu a mers. Completează datele zborului mai jos.",
         "unsupportedType": "Tip de fișier neacceptat. Încarcă o carte de îmbarcare în PDF, JPG, PNG, WebP sau HEIC.",
         "tooLarge": "Fișierul este prea mare pentru a fi trimis. Folosiți o fotografie sau un PDF de sub 4 MB."
-      }
+      },
+      "deniedBoarding": "Refuz la îmbarcare",
+      "deniedBoardingOther": "(sau alte situații)"
     },
     "step2": {
       "routeTitle": "Aeroporturi",
@@ -257,7 +259,10 @@
         "departurePlaceholder": "de ex. București (OTP)",
         "arrival": "Sosire",
         "arrivalPlaceholder": "de ex. Londra (LTN)"
-      }
+      },
+      "reassuranceCourt": "Acțiune în instanță",
+      "reassuranceFast": "Rapid și fără risc",
+      "reassuranceFee": "No win, no fee"
     },
     "connecting": {
       "title": "Zboruri de legătură",
@@ -275,7 +280,10 @@
       "errors": {
         "connectingRequired": "Indică dacă ai avut un zbor de legătură.",
         "connectingDetailsRequired": "Introdu aeroportul și numărul zborului pentru legătura 1."
-      }
+      },
+      "addFlight": "Adaugă un zbor de legătură",
+      "removeFlight": "Elimină",
+      "flightNumberHint": "Introdu aeroportul de legătură și numărul acelui zbor."
     },
     "disruption": {
       "title": "Detaliile incidentului",

@@ -221,7 +221,9 @@
         "somethingWentWrong": "Something went wrong. Please fill in your flight details below.",
         "unsupportedType": "Unsupported file type. Upload a PDF, JPG, PNG, WebP, or HEIC boarding pass.",
         "tooLarge": "This file is too large to send. Use a photo or a PDF under 4 MB."
-      }
+      },
+      "deniedBoarding": "Denied boarding",
+      "deniedBoardingOther": "(or other options)"
     },
     "step2": {
       "routeTitle": "Airports",
@@ -257,7 +259,10 @@
         "departurePlaceholder": "e.g. London (LHR)",
         "arrival": "Arrival",
         "arrivalPlaceholder": "e.g. Rome (FCO)"
-      }
+      },
+      "reassuranceCourt": "Court action",
+      "reassuranceFast": "Fast & risk-free",
+      "reassuranceFee": "No win, no fee"
     },
     "connecting": {
       "title": "Connecting flights",
@@ -275,7 +280,10 @@
       "errors": {
         "connectingRequired": "Tell us if you had a connecting flight.",
         "connectingDetailsRequired": "Enter the airport and flight number for connecting flight 1."
-      }
+      },
+      "addFlight": "Add connecting flight",
+      "removeFlight": "Remove",
+      "flightNumberHint": "Enter the connection airport and the flight number."
     },
     "disruption": {
       "title": "Disruption details",

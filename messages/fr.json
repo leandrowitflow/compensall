@@ -221,7 +221,9 @@
         "somethingWentWrong": "Une erreur s'est produite. Veuillez renseigner les informations de votre vol ci-dessous.",
         "unsupportedType": "Type de fichier non pris en charge. Téléchargez une carte d'embarquement PDF, JPG, PNG, WebP ou HEIC.",
         "tooLarge": "Ce fichier est trop volumineux pour être envoyé. Utilisez une photo ou un PDF de moins de 4 Mo."
-      }
+      },
+      "deniedBoarding": "Refus d'embarquement",
+      "deniedBoardingOther": "(ou d'autres options)"
     },
     "step2": {
       "routeTitle": "Aéroports",
@@ -257,7 +259,10 @@
         "departurePlaceholder": "ex. Londres (LHR)",
         "arrival": "Arrivée",
         "arrivalPlaceholder": "ex. Rome (FCO)"
-      }
+      },
+      "reassuranceCourt": "Action en justice",
+      "reassuranceFast": "Rapide et sans risque",
+      "reassuranceFee": "No win, no fee"
     },
     "connecting": {
       "title": "Vols de correspondance",
@@ -275,7 +280,10 @@
       "errors": {
         "connectingRequired": "Indiquez si vous aviez un vol de correspondance.",
         "connectingDetailsRequired": "Saisissez l'aéroport et le numéro du vol de correspondance 1."
-      }
+      },
+      "addFlight": "Ajouter un vol de correspondance",
+      "removeFlight": "Retirer",
+      "flightNumberHint": "Indiquez l'aéroport de correspondance et le numéro de ce vol."
     },
     "disruption": {
       "title": "Détails de la perturbation",

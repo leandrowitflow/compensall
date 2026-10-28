@@ -221,7 +221,9 @@
         "somethingWentWrong": "Er is iets misgegaan. Vul uw vluchtgegevens hieronder in.",
         "unsupportedType": "Bestandstype niet ondersteund. Upload een instapkaart als PDF, JPG, PNG, WebP of HEIC.",
         "tooLarge": "Dit bestand is te groot om te versturen. Gebruik een foto of een pdf onder 4 MB."
-      }
+      },
+      "deniedBoarding": "Instapweigering",
+      "deniedBoardingOther": "(of andere gevallen)"
     },
     "step2": {
       "routeTitle": "Luchthavens",
@@ -257,7 +259,10 @@
         "departurePlaceholder": "bijv. Amsterdam (AMS)",
         "arrival": "Aankomst",
         "arrivalPlaceholder": "bijv. Rome (FCO)"
-      }
+      },
+      "reassuranceCourt": "Gerechtelijke stappen",
+      "reassuranceFast": "Snel en zonder risico",
+      "reassuranceFee": "No win, no fee"
     },
     "connecting": {
       "title": "Aansluitende vluchten",
@@ -275,7 +280,10 @@
       "errors": {
         "connectingRequired": "Geef aan of u een aansluitende vlucht had.",
         "connectingDetailsRequired": "Vul luchthaven en vluchtnummer in voor aansluitende vlucht 1."
-      }
+      },
+      "addFlight": "Overstap toevoegen",
+      "removeFlight": "Verwijderen",
+      "flightNumberHint": "Vul de overstapluchthaven en het vluchtnummer in."
     },
     "disruption": {
       "title": "Gegevens over de verstoring",

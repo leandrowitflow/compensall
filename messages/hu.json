@@ -221,7 +221,9 @@
         "somethingWentWrong": "Valami hiba történt. Töltsd ki alább a járatadataidat.",
         "unsupportedType": "Nem támogatott fájltípus. Tölts fel PDF, JPG, PNG, WebP vagy HEIC beszállókártyát.",
         "tooLarge": "A fájl túl nagy a küldéshez. Használjon 4 MB-nál kisebb fotót vagy PDF-et."
-      }
+      },
+      "deniedBoarding": "Beszállás megtagadása",
+      "deniedBoardingOther": "(vagy más eset)"
     },
     "step2": {
       "routeTitle": "Repülőterek",
@@ -257,7 +259,10 @@
         "departurePlaceholder": "pl. Budapest (BUD)",
         "arrival": "Érkezés",
         "arrivalPlaceholder": "pl. London (LTN)"
-      }
+      },
+      "reassuranceCourt": "Bírósági eljárás",
+      "reassuranceFast": "Gyors és kockázatmentes",
+      "reassuranceFee": "No win, no fee"
     },
     "connecting": {
       "title": "Csatlakozó járatok",
@@ -275,7 +280,10 @@
       "errors": {
         "connectingRequired": "Mondd el, volt-e csatlakozó járatod.",
         "connectingDetailsRequired": "Add meg az 1. csatlakozó járat repülőterét és járatszámát."
-      }
+      },
+      "addFlight": "Csatlakozó járat hozzáadása",
+      "removeFlight": "Eltávolítás",
+      "flightNumberHint": "Add meg a csatlakozó repülőteret és a járatszámot."
     },
     "disruption": {
       "title": "A fennakadás részletei",

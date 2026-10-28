@@ -221,7 +221,9 @@
         "somethingWentWrong": "Diçka shkoi keq. Plotësoji më poshtë të dhënat e fluturimit.",
         "unsupportedType": "Lloj skedari i pambështetur. Ngarko një kartë imbarkimi PDF, JPG, PNG, WebP ose HEIC.",
         "tooLarge": "Skedari është shumë i madh për t’u dërguar. Përdorni një foto ose PDF nën 4 MB."
-      }
+      },
+      "deniedBoarding": "Refuzim imbarkimi",
+      "deniedBoardingOther": "(ose raste të tjera)"
     },
     "step2": {
       "routeTitle": "Aeroportet",
@@ -257,7 +259,10 @@
         "departurePlaceholder": "p.sh. Tiranë (TIA)",
         "arrival": "Mbërritje",
         "arrivalPlaceholder": "p.sh. Vjenë (VIE)"
-      }
+      },
+      "reassuranceCourt": "Veprim gjyqësor",
+      "reassuranceFast": "Shpejt dhe pa rrezik",
+      "reassuranceFee": "No win, no fee"
     },
     "connecting": {
       "title": "Fluturime lidhëse",
@@ -275,7 +280,10 @@
       "errors": {
         "connectingRequired": "Na thuaj nëse pate një fluturim lidhës.",
         "connectingDetailsRequired": "Shkruaj aeroportin dhe numrin e fluturimit për lidhjen 1."
-      }
+      },
+      "addFlight": "Shto fluturim lidhës",
+      "removeFlight": "Hiq",
+      "flightNumberHint": "Shkruaj aeroportin e lidhjes dhe numrin e atij fluturimi."
     },
     "disruption": {
       "title": "Detajet e ndërprerjes",

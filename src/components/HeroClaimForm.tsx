@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { startTransition, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import ClaimSidebar from "@/components/claim/ClaimSidebar";
+import ClaimReassurance from "@/components/claim/ClaimReassurance";
 import Step1Upload from "@/components/claim/Step1Upload";
 import type { ClaimResumePrefill, ClaimSubmitPayload } from "@/components/claim/Step3Panel";
 
@@ -209,7 +209,6 @@ export default function HeroClaimForm() {
   const [flight, setFlight] = useState<ClaimFlightData>(EMPTY_FLIGHT);
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractError, setExtractError] = useState<string | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
   const [step2Error, setStep2Error] = useState<Step2Issue | null>(null);
   const [boardingPassFile, setBoardingPassFile] = useState<File | null>(null);
   const [isAdvancing, setIsAdvancing] = useState(false);
@@ -227,7 +226,6 @@ export default function HeroClaimForm() {
     setFlight(EMPTY_FLIGHT);
     setIsExtracting(false);
     setExtractError(null);
-    setIsEditing(false);
     setStep2Error(null);
     setStepHint(null);
     setBoardingPassFile(null);
@@ -280,7 +278,6 @@ export default function HeroClaimForm() {
           contactPhone: data.draft.contactPhone,
           additionalPassengers: data.draft.additionalPassengers ?? [],
         });
-        setIsEditing(false);
         setStep(3);
         setResumeNotice(tResume("loaded"));
         document.getElementById("claim")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -310,7 +307,6 @@ export default function HeroClaimForm() {
     setFlight(normalizeFlightData(snapshot.flight));
     setEntryMode(snapshot.entryMode);
     setResumePrefill(prefillFromClaimReturn(snapshot));
-    setIsEditing(false);
     setStep(3);
     void loadStep3Panel();
     document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -356,23 +352,41 @@ export default function HeroClaimForm() {
           return;
         }
         advanceWithFile();
-        setFlight(EMPTY_FLIGHT);
-        setIsEditing(true);
+        setFlight((current) => (current.status === "Unknown" ? EMPTY_FLIGHT : current));
         setExtractError(tStep1("errors.extractFailed"));
         return;
       }
 
       advanceWithFile();
       try {
-        setFlight(normalizeFlightData(flightData));
+        const extracted = normalizeFlightData(flightData);
+        const prefer = (next: string, current: string) => (next.trim() ? next : current);
+        setFlight((current) =>
+          normalizeFlightData({
+            ...current,
+            passenger: prefer(extracted.passenger, current.passenger),
+            flight: prefer(extracted.flight, current.flight),
+            routeFrom: prefer(extracted.routeFrom, current.routeFrom),
+            routeTo: prefer(extracted.routeTo, current.routeTo),
+            date: prefer(extracted.date, current.date),
+            status: extracted.status !== "Unknown" ? extracted.status : current.status,
+            delay: extracted.delay || current.delay,
+            delayDuration: extracted.delayDuration || current.delayDuration,
+            cancellationNotice: extracted.cancellationNotice || current.cancellationNotice,
+            disruptionReason: extracted.disruptionReason || current.disruptionReason,
+            hadConnectingFlight: extracted.hadConnectingFlight ?? current.hadConnectingFlight ?? false,
+            connectingFlights: extracted.connectingFlights?.length
+              ? extracted.connectingFlights
+              : current.connectingFlights,
+            compensationEstimate: extracted.compensationEstimate ?? current.compensationEstimate,
+          }),
+        );
       } catch (normalizeError) {
         console.error("[HeroClaimForm] normalizeFlightData failed:", normalizeError);
-        setFlight(EMPTY_FLIGHT);
-        setIsEditing(true);
+        setFlight((current) => (current.status === "Unknown" ? EMPTY_FLIGHT : current));
         setExtractError(tStep1("errors.extractFailed"));
         return;
       }
-      setIsEditing(Boolean(warning));
       setExtractError(warning);
     } catch (error) {
       const technical = error instanceof Error ? error.message : "";
@@ -381,15 +395,14 @@ export default function HeroClaimForm() {
         return;
       }
       advanceWithFile();
-      setFlight(EMPTY_FLIGHT);
-      setIsEditing(true);
+      setFlight((current) => (current.status === "Unknown" ? EMPTY_FLIGHT : current));
       setExtractError(tStep1("errors.somethingWentWrong"));
     } finally {
       setIsExtracting(false);
     }
   };
 
-  const handleDisruptionChoice = (status: "Delayed" | "Cancelled") => {
+  const handleDisruptionChoice = (status: "Delayed" | "Cancelled" | "Denied boarding") => {
     void loadStep2Panel();
     if (advancingRef.current) return;
     advancingRef.current = true;
@@ -401,11 +414,12 @@ export default function HeroClaimForm() {
       setFlight(
         normalizeFlightData({
           status,
-          delay: status === "Cancelled" ? "more_than_3" : "",
+          delay: status === "Delayed" ? "" : "more_than_3",
+          hadConnectingFlight: false,
+          connectingFlights: [],
         }),
       );
       setExtractError(null);
-      setIsEditing(true);
       setStep(2);
       setIsAdvancing(false);
       advancingRef.current = false;
@@ -430,15 +444,6 @@ export default function HeroClaimForm() {
     });
     if (error) {
       setStep2Error(error);
-      if (
-        error.field === "passenger" ||
-        error.field === "flight" ||
-        error.field === "routeFrom" ||
-        error.field === "routeTo" ||
-        error.field === "date"
-      ) {
-        setIsEditing(true);
-      }
       return;
     }
     if (advancingRef.current) return;
@@ -447,7 +452,6 @@ export default function HeroClaimForm() {
     void loadStep3Panel();
     startTransition(() => {
       setStep2Error(null);
-      setIsEditing(false);
       setStep(3);
       setIsAdvancing(false);
       advancingRef.current = false;
@@ -594,9 +598,10 @@ export default function HeroClaimForm() {
 
       {step === 1 && !isResuming && (
         <Step1Upload
-          isExtracting={isExtracting}
           isAdvancing={isAdvancing}
+          isExtracting={isExtracting}
           extractError={extractError}
+          attachedName={upload?.fileName ?? boardingPassFile?.name ?? null}
           onExtract={handleExtract}
           onChooseDisruption={handleDisruptionChoice}
         />
@@ -604,23 +609,16 @@ export default function HeroClaimForm() {
 
       {step > 1 && entryMode && (
         <div className="px-4 pb-4 xl:px-6 xl:pb-6">
-          <div className={`grid grid-cols-1 gap-4 xl:gap-6 ${entryMode === "upload" ? "xl:grid-cols-[minmax(0,489px)_1fr]" : ""}`}>
-            {entryMode === "upload" && (
-              <ClaimSidebar entryMode={entryMode} upload={upload} flight={flight} />
-            )}
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-8">
+            <ClaimReassurance />
             {step === 2 ? (
               <Step2Panel
                 flight={flight}
-                isEditing={isEditing}
                 isAdvancing={isAdvancing}
                 validationError={step2Error}
                 extractWarning={extractError}
                 onFlightChange={(next) => {
                   setFlight(next);
-                  setStep2Error(null);
-                }}
-                onToggleEdit={() => {
-                  setIsEditing((editing) => !editing);
                   setStep2Error(null);
                 }}
                 onDelete={resetClaim}

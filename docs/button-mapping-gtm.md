@@ -94,9 +94,11 @@ data-gtm="nav_about"
 | 1 | Upload boarding pass | `claim_step1_upload_boarding_pass` |
 | 1 | Delayed flight | `claim_step1_delayed` |
 | 1 | Cancelled flight | `claim_step1_cancelled` |
+| 1 | Denied boarding | `claim_step1_denied_boarding` |
 | 2 | Swap airports | `claim_step2_swap_airports` |
+| 2 | Add connecting flight | `claim_step2_add_connection` |
+| 2 | Remove connecting flight | `claim_step2_remove_connection` |
 | 2 | Delete data | `claim_step2_delete_data` |
-| 2 | Edit details | `claim_step2_edit_details` |
 | 2 | Yes, continue | `claim_step2_yes_continue` |
 | 3 contact | Add / Remove passenger | `claim_step3_add_passenger`, `claim_step3_remove_passenger` |
 | 3 contact | Continue to signing | `claim_step3_continue_to_signing` |

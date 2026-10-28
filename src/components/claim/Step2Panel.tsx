@@ -3,12 +3,11 @@
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
-import ConnectingFlightsForm from "@/components/claim/ConnectingFlightsForm";
+import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
 import DisruptionDetailsForm from "@/components/claim/DisruptionDetailsForm";
 import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
 import Step2Airports from "@/components/claim/Step2Airports";
 import { focusClaimField } from "@/components/claim/FieldIssue";
-import { InfoBoardRow } from "@/components/claim/ClaimSidebar";
 import { ACTION_BTN } from "@/components/claim/claim-ui";
 import { isIneligibleForCompensation } from "@/lib/claim-types";
 import { STEP2_FIELD_ELEMENT, type Step2Issue } from "@/lib/claim-form-issues";
@@ -16,29 +15,24 @@ import { gtmId } from "@/lib/gtm";
 
 type Step2PanelProps = {
   flight: ClaimFlightData;
-  isEditing: boolean;
   isAdvancing?: boolean;
   validationError: Step2Issue | null;
   extractWarning: string | null;
   onFlightChange: (flight: ClaimFlightData) => void;
-  onToggleEdit: () => void;
   onDelete: () => void;
   onContinue: () => void;
 };
 
 export default function Step2Panel({
   flight,
-  isEditing,
   isAdvancing = false,
   validationError,
   extractWarning,
   onFlightChange,
-  onToggleEdit,
   onDelete,
   onContinue,
 }: Step2PanelProps) {
   const tStep2 = useTranslations("claim.step2");
-  const tCommon = useTranslations("common");
   const ineligible = isIneligibleForCompensation(flight);
   const fieldIssue = validationError && validationError.field !== "ineligible" ? validationError : null;
 
@@ -57,30 +51,23 @@ export default function Step2Panel({
         </p>
       )}
 
-      {isEditing ? (
-        <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-4 mb-4">
-          <FlightDetailsForm flight={flight} onChange={onFlightChange} idPrefix="edit" issue={fieldIssue} hideRoute />
-        </div>
-      ) : (
-        <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-2 mb-4">
-          <InfoBoardRow icon="/assets/claim/claim-person.svg" label={tStep2("passenger")} value={flight.passenger || tCommon("notApplicable")} />
-          <InfoBoardRow icon="/assets/claim/claim-flight.svg" label={tStep2("flight")} value={flight.flight || tCommon("notApplicable")} />
-          <InfoBoardRow
-            icon="/assets/claim/claim-route.svg"
-            label={tStep2("route")}
-            value={`${flight.routeFrom || tCommon("notApplicable")} → ${flight.routeTo || tCommon("notApplicable")}`}
-          />
-          <InfoBoardRow icon="/assets/claim/claim-calendar.svg" label={tStep2("date")} value={flight.date || tCommon("notApplicable")} />
-        </div>
-      )}
-
-      <div className="mb-4">
-        <ConnectingFlightsForm flight={flight} onChange={onFlightChange} issue={fieldIssue} />
+      <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-4 mb-4">
+        <FlightDetailsForm flight={flight} onChange={onFlightChange} idPrefix="edit" issue={fieldIssue} hideRoute />
       </div>
 
       <div className="mb-4">
         <DisruptionDetailsForm flight={flight} onChange={onFlightChange} issue={fieldIssue} />
       </div>
+
+      {flight.routeFrom.trim() && flight.routeTo.trim() && flight.flight.trim() && flight.date.trim() ? (
+        <CompensationEstimateBanner
+          routeFrom={flight.routeFrom}
+          routeTo={flight.routeTo}
+          estimate={flight.compensationEstimate}
+          prominent
+          className="mb-4"
+        />
+      ) : null}
 
       <div className="bg-[#f0f3fe] rounded-[13px] px-4 py-4 mb-4 max-w-sm">
         <p className="text-[#1f3664] text-sm sm:text-base leading-relaxed">
@@ -98,14 +85,6 @@ export default function Step2Panel({
           {...gtmId("claim_step2_delete_data")}
         >
           {tStep2("deleteData")}
-        </button>
-        <button
-          type="button"
-          onClick={onToggleEdit}
-          className={`border-2 border-[#2669f3] text-[#2669f3] hover:bg-[#2669f3]/5 ${ACTION_BTN}`}
-          {...gtmId("claim_step2_edit_details")}
-        >
-          {isEditing ? tStep2("doneEditing") : tStep2("editDetails")}
         </button>
         <button
           type="button"
