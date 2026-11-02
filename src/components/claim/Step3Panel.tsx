@@ -65,6 +65,7 @@ export type ClaimSubmitPayload = {
   additionalPassengers: ClaimPassenger[];
   claimDocuments: ClaimDocumentsPayload;
   additionalDocuments?: File[];
+  whatHappened?: string;
   odooLeadId?: number | null;
   formSessionId: string;
 };
@@ -196,6 +197,7 @@ export default function Step3Panel({
   const [bookingConfirmation, setBookingConfirmation] = useState<File | null>(null);
   const [expensesReceipts, setExpensesReceipts] = useState<File | null>(null);
   const [otherDocuments, setOtherDocuments] = useState<File[]>([]);
+  const [whatHappened, setWhatHappened] = useState("");
   const [docErrors, setDocErrors] = useState<Partial<Record<"passport" | "booking" | "expenses" | "other", string>>>({});
   const [forcedPayload, setForcedPayload] = useState(false);
 
@@ -823,6 +825,7 @@ export default function Step3Panel({
           otherDocuments,
         },
         additionalDocuments: otherDocuments,
+        whatHappened: whatHappened.trim().slice(0, 4000),
         odooLeadId,
         formSessionId: sessionId,
       });
@@ -1156,6 +1159,20 @@ export default function Step3Panel({
               </ul>
             )}
             <FieldIssue id="other-documents-error" message={docErrors.other} />
+          </div>
+          <div className="bg-white border border-[#d5e0f9] rounded-xl p-4">
+            <label className="block font-bold text-[#1f3664] text-sm sm:text-base mb-2" htmlFor="what-happened">
+              {t("whatHappened")}
+            </label>
+            <textarea
+              id="what-happened"
+              value={whatHappened}
+              maxLength={4000}
+              rows={5}
+              placeholder={t("whatHappenedPlaceholder")}
+              onChange={(event) => setWhatHappened(event.target.value)}
+              className="w-full min-h-[128px] resize-y border border-[#d5e0f9] rounded-[10px] px-4 py-3 text-sm text-[#1f3664] outline-none focus:border-[#2669f3] bg-white placeholder:text-[#7b8094]"
+            />
           </div>
         </div>
       )}

@@ -18,7 +18,11 @@
     "home": "Home",
     "legal": "Legal",
     "airport": "Airport",
-    "downloadPageMarkdown": "Download page as Markdown"
+    "downloadPageMarkdown": "Download page as Markdown",
+    "floatingClaim": "Claim up to £520 or €600 for your delayed or cancelled flight",
+    "floatingClaimShort": "Claim up to £520 or €600",
+    "lastUpdate": "Last update: {date}",
+    "onThisPage": "On this page"
   },
   "nav": {
     "knowYourRights": "Know your rights",
@@ -218,12 +222,15 @@
         "selectBothAirports": "Select both departure and arrival airports from the list.",
         "airportsMustDiffer": "Departure and arrival airports must be different.",
         "extractFailed": "We couldn't read every detail automatically. Please fill in your flight details below.",
+        "extractPartial": "We could not read the route or the date from this boarding pass. Please fill those in below.",
         "somethingWentWrong": "Something went wrong. Please fill in your flight details below.",
         "unsupportedType": "Unsupported file type. Upload a PDF, JPG, PNG, WebP, or HEIC boarding pass.",
         "tooLarge": "This file is too large to send. Use a photo or a PDF under 4 MB."
       },
       "deniedBoarding": "Denied boarding",
-      "deniedBoardingOther": "(or other options)"
+      "deniedBoardingOther": "(or other options)",
+      "overbooking": "Overbooking",
+      "overbookingOther": "(and other situations)"
     },
     "step2": {
       "routeTitle": "Airports",
@@ -304,7 +311,7 @@
       "types": {
         "delay": "Delay",
         "cancellation": "Cancellation",
-        "deniedBoarding": "Denied boarding"
+        "deniedBoarding": "Overbooking"
       },
       "reasons": {
         "technical": "Technical issue",
@@ -349,6 +356,8 @@
       "removePassenger": "Remove",
       "passengerNumber": "Passenger {number}",
       "documentsHint": "These files help us process your claim faster. You can skip any that you don’t have yet.",
+      "whatHappened": "Tell us what happened:",
+      "whatHappenedPlaceholder": "The more detail you give us, the faster we can assess your claim. Just write it the way you’d tell a friend.",
       "docs": {
         "passport": "Passport copy",
         "passportHint": "Photo page of your passport or national ID.",
@@ -963,7 +972,8 @@
     "subtitle": "Practical guides on EC 261/2004 passenger rights: delays, cancellations, denied boarding, and more, so you know what you may be owed before you fly.",
     "readArticle": "Read article",
     "backToBlog": "Back to blog",
-    "englishOnlyNotice": "This guide is currently available in English only."
+    "englishOnlyNotice": "This guide is currently available in English only.",
+    "lastUpdate": "Last update: {date}"
   },
   "disruptionsPage": {
     "title": "Flight disruptions",
@@ -987,5 +997,21 @@
     "privacyDataConsent": "Privacy & Data Consent",
     "copyright": "Copyright © Compensall 2026. All rights reserved.",
     "backToClaim": "Back to claim"
+  },
+  "calculator": {
+    "title": "Compensation calculator",
+    "subtitle": "Check how much compensation you could get for a delayed or cancelled flight.",
+    "from": "From",
+    "to": "To",
+    "departure": "Departure airport",
+    "arrival": "Arrival airport",
+    "passengers": "Passengers",
+    "fewerPassengers": "Fewer passengers",
+    "morePassengers": "More passengers",
+    "distance": "Distance",
+    "distanceEmpty": "Choose both airports",
+    "perPerson": "per person",
+    "totalForPassengers": "{count} passengers · {amount} each",
+    "check": "Check your compensation"
   }
 }

@@ -371,6 +371,7 @@ export function cmsRecordToBlogPost(record: CmsBlogRecord, locale: AppLocale): B
       ? disruptionCategory(locale)
       : CMS_BLOG_CATEGORY_BY_LOCALE[locale],
     date: formatBlogDisplayDate(dateSource),
+    updatedDate: formatBlogDisplayDate(record.updated_at),
     readTime: estimateReadTime(polishedContentMd),
     title: polishPublicCopy(translation.title ?? "", locale),
     excerpt: polishPublicCopy(translation.excerpt ?? "", locale),

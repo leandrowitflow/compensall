@@ -18,7 +18,11 @@
     "home": "Startseite",
     "legal": "Rechtliches",
     "airport": "Flughafen",
-    "downloadPageMarkdown": "Seite als Markdown herunterladen"
+    "downloadPageMarkdown": "Seite als Markdown herunterladen",
+    "floatingClaim": "Fordern Sie bis zu 600 € für einen verspäteten oder annullierten Flug",
+    "floatingClaimShort": "Bis zu 600 € fordern",
+    "lastUpdate": "Letzte Aktualisierung: {date}",
+    "onThisPage": "Auf dieser Seite"
   },
   "nav": {
     "knowYourRights": "Ihre Fluggastrechte",
@@ -218,12 +222,15 @@
         "selectBothAirports": "Wählen Sie Abflug- und Ankunftsflughafen aus der Liste.",
         "airportsMustDiffer": "Abflug- und Ankunftsflughafen müssen unterschiedlich sein.",
         "extractFailed": "Wir konnten nicht alle Angaben automatisch lesen. Bitte ergänzen Sie Ihre Flugdaten unten.",
+        "extractPartial": "Wir konnten die Strecke oder das Datum auf diesem Boardingpass nicht lesen. Bitte ergänzen Sie diese Angaben unten.",
         "somethingWentWrong": "Etwas ist schiefgelaufen. Bitte tragen Sie Ihre Flugdaten unten ein.",
         "unsupportedType": "Dateityp nicht unterstützt. Laden Sie eine Bordkarte als PDF, JPG, PNG, WebP oder HEIC hoch.",
         "tooLarge": "Diese Datei ist zu groß zum Senden. Verwenden Sie ein Foto oder ein PDF unter 4 MB."
       },
       "deniedBoarding": "Nichtbeförderung",
-      "deniedBoardingOther": "(oder andere Fälle)"
+      "deniedBoardingOther": "(oder andere Fälle)",
+      "overbooking": "Überbuchung",
+      "overbookingOther": "(und andere Fälle)"
     },
     "step2": {
       "routeTitle": "Flughäfen",
@@ -304,7 +311,7 @@
       "types": {
         "delay": "Verspätung",
         "cancellation": "Annullierung",
-        "deniedBoarding": "Nichtbeförderung"
+        "deniedBoarding": "Überbuchung"
       },
       "reasons": {
         "technical": "Technisches Problem",
@@ -349,6 +356,8 @@
       "removePassenger": "Entfernen",
       "passengerNumber": "Fluggast {number}",
       "documentsHint": "Diese Dateien beschleunigen die Bearbeitung. Sie können überspringen, was Sie noch nicht haben.",
+      "whatHappened": "Erzählen Sie uns, was passiert ist:",
+      "whatHappenedPlaceholder": "Je mehr Details Sie uns geben, desto schneller können wir Ihren Anspruch prüfen. Schreiben Sie es so, wie Sie es einem Freund erzählen würden.",
       "docs": {
         "passport": "Reisepasskopie",
         "passportHint": "Lichtbildseite des Reisepasses oder Personalausweises.",
@@ -963,7 +972,8 @@
     "subtitle": "Praktische Leitfäden zu Fluggastrechten nach der Verordnung (EG) Nr. 261/2004: Verspätung, Annullierung, Nichtbeförderung und mehr — damit Sie vor dem Abflug wissen, was Ihnen zustehen kann.",
     "readArticle": "Artikel lesen",
     "backToBlog": "Zurück zum Blog",
-    "englishOnlyNotice": "Dieser Leitfaden liegt derzeit nur auf Englisch vor."
+    "englishOnlyNotice": "Dieser Leitfaden liegt derzeit nur auf Englisch vor.",
+    "lastUpdate": "Letzte Aktualisierung: {date}"
   },
   "disruptionsPage": {
     "title": "Flugstörungen",
@@ -987,5 +997,21 @@
     "privacyDataConsent": "Datenschutz und Einwilligung",
     "copyright": "Copyright © Compensall 2026. Alle Rechte vorbehalten.",
     "backToClaim": "Zurück zum Antrag"
+  },
+  "calculator": {
+    "title": "Entschädigungsrechner",
+    "subtitle": "Prüfen Sie, wie viel Sie bei einem verspäteten oder annullierten Flug erhalten könnten.",
+    "from": "Von",
+    "to": "Nach",
+    "departure": "Abflughafen",
+    "arrival": "Zielflughafen",
+    "passengers": "Passagiere",
+    "fewerPassengers": "Weniger Passagiere",
+    "morePassengers": "Mehr Passagiere",
+    "distance": "Entfernung",
+    "distanceEmpty": "Wählen Sie beide Flughäfen",
+    "perPerson": "pro Person",
+    "totalForPassengers": "{count} Passagiere · je {amount}",
+    "check": "Entschädigung prüfen"
   }
 }

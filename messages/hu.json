@@ -18,7 +18,11 @@
     "home": "Kezdőlap",
     "legal": "Jogi információk",
     "airport": "Repülőtér",
-    "downloadPageMarkdown": "Oldal letöltése Markdownban"
+    "downloadPageMarkdown": "Oldal letöltése Markdownban",
+    "floatingClaim": "Igényelj akár 600 €-t egy késő vagy törölt járatért",
+    "floatingClaimShort": "Igényelj akár 600 €-t",
+    "lastUpdate": "Utolsó frissítés: {date}",
+    "onThisPage": "Ezen az oldalon"
   },
   "nav": {
     "knowYourRights": "Ismerd meg a jogaidat",
@@ -218,12 +222,15 @@
         "selectBothAirports": "Válaszd ki a listából az indulási és az érkezési repülőteret is.",
         "airportsMustDiffer": "Az indulási és az érkezési repülőtér nem lehet ugyanaz.",
         "extractFailed": "Nem tudtunk minden adatot automatikusan kiolvasni. Töltsd ki alább a járatadataidat.",
+        "extractPartial": "Az útvonalat vagy a dátumot nem tudtuk kiolvasni erről a beszállókártyáról. Pótold alább.",
         "somethingWentWrong": "Valami hiba történt. Töltsd ki alább a járatadataidat.",
         "unsupportedType": "Nem támogatott fájltípus. Tölts fel PDF, JPG, PNG, WebP vagy HEIC beszállókártyát.",
         "tooLarge": "A fájl túl nagy a küldéshez. Használjon 4 MB-nál kisebb fotót vagy PDF-et."
       },
       "deniedBoarding": "Beszállás megtagadása",
-      "deniedBoardingOther": "(vagy más eset)"
+      "deniedBoardingOther": "(vagy más eset)",
+      "overbooking": "Overbooking",
+      "overbookingOther": "(és más esetek)"
     },
     "step2": {
       "routeTitle": "Repülőterek",
@@ -304,7 +311,7 @@
       "types": {
         "delay": "Késés",
         "cancellation": "Törlés",
-        "deniedBoarding": "Beszállás megtagadása"
+        "deniedBoarding": "Overbooking"
       },
       "reasons": {
         "technical": "Műszaki probléma",
@@ -349,6 +356,8 @@
       "removePassenger": "Eltávolítás",
       "passengerNumber": "{number}. utas",
       "documentsHint": "Ezek a fájlok gyorsítják az ügyintézést. Amit még nincs meg, azt kihagyhatod.",
+      "whatHappened": "Mondd el, mi történt:",
+      "whatHappenedPlaceholder": "Minél több részletet adsz, annál gyorsabban tudjuk elbírálni az igényedet. Írd le úgy, ahogy egy barátodnak mesélnéd.",
       "docs": {
         "passport": "Útlevélmásolat",
         "passportHint": "Az útlevél vagy a személyi igazolvány fényképes oldala.",
@@ -963,7 +972,8 @@
     "subtitle": "Gyakorlati útmutatók a 261/2004/EK szerinti utasjogokról: késés, törlés, beszállásmegtagadás és még sok más — hogy tudd, mi járhat, mielőtt felszállsz.",
     "readArticle": "Cikk elolvasása",
     "backToBlog": "Vissza a bloghoz",
-    "englishOnlyNotice": "Ez az útmutató jelenleg csak angolul érhető el."
+    "englishOnlyNotice": "Ez az útmutató jelenleg csak angolul érhető el.",
+    "lastUpdate": "Utolsó frissítés: {date}"
   },
   "disruptionsPage": {
     "title": "Járatzavarok",
@@ -987,5 +997,21 @@
     "privacyDataConsent": "Adatvédelem és adatkezelési hozzájárulás",
     "copyright": "Copyright © Compensall 2026. Minden jog fenntartva.",
     "backToClaim": "Vissza a kárigényhez"
+  },
+  "calculator": {
+    "title": "Kártérítés-kalkulátor",
+    "subtitle": "Nézd meg, mennyit kaphatsz egy késő vagy törölt járatért.",
+    "from": "Honnan",
+    "to": "Hová",
+    "departure": "Indulási repülőtér",
+    "arrival": "Érkezési repülőtér",
+    "passengers": "Utasok",
+    "fewerPassengers": "Kevesebb utas",
+    "morePassengers": "Több utas",
+    "distance": "Távolság",
+    "distanceEmpty": "Válaszd ki mindkét repülőteret",
+    "perPerson": "személyenként",
+    "totalForPassengers": "{count} utas · {amount} fejenként",
+    "check": "Kártérítés ellenőrzése"
   }
 }

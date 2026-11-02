@@ -5,7 +5,9 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import CTABanner from "@/components/CTABanner";
 import JsonLd from "@/components/seo/JsonLd";
+import { ArticleWithToc } from "@/components/ArticleToc";
 import { AuthorMonogram } from "@/components/BlogAuthor";
+import { headingDomId } from "@/lib/heading-anchor";
 import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
 import { gtmClaimCta, gtmId } from "@/lib/gtm";
@@ -61,7 +63,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
       <PageHero title={t("greeting")} subtitle={t("lead")} trustpilotAlt={tHero("trustpilotAlt")} />
 
       <article className="px-4 md:px-8 lg:px-8 xl:px-12 pt-8 lg:pt-10 xl:pt-[80px] pb-0">
-        <div className="max-w-[760px] lg:max-w-[860px] mx-auto">
+        <div className="max-w-[760px] lg:max-w-[1100px] mx-auto">
           <Link
             href="/about"
             className="inline-flex items-center gap-2 text-[#2669f3] font-bold text-sm mb-8 hover:opacity-80"
@@ -80,7 +82,16 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
 
           <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10">{t("intro")}</p>
 
-          <h2 className="font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-4">
+          <ArticleWithToc
+            items={[
+              { id: headingDomId(t("decadeTitle"), 0), text: t("decadeTitle") },
+              { id: headingDomId(t("whyTitle"), 1), text: t("whyTitle") },
+              { id: headingDomId(t("checksTitle"), 2), text: t("checksTitle") },
+              { id: headingDomId(t("principlesTitle"), 3), text: t("principlesTitle") },
+              { id: headingDomId(t("scopeTitle"), 4), text: t("scopeTitle") },
+            ]}
+          >
+          <h2 id={headingDomId(t("decadeTitle"), 0)} className="scroll-mt-28 font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-4">
             {t("decadeTitle")}
           </h2>
           <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-6">{t("decadeBody")}</p>
@@ -89,13 +100,13 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
           </blockquote>
           <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10">{t("decadeAfter")}</p>
 
-          <h2 className="font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-4">
+          <h2 id={headingDomId(t("whyTitle"), 1)} className="scroll-mt-28 font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-4">
             {t("whyTitle")}
           </h2>
           <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-4">{t("whyP1")}</p>
           <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10">{t("whyP2")}</p>
 
-          <h2 className="font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-4">
+          <h2 id={headingDomId(t("checksTitle"), 2)} className="scroll-mt-28 font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-4">
             {t("checksTitle")}
           </h2>
           <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-4">{t("checksIntro")}</p>
@@ -109,7 +120,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
           </ul>
           <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10">{t("checksClose")}</p>
 
-          <h2 className="font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-6">
+          <h2 id={headingDomId(t("principlesTitle"), 3)} className="scroll-mt-28 font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-6">
             {t("principlesTitle")}
           </h2>
           <div className="grid grid-cols-1 gap-4 mb-10">
@@ -121,7 +132,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
             ))}
           </div>
 
-          <h2 className="font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-4">
+          <h2 id={headingDomId(t("scopeTitle"), 4)} className="scroll-mt-28 font-bold text-2xl xl:text-[32px] text-[#1f3664] leading-[1.2] mb-4">
             {t("scopeTitle")}
           </h2>
           <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-8">{t("scopeBody")}</p>
@@ -139,6 +150,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
             <span className="block font-bold text-lg">{t("name")}</span>
             <span className="block text-[#2669f3] font-bold">{t("role")}</span>
           </p>
+          </ArticleWithToc>
         </div>
       </article>
 

@@ -18,7 +18,11 @@
     "home": "Kryefaqja",
     "legal": "Ligjore",
     "airport": "Aeroport",
-    "downloadPageMarkdown": "Shkarko faqen si Markdown"
+    "downloadPageMarkdown": "Shkarko faqen si Markdown",
+    "floatingClaim": "Kërko deri në 600 € për një fluturim të vonuar ose të anuluar",
+    "floatingClaimShort": "Kërko deri në 600 €",
+    "lastUpdate": "Përditësimi i fundit: {date}",
+    "onThisPage": "Në këtë faqe"
   },
   "nav": {
     "knowYourRights": "Njihi të drejtat e tua",
@@ -218,12 +222,15 @@
         "selectBothAirports": "Zgjidh aeroportin e nisjes dhe të mbërritjes nga lista.",
         "airportsMustDiffer": "Aeroporti i nisjes dhe i mbërritjes duhet të jenë të ndryshëm.",
         "extractFailed": "Nuk i lexuam automatikisht të gjitha detajet. Plotësoji më poshtë të dhënat e fluturimit.",
+        "extractPartial": "Nuk lexuam dot itinerarin ose datën në këtë kartë imbarkimi. Plotësoji më poshtë.",
         "somethingWentWrong": "Diçka shkoi keq. Plotësoji më poshtë të dhënat e fluturimit.",
         "unsupportedType": "Lloj skedari i pambështetur. Ngarko një kartë imbarkimi PDF, JPG, PNG, WebP ose HEIC.",
         "tooLarge": "Skedari është shumë i madh për t’u dërguar. Përdorni një foto ose PDF nën 4 MB."
       },
       "deniedBoarding": "Refuzim imbarkimi",
-      "deniedBoardingOther": "(ose raste të tjera)"
+      "deniedBoardingOther": "(ose raste të tjera)",
+      "overbooking": "Overbooking",
+      "overbookingOther": "(dhe raste të tjera)"
     },
     "step2": {
       "routeTitle": "Aeroportet",
@@ -304,7 +311,7 @@
       "types": {
         "delay": "Vonesë",
         "cancellation": "Anulim",
-        "deniedBoarding": "Refuzim imbarkimi"
+        "deniedBoarding": "Overbooking"
       },
       "reasons": {
         "technical": "Problem teknik",
@@ -349,6 +356,8 @@
       "removePassenger": "Hiq",
       "passengerNumber": "Pasagjeri {number}",
       "documentsHint": "Këto skedarë na ndihmojnë ta përpunojmë kërkesën më shpejt. Mund t’i anashkalosh ato që s’i ke ende.",
+      "whatHappened": "Na trego çfarë ndodhi:",
+      "whatHappenedPlaceholder": "Sa më shumë detaje të na japësh, aq më shpejt e vlerësojmë kërkesën. Shkruaje si t’ia tregoje një miku.",
       "docs": {
         "passport": "Kopje e pasaportës",
         "passportHint": "Faqja me foton e pasaportës ose e letërnjoftimit.",
@@ -963,7 +972,8 @@
     "subtitle": "Udhëzues praktikë për të drejtat e pasagjerit sipas 261/2004/KE: vonesa, anulime, refuzim imbarkimi e më shumë — që të dish çfarë të takon para se të ngjitesh.",
     "readArticle": "Lexo artikullin",
     "backToBlog": "Kthehu te blogu",
-    "englishOnlyNotice": "Ky udhëzues është aktualisht vetëm në anglisht."
+    "englishOnlyNotice": "Ky udhëzues është aktualisht vetëm në anglisht.",
+    "lastUpdate": "Përditësimi i fundit: {date}"
   },
   "disruptionsPage": {
     "title": "Ndërprerje fluturimesh",
@@ -987,5 +997,21 @@
     "privacyDataConsent": "Privatësia dhe pëlqimi për të dhënat",
     "copyright": "Copyright © Compensall 2026. Të gjitha të drejtat e rezervuara.",
     "backToClaim": "Kthehu te kërkesa"
+  },
+  "calculator": {
+    "title": "Llogaritësi i kompensimit",
+    "subtitle": "Shiko sa kompensim mund të marrësh për një fluturim të vonuar ose të anuluar.",
+    "from": "Nga",
+    "to": "Në",
+    "departure": "Aeroporti i nisjes",
+    "arrival": "Aeroporti i mbërritjes",
+    "passengers": "Pasagjerë",
+    "fewerPassengers": "Më pak pasagjerë",
+    "morePassengers": "Më shumë pasagjerë",
+    "distance": "Distanca",
+    "distanceEmpty": "Zgjidh të dy aeroportet",
+    "perPerson": "për person",
+    "totalForPassengers": "{count} pasagjerë · {amount} secili",
+    "check": "Kontrollo kompensimin"
   }
 }

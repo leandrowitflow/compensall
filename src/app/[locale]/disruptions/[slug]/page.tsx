@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import CTABanner from "@/components/CTABanner";
-import BlogPostContent from "@/components/BlogPostContent";
+import { ArticleWithToc } from "@/components/ArticleToc";
+import BlogPostContent, { blogTocItems } from "@/components/BlogPostContent";
 import JsonLd from "@/components/seo/JsonLd";
 import { Link } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
@@ -106,7 +107,9 @@ export default async function DisruptionArticlePage({ params }: DisruptionArticl
               </div>
             </div>
 
-            <BlogPostContent blocks={post.body} />
+            <ArticleWithToc items={blogTocItems(post.body)}>
+              <BlogPostContent blocks={post.body} />
+            </ArticleWithToc>
           </div>
         </div>
       </article>

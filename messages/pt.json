@@ -18,7 +18,11 @@
     "home": "Início",
     "legal": "Legal",
     "airport": "Aeroporto",
-    "downloadPageMarkdown": "Descarregar página em Markdown"
+    "downloadPageMarkdown": "Descarregar página em Markdown",
+    "floatingClaim": "Reclame até 600€ por um voo atrasado ou cancelado",
+    "floatingClaimShort": "Reclame até 600€",
+    "lastUpdate": "Última atualização: {date}",
+    "onThisPage": "Nesta página"
   },
   "nav": {
     "knowYourRights": "Conheça os seus direitos",
@@ -218,12 +222,15 @@
         "selectBothAirports": "Selecione o aeroporto de partida e de chegada na lista.",
         "airportsMustDiffer": "Os aeroportos de partida e chegada devem ser diferentes.",
         "extractFailed": "Não foi possível ler todos os detalhes automaticamente. Preencha os dados do seu voo abaixo.",
+        "extractPartial": "Não conseguimos ler a rota ou a data neste cartão de embarque. Preencha esses dados abaixo.",
         "somethingWentWrong": "Algo correu mal. Preencha os dados do seu voo abaixo.",
         "unsupportedType": "Tipo de ficheiro não suportado. Carregue um cartão de embarque em PDF, JPG, PNG, WebP ou HEIC.",
         "tooLarge": "Este ficheiro é demasiado grande para enviar. Use uma foto ou um PDF até 4 MB."
       },
       "deniedBoarding": "Embarque recusado",
-      "deniedBoardingOther": "(ou outras opções)"
+      "deniedBoardingOther": "(ou outras opções)",
+      "overbooking": "Overbooking",
+      "overbookingOther": "(e outras situações)"
     },
     "step2": {
       "routeTitle": "Aeroportos",
@@ -304,7 +311,7 @@
       "types": {
         "delay": "Atraso",
         "cancellation": "Cancelamento",
-        "deniedBoarding": "Embarque recusado"
+        "deniedBoarding": "Overbooking"
       },
       "reasons": {
         "technical": "Problema técnico",
@@ -349,6 +356,8 @@
       "removePassenger": "Remover",
       "passengerNumber": "Passageiro {number}",
       "documentsHint": "Estes ficheiros ajudam-nos a tratar o pedido mais depressa. Pode saltar os que ainda não tiver.",
+      "whatHappened": "Conte-nos o que aconteceu:",
+      "whatHappenedPlaceholder": "Quanto mais detalhe nos der, mais depressa podemos avaliar o seu pedido. Escreva como contaria a um amigo.",
       "docs": {
         "passport": "Cópia do passaporte",
         "passportHint": "Página de identificação do passaporte ou cartão de cidadão.",
@@ -963,7 +972,8 @@
     "subtitle": "Guias práticos sobre direitos dos passageiros ao abrigo do EC 261/2004: atrasos, cancelamentos, embarque recusado e mais, para saber o que pode ter direito a receber antes de voar.",
     "readArticle": "Ler artigo",
     "backToBlog": "Voltar ao blog",
-    "englishOnlyNotice": "Este guia está atualmente disponível apenas em inglês."
+    "englishOnlyNotice": "Este guia está atualmente disponível apenas em inglês.",
+    "lastUpdate": "Última atualização: {date}"
   },
   "disruptionsPage": {
     "title": "Perturbações de voos",
@@ -987,5 +997,21 @@
     "privacyDataConsent": "Privacidade e consentimento de dados",
     "copyright": "Copyright © Compensall 2026. Todos os direitos reservados.",
     "backToClaim": "Voltar ao pedido"
+  },
+  "calculator": {
+    "title": "Calculadora de compensação",
+    "subtitle": "Veja quanto pode receber por um voo atrasado ou cancelado.",
+    "from": "De",
+    "to": "Para",
+    "departure": "Aeroporto de partida",
+    "arrival": "Aeroporto de chegada",
+    "passengers": "Passageiros",
+    "fewerPassengers": "Menos passageiros",
+    "morePassengers": "Mais passageiros",
+    "distance": "Distância",
+    "distanceEmpty": "Escolha os dois aeroportos",
+    "perPerson": "por pessoa",
+    "totalForPassengers": "{count} passageiros · {amount} cada",
+    "check": "Verificar compensação"
   }
 }

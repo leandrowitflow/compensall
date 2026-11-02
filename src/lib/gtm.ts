@@ -20,6 +20,7 @@ export type GtmClaimLocation =
   | "thank_you"
   | "not_found"
   | "home_compensation"
+  | "home_calculator"
   | "home_floating";
 
 /** Props for CTAs that open the claim form (`/#claim`). */

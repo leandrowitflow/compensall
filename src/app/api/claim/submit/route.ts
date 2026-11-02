@@ -356,6 +356,10 @@ export async function POST(request: Request) {
     const siteUrl = getSiteUrl(request);
     const landingPage = locale ? `/${locale}/#claim` : "/#claim";
 
+    const whatHappenedRaw = formData.get("whatHappened");
+    const whatHappened =
+      typeof whatHappenedRaw === "string" ? whatHappenedRaw.trim().slice(0, 4000) : "";
+
     const odooLeadIdRaw = formData.get("odooLeadId");
     const formSessionIdRaw = formData.get("formSessionId");
     const odooLeadId =
@@ -444,6 +448,7 @@ export async function POST(request: Request) {
         otherDocuments,
       },
       additionalPassengers: odooAdditionalPassengers,
+      whatHappened,
     });
 
     if (odooLead) {

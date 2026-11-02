@@ -18,7 +18,11 @@
     "home": "Home",
     "legal": "Juridisch",
     "airport": "Luchthaven",
-    "downloadPageMarkdown": "Pagina als Markdown downloaden"
+    "downloadPageMarkdown": "Pagina als Markdown downloaden",
+    "floatingClaim": "Claim tot 600 € voor een vertraagde of geannuleerde vlucht",
+    "floatingClaimShort": "Claim tot 600 €",
+    "lastUpdate": "Laatst bijgewerkt: {date}",
+    "onThisPage": "Op deze pagina"
   },
   "nav": {
     "knowYourRights": "Ken uw rechten",
@@ -218,12 +222,15 @@
         "selectBothAirports": "Kies vertrek- en aankomstluchthaven uit de lijst.",
         "airportsMustDiffer": "Vertrek- en aankomstluchthaven moeten verschillen.",
         "extractFailed": "Wij konden niet alle gegevens automatisch lezen. Vul uw vluchtgegevens hieronder aan.",
+        "extractPartial": "We konden de route of de datum op deze instapkaart niet lezen. Vul die hieronder aan.",
         "somethingWentWrong": "Er is iets misgegaan. Vul uw vluchtgegevens hieronder in.",
         "unsupportedType": "Bestandstype niet ondersteund. Upload een instapkaart als PDF, JPG, PNG, WebP of HEIC.",
         "tooLarge": "Dit bestand is te groot om te versturen. Gebruik een foto of een pdf onder 4 MB."
       },
       "deniedBoarding": "Instapweigering",
-      "deniedBoardingOther": "(of andere gevallen)"
+      "deniedBoardingOther": "(of andere gevallen)",
+      "overbooking": "Overboeking",
+      "overbookingOther": "(en andere situaties)"
     },
     "step2": {
       "routeTitle": "Luchthavens",
@@ -304,7 +311,7 @@
       "types": {
         "delay": "Vertraging",
         "cancellation": "Annulering",
-        "deniedBoarding": "Instapweigering"
+        "deniedBoarding": "Overboeking"
       },
       "reasons": {
         "technical": "Technisch probleem",
@@ -349,6 +356,8 @@
       "removePassenger": "Verwijderen",
       "passengerNumber": "Passagier {number}",
       "documentsHint": "Deze bestanden versnellen de behandeling. U kunt overslaan wat u nog niet hebt.",
+      "whatHappened": "Vertel ons wat er is gebeurd:",
+      "whatHappenedPlaceholder": "Hoe meer details u geeft, hoe sneller we uw claim kunnen beoordelen. Schrijf het zoals u het aan een vriend zou vertellen.",
       "docs": {
         "passport": "Kopie van het paspoort",
         "passportHint": "Fotopagina van het paspoort of de identiteitskaart.",
@@ -963,7 +972,8 @@
     "subtitle": "Praktische gidsen over passagiersrechten volgens Verordening (EG) nr. 261/2004: vertraging, annulering, instapweigering en meer — zodat u voor vertrek weet waarop u recht kunt hebben.",
     "readArticle": "Artikel lezen",
     "backToBlog": "Terug naar het blog",
-    "englishOnlyNotice": "Deze gids is momenteel alleen in het Engels beschikbaar."
+    "englishOnlyNotice": "Deze gids is momenteel alleen in het Engels beschikbaar.",
+    "lastUpdate": "Laatst bijgewerkt: {date}"
   },
   "disruptionsPage": {
     "title": "Vluchtverstoringen",
@@ -987,5 +997,21 @@
     "privacyDataConsent": "Privacy en toestemming",
     "copyright": "Copyright © Compensall 2026. Alle rechten voorbehouden.",
     "backToClaim": "Terug naar de claim"
+  },
+  "calculator": {
+    "title": "Compensatiecalculator",
+    "subtitle": "Bekijk hoeveel compensatie u kunt krijgen voor een vertraagde of geannuleerde vlucht.",
+    "from": "Van",
+    "to": "Naar",
+    "departure": "Vertrekluchthaven",
+    "arrival": "Aankomstluchthaven",
+    "passengers": "Passagiers",
+    "fewerPassengers": "Minder passagiers",
+    "morePassengers": "Meer passagiers",
+    "distance": "Afstand",
+    "distanceEmpty": "Kies beide luchthavens",
+    "perPerson": "per persoon",
+    "totalForPassengers": "{count} passagiers · {amount} per persoon",
+    "check": "Compensatie controleren"
   }
 }

@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
 import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
 import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
+import CompensationCalculator from "@/components/CompensationCalculator";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import CTABanner from "@/components/CTABanner";
@@ -40,6 +41,24 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 
 function tierTranslationKey(amount: string): string {
   return amount.replace(/[£€]/g, "");
+}
+
+function ClaimCardDescription({ text }: { text: string }) {
+  const sentences = text.split(/(?<=\.)\s+/);
+  const amountIndex = sentences.findIndex((sentence) => /[£€]/.test(sentence));
+  if (amountIndex === -1) {
+    return <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px]">{text}</p>;
+  }
+
+  const lead = sentences.filter((_, index) => index !== amountIndex).join(" ");
+  const amount = sentences[amountIndex] ?? "";
+
+  return (
+    <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px]">
+      {lead ? <span className="block">{lead}</span> : null}
+      <strong className="mt-1 block font-bold text-[#2669f3] text-base xl:text-lg leading-snug">{amount}</strong>
+    </p>
+  );
 }
 
 export default async function HomePage({ params }: HomePageProps) {
@@ -226,45 +245,10 @@ export default async function HomePage({ params }: HomePageProps) {
             {t("claimCards.subtitle")}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[729fr_374fr_374fr] gap-6 lg:gap-7 xl:gap-9">
-            <Link
-              href={`/blog/${HOME_CLAIM_CARD_SLUGS.flightDelay}`}
-              className="relative md:col-span-2 xl:col-span-1 xl:row-span-2 rounded-[21px] overflow-hidden border-2 border-[#d5e0f9] bg-[#f5f8ff] min-h-[300px] lg:min-h-[340px] xl:min-h-[520px] flex flex-col items-start no-underline text-inherit"
-              {...gtmId("home_claim_card_flight_delay")}
-            >
-              <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* eslint-disable-next-line @next/next/no-img-element -- tiny WebP; skip image optimizer on critical path */}
-                <img
-                  src="/assets/icons/flight-delay-bg-450.webp"
-                  alt=""
-                  aria-hidden="true"
-                  width={450}
-                  height={376}
-                  loading="lazy"
-                  decoding="async"
-                  fetchPriority="low"
-                  className="absolute inset-0 h-full w-full object-cover pointer-events-none scale-[1.12]"
-                />
-              </div>
-              <div className="relative z-10 flex flex-col flex-1 items-start w-full p-5 lg:p-6 xl:pt-[92px] xl:pl-[67px] xl:pr-8 xl:pb-[74px]">
-                <ClaimBentoIcon
-                  src="/assets/icons/flight-delay-home.png"
-                  alt={t("claimCards.flightDelay.iconAlt")}
-                  {...CLAIM_BENTO_ICON_FRAMES.flightDelay}
-                />
-                <div className="mt-auto pt-4 xl:pt-0">
-                  <h3 className="font-bold text-[#1f3664] text-xl lg:text-xl xl:text-[30px] xl:leading-[43px] mb-2 xl:mb-3">
-                    {t("claimCards.flightDelay.title")}
-                  </h3>
-                  <p className="text-[#1f3664] text-sm lg:text-sm xl:text-[20px] xl:leading-[32px] xl:max-w-[482px]">
-                    {t("claimCards.flightDelay.description")}
-                  </p>
-                </div>
-              </div>
-            </Link>
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
             {(
               [
+                ["flightDelay", "/assets/icons/flight-delay-home.png", CLAIM_BENTO_ICON_FRAMES.flightDelay],
                 ["flightCancellation", "/assets/icons/flight-cancellation-home.png", CLAIM_BENTO_ICON_FRAMES.flightCancellation],
                 ["deniedBoarding", "/assets/icons/denied-boarding-home.png", CLAIM_BENTO_ICON_FRAMES.deniedBoarding],
                 ["missedConnection", "/assets/icons/missed-connection-home.png", CLAIM_BENTO_ICON_FRAMES.missedConnection],
@@ -281,9 +265,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">
                   {t(`claimCards.${cardKey}.title`)}
                 </h3>
-                <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px] xl:max-w-[300px]">
-                  {t(`claimCards.${cardKey}.description`)}
-                </p>
+                <ClaimCardDescription text={t(`claimCards.${cardKey}.description`)} />
               </Link>
             ))}
           </div>
@@ -305,7 +287,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       <section className="pt-8 lg:pt-8 xl:pt-[89px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
-        <div className="max-w-[720px] mx-auto text-center">
+        <div className="max-w-[1100px] mx-auto text-center">
           <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
             {t("compensation.title")}{" "}
             <span className="text-[#005ffe]">{t("compensation.titleAccent")}</span>
@@ -313,7 +295,10 @@ export default async function HomePage({ params }: HomePageProps) {
           <p className="text-[#1f3664] text-base mb-6 max-w-[640px] mx-auto">
             {t("compensation.tableIntro")}
           </p>
-          <div className="overflow-hidden rounded-2xl border-2 border-[#d5e0f9] text-left">
+          <div className="mb-8 text-left">
+            <CompensationCalculator />
+          </div>
+          <div className="mx-auto max-w-[720px] overflow-hidden rounded-2xl border-2 border-[#d5e0f9] text-left">
             <div
               className={`grid items-center gap-3 bg-[#f4f7ff] px-4 py-3 text-xs font-bold uppercase tracking-wide text-[#7b8094] ${
                 showUkTiers ? "grid-cols-[minmax(0,1.6fr)_auto_auto]" : "grid-cols-[minmax(0,1.6fr)_auto]"

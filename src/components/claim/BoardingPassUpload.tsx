@@ -73,7 +73,7 @@ export default function BoardingPassUpload({
           disabled={isExtracting}
           className="claim-native-file absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
           onChange={(event) => void handleFile(event.target.files?.[0] ?? null)}
-          {...gtmId("claim_step1_upload_boarding_pass")}
+          {...gtmId("claim_step2_upload_boarding_pass")}
         />
         {isExtracting ? (
           <>

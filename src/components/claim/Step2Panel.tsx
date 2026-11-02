@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
+import BoardingPassUpload from "@/components/claim/BoardingPassUpload";
 import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
 import DisruptionDetailsForm from "@/components/claim/DisruptionDetailsForm";
 import FlightDetailsForm from "@/components/claim/FlightDetailsForm";
@@ -16,9 +17,12 @@ import { gtmId } from "@/lib/gtm";
 type Step2PanelProps = {
   flight: ClaimFlightData;
   isAdvancing?: boolean;
+  isExtracting?: boolean;
   validationError: Step2Issue | null;
   extractWarning: string | null;
+  attachedName?: string | null;
   onFlightChange: (flight: ClaimFlightData) => void;
+  onExtract: (file: File) => Promise<void>;
   onDelete: () => void;
   onContinue: () => void;
 };
@@ -26,9 +30,12 @@ type Step2PanelProps = {
 export default function Step2Panel({
   flight,
   isAdvancing = false,
+  isExtracting = false,
   validationError,
   extractWarning,
+  attachedName,
   onFlightChange,
+  onExtract,
   onDelete,
   onContinue,
 }: Step2PanelProps) {
@@ -44,14 +51,14 @@ export default function Step2Panel({
   return (
     <div className="border border-[#d5e0f9] rounded-[21px] p-4 sm:p-5 xl:p-6 flex flex-col h-full bg-white">
       <Step2Airports flight={flight} onFlightChange={onFlightChange} />
+      <BoardingPassUpload
+        isExtracting={isExtracting}
+        extractError={extractWarning}
+        attachedName={attachedName}
+        onExtract={onExtract}
+      />
 
-      {extractWarning && (
-        <p className="text-sm text-[#fa6d19] bg-[#fff7f0] border border-[#ffd9b8] rounded-[12px] px-4 py-3 mb-4" role="status">
-          {extractWarning}
-        </p>
-      )}
-
-      <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-4 mb-4">
+      <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-4 mb-4 mt-4">
         <FlightDetailsForm flight={flight} onChange={onFlightChange} idPrefix="edit" issue={fieldIssue} hideRoute />
       </div>
 

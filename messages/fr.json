@@ -18,7 +18,11 @@
     "home": "Accueil",
     "legal": "Mentions légales",
     "airport": "Aéroport",
-    "downloadPageMarkdown": "Télécharger la page en Markdown"
+    "downloadPageMarkdown": "Télécharger la page en Markdown",
+    "floatingClaim": "Réclamez jusqu'à €600 pour un vol retardé ou annulé",
+    "floatingClaimShort": "Réclamez jusqu'à €600",
+    "lastUpdate": "Dernière mise à jour : {date}",
+    "onThisPage": "Sur cette page"
   },
   "nav": {
     "knowYourRights": "Connaître vos droits",
@@ -218,12 +222,15 @@
         "selectBothAirports": "Sélectionnez les aéroports de départ et d'arrivée dans la liste.",
         "airportsMustDiffer": "Les aéroports de départ et d'arrivée doivent être différents.",
         "extractFailed": "Nous n'avons pas pu lire tous les détails automatiquement. Veuillez renseigner les informations de votre vol ci-dessous.",
+        "extractPartial": "Nous n'avons pas pu lire l'itinéraire ou la date sur cette carte d'embarquement. Complétez ces informations ci-dessous.",
         "somethingWentWrong": "Une erreur s'est produite. Veuillez renseigner les informations de votre vol ci-dessous.",
         "unsupportedType": "Type de fichier non pris en charge. Téléchargez une carte d'embarquement PDF, JPG, PNG, WebP ou HEIC.",
         "tooLarge": "Ce fichier est trop volumineux pour être envoyé. Utilisez une photo ou un PDF de moins de 4 Mo."
       },
       "deniedBoarding": "Refus d'embarquement",
-      "deniedBoardingOther": "(ou d'autres options)"
+      "deniedBoardingOther": "(ou d'autres options)",
+      "overbooking": "Surbooking",
+      "overbookingOther": "(et d'autres situations)"
     },
     "step2": {
       "routeTitle": "Aéroports",
@@ -304,7 +311,7 @@
       "types": {
         "delay": "Retard",
         "cancellation": "Annulation",
-        "deniedBoarding": "Embarquement refusé"
+        "deniedBoarding": "Surbooking"
       },
       "reasons": {
         "technical": "Problème technique",
@@ -349,6 +356,8 @@
       "removePassenger": "Retirer",
       "passengerNumber": "Passager {number}",
       "documentsHint": "Ces fichiers nous aident à traiter votre dossier plus rapidement. Vous pouvez ignorer ceux que vous n'avez pas encore.",
+      "whatHappened": "Dites-nous ce qui s'est passé :",
+      "whatHappenedPlaceholder": "Plus vous nous donnez de détails, plus vite nous pouvons évaluer votre demande. Écrivez-le comme vous le raconteriez à un ami.",
       "docs": {
         "passport": "Copie du passeport",
         "passportHint": "Page d'identité de votre passeport ou pièce d'identité nationale.",
@@ -963,7 +972,8 @@
     "subtitle": "Guides pratiques sur les droits des passagers au titre du CE 261/2004: retards, annulations, refus d'embarquement et plus, pour savoir ce que vous pourriez recevoir avant de voler.",
     "readArticle": "Lire l'article",
     "backToBlog": "Retour au blog",
-    "englishOnlyNotice": "Ce guide est actuellement disponible uniquement en anglais."
+    "englishOnlyNotice": "Ce guide est actuellement disponible uniquement en anglais.",
+    "lastUpdate": "Dernière mise à jour : {date}"
   },
   "disruptionsPage": {
     "title": "Perturbations de vols",
@@ -987,5 +997,21 @@
     "privacyDataConsent": "Confidentialité et consentement",
     "copyright": "Copyright © Compensall 2026. Tous droits réservés.",
     "backToClaim": "Retour au dossier"
+  },
+  "calculator": {
+    "title": "Calculateur d'indemnisation",
+    "subtitle": "Voyez combien vous pourriez recevoir pour un vol retardé ou annulé.",
+    "from": "De",
+    "to": "Vers",
+    "departure": "Aéroport de départ",
+    "arrival": "Aéroport d'arrivée",
+    "passengers": "Passagers",
+    "fewerPassengers": "Moins de passagers",
+    "morePassengers": "Plus de passagers",
+    "distance": "Distance",
+    "distanceEmpty": "Choisissez les deux aéroports",
+    "perPerson": "par personne",
+    "totalForPassengers": "{count} passagers · {amount} chacun",
+    "check": "Vérifier l'indemnisation"
   }
 }

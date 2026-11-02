@@ -1,5 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
+import { ArticleWithToc } from "@/components/ArticleToc";
 import Header from "@/components/Header";
+import { headingDomId } from "@/lib/heading-anchor";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
 import CatalogClaimSection from "@/components/CatalogClaimSection";
@@ -108,19 +110,26 @@ export default async function CatalogDetailPage({ item, kind }: CatalogDetailPag
                 ))}
               </div>
 
-              <div>
-                <h2 className="font-bold text-[#1f3664] text-xl xl:text-2xl mb-3">{t("sectionRights")}</h2>
-                <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
-                  {pickLocalized(entityContent.rights, locale)}
-                </p>
-              </div>
+              <ArticleWithToc
+                items={[
+                  { id: headingDomId(t("sectionRights"), 0), text: t("sectionRights") },
+                  { id: headingDomId(t("sectionTips"), 1), text: t("sectionTips") },
+                ]}
+              >
+                <div id={headingDomId(t("sectionRights"), 0)} className="scroll-mt-28">
+                  <h2 className="font-bold text-[#1f3664] text-xl xl:text-2xl mb-3">{t("sectionRights")}</h2>
+                  <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
+                    {pickLocalized(entityContent.rights, locale)}
+                  </p>
+                </div>
 
-              <div>
-                <h2 className="font-bold text-[#1f3664] text-xl xl:text-2xl mb-3">{t("sectionTips")}</h2>
-                <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
-                  {pickLocalized(entityContent.tips, locale)}
-                </p>
-              </div>
+                <div id={headingDomId(t("sectionTips"), 1)} className="scroll-mt-28 mt-8">
+                  <h2 className="font-bold text-[#1f3664] text-xl xl:text-2xl mb-3">{t("sectionTips")}</h2>
+                  <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed">
+                    {pickLocalized(entityContent.tips, locale)}
+                  </p>
+                </div>
+              </ArticleWithToc>
             </div>
           ) : (
             <div className="space-y-5 text-[#1f3664] text-base xl:text-[17px] leading-relaxed mb-10 xl:mb-14">

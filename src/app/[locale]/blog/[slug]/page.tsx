@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import CTABanner from "@/components/CTABanner";
-import BlogPostContent from "@/components/BlogPostContent";
+import { ArticleWithToc } from "@/components/ArticleToc";
+import BlogPostContent, { blogTocItems } from "@/components/BlogPostContent";
 import { BlogAuthorByline, BlogAuthorCard } from "@/components/BlogAuthor";
 import JsonLd from "@/components/seo/JsonLd";
 import { Link } from "@/i18n/routing";
@@ -63,6 +64,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const tHero = await getTranslations("home.hero");
   const blogPath = `/blog/${post.slug}`;
   const publishedIso = parseBlogDisplayDate(post.date);
+  const updatedIso = parseBlogDisplayDate(post.updatedDate ?? post.date);
+  const toc = blogTocItems(post.body);
 
   const articleSchema = buildArticleSchema({
     title: post.title,
@@ -70,6 +73,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     path: localizedPath(blogPath, appLocale),
     image: post.image,
     datePublished: publishedIso,
+    dateModified: updatedIso,
     author: {
       name: tAuthor("name"),
       jobTitle: tAuthor("role"),
@@ -113,8 +117,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             </div>
 
+            <p className="text-sm text-[#7b8094] mb-6">
+              <time dateTime={updatedIso}>{t("lastUpdate", { date: post.updatedDate ?? post.date })}</time>
+            </p>
+
             <BlogAuthorByline />
-            <BlogPostContent blocks={post.body} />
+            <ArticleWithToc items={toc}>
+              <BlogPostContent blocks={post.body} />
+            </ArticleWithToc>
             <BlogAuthorCard />
           </div>
         </div>

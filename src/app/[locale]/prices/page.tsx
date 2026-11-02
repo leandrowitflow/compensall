@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Link from "next/link";
+import { ArticleWithToc } from "@/components/ArticleToc";
 import LegalPageShell from "@/components/legal/LegalPageShell";
+import { headingDomId } from "@/lib/heading-anchor";
 import type { AppLocale } from "@/i18n/routing";
 import { gtmId } from "@/lib/gtm";
 import { buildLocalizedPageMetadata } from "@/lib/i18n-metadata";
@@ -64,7 +66,16 @@ export default async function PricesPage({ params }: PricesPageProps) {
         </p>
       </div>
 
-      <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("successFeeTitle")}</h2>
+      <ArticleWithToc
+        items={[
+          { id: headingDomId(t("successFeeTitle"), 0), text: t("successFeeTitle") },
+          ...(showUkTiers
+            ? [{ id: headingDomId(t("uk261Title"), 1), text: t("uk261Title"), level: 2 as const }]
+            : []),
+          { id: headingDomId(t("ec261Title"), 2), text: t("ec261Title") },
+        ]}
+      >
+      <h2 id={headingDomId(t("successFeeTitle"), 0)} className="scroll-mt-28 font-bold text-[#1f3664] text-lg mb-2">{t("successFeeTitle")}</h2>
       <p className="text-muted text-sm leading-relaxed mb-4">{t("successFeeDescription")}</p>
 
       <div className="overflow-hidden rounded-xl border border-[#d5e0f9] mb-8">
@@ -94,7 +105,7 @@ export default async function PricesPage({ params }: PricesPageProps) {
 
       {showUkTiers ? (
         <>
-          <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("uk261Title")}</h2>
+          <h2 id={headingDomId(t("uk261Title"), 1)} className="scroll-mt-28 font-bold text-[#1f3664] text-lg mb-2">{t("uk261Title")}</h2>
           <p className="text-muted text-sm leading-relaxed mb-4">{polishPublicCopy(t("uk261Intro"), locale)}</p>
           <ul className="list-disc pl-5 text-sm text-muted space-y-1 mb-8">
             {ukTierItems.map((tier) => (
@@ -106,7 +117,7 @@ export default async function PricesPage({ params }: PricesPageProps) {
         </>
       ) : null}
 
-      <h2 className="font-bold text-[#1f3664] text-lg mb-2">{t("ec261Title")}</h2>
+      <h2 id={headingDomId(t("ec261Title"), 2)} className="scroll-mt-28 font-bold text-[#1f3664] text-lg mb-2">{t("ec261Title")}</h2>
       <p className="text-muted text-sm leading-relaxed mb-4">{tTiers("ec261Note")}</p>
       <ul className="list-disc pl-5 text-sm text-muted space-y-1">
         {ecTierItems.map((tier) => (
@@ -115,6 +126,7 @@ export default async function PricesPage({ params }: PricesPageProps) {
           </li>
         ))}
       </ul>
+      </ArticleWithToc>
     </LegalPageShell>
   );
 }

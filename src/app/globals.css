@@ -72,12 +72,12 @@ body.has-cookie-banner footer {
 }
 
 html.has-floating-claim footer {
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5rem);
+  padding-bottom: calc(var(--floating-claim-offset, 5rem) + env(safe-area-inset-bottom, 0px));
 }
 
 html.needs-cookie-banner.has-floating-claim footer,
 html.has-floating-claim body.has-cookie-banner footer {
-  padding-bottom: calc(var(--cookie-banner-offset, 0px) + env(safe-area-inset-bottom, 0px) + 5rem);
+  padding-bottom: calc(var(--cookie-banner-offset, 0px) + var(--floating-claim-offset, 5rem) + env(safe-area-inset-bottom, 0px));
 }
 
 button:not(:disabled):active,

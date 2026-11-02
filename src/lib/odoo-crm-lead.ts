@@ -9,7 +9,7 @@ import type {
   ClaimPassenger,
   ClaimVerification,
 } from "@/lib/claim-types";
-import { estimateCompensationForFlight } from "@/lib/compensation-estimate";
+import { estimateCompensationForFlight, euroAmountForDistanceBand } from "@/lib/compensation-estimate";
 import { lookupAirlineByCarrierCode } from "@/lib/lookup-airline";
 import { formatRouteLabel, lookupAirportByIata, normalizeIata } from "@/lib/lookup-airport";
 import { toDateInputValue } from "@/lib/resolve-boarding-pass-references";
@@ -74,6 +74,8 @@ export type OdooClaimLeadInput = {
     expensesReceipts?: { fileName: string; mimeType: string; base64: string } | null;
     otherDocuments?: Array<{ fileName: string; mimeType: string; base64: string }> | null;
   } | null;
+  /** Passenger's free-text account. Stored in Helpdesk `x_studio_comentrio`. */
+  whatHappened?: string | null;
   additionalPassengers?: Array<
     ClaimPassenger & {
       signaturePngBase64?: string | null;
@@ -119,6 +121,14 @@ export type OdooClaimSyncResult = {
   lead: OdooCrmLeadSummary | null;
   ticket: OdooHelpdeskTicketSummary | null;
 };
+
+function escapeOdooHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
 
 function stripNameTitle(value: string): string {
   return value.replace(/\b(MR|MRS|MS|MISS|DR|M|MME|MLLE)\b\.?/gi, "").replace(/\s+/g, " ").trim();
@@ -330,10 +340,10 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
     values.x_studio_connecting_flights = input.flight.hadConnectingFlight;
   }
 
-  // Montante = passengers × estimated compensation per person (ops field in Odoo).
+  // Montante is always the euro band (220/350/520 GBP on the English form → 250/400/600 EUR).
   const estimate = estimateCompensationForFlight(input.flight, input.locale);
-  if (estimate?.amount != null) {
-    values.x_studio_montante = passengerCount * estimate.amount;
+  if (estimate) {
+    values.x_studio_montante = passengerCount * euroAmountForDistanceBand(estimate.band);
   }
 
   const connectingLegs = (input.flight.connectingFlights ?? [])
@@ -361,6 +371,13 @@ function buildHelpdeskTicketValues(input: OdooClaimLeadInput): Record<string, un
     values.x_studio_did_airline_provide_a_reason = "yes";
   } else if (input.verification.summary.trim()) {
     values.x_studio_reason_detail = input.verification.summary.trim();
+  }
+
+  const whatHappened = input.whatHappened?.trim().slice(0, 4000) ?? "";
+  if (whatHappened) {
+    values.x_studio_comentrio = whatHappened;
+    const html = escapeOdooHtml(whatHappened).replace(/\r\n|\r|\n/g, "<br>");
+    values.description = `${String(values.description ?? "")}<p><strong>What happened</strong></p><p>${html}</p>`;
   }
 
   const signature = input.signaturePngBase64?.trim();
@@ -631,10 +648,9 @@ async function syncHelpdeskTicket(
   Object.assign(values, utmIds);
   values.user_device = userDeviceFromUserAgent(input.userAgent);
 
-  const estimate = estimateCompensationForFlight(input.flight, input.locale);
-  if (estimate?.amount != null && estimate.currency) {
+  if (estimateCompensationForFlight(input.flight, input.locale)) {
     try {
-      const currencyId = await odooFindCurrencyIdByCode(estimate.currency);
+      const currencyId = await odooFindCurrencyIdByCode("EUR");
       if (currencyId) {
         values.x_studio_currency_id = currencyId;
       }

@@ -51,7 +51,8 @@ data-gtm="nav_about"
 | `thank_you` | Thank-you page · new claim | Start a new claim |
 | `not_found` | 404 | Check compensation |
 | `home_compensation` | Homepage · linha do quadro de compensação | £220 / €250 |
-| `home_floating` | Homepage · botão fixo | Claim now |
+| `home_calculator` | Homepage · calculadora | Check your compensation |
+| `home_floating` | Homepage · barra fixa | Claim up to £520 or €600 |
 
 ---
 
@@ -89,13 +90,13 @@ data-gtm="nav_about"
 
 | Step | Label (EN) | `data-gtm` |
 |---|---|---|
-| 1 | Upload boarding pass | `claim_step1_upload_boarding_pass` |
 | 1 | Delayed flight | `claim_step1_delayed` |
 | 1 | Cancelled flight | `claim_step1_cancelled` |
-| 1 | Denied boarding | `claim_step1_denied_boarding` |
+| 1 | Overbooking | `claim_step1_overbooking` |
 | 2 | Swap airports | `claim_step2_swap_airports` |
 | 2 | Add connecting flight | `claim_step2_add_connection` |
 | 2 | Remove connecting flight | `claim_step2_remove_connection` |
+| 2 | Upload boarding pass | `claim_step2_upload_boarding_pass` |
 | 2 | Delete data | `claim_step2_delete_data` |
 | 2 | Yes, continue | `claim_step2_yes_continue` |
 | 3 contact | Add / Remove passenger | `claim_step3_add_passenger`, `claim_step3_remove_passenger` |

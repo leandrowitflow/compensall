@@ -24,7 +24,7 @@ export default async function LegalPageShell({
     <div className="min-h-screen bg-[#f8faff] flex flex-col">
       <Header />
 
-      <div className="max-w-[900px] mx-auto px-6 py-16">
+      <div className="max-w-[1100px] mx-auto px-6 py-16">
         <nav className="flex items-center gap-2 text-sm text-muted mb-8">
           <Link href="/" className="hover:text-[#2669f3] transition-colors">
             {t("home")}
@@ -33,8 +33,8 @@ export default async function LegalPageShell({
           <span className="text-[#1f3664] font-medium">{breadcrumbLabel}</span>
         </nav>
 
-        <div className="bg-white rounded-2xl border border-[#d5e0f9] overflow-hidden shadow-sm">
-          <div className="bg-gradient-to-r from-[#1f3664] to-[#2669f3] px-8 py-8">
+        <div className="bg-white rounded-2xl border border-[#d5e0f9] shadow-sm">
+          <div className="rounded-t-2xl bg-gradient-to-r from-[#1f3664] to-[#2669f3] px-8 py-8">
             <p className="text-white/70 text-sm mb-1">{t("legal")}</p>
             <h1 className="font-bold text-white text-2xl md:text-3xl">
               {title}

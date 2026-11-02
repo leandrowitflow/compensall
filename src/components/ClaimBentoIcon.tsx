@@ -45,7 +45,7 @@ export default function ClaimBentoIcon({
 
 export const CLAIM_BENTO_ICON_FRAMES = {
   flightDelay: {
-    frameClassName: "w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 xl:w-[161px] xl:h-[161px]",
+    frameClassName: "w-[85px] h-[60px] sm:w-[96px] sm:h-[68px] lg:w-[104px] lg:h-[74px] xl:w-[109px] xl:h-[77px]",
     objectPosition: "38% 34%",
   },
   flightCancellation: {

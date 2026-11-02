@@ -358,11 +358,12 @@ export default function HeroClaimForm() {
       }
 
       advanceWithFile();
+      const read = { partial: false };
       try {
         const extracted = normalizeFlightData(flightData);
         const prefer = (next: string, current: string) => (next.trim() ? next : current);
-        setFlight((current) =>
-          normalizeFlightData({
+        setFlight((current) => {
+          const next = normalizeFlightData({
             ...current,
             passenger: prefer(extracted.passenger, current.passenger),
             flight: prefer(extracted.flight, current.flight),
@@ -379,15 +380,19 @@ export default function HeroClaimForm() {
               ? extracted.connectingFlights
               : current.connectingFlights,
             compensationEstimate: extracted.compensationEstimate ?? current.compensationEstimate,
-          }),
-        );
+          });
+          const missingRoute = !next.routeFrom.trim() || !next.routeTo.trim();
+          const missingDate = !next.date.trim();
+          read.partial = Boolean(next.flight.trim() || next.passenger.trim()) && (missingRoute || missingDate);
+          return next;
+        });
       } catch (normalizeError) {
         console.error("[HeroClaimForm] normalizeFlightData failed:", normalizeError);
         setFlight((current) => (current.status === "Unknown" ? EMPTY_FLIGHT : current));
         setExtractError(tStep1("errors.extractFailed"));
         return;
       }
-      setExtractError(warning);
+      setExtractError(read.partial ? tStep1("errors.extractPartial") : warning);
     } catch (error) {
       const technical = error instanceof Error ? error.message : "";
       if (/unexpected token|not valid json|request entity too large/i.test(technical)) {
@@ -516,6 +521,9 @@ export default function HeroClaimForm() {
     for (const file of payload.claimDocuments.otherDocuments ?? []) {
       formData.append("otherDocuments", file);
     }
+    if (payload.whatHappened?.trim()) {
+      formData.append("whatHappened", payload.whatHappened.trim().slice(0, 4000));
+    }
 
     const uploadFiles = [
       boardingPassFile ? { name: boardingPassFile.name, size: boardingPassFile.size } : null,
@@ -599,10 +607,6 @@ export default function HeroClaimForm() {
       {step === 1 && !isResuming && (
         <Step1Upload
           isAdvancing={isAdvancing}
-          isExtracting={isExtracting}
-          extractError={extractError}
-          attachedName={upload?.fileName ?? boardingPassFile?.name ?? null}
-          onExtract={handleExtract}
           onChooseDisruption={handleDisruptionChoice}
         />
       )}
@@ -615,12 +619,15 @@ export default function HeroClaimForm() {
               <Step2Panel
                 flight={flight}
                 isAdvancing={isAdvancing}
+                isExtracting={isExtracting}
                 validationError={step2Error}
                 extractWarning={extractError}
+                attachedName={upload?.fileName ?? boardingPassFile?.name ?? null}
                 onFlightChange={(next) => {
                   setFlight(next);
                   setStep2Error(null);
                 }}
+                onExtract={handleExtract}
                 onDelete={resetClaim}
                 onContinue={handleContinueToStep3}
               />

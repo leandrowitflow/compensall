@@ -18,7 +18,11 @@
     "home": "Acasă",
     "legal": "Legal",
     "airport": "Aeroport",
-    "downloadPageMarkdown": "Descarcă pagina în Markdown"
+    "downloadPageMarkdown": "Descarcă pagina în Markdown",
+    "floatingClaim": "Cere până la 600 € pentru un zbor întârziat sau anulat",
+    "floatingClaimShort": "Cere până la 600 €",
+    "lastUpdate": "Ultima actualizare: {date}",
+    "onThisPage": "Pe această pagină"
   },
   "nav": {
     "knowYourRights": "Cunoaște-ți drepturile",
@@ -218,12 +222,15 @@
         "selectBothAirports": "Alege aeroporturile de plecare și de sosire din listă.",
         "airportsMustDiffer": "Aeroporturile de plecare și de sosire trebuie să fie diferite.",
         "extractFailed": "Nu am putut citi automat toate datele. Completează datele zborului mai jos.",
+        "extractPartial": "Nu am putut citi ruta sau data de pe acest bilet. Completează-le mai jos.",
         "somethingWentWrong": "Ceva nu a mers. Completează datele zborului mai jos.",
         "unsupportedType": "Tip de fișier neacceptat. Încarcă o carte de îmbarcare în PDF, JPG, PNG, WebP sau HEIC.",
         "tooLarge": "Fișierul este prea mare pentru a fi trimis. Folosiți o fotografie sau un PDF de sub 4 MB."
       },
       "deniedBoarding": "Refuz la îmbarcare",
-      "deniedBoardingOther": "(sau alte situații)"
+      "deniedBoardingOther": "(sau alte situații)",
+      "overbooking": "Overbooking",
+      "overbookingOther": "(și alte situații)"
     },
     "step2": {
       "routeTitle": "Aeroporturi",
@@ -304,7 +311,7 @@
       "types": {
         "delay": "Întârziere",
         "cancellation": "Anulare",
-        "deniedBoarding": "Refuz la îmbarcare"
+        "deniedBoarding": "Overbooking"
       },
       "reasons": {
         "technical": "Problemă tehnică",
@@ -349,6 +356,8 @@
       "removePassenger": "Elimină",
       "passengerNumber": "Pasagerul {number}",
       "documentsHint": "Aceste fișiere ne ajută să gestionăm cererea mai devreme. Le poți omite pe cele pe care încă nu le ai.",
+      "whatHappened": "Spune-ne ce s-a întâmplat:",
+      "whatHappenedPlaceholder": "Cu cât ne dai mai multe detalii, cu atât putem evalua mai repede cererea. Scrie așa cum i-ai povesti unui prieten.",
       "docs": {
         "passport": "Copie pașaport",
         "passportHint": "Pagina cu fotografia din pașaport sau CI.",
@@ -963,7 +972,8 @@
     "subtitle": "Ghiduri practice despre drepturile pasagerului din Regulamentul CE 261/2004: întârzieri, anulări, refuz la îmbarcare și altele, ca să știi ce ți se poate cuveni înainte să zbori.",
     "readArticle": "Citește articolul",
     "backToBlog": "Înapoi la blog",
-    "englishOnlyNotice": "Acest ghid este disponibil deocamdată doar în engleză."
+    "englishOnlyNotice": "Acest ghid este disponibil deocamdată doar în engleză.",
+    "lastUpdate": "Ultima actualizare: {date}"
   },
   "disruptionsPage": {
     "title": "Perturbări de zbor",
@@ -987,5 +997,21 @@
     "privacyDataConsent": "Confidențialitate și consimțământ pentru date",
     "copyright": "Copyright © Compensall 2026. Toate drepturile rezervate.",
     "backToClaim": "Înapoi la cerere"
+  },
+  "calculator": {
+    "title": "Calculator de despăgubire",
+    "subtitle": "Vezi cât ai putea primi pentru un zbor întârziat sau anulat.",
+    "from": "Din",
+    "to": "Spre",
+    "departure": "Aeroport de plecare",
+    "arrival": "Aeroport de sosire",
+    "passengers": "Pasageri",
+    "fewerPassengers": "Mai puțini pasageri",
+    "morePassengers": "Mai mulți pasageri",
+    "distance": "Distanță",
+    "distanceEmpty": "Alege ambele aeroporturi",
+    "perPerson": "de persoană",
+    "totalForPassengers": "{count} pasageri · {amount} fiecare",
+    "check": "Verifică despăgubirea"
   }
 }

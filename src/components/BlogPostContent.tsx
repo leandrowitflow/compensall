@@ -1,5 +1,20 @@
+import type { TocItem } from "@/components/ArticleToc";
 import type { BlogBlock } from "@/lib/blog";
 import { RenderInlineMarkdown } from "@/lib/blog/inline-markdown";
+import { headingDomId, plainHeadingText } from "@/lib/heading-anchor";
+
+export function blogTocItems(blocks: BlogBlock[]): TocItem[] {
+  return blocks.flatMap((block, index) => {
+    if (block.type !== "heading" && block.type !== "subheading") return [];
+    return [
+      {
+        id: headingDomId(block.text, index),
+        text: plainHeadingText(block.text),
+        level: block.type === "heading" ? 2 : 3,
+      },
+    ];
+  });
+}
 
 export default function BlogPostContent({ blocks }: { blocks: BlogBlock[] }) {
   return (
@@ -16,7 +31,8 @@ export default function BlogPostContent({ blocks }: { blocks: BlogBlock[] }) {
             return (
               <h2
                 key={index}
-                className="font-bold text-xl xl:text-2xl text-[#1f3664] pt-2"
+                id={headingDomId(block.text, index)}
+                className="scroll-mt-28 font-bold text-xl xl:text-2xl text-[#1f3664] pt-2"
               >
                 <RenderInlineMarkdown text={block.text} />
               </h2>
@@ -25,7 +41,8 @@ export default function BlogPostContent({ blocks }: { blocks: BlogBlock[] }) {
             return (
               <h3
                 key={index}
-                className="font-bold text-lg xl:text-xl text-[#1f3664] pt-1"
+                id={headingDomId(block.text, index)}
+                className="scroll-mt-28 font-bold text-lg xl:text-xl text-[#1f3664] pt-1"
               >
                 <RenderInlineMarkdown text={block.text} />
               </h3>

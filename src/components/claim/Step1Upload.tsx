@@ -1,26 +1,17 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import BoardingPassUpload from "@/components/claim/BoardingPassUpload";
 import { gtmId } from "@/lib/gtm";
 
 type DisruptionChoice = "Delayed" | "Cancelled" | "Denied boarding";
 
 type Step1UploadProps = {
   isAdvancing?: boolean;
-  isExtracting?: boolean;
-  extractError?: string | null;
-  attachedName?: string | null;
-  onExtract: (file: File) => Promise<void>;
   onChooseDisruption: (status: DisruptionChoice) => void;
 };
 
 export default function Step1Upload({
   isAdvancing = false,
-  isExtracting = false,
-  extractError = null,
-  attachedName = null,
-  onExtract,
   onChooseDisruption,
 }: Step1UploadProps) {
   const tStep1 = useTranslations("claim.step1");
@@ -30,9 +21,9 @@ export default function Step1Upload({
     { status: "Cancelled", label: tStep1("cancelledFlight"), gtm: "claim_step1_cancelled" },
     {
       status: "Denied boarding",
-      label: tStep1("deniedBoarding"),
-      hint: tStep1("deniedBoardingOther"),
-      gtm: "claim_step1_denied_boarding",
+      label: tStep1("overbooking"),
+      hint: tStep1("overbookingOther"),
+      gtm: "claim_step1_overbooking",
     },
   ];
 
@@ -42,30 +33,19 @@ export default function Step1Upload({
         {tStep1("rightsContext")}
       </p>
 
-      <BoardingPassUpload
-        isExtracting={isExtracting}
-        extractError={extractError}
-        attachedName={attachedName}
-        onExtract={onExtract}
-      />
-
-      <p className="mt-6 mb-4 text-center font-bold text-[#1f3664] text-base sm:text-lg max-w-xl mx-auto">
-        {tStep1("orCheckManually")} {tStep1("checkManually")}
-      </p>
-
-      <div className="grid grid-cols-1 gap-3 max-w-xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-4xl mx-auto">
         {choices.map((choice) => (
           <button
             key={choice.status}
             type="button"
-            disabled={isAdvancing || isExtracting}
+            disabled={isAdvancing}
             onClick={() => onChooseDisruption(choice.status)}
-            className="min-h-14 rounded-2xl border-2 border-[#d5e0f9] bg-white px-5 py-4 text-base sm:text-lg font-bold text-[#1f3664] hover:border-[#2669f3] hover:bg-[#f5f8ff] disabled:cursor-not-allowed disabled:opacity-60"
+            className="min-h-14 rounded-2xl border-2 border-[#d5e0f9] bg-white px-4 py-4 text-base sm:text-lg font-bold text-[#1f3664] hover:border-[#2669f3] hover:bg-[#f5f8ff] disabled:cursor-not-allowed disabled:opacity-60"
             {...gtmId(choice.gtm)}
           >
             <span>{choice.label}</span>
             {choice.hint ? (
-              <span className="ml-1.5 text-sm sm:text-base font-semibold text-[#7b8094]">{choice.hint}</span>
+              <span className="mt-0.5 block text-sm font-semibold text-[#7b8094]">{choice.hint}</span>
             ) : null}
           </button>
         ))}

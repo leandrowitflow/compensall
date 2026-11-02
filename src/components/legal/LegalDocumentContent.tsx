@@ -15,6 +15,8 @@ import {
   LEGAL_ENTITY_NAME,
   LEGAL_ENTITY_NIF,
 } from "@/lib/passenger-rights";
+import { ArticleToc } from "@/components/ArticleToc";
+import { headingDomId } from "@/lib/heading-anchor";
 import { polishPublicCopy } from "@/lib/public-copy";
 
 const linkClassName = "text-[#2669f3] underline";
@@ -130,9 +132,10 @@ function renderBlock(block: LegalBlock, key: string, locale: AppLocale): ReactNo
 }
 
 function renderSection(section: LegalSection, index: number, locale: AppLocale): ReactNode {
+  const title = polishPublicCopy(section.title, locale);
   return (
-    <div key={`section-${index}`} className="mb-6">
-      <h2 className="font-bold text-[#1f3664] text-lg mb-2">{polishPublicCopy(section.title, locale)}</h2>
+    <div key={`section-${index}`} id={headingDomId(title, index)} className="mb-6 scroll-mt-28">
+      <h2 className="font-bold text-[#1f3664] text-lg mb-2">{title}</h2>
       <div className="text-muted text-sm leading-relaxed space-y-2">
         {section.blocks.map((block, blockIndex) =>
           renderBlock(block, `section-${index}-block-${blockIndex}`, locale),
@@ -150,15 +153,23 @@ type LegalDocumentContentProps = {
 export default function LegalDocumentContent({ document, locale }: LegalDocumentContentProps) {
   const content = getLegalDocument(document, locale);
 
+  const toc = content.sections.map((section, index) => {
+    const title = polishPublicCopy(section.title, locale);
+    return { id: headingDomId(title, index), text: title, level: 2 as const };
+  });
+
   return (
-    <>
-      {content.intro ? renderBlock(content.intro, "intro", locale) : null}
-      {content.sections.map((section, index) => renderSection(section, index, locale))}
-      {content.footer ? (
-        <p className="text-xs text-[#1f3664]/50 pt-2 border-t border-[#d5e0f9]">
-          {polishPublicCopy(content.footer, locale)}
-        </p>
-      ) : null}
-    </>
+    <div className="lg:grid lg:grid-cols-[200px_minmax(0,1fr)] lg:items-start lg:gap-8">
+      <ArticleToc items={toc} />
+      <div className="min-w-0">
+        {content.intro ? renderBlock(content.intro, "intro", locale) : null}
+        {content.sections.map((section, index) => renderSection(section, index, locale))}
+        {content.footer ? (
+          <p className="text-xs text-[#1f3664]/50 pt-2 border-t border-[#d5e0f9]">
+            {polishPublicCopy(content.footer, locale)}
+          </p>
+        ) : null}
+      </div>
+    </div>
   );
 }

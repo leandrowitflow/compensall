@@ -18,6 +18,12 @@ export type BoardingPassExtractionResult = {
 };
 
 function buildMissingDetailsWarning(flight: ClaimFlightData, recordLocator: string): string | null {
+  const missingRoute = !flight.routeFrom.trim() || !flight.routeTo.trim();
+  const missingDate = !flight.date.trim();
+  if ((flight.flight || flight.passenger) && (missingRoute || missingDate)) {
+    return "We could not read the route or the date from this boarding pass. Please fill those in below.";
+  }
+
   const hasCoreFlightInfo = Boolean(flight.flight || flight.routeFrom || flight.routeTo || flight.date);
   if (hasCoreFlightInfo) return null;
 

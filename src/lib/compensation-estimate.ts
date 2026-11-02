@@ -33,6 +33,22 @@ export function haversineDistanceKm(
   return EARTH_RADIUS_KM * c;
 }
 
+/** Fixed EC 261 euro amount for the same distance band shown in pounds on the English form. */
+export function euroAmountForDistanceBand(band: CompensationDistanceBand): number {
+  switch (band) {
+    case "short":
+      return 250;
+    case "medium":
+      return 400;
+    case "long":
+      return 600;
+    default: {
+      const exhaustive: never = band;
+      return exhaustive;
+    }
+  }
+}
+
 export function distanceBand(distanceKm: number): CompensationDistanceBand {
   if (distanceKm <= 1500) return "short";
   if (distanceKm <= 3500) return "medium";
