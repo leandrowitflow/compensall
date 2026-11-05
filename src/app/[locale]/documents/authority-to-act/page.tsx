@@ -44,7 +44,7 @@ export default async function AuthorityToActPage({ params, searchParams }: Autho
     <div className="min-h-screen bg-[#f8faff] flex flex-col">
       <Header />
 
-      <div className="max-w-[900px] mx-auto px-6 py-16">
+      <div className="w-full max-w-[900px] mx-auto px-6 py-16">
         <nav className="flex items-center gap-2 text-sm text-muted mb-8">
           <Link href="/" className="hover:text-[#2669f3] transition-colors">
             {t("home")}

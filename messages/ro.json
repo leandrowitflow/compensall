@@ -168,6 +168,25 @@
       "tableUk": "Regatul Unit",
       "tableEu": "UE",
       "tableAmount": "Despăgubire"
+    },
+    "entitled": {
+      "title": "Ai dreptul",
+      "titleAccent": "dacă…",
+      "more": "Toate drepturile pasagerilor",
+      "items": {
+        "route": {
+          "title": "Zbor din Regatul Unit sau din UE",
+          "body": "Acoperit de UK261 sau CE 261."
+        },
+        "disruption": {
+          "title": "O întrerupere reală",
+          "body": "Întârziere de 3 ore sau mai mult, anulare sau refuz la îmbarcare."
+        },
+        "airline": {
+          "title": "Răspunderea companiei",
+          "body": "Cauza a fost a companiei aeriene."
+        }
+      }
     }
   },
   "claim": {
@@ -493,7 +512,8 @@
         "question": "Cât timp am la dispoziție ca să cer despăgubirea în Regatul Unit?",
         "answer": "Termenele depind de locul unde se depune cererea. În Anglia și Țara Galilor, în general ai șase ani. În România, termenul de prescripție este de obicei de trei ani. Recomandăm să începi cât mai curând, cât timp evidențele zborului și probele sunt mai ușor de obținut."
       }
-    ]
+    ],
+    "seeAll": "Vezi toate întrebările"
   },
   "cookies": {
     "bannerTitle": "Folosim cookie-uri",

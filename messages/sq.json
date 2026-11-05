@@ -168,6 +168,25 @@
       "tableUk": "Mbretëria e Bashkuar",
       "tableEu": "BE",
       "tableAmount": "Kompensimi"
+    },
+    "entitled": {
+      "title": "Ke të drejtë",
+      "titleAccent": "nëse…",
+      "more": "Të gjitha të drejtat",
+      "items": {
+        "route": {
+          "title": "Fluturim i MB ose i BE-së",
+          "body": "I mbuluar nga UK261 ose KE 261."
+        },
+        "disruption": {
+          "title": "Një ndërprerje e vërtetë",
+          "body": "3 orë vonesë ose më shumë, anulim ose refuzim imbarkimi."
+        },
+        "airline": {
+          "title": "Përgjegjësia e kompanisë",
+          "body": "Shkaku ishte i kompanisë ajrore."
+        }
+      }
     }
   },
   "claim": {
@@ -493,7 +512,8 @@
         "question": "Sa kohë kam për të kërkuar kompensim?",
         "answer": "Afatet varen nga vendi ku ndiqet kërkesa, zakonisht dy deri në gjashtë vjet në BE ose MB. Në Angli dhe Uells zakonisht gjashtë vjet. Nuk ka një ligj shqiptar kompensimi që ta zëvendësojë KE 261 — nis sa më shpejt, sa janë ende të dhënat."
       }
-    ]
+    ],
+    "seeAll": "Shiko të gjitha pyetjet"
   },
   "cookies": {
     "bannerTitle": "Përdorim cookies",

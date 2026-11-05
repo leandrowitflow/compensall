@@ -168,6 +168,25 @@
       "tableUk": "UK",
       "tableEu": "EU",
       "tableAmount": "Compensation"
+    },
+    "entitled": {
+      "title": "You can claim",
+      "titleAccent": "if…",
+      "more": "See all passenger rights",
+      "items": {
+        "route": {
+          "title": "UK or EU flight",
+          "body": "Covered by UK261 or EC 261."
+        },
+        "disruption": {
+          "title": "A real disruption",
+          "body": "3 hours late or more, cancelled, or denied boarding."
+        },
+        "airline": {
+          "title": "The airline's responsibility",
+          "body": "The cause was within the airline's control."
+        }
+      }
     }
   },
   "claim": {
@@ -493,7 +512,8 @@
         "question": "How long do I have to claim flight compensation in the UK?",
         "answer": "Time limits depend on where your claim is pursued. In England and Wales, you generally have six years to bring a claim. We recommend starting as soon as possible while flight records and evidence are easier to obtain."
       }
-    ]
+    ],
+    "seeAll": "See all questions"
   },
   "cookies": {
     "bannerTitle": "We use cookies",

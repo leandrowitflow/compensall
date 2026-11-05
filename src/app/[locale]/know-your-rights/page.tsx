@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
 import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
+import HomePassengerRightsSection from "@/components/HomePassengerRightsSection";
 import HowItWorksSteps from "@/components/HowItWorksSteps";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -127,6 +128,8 @@ export default async function KnowYourRightsPage({ params }: KnowYourRightsPageP
           </div>
         </div>
       </section>
+
+      <HomePassengerRightsSection />
 
       <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto text-center">

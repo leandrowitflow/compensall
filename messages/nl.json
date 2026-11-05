@@ -168,6 +168,25 @@
       "tableUk": "Verenigd Koninkrijk",
       "tableEu": "EU",
       "tableAmount": "Compensatie"
+    },
+    "entitled": {
+      "title": "U heeft recht",
+      "titleAccent": "als…",
+      "more": "Alle passagiersrechten",
+      "items": {
+        "route": {
+          "title": "Vlucht in het Verenigd Koninkrijk of de EU",
+          "body": "Gedekt door UK261 of EG 261."
+        },
+        "disruption": {
+          "title": "Een echte verstoring",
+          "body": "3 uur vertraging of meer, annulering of instapweigering."
+        },
+        "airline": {
+          "title": "Verantwoordelijkheid van de airline",
+          "body": "De oorzaak lag bij de airline."
+        }
+      }
     }
   },
   "claim": {
@@ -493,7 +512,8 @@
         "question": "Hoe lang heb ik de tijd om vluchtcompensatie te eisen?",
         "answer": "De termijn hangt af van het forum. In Nederland is dat doorgaans twee jaar. In Engeland en Wales zijn het meestal zes jaar. Start zo vroeg mogelijk, zolang vluchtgegevens en bewijsstukken nog makkelijk te achterhalen zijn. Bij klachten over de luchtvaart in Nederland kunt u terecht bij de Inspectie Leefomgeving en Transport (ILT)."
       }
-    ]
+    ],
+    "seeAll": "Alle vragen bekijken"
   },
   "cookies": {
     "bannerTitle": "Wij gebruiken cookies",

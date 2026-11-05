@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
 import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
-import ClaimBentoIcon, { CLAIM_BENTO_ICON_FRAMES } from "@/components/ClaimBentoIcon";
 import CompensationCalculator from "@/components/CompensationCalculator";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
-import CTABanner from "@/components/CTABanner";
 import HomeClaimFormSection from "@/components/HomeClaimFormSection";
 import HomeFloatingClaimCta from "@/components/HomeFloatingClaimCta";
-import HomePassengerRightsSection from "@/components/HomePassengerRightsSection";
 import HowItWorksSteps from "@/components/HowItWorksSteps";
 import MarkdownDownloadButton from "@/components/MarkdownDownloadButton";
 import { FAQSection, Footer } from "@/components/home/HomeDeferredSections";
@@ -22,13 +19,9 @@ import { EC261_TIERS, UK261_TIERS } from "@/lib/passenger-rights";
 import { buildFaqPageSchema, buildHowToSchema } from "@/lib/structured-data";
 import { gtmClaimCta, gtmId } from "@/lib/gtm";
 
-const HOME_CLAIM_CARD_SLUGS = {
-  flightDelay: "flight-delay",
-  flightCancellation: "flight-cancellation",
-  deniedBoarding: "denied-boarding",
-  missedConnection: "missed-connection",
-  airlineStrike: "airline-strike",
-} as const;
+const HOME_TITLE = "font-bold text-2xl sm:text-[28px] xl:text-4xl text-[#1f3664] text-center leading-[1.15] text-balance";
+const HOME_INTRO = "mx-auto mt-2 max-w-[38rem] text-balance text-sm leading-relaxed text-[#5c6780] sm:text-base";
+const ENTITLED_KEYS = ["route", "disruption", "airline"] as const;
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -43,36 +36,19 @@ function tierTranslationKey(amount: string): string {
   return amount.replace(/[£€]/g, "");
 }
 
-function ClaimCardDescription({ text }: { text: string }) {
-  const sentences = text.split(/(?<=\.)\s+/);
-  const amountIndex = sentences.findIndex((sentence) => /[£€]/.test(sentence));
-  if (amountIndex === -1) {
-    return <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px]">{text}</p>;
-  }
-
-  const lead = sentences.filter((_, index) => index !== amountIndex).join(" ");
-  const amount = sentences[amountIndex] ?? "";
-
-  return (
-    <p className="text-[#1f3664] text-sm xl:text-[16px] xl:leading-[28px]">
-      {lead ? <span className="block">{lead}</span> : null}
-      <strong className="mt-1 block font-bold text-[#2669f3] text-base xl:text-lg leading-snug">{amount}</strong>
-    </p>
-  );
-}
-
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   const t = await getTranslations("home");
+  const tAbout = await getTranslations("about");
+  const tCommon = await getTranslations("common");
   const tTiers = await getTranslations("passengerRights");
 
   const trustItems = [
-    { icon: "/assets/icons/trust-star.svg", title: t("trustBar.noWinNoFee"), sub: t("trustBar.onlyIfSuccessful") },
-    { icon: "/assets/icons/trust-gdpr.svg", title: t("trustBar.gdprFirst"), sub: t("trustBar.privacyByDesign") },
-    { icon: "/assets/icons/trust-lock.svg", title: t("trustBar.deleteYourData"), sub: t("trustBar.fullControl") },
-    { icon: "/assets/icons/trust-headset.svg", title: t("trustBar.humanSupport"), sub: t("trustBar.realPeopleHelp") },
+    { icon: "/assets/icons/trust-star.svg", title: t("trustBar.noWinNoFee") },
+    { icon: "/assets/icons/trust-gdpr.svg", title: t("trustBar.gdprFirst") },
+    { icon: "/assets/icons/trust-lock.svg", title: t("trustBar.deleteYourData") },
   ];
   const showTrustpilot = isTrustpilotTrustBoxConfigured();
 
@@ -195,113 +171,43 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
-      <section className="pt-8 lg:pt-8 xl:pt-[60px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
-        <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto">
-          <div className="xl:hidden border-2 border-[#d5e0f9] rounded-[21px] p-4 md:p-5">
-            <div className="grid grid-cols-2 gap-4 md:gap-5">
-              {trustItems.map((item) => (
-                <div key={item.title} className="flex items-center gap-2 md:gap-3">
-                  <img src={item.icon} alt="" aria-hidden="true" width={40} height={40} loading="lazy" className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 object-contain" />
-                  <div className="min-w-0">
-                    <p className="font-bold text-[#1f3664] text-sm md:text-base leading-[1.4]">{item.title}</p>
-                    <p className="text-[#1f3664] text-xs md:text-sm leading-[1.5]">{item.sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative rounded-[21px] overflow-hidden hidden xl:block">
-            <img
-              src="/assets/trust-bar-bg.svg"
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              style={{ objectFit: "fill" }}
-            />
-            <div className="relative flex flex-wrap items-stretch xl:items-center">
-              {trustItems.map((item) => (
-                <div key={item.title} className="flex-1 min-w-[220px] xl:min-w-0 flex items-center gap-3 px-4 xl:px-6 py-6 xl:py-[33px]">
-                  <img src={item.icon} alt="" aria-hidden="true" width={40} height={40} loading="lazy" className="w-10 h-10 flex-shrink-0 object-contain" />
-                  <div className="min-w-0">
-                    <p className="font-bold text-[#1f3664] text-base xl:text-[17px] 2xl:text-[19px] leading-[1.4]">{item.title}</p>
-                    <p className="text-[#1f3664] text-sm xl:text-[15px] 2xl:text-base leading-[1.5] 2xl:leading-[1.7]">{item.sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <section className="px-4 pt-6 md:px-8 xl:px-12 xl:pt-8">
+        <ul className="mx-auto flex max-w-[960px] flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-2xl bg-[#f4f7ff] px-5 py-3.5">
+          {trustItems.map((item) => (
+            <li key={item.title} className="flex items-center gap-2.5">
+              <img src={item.icon} alt="" aria-hidden="true" width={22} height={22} loading="lazy" className="h-5 w-5 shrink-0 object-contain" />
+              <span className="text-sm font-semibold text-[#1f3664] leading-snug">{item.title}</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
-      <section className="pt-8 lg:pt-8 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
-        <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
-          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] text-center mb-4 leading-[1.2]">
-            {t("claimCards.title")}{" "}
-            <span className="text-[#0060fe]">{t("claimCards.titleAccent")}</span>
-          </h2>
-          <p className="text-[#1f3664] text-center text-base mb-6 lg:mb-6 xl:mb-12 max-w-[646px] mx-auto">
-            {t("claimCards.subtitle")}
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 xl:gap-6">
-            {(
-              [
-                ["flightDelay", "/assets/icons/flight-delay-home.png", CLAIM_BENTO_ICON_FRAMES.flightDelay],
-                ["flightCancellation", "/assets/icons/flight-cancellation-home.png", CLAIM_BENTO_ICON_FRAMES.flightCancellation],
-                ["deniedBoarding", "/assets/icons/denied-boarding-home.png", CLAIM_BENTO_ICON_FRAMES.deniedBoarding],
-                ["missedConnection", "/assets/icons/missed-connection-home.png", CLAIM_BENTO_ICON_FRAMES.missedConnection],
-                ["airlineStrike", "/assets/icons/airline-strike-home.png", CLAIM_BENTO_ICON_FRAMES.airlineStrike],
-              ] as const
-            ).map(([cardKey, iconSrc, frame]) => (
-              <Link
-                key={cardKey}
-                href={`/blog/${HOME_CLAIM_CARD_SLUGS[cardKey]}`}
-                className="bg-white border-2 border-[#d5e0f9] rounded-[21px] p-5 lg:p-6 xl:p-8 flex flex-col items-start no-underline text-inherit"
-                {...gtmId(`home_claim_card_${HOME_CLAIM_CARD_SLUGS[cardKey].replace(/-/g, "_")}`)}
-              >
-                <ClaimBentoIcon src={iconSrc} alt={t(`claimCards.${cardKey}.iconAlt`)} {...frame} />
-                <h3 className="font-bold text-[#1f3664] text-[17px] xl:text-[19px] xl:leading-[27px] mb-2">
-                  {t(`claimCards.${cardKey}.title`)}
-                </h3>
-                <ClaimCardDescription text={t(`claimCards.${cardKey}.description`)} />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="pt-8 lg:pt-8 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
-        <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto text-center">
-          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
+      <section className="px-4 pt-10 md:px-8 xl:px-12 xl:pt-14">
+        <div className="mx-auto max-w-[960px] text-center">
+          <h2 className={HOME_TITLE}>
             {t("howItWorks.title")}{" "}
             <span className="text-[#005ffe]">{t("howItWorks.titleAccent")}</span>
           </h2>
-          <p className="text-[#1f3664] text-base mb-6 lg:mb-6 xl:mb-14 max-w-[968px] mx-auto">
-            {t("howItWorks.subtitle")}
-          </p>
-
-          <HowItWorksSteps />
+          <div className="mt-6 text-left">
+            <HowItWorksSteps compact />
+          </div>
         </div>
       </section>
 
-      <section className="pt-8 lg:pt-8 xl:pt-[89px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
-        <div className="max-w-[1100px] mx-auto text-center">
-          <h2 className="font-bold text-3xl md:text-4xl lg:text-[32px] xl:text-[57px] text-[#1f3664] mb-4 leading-[1.2]">
+      <section className="px-4 pt-12 md:px-8 xl:px-12 xl:pt-16">
+        <div className="mx-auto max-w-[1100px] text-center">
+          <h2 className={HOME_TITLE}>
             {t("compensation.title")}{" "}
             <span className="text-[#005ffe]">{t("compensation.titleAccent")}</span>
           </h2>
-          <p className="text-[#1f3664] text-base mb-6 max-w-[640px] mx-auto">
-            {t("compensation.tableIntro")}
-          </p>
-          <div className="mb-8 text-left">
+          <p className={`${HOME_INTRO} mb-6`}>{t("compensation.tableIntro")}</p>
+          <div className="text-left">
             <CompensationCalculator />
           </div>
-          <div className="mx-auto max-w-[720px] overflow-hidden rounded-2xl border-2 border-[#d5e0f9] text-left">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-[#d5e0f9] text-left">
             <div
-              className={`grid items-center gap-3 bg-[#f4f7ff] px-4 py-3 text-xs font-bold uppercase tracking-wide text-[#7b8094] ${
-                showUkTiers ? "grid-cols-[minmax(0,1.6fr)_auto_auto]" : "grid-cols-[minmax(0,1.6fr)_auto]"
+              className={`grid items-center gap-4 bg-[#f4f7ff] px-5 py-3 text-xs font-bold uppercase tracking-wide text-[#7b8094] sm:px-6 ${
+                showUkTiers ? "grid-cols-[minmax(0,1fr)_5.5rem_5.5rem]" : "grid-cols-[minmax(0,1fr)_6.5rem]"
               }`}
             >
               <span>{t("compensation.tableDistance")}</span>
@@ -314,8 +220,8 @@ export default async function HomePage({ params }: HomePageProps) {
               <Link
                 key={row.distance}
                 href="/#claim"
-                className={`grid items-center gap-3 border-t border-[#d5e0f9] bg-white px-4 py-4 text-[#1f3664] no-underline hover:bg-[#f8faff] ${
-                  showUkTiers ? "grid-cols-[minmax(0,1.6fr)_auto_auto]" : "grid-cols-[minmax(0,1.6fr)_auto]"
+                className={`grid items-center gap-4 border-t border-[#e6edf8] bg-white px-5 py-3.5 text-[#1f3664] no-underline hover:bg-[#f8faff] sm:px-6 ${
+                  showUkTiers ? "grid-cols-[minmax(0,1fr)_5.5rem_5.5rem]" : "grid-cols-[minmax(0,1fr)_6.5rem]"
                 }`}
                 {...gtmClaimCta("home_compensation")}
               >
@@ -334,13 +240,52 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
-      <HomePassengerRightsSection />
+      <section className="px-4 pt-12 md:px-8 xl:px-12 xl:pt-16">
+        <div className="mx-auto max-w-[960px] text-center">
+          <h2 className={HOME_TITLE}>
+            {t("entitled.title")}{" "}
+            <span className="text-[#005ffe]">{t("entitled.titleAccent")}</span>
+          </h2>
+          <div className="mt-6 overflow-hidden rounded-[24px] border border-[#d5e0f9] bg-white text-left sm:grid sm:grid-cols-3">
+            {ENTITLED_KEYS.map((key, index) => (
+              <div
+                key={key}
+                className={`flex gap-3 px-5 py-5 ${index > 0 ? "border-t border-[#e6edf8] sm:border-l sm:border-t-0" : ""}`}
+              >
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#e8efff] text-sm font-bold text-[#2669f3]">
+                  {index + 1}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-[#1f3664] text-[15px] leading-snug sm:text-base">{t(`entitled.items.${key}.title`)}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-[#5c6780]">{t(`entitled.items.${key}.body`)}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5">
+            <Link href="/know-your-rights#passenger-rights" className="inline-flex items-center gap-1.5 font-bold text-[#2669f3] text-sm sm:text-base">
+              {t("entitled.more")}
+              <span aria-hidden="true">→</span>
+            </Link>
+          </p>
+        </div>
+      </section>
 
-      <div className="mt-8 lg:mt-8 xl:mt-[89px]">
-        <CTABanner />
-      </div>
-      <div className="mt-10 lg:mt-10 xl:mt-[109px]">
-        <FAQSection />
+      <section className="px-4 pt-10 md:px-8 xl:px-12 xl:pt-14">
+        <div className="mx-auto max-w-[720px] rounded-[24px] bg-[#f4f7ff] px-6 py-8 text-center sm:px-10 sm:py-9">
+          <h2 className={HOME_TITLE}>{tAbout("title")}</h2>
+          <p className="mx-auto mt-3 max-w-[36rem] text-sm leading-relaxed text-[#3d4a6b] sm:text-base">{tAbout("subtitle")}</p>
+          <div className="mt-5">
+            <Link href="/about" className="inline-flex items-center gap-1.5 text-sm font-bold text-[#2669f3] sm:text-base">
+              {tCommon("learnMore")}
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <div className="mt-12 xl:mt-16">
+        <FAQSection faqs={localizedFaqs.slice(0, 4)} compact moreHref="/faq" />
       </div>
       <Footer />
       <HomeFloatingClaimCta />

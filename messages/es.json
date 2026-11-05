@@ -168,6 +168,25 @@
       "tableUk": "Reino Unido",
       "tableEu": "UE",
       "tableAmount": "Compensación"
+    },
+    "entitled": {
+      "title": "Tienes derecho",
+      "titleAccent": "si…",
+      "more": "Ver todos los derechos",
+      "items": {
+        "route": {
+          "title": "Vuelo del Reino Unido o de la UE",
+          "body": "Cubierto por UK261 o CE 261."
+        },
+        "disruption": {
+          "title": "Una incidencia real",
+          "body": "3 horas de retraso o más, cancelación o denegación de embarque."
+        },
+        "airline": {
+          "title": "Responsabilidad de la aerolínea",
+          "body": "La causa fue de la aerolínea."
+        }
+      }
     }
   },
   "claim": {
@@ -493,7 +512,8 @@
         "question": "¿Cuánto tiempo tengo para reclamar una compensación de vuelo en el Reino Unido?",
         "answer": "Los plazos dependen de dónde se tramite la reclamación. En Inglaterra y Gales, en general tienes seis años. Recomendamos empezar lo antes posible, mientras los registros del vuelo y las pruebas son más fáciles de obtener."
       }
-    ]
+    ],
+    "seeAll": "Ver todas las preguntas"
   },
   "cookies": {
     "bannerTitle": "Usamos cookies",

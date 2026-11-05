@@ -215,7 +215,8 @@ export default function Step3Panel({
   const [signaturePreview, setSignaturePreview] = useState<string | null>(
     () => resumePrefill?.signaturePreview ?? null,
   );
-  const keepRestoredSignature = useRef(Boolean(resumePrefill?.signaturePreview));
+  const previewByPassenger = useRef<Record<number, string | null>>({});
+  const paintGeneration = useRef(0);
   const [signError, setSignError] = useState<string | null>(null);
   const [isSigning, setIsSigning] = useState(false);
   const documentViewerRef = useRef<HTMLDivElement>(null);
@@ -407,23 +408,26 @@ export default function Step3Panel({
   }, [phase, sessionId, trackingNumber]);
 
   useEffect(() => {
-    const element = documentViewerRef.current;
-    if (!element || phase !== "sign") return;
-    element.scrollTop = 0;
-    if (keepRestoredSignature.current) {
-      keepRestoredSignature.current = false;
-      return;
-    }
-    setSignaturePreview(null);
-  }, [phase, signingPassengerIndex]);
+    if (phase !== "sign") return;
+    if (documentViewerRef.current) documentViewerRef.current.scrollTop = 0;
 
-  useEffect(() => {
-    const preview = resumePrefill?.signaturePreview;
-    if (!preview || phase !== "sign") return;
+    const drafts = previewByPassenger.current;
+    const hasDraft = Object.prototype.hasOwnProperty.call(drafts, signingPassengerIndex);
+    const stored =
+      docSignaturesRef.current[`${POA_DOCUMENT_ID}:${signingPassengerIndex}`]?.signatureDataUrl ?? null;
+    const resumed =
+      signingPassengerIndex === (resumePrefill?.signingPassengerIndex ?? -1)
+        ? resumePrefill?.signaturePreview ?? null
+        : null;
+    const preview = hasDraft ? drafts[signingPassengerIndex] : stored ?? resumed;
+    setSignaturePreview(preview ?? null);
+    if (!preview) return;
+
+    const generation = paintGeneration.current + 1;
+    paintGeneration.current = generation;
     const image = new Image();
-    let cancelled = false;
     image.onload = () => {
-      if (cancelled) return;
+      if (generation !== paintGeneration.current) return;
       const canvas = canvasRef.current;
       const context = canvas?.getContext("2d");
       if (!canvas || !context) return;
@@ -431,10 +435,12 @@ export default function Step3Panel({
       context.drawImage(image, 0, 0, canvas.width, canvas.height);
     };
     image.src = preview;
-    return () => {
-      cancelled = true;
-    };
-  }, [phase, resumePrefill?.signaturePreview]);
+  }, [
+    phase,
+    resumePrefill?.signaturePreview,
+    resumePrefill?.signingPassengerIndex,
+    signingPassengerIndex,
+  ]);
 
   useEffect(() => {
     document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -451,6 +457,7 @@ export default function Step3Panel({
   };
 
   const beginStroke = (clientX: number, clientY: number) => {
+    paintGeneration.current += 1;
     const canvas = canvasRef.current;
     const point = getCanvasPoint(clientX, clientY);
     if (!canvas || !point) return;
@@ -518,19 +525,26 @@ export default function Step3Panel({
     continueStroke(touch.clientX, touch.clientY);
   };
 
-  const clearSignature = () => {
+  const wipeCanvas = (mode: "clear" | "forget") => {
+    if (mode === "clear") previewByPassenger.current[signingPassengerIndex] = null;
+    else delete previewByPassenger.current[signingPassengerIndex];
+    paintGeneration.current += 1;
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const ctx = canvas?.getContext("2d");
+    if (canvas && ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
     setSignaturePreview(null);
+  };
+
+  const clearSignature = () => {
+    wipeCanvas("clear");
   };
 
   const refreshSignaturePreview = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    setSignaturePreview(canvas.toDataURL("image/png"));
+    const url = canvas.toDataURL("image/png");
+    previewByPassenger.current[signingPassengerIndex] = url;
+    setSignaturePreview(url);
   };
 
   const updateAdditionalPassenger = (index: number, patch: Partial<ClaimPassenger>) => {
@@ -622,7 +636,19 @@ export default function Step3Panel({
   const handleSignDocument = async () => {
     setSignError(null);
     const canvas = canvasRef.current;
-    const dataUrl = canvas?.toDataURL("image/png") ?? "";
+    const canvasUrl = canvas?.toDataURL("image/png") ?? "";
+    const draftUrl = previewByPassenger.current[signingPassengerIndex] ?? "";
+    const cleared = Object.prototype.hasOwnProperty.call(previewByPassenger.current, signingPassengerIndex)
+      && previewByPassenger.current[signingPassengerIndex] === null;
+    const storedUrl =
+      docSignaturesRef.current[`${POA_DOCUMENT_ID}:${signingPassengerIndex}`]?.signatureDataUrl ?? "";
+    const dataUrl = hasInk(canvasUrl)
+      ? canvasUrl
+      : hasInk(draftUrl)
+        ? draftUrl
+        : !cleared && hasInk(storedUrl)
+          ? storedUrl
+          : "";
     if (!hasInk(dataUrl)) {
       setSignError(t("errors.signatureRequired"));
       return;
@@ -669,7 +695,7 @@ export default function Step3Panel({
       const updated = { ...docSignaturesRef.current, [key]: signed };
       docSignaturesRef.current = updated;
       setDocSignatures(updated);
-      clearSignature();
+      wipeCanvas("forget");
 
       const nextIndex = signingPassengerIndex + 1;
       if (nextIndex < allPassengers.length) {
@@ -1291,7 +1317,6 @@ export default function Step3Panel({
               type="button"
               onClick={() => {
                 setSignError(null);
-                clearSignature();
                 if (signingPassengerIndex > 0) {
                   setSigningPassengerIndex((index) => index - 1);
                   return;

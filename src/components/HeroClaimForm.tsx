@@ -52,6 +52,25 @@ import {
 
 type ClaimStep = 1 | 2 | 3;
 
+type ClaimHistoryState = {
+  claimStep?: ClaimStep;
+  claimDepth?: number;
+};
+
+function claimHistoryState(): ClaimHistoryState {
+  if (typeof window === "undefined") return {};
+  const state = window.history.state as ClaimHistoryState | null;
+  return state && typeof state === "object" ? state : {};
+}
+
+function rememberClaimStep(next: ClaimStep) {
+  if (typeof window === "undefined" || next === 1) return;
+  const current = claimHistoryState();
+  const claimDepth = next - 1;
+  if (current.claimStep === next && current.claimDepth === claimDepth) return;
+  window.history.pushState({ ...(window.history.state ?? {}), claimStep: next, claimDepth }, "");
+}
+
 function StepSeparators() {
   return (
     <div className="hidden md:flex gap-0.5 mx-1">
@@ -200,6 +219,10 @@ export default function HeroClaimForm() {
   const tSteps = useTranslations("claim.steps");
 
   const [step, setStep] = useState<ClaimStep>(1);
+  const [keepStep3, setKeepStep3] = useState(false);
+  const stepRef = useRef<ClaimStep>(1);
+  const ignoreNextPop = useRef(false);
+  stepRef.current = step;
   const [entryMode, setEntryMode] = useState<ClaimEntryMode | null>(null);
   const [resumeToken, setResumeToken] = useState<string | null>(null);
   const [resumePrefill, setResumePrefill] = useState<ClaimResumePrefill | null>(null);
@@ -220,6 +243,12 @@ export default function HeroClaimForm() {
     if (upload?.previewUrl) {
       URL.revokeObjectURL(upload.previewUrl);
     }
+    const depth = claimHistoryState().claimDepth ?? 0;
+    if (depth > 0) {
+      ignoreNextPop.current = true;
+      window.history.go(-depth);
+    }
+    setKeepStep3(false);
     setStep(1);
     setEntryMode(null);
     setUpload(null);
@@ -278,6 +307,7 @@ export default function HeroClaimForm() {
           contactPhone: data.draft.contactPhone,
           additionalPassengers: data.draft.additionalPassengers ?? [],
         });
+        setKeepStep3(true);
         setStep(3);
         setResumeNotice(tResume("loaded"));
         document.getElementById("claim")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -307,6 +337,7 @@ export default function HeroClaimForm() {
     setFlight(normalizeFlightData(snapshot.flight));
     setEntryMode(snapshot.entryMode);
     setResumePrefill(prefillFromClaimReturn(snapshot));
+    setKeepStep3(true);
     setStep(3);
     void loadStep3Panel();
     document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -413,19 +444,19 @@ export default function HeroClaimForm() {
     advancingRef.current = true;
     setIsAdvancing(true);
     startTransition(() => {
-      setEntryMode("manual");
-      setBoardingPassFile(null);
-      setUpload(null);
-      setFlight(
-        normalizeFlightData({
+      setEntryMode((mode) => mode ?? "manual");
+      setFlight((current) => {
+        const same = current.status === status;
+        return normalizeFlightData({
+          ...current,
           status,
-          delay: status === "Delayed" ? "" : "more_than_3",
-          hadConnectingFlight: false,
-          connectingFlights: [],
-        }),
-      );
-      setExtractError(null);
+          delay: same ? current.delay : status === "Delayed" ? "" : "more_than_3",
+          delayDuration: same || status === "Delayed" ? current.delayDuration : "",
+          cancellationNotice: same || status === "Cancelled" ? current.cancellationNotice : "",
+        });
+      });
       setStep(2);
+      rememberClaimStep(2);
       setIsAdvancing(false);
       advancingRef.current = false;
       document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -457,7 +488,9 @@ export default function HeroClaimForm() {
     void loadStep3Panel();
     startTransition(() => {
       setStep2Error(null);
+      setKeepStep3(true);
       setStep(3);
+      rememberClaimStep(3);
       setIsAdvancing(false);
       advancingRef.current = false;
       document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -468,9 +501,37 @@ export default function HeroClaimForm() {
     setStepHint(null);
   }, [step]);
 
+  useEffect(() => {
+    const onPop = (event: PopStateEvent) => {
+      if (ignoreNextPop.current) {
+        ignoreNextPop.current = false;
+        return;
+      }
+      const next = (event.state as ClaimHistoryState | null)?.claimStep;
+      if (next === 2 || next === 3) {
+        if (next === 3) setKeepStep3(true);
+        setStep(next);
+        document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
+        return;
+      }
+      if (stepRef.current > 1) {
+        setStep(1);
+        document.getElementById("claim")?.scrollIntoView({ behavior: "auto", block: "start" });
+      }
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
   const handleStepSelect = (target: ClaimStep) => {
     if (isResuming || isAdvancing || target === step) return;
     if (target < step) {
+      const history = claimHistoryState();
+      if (history.claimStep === step && history.claimDepth) {
+        const targetDepth = target === 1 ? 0 : target - 1;
+        window.history.go(targetDepth - history.claimDepth);
+        return;
+      }
       setStep(target);
       return;
     }
@@ -611,11 +672,11 @@ export default function HeroClaimForm() {
         />
       )}
 
-      {step > 1 && entryMode && (
-        <div className="px-4 pb-4 xl:px-6 xl:pb-6">
+      {entryMode && (
+        <div hidden={step === 1} className={step === 1 ? "hidden" : "px-4 pb-4 xl:px-6 xl:pb-6"}>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-8">
             <ClaimReassurance />
-            {step === 2 ? (
+            <div hidden={step !== 2} className={step === 2 ? undefined : "hidden"}>
               <Step2Panel
                 flight={flight}
                 isAdvancing={isAdvancing}
@@ -631,20 +692,23 @@ export default function HeroClaimForm() {
                 onDelete={resetClaim}
                 onContinue={handleContinueToStep3}
               />
-            ) : (
-              <Step3Panel
-                flight={flight}
-                entryMode={entryMode}
-                locale={locale}
-                resumePrefill={resumePrefill}
-                attachedUpload={
-                  boardingPassFile
-                    ? { name: boardingPassFile.name, size: boardingPassFile.size }
-                    : null
-                }
-                onDelete={resetClaim}
-                onSubmit={handleClaimSubmit}
-              />
+            </div>
+            {keepStep3 && (
+              <div hidden={step !== 3} className={step === 3 ? undefined : "hidden"}>
+                <Step3Panel
+                  flight={flight}
+                  entryMode={entryMode}
+                  locale={locale}
+                  resumePrefill={resumePrefill}
+                  attachedUpload={
+                    boardingPassFile
+                      ? { name: boardingPassFile.name, size: boardingPassFile.size }
+                      : null
+                  }
+                  onDelete={resetClaim}
+                  onSubmit={handleClaimSubmit}
+                />
+              </div>
             )}
           </div>
         </div>

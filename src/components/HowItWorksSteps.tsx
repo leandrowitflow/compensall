@@ -32,13 +32,41 @@ function StepCard({ num, icon, title, desc }: { num: number; icon: string; title
   );
 }
 
-export default async function HowItWorksSteps() {
+function CompactStep({ num, icon, title, desc }: { num: number; icon: string; title: string; desc: string }) {
+  return (
+    <div className="flex h-full items-start gap-3 rounded-2xl border border-[#d5e0f9] bg-[#f8faff] px-4 py-4 text-left sm:flex-col sm:px-5 sm:py-5">
+      <div className="flex shrink-0 items-center gap-3">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#2669f3] text-sm font-bold text-white">
+          {num}
+        </span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={icon} alt="" aria-hidden="true" width={32} height={32} className="hidden h-8 w-8 object-contain sm:block" />
+      </div>
+      <div className="min-w-0">
+        <h3 className="font-bold text-[#1f3664] text-[15px] sm:text-base leading-snug">{title}</h3>
+        <p className="mt-1 text-sm leading-relaxed text-[#5c6780]">{desc}</p>
+      </div>
+    </div>
+  );
+}
+
+export default async function HowItWorksSteps({ compact = false }: { compact?: boolean }) {
   const t = await getTranslations("home.howItWorks.steps");
   const steps = [
     { num: 1, icon: STEP_ICONS[0], title: t("upload.title"), desc: t("upload.description") },
     { num: 2, icon: STEP_ICONS[1], title: t("assistant.title"), desc: t("assistant.description") },
     { num: 3, icon: STEP_ICONS[2], title: t("airline.title"), desc: t("airline.description") },
   ];
+
+  if (compact) {
+    return (
+      <div className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-3 sm:gap-4 w-full">
+        {steps.map((step) => (
+          <CompactStep key={step.num} num={step.num} icon={step.icon} title={step.title} desc={step.desc} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5 xl:gap-8 w-full">

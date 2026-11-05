@@ -168,6 +168,25 @@
       "tableUk": "Vereinigtes Königreich",
       "tableEu": "EU",
       "tableAmount": "Entschädigung"
+    },
+    "entitled": {
+      "title": "Sie haben Anspruch,",
+      "titleAccent": "wenn…",
+      "more": "Alle Passagierrechte",
+      "items": {
+        "route": {
+          "title": "Flug im Vereinigten Königreich oder in der EU",
+          "body": "Abgedeckt durch UK261 oder EG 261."
+        },
+        "disruption": {
+          "title": "Eine echte Störung",
+          "body": "3 Stunden Verspätung oder mehr, Annullierung oder Nichtbeförderung."
+        },
+        "airline": {
+          "title": "Verantwortung der Airline",
+          "body": "Die Ursache lag bei der Airline."
+        }
+      }
     }
   },
   "claim": {
@@ -493,7 +512,8 @@
         "question": "Wie lange habe ich Zeit, Flugentschädigung im Vereinigten Königreich zu fordern?",
         "answer": "Die Frist hängt vom Forum ab. In England und Wales sind es in der Regel sechs Jahre. In Deutschland verjähren solche Ansprüche meist in drei Jahren. Starten Sie möglichst früh, solange Flugdaten und Belege noch leicht zu beschaffen sind."
       }
-    ]
+    ],
+    "seeAll": "Alle Fragen ansehen"
   },
   "cookies": {
     "bannerTitle": "Wir verwenden Cookies",

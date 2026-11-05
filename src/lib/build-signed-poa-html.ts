@@ -36,11 +36,24 @@ function toSignatureDataUrl(signatureBase64OrDataUrl: string): string {
   return `data:image/png;base64,${signatureBase64OrDataUrl}`;
 }
 
+function fieldCell(label: string, value: string): string {
+  return `
+    <td style="width:33.33%;padding:0 18px 0 0;vertical-align:bottom;font-size:14px;color:#1f3664;">
+      <div style="display:flex;align-items:flex-end;gap:10px;">
+        <span style="font-weight:700;white-space:nowrap;">${escapeHtml(label)}</span>
+        <span style="flex:1;border-bottom:1px solid rgba(31,54,100,0.45);min-height:28px;padding-bottom:4px;font-weight:500;">
+          ${escapeHtml(value || " ")}
+        </span>
+      </div>
+    </td>
+  `;
+}
+
 function fieldRow(label: string, value: string): string {
   return `
-    <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:0 0 14px 0;font-size:14px;color:#1f3664;">
+    <div style="display:flex;align-items:flex-end;gap:12px;margin:0 0 22px 0;font-size:14px;color:#1f3664;">
       <span style="font-weight:700;white-space:nowrap;">${escapeHtml(label)}</span>
-      <span style="flex:1;min-width:140px;border-bottom:1px solid rgba(31,54,100,0.35);padding-bottom:2px;font-weight:500;">
+      <span style="flex:1;border-bottom:1px solid rgba(31,54,100,0.45);min-height:28px;padding-bottom:4px;font-weight:500;">
         ${escapeHtml(value || " ")}
       </span>
     </div>
@@ -84,28 +97,23 @@ export function buildSignedPowerOfAttorneyHtml(input: SignedPoaInput): string {
 
     <h1 style="text-align:center;font-size:28px;line-height:1.2;margin:0 0 24px 0;color:#000000;">${escapeHtml(copy.title)}</h1>
 
-    <p style="font-size:15px;line-height:1.6;text-align:justify;margin:0 0 28px 0;">
+    <p style="font-size:15px;line-height:1.7;text-align:justify;margin:0 0 36px 0;">
       ${escapeHtml(copy.body)}
     </p>
 
     ${fieldRow(copy.name, input.signedName)}
 
-    <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:0 0 14px 0;font-size:14px;color:#1f3664;">
-      <span style="font-weight:700;">${escapeHtml(copy.flights)}</span>
-      <span style="font-weight:500;">${escapeHtml(input.flight.flight)}</span>
-      <span style="font-weight:700;">${escapeHtml(copy.from)}</span>
-      <span style="flex:1;min-width:80px;border-bottom:1px solid rgba(31,54,100,0.35);padding-bottom:2px;font-weight:500;">
-        ${escapeHtml(input.flight.routeFrom)}
-      </span>
-      <span style="font-weight:700;">${escapeHtml(copy.to)}</span>
-      <span style="flex:1;min-width:80px;border-bottom:1px solid rgba(31,54,100,0.35);padding-bottom:2px;font-weight:500;">
-        ${escapeHtml(input.flight.routeTo)}
-      </span>
-    </div>
+    <table style="width:100%;border-collapse:collapse;margin:0 0 22px 0;">
+      <tr>
+        ${fieldCell(copy.flights, input.flight.flight)}
+        ${fieldCell(copy.from, input.flight.routeFrom)}
+        ${fieldCell(copy.to, input.flight.routeTo)}
+      </tr>
+    </table>
 
     ${fieldRow(copy.flightsDate, flightDate)}
 
-    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;margin:28px 0;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:32px;margin:36px 0;">
       <div style="flex:1;min-width:220px;">
         <div style="font-size:14px;font-weight:700;margin-bottom:8px;">${escapeHtml(copy.thePassenger)}</div>
         <div style="min-height:72px;border-bottom:1px solid rgba(31,54,100,0.35);display:flex;align-items:flex-end;padding-bottom:4px;">

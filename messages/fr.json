@@ -168,6 +168,25 @@
       "tableUk": "Royaume-Uni",
       "tableEu": "UE",
       "tableAmount": "Indemnisation"
+    },
+    "entitled": {
+      "title": "Vous avez droit",
+      "titleAccent": "si…",
+      "more": "Voir tous les droits",
+      "items": {
+        "route": {
+          "title": "Vol du Royaume-Uni ou de l'UE",
+          "body": "Couvert par UK261 ou CE 261."
+        },
+        "disruption": {
+          "title": "Une vraie perturbation",
+          "body": "3 heures de retard ou plus, annulation ou refus d'embarquement."
+        },
+        "airline": {
+          "title": "Responsabilité de la compagnie",
+          "body": "La cause relevait de la compagnie aérienne."
+        }
+      }
     }
   },
   "claim": {
@@ -493,7 +512,8 @@
         "question": "Combien de temps ai-je pour réclamer une indemnisation de vol au Royaume-Uni?",
         "answer": "Les délais dépendent du lieu où la réclamation est engagée. En Angleterre et au Pays de Galles, vous disposez généralement de six ans pour introduire une réclamation. Nous vous recommandons de commencer le plus tôt possible, tant que les relevés de vol et les preuves sont plus faciles à obtenir."
       }
-    ]
+    ],
+    "seeAll": "Voir toutes les questions"
   },
   "cookies": {
     "bannerTitle": "Nous utilisons des cookies",

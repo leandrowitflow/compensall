@@ -168,6 +168,25 @@
       "tableUk": "Egyesült Királyság",
       "tableEu": "EU",
       "tableAmount": "Kártérítés"
+    },
+    "entitled": {
+      "title": "Jogod van,",
+      "titleAccent": "ha…",
+      "more": "Minden utasjog",
+      "items": {
+        "route": {
+          "title": "Brit vagy uniós járat",
+          "body": "A UK261 vagy a 261/2004/EK védi."
+        },
+        "disruption": {
+          "title": "Valódi fennakadás",
+          "body": "Legalább 3 óra késés, törlés vagy megtagadott beszállás."
+        },
+        "airline": {
+          "title": "A légitársaság felelőssége",
+          "body": "Az ok a légitársaságon múlott."
+        }
+      }
     }
   },
   "claim": {
@@ -493,7 +512,8 @@
         "question": "Mennyi időm van járatkártérítést igényelni az Egyesült Királyságban?",
         "answer": "A határidő attól függ, hol érvényesíted az igényt. Angliában és Walesben általában hat év áll rendelkezésre. Magyarországon a Polgári Törvénykönyv szerint általában öt év. Érdemes minél hamarabb elkezdeni, amíg a járatadatok és a bizonyítékok könnyebben megszerezhetők."
       }
-    ]
+    ],
+    "seeAll": "Az összes kérdés"
   },
   "cookies": {
     "bannerTitle": "Sütiket használunk",

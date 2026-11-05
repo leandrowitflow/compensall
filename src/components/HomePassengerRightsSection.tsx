@@ -36,7 +36,7 @@ export default async function HomePassengerRightsSection() {
   ];
 
   return (
-    <section className="pt-8 lg:pt-8 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
+    <section id="passenger-rights" className="scroll-mt-24 pt-8 lg:pt-8 xl:pt-[80px] pb-0 px-4 md:px-8 lg:px-8 xl:px-12 bg-white">
       <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1340px] mx-auto">
         <div className="rounded-[21px] xl:rounded-[28px] border-2 border-[#d5e0f9] bg-[#f8faff] px-5 py-8 sm:px-8 sm:py-10 xl:px-12 xl:py-14">
           <SectionHeading accent={t("rightsAccent")}>{t("rightsHeading")}</SectionHeading>

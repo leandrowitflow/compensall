@@ -34,9 +34,9 @@ type PowerOfAttorneyDocumentProps = {
 
 function FieldLine({ label, value }: { label: string; value?: string }) {
   return (
-    <div className="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-2 text-sm text-[#1f3664]">
+    <div className="flex items-baseline gap-x-3 text-sm text-[#1f3664]">
       <span className="font-semibold whitespace-nowrap">{label}</span>
-      <span className="min-h-[1.35rem] border-b border-[#1f3664]/40 pb-0.5 font-medium break-words">
+      <span className="min-w-0 flex-1 border-b border-[#1f3664]/45 pb-0.5 font-medium leading-6 break-words">
         {value?.trim() || "\u00a0"}
       </span>
     </div>
@@ -100,7 +100,7 @@ export default function PowerOfAttorneyDocument({
   const copy = getPoaCopy(locale);
 
   return (
-    <article className="bg-white text-[#1f3664]">
+    <article className="@container bg-white text-[#1f3664]">
       <header className="border-b border-[#c5c5c5] pb-4 mb-6">
         <div className="flex items-center gap-3">
           <img src="/assets/logo.png?v=4" alt="Compensall" width={177} height={36} className="h-9 w-auto" />
@@ -109,28 +109,28 @@ export default function PowerOfAttorneyDocument({
 
       <h1 className="text-center font-bold text-2xl md:text-[28px] text-black mb-6">{copy.title}</h1>
 
-      <p className="text-sm md:text-[15px] leading-relaxed text-justify mb-8">{copy.body}</p>
+      <p className="text-sm md:text-[15px] leading-7 text-left @min-[640px]:text-justify mb-10">{copy.body}</p>
 
-      <div className="space-y-4 mb-8">
+      <div className="space-y-6 mb-10">
         <FieldLine label={copy.name} value={name} />
-        <FieldLine label={copy.flights} value={flight} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 items-baseline gap-6 @min-[640px]:grid-cols-3 @min-[640px]:gap-x-8">
+          <FieldLine label={copy.flights} value={flight} />
           <FieldLine label={copy.from} value={routeFrom} />
           <FieldLine label={copy.to} value={routeTo} />
         </div>
 
         {flightDateInput ? (
-          <div>
-            <span className="font-semibold text-sm">{copy.flightsDate}</span>
-            <div className="mt-1">{flightDateInput}</div>
+          <div className="flex items-baseline gap-x-3">
+            <span className="font-semibold text-sm leading-6">{copy.flightsDate}</span>
+            <div className="min-w-0">{flightDateInput}</div>
           </div>
         ) : (
           <FieldLine label={copy.flightsDate} value={flightDate} />
         )}
       </div>
 
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
-        <div className="space-y-6 flex-1 min-w-0">
+      <div className="flex flex-col @min-[560px]:flex-row @min-[560px]:items-start @min-[560px]:justify-between gap-8 mb-10">
+        <div className="space-y-8 flex-1 min-w-0">
           <div className="text-sm text-[#1f3664]">
             <span className="font-semibold">{copy.thePassenger}</span>
             <div className="mt-2 min-h-[72px] border-b border-[#1f3664]/40 flex items-end pb-1">
