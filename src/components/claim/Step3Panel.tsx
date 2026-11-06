@@ -35,7 +35,7 @@ import { isBlankOrValidClaimPhone, isValidClaimPhone, toE164Phone } from "@/lib/
 
 const DRAFT_HEARTBEAT_MS = 60_000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const MIN_SIGNATURE_BYTES = 800;
+const MIN_INK_PIXELS = 40;
 const MAX_PASSENGERS = 10;
 const POA_DOCUMENT_ID = CLAIM_DOCUMENTS[0]!.id;
 
@@ -112,11 +112,39 @@ function createSessionId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
-function hasInk(dataUrl: string): boolean {
-  const commaIndex = dataUrl.indexOf(",");
-  if (commaIndex === -1) return false;
-  const base64 = dataUrl.slice(commaIndex + 1);
-  return Math.floor((base64.length * 3) / 4) > MIN_SIGNATURE_BYTES;
+function countInkPixels(image: ImageData): number {
+  const { data } = image;
+  let ink = 0;
+  for (let index = 0; index < data.length; index += 4) {
+    const red = data[index] ?? 255;
+    const alpha = data[index + 3] ?? 0;
+    if (alpha > 16 && red < 80) ink += 1;
+  }
+  return ink;
+}
+
+function canvasHasInk(canvas: HTMLCanvasElement): boolean {
+  const context = canvas.getContext("2d");
+  if (!context || canvas.width < 1 || canvas.height < 1) return false;
+  return countInkPixels(context.getImageData(0, 0, canvas.width, canvas.height)) >= MIN_INK_PIXELS;
+}
+
+async function dataUrlHasInk(dataUrl: string): Promise<boolean> {
+  if (!dataUrl.startsWith("data:image/png")) return false;
+  const image = new Image();
+  const loaded = await new Promise<boolean>((resolve) => {
+    image.onload = () => resolve(true);
+    image.onerror = () => resolve(false);
+    image.src = dataUrl;
+  });
+  if (!loaded || image.naturalWidth < 1 || image.naturalHeight < 1) return false;
+  const canvas = document.createElement("canvas");
+  canvas.width = image.naturalWidth;
+  canvas.height = image.naturalHeight;
+  const context = canvas.getContext("2d");
+  if (!context) return false;
+  context.drawImage(image, 0, 0);
+  return countInkPixels(context.getImageData(0, 0, canvas.width, canvas.height)) >= MIN_INK_PIXELS;
 }
 
 function FileUploadField({
@@ -636,20 +664,20 @@ export default function Step3Panel({
   const handleSignDocument = async () => {
     setSignError(null);
     const canvas = canvasRef.current;
-    const canvasUrl = canvas?.toDataURL("image/png") ?? "";
     const draftUrl = previewByPassenger.current[signingPassengerIndex] ?? "";
     const cleared = Object.prototype.hasOwnProperty.call(previewByPassenger.current, signingPassengerIndex)
       && previewByPassenger.current[signingPassengerIndex] === null;
     const storedUrl =
       docSignaturesRef.current[`${POA_DOCUMENT_ID}:${signingPassengerIndex}`]?.signatureDataUrl ?? "";
-    const dataUrl = hasInk(canvasUrl)
-      ? canvasUrl
-      : hasInk(draftUrl)
+    const drawnUrl = canvas && canvasHasInk(canvas) ? canvas.toDataURL("image/png") : "";
+    const dataUrl = drawnUrl
+      ? drawnUrl
+      : (await dataUrlHasInk(draftUrl))
         ? draftUrl
-        : !cleared && hasInk(storedUrl)
+        : !cleared && (await dataUrlHasInk(storedUrl))
           ? storedUrl
           : "";
-    if (!hasInk(dataUrl)) {
+    if (!(await dataUrlHasInk(dataUrl))) {
       setSignError(t("errors.signatureRequired"));
       return;
     }
