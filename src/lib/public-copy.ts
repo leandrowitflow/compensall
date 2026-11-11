@@ -1,6 +1,11 @@
+export function isBrazilianLocale(locale?: string | null): boolean {
+  return locale?.trim().toLowerCase() === "pt-br";
+}
+
+/** European Portuguese. Brazilian Portuguese is a separate locale with its own law. */
 export function isPortugueseLocale(locale?: string | null): boolean {
   const normalized = locale?.trim().toLowerCase() ?? "";
-  return normalized === "pt" || normalized.startsWith("pt-");
+  return normalized === "pt" || normalized === "pt-pt";
 }
 
 export function isFrenchLocale(locale?: string | null): boolean {

@@ -23,7 +23,10 @@ export default async function FaqPage({ params }: FaqPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("faq");
-  const localizedFaqs = [...parseFaqItems(t.raw("default")), ...parseFaqItems(t.raw("uk"))];
+  const localizedFaqs = [
+    ...parseFaqItems(t.raw("default")),
+    ...(locale === "pt-BR" ? [] : parseFaqItems(t.raw("uk"))),
+  ];
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -40,7 +43,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
           <p className="text-[#1f3664] text-base max-w-[640px] mx-auto leading-relaxed">{t("pageIntro")}</p>
         </div>
 
-        <FAQSection includeUkFaqs showHeading={false} />
+        <FAQSection includeUkFaqs={locale !== "pt-BR"} showHeading={false} />
       </div>
 
       <Footer />

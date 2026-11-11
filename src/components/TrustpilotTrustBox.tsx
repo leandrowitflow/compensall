@@ -23,6 +23,8 @@ function localeToTrustpilot(locale: string): string {
   switch (locale) {
     case "pt":
       return "pt-PT";
+    case "pt-BR":
+      return "pt-BR";
     case "fr":
       return "fr-FR";
     case "es":

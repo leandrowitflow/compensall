@@ -148,6 +148,7 @@ export const LOCALE_POPULAR_AIRLINES: Record<string, readonly string[]> = {
     "vueling",
     "wizz-air",
   ],
+  "pt-BR": ["tap", "lufthansa", "air-france", "iberia", "klm", "british-airways"],
 };
 
 export const LOCALE_POPULAR_AIRPORTS: Record<string, readonly string[]> = {
@@ -252,6 +253,7 @@ export const LOCALE_POPULAR_AIRPORTS: Record<string, readonly string[]> = {
     "munich",
     "porto",
   ],
+  "pt-BR": ["gru", "cgh", "gig", "bsb", "cnf", "ssa", "rec", "for", "poa", "cwb"],
 };
 
 export function appLanguage(language: string): string {
@@ -259,7 +261,8 @@ export function appLanguage(language: string): string {
 }
 
 export function localePopularIds(language: string, kind: "airlines" | "airports"): readonly string[] {
-  const lang = appLanguage(language);
   const map = kind === "airlines" ? LOCALE_POPULAR_AIRLINES : LOCALE_POPULAR_AIRPORTS;
+  if (map[language]) return map[language];
+  const lang = appLanguage(language);
   return map[lang] ?? (kind === "airlines" ? POPULAR_AIRLINE_IDS : POPULAR_AIRPORT_IDS);
 }

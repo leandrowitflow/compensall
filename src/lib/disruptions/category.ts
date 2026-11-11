@@ -3,6 +3,7 @@ import type { AppLocale } from "@/i18n/routing";
 const DISRUPTION_CATEGORY_BY_LOCALE: Record<AppLocale, string> = {
   en: "Flight disruptions",
   pt: "Perturbações de voos",
+  "pt-BR": "Problemas com voos",
   fr: "Perturbations de vols",
   es: "Alteraciones de vuelos",
   ro: "Perturbări de zbor",

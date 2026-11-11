@@ -463,6 +463,38 @@
     "pageIntro": "Tot ce trebuie să știi ca să ceri despăgubirea cu UK261 și Regulamentul CE 261/2004, serviciul nostru No win, no fee și cum îți protejăm datele.",
     "default": [
       {
+        "question": "Cine este Compensall?",
+        "answer": "Compensall este o companie cu sediul în Portugalia, care ajută pasagerii să ceară compensația pe care companiile aeriene le-o datorează conform legislației UE. Suntem independenți de companii și lucrăm doar pentru pasageri."
+      },
+      {
+        "question": "Este sigur să îmi partajez datele și documentele?",
+        "answer": "Da. Folosim datele și documentele tale doar ca să gestionăm cererea, și le tratăm conform regulilor europene de protecție a datelor (RGPD)."
+      },
+      {
+        "question": "Cât costă?",
+        "answer": "Nimic în avans. Lucrăm pe baza No win, no fee: dacă câștigăm, comisionul nostru este 30% + TVA. Dacă nu câștigăm, nu plătești nimic."
+      },
+      {
+        "question": "Pot să cer despăgubirea singur?",
+        "answer": "Da, poți contacta compania direct. Mulți pasageri vin la noi pentru că firma durează prea mult, nu răspunde sau respinge cererea. Ne ocupăm de tot procesul pentru tine, de la primul contact până la pașii următori, dacă sunt necesari."
+      },
+      {
+        "question": "Zborul meu se califică?",
+        "answer": "Poți avea dreptul la compensație dacă zborul a ajuns cu mai mult de 3 ore întârziere, a fost anulat cu scurt timp înainte sau ți s-a refuzat îmbarcarea. Unele situații în afara controlului companiei, cum ar fi vremea severă, nu dau drept la compensație. Verificarea noastră gratuită îți spune în câteva minute."
+      },
+      {
+        "question": "Cât pot primi?",
+        "answer": "Între 250 € și 600 € de pasager, în funcție de distanța zborului."
+      },
+      {
+        "question": "De ce aveți nevoie de semnătura și documentele mele?",
+        "answer": "Semnătura ta ne autorizează să vorbim cu compania în numele tău. Documente precum confirmarea rezervării și un act de identitate arată că erai în zbor."
+      },
+      {
+        "question": "Cât durează?",
+        "answer": "Depinde de companie. Unele cereri se rezolvă în câteva săptămâni, altele pot dura câteva luni. Te ținem la curent prin e-mail la fiecare pas."
+      },
+      {
         "question": "Este sigur să încarc cartea de îmbarcare?",
         "answer": "Da. Cartea de îmbarcare este criptată și stocată în siguranță. Folosim doar informațiile necesare ca să gestionăm cererea și nu le partajăm cu terți."
       },
@@ -485,10 +517,6 @@
       {
         "question": "Pot vorbi cu o persoană reală?",
         "answer": "Da. Echipa noastră de sprijin uman este disponibilă pe tot parcursul procesului. Ne poți contacta pe chat, e-mail sau telefon."
-      },
-      {
-        "question": "Cât costă?",
-        "answer": "Nu există cost inițial. Compensall lucrează cu No win, no fee: percepem un comision doar dacă cererea reușește."
       },
       {
         "question": "Îmi pot șterge datele?",

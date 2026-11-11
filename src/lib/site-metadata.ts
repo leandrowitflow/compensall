@@ -38,6 +38,7 @@ export const DEFAULT_OG_IMAGE = "/assets/blog/flight-cancellation.jpg";
 export const HTML_LANG_MAP: Record<AppLocale, string> = {
   en: "en-GB",
   pt: "pt-PT",
+  "pt-BR": "pt-BR",
   fr: "fr-FR",
   es: "es-ES",
   ro: "ro-RO",
@@ -50,6 +51,7 @@ export const HTML_LANG_MAP: Record<AppLocale, string> = {
 const HREFLANG_MAP: Record<AppLocale, string> = {
   en: "en-GB",
   pt: "pt-PT",
+  "pt-BR": "pt-BR",
   fr: "fr-FR",
   es: "es-ES",
   ro: "ro-RO",
@@ -62,6 +64,7 @@ const HREFLANG_MAP: Record<AppLocale, string> = {
 const OG_LOCALE_MAP: Record<AppLocale, string> = {
   en: "en_GB",
   pt: "pt_PT",
+  "pt-BR": "pt_BR",
   fr: "fr_FR",
   es: "es_ES",
   ro: "ro_RO",

@@ -463,6 +463,38 @@
     "pageIntro": "Alles wat u moet weten over claims volgens UK261 en Verordening (EG) nr. 261/2004, onze No win, no fee-dienst en de bescherming van uw gegevens.",
     "default": [
       {
+        "question": "Wie is Compensall?",
+        "answer": "Compensall is een bedrijf in Portugal dat passagiers helpt de compensatie te claimen die luchtvaartmaatschappijen hen volgens EU-recht verschuldigd zijn. Wij zijn onafhankelijk van de airlines en werken alleen voor passagiers."
+      },
+      {
+        "question": "Is het veilig om mijn gegevens en documenten te delen?",
+        "answer": "Ja. Wij gebruiken uw gegevens en documenten alleen om uw claim te behandelen, en doen dat volgens de Europese privacyregels (AVG)."
+      },
+      {
+        "question": "Wat kost dit?",
+        "answer": "Niets vooraf. Wij werken volgens No win, no fee: als wij winnen, is onze vergoeding 30% + btw. Als wij niet winnen, betaalt u niets."
+      },
+      {
+        "question": "Kan ik zelf claimen?",
+        "answer": "Ja, u kunt de airline rechtstreeks benaderen. Veel passagiers komen naar ons omdat de airline te lang doet, niet antwoordt of de claim afwijst. Wij regelen het hele proces voor u, van het eerste contact tot verdere stappen als die nodig zijn."
+      },
+      {
+        "question": "Komt mijn vlucht in aanmerking?",
+        "answer": "U kunt recht hebben op compensatie als uw vlucht meer dan 3 uur te laat aankwam, kort van tevoren werd geannuleerd of als u de toegang tot het vliegtuig is geweigerd. Sommige situaties buiten de controle van de airline, zoals zwaar weer, geven geen recht op compensatie. Onze gratis check zegt het u in een paar minuten."
+      },
+      {
+        "question": "Hoeveel kan ik ontvangen?",
+        "answer": "Tussen €250 en €600 per passagier, afhankelijk van de afstand van de vlucht."
+      },
+      {
+        "question": "Waarom hebben jullie mijn handtekening en documenten nodig?",
+        "answer": "Uw handtekening machtigt ons om namens u met de airline te handelen. Documenten zoals de boekingsbevestiging en een identiteitsbewijs laten zien dat u op de vlucht zat."
+      },
+      {
+        "question": "Hoe lang duurt het?",
+        "answer": "Dat hangt van de airline af. Sommige claims zijn in een paar weken opgelost, andere kunnen enkele maanden duren. Wij houden u bij elke stap per e-mail op de hoogte."
+      },
+      {
         "question": "Is het veilig om mijn instapkaart te uploaden?",
         "answer": "Ja. Uw instapkaart wordt versleuteld en veilig opgeslagen. Wij gebruiken alleen de gegevens die voor uw claim nodig zijn en geven ze niet door aan derden."
       },
@@ -485,10 +517,6 @@
       {
         "question": "Kan ik met een mens spreken?",
         "answer": "Ja. Ons supportteam begeleidt u door de hele claim. U bereikt ons via chat, e-mail of telefoon."
-      },
-      {
-        "question": "Wat kost dit?",
-        "answer": "Er zijn geen voorafkosten. Compensall werkt volgens No win, no fee: wij rekenen een fee alleen als uw claim slaagt."
       },
       {
         "question": "Kan ik mijn gegevens laten wissen?",

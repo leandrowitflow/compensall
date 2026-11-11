@@ -196,6 +196,25 @@ const POA_COPY: Record<AppLocale, PoaCopy> = {
     signaturePlaceholder: "Uw handtekening verschijnt hier terwijl u hieronder tekent",
     claimLabel: "Claim",
   },
+  "pt-BR": {
+    title: "Procuração",
+    body: "Na qualidade de passageiro do(s) voo(s) abaixo, autorizo a Albuquerque & Araújo, Lda., também conhecida como Compensall, a apresentar e acompanhar o meu pedido com base nos direitos previstos na Resolução ANAC nº 400, de 13 de dezembro de 2016, e no Código de Defesa do Consumidor, e a praticar os atos necessários, inclusive receber valores e tratar dados pessoais apenas junto dos organismos envolvidos e para esta finalidade, de acordo com os Termos e Condições do site da Compensall, que aceito. Esta autorização inclui o direito de substabelecer, no todo ou em parte, a advogados e representantes. Esta procuração é exclusiva e irrevogável e substitui procurações anteriores. Peço que toda a comunicação seja dirigida apenas à empresa indicada.",
+    name: "Nome:",
+    flights: "Voo(s):",
+    from: "de",
+    to: "para",
+    flightsDate: "Data do(s) voo(s):",
+    date: "Data:",
+    thePassenger: "O passageiro:",
+    passengerSignatureAlt: "Assinatura do passageiro",
+    qrAlt: "",
+    euFlagAlt: "",
+    europeanUnion: "",
+    structuralFundsLine1: "",
+    structuralFundsLine2: "",
+    signaturePlaceholder: "Sua assinatura aparece aqui enquanto você assina abaixo",
+    claimLabel: "Pedido",
+  },
 };
 
 export function getPoaCopy(locale: string | null | undefined): PoaCopy {
@@ -205,6 +224,8 @@ export function getPoaCopy(locale: string | null | undefined): PoaCopy {
       return POA_COPY.en;
     case "pt":
       return POA_COPY.pt;
+    case "pt-BR":
+      return POA_COPY["pt-BR"];
     case "fr":
       return POA_COPY.fr;
     case "es":
@@ -233,6 +254,8 @@ export function getPoaDateLocale(locale: string | null | undefined): string {
       return "en-GB";
     case "pt":
       return "pt-PT";
+    case "pt-BR":
+      return "pt-BR";
     case "fr":
       return "fr-FR";
     case "es":

@@ -98,6 +98,7 @@ export default function PowerOfAttorneyDocument({
   flightDateInput,
 }: PowerOfAttorneyDocumentProps) {
   const copy = getPoaCopy(locale);
+  const showEuMark = showVerificationBlock && copy.europeanUnion.trim().length > 0;
 
   return (
     <article className="@container bg-white text-[#1f3664]">

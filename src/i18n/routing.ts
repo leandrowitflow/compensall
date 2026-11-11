@@ -1,13 +1,14 @@
 import { defineRouting } from "next-intl/routing";
 import { createNavigation } from "next-intl/navigation";
 
-export const locales = ["en", "pt", "fr", "es", "ro", "hu", "sq", "de", "nl"] as const;
+export const locales = ["en", "pt", "pt-BR", "fr", "es", "ro", "hu", "sq", "de", "nl"] as const;
 export type AppLocale = (typeof locales)[number];
 
 export function parseAppLocale(value: string | null | undefined): AppLocale {
   switch (value) {
     case "en":
     case "pt":
+    case "pt-BR":
     case "fr":
     case "es":
     case "ro":
@@ -24,6 +25,7 @@ export function parseAppLocale(value: string | null | undefined): AppLocale {
 export const localeLabels: Record<AppLocale, string> = {
   en: "English (UK)",
   pt: "Português (PT)",
+  "pt-BR": "Português (BR)",
   fr: "Français (FR)",
   es: "Español (ES)",
   ro: "Română (RO)",

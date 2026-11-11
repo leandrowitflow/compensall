@@ -74,7 +74,14 @@ export function getAllAirportsSorted(_language?: string): AirportOption[] {
   return [...airportOptionsList].sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function getPopularAirports(_language?: string, limit = 8): AirportOption[] {
+const BRAZIL_POPULAR_IATAS = ["GRU", "CGH", "GIG", "BSB", "CNF", "SSA", "REC", "FOR", "POA", "CWB", "BEL", "MAO"];
+
+export function getPopularAirports(language?: string, limit = 8): AirportOption[] {
+  if (language?.trim().toLowerCase() === "pt-br") {
+    return BRAZIL_POPULAR_IATAS.map((code) => findWorldAirportOptionById(code)).filter(
+      (airport): airport is AirportOption => airport !== null,
+    ).slice(0, limit);
+  }
   return getPopularWorldAirportOptions(limit);
 }
 

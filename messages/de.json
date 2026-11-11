@@ -463,6 +463,38 @@
     "pageIntro": "Alles Wichtige zu Ansprüchen nach UK261 und der Verordnung (EG) Nr. 261/2004, unserem No win, no fee Service und dem Schutz Ihrer Daten.",
     "default": [
       {
+        "question": "Wer ist Compensall?",
+        "answer": "Compensall ist ein Unternehmen mit Sitz in Portugal, das Passagieren hilft, die Entschädigung zu fordern, die ihnen Fluggesellschaften nach EU-Recht schulden. Wir sind unabhängig von den Airlines und arbeiten nur für Passagiere."
+      },
+      {
+        "question": "Ist es sicher, meine Daten und Dokumente zu teilen?",
+        "answer": "Ja. Wir nutzen Ihre Daten und Dokumente nur, um Ihren Antrag zu bearbeiten, und behandeln sie nach den europäischen Datenschutzregeln (DSGVO)."
+      },
+      {
+        "question": "Was kostet das?",
+        "answer": "Nichts im Voraus. Wir arbeiten nach No win, no fee: Wenn wir gewinnen, beträgt unsere Gebühr 30 % zzgl. MwSt. Wenn wir nicht gewinnen, zahlen Sie nichts."
+      },
+      {
+        "question": "Kann ich selbst Anspruch erheben?",
+        "answer": "Ja, Sie können die Airline direkt kontaktieren. Viele Passagiere kommen zu uns, weil die Airline zu lange braucht, nicht antwortet oder den Anspruch ablehnt. Wir übernehmen den gesamten Ablauf für Sie, vom ersten Kontakt bis zu weiteren Schritten, falls sie nötig sind."
+      },
+      {
+        "question": "Hat mein Flug Anspruch auf Entschädigung?",
+        "answer": "Sie können Anspruch haben, wenn Ihr Flug mit mehr als 3 Stunden Verspätung ankam, kurzfristig annulliert wurde oder Ihnen das Boarding verweigert wurde. Manche Situationen außerhalb der Kontrolle der Airline, etwa schweres Wetter, begründen keinen Entschädigungsanspruch. Unsere kostenlose Prüfung sagt es Ihnen in wenigen Minuten."
+      },
+      {
+        "question": "Wie viel kann ich erhalten?",
+        "answer": "Zwischen 250 € und 600 € pro Passagier, je nach Flugstrecke."
+      },
+      {
+        "question": "Warum brauchen Sie meine Unterschrift und meine Dokumente?",
+        "answer": "Ihre Unterschrift berechtigt uns, gegenüber der Airline in Ihrem Namen zu handeln. Dokumente wie die Buchungsbestätigung und ein Ausweis zeigen, dass Sie an Bord waren."
+      },
+      {
+        "question": "Wie lange dauert es?",
+        "answer": "Das hängt von der Airline ab. Manche Anträge sind in wenigen Wochen erledigt, andere können mehrere Monate dauern. Wir halten Sie bei jedem Schritt per E-Mail auf dem Laufenden."
+      },
+      {
         "question": "Ist es sicher, meine Bordkarte hochzuladen?",
         "answer": "Ja. Ihre Bordkarte wird verschlüsselt und sicher gespeichert. Wir nutzen nur die Angaben, die für Ihren Antrag nötig sind, und geben sie nicht an Dritte weiter."
       },
@@ -485,10 +517,6 @@
       {
         "question": "Kann ich mit einem Menschen sprechen?",
         "answer": "Ja. Unser Support-Team begleitet Sie durch den gesamten Antrag. Sie erreichen uns per Chat, E-Mail oder Telefon."
-      },
-      {
-        "question": "Was kostet das?",
-        "answer": "Es gibt keine Vorabkosten. Compensall arbeitet nach No win, no fee: Wir berechnen eine Gebühr nur, wenn Ihr Anspruch Erfolg hat."
       },
       {
         "question": "Kann ich meine Daten löschen lassen?",

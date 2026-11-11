@@ -122,7 +122,9 @@ export function buildSignedPowerOfAttorneyHtml(input: SignedPoaInput): string {
         ${fieldRow(copy.date, signingDate)}
       </div>
 
-      <div style="width:140px;text-align:center;flex-shrink:0;">
+      ${
+        copy.europeanUnion.trim()
+          ? `<div style="width:140px;text-align:center;flex-shrink:0;">
         ${
           qr
             ? `<img src="${qr}" alt="${escapeHtml(copy.qrAlt)}" style="width:112px;height:112px;object-fit:contain;" />`
@@ -137,7 +139,9 @@ export function buildSignedPowerOfAttorneyHtml(input: SignedPoaInput): string {
         <div style="font-size:9px;opacity:0.8;line-height:1.3;margin-top:2px;">
           ${escapeHtml(copy.structuralFundsLine1)}<br />${escapeHtml(copy.structuralFundsLine2)}
         </div>
-      </div>
+      </div>`
+          : ""
+      }
     </div>
 
     <footer style="border-top:1px solid #d5e0f9;padding-top:14px;font-size:12px;opacity:0.75;">

@@ -8,6 +8,7 @@ import { localeLabels, locales, type AppLocale } from "@/i18n/routing";
 const LOCALE_SHORT: Record<AppLocale, string> = {
   en: "EN",
   pt: "PT",
+  "pt-BR": "BR",
   fr: "FR",
   es: "ES",
   ro: "RO",

@@ -29,6 +29,7 @@ type PhoneInputFieldProps = {
 function labelsForLocale(locale: string): Labels {
   switch (locale) {
     case "pt":
+    case "pt-BR":
       return ptLabels;
     case "fr":
       return frLabels;

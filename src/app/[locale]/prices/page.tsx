@@ -28,6 +28,7 @@ export default async function PricesPage({ params }: PricesPageProps) {
   setRequestLocale(locale);
 
   const showUkTiers = locale === "en";
+  const brazilian = locale === "pt-BR";
   const t = await getTranslations("prices");
   const tTiers = await getTranslations("passengerRights");
 
@@ -67,17 +68,41 @@ export default async function PricesPage({ params }: PricesPageProps) {
       </div>
 
       <ArticleWithToc
-        items={[
-          { id: headingDomId(t("successFeeTitle"), 0), text: t("successFeeTitle") },
-          ...(showUkTiers
-            ? [{ id: headingDomId(t("uk261Title"), 1), text: t("uk261Title"), level: 2 as const }]
-            : []),
-          { id: headingDomId(t("ec261Title"), 2), text: t("ec261Title") },
-        ]}
+        items={
+          brazilian
+            ? [
+                { id: headingDomId(t("successFeeTitle"), 0), text: t("successFeeTitle") },
+                { id: headingDomId(t("anac.assistanceTitle"), 1), text: t("anac.assistanceTitle") },
+                { id: headingDomId(t("anac.deniedTitle"), 2), text: t("anac.deniedTitle") },
+              ]
+            : [
+                { id: headingDomId(t("successFeeTitle"), 0), text: t("successFeeTitle") },
+                ...(showUkTiers
+                  ? [{ id: headingDomId(t("uk261Title"), 1), text: t("uk261Title"), level: 2 as const }]
+                  : []),
+                { id: headingDomId(t("ec261Title"), 2), text: t("ec261Title") },
+              ]
+        }
       >
       <h2 id={headingDomId(t("successFeeTitle"), 0)} className="scroll-mt-28 font-bold text-[#1f3664] text-lg mb-2">{t("successFeeTitle")}</h2>
       <p className="text-muted text-sm leading-relaxed mb-4">{t("successFeeDescription")}</p>
 
+      {brazilian ? (
+        <>
+          <p className="text-muted text-sm leading-relaxed mb-8">{t("anac.feeNote")}</p>
+          <h2 id={headingDomId(t("anac.assistanceTitle"), 1)} className="scroll-mt-28 font-bold text-[#1f3664] text-lg mb-2">{t("anac.assistanceTitle")}</h2>
+          <p className="text-muted text-sm leading-relaxed mb-4">{t("anac.assistanceBody")}</p>
+          <ul className="list-disc pl-5 text-sm text-muted space-y-1 mb-8">
+            <li>{t("anac.hour1")}</li>
+            <li>{t("anac.hour2")}</li>
+            <li>{t("anac.hour4")}</li>
+          </ul>
+          <h2 id={headingDomId(t("anac.deniedTitle"), 2)} className="scroll-mt-28 font-bold text-[#1f3664] text-lg mb-2">{t("anac.deniedTitle")}</h2>
+          <p className="text-muted text-sm leading-relaxed mb-4">{t("anac.deniedBody")}</p>
+          <p className="text-muted text-sm leading-relaxed">{t("anac.choice")}</p>
+        </>
+      ) : (
+        <>
       <div className="overflow-hidden rounded-xl border border-[#d5e0f9] mb-8">
         <table className="w-full text-sm">
           <thead className="bg-[#f0f5ff]">
@@ -126,6 +151,8 @@ export default async function PricesPage({ params }: PricesPageProps) {
           </li>
         ))}
       </ul>
+        </>
+      )}
       </ArticleWithToc>
     </LegalPageShell>
   );

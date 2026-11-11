@@ -5,15 +5,14 @@ import { notFound } from "next/navigation";
 import AttributionCapture from "@/components/AttributionCapture";
 import DeferredAnchorScroll from "@/components/DeferredAnchorScroll";
 import DeferredCookieBanner from "@/components/DeferredCookieBanner";
+import EarlyDocumentScripts from "@/components/EarlyDocumentScripts";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import WebViewGuard from "@/components/WebViewGuard";
 import JsonLd from "@/components/seo/JsonLd";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/structured-data";
 import { openSans } from "@/lib/site-fonts-next";
-import { COOKIE_BANNER_PENDING_CLASS, COOKIE_CONSENT_STORAGE_KEY } from "@/lib/cookie-consent";
 import { claimCriticalCss } from "@/lib/claim-critical-css";
-import { CLAIM_CONTINUE_PENDING_CLASS, CLAIM_CONTINUE_QUERY } from "@/lib/claim-return";
 import { getSiteMetadata, HTML_LANG_MAP } from "@/lib/site-metadata";
 import "../globals.css";
 
@@ -63,18 +62,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html lang={HTML_LANG_MAP[locale as AppLocale]} className={openSans.variable} suppressHydrationWarning>
       <head>
         <style dangerouslySetInnerHTML={{ __html: claimCriticalCss }} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(!localStorage.getItem(${JSON.stringify(COOKIE_CONSENT_STORAGE_KEY)}))document.documentElement.classList.add(${JSON.stringify(COOKIE_BANNER_PENDING_CLASS)})}catch(e){}`,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(new URLSearchParams(location.search).get(${JSON.stringify(CLAIM_CONTINUE_QUERY)})==="1")document.documentElement.classList.add(${JSON.stringify(CLAIM_CONTINUE_PENDING_CLASS)})}catch(e){}`,
-          }}
-        />
       </head>
       <body className={openSans.className} suppressHydrationWarning>
+        <EarlyDocumentScripts />
         <NextIntlClientProvider messages={messages}>
           <JsonLd data={[buildOrganizationSchema(siteDescription), buildWebSiteSchema(siteDescription)]} />
           <div className="site-viewport min-w-0 overflow-x-clip">

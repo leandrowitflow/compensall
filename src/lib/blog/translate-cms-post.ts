@@ -13,6 +13,8 @@ const TRANSLATION_CONCURRENCY = 3;
 const LOCALE_TRANSLATION_NOTES: Record<AppLocale, string> = {
   en: "English (UK). Use British spelling.",
   pt: "European Portuguese from Portugal, not Brazilian Portuguese. Address the reader as você / o seu.",
+  "pt-BR":
+    "Brazilian Portuguese. Address the reader as você. Do not present EC 261 or UK261 distance amounts (€250/€400/€600 or £220/£350/£520) as Brazilian law. For flights in Brazil, explain ANAC Resolution 400/2016: material assistance from 1 hour (communication), 2 hours (food) and 4 hours (hotel if overnight, plus transport); after a delay of more than 4 hours, cancellation, interruption or a missed connection caused by the airline, the passenger chooses rebooking, a full refund or another mode of transport; involuntary denied boarding pays 250 DES on a domestic flight or 500 DES on an international flight, per passenger, on top of that choice. DES is converted to reais at the Central Bank rate and must not be invented as a fixed reais cap. Keep the phrase No win, no fee. in English. If the source text is about a flight departing the UK or EU, say that those foreign rules can still apply to that departure, and that the Brazilian rule is ANAC.",
   fr: "French from France. Address the reader as vous. Do not put a space before ? ! : ;",
   es: "Spanish from Spain. Address the reader as tú.",
   ro: "Romanian. Address the reader as tu.",

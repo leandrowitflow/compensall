@@ -463,6 +463,38 @@
     "pageIntro": "Gjithçka që duhet të dish për kërkesën sipas UK261 dhe 261/2004/KE, shërbimin No win, no fee dhe si i mbrojmë të dhënat.",
     "default": [
       {
+        "question": "Kush është Compensall?",
+        "answer": "Compensall është një kompani me seli në Portugali që i ndihmon pasagjerët të kërkojnë kompensimin që kompanitë u detyrohen sipas ligjit të BE-së. Jemi të pavarur nga kompanitë dhe punojmë vetëm për pasagjerët."
+      },
+      {
+        "question": "A është e sigurt të ndaj të dhënat dhe dokumentet e mia?",
+        "answer": "Po. I përdorim të dhënat dhe dokumentet e tua vetëm për të menaxhuar kërkesën, dhe i trajtojmë sipas rregullave evropiane të mbrojtjes së të dhënave (GDPR)."
+      },
+      {
+        "question": "Sa kushton?",
+        "answer": "Asgjë paraprakisht. Punojmë me No win, no fee: nëse fitojmë, tarifa jonë është 30% + TVSH. Nëse nuk fitojmë, nuk paguan asgjë."
+      },
+      {
+        "question": "A mund të kërkoj vetë?",
+        "answer": "Po, mund ta kontaktosh kompaninë drejtpërdrejt. Shumë pasagjerë vijnë te ne sepse kompania vonon shumë, nuk përgjigjet ose e refuzon kërkesën. E menaxhojmë gjithë procesin për ty, nga kontakti i parë te hapat e mëtejshëm, nëse duhen."
+      },
+      {
+        "question": "A kualifikohet fluturimi im?",
+        "answer": "Mund të kesh të drejtë kompensimi nëse fluturimi mbërriti me më shumë se 3 orë vonesë, u anulua në minutën e fundit, ose të është refuzuar imbarkimi. Disa situata jashtë kontrollit të kompanisë, si moti i rëndë, nuk japin të drejtë kompensimi. Kontrolli ynë falas ta thotë për pak minuta."
+      },
+      {
+        "question": "Sa mund të marr?",
+        "answer": "Nga 250 € deri në 600 € për pasagjer, sipas distancës së fluturimit."
+      },
+      {
+        "question": "Pse ju duhet nënshkrimi dhe dokumentet e mia?",
+        "answer": "Nënshkrimi yt na autorizon të merremi me kompaninë në emrin tënd. Dokumente si konfirmimi i rezervimit dhe një dokument identifikimi tregojnë se ishe në fluturim."
+      },
+      {
+        "question": "Sa kohë zgjat?",
+        "answer": "Varet nga kompania. Disa kërkesa zgjidhen për pak javë, të tjera mund të zgjasin disa muaj. Të mbajmë të informuar me email në çdo hap."
+      },
+      {
         "question": "A është e sigurt të ngarkoj kartën e imbarkimit?",
         "answer": "Po, krejt. Karta e imbarkimit enkriptohet dhe ruhet në mënyrë të sigurt. Përdorim vetëm informacionin e nevojshëm për kërkesën dhe nuk e ndajmë me palë të treta."
       },
@@ -485,10 +517,6 @@
       {
         "question": "A mund të flas me një njeri të vërtetë?",
         "answer": "Po. Ekipi ynë njerëzor është gati gjatë gjithë procesit. Na gjen në chat, email ose telefon."
-      },
-      {
-        "question": "Sa kushton?",
-        "answer": "Nuk ka kosto paraprake. Compensall punon No win, no fee: tarifë vetëm nëse kërkesa del me sukses."
       },
       {
         "question": "A mund t’i fshij të dhënat?",

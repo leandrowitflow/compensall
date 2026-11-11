@@ -35,6 +35,7 @@ import { termsRo } from "./terms.ro";
 import { termsDe } from "./terms.de";
 import { termsNl } from "./terms.nl";
 import { termsSq } from "./terms.sq";
+import { toBrazilianLegalDocument } from "./brazil";
 import type { LegalDocument, LegalDocumentKey } from "./types";
 
 const documents: Record<LegalDocumentKey, Record<AppLocale, LegalDocument>> = {
@@ -48,6 +49,7 @@ const documents: Record<LegalDocumentKey, Record<AppLocale, LegalDocument>> = {
     sq: privacyPolicySq,
     de: privacyPolicyDe,
     nl: privacyPolicyNl,
+    "pt-BR": toBrazilianLegalDocument(privacyPolicyPt),
   },
   terms: {
     en: termsEn,
@@ -59,6 +61,7 @@ const documents: Record<LegalDocumentKey, Record<AppLocale, LegalDocument>> = {
     sq: termsSq,
     de: termsDe,
     nl: termsNl,
+    "pt-BR": toBrazilianLegalDocument(termsPt),
   },
   cookies: {
     en: cookiesEn,
@@ -70,6 +73,7 @@ const documents: Record<LegalDocumentKey, Record<AppLocale, LegalDocument>> = {
     sq: cookiesSq,
     de: cookiesDe,
     nl: cookiesNl,
+    "pt-BR": toBrazilianLegalDocument(cookiesPt),
   },
   "no-win-no-fee": {
     en: noWinNoFeeEn,
@@ -81,6 +85,7 @@ const documents: Record<LegalDocumentKey, Record<AppLocale, LegalDocument>> = {
     sq: noWinNoFeeSq,
     de: noWinNoFeeDe,
     nl: noWinNoFeeNl,
+    "pt-BR": toBrazilianLegalDocument(noWinNoFeePt),
   },
 };
 

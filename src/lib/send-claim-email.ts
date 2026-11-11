@@ -12,6 +12,7 @@ import {
   formatEstimateDistance,
 } from "@/lib/compensation-estimate";
 import type { OdooCrmLeadSummary } from "@/lib/odoo-client";
+import { isBrazilianLocale } from "@/lib/public-copy";
 
 type ClaimEmailPayload = {
   trackingNumber: string;
@@ -231,6 +232,25 @@ function flightSummaryTable(flight: ClaimFlightData, locale?: string | null): st
 }
 
 function compensationEstimateCard(flight: ClaimFlightData, locale?: string | null): string {
+  if (isBrazilianLocale(locale)) {
+    return `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 0 18px 0;background:${BRAND.soft};border:1px solid ${BRAND.border};border-radius:14px;">
+      <tr>
+        <td style="padding:20px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${BRAND.blue};margin-bottom:8px;">
+            Resolução ANAC nº 400
+          </div>
+          <div style="font-size:22px;line-height:1.3;font-weight:700;color:${BRAND.navy};margin-bottom:8px;">
+            Assistência, reembolso ou reacomodação
+          </div>
+          <div style="font-size:14px;line-height:1.5;color:${BRAND.muted};">
+            Na preterição, a compensação imediata é de 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais segue a cotação do DES no Banco Central.
+          </div>
+        </td>
+      </tr>
+    </table>`;
+  }
+
   const estimate = estimateCompensationForFlight(flight, locale);
   if (!estimate) {
     return "";
@@ -580,6 +600,19 @@ function submittedClaimCopy(locale?: string | null): {
         title: "Wij hebben uw claim",
         subject: (trackingNumber) => `Uw Compensall-claim ${trackingNumber}`,
       };
+    case "pt-BR":
+      return {
+        hello: (firstName) => `Olá ${firstName},`,
+        body: "Recebemos seu pedido. Guarde o número de acompanhamento para consultar o andamento quando quiser.",
+        trackingLabel: "Número de acompanhamento",
+        flightTitle: "Seu voo",
+        cta: "Acompanhar o pedido",
+        note: "Escrevemos quando houver novidade no seu caso.",
+        preheader: (trackingNumber) => `Seu pedido ${trackingNumber} foi enviado`,
+        eyebrow: "Pedido enviado",
+        title: "Já temos seu pedido",
+        subject: (trackingNumber) => `Seu pedido Compensall ${trackingNumber}`,
+      };
     default:
       return {
         hello: (firstName) => `Hi ${firstName},`,
@@ -636,6 +669,70 @@ export function buildUserHtml(
     bodyHtml,
     siteUrl,
   });
+}
+
+function brazilianClaimStatusCopy(status: ClaimStatus): { label: string; message: string } {
+  switch (status) {
+    case "received":
+    case "submitted":
+    case "under_review":
+      return {
+        label: "Recebido",
+        message: "Recebemos seu pedido e a equipe está analisando. Avisamos por aqui quando houver novidade.",
+      };
+    case "needs_documents":
+      return {
+        label: "Documentos necessários",
+        message: "Precisamos de mais alguns documentos para seguir. Veja seu e-mail ou fale conosco no +351 923 391 980.",
+      };
+    case "with_airline":
+    case "airline_contacted":
+      return {
+        label: "Com a empresa aérea",
+        message: "Seu pedido foi apresentado à empresa aérea. Avisamos assim que houver resposta.",
+      };
+    case "following_up":
+      return {
+        label: "Em acompanhamento",
+        message: "A empresa respondeu e estamos acompanhando o caso em seu nome.",
+      };
+    case "payment_processing":
+      return {
+        label: "Pagamento em andamento",
+        message: "A empresa aceitou o pedido. Estamos organizando o pagamento e avisamos em breve.",
+      };
+    case "awaiting_fee":
+      return {
+        label: "Taxa do serviço",
+        message: "Seu pedido deu certo. Falta concluir o pagamento da nossa taxa para encerrarmos o caso.",
+      };
+    case "paid":
+    case "compensated":
+      return {
+        label: "Pago",
+        message: "O pagamento foi concluído. Obrigado por confiar na Compensall. Se precisar, estamos por aqui.",
+      };
+    case "closed_ntd":
+      return {
+        label: "Encerrado",
+        message: "Não foi possível seguir com o pedido e o caso foi encerrado. Fale conosco se quiser entender o resultado.",
+      };
+    case "paused":
+      return {
+        label: "Em pausa",
+        message: "O caso está em pausa porque não tivemos seu retorno. Ligue para +351 923 391 980 se quiser retomar.",
+      };
+    case "closed_declined":
+    case "closed":
+      return {
+        label: "Encerrado",
+        message: "A empresa aérea recusou o pedido e não há próximo passo. O caso foi encerrado. Fale conosco se quiser comentar o resultado.",
+      };
+    default: {
+      const exhaustive: never = status;
+      return exhaustive;
+    }
+  }
 }
 
 function statusUpdateCopy(locale: string | null | undefined, status: ClaimStatus): {
@@ -769,6 +866,24 @@ function statusUpdateCopy(locale: string | null | undefined, status: ClaimStatus
           `Nieuws over uw Compensall-claim ${trackingNumber}: ${label}`,
         statusLabel: nl.label,
         statusMessage: nl.message,
+      };
+    }
+    case "pt-BR": {
+      const br = brazilianClaimStatusCopy(status);
+      return {
+        hello: (firstName) => `Olá ${firstName},`,
+        intro: "Há uma novidade no seu pedido na Compensall.",
+        newStatus: "Nova situação",
+        tracking: "Acompanhamento",
+        flight: "Voo",
+        route: "Rota",
+        cta: "Acompanhar o pedido",
+        preheader: (trackingNumber, label) => `Seu pedido ${trackingNumber} está agora: ${label}`,
+        eyebrow: "Atualização do pedido",
+        title: (label) => `Situação: ${label}`,
+        subject: (trackingNumber, label) => `Novidade no seu pedido Compensall ${trackingNumber}: ${label}`,
+        statusLabel: br.label,
+        statusMessage: br.message,
       };
     }
     default:
@@ -1532,6 +1647,19 @@ function resumeClaimCopy(locale?: string | null): {
         cta: "Claim hervatten",
         note: "Deze link is persoonlijk en 30 dagen geldig. U hoeft alleen nog de volmacht te ondertekenen en de claim in te dienen.",
         flightTitle: "Uw vlucht",
+      };
+    case "pt-BR":
+      return {
+        subject: "Conclua seu pedido na Compensall",
+        preheader: "Seus dados estão salvos. Falta assinar e enviar.",
+        eyebrow: "Pedido incompleto",
+        title: "Continue seu pedido",
+        hello: (firstName) => `Olá ${firstName},`,
+        body: (flightNumber) =>
+          `Você começou um pedido sobre o voo ${flightNumber}. Guardamos os dados do voo e do contato para você não precisar começar de novo.`,
+        cta: "Continuar o pedido",
+        note: "Este link é pessoal e vale por 30 dias. Falta assinar a procuração e enviar.",
+        flightTitle: "Seu voo",
       };
     default:
       return {

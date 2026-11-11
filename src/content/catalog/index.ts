@@ -30,6 +30,7 @@ export function getCatalogEntityContent(
 }
 
 export function toCatalogLocale(locale: string): CatalogLocale {
+  if (locale === "pt-BR") return "pt";
   if (
     locale === "pt" ||
     locale === "fr" ||

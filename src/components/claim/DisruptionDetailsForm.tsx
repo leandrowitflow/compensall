@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type {
   CancellationNoticeOption,
   ClaimFlightData,
@@ -9,6 +9,7 @@ import type {
   FlightStatus,
 } from "@/lib/claim-types";
 import { isIneligibleForCompensation } from "@/lib/claim-types";
+import { isBrazilianLocale } from "@/lib/public-copy";
 import { FieldIssue } from "@/components/claim/FieldIssue";
 import { FIELD_LABEL, FIELD_SELECT, fieldControlClass } from "@/components/claim/claim-ui";
 import type { Step2Issue } from "@/lib/claim-form-issues";
@@ -27,6 +28,8 @@ const STATUS_OPTIONS: Array<{ value: Exclude<FlightStatus, "Unknown">; labelKey:
 
 export default function DisruptionDetailsForm({ flight, onChange, issue = null }: DisruptionDetailsFormProps) {
   const t = useTranslations("claim.disruption");
+  const locale = useLocale();
+  const brazilian = isBrazilianLocale(locale);
 
   const update = (patch: Partial<ClaimFlightData>) => {
     onChange({ ...flight, ...patch });
@@ -55,7 +58,7 @@ export default function DisruptionDetailsForm({ flight, onChange, issue = null }
     });
   };
 
-  const ineligible = isIneligibleForCompensation(flight);
+  const ineligible = !brazilian && isIneligibleForCompensation(flight, locale);
 
   return (
     <div className="border border-[#1f3664]/10 rounded-[14px] px-3 sm:px-5 py-4 space-y-4">
@@ -89,7 +92,13 @@ export default function DisruptionDetailsForm({ flight, onChange, issue = null }
         <FieldIssue id="disruption-type-error" message={issue?.field === "disruptionType" ? issue.message : null} />
       </div>
 
-      {flight.status === "Delayed" && (
+      {brazilian && flight.status !== "Unknown" && (
+        <p className="rounded-[12px] border border-[#d5e0f9] bg-[#f5f8ff] px-4 py-3 text-sm leading-relaxed text-[#3d4a6b]">
+          {t("anacNote")}
+        </p>
+      )}
+
+      {!brazilian && flight.status === "Delayed" && (
         <div>
           <label className={FIELD_LABEL} htmlFor="delay-duration">
             {t("delayDuration")} <span className="text-[#e82828]">*</span>
@@ -116,7 +125,7 @@ export default function DisruptionDetailsForm({ flight, onChange, issue = null }
         </div>
       )}
 
-      {flight.status === "Cancelled" && (
+      {!brazilian && flight.status === "Cancelled" && (
         <div>
           <label className={FIELD_LABEL} htmlFor="cancellation-notice">
             {t("cancellationNotice")} <span className="text-[#e82828]">*</span>

@@ -4,7 +4,7 @@ import type {
   ClaimFlightData,
   CompensationEstimate,
 } from "@/lib/claim-types";
-import { formatEuroAmount } from "@/lib/public-copy";
+import { formatEuroAmount, isBrazilianLocale } from "@/lib/public-copy";
 
 export type { CompensationEstimate };
 export type CompensationRegulation = CompensationEstimate["regulation"];

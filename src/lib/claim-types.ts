@@ -1,3 +1,5 @@
+import { isBrazilianLocale } from "@/lib/public-copy";
+
 export type ClaimEntryMode = "upload" | "manual";
 
 export type FlightStatus = "Delayed" | "Cancelled" | "Denied boarding" | "Unknown";
@@ -243,8 +245,9 @@ export const EMPTY_FLIGHT: ClaimFlightData = {
   disruptionReason: "",
 };
 
-/** EC261: delay under 3h or cancellation notice ≥14 days → not eligible to proceed. */
-export function isIneligibleForCompensation(flight: ClaimFlightData): boolean {
+/** EC261: delay under 3h or cancellation notice ≥14 days → not eligible to proceed. ANAC does not use that cutoff. */
+export function isIneligibleForCompensation(flight: ClaimFlightData, locale?: string | null): boolean {
+  if (isBrazilianLocale(locale)) return false;
   if (flight.status === "Delayed" && flight.delayDuration === "less_than_3") {
     return true;
   }

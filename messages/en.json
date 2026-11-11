@@ -463,6 +463,38 @@
     "pageIntro": "Everything you need to know about claiming under UK261 and EC 261/2004, our No win, no fee service, and how we protect your data.",
     "default": [
       {
+        "question": "Who is Compensall?",
+        "answer": "Compensall is a company based in Portugal that helps passengers claim the compensation airlines owe them under EU law. We are independent from airlines and work only for passengers."
+      },
+      {
+        "question": "Is it safe to share my data and documents?",
+        "answer": "Yes. We use your data and documents only to manage your claim, and we handle them in line with the EU data protection rules (GDPR)."
+      },
+      {
+        "question": "How much does it cost?",
+        "answer": "Nothing upfront. We work on a no win, no fee basis: if we win, our fee is 30% + VAT. If we don't win, you pay nothing."
+      },
+      {
+        "question": "Can I claim by myself?",
+        "answer": "Yes, you can contact the airline directly. Many passengers come to us because the airline takes too long, doesn't reply or rejects the claim. We handle the whole process for you, from the first contact to taking further steps if needed."
+      },
+      {
+        "question": "Does my flight qualify?",
+        "answer": "You may be entitled to compensation if your flight arrived more than 3 hours late, was cancelled at short notice, or you were denied boarding. Some situations outside the airline's control, like severe weather, don't give a right to compensation. Our free check tells you in a few minutes."
+      },
+      {
+        "question": "How much can I receive?",
+        "answer": "Between €250 and €600 per passenger, depending on the distance of the flight."
+      },
+      {
+        "question": "Why do you need my signature and documents?",
+        "answer": "Your signature authorises us to deal with the airline on your behalf. Documents like your booking confirmation and ID show that you were on the flight."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "It depends on the airline. Some claims are solved in a few weeks, others can take several months. We keep you updated by email at every step."
+      },
+      {
         "question": "Is it safe to upload my boarding pass?",
         "answer": "Yes, absolutely. Your boarding pass is encrypted and stored securely. We only use the information necessary to process your claim and never share it with third parties."
       },
@@ -485,10 +517,6 @@
       {
         "question": "Can I speak to a real person?",
         "answer": "Yes! Our human support team is available to assist you throughout the claim process. You can reach us via chat, email or phone."
-      },
-      {
-        "question": "How much does it cost?",
-        "answer": "There is no upfront cost. Compensall works on a No win, no fee basis, which means we only charge a fee if your claim is successful."
       },
       {
         "question": "Can I delete my data?",

@@ -5,6 +5,8 @@ export function defaultPhoneCountryFromLocale(locale: string | null | undefined)
   switch (locale) {
     case "pt":
       return "PT";
+    case "pt-BR":
+      return "BR";
     case "fr":
       return "FR";
     case "es":

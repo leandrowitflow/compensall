@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type { ClaimFlightData } from "@/lib/claim-types";
 import BoardingPassUpload from "@/components/claim/BoardingPassUpload";
 import CompensationEstimateBanner from "@/components/claim/CompensationEstimateBanner";
@@ -40,7 +40,8 @@ export default function Step2Panel({
   onContinue,
 }: Step2PanelProps) {
   const tStep2 = useTranslations("claim.step2");
-  const ineligible = isIneligibleForCompensation(flight);
+  const locale = useLocale();
+  const ineligible = isIneligibleForCompensation(flight, locale);
   const fieldIssue = validationError && validationError.field !== "ineligible" ? validationError : null;
 
   useEffect(() => {

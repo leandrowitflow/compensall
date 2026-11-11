@@ -463,6 +463,38 @@
     "pageIntro": "Tout ce que vous devez savoir sur les réclamations au titre du UK261 et du CE 261/2004, notre formule No win, no fee et la protection de vos données.",
     "default": [
       {
+        "question": "Qui est Compensall?",
+        "answer": "Compensall est une entreprise basée au Portugal qui aide les passagers à réclamer l'indemnisation que les compagnies aériennes leur doivent au titre du droit de l'UE. Nous sommes indépendants des compagnies et nous travaillons uniquement pour les passagers."
+      },
+      {
+        "question": "Est-il sûr de partager mes données et mes documents?",
+        "answer": "Oui. Nous utilisons vos données et documents uniquement pour gérer votre réclamation, et nous les traitons conformément aux règles européennes de protection des données (RGPD)."
+      },
+      {
+        "question": "Combien cela coûte-t-il?",
+        "answer": "Rien à l'avance. Nous travaillons au No win, no fee : si nous gagnons, nos frais sont de 30 % + TVA. Si nous ne gagnons pas, vous ne payez rien."
+      },
+      {
+        "question": "Puis-je réclamer moi-même?",
+        "answer": "Oui, vous pouvez contacter la compagnie directement. Beaucoup de passagers viennent nous voir parce que la compagnie tarde, ne répond pas ou refuse la réclamation. Nous gérons tout le processus pour vous, du premier contact aux étapes suivantes si elles sont nécessaires."
+      },
+      {
+        "question": "Mon vol est-il éligible?",
+        "answer": "Vous pouvez avoir droit à une indemnisation si votre vol est arrivé avec plus de 3 heures de retard, a été annulé au dernier moment, ou si l'embarquement vous a été refusé. Certaines situations hors du contrôle de la compagnie, comme un temps très mauvais, n'ouvrent pas droit à indemnisation. Notre vérification gratuite vous le dit en quelques minutes."
+      },
+      {
+        "question": "Combien puis-je recevoir?",
+        "answer": "Entre 250 € et 600 € par passager, selon la distance du vol."
+      },
+      {
+        "question": "Pourquoi avez-vous besoin de ma signature et de mes documents?",
+        "answer": "Votre signature nous autorise à agir auprès de la compagnie en votre nom. Des documents comme la confirmation de réservation et une pièce d'identité montrent que vous étiez sur le vol."
+      },
+      {
+        "question": "Combien de temps cela prend-il?",
+        "answer": "Cela dépend de la compagnie. Certaines réclamations se règlent en quelques semaines, d'autres peuvent prendre plusieurs mois. Nous vous tenons informé par e-mail à chaque étape."
+      },
+      {
         "question": "Est-il sûr de télécharger ma carte d'embarquement?",
         "answer": "Oui, absolument. Votre carte d'embarquement est chiffrée et stockée en toute sécurité. Nous n'utilisons que les informations nécessaires au traitement de votre réclamation et ne les partageons jamais avec des tiers."
       },
@@ -485,10 +517,6 @@
       {
         "question": "Puis-je parler à une vraie personne?",
         "answer": "Oui! Notre équipe d'assistance humaine est disponible pour vous accompagner tout au long du processus de réclamation. Vous pouvez nous joindre par chat, e-mail ou téléphone."
-      },
-      {
-        "question": "Combien cela coûte-t-il?",
-        "answer": "Aucun coût initial. Compensall ne facture des frais que si votre réclamation aboutit."
       },
       {
         "question": "Puis-je supprimer mes données?",

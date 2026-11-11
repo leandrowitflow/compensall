@@ -1,4 +1,6 @@
-import { airlinesCatalog, airportsCatalog } from "@/lib/catalog";
+import { airlinesCatalog, airportsCatalog, type CatalogItem } from "@/lib/catalog";
+import { localePopularIds } from "@/lib/catalog-popular-ids";
+import { resolveAirportCatalogItem } from "@/lib/catalog-world-airports";
 import { getPopularNavItems } from "@/lib/popular-nav";
 import { COMPENSALL_GUIDE_SLUGS } from "@/lib/blog/guide-slugs";
 import type { NavMenuGroup, NavMenuItem } from "@/lib/nav-menu";
@@ -20,6 +22,17 @@ export type HeaderNavData = {
   };
 };
 
+function popularAirportsForLocale(locale: string): CatalogItem[] {
+  const picked: CatalogItem[] = [];
+  for (const id of localePopularIds(locale, "airports")) {
+    const item = airportsCatalog.find((airport) => airport.id === id) ?? resolveAirportCatalogItem(id);
+    if (!item || picked.some((entry) => entry.id === item.id)) continue;
+    picked.push(item);
+    if (picked.length >= 6) return picked;
+  }
+  return getPopularNavItems(airportsCatalog, locale, "airports", 6);
+}
+
 /** Build header menus on the server so the client Header never imports catalogs. */
 export function buildHeaderNav(
   locale: string,
@@ -27,7 +40,7 @@ export function buildHeaderNav(
   openMenuLabel: string,
 ): HeaderNavData {
   const popularAirlines = getPopularNavItems(airlinesCatalog, locale, "airlines", 6);
-  const popularAirports = getPopularNavItems(airportsCatalog, locale, "airports", 6);
+  const popularAirports = popularAirportsForLocale(locale);
 
   const knowYourRightsNav: NavMenuGroup[] = [
     {

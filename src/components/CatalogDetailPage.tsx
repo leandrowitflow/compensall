@@ -88,6 +88,12 @@ export default async function CatalogDetailPage({ item, kind }: CatalogDetailPag
             <MarkdownDownloadButton tone="onLight" />
           </h1>
 
+          {locale === "pt-BR" ? (
+            <p className="mb-6 rounded-2xl bg-[#f4f7ff] px-5 py-4 text-sm leading-relaxed text-[#3d4a6b]">
+              {t("brazilNotice")}
+            </p>
+          ) : null}
+
           {entityContent ? (
             <div className="mb-10 xl:mb-14 space-y-8">
               <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">

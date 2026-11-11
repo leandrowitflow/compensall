@@ -332,6 +332,7 @@ function pickTranslation(
 const CMS_BLOG_CATEGORY_BY_LOCALE: Record<AppLocale, string> = {
   en: "Know your rights",
   pt: "Conheça os seus direitos",
+  "pt-BR": "Conheça seus direitos",
   fr: "Connaître vos droits",
   es: "Conoce tus derechos",
   ro: "Cunoaște-ți drepturile",

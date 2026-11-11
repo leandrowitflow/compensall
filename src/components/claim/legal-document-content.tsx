@@ -2,6 +2,7 @@ import type { ComponentType, ReactNode } from "react";
 import PowerOfAttorneyDocument from "@/components/claim/PowerOfAttorneyDocument";
 import LegalDocumentContent from "@/components/legal/LegalDocumentContent";
 import type { AppLocale } from "@/i18n/routing";
+import privacyConsentPtBr from "@/components/claim/privacy-consent-pt-br";
 import {
   BRAND_NAME,
   LEGAL_ENTITY_ADDRESS,

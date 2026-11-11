@@ -173,7 +173,7 @@ export function buildLlmsTxt(): string {
   return [
     "# Compensall",
     "",
-    "> Compensall helps air passengers claim compensation of up to €600 per person under EU regulation EC 261/2004 for delayed, cancelled, and disrupted flights. Localized site versions: English (en-GB), Portuguese (pt-PT), French (fr-FR), Spanish (es-ES), Romanian (ro-RO), Hungarian (hu-HU), Albanian (sq-AL), German (de-DE), and Dutch (nl-NL) at /en/, /pt/, /fr/, /es/, /ro/, /hu/, /sq/, /de/, and /nl/.",
+    "> Compensall helps air passengers with delayed, cancelled, and disrupted flights. Localized site versions: English (en-GB), Portuguese from Portugal (pt-PT), Brazilian Portuguese (pt-BR), French (fr-FR), Spanish (es-ES), Romanian (ro-RO), Hungarian (hu-HU), Albanian (sq-AL), German (de-DE), and Dutch (nl-NL) at /en/, /pt/, /pt-BR/, /fr/, /es/, /ro/, /hu/, /sq/, /de/, and /nl/. EU and UK departures can fall under EC 261/2004 or UK261, up to €600 per person. The Brazilian site follows ANAC Resolution 400/2016: material assistance, refund or rebooking, and DES compensation for denied boarding. It does not promise the European distance tariff.",
     "",
     sections,
     "",

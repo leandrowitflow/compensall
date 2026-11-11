@@ -463,6 +463,38 @@
     "pageIntro": "Todo lo que necesitas saber para reclamar con UK261 y el Reglamento CE 261/2004, nuestro servicio No win, no fee y cómo protegemos tus datos.",
     "default": [
       {
+        "question": "¿Quién es Compensall?",
+        "answer": "Compensall es una empresa con sede en Portugal que ayuda a los pasajeros a reclamar la compensación que las aerolíneas les deben según la ley de la UE. Somos independientes de las aerolíneas y trabajamos solo para los pasajeros."
+      },
+      {
+        "question": "¿Es seguro compartir mis datos y documentos?",
+        "answer": "Sí. Usamos tus datos y documentos solo para gestionar tu reclamación, y los tratamos conforme a las normas europeas de protección de datos (RGPD)."
+      },
+      {
+        "question": "¿Cuánto cuesta?",
+        "answer": "Nada por adelantado. Trabajamos con No win, no fee: si ganamos, nuestra comisión es del 30 % + IVA. Si no ganamos, no pagas nada."
+      },
+      {
+        "question": "¿Puedo reclamar por mi cuenta?",
+        "answer": "Sí, puedes contactar con la aerolínea directamente. Muchos pasajeros acuden a nosotros porque la aerolínea tarda demasiado, no responde o rechaza la reclamación. Nos encargamos de todo el proceso, desde el primer contacto hasta los pasos siguientes si hacen falta."
+      },
+      {
+        "question": "¿Mi vuelo tiene derecho a compensación?",
+        "answer": "Puedes tener derecho a compensación si el vuelo llegó con más de 3 horas de retraso, se canceló con poca antelación o te denegaron el embarque. Algunas situaciones fuera del control de la aerolínea, como un tiempo muy adverso, no dan derecho a compensación. Nuestra comprobación gratuita te lo dice en unos minutos."
+      },
+      {
+        "question": "¿Cuánto puedo recibir?",
+        "answer": "Entre 250 € y 600 € por pasajero, según la distancia del vuelo."
+      },
+      {
+        "question": "¿Por qué necesitáis mi firma y mis documentos?",
+        "answer": "Tu firma nos autoriza a tratar con la aerolínea en tu nombre. Documentos como la confirmación de la reserva y un documento de identidad demuestran que ibas en el vuelo."
+      },
+      {
+        "question": "¿Cuánto tarda?",
+        "answer": "Depende de la aerolínea. Algunas reclamaciones se resuelven en unas semanas y otras pueden tardar varios meses. Te mantenemos informado por email en cada paso."
+      },
+      {
         "question": "¿Es seguro subir mi tarjeta de embarque?",
         "answer": "Sí, por supuesto. Tu tarjeta de embarque se cifra y se guarda de forma segura. Solo usamos la información necesaria para tramitar tu reclamación y nunca la compartimos con terceros."
       },
@@ -485,10 +517,6 @@
       {
         "question": "¿Puedo hablar con una persona real?",
         "answer": "¡Sí! Nuestro equipo de atención humana está disponible para ayudarte durante todo el proceso. Puedes contactarnos por chat, email o teléfono."
-      },
-      {
-        "question": "¿Cuánto cuesta?",
-        "answer": "No hay coste inicial. Compensall trabaja con No win, no fee: solo cobramos una comisión si tu reclamación tiene éxito."
       },
       {
         "question": "¿Puedo eliminar mis datos?",

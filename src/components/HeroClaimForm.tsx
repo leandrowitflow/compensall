@@ -42,6 +42,7 @@ import {
 } from "@/lib/claim-upload-limits";
 import {
   EMPTY_FLIGHT,
+  isIneligibleForCompensation,
   normalizeFlightData,
   type ClaimEntryMode,
   type ClaimFlightData,
@@ -49,6 +50,7 @@ import {
   type ClaimStatus,
   type ClaimUploadMeta,
 } from "@/lib/claim-types";
+import { isBrazilianLocale } from "@/lib/public-copy";
 
 type ClaimStep = 1 | 2 | 3;
 
@@ -157,6 +159,7 @@ function validateStep2(
     reasonRequired: string;
     ineligible: string;
   },
+  locale?: string | null,
 ): Step2Issue | null {
   if (!flight.passenger.trim()) return { field: "passenger", message: messages.passengerRequired };
   if (!flight.flight.trim()) return { field: "flight", message: messages.flightRequired };
@@ -178,15 +181,14 @@ function validateStep2(
   }
 
   if (flight.status === "Unknown") return { field: "disruptionType", message: messages.typeRequired };
-  if (flight.status === "Delayed" && !flight.delayDuration) return { field: "delay", message: messages.delayRequired };
-  if (flight.status === "Cancelled" && !flight.cancellationNotice) {
-    return { field: "notice", message: messages.noticeRequired };
-  }
-  if (
-    (flight.status === "Delayed" && flight.delayDuration === "less_than_3") ||
-    (flight.status === "Cancelled" && flight.cancellationNotice === "14 days or more")
-  ) {
-    return { field: "ineligible", message: messages.ineligible };
+  if (!isBrazilianLocale(locale)) {
+    if (flight.status === "Delayed" && !flight.delayDuration) return { field: "delay", message: messages.delayRequired };
+    if (flight.status === "Cancelled" && !flight.cancellationNotice) {
+      return { field: "notice", message: messages.noticeRequired };
+    }
+    if (isIneligibleForCompensation(flight, locale)) {
+      return { field: "ineligible", message: messages.ineligible };
+    }
   }
   if (!flight.disruptionReason) return { field: "reason", message: messages.reasonRequired };
   return null;
@@ -477,7 +479,7 @@ export default function HeroClaimForm() {
       noticeRequired: tDisruption("errors.noticeRequired"),
       reasonRequired: tDisruption("errors.reasonRequired"),
       ineligible: tDisruption("ineligibleTitle"),
-    });
+    }, locale);
     if (error) {
       setStep2Error(error);
       return;

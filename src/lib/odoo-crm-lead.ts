@@ -10,6 +10,7 @@ import type {
   ClaimVerification,
 } from "@/lib/claim-types";
 import { estimateCompensationForFlight, euroAmountForDistanceBand } from "@/lib/compensation-estimate";
+import { isBrazilianLocale } from "@/lib/public-copy";
 import { lookupAirlineByCarrierCode } from "@/lib/lookup-airline";
 import { formatRouteLabel, lookupAirportByIata, normalizeIata } from "@/lib/lookup-airport";
 import { toDateInputValue } from "@/lib/resolve-boarding-pass-references";

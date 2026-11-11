@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import TrustpilotTrustBox from "@/components/TrustpilotTrustBox";
 import { isTrustpilotTrustBoxConfigured } from "@/lib/trustpilot";
 import CompensationCalculator from "@/components/CompensationCalculator";
+import BrazilianRightsPanel from "@/components/BrazilianRightsPanel";
 import Header from "@/components/Header";
 import HeroBackgroundImage from "@/components/HeroBackgroundImage";
 import HomeClaimFormSection from "@/components/HomeClaimFormSection";
@@ -201,6 +202,10 @@ export default async function HomePage({ params }: HomePageProps) {
             <span className="text-[#005ffe]">{t("compensation.titleAccent")}</span>
           </h2>
           <p className={`${HOME_INTRO} mb-6`}>{t("compensation.tableIntro")}</p>
+          {locale === "pt-BR" ? (
+            <BrazilianRightsPanel />
+          ) : (
+            <>
           <div className="text-left">
             <CompensationCalculator />
           </div>
@@ -237,6 +242,8 @@ export default async function HomePage({ params }: HomePageProps) {
               </Link>
             ))}
           </div>
+            </>
+          )}
         </div>
       </section>
 
@@ -285,7 +292,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       <div className="mt-12 xl:mt-16">
-        <FAQSection faqs={localizedFaqs.slice(0, 4)} compact moreHref="/faq" />
+        <FAQSection faqs={localizedFaqs.slice(0, 8)} compact moreHref="/faq" />
       </div>
       <Footer />
       <HomeFloatingClaimCta />

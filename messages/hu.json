@@ -463,6 +463,38 @@
     "pageIntro": "Minden, amit a UK261 és a 261/2004/EK szerinti igénylésről, a No win, no fee szolgáltatásunkról és az adatvédelemről tudnod kell.",
     "default": [
       {
+        "question": "Ki a Compensall?",
+        "answer": "A Compensall egy portugáliai székhelyű cég, amely segít az utasoknak behajtani a kártérítést, amellyel a légitársaságok az uniós jog szerint tartoznak. Függetlenek vagyunk a légitársaságoktól, és csak az utasoknak dolgozunk."
+      },
+      {
+        "question": "Biztonságos megosztani az adataimat és a dokumentumaimat?",
+        "answer": "Igen. Az adataidat és a dokumentumaidat csak a kárigény intézéséhez használjuk, az uniós adatvédelmi szabályok (GDPR) szerint."
+      },
+      {
+        "question": "Mennyibe kerül?",
+        "answer": "Semmi előre. No win, no fee alapon dolgozunk: ha nyerünk, a díjunk 30% + áfa. Ha nem nyerünk, nem fizetsz semmit."
+      },
+      {
+        "question": "Magam is igényelhetek?",
+        "answer": "Igen, közvetlenül is írhatsz a légitársaságnak. Sokan azért jönnek hozzánk, mert a társaság túl sokáig húzza, nem válaszol, vagy elutasítja az igényt. Az egész folyamatot intézzük helyetted, az első kapcsolattól a további lépésekig, ha azokra szükség van."
+      },
+      {
+        "question": "Jogosult a járatom?",
+        "answer": "Kártérítés járhat, ha a járat több mint 3 órát késett, rövid határidővel törölték, vagy megtagadták a beszállást. A légitársaság ellenőrzésén kívüli helyzetek, például a súlyos időjárás, nem adnak kártérítési jogot. Az ingyenes ellenőrzésünk néhány perc alatt megmondja."
+      },
+      {
+        "question": "Mennyit kaphatok?",
+        "answer": "Utasonként 250 és 600 euró között, a járat távolságától függően."
+      },
+      {
+        "question": "Miért kell az aláírásom és a dokumentumaim?",
+        "answer": "Az aláírásod felhatalmaz minket, hogy a nevedben eljárjunk a légitársaságnál. Az olyan dokumentumok, mint a foglalás visszaigazolása és a személyazonosító, igazolják, hogy a járaton voltál."
+      },
+      {
+        "question": "Mennyi időbe telik?",
+        "answer": "A légitársaságtól függ. Néhány igény néhány hét alatt rendeződik, mások több hónapig tarthatnak. Minden lépésnél e-mailben tájékoztatunk."
+      },
+      {
         "question": "Biztonságos feltölteni a beszállókártyámat?",
         "answer": "Igen, teljesen. A beszállókártyádat titkosítva, biztonságosan tároljuk. Csak a kárigényhez szükséges adatokat használjuk, és soha nem adjuk tovább harmadik félnek."
       },
@@ -485,10 +517,6 @@
       {
         "question": "Beszélhetek valódi emberrel?",
         "answer": "Igen! Az emberi ügyfélszolgálatunk a kárigény teljes ideje alatt elérhető. Chatben, e-mailben vagy telefonon is kereshetsz minket."
-      },
-      {
-        "question": "Mennyibe kerül?",
-        "answer": "Nincs előzetes költség. A Compensall No win, no fee alapon dolgozik: díjat csak akkor számítunk fel, ha a kárigényed sikeres."
       },
       {
         "question": "Törölhetem az adataimat?",
