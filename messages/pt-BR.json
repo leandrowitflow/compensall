@@ -121,7 +121,7 @@
       },
       "deniedBoarding": {
         "title": "Embarque recusado",
-        "description": "Na preterição, a indenização imediata é em DES.",
+        "description": "Na preterição, a indenização é paga na hora. Em média, o valor fica em R$ 9.000.",
         "iconAlt": "Embarque recusado"
       },
       "missedConnection": {
@@ -158,7 +158,7 @@
     "compensation": {
       "title": "O caso que",
       "titleAccent": "aceitamos",
-      "ukIntro": "A ANAC não usa uma tabela em libras. A indenização em DES vale na preterição, e não pela distância do voo.",
+      "ukIntro": "A ANAC não usa uma tabela em libras. A indenização que, em média, fica em R$ 9.000 vale na preterição, e não pela distância do voo.",
       "ecIntro": "A ANAC não usa a tabela europeia em euros. A assistência depende do tempo de espera no aeroporto.",
       "ukHeading": "Preterição de embarque",
       "ecHeading": "Assistência material",
@@ -213,12 +213,14 @@
         "body": "Por passageiro, pago na hora. Voo internacional é o que sai do Brasil ou chega de outro país."
       },
       "choice": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte.",
-      "desNote": "DES é o Direito Especial de Saque. O valor em reais muda todo dia e é o do Banco Central. A ANAC não usa a tabela europeia por distância.",
+      "desNote": "Em média, a indenização fica em R$ 9.000. A ANAC não usa a tabela europeia por distância.",
       "lead": {
         "when": "Mais de 4 horas",
         "title": "Este é o caso que aceitamos",
+        "amount": "R$ 9.000",
+        "amountLabel": "em média, por caso",
         "body": "O atraso passou de 4 horas. O pedido segue direto para tribunal. A empresa deve oferecer reacomodação, reembolso integral ou outro transporte.",
-        "note": "A alimentação a partir de 2 horas e a indenização da preterição ficam nas páginas de direitos. DES é o Direito Especial de Saque: o valor em reais muda todo dia e está no Banco Central."
+        "note": "A alimentação a partir de 2 horas e a preterição ficam nas páginas de direitos."
       }
     }
   },
@@ -385,7 +387,7 @@
       "label": "Direitos pela ANAC",
       "upTo": "Até {amount}",
       "detail": "Com base em {regulation} para uma rota de cerca de {distance}.",
-      "disclaimer": "A ANAC não paga um valor fixo por atraso de 3 horas. A assistência depende do tempo de espera. A indenização em DES vale na preterição."
+      "disclaimer": "A ANAC não paga um valor fixo por atraso de 3 horas. A assistência depende do tempo de espera. A indenização que, em média, fica em R$ 9.000 vale na preterição."
     },
     "step3": {
       "claimReady": "O seu pedido está pronto.",
@@ -491,13 +493,16 @@
     "anac": {
       "label": "Resolução ANAC nº 400",
       "noFixedAmount": "Sem tabela fixa por atraso",
-      "domestic": "Voo doméstico no Brasil. Na preterição, a empresa paga na hora 250 DES por passageiro, além da assistência e da escolha de reacomodação ou reembolso.",
-      "international": "Voo com origem ou destino no Brasil. Na preterição, a indenização imediata é de 500 DES por passageiro.",
+      "averageAmount": "R$ 9.000",
+      "averageLabel": "Em média, por caso",
+      "averageBody": "Aceitamos atrasos de mais de 4 horas. O pedido segue direto para tribunal.",
+      "domestic": "Voo doméstico no Brasil. Em média, a indenização fica em R$ 9.000.",
+      "international": "Voo com origem ou destino no Brasil. Em média, a indenização fica em R$ 9.000.",
       "outside": "Este trajeto não passa pelo Brasil. A Resolução ANAC nº 400 não é a regra deste voo. Vale a lei do país de partida.",
-      "unknown": "Na preterição, a ANAC prevê 250 DES no voo doméstico e 500 DES no internacional, por passageiro.",
+      "unknown": "Em média, a indenização fica em R$ 9.000.",
       "assistance": "No aeroporto, no Brasil: a partir de 2 horas, alimentação; a partir de 4 horas, hospedagem se houver pernoite, e transporte.",
       "choice": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte.",
-      "desNote": "DES é o Direito Especial de Saque. O valor em reais muda todo dia e está no Banco Central. A ANAC não usa a tabela europeia de 250, 400 ou 600 euros."
+      "desNote": "Em média, a indenização fica em R$ 9.000. A ANAC não usa a tabela europeia de 250, 400 ou 600 euros."
     }
   },
   "faq": {
@@ -529,7 +534,7 @@
       },
       {
         "question": "Quanto posso receber?",
-        "answer": "A ANAC não tem a tabela europeia por distância. No aeroporto, a alimentação começa com 2 horas de espera e a hospedagem, com transporte, a partir de 4 horas se houver pernoite. A Resolução nº 813/2026 retirou a comunicação a partir de 1 hora. Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte. Na preterição, a empresa paga na hora 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais segue o Banco Central."
+        "answer": "Em média, a indenização fica em R$ 9.000. A ANAC não usa a tabela europeia de 250, 400 ou 600 euros. Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte."
       },
       {
         "question": "Por que vocês precisam da minha assinatura e dos documentos?",
@@ -615,7 +620,7 @@
       "Do cartão de embarque ao acompanhamento com a empresa aérea",
       "Taxa previsível. Não somos um escritório de advocacia",
       "Seus dados protegidos, com LGPD e RGPD",
-      "Assistência material e, na preterição, indenização em DES",
+      "Assistência material e, na preterição, indenização que, em média, fica em R$ 9.000",
       "Feito para quem voa no Brasil"
     ],
     "valuesTitle": "O que defendemos",
@@ -641,7 +646,7 @@
     "lead": "Passei quase dez anos a conseguir que as companhias aéreas pagassem a passageiros que elas preferiam não pagar.",
     "intro": "A Francisca criou a Compensall para quem não consegue resposta da empresa aérea. No site em português do Brasil, o pedido segue a Resolução ANAC nº 400.",
     "decadeTitle": "Uma década do lado do passageiro",
-    "decadeBody": "No Brasil, a Resolução ANAC nº 400 organiza a assistência no aeroporto e a escolha entre reacomodação, reembolso integral ou outro transporte. Na preterição, a indenização é em DES. Não é uma tabela por distância. A resolução é de 2016.",
+    "decadeBody": "No Brasil, a Resolução ANAC nº 400 organiza a assistência no aeroporto e a escolha entre reacomodação, reembolso integral ou outro transporte. Em média, a indenização fica em R$ 9.000. Não é uma tabela por distância. A resolução é de 2016.",
     "quote": "Uma carta de recusa raramente é o fim de um pedido. Muitas vezes é um teste para ver se o passageiro insiste.",
     "decadeAfter": "No pedido, o que importa é o que aconteceu no aeroporto: o horário de espera, a assistência oferecida e se houve preterição.",
     "whyTitle": "Porque criei a Compensall",
@@ -660,11 +665,11 @@
       },
       {
         "title": "Preterição",
-        "body": "Se você tinha reserva, se apresentou e não embarcou, a indenização imediata é de 250 DES no doméstico ou 500 DES no internacional."
+        "body": "Se você tinha reserva, se apresentou e não embarcou, a indenização é paga na hora. Em média, o valor fica em R$ 9.000."
       },
       {
         "title": "Comprovantes",
-        "body": "Cartão de embarque, reserva e qualquer voucher. O valor em reais do DES muda todo dia no Banco Central."
+        "body": "Cartão de embarque, reserva e qualquer voucher."
       }
     ],
     "checksClose": "Criei o nosso próprio sistema de análise assistido por IA para fazer estas verificações de forma consistente. Uma pessoa continua a rever cada decisão que importa.",
@@ -685,7 +690,7 @@
     ],
     "scopeTitle": "O que a Compensall é, e o que não é",
     "scopeBody": "A Compensall é uma empresa de gestão de reclamações. Não somos um escritório de advogados. Quando uma companhia se recusa a pagar um pedido válido, escalamos pelos canais adequados: organismos de resolução alternativa de litígios, autoridades nacionais de fiscalização e, quando é necessário, parceiros jurídicos independentes.",
-    "cta": "Se o seu voo no Brasil atrasou, foi cancelado ou teve o embarque negado, a Resolução ANAC nº 400 pode garantir assistência e, na preterição, indenização em DES.",
+    "cta": "Se o seu voo no Brasil atrasou, foi cancelado ou teve o embarque negado, a Resolução ANAC nº 400 pode garantir assistência e, na preterição, indenização que, em média, fica em R$ 9.000.",
     "ctaButton": "Vamos descobrir",
     "writtenBy": "Escrito por",
     "shortBio": "Fundadora da Compensall. Ajuda passageiros a concluir pedidos de direitos de voo. No win, no fee.",
@@ -708,11 +713,11 @@
       },
       "deniedBoarding": {
         "title": "Embarque recusado",
-        "description": "Na preterição, a empresa paga uma indenização na hora. DES é o Direito Especial de Saque: 250 no voo doméstico ou 500 no internacional, em reais pela cotação do Banco Central."
+        "description": "Na preterição, a empresa paga uma indenização na hora. Em média, o valor fica em R$ 9.000."
       },
       "flightDelay": {
         "title": "Atraso de voo",
-        "description": "Mais de 4 horas: é este o caso que seguimos, direto para tribunal."
+        "description": "Mais de 4 horas: é este o caso que seguimos, direto para tribunal. Em média, a indenização fica em R$ 9.000."
       },
       "missedConnection": {
         "title": "Conexão perdida",
@@ -752,7 +757,7 @@
     "tier351to520": "o valor recuperado",
     "fee25Vat": "30% + IVA",
     "uk261Title": "Montantes de indenização (ANAC)",
-    "uk261Intro": "A indenização em DES na preterição não depende de uma tabela em libras.",
+    "uk261Intro": "A indenização que, em média, fica em R$ 9.000 na preterição não depende de uma tabela em libras.",
     "ec261Title": "Assistência e preterição",
     "anac": {
       "feeNote": "A taxa é de 30% mais impostos sobre qualquer valor efetivamente recuperado. Não há tabela de 250, 400 ou 600 euros.",
@@ -762,7 +767,7 @@
       "hour2": "A partir de 2 horas: alimentação.",
       "hour4": "A partir de 4 horas: hospedagem se houver pernoite, e transporte. Quem mora na cidade do aeroporto pode ir para casa em vez do hotel.",
       "deniedTitle": "Preterição de embarque",
-      "deniedBody": "Se a empresa não transportar quem se apresentou para o voo contratado, paga na hora 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais é a cotação do DES no Banco Central e muda todo dia.",
+      "deniedBody": "Se a empresa não transportar quem se apresentou para o voo contratado, paga uma indenização na hora. Em média, o valor fica em R$ 9.000.",
       "choice": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro meio de transporte. A indenização da preterição não substitui essa escolha."
     }
   },
@@ -785,14 +790,14 @@
     "rightsIntro": "A Compensall aceita o atraso de mais de 4 horas. Esse pedido segue direto para tribunal.",
     "uk261Card": {
       "title": "Atraso de mais de 4 horas",
-      "body": "É este o caso que aceitamos. Atrasos de menos de 4 horas não entram."
+      "body": "É este o caso que aceitamos. Em média, a indenização fica em R$ 9.000. Atrasos de menos de 4 horas não entram."
     },
     "ec261Card": {
       "title": "Direto para tribunal",
       "body": "O pedido segue direto para tribunal. A empresa deve oferecer reacomodação, reembolso integral ou outro transporte."
     },
     "rightsDetailP1": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte. Se a empresa já sabe que o atraso vai passar de 4 horas, as opções devem ser oferecidas na hora.",
-    "rightsDetailP2": "A indenização de 250 ou 500 DES na preterição é imediata e não substitui essa escolha. A Compensall organiza o pedido com a regra No win, no fee.",
+    "rightsDetailP2": "Em média, a indenização fica em R$ 9.000. A Compensall organiza o pedido com a regra No win, no fee.",
     "eligibilityHeading": "Quando pedir",
     "eligibilityAccent": "ajuda?",
     "eligibilityIntro": "O pedido faz sentido quando estas condições se encaixam na sua viagem.",
@@ -818,20 +823,20 @@
         "body": "No Brasil, registre o caso logo, enquanto o cartão de embarque e os comprovantes ainda estão fáceis de achar."
       }
     },
-    "ec261Note": "A ANAC não paga um valor por distância. A indenização fixa é a da preterição: 250 DES no doméstico e 500 DES no internacional.",
+    "ec261Note": "A ANAC não paga um valor por distância. Em média, a indenização fica em R$ 9.000.",
     "tiers": {
       "uk261": {
         "220": {
           "label": "Voo doméstico",
-          "desc": "250 DES por passageiro na preterição."
+          "desc": "Em média, R$ 9.000 por caso."
         },
         "350": {
           "label": "Voo doméstico",
-          "desc": "250 DES por passageiro na preterição."
+          "desc": "Em média, R$ 9.000 por caso."
         },
         "520": {
           "label": "Voo internacional",
-          "desc": "500 DES por passageiro na preterição."
+          "desc": "Em média, R$ 9.000 por caso."
         }
       },
       "ec261": {
@@ -873,7 +878,7 @@
     },
     "knowYourRights": {
       "title": "Conheça seus direitos no voo",
-      "description": "Alimentação a partir de 2 horas, hospedagem a partir de 4 horas se houver pernoite, e indenização em DES na preterição."
+      "description": "Alimentação a partir de 2 horas, hospedagem a partir de 4 horas se houver pernoite, e indenização que, em média, fica em R$ 9.000 na preterição."
     },
     "prices": {
       "title": "Preços, taxas e No win, no fee",
@@ -1020,7 +1025,7 @@
     "airportTitle": "Direitos do passageiro em {name}",
     "airlineMetaTitle": "Indenização de voo {name}",
     "airportMetaTitle": "Indenização de voo {name}",
-    "airlineIntroP1": "Se o voo {name} atrasou, foi cancelado ou você não embarcou, a regra depende de onde o voo saiu. No Brasil, vale a Resolução ANAC nº 400: assistência, reacomodação ou reembolso e, na preterição, indenização em DES.",
+    "airlineIntroP1": "Se o voo {name} atrasou mais de 4 horas, a Compensall aceita o caso e o pedido segue direto para tribunal. Em média, a indenização fica em R$ 9.000.",
     "airlineIntroP2": "A Compensall verifica a sua elegibilidade em minutos. Envie o cartão de embarque ou introduza os dados do voo — No win, no fee.",
     "airportIntroP1": "Se o problema foi em {name} ou o voo saiu do Brasil, a Resolução ANAC nº 400 pode garantir assistência, reembolso ou reacomodação. A tabela europeia por distância não é a regra brasileira.",
     "airportIntroP2": "A Compensall ajuda-o a verificar o seu pedido em minutos. Comece com o cartão de embarque ou os dados do voo — No win, no fee.",
@@ -1033,7 +1038,7 @@
     "faqDelayQuestion": "Tenho direito a indenização se {entity} atrasou ou foi cancelado?",
     "faqDelayAnswer": "Pode haver alimentação a partir de 2 horas de espera e hospedagem a partir de 4 horas, se houver pernoite. Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte.",
     "faqAmountQuestion": "Quanto posso reclamar?",
-    "faqAmountAnswer": "A ANAC não usa 250, 400 ou 600 euros por distância. Na preterição, são 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais muda todo dia, conforme o Banco Central.",
+    "faqAmountAnswer": "Em média, a indenização fica em R$ 9.000. A ANAC não usa 250, 400 ou 600 euros por distância.",
     "faqRejectedAirlineQuestion": "E se a {name} já rejeitou o meu pedido?",
     "faqRejectedAirportQuestion": "E se a companhia já rejeitou o meu pedido?",
     "faqRejectedAnswer": "Uma rejeição não significa sempre que não tem direitos. Analisamos o seu caso e podemos avançar com pedidos válidos. No win, no fee.",
@@ -1048,7 +1053,7 @@
     "notFoundAirline": "Companhia não encontrada | Compensall",
     "notFoundAirport": "Aeroporto não encontrado | Compensall",
     "brazilNotice": "Neste site em português do Brasil, um voo no Brasil segue a Resolução ANAC nº 400. O texto sobre a companhia ou o aeroporto pode descrever a regra europeia ou britânica quando o voo sai de lá.",
-    "brazilRights": "No Brasil, a Resolução ANAC nº 400, alterada pela Resolução nº 813/2026, garante alimentação a partir de 2 horas e hospedagem a partir de 4 horas, se houver pernoite, com transporte. A comunicação a partir de 1 hora deixou de ser devida. Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte. Na preterição, a empresa paga na hora 250 DES no voo doméstico ou 500 DES no internacional, por passageiro.",
+    "brazilRights": "No Brasil, a Compensall aceita o atraso de mais de 4 horas e o pedido segue direto para tribunal. Em média, a indenização fica em R$ 9.000. A Resolução ANAC nº 400, alterada pela Resolução nº 813/2026, também prevê alimentação a partir de 2 horas e hospedagem a partir de 4 horas, se houver pernoite.",
     "brazilTips": "Guarde o cartão de embarque, o comprovante da reserva e anote o horário em que você chegou ao aeroporto. Se a empresa oferecer voucher, confirme se isso é assistência ou a indenização da preterição. Quanto antes o pedido for feito, mais fácil reunir essas provas."
   },
   "notFoundPage": {
@@ -1072,7 +1077,7 @@
     "readArticle": "Ler atualização",
     "backToList": "Voltar aos problemas com voos",
     "empty": "Não há problemas com voos listados neste momento. Volte a verificar após a próxima atualização diária.",
-    "brazilNotice": "Estas atualizações podem ser sobre aeroportos fora do Brasil. Para um voo no Brasil, a alimentação começa com 2 horas de espera e a hospedagem, com transporte, a partir de 4 horas se houver pernoite. A indenização em DES vale na preterição de embarque, não na tabela europeia de 250, 400 ou 600 euros."
+    "brazilNotice": "Estas atualizações podem ser sobre aeroportos fora do Brasil. Para um voo no Brasil, a alimentação começa com 2 horas de espera e a hospedagem, com transporte, a partir de 4 horas se houver pernoite. Em média, a indenização fica em R$ 9.000, e não na tabela europeia de 250, 400 ou 600 euros."
   },
   "thankYouPage": {
     "title": "Obrigado",
@@ -1092,7 +1097,7 @@
   },
   "calculator": {
     "title": "Direitos no Brasil",
-    "subtitle": "A ANAC não calcula um valor por quilômetro. A assistência depende das horas de espera e a indenização em DES vale na preterição.",
+    "subtitle": "A ANAC não calcula um valor por quilômetro. A assistência depende das horas de espera e a indenização que, em média, fica em R$ 9.000 vale na preterição.",
     "from": "De",
     "to": "Para",
     "departure": "Aeroporto de partida",

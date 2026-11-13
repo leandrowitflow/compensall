@@ -48,8 +48,7 @@ export default function CompensationEstimateBanner({
 
   if (isBrazilianLocale(locale)) {
     const scope = brazilRouteScope(routeFrom, routeTo);
-    const headline =
-      scope === "domestic" ? "250 DES" : scope === "international" ? "500 DES" : tClaim("anac.noFixedAmount");
+    const outsideBrazil = scope === "outside";
     return (
       <div
         className={`rounded-[14px] border bg-[#f5f8ff] px-4 py-4 ${
@@ -57,14 +56,15 @@ export default function CompensationEstimateBanner({
         } ${className}`.trim()}
         role="status"
       >
-        <p className="text-xs font-bold uppercase tracking-wide text-[#2669f3] mb-1">{tClaim("anac.label")}</p>
-        <p className={`font-bold text-[#1f3664] leading-tight mb-2 ${prominent ? "text-3xl sm:text-4xl" : "text-2xl sm:text-[28px]"}`}>
-          {headline}
+        <p className="text-xs font-bold uppercase tracking-wide text-[#2669f3] mb-1">
+          {outsideBrazil ? tClaim("anac.label") : tClaim("anac.averageLabel")}
         </p>
-        <p className="text-[#5a6d8f] text-sm leading-relaxed">{tClaim(`anac.${scope}`)}</p>
-        <p className="text-[#5a6d8f] text-sm leading-relaxed mt-2">{tClaim("anac.assistance")}</p>
-        <p className="text-[#5a6d8f] text-sm leading-relaxed mt-2">{tClaim("anac.choice")}</p>
-        <p className="text-[#7b8094] text-xs leading-relaxed mt-2">{tClaim("anac.desNote")}</p>
+        <p className={`font-bold text-[#1f3664] leading-tight mb-2 ${prominent ? "text-3xl sm:text-4xl" : "text-2xl sm:text-[28px]"}`}>
+          {outsideBrazil ? tClaim("anac.noFixedAmount") : tClaim("anac.averageAmount")}
+        </p>
+        <p className="text-[#5a6d8f] text-sm leading-relaxed">
+          {outsideBrazil ? tClaim("anac.outside") : tClaim("anac.averageBody")}
+        </p>
       </div>
     );
   }
