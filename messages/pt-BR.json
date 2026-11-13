@@ -80,14 +80,14 @@
   },
   "home": {
     "metadata": {
-      "title": "Voo atrasado ou cancelado? A ANAC garante seus direitos",
-      "description": "No Brasil, a Resolução ANAC nº 400 define assistência material, reembolso, reacomodação e, na preterição, indenização em DES. No win, no fee."
+      "title": "Voo atrasado mais de 4 horas? A Compensall segue o pedido para tribunal",
+      "description": "A Compensall aceita atrasos de mais de 4 horas no Brasil. Esse pedido segue direto para tribunal. No win, no fee."
     },
     "hero": {
       "trustpilotAlt": "Excelente Trustpilot 4,8 em 5",
-      "title": "Voo atrasado, cancelado ou com embarque negado?",
-      "titleLine2": "A ANAC garante seus direitos",
-      "subtitle": "No Brasil, a Resolução ANAC nº 400 define assistência no aeroporto, reembolso ou reacomodação e, na preterição, indenização em DES.",
+      "title": "Seu voo atrasou mais de 4 horas?",
+      "titleLine2": "Seguimos o pedido para tribunal",
+      "subtitle": "A Compensall aceita este caso. Atrasos de menos de 4 horas não entram.",
       "fastRiskFree": "Rápido e sem risco",
       "noHiddenFees": "Sem taxas ocultas",
       "talkToUs": "Fale conosco",
@@ -156,14 +156,14 @@
       }
     },
     "compensation": {
-      "title": "O que a ANAC",
-      "titleAccent": "garante?",
+      "title": "O caso que",
+      "titleAccent": "aceitamos",
       "ukIntro": "A ANAC não usa uma tabela em libras. A indenização em DES vale na preterição, e não pela distância do voo.",
       "ecIntro": "A ANAC não usa a tabela europeia em euros. A assistência depende do tempo de espera no aeroporto.",
       "ukHeading": "Preterição de embarque",
       "ecHeading": "Assistência material",
       "tierAlt": "Escalão de indenização de {amount}",
-      "tableIntro": "Não existe uma tabela por distância. A assistência depende do tempo de espera. A indenização em DES vale na preterição de embarque.",
+      "tableIntro": "A Compensall aceita o atraso de mais de 4 horas. Esse pedido segue direto para tribunal.",
       "tableDistance": "Distância do voo",
       "tableUk": "Reino Unido",
       "tableEu": "UE",
@@ -179,12 +179,12 @@
           "body": "O problema aconteceu em aeroporto no Brasil, ou o voo sai do Brasil."
         },
         "disruption": {
-          "title": "Atraso, cancelamento ou preterição",
-          "body": "A empresa atrasou, cancelou, interrompeu o voo ou negou o embarque."
+          "title": "Atraso de mais de 4 horas",
+          "body": "É este o caso que a Compensall aceita. O pedido segue direto para tribunal."
         },
         "airline": {
-          "title": "Você estava no aeroporto",
-          "body": "A assistência material vale para o passageiro que está no aeroporto, no Brasil."
+          "title": "Direto para tribunal",
+          "body": "Esse atraso não fica na assistência do aeroporto. O pedido segue direto para tribunal."
         }
       }
     },
@@ -213,7 +213,13 @@
         "body": "Por passageiro, pago na hora. Voo internacional é o que sai do Brasil ou chega de outro país."
       },
       "choice": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte.",
-      "desNote": "DES é o Direito Especial de Saque. O valor em reais muda todo dia e é o do Banco Central. A ANAC não usa a tabela europeia por distância."
+      "desNote": "DES é o Direito Especial de Saque. O valor em reais muda todo dia e é o do Banco Central. A ANAC não usa a tabela europeia por distância.",
+      "lead": {
+        "when": "Mais de 4 horas",
+        "title": "Este é o caso que aceitamos",
+        "body": "O atraso passou de 4 horas. O pedido segue direto para tribunal. A empresa deve oferecer reacomodação, reembolso integral ou outro transporte.",
+        "note": "A alimentação a partir de 2 horas e a indenização da preterição ficam nas páginas de direitos. DES é o Direito Especial de Saque: o valor em reais muda todo dia e está no Banco Central."
+      }
     }
   },
   "claim": {
@@ -231,7 +237,7 @@
       "expired": "Este link expirou ou já foi usado. Pode começar um pedido novo abaixo."
     },
     "step1": {
-      "rightsContext": "Atraso, cancelamento ou negativa de embarque podem dar assistência e, na preterição, indenização. No win, no fee.",
+      "rightsContext": "Aceitamos atrasos de mais de 4 horas. O pedido segue direto para tribunal. No win, no fee.",
       "readingBoardingPass": "A ler o seu cartão de embarque…",
       "extractingDetails": "{assistantName} está extraindo os dados do seu voo",
       "uploadTitle": "Envie seu cartão de embarque",
@@ -373,7 +379,7 @@
         "noticeRequired": "Selecione quando foi informado do cancelamento.",
         "reasonRequired": "Selecione o motivo."
       },
-      "anacNote": "Pela Resolução ANAC nº 400, alterada pela Resolução nº 813/2026, a alimentação começa com 2 horas de espera. Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte. Na preterição, há indenização imediata em DES."
+      "anacNote": "A Compensall aceita o atraso de mais de 4 horas. Esse pedido segue direto para tribunal. Atrasos de menos de 4 horas não entram."
     },
     "compensationEstimate": {
       "label": "Direitos pela ANAC",
@@ -689,7 +695,7 @@
   },
   "knowYourRights": {
     "heroTitle": "Conheça seus direitos",
-    "heroSubtitle": "Entenda a Resolução ANAC nº 400: assistência no aeroporto, reembolso ou reacomodação e indenização em DES na preterição.",
+    "heroSubtitle": "O caso que a Compensall aceita é o atraso de mais de 4 horas. Esse pedido segue direto para tribunal.",
     "whatHappenedTitle": "O que aconteceu no seu",
     "whatHappenedAccent": "voo?",
     "howItWorksTitle": "Como",
@@ -702,11 +708,11 @@
       },
       "deniedBoarding": {
         "title": "Embarque recusado",
-        "description": "Na preterição, a empresa paga na hora 250 DES no voo doméstico ou 500 DES no internacional, por passageiro."
+        "description": "Na preterição, a empresa paga uma indenização na hora. DES é o Direito Especial de Saque: 250 no voo doméstico ou 500 no internacional, em reais pela cotação do Banco Central."
       },
       "flightDelay": {
         "title": "Atraso de voo",
-        "description": "A alimentação começa com 2 horas de espera. Com mais de 4 horas, você escolhe reacomodação, reembolso ou outro transporte."
+        "description": "Mais de 4 horas: é este o caso que seguimos, direto para tribunal."
       },
       "missedConnection": {
         "title": "Conexão perdida",
@@ -776,14 +782,14 @@
   "passengerRights": {
     "rightsHeading": "Seus direitos pela",
     "rightsAccent": "Resolução ANAC nº 400",
-    "rightsIntro": "Quem está em aeroporto no Brasil tem assistência quando o voo atrasa, é cancelado, é interrompido ou há preterição.",
+    "rightsIntro": "A Compensall aceita o atraso de mais de 4 horas. Esse pedido segue direto para tribunal.",
     "uk261Card": {
-      "title": "Preterição de embarque",
-      "body": "250 DES no voo doméstico ou 500 DES no internacional, por passageiro, pagos na hora."
+      "title": "Atraso de mais de 4 horas",
+      "body": "É este o caso que aceitamos. Atrasos de menos de 4 horas não entram."
     },
     "ec261Card": {
-      "title": "Assistência material",
-      "body": "Alimentação a partir de 2 horas e hospedagem a partir de 4 horas, se houver pernoite, com transporte."
+      "title": "Direto para tribunal",
+      "body": "O pedido segue direto para tribunal. A empresa deve oferecer reacomodação, reembolso integral ou outro transporte."
     },
     "rightsDetailP1": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte. Se a empresa já sabe que o atraso vai passar de 4 horas, as opções devem ser oferecidas na hora.",
     "rightsDetailP2": "A indenização de 250 ou 500 DES na preterição é imediata e não substitui essa escolha. A Compensall organiza o pedido com a regra No win, no fee.",
@@ -796,12 +802,12 @@
         "body": "O problema foi em aeroporto brasileiro ou o voo está coberto pela Resolução ANAC nº 400."
       },
       "significantDisruption": {
-        "title": "Atraso, cancelamento ou preterição",
-        "body": "A empresa atrasou, cancelou, interrompeu o serviço ou não embarcou você."
+        "title": "Mais de 4 horas",
+        "body": "O atraso passou de 4 horas. É este o pedido que a Compensall aceita."
       },
       "airlineResponsibility": {
-        "title": "Assistência no aeroporto",
-        "body": "A assistência material é para o passageiro que está no aeroporto, no Brasil, inclusive com a porta da aeronave aberta."
+        "title": "Pedido para tribunal",
+        "body": "O atraso de mais de 4 horas não fica na assistência do aeroporto. Seguimos o pedido direto para tribunal."
       },
       "validBooking": {
         "title": "Você se apresentou",
@@ -850,8 +856,8 @@
       "description": "Atraso, cancelamento ou negativa de embarque: assistência, reembolso ou reacomodação pela Resolução ANAC nº 400. No win, no fee."
     },
     "home": {
-      "title": "Voo atrasado ou cancelado? A ANAC garante seus direitos",
-      "description": "No Brasil, a Resolução ANAC nº 400 define assistência material, reembolso, reacomodação e, na preterição, indenização em DES. No win, no fee."
+      "title": "Voo atrasado mais de 4 horas? A Compensall segue o pedido para tribunal",
+      "description": "A Compensall aceita atrasos de mais de 4 horas no Brasil. Esse pedido segue direto para tribunal. No win, no fee."
     },
     "faq": {
       "title": "Perguntas frequentes sobre indenização de voo",
