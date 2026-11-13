@@ -244,7 +244,7 @@ function compensationEstimateCard(flight: ClaimFlightData, locale?: string | nul
             Assistência, reembolso ou reacomodação
           </div>
           <div style="font-size:14px;line-height:1.5;color:${BRAND.muted};">
-            Na preterição, a compensação imediata é de 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais segue a cotação do DES no Banco Central.
+            Na preterição, a indenização imediata é de 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais segue a cotação do DES no Banco Central.
           </div>
         </td>
       </tr>

@@ -10,11 +10,11 @@
     "closeMenu": "Fechar menu",
     "language": "Idioma",
     "selectLanguage": "Selecionar idioma",
-    "learnMore": "Saber mais",
+    "learnMore": "Saiba mais",
     "checkClaims": "Verificar pedidos",
     "startYourClaim": "Iniciar o seu pedido",
     "checkCompensation": "Ver meus direitos",
-    "checkCompensationShort": "Reclamar",
+    "checkCompensationShort": "Verificar indenização",
     "home": "Início",
     "legal": "Legal",
     "airport": "Aeroporto",
@@ -32,8 +32,8 @@
     "airlinesAndAirports": "Companhias aéreas e aeroportos",
     "aboutUs": "Sobre nós",
     "blog": "Blog",
-    "disruptions": "Perturbações de voos",
-    "disruptionsShort": "Perturbações",
+    "disruptions": "Problemas com voos",
+    "disruptionsShort": "Problemas",
     "faq": "FAQ",
     "talkToUs": "Fale conosco",
     "talkToUsShort": "Contato",
@@ -44,7 +44,7 @@
       "flightCancellation": "Cancelamento de voo",
       "flightDelay": "Atraso de voo",
       "deniedBoarding": "Embarque recusado",
-      "missedConnection": "Ligação perdida",
+      "missedConnection": "Conexão perdida",
       "overbooking": "Overbooking",
       "airlineStrike": "Greve da companhia aérea",
       "passengerRights": "Direitos dos passageiros",
@@ -81,13 +81,13 @@
   "home": {
     "metadata": {
       "title": "Voo atrasado ou cancelado? A ANAC garante seus direitos",
-      "description": "No Brasil, a Resolução ANAC nº 400 define assistência material, reembolso, reacomodação e, na preterição, compensação em DES. No win, no fee."
+      "description": "No Brasil, a Resolução ANAC nº 400 define assistência material, reembolso, reacomodação e, na preterição, indenização em DES. No win, no fee."
     },
     "hero": {
       "trustpilotAlt": "Excelente Trustpilot 4,8 em 5",
       "title": "Voo atrasado, cancelado ou com embarque negado?",
       "titleLine2": "A ANAC garante seus direitos",
-      "subtitle": "No Brasil, a Resolução ANAC nº 400 define assistência no aeroporto, reembolso ou reacomodação e, na preterição, compensação em DES.",
+      "subtitle": "No Brasil, a Resolução ANAC nº 400 define assistência no aeroporto, reembolso ou reacomodação e, na preterição, indenização em DES.",
       "fastRiskFree": "Rápido e sem risco",
       "noHiddenFees": "Sem taxas ocultas",
       "talkToUs": "Fale conosco",
@@ -100,8 +100,8 @@
       "onlyIfSuccessful": "Só paga se ganharmos",
       "gdprFirst": "Seus dados protegidos",
       "privacyByDesign": "LGPD e RGPD",
-      "deleteYourData": "Elimine os seus dados",
-      "fullControl": "Controlo total",
+      "deleteYourData": "Apague seus dados",
+      "fullControl": "Controle total",
       "humanSupport": "Apoio humano",
       "realPeopleHelp": "Pessoas reais, ajuda real"
     },
@@ -111,7 +111,7 @@
       "subtitle": "Ajudamos você com atraso, cancelamento, preterição e perda de conexão.",
       "flightDelay": {
         "title": "Atraso de voo",
-        "description": "A assistência começa com 1 hora de espera.",
+        "description": "A alimentação começa com 2 horas de espera.",
         "iconAlt": "Ícone de atraso de voo"
       },
       "flightCancellation": {
@@ -121,13 +121,13 @@
       },
       "deniedBoarding": {
         "title": "Embarque recusado",
-        "description": "Na preterição, a compensação imediata é em DES.",
+        "description": "Na preterição, a indenização imediata é em DES.",
         "iconAlt": "Embarque recusado"
       },
       "missedConnection": {
-        "title": "Ligação perdida",
-        "description": "Perdeu a ligação por causa de um atraso.",
-        "iconAlt": "Ligação perdida"
+        "title": "Conexão perdida",
+        "description": "Perdeu a conexão por causa de um atraso.",
+        "iconAlt": "Conexão perdida"
       },
       "airlineStrike": {
         "title": "Greve da companhia aérea",
@@ -138,11 +138,11 @@
     "howItWorks": {
       "title": "Como",
       "titleAccent": "funciona?",
-      "schemaName": "Como reclamar compensação de voo com a Compensall",
-      "subtitle": "Carregue o seu cartão de embarque. O nosso assistente verifica o seu pedido. A nossa equipe trata da companhia aérea.",
+      "schemaName": "Como reclamar indenização de voo com a Compensall",
+      "subtitle": "Envie seu cartão de embarque. O nosso assistente verifica o seu pedido. Cuidamos de tudo com a companhia aérea.",
       "steps": {
         "upload": {
-          "title": "Carregue o seu cartão de embarque",
+          "title": "Envie seu cartão de embarque",
           "description": "Adicione o seu cartão de embarque em segundos."
         },
         "assistant": {
@@ -150,24 +150,24 @@
           "description": "O nosso assistente verifica a sua elegibilidade."
         },
         "airline": {
-          "title": "Tratamos da companhia aérea",
-          "description": "Lutamos pela sua compensação."
+          "title": "Cuidamos de tudo com a companhia aérea",
+          "description": "Lutamos pela sua indenização."
         }
       }
     },
     "compensation": {
       "title": "O que a ANAC",
       "titleAccent": "garante?",
-      "ukIntro": "A ANAC não usa uma tabela em libras. A compensação em DES vale na preterição, e não pela distância do voo.",
+      "ukIntro": "A ANAC não usa uma tabela em libras. A indenização em DES vale na preterição, e não pela distância do voo.",
       "ecIntro": "A ANAC não usa a tabela europeia em euros. A assistência depende do tempo de espera no aeroporto.",
       "ukHeading": "Preterição de embarque",
       "ecHeading": "Assistência material",
-      "tierAlt": "Escalão de compensação de {amount}",
-      "tableIntro": "Não existe uma tabela por distância. A assistência depende do tempo de espera. A compensação em DES vale na preterição de embarque.",
+      "tierAlt": "Escalão de indenização de {amount}",
+      "tableIntro": "Não existe uma tabela por distância. A assistência depende do tempo de espera. A indenização em DES vale na preterição de embarque.",
       "tableDistance": "Distância do voo",
       "tableUk": "Reino Unido",
       "tableEu": "UE",
-      "tableAmount": "Compensação"
+      "tableAmount": "Indenização"
     },
     "entitled": {
       "title": "Você tem direito",
@@ -190,9 +190,9 @@
     },
     "anac": {
       "communication": {
-        "when": "A partir de 1 hora",
+        "when": "Não se aplica",
         "title": "Comunicação",
-        "body": "A empresa precisa facilitar telefone, internet ou outro meio de comunicação."
+        "body": "A Resolução ANAC nº 813/2026 retirou a assistência de comunicação a partir de 1 hora."
       },
       "food": {
         "when": "A partir de 2 horas",
@@ -221,7 +221,7 @@
       "upload": "Carregar",
       "assistantCheck": "Verificação do assistente",
       "assistantCheckShort": "Verificação",
-      "signSubmit": "Assinar e submeter",
+      "signSubmit": "Assinar e enviar",
       "finishThisStep": "Conclua este passo antes de avançar."
     },
     "resume": {
@@ -231,10 +231,10 @@
       "expired": "Este link expirou ou já foi usado. Pode começar um pedido novo abaixo."
     },
     "step1": {
-      "rightsContext": "Atraso, cancelamento ou negativa de embarque podem dar assistência e, na preterição, compensação. No win, no fee.",
+      "rightsContext": "Atraso, cancelamento ou negativa de embarque podem dar assistência e, na preterição, indenização. No win, no fee.",
       "readingBoardingPass": "A ler o seu cartão de embarque…",
       "extractingDetails": "{assistantName} está extraindo os dados do seu voo",
-      "uploadTitle": "Carregue o seu cartão de embarque",
+      "uploadTitle": "Envie seu cartão de embarque",
       "uploadOptional": "Opcional.",
       "uploadHint": "Arraste e largue ou clique para carregar (PDF, JPG, PNG)",
       "orCheckManually": "Sem cartão de embarque?",
@@ -270,7 +270,7 @@
         "extractFailed": "Não foi possível ler todos os detalhes automaticamente. Preencha os dados do seu voo abaixo.",
         "extractPartial": "Não conseguimos ler a rota ou a data neste cartão de embarque. Preencha esses dados abaixo.",
         "somethingWentWrong": "Algo deu errado. Preencha os dados do seu voo abaixo.",
-        "unsupportedType": "Tipo de arquivo não suportado. Carregue um cartão de embarque em PDF, JPG, PNG, WebP ou HEIC.",
+        "unsupportedType": "Tipo de arquivo não suportado. Envie um cartão de embarque em PDF, JPG, PNG, WebP ou HEIC.",
         "tooLarge": "Este arquivo é demais grande para enviar. Use uma foto ou um PDF até 4 MB."
       },
       "deniedBoarding": "Negativa de embarque",
@@ -340,7 +340,7 @@
     },
     "disruption": {
       "title": "O que aconteceu",
-      "subtitle": "Conte o que aconteceu. No Brasil, a assistência começa com 1 hora de espera.",
+      "subtitle": "Conte o que aconteceu. No Brasil, a alimentação começa com 2 horas de espera.",
       "type": "Tipo de problema",
       "typePlaceholder": "Selecione o que aconteceu",
       "selectPlaceholder": "Selecione uma opção",
@@ -350,7 +350,7 @@
       "cancellationNotice": "Com quantos dias de antecedência foi informado do cancelamento?",
       "notice14OrMore": "14 dias ou mais",
       "noticeLessThan14": "Menos de 14 dias",
-      "ineligibleTitle": "Lamentamos informar que não tem direito a compensação.",
+      "ineligibleTitle": "Lamentamos informar que não tem direito a indenização.",
       "ineligibleBody": "A Resolução ANAC nº 400 não usa o corte europeu de 3 horas nem o aviso de 14 dias. Se você estava no aeroporto, ainda pode haver assistência.",
       "ineligibleContact": "Fale conosco se o problema for outro.",
       "reason": "Motivo",
@@ -373,13 +373,13 @@
         "noticeRequired": "Selecione quando foi informado do cancelamento.",
         "reasonRequired": "Selecione o motivo."
       },
-      "anacNote": "Pela Resolução ANAC nº 400, a assistência começa com 1 hora. Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte. Na preterição, há compensação imediata em DES."
+      "anacNote": "Pela Resolução ANAC nº 400, alterada pela Resolução nº 813/2026, a alimentação começa com 2 horas de espera. Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte. Na preterição, há indenização imediata em DES."
     },
     "compensationEstimate": {
       "label": "Direitos pela ANAC",
       "upTo": "Até {amount}",
       "detail": "Com base em {regulation} para uma rota de cerca de {distance}.",
-      "disclaimer": "A ANAC não paga um valor fixo por atraso de 3 horas. A assistência depende do tempo de espera. A compensação em DES vale na preterição."
+      "disclaimer": "A ANAC não paga um valor fixo por atraso de 3 horas. A assistência depende do tempo de espera. A indenização em DES vale na preterição."
     },
     "step3": {
       "claimReady": "O seu pedido está pronto.",
@@ -443,7 +443,7 @@
       "signAndContinue": "Assinar e continuar",
       "signAndReview": "Assinar e rever",
       "reSign": "Voltar a assinar",
-      "submitting": "A submeter…",
+      "submitting": "Enviando…",
       "submitClaim": "Submeter pedido",
       "claimSubmitted": "Pedido submetido",
       "thankYou": "Obrigado, {name}. Recebemos a sua Procuração assinada e vamos começar a trabalhar no seu pedido para o voo {flight}.",
@@ -465,12 +465,12 @@
         "signatureRequired": "Desenhe a sua assinatura para confirmar que leu e concorda com este documento.",
         "signFailed": "Não foi possível registrar a sua assinatura. Tente novamente.",
         "signConnectionError": "Não foi possível registrar a sua assinatura. Verifique a sua ligação e tente novamente.",
-        "signBeforeSubmit": "Assine a Procuração de todos os passageiros antes de submeter.",
-        "submitFailed": "Não foi possível submeter o seu pedido.",
+        "signBeforeSubmit": "Assine a Procuração de todos os passageiros antes de enviar.",
+        "submitFailed": "Não foi possível enviar o seu pedido.",
         "fileTooLarge": "{name} é demais grande ({size}). Substitua por uma foto ou um PDF até 4 MB.",
         "unsupportedFile": "{name} não é um arquivo aceite. Use um PDF, JPG ou PNG.",
         "payloadTooLarge": "Estes arquivos juntos são demais grandes para enviar ({size}). Retire ou substitua os maiores para o total ficar abaixo de 4 MB: {names}.",
-        "duplicateClaim": "Já temos um pedido com este nome, email, número de voo e data. Não é preciso submeter outra vez.",
+        "duplicateClaim": "Já temos um pedido com este nome, email, número de voo e data. Não é preciso enviar outra vez.",
         "sessionExpired": "A sessão do pedido expirou. Comece de novo."
       }
     },
@@ -486,10 +486,10 @@
       "label": "Resolução ANAC nº 400",
       "noFixedAmount": "Sem tabela fixa por atraso",
       "domestic": "Voo doméstico no Brasil. Na preterição, a empresa paga na hora 250 DES por passageiro, além da assistência e da escolha de reacomodação ou reembolso.",
-      "international": "Voo com origem ou destino no Brasil. Na preterição, a compensação imediata é de 500 DES por passageiro.",
+      "international": "Voo com origem ou destino no Brasil. Na preterição, a indenização imediata é de 500 DES por passageiro.",
       "outside": "Este trajeto não passa pelo Brasil. A Resolução ANAC nº 400 não é a regra deste voo. Vale a lei do país de partida.",
       "unknown": "Na preterição, a ANAC prevê 250 DES no voo doméstico e 500 DES no internacional, por passageiro.",
-      "assistance": "No aeroporto, no Brasil: a partir de 1 hora, comunicação; a partir de 2 horas, alimentação; a partir de 4 horas, hospedagem se houver pernoite, e transporte.",
+      "assistance": "No aeroporto, no Brasil: a partir de 2 horas, alimentação; a partir de 4 horas, hospedagem se houver pernoite, e transporte.",
       "choice": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte.",
       "desNote": "DES é o Direito Especial de Saque. O valor em reais muda todo dia e está no Banco Central. A ANAC não usa a tabela europeia de 250, 400 ou 600 euros."
     }
@@ -497,7 +497,7 @@
   "faq": {
     "sectionTitle": "Perguntas",
     "sectionTitleAccent": "frequentes",
-    "pageTitle": "Compensação de voo",
+    "pageTitle": "Indenização de voo",
     "pageTitleAccent": "FAQ",
     "pageIntro": "O que a Resolução ANAC nº 400 garante no Brasil, como funciona o No win, no fee e como protegemos seus dados.",
     "default": [
@@ -519,11 +519,11 @@
       },
       {
         "question": "Meu voo tem direito?",
-        "answer": "No Brasil, a Resolução ANAC nº 400 prevê assistência e, em alguns casos, compensação por atraso, cancelamento ou preterição. A verificação gratuita diz em poucos minutos se o seu caso segue."
+        "answer": "No Brasil, a Resolução ANAC nº 400 prevê assistência e, em alguns casos, indenização por atraso, cancelamento ou preterição. A verificação gratuita diz em poucos minutos se o seu caso segue."
       },
       {
         "question": "Quanto posso receber?",
-        "answer": "A ANAC não tem a tabela europeia por distância. No aeroporto, a assistência começa em 1 hora (comunicação), 2 horas (alimentação) e 4 horas (hospedagem, se houver pernoite). Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte. Na preterição, a empresa paga na hora 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais segue o Banco Central."
+        "answer": "A ANAC não tem a tabela europeia por distância. No aeroporto, a alimentação começa com 2 horas de espera e a hospedagem, com transporte, a partir de 4 horas se houver pernoite. A Resolução nº 813/2026 retirou a comunicação a partir de 1 hora. Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte. Na preterição, a empresa paga na hora 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais segue o Banco Central."
       },
       {
         "question": "Por que vocês precisam da minha assinatura e dos documentos?",
@@ -579,7 +579,7 @@
   },
   "privacyPolicy": {
     "pageTitle": "Política de Privacidade",
-    "pageDescription": "Saiba como a Compensall recolhe, utiliza, armazena e protege os seus dados pessoais quando utiliza o nosso website e serviço de reclamação de compensação por voos.",
+    "pageDescription": "Saiba como a Compensall recolhe, utiliza, armazena e protege os seus dados pessoais quando utiliza o nosso website e serviço de reclamação de indenização por voos.",
     "breadcrumb": "Política de Privacidade",
     "summary": "Como tratamos os seus dados pessoais no nosso website e serviço de reclamação."
   },
@@ -587,29 +587,29 @@
     "pageTitle": "Termos de Serviço",
     "pageDescription": "Leia os Termos de Serviço para utilizar a Compensall, incluindo regras de submissão de pedidos, taxas, responsabilidades e lei aplicável.",
     "breadcrumb": "Termos de Serviço",
-    "summary": "As regras para utilizar a Compensall e submeter um pedido de compensação por voo."
+    "summary": "As regras para utilizar a Compensall e enviar um pedido de indenização por voo."
   },
   "noWinNoFeePage": {
     "pageTitle": "Acordo No win, no fee",
     "breadcrumb": "Acordo No win, no fee",
-    "summary": "Só paga se recuperarmos com sucesso a sua compensação de voo."
+    "summary": "Só paga se recuperarmos com sucesso a sua indenização de voo."
   },
   "legal": {
     "breadcrumbPrices": "Preços"
   },
   "about": {
     "title": "Sobre nós",
-    "subtitle": "Ajudamos passageiros no Brasil a exigir assistência, reembolso, reacomodação e a compensação da ANAC.",
+    "subtitle": "Ajudamos passageiros no Brasil a exigir assistência, reembolso, reacomodação e a indenização da ANAC.",
     "missionTitle": "A nossa missão",
-    "missionP1": "A Compensall deixa o pedido mais simples. Empresas aéreas demoram, recusam casos válidos e muita gente no Brasil não recebe a assistência, o reembolso ou a compensação da Resolução ANAC nº 400.",
+    "missionP1": "A Compensall deixa o pedido mais simples. Empresas aéreas demoram, recusam casos válidos e muita gente no Brasil não recebe a assistência, o reembolso ou a indenização da Resolução ANAC nº 400.",
     "missionP2": "Cuidamos da documentação, da conversa com a empresa e dos próximos passos. Envie o cartão de embarque, confirme seus dados e deixe a equipe seguir com a regra No win, no fee.",
-    "whyChooseTitle": "Porque nos escolhem os passageiros",
+    "whyChooseTitle": "Por que os passageiros nos escolhem",
     "whyChoose": [
       "No win, no fee: sem custo se não houver sucesso",
       "Do cartão de embarque ao acompanhamento com a empresa aérea",
       "Taxa previsível. Não somos um escritório de advocacia",
       "Seus dados protegidos, com LGPD e RGPD",
-      "Assistência material e, na preterição, compensação em DES",
+      "Assistência material e, na preterição, indenização em DES",
       "Feito para quem voa no Brasil"
     ],
     "valuesTitle": "O que defendemos",
@@ -624,7 +624,7 @@
       },
       "security": {
         "title": "Máxima segurança",
-        "description": "O seu cartão de embarque e dados pessoais estão protegidos. Mantém o controlo em cada etapa."
+        "description": "O seu cartão de embarque e dados pessoais estão protegidos. Mantém o controle em cada etapa."
       }
     }
   },
@@ -635,12 +635,12 @@
     "lead": "Passei quase dez anos a conseguir que as companhias aéreas pagassem a passageiros que elas preferiam não pagar.",
     "intro": "A Francisca criou a Compensall para quem não consegue resposta da empresa aérea. No site em português do Brasil, o pedido segue a Resolução ANAC nº 400.",
     "decadeTitle": "Uma década do lado do passageiro",
-    "decadeBody": "No Brasil, a Resolução ANAC nº 400 organiza a assistência no aeroporto e a escolha entre reacomodação, reembolso integral ou outro transporte. Na preterição, a compensação é em DES. Não é uma tabela por distância. A resolução é de 2016.",
+    "decadeBody": "No Brasil, a Resolução ANAC nº 400 organiza a assistência no aeroporto e a escolha entre reacomodação, reembolso integral ou outro transporte. Na preterição, a indenização é em DES. Não é uma tabela por distância. A resolução é de 2016.",
     "quote": "Uma carta de recusa raramente é o fim de um pedido. Muitas vezes é um teste para ver se o passageiro insiste.",
     "decadeAfter": "No pedido, o que importa é o que aconteceu no aeroporto: o horário de espera, a assistência oferecida e se houve preterição.",
     "whyTitle": "Porque criei a Compensall",
     "whyP1": "Depois de quase dez anos neste setor, quis construir uma empresa de reclamações como eu gostaria que funcionasse se o meu próprio voo tivesse sido cancelado. Isso significou começar do zero com tudo o que tinha aprendido.",
-    "whyP2": "A primeira coisa que aprendi é desconfortável para uma empresa de reclamações admitir: muitas pessoas que nos contactam não têm, na verdade, direito a compensação. Prefiro dizer-lhe isso com honestidade, em minutos, do que aceitar o seu caso e deixá-lo à espera durante meses. A Compensall verifica a elegibilidade antes de qualquer outra coisa.",
+    "whyP2": "A primeira coisa que aprendi é desconfortável para uma empresa de reclamações admitir: muitas pessoas que nos contactam não têm, na verdade, direito a indenização. Prefiro dizer-lhe isso com honestidade, em minutos, do que aceitar o seu caso e deixá-lo à espera durante meses. A Compensall verifica a elegibilidade antes de qualquer outra coisa.",
     "checksTitle": "Como verificamos o seu caso",
     "checksIntro": "Não aceitamos a explicação da companhia aérea sem a confirmar. Em cada pedido, verificamos:",
     "checks": [
@@ -654,7 +654,7 @@
       },
       {
         "title": "Preterição",
-        "body": "Se você tinha reserva, se apresentou e não embarcou, a compensação imediata é de 250 DES no doméstico ou 500 DES no internacional."
+        "body": "Se você tinha reserva, se apresentou e não embarcou, a indenização imediata é de 250 DES no doméstico ou 500 DES no internacional."
       },
       {
         "title": "Comprovantes",
@@ -679,22 +679,22 @@
     ],
     "scopeTitle": "O que a Compensall é, e o que não é",
     "scopeBody": "A Compensall é uma empresa de gestão de reclamações. Não somos um escritório de advogados. Quando uma companhia se recusa a pagar um pedido válido, escalamos pelos canais adequados: organismos de resolução alternativa de litígios, autoridades nacionais de fiscalização e, quando é necessário, parceiros jurídicos independentes.",
-    "cta": "Se o seu voo no Brasil atrasou, foi cancelado ou teve o embarque negado, a Resolução ANAC nº 400 pode garantir assistência e, na preterição, compensação em DES.",
+    "cta": "Se o seu voo no Brasil atrasou, foi cancelado ou teve o embarque negado, a Resolução ANAC nº 400 pode garantir assistência e, na preterição, indenização em DES.",
     "ctaButton": "Vamos descobrir",
     "writtenBy": "Escrito por",
     "shortBio": "Fundadora da Compensall. Ajuda passageiros a concluir pedidos de direitos de voo. No win, no fee.",
     "readStory": "Ler a história da Francisca",
     "meetTitle": "Conheça a Francisca",
-    "meetBody": "A Francisca Albuquerque fundou a Compensall depois de quase dez anos a trabalhar nos direitos dos passageiros aéreos na UE, do lado do passageiro."
+    "meetBody": "A Francisca Albuquerque fundou a Compensall depois de quase dez anos trabalhando nos direitos dos passageiros aéreos na UE, do lado do passageiro."
   },
   "knowYourRights": {
     "heroTitle": "Conheça seus direitos",
-    "heroSubtitle": "Entenda a Resolução ANAC nº 400: assistência no aeroporto, reembolso ou reacomodação e compensação em DES na preterição.",
+    "heroSubtitle": "Entenda a Resolução ANAC nº 400: assistência no aeroporto, reembolso ou reacomodação e indenização em DES na preterição.",
     "whatHappenedTitle": "O que aconteceu no seu",
     "whatHappenedAccent": "voo?",
     "howItWorksTitle": "Como",
     "howItWorksAccent": "funciona?",
-    "howItWorksSubtitle": "Carregue o seu cartão de embarque. O nosso assistente verifica o seu pedido. A nossa equipe trata da companhia aérea.",
+    "howItWorksSubtitle": "Envie seu cartão de embarque. O nosso assistente verifica o seu pedido. Cuidamos de tudo com a companhia aérea.",
     "flightIssues": {
       "flightCancellation": {
         "title": "Cancelamento de voo",
@@ -706,10 +706,10 @@
       },
       "flightDelay": {
         "title": "Atraso de voo",
-        "description": "A assistência começa com 1 hora de espera. Com mais de 4 horas, você escolhe reacomodação, reembolso ou outro transporte."
+        "description": "A alimentação começa com 2 horas de espera. Com mais de 4 horas, você escolhe reacomodação, reembolso ou outro transporte."
       },
       "missedConnection": {
-        "title": "Ligação perdida",
+        "title": "Conexão perdida",
         "description": "Se a perda da conexão foi causada pela empresa, você tem a mesma escolha de reacomodação, reembolso ou outro transporte."
       },
       "overbooking": {
@@ -718,11 +718,11 @@
       },
       "airlineStrike": {
         "title": "Greve da companhia aérea",
-        "description": "Se o seu voo foi afetado por uma greve da companhia aérea, pode ainda ter direitos a compensação."
+        "description": "Se o seu voo foi afetado por uma greve da companhia aérea, pode ainda ter direitos a indenização."
       },
       "passengerRights": {
         "title": "Direitos dos passageiros",
-        "description": "Saiba o que as companhias aéreas podem dever-lhe quando a sua viagem é afetada."
+        "description": "Saiba o que as companhias aéreas podem te dever quando a sua viagem é afetada."
       },
       "passengersWithDisabilities": {
         "title": "Passageiros com deficiência",
@@ -735,29 +735,29 @@
     "breadcrumb": "Preços",
     "summary": "Sem custo para começar. A taxa só incide quando recuperamos um valor para você.",
     "noWinNoFeeIntro": "No win, no fee:",
-    "noWinNoFeeBody": "Verificar a elegibilidade e utilizar o nosso site é gratuito. Se nos nomear para prosseguir a compensação, a nossa taxa aplica-se apenas quando o seu pedido for bem-sucedido, conforme estabelecido no nosso <noWinNoFeeAgreement>Acordo No win, no fee</noWinNoFeeAgreement>.",
+    "noWinNoFeeBody": "Verificar a elegibilidade e utilizar o nosso site é gratuito. Se nos nomear para prosseguir a indenização, a nossa taxa aplica-se apenas quando o seu pedido for bem-sucedido, conforme estabelecido no nosso <noWinNoFeeAgreement>Acordo No win, no fee</noWinNoFeeAgreement>.",
     "noWinNoFeeAgreement": "Acordo No win, no fee",
     "successFeeTitle": "Taxa de sucesso",
     "successFeeDescription": "Quando recuperamos um valor em seu nome, descontamos a taxa de sucesso antes de transferir o restante. Você fica com pelo menos 70% do valor recuperado, antes dos impostos aplicáveis.",
-    "tableCompensationRecovered": "Compensação recuperada",
+    "tableCompensationRecovered": "Indenização recuperada",
     "tableSuccessFee": "Taxa de sucesso",
     "tierUpTo220": "o valor recuperado",
     "tier221to350": "o valor recuperado",
     "tier351to520": "o valor recuperado",
     "fee25Vat": "30% + IVA",
-    "uk261Title": "Montantes de compensação (ANAC)",
-    "uk261Intro": "A compensação em DES na preterição não depende de uma tabela em libras.",
+    "uk261Title": "Montantes de indenização (ANAC)",
+    "uk261Intro": "A indenização em DES na preterição não depende de uma tabela em libras.",
     "ec261Title": "Assistência e preterição",
     "anac": {
       "feeNote": "A taxa é de 30% mais impostos sobre qualquer valor efetivamente recuperado. Não há tabela de 250, 400 ou 600 euros.",
       "assistanceTitle": "Assistência material",
-      "assistanceBody": "Para o passageiro que está no aeroporto, no Brasil, a Resolução ANAC nº 400 organiza a assistência pelo tempo de espera.",
-      "hour1": "A partir de 1 hora: comunicação.",
+      "assistanceBody": "Para o passageiro que está no aeroporto, no Brasil, a Resolução ANAC nº 400, alterada pela Resolução nº 813/2026, organiza a assistência pelo tempo de espera. A comunicação a partir de 1 hora deixou de ser devida.",
+      "hour1": "A Resolução nº 813/2026 retirou a comunicação a partir de 1 hora.",
       "hour2": "A partir de 2 horas: alimentação.",
-      "hour4": "A partir de 4 horas: hospedagem se o embarque for no dia seguinte, e transporte. Quem mora na cidade do aeroporto pode ir para casa em vez do hotel.",
+      "hour4": "A partir de 4 horas: hospedagem se houver pernoite, e transporte. Quem mora na cidade do aeroporto pode ir para casa em vez do hotel.",
       "deniedTitle": "Preterição de embarque",
       "deniedBody": "Se a empresa não transportar quem se apresentou para o voo contratado, paga na hora 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais é a cotação do DES no Banco Central e muda todo dia.",
-      "choice": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro meio de transporte. A compensação da preterição não substitui essa escolha."
+      "choice": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro meio de transporte. A indenização da preterição não substitui essa escolha."
     }
   },
   "cta": {
@@ -783,10 +783,10 @@
     },
     "ec261Card": {
       "title": "Assistência material",
-      "body": "Comunicação a partir de 1 hora, alimentação a partir de 2 horas e hospedagem a partir de 4 horas, se houver pernoite."
+      "body": "Alimentação a partir de 2 horas e hospedagem a partir de 4 horas, se houver pernoite, com transporte."
     },
     "rightsDetailP1": "Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte. Se a empresa já sabe que o atraso vai passar de 4 horas, as opções devem ser oferecidas na hora.",
-    "rightsDetailP2": "A compensação de 250 ou 500 DES na preterição é imediata e não substitui essa escolha. A Compensall organiza o pedido com a regra No win, no fee.",
+    "rightsDetailP2": "A indenização de 250 ou 500 DES na preterição é imediata e não substitui essa escolha. A Compensall organiza o pedido com a regra No win, no fee.",
     "eligibilityHeading": "Quando pedir",
     "eligibilityAccent": "ajuda?",
     "eligibilityIntro": "O pedido faz sentido quando estas condições se encaixam na sua viagem.",
@@ -809,10 +809,10 @@
       },
       "withinTimeLimits": {
         "title": "Quanto antes, melhor",
-        "body": "Não copie o prazo de seis anos da Inglaterra. No Brasil, registre o caso logo, enquanto o cartão de embarque e os comprovantes ainda estão fáceis de achar."
+        "body": "No Brasil, registre o caso logo, enquanto o cartão de embarque e os comprovantes ainda estão fáceis de achar."
       }
     },
-    "ec261Note": "A ANAC não paga um valor por distância. A compensação fixa é a da preterição: 250 DES no doméstico e 500 DES no internacional.",
+    "ec261Note": "A ANAC não paga um valor por distância. A indenização fixa é a da preterição: 250 DES no doméstico e 500 DES no internacional.",
     "tiers": {
       "uk261": {
         "220": {
@@ -830,8 +830,8 @@
       },
       "ec261": {
         "250": {
-          "label": "Comunicação",
-          "desc": "A partir de 1 hora de espera no aeroporto."
+          "label": "Alimentação",
+          "desc": "A partir de 2 horas de espera no aeroporto."
         },
         "400": {
           "label": "Alimentação",
@@ -839,7 +839,7 @@
         },
         "600": {
           "label": "Hospedagem",
-          "desc": "A partir de 4 horas, se o embarque for no dia seguinte."
+          "desc": "A partir de 4 horas, se houver pernoite, com transporte."
         }
       }
     }
@@ -851,15 +851,15 @@
     },
     "home": {
       "title": "Voo atrasado ou cancelado? A ANAC garante seus direitos",
-      "description": "No Brasil, a Resolução ANAC nº 400 define assistência material, reembolso, reacomodação e, na preterição, compensação em DES. No win, no fee."
+      "description": "No Brasil, a Resolução ANAC nº 400 define assistência material, reembolso, reacomodação e, na preterição, indenização em DES. No win, no fee."
     },
     "faq": {
-      "title": "Perguntas frequentes sobre compensação de voo",
+      "title": "Perguntas frequentes sobre indenização de voo",
       "description": "Perguntas sobre a Resolução ANAC nº 400, assistência, preterição, No win, no fee e como a Compensall trata o pedido."
     },
     "about": {
-      "title": "Sobre a Compensall e a compensação de voo",
-      "description": "A Compensall ajuda passageiros no Brasil a pedir assistência, reembolso, reacomodação e a compensação da ANAC. No win, no fee."
+      "title": "Sobre a Compensall e a indenização de voo",
+      "description": "A Compensall ajuda passageiros no Brasil a pedir assistência, reembolso, reacomodação e a indenização da ANAC. No win, no fee."
     },
     "author": {
       "title": "Francisca Albuquerque, fundadora da Compensall",
@@ -867,14 +867,14 @@
     },
     "knowYourRights": {
       "title": "Conheça seus direitos no voo",
-      "description": "Assistência a partir de 1 hora, escolha de reembolso ou reacomodação depois de 4 horas e compensação em DES na preterição."
+      "description": "Alimentação a partir de 2 horas, hospedagem a partir de 4 horas se houver pernoite, e indenização em DES na preterição."
     },
     "prices": {
       "title": "Preços, taxas e No win, no fee",
       "description": "Sem custo para começar. A taxa só incide se recuperarmos um valor. No Brasil, a regra é a Resolução ANAC nº 400."
     },
     "blog": {
-      "title": "Guias de compensação de voo e direitos dos passageiros",
+      "title": "Guias de indenização de voo e direitos dos passageiros",
       "description": "Guias de atraso, cancelamento e negativa de embarque. No Brasil, a regra é a Resolução ANAC nº 400."
     },
     "disruptions": {
@@ -887,14 +887,14 @@
     },
     "privacyPolicy": {
       "title": "Política de privacidade",
-      "description": "Saiba como a Compensall recolhe, utiliza, armazena e protege os seus dados pessoais quando utiliza o nosso site e serviço de compensação de voos."
+      "description": "Saiba como a Compensall recolhe, utiliza, armazena e protege os seus dados pessoais quando utiliza o nosso site e serviço de indenização de voos."
     },
     "terms": {
       "title": "Termos de serviço da Compensall",
       "description": "Leia os Termos de Serviço da Compensall, incluindo regras de submissão de pedidos, taxas, responsabilidades e lei aplicável."
     },
     "airlines": {
-      "title": "Guias de compensação por companhia aérea e aeroporto",
+      "title": "Guias de indenização por companhia aérea e aeroporto",
       "description": "Veja companhias e aeroportos. Para um voo no Brasil, os direitos seguem a Resolução ANAC nº 400."
     },
     "authorityToAct": {
@@ -903,7 +903,7 @@
     },
     "noWinNoFee": {
       "title": "Acordo No win, no fee",
-      "description": "Acordo No win, no fee da Compensall. Só paga se recuperarmos com sucesso a sua compensação."
+      "description": "Acordo No win, no fee da Compensall. Só paga se recuperarmos com sucesso a sua indenização."
     },
     "privacyDataConsent": {
       "title": "Consentimento de privacidade e dados",
@@ -911,11 +911,11 @@
     },
     "track": {
       "title": "Acompanhar o seu pedido",
-      "description": "Consulte o estado do seu pedido de compensação de voo Compensall utilizando a sua referência de acompanhamento."
+      "description": "Consulte o estado do seu pedido de indenização de voo Compensall utilizando a sua referência de acompanhamento."
     },
     "thankYou": {
       "title": "Obrigado — pedido enviado",
-      "description": "O seu pedido de compensação de voo Compensall foi enviado."
+      "description": "O seu pedido de indenização de voo Compensall foi enviado."
     }
   },
   "trackPage": {
@@ -935,7 +935,7 @@
       "route": "Rota",
       "date": "Data",
       "submitted": "Submetido",
-      "estimate": "Compensação estimada"
+      "estimate": "Indenização estimada"
     },
     "estimateUpTo": "Até {amount}",
     "estimateDetail": "Com base em {regulation} para uma rota de cerca de {distance}.",
@@ -963,8 +963,8 @@
       },
       "payment_processing": {
         "label": "A processar o pagamento",
-        "summary": "A companhia aprovou a compensação e o pagamento está a ser tratado.",
-        "message": "Boas notícias — a companhia aprovou a compensação. Estamos a processar o pagamento e atualizamos em breve."
+        "summary": "A companhia aprovou a indenização e o pagamento está a ser tratado.",
+        "message": "Boas notícias — a companhia aprovou a indenização. Estamos a processar o pagamento e atualizamos em breve."
       },
       "awaiting_fee": {
         "label": "Pagamento da taxa",
@@ -973,7 +973,7 @@
       },
       "paid": {
         "label": "Pago",
-        "summary": "A compensação já foi paga.",
+        "summary": "A indenização já foi paga.",
         "message": "O seu pagamento foi concluído! Obrigado pela confiança. Se tiver questões, estamos sempre disponíveis."
       },
       "closed_ntd": {
@@ -1012,10 +1012,10 @@
   "catalogDetail": {
     "airlineTitle": "Direitos do passageiro no voo {name}",
     "airportTitle": "Direitos do passageiro em {name}",
-    "airlineMetaTitle": "Compensação de voo {name}",
-    "airportMetaTitle": "Compensação de voo {name}",
-    "airlineIntroP1": "Se o voo {name} atrasou, foi cancelado ou você não embarcou, a regra depende de onde o voo saiu. No Brasil, vale a Resolução ANAC nº 400: assistência, reacomodação ou reembolso e, na preterição, compensação em DES.",
-    "airlineIntroP2": "A Compensall verifica a sua elegibilidade em minutos. Carregue o cartão de embarque ou introduza os dados do voo — No win, no fee.",
+    "airlineMetaTitle": "Indenização de voo {name}",
+    "airportMetaTitle": "Indenização de voo {name}",
+    "airlineIntroP1": "Se o voo {name} atrasou, foi cancelado ou você não embarcou, a regra depende de onde o voo saiu. No Brasil, vale a Resolução ANAC nº 400: assistência, reacomodação ou reembolso e, na preterição, indenização em DES.",
+    "airlineIntroP2": "A Compensall verifica a sua elegibilidade em minutos. Envie o cartão de embarque ou introduza os dados do voo — No win, no fee.",
     "airportIntroP1": "Se o problema foi em {name} ou o voo saiu do Brasil, a Resolução ANAC nº 400 pode garantir assistência, reembolso ou reacomodação. A tabela europeia por distância não é a regra brasileira.",
     "airportIntroP2": "A Compensall ajuda-o a verificar o seu pedido em minutos. Comece com o cartão de embarque ou os dados do voo — No win, no fee.",
     "sectionRights": "Os seus direitos de passageiro",
@@ -1024,8 +1024,8 @@
     "airportCardDescription": "Voo atrasado ou cancelado via {name}? Verifique o seu pedido em minutos.",
     "entityAirlineFlight": "o seu voo {name}",
     "entityAirportFlight": "um voo via {name}",
-    "faqDelayQuestion": "Tenho direito a compensação se {entity} atrasou ou foi cancelado?",
-    "faqDelayAnswer": "Pode haver assistência a partir de 1 hora de espera. Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte.",
+    "faqDelayQuestion": "Tenho direito a indenização se {entity} atrasou ou foi cancelado?",
+    "faqDelayAnswer": "Pode haver alimentação a partir de 2 horas de espera e hospedagem a partir de 4 horas, se houver pernoite. Com mais de 4 horas, no cancelamento ou na preterição, você escolhe reacomodação, reembolso integral ou outro transporte.",
     "faqAmountQuestion": "Quanto posso reclamar?",
     "faqAmountAnswer": "A ANAC não usa 250, 400 ou 600 euros por distância. Na preterição, são 250 DES no voo doméstico ou 500 DES no internacional, por passageiro. O valor em reais muda todo dia, conforme o Banco Central.",
     "faqRejectedAirlineQuestion": "E se a {name} já rejeitou o meu pedido?",
@@ -1042,19 +1042,19 @@
     "notFoundAirline": "Companhia não encontrada | Compensall",
     "notFoundAirport": "Aeroporto não encontrado | Compensall",
     "brazilNotice": "Neste site em português do Brasil, um voo no Brasil segue a Resolução ANAC nº 400. O texto sobre a companhia ou o aeroporto pode descrever a regra europeia ou britânica quando o voo sai de lá.",
-    "brazilRights": "No Brasil, a Resolução ANAC nº 400 garante comunicação a partir de 1 hora, alimentação a partir de 2 horas e hospedagem a partir de 4 horas, se houver pernoite. Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte. Na preterição, a empresa paga na hora 250 DES no voo doméstico ou 500 DES no internacional, por passageiro.",
-    "brazilTips": "Guarde o cartão de embarque, o comprovante da reserva e anote o horário em que você chegou ao aeroporto. Se a empresa oferecer voucher, confirme se isso é assistência ou a compensação da preterição. Quanto antes o pedido for feito, mais fácil reunir essas provas."
+    "brazilRights": "No Brasil, a Resolução ANAC nº 400, alterada pela Resolução nº 813/2026, garante alimentação a partir de 2 horas e hospedagem a partir de 4 horas, se houver pernoite, com transporte. A comunicação a partir de 1 hora deixou de ser devida. Com mais de 4 horas de atraso, no cancelamento, na interrupção ou na perda de conexão causada pela empresa, você escolhe reacomodação, reembolso integral ou outro transporte. Na preterição, a empresa paga na hora 250 DES no voo doméstico ou 500 DES no internacional, por passageiro.",
+    "brazilTips": "Guarde o cartão de embarque, o comprovante da reserva e anote o horário em que você chegou ao aeroporto. Se a empresa oferecer voucher, confirme se isso é assistência ou a indenização da preterição. Quanto antes o pedido for feito, mais fácil reunir essas provas."
   },
   "notFoundPage": {
     "title": "Página não encontrada",
     "description": "Não encontramos essa página. Comece pelo pedido ou veja os guias abaixo.",
-    "checkCompensation": "Reclamar compensação",
+    "checkCompensation": "Verificar indenização",
     "knowYourRights": "Conheça seus direitos",
     "blog": "Blog"
   },
   "blogPage": {
     "title": "Blog",
-    "subtitle": "Guias práticos sobre direitos dos passageiros no EC 261/2004: atrasos, cancelamentos, negativa de embarque e mais, para você saber o que pode receber antes de voar.",
+    "subtitle": "Guias sobre os direitos de quem voa no Brasil, pela Resolução ANAC nº 400, e sobre o que muda quando o voo sai da Europa ou do Reino Unido.",
     "readArticle": "Ler artigo",
     "backToBlog": "Voltar ao blog",
     "englishOnlyNotice": "Este guia está atualmente disponível apenas em inglês.",
@@ -1062,10 +1062,11 @@
   },
   "disruptionsPage": {
     "title": "Problemas com voos",
-    "subtitle": "Encerramentos de aeroportos, greves e cancelamentos em massa que afetam voos no Reino Unido e na UE.",
+    "subtitle": "Encerramentos, greves e cancelamentos em massa. Um voo no Brasil não paga a tabela europeia de até 600 euros.",
     "readArticle": "Ler atualização",
-    "backToList": "Voltar às perturbações",
-    "empty": "Não há perturbações listadas neste momento. Volte a verificar após a próxima atualização diária."
+    "backToList": "Voltar aos problemas com voos",
+    "empty": "Não há problemas com voos listados neste momento. Volte a verificar após a próxima atualização diária.",
+    "brazilNotice": "Estas atualizações podem ser sobre aeroportos fora do Brasil. Para um voo no Brasil, a alimentação começa com 2 horas de espera e a hospedagem, com transporte, a partir de 4 horas se houver pernoite. A indenização em DES vale na preterição de embarque, não na tabela europeia de 250, 400 ou 600 euros."
   },
   "thankYouPage": {
     "title": "Obrigado",
@@ -1085,7 +1086,7 @@
   },
   "calculator": {
     "title": "Direitos no Brasil",
-    "subtitle": "A ANAC não calcula um valor por quilômetro. A assistência depende das horas de espera e a compensação em DES vale na preterição.",
+    "subtitle": "A ANAC não calcula um valor por quilômetro. A assistência depende das horas de espera e a indenização em DES vale na preterição.",
     "from": "De",
     "to": "Para",
     "departure": "Aeroporto de partida",
@@ -1097,6 +1098,6 @@
     "distanceEmpty": "Escolha os dois aeroportos",
     "perPerson": "por pessoa",
     "totalForPassengers": "{count} passageiros · {amount} cada",
-    "check": "Verificar compensação"
+    "check": "Verificar indenização"
   }
 }

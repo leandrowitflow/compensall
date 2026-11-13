@@ -93,7 +93,6 @@ export default async function PricesPage({ params }: PricesPageProps) {
           <h2 id={headingDomId(t("anac.assistanceTitle"), 1)} className="scroll-mt-28 font-bold text-[#1f3664] text-lg mb-2">{t("anac.assistanceTitle")}</h2>
           <p className="text-muted text-sm leading-relaxed mb-4">{t("anac.assistanceBody")}</p>
           <ul className="list-disc pl-5 text-sm text-muted space-y-1 mb-8">
-            <li>{t("anac.hour1")}</li>
             <li>{t("anac.hour2")}</li>
             <li>{t("anac.hour4")}</li>
           </ul>

@@ -34,6 +34,11 @@ export default async function DisruptionsPage({ params }: DisruptionsPageProps) 
 
       <section className="pt-8 lg:pt-10 xl:pt-[80px] pb-12 xl:pb-20 px-4 md:px-8 lg:px-8 xl:px-12">
         <div className="max-w-[960px] lg:max-w-[960px] xl:max-w-[1550px] mx-auto">
+          {locale === "pt-BR" ? (
+            <p className="mb-8 max-w-[760px] rounded-2xl bg-[#f4f7ff] px-5 py-4 text-sm leading-relaxed text-[#3d4a6b] xl:text-[15px]">
+              {t("brazilNotice")}
+            </p>
+          ) : null}
           {posts.length === 0 ? (
             <p className="text-[#1f3664] text-base xl:text-[17px] leading-relaxed max-w-[720px]">
               {t("empty")}

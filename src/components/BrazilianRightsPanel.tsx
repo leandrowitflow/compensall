@@ -1,13 +1,13 @@
 import { getTranslations } from "next-intl/server";
 
-const ASSISTANCE = ["communication", "food", "stay"] as const;
+const ASSISTANCE = ["food", "stay"] as const;
 
 export default async function BrazilianRightsPanel() {
   const t = await getTranslations("home.anac");
 
   return (
     <div className="text-left">
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2">
         {ASSISTANCE.map((key) => (
           <div key={key} className="rounded-2xl border border-[#d5e0f9] bg-[#f8faff] px-5 py-4">
             <p className="text-xs font-bold uppercase tracking-wide text-[#2669f3]">{t(`${key}.when`)}</p>
